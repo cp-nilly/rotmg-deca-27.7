@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.application.api.ApplicationSetup;
@@ -78,7 +78,7 @@
         [Inject]
         public var context:IContext;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
@@ -132,7 +132,7 @@
         private function makeTextPanelMappings():void
         {
             this.injector.map(TextPanelData).asSingleton();
-            this.commandMap.map(TextPanelMessageUpdateSignal, true).toCommand(TextPanelMessageUpdateCommand);
+            this.commandMap.map(TextPanelMessageUpdateSignal).toCommand(TextPanelMessageUpdateCommand).once();
             this.mediatorMap.map(TextPanel).toMediator(TextPanelMediator);
         }
 
