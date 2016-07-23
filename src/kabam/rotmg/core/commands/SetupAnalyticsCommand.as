@@ -1,6 +1,6 @@
 ﻿package kabam.rotmg.core.commands
 {
-    import flash.display.DisplayObjectContainer;
+	import robotlegs.bender.extensions.contextView.ContextView;
     import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.core.service.GoogleAnalytics;
 
@@ -8,7 +8,7 @@
     {
 
         [Inject]
-        public var contextView:DisplayObjectContainer;
+        public var contextView:ContextView;
         [Inject]
         public var setup:ApplicationSetup;
         [Inject]
@@ -17,7 +17,7 @@
 
         public function execute():void
         {
-            this.analytics.init(this.contextView.stage, this.setup.getAnalyticsCode());
+            this.analytics.init(this.contextView.view.stage, this.setup.getAnalyticsCode());
         }
 
 

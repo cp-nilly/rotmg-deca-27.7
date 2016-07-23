@@ -1,7 +1,7 @@
 ﻿package kabam.lib.console
 {
     import robotlegs.bender.framework.api.IExtension;
-    import flash.display.DisplayObjectContainer;
+	import robotlegs.bender.extensions.contextView.ContextView;
     import robotlegs.bender.extensions.signalCommandMap.SignalCommandMapExtension;
     import kabam.lib.resizing.ResizeExtension;
     import robotlegs.bender.framework.api.IContext;
@@ -10,12 +10,12 @@
     {
 
         [Inject]
-        public var contextView:DisplayObjectContainer;
+        public var contextView:ContextView;
 
 
         public function extend(_arg1:IContext):void
         {
-            _arg1.extend(SignalCommandMapExtension).extend(ResizeExtension).configure(ConsoleConfig);
+            _arg1.install(SignalCommandMapExtension).install(ResizeExtension).configure(ConsoleConfig);
         }
 
 

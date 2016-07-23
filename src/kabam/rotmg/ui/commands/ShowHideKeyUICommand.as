@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.ui.commands
 {
     import kabam.rotmg.ui.view.KeysView;
-    import flash.display.DisplayObjectContainer;
+	import robotlegs.bender.extensions.contextView.ContextView;
 
     public class ShowHideKeyUICommand 
     {
@@ -10,7 +10,7 @@
         private static var view:KeysView;
 
         [Inject]
-        public var contextView:DisplayObjectContainer;
+        public var contextView:ContextView;
 
 
         public function execute():void
@@ -20,12 +20,12 @@
                 view = new KeysView();
                 view.x = 4;
                 view.y = 4;
-                this.contextView.addChild(view);
+                this.contextView.view.addChild(view);
                 show = false;
             }
             else
             {
-                this.contextView.removeChild(view);
+                this.contextView.view.removeChild(view);
                 view = null;
                 show = true;
             };

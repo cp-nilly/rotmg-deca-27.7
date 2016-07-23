@@ -2,9 +2,9 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
+	import robotlegs.bender.extensions.contextView.ContextView;
     import kabam.rotmg.application.api.ApplicationSetup;
-    import flash.display.DisplayObjectContainer;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.startup.control.StartupSequence;
@@ -61,9 +61,9 @@
         [Inject]
         public var setup:ApplicationSetup;
         [Inject]
-        public var contextView:DisplayObjectContainer;
+        public var contextView:ContextView;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]
@@ -83,7 +83,7 @@
             this.startup.addSignal(SetupDomainSecuritySignal, -1000);
             this.startup.addSignal(SetupAnalyticsSignal, -999);
             this.startup.addTask(RequestAppInitTask);
-            this.context.lifecycle.afterInitializing(this.init);
+            this.context.afterInitializing(this.init);
         }
 
         private function configureModel():void
@@ -142,7 +142,7 @@
             this.mediatorMap.mediate(this.contextView);
             this.layers = new Layers();
             this.injector.map(Layers).toValue(this.layers);
-            this.contextView.addChild(this.layers);
+            this.contextView.view.addChild(this.layers);
         }
 
 

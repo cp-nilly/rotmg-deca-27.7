@@ -1,8 +1,8 @@
 ﻿package kabam.rotmg.account
 {
     import robotlegs.bender.framework.api.IConfig;
-    import flash.display.DisplayObjectContainer;
-    import org.swiftsuspenders.Injector;
+    import robotlegs.bender.extensions.contextView.ContextView;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.framework.api.IContext;
@@ -33,9 +33,9 @@
     {
 
         [Inject]
-        public var root:DisplayObjectContainer;
+        public var root:ContextView;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]
@@ -52,7 +52,7 @@
         {
             this.configureCommonFunctionality();
             this.configureAccountSpecificFunctionality();
-            this.context.lifecycle.afterInitializing(this.init);
+            this.context.afterInitializing(this.init);
         }
 
         private function configureCommonFunctionality():void

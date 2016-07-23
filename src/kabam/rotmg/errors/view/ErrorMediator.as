@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.errors.view
 {
     import robotlegs.bender.bundles.mvcs.Mediator;
-    import flash.display.DisplayObjectContainer;
+	import robotlegs.bender.extensions.contextView.ContextView;
     import kabam.rotmg.errors.control.ErrorSignal;
     import robotlegs.bender.framework.api.ILogger;
     import flash.display.LoaderInfo;
@@ -15,7 +15,7 @@
         private const UNCAUGHT_ERROR:String = "uncaughtError";
 
         [Inject]
-        public var contextView:DisplayObjectContainer;
+        public var contextView:ContextView;
         [Inject]
         public var error:ErrorSignal;
         [Inject]
@@ -25,7 +25,7 @@
 
         override public function initialize():void
         {
-            this.loaderInfo = this.contextView.loaderInfo;
+            this.loaderInfo = this.contextView.view.loaderInfo;
             if (this.canCatchGlobalErrors())
             {
                 this.addGlobalErrorListener();
