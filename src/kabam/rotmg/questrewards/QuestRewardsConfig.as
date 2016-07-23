@@ -1,10 +1,9 @@
 ﻿package kabam.rotmg.questrewards
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import robotlegs.bender.extensions.commandCenter.api.ICommandCenter;
     import kabam.rotmg.questrewards.view.QuestRewardsPanel;
     import kabam.rotmg.questrewards.view.QuestRewardsPanelMediator;
     import kabam.rotmg.questrewards.view.QuestRewardsContainer;
@@ -16,13 +15,11 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var commandMap:ISignalCommandMap;
-        [Inject]
-        public var commandCenter:ICommandCenter;
 
 
         public function configure():void
