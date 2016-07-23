@@ -1,85 +1,155 @@
-package kabam.rotmg.pets 
+package kabam.rotmg.pets
 {
-    import com.company.assembleegameclient.ui.dialogs.*;
-    import kabam.rotmg.pets.controller.*;
-    import kabam.rotmg.pets.controller.reskin.*;
-    import kabam.rotmg.pets.data.*;
-    import kabam.rotmg.pets.util.*;
-    import kabam.rotmg.pets.view.*;
-    import kabam.rotmg.pets.view.components.*;
-    import kabam.rotmg.pets.view.dialogs.*;
-    import kabam.rotmg.pets.view.petPanel.*;
-    import org.swiftsuspenders.*;
-    import robotlegs.bender.extensions.commandCenter.api.*;
-    import robotlegs.bender.extensions.mediatorMap.api.*;
-    import robotlegs.bender.extensions.signalCommandMap.api.*;
-    import robotlegs.bender.framework.api.*;
-    
-    public class PetsConfig extends Object implements robotlegs.bender.framework.api.IConfig
-    {
-        public function PetsConfig()
-        {
-            super();
-            return;
-        }
-
-        public function configure():void
-        {
-            this.injector.map(kabam.rotmg.pets.controller.ShowPetTooltip).asSingleton();
-            this.injector.map(kabam.rotmg.pets.data.PetsModel).asSingleton();
-            this.injector.map(kabam.rotmg.pets.controller.NotifyActivePetUpdated).asSingleton();
-            this.injector.map(kabam.rotmg.pets.util.PetsViewAssetFactory).asSingleton();
-            this.injector.map(kabam.rotmg.pets.data.PetSlotsState).asSingleton();
-            this.injector.map(kabam.rotmg.pets.controller.PetFeedResultSignal).asSingleton();
-            this.injector.map(kabam.rotmg.pets.util.FeedFuseCostModel).asSingleton();
-            this.injector.map(kabam.rotmg.pets.data.PetFormModel).asSingleton();
-            this.injector.map(kabam.rotmg.pets.controller.reskin.UpdateSelectedPetForm).asSingleton();
-            this.mediatorMap.map(kabam.rotmg.pets.view.PetSkinGroup).toMediator(kabam.rotmg.pets.view.PetSkinGroupMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.AvailablePetsView).toMediator(kabam.rotmg.pets.view.AvailablePetsMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.FeedPetView).toMediator(kabam.rotmg.pets.view.FeedPetMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.FusePetView).toMediator(kabam.rotmg.pets.view.FusePetMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetsTabContentView).toMediator(kabam.rotmg.pets.view.components.PetsTabContentMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.petPanel.PetPanel).toMediator(kabam.rotmg.pets.view.components.PetPanelMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetInteractionPanel).toMediator(kabam.rotmg.pets.view.components.PetInteractionPanelMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.YardUpgraderPanel).toMediator(kabam.rotmg.pets.view.components.YardUpgraderPanelMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.dialogs.PetPicker).toMediator(kabam.rotmg.pets.view.dialogs.PetPickerMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetFeeder).toMediator(kabam.rotmg.pets.view.components.PetFeederMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetFuser).toMediator(kabam.rotmg.pets.view.components.PetFuserMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.DialogCloseButton).toMediator(kabam.rotmg.pets.view.components.DialogCloseButtonMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetTooltip).toMediator(kabam.rotmg.pets.view.components.PetTooltipMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.PetAbilityDisplay).toMediator(kabam.rotmg.pets.view.components.PetAbilityDisplayMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.YardUpgraderView).toMediator(kabam.rotmg.pets.view.YardUpgraderMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.dialogs.CaretakerQueryDialog).toMediator(kabam.rotmg.pets.view.CaretakerQueryDialogMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.components.FusionStrength).toMediator(kabam.rotmg.pets.view.components.FusionStrengthMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.dialogs.PetPickerDialog).toMediator(kabam.rotmg.pets.view.dialogs.PetPickerDialogMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.dialogs.EggHatchedDialog).toMediator(kabam.rotmg.pets.view.dialogs.EggHatchedDialogMediator);
-            this.mediatorMap.map(com.company.assembleegameclient.ui.dialogs.DialogCloser).toMediator(com.company.assembleegameclient.ui.dialogs.DialogCloserMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.dialogs.ClearsPetSlots).toMediator(kabam.rotmg.pets.view.ClearsPetSlotsMediator);
-            this.mediatorMap.map(kabam.rotmg.pets.view.PetFormView).toMediator(kabam.rotmg.pets.view.PetFormMediator);
-            this.commandMap.map(kabam.rotmg.pets.controller.reskin.ReskinPetRequestSignal).toCommand(kabam.rotmg.pets.controller.reskin.ReskinPetRequestCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.UpdateActivePet).toCommand(kabam.rotmg.pets.controller.UpdateActivePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.UpdatePetYardSignal).toCommand(kabam.rotmg.pets.controller.UpdatePetYardCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.UpgradePetSignal).toCommand(kabam.rotmg.pets.controller.UpgradePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.DeactivatePet).toCommand(kabam.rotmg.pets.controller.DeactivatePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.ActivatePet).toCommand(kabam.rotmg.pets.controller.ActivatePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.AddPetsConsoleActionsSignal).toCommand(kabam.rotmg.pets.controller.AddPetsConsoleActionsCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.OpenCaretakerQueryDialogSignal).toCommand(kabam.rotmg.pets.controller.OpenCaretakerQueryDialogCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.EvolvePetSignal).toCommand(kabam.rotmg.pets.controller.EvolvePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.NewAbilitySignal).toCommand(kabam.rotmg.pets.controller.NewAbilityCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.DeletePetSignal).toCommand(kabam.rotmg.pets.controller.DeletePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.HatchPetSignal).toCommand(kabam.rotmg.pets.controller.HatchPetCommand);
-            this.commandMap.map(kabam.rotmg.pets.view.petPanel.ReleasePetSignal).toCommand(kabam.rotmg.pets.controller.ReleasePetCommand);
-            this.commandMap.map(kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal).toCommand(kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartCommand);
-            this.injector.getInstance(kabam.rotmg.pets.controller.AddPetsConsoleActionsSignal).dispatch();
-            return;
-        }
-
-        public var injector:org.swiftsuspenders.Injector;
-
-        public var mediatorMap:robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-
-        public var commandMap:robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-
-        public var commandCenter:robotlegs.bender.extensions.commandCenter.api.ICommandCenter;
-    }
+	import robotlegs.bender.framework.api.IConfig;
+	import robotlegs.bender.framework.api.IInjector;
+	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+	import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+	import robotlegs.bender.extensions.commandCenter.api.ICommand;
+	import kabam.rotmg.pets.controller.ShowPetTooltip;
+	import kabam.rotmg.pets.data.PetsModel;
+	import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
+	import kabam.rotmg.pets.util.PetsViewAssetFactory;
+	import kabam.rotmg.pets.data.PetSlotsState;
+	import kabam.rotmg.pets.controller.PetFeedResultSignal;
+	import kabam.rotmg.pets.util.FeedFuseCostModel;
+	import kabam.rotmg.pets.data.PetFormModel;
+	import kabam.rotmg.pets.controller.reskin.UpdateSelectedPetForm;
+	import kabam.rotmg.pets.view.PetSkinGroup;
+	import kabam.rotmg.pets.view.PetSkinGroupMediator;
+	import kabam.rotmg.pets.view.AvailablePetsView;
+	import kabam.rotmg.pets.view.AvailablePetsMediator;
+	import kabam.rotmg.pets.view.FeedPetView;
+	import kabam.rotmg.pets.view.FeedPetMediator;
+	import kabam.rotmg.pets.view.FusePetView;
+	import kabam.rotmg.pets.view.FusePetMediator;
+	import kabam.rotmg.pets.view.components.PetsTabContentView;
+	import kabam.rotmg.pets.view.components.PetsTabContentMediator;
+	import kabam.rotmg.pets.view.petPanel.PetPanel;
+	import kabam.rotmg.pets.view.components.PetPanelMediator;
+	import kabam.rotmg.pets.view.components.PetInteractionPanel;
+	import kabam.rotmg.pets.view.components.PetInteractionPanelMediator;
+	import kabam.rotmg.pets.view.components.YardUpgraderPanel;
+	import kabam.rotmg.pets.view.components.YardUpgraderPanelMediator;
+	import kabam.rotmg.pets.view.dialogs.PetPicker;
+	import kabam.rotmg.pets.view.dialogs.PetPickerMediator;
+	import kabam.rotmg.pets.view.components.PetFeeder;
+	import kabam.rotmg.pets.view.components.PetFeederMediator;
+	import kabam.rotmg.pets.view.components.PetFuser;
+	import kabam.rotmg.pets.view.components.PetFuserMediator;
+	import kabam.rotmg.pets.view.components.DialogCloseButton;
+	import kabam.rotmg.pets.view.components.DialogCloseButtonMediator;
+	import kabam.rotmg.pets.view.components.PetTooltip;
+	import kabam.rotmg.pets.view.components.PetTooltipMediator;
+	import kabam.rotmg.pets.view.components.PetAbilityDisplay;
+	import kabam.rotmg.pets.view.components.PetAbilityDisplayMediator;
+	import kabam.rotmg.pets.view.YardUpgraderView;
+	import kabam.rotmg.pets.view.YardUpgraderMediator;
+	import kabam.rotmg.pets.view.dialogs.CaretakerQueryDialog;
+	import kabam.rotmg.pets.view.CaretakerQueryDialogMediator;
+	import kabam.rotmg.pets.view.components.FusionStrength;
+	import kabam.rotmg.pets.view.components.FusionStrengthMediator;
+	import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
+	import kabam.rotmg.pets.view.dialogs.PetPickerDialogMediator;
+	import kabam.rotmg.pets.view.dialogs.EggHatchedDialog;
+	import kabam.rotmg.pets.view.dialogs.EggHatchedDialogMediator;
+	import com.company.assembleegameclient.ui.dialogs.DialogCloser;
+	import com.company.assembleegameclient.ui.dialogs.DialogCloserMediator;
+	import kabam.rotmg.pets.view.dialogs.ClearsPetSlots;
+	import kabam.rotmg.pets.view.ClearsPetSlotsMediator;
+	import kabam.rotmg.pets.view.PetFormView;
+	import kabam.rotmg.pets.view.PetFormMediator;
+	import kabam.rotmg.pets.controller.reskin.ReskinPetRequestSignal;
+	import kabam.rotmg.pets.controller.reskin.ReskinPetRequestCommand;
+	import kabam.rotmg.pets.controller.UpdateActivePet;
+	import kabam.rotmg.pets.controller.UpdateActivePetCommand;
+	import kabam.rotmg.pets.controller.UpdatePetYardSignal;
+	import kabam.rotmg.pets.controller.UpdatePetYardCommand;
+	import kabam.rotmg.pets.controller.UpgradePetSignal;
+	import kabam.rotmg.pets.controller.UpgradePetCommand;
+	import kabam.rotmg.pets.controller.DeactivatePet;
+	import kabam.rotmg.pets.controller.DeactivatePetCommand;
+	import kabam.rotmg.pets.controller.ActivatePet;
+	import kabam.rotmg.pets.controller.ActivatePetCommand;
+	import kabam.rotmg.pets.controller.AddPetsConsoleActionsSignal;
+	import kabam.rotmg.pets.controller.AddPetsConsoleActionsCommand;
+	import kabam.rotmg.pets.controller.OpenCaretakerQueryDialogSignal;
+	import kabam.rotmg.pets.controller.OpenCaretakerQueryDialogCommand;
+	import kabam.rotmg.pets.controller.EvolvePetSignal;
+	import kabam.rotmg.pets.controller.EvolvePetCommand;
+	import kabam.rotmg.pets.controller.NewAbilitySignal;
+	import kabam.rotmg.pets.controller.NewAbilityCommand;
+	import kabam.rotmg.pets.controller.DeletePetSignal;
+	import kabam.rotmg.pets.controller.DeletePetCommand;
+	import kabam.rotmg.pets.controller.HatchPetSignal;
+	import kabam.rotmg.pets.controller.HatchPetCommand;
+	import kabam.rotmg.pets.view.petPanel.ReleasePetSignal;
+	import kabam.rotmg.pets.controller.ReleasePetCommand;
+	import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
+	import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartCommand;
+	
+	public class PetsConfig implements IConfig 
+	{
+		
+		[Inject]
+		public var injector:IInjector;
+		[Inject]
+		public var mediatorMap:IMediatorMap;
+		[Inject]
+		public var commandMap:ISignalCommandMap;
+		//[Inject]
+		//public var commandCenter:ICommand;
+		
+		
+		public function configure():void
+		{
+			this.injector.map(ShowPetTooltip).asSingleton();
+			this.injector.map(PetsModel).asSingleton();
+			this.injector.map(NotifyActivePetUpdated).asSingleton();
+			this.injector.map(PetsViewAssetFactory).asSingleton();
+			this.injector.map(PetSlotsState).asSingleton();
+			this.injector.map(PetFeedResultSignal).asSingleton();
+			this.injector.map(FeedFuseCostModel).asSingleton();
+			this.injector.map(PetFormModel).asSingleton();
+			this.injector.map(UpdateSelectedPetForm).asSingleton();
+			this.mediatorMap.map(PetSkinGroup).toMediator(PetSkinGroupMediator);
+			this.mediatorMap.map(AvailablePetsView).toMediator(AvailablePetsMediator);
+			this.mediatorMap.map(FeedPetView).toMediator(FeedPetMediator);
+			this.mediatorMap.map(FusePetView).toMediator(FusePetMediator);
+			this.mediatorMap.map(PetsTabContentView).toMediator(PetsTabContentMediator);
+			this.mediatorMap.map(PetPanel).toMediator(PetPanelMediator);
+			this.mediatorMap.map(PetInteractionPanel).toMediator(PetInteractionPanelMediator);
+			this.mediatorMap.map(YardUpgraderPanel).toMediator(YardUpgraderPanelMediator);
+			this.mediatorMap.map(PetPicker).toMediator(PetPickerMediator);
+			this.mediatorMap.map(PetFeeder).toMediator(PetFeederMediator);
+			this.mediatorMap.map(PetFuser).toMediator(PetFuserMediator);
+			this.mediatorMap.map(DialogCloseButton).toMediator(DialogCloseButtonMediator);
+			this.mediatorMap.map(PetTooltip).toMediator(PetTooltipMediator);
+			this.mediatorMap.map(PetAbilityDisplay).toMediator(PetAbilityDisplayMediator);
+			this.mediatorMap.map(YardUpgraderView).toMediator(YardUpgraderMediator);
+			this.mediatorMap.map(CaretakerQueryDialog).toMediator(CaretakerQueryDialogMediator);
+			this.mediatorMap.map(FusionStrength).toMediator(FusionStrengthMediator);
+			this.mediatorMap.map(PetPickerDialog).toMediator(PetPickerDialogMediator);
+			this.mediatorMap.map(EggHatchedDialog).toMediator(EggHatchedDialogMediator);
+			this.mediatorMap.map(DialogCloser).toMediator(DialogCloserMediator);
+			this.mediatorMap.map(ClearsPetSlots).toMediator(ClearsPetSlotsMediator);
+			this.mediatorMap.map(PetFormView).toMediator(PetFormMediator);
+			this.commandMap.map(ReskinPetRequestSignal).toCommand(ReskinPetRequestCommand);
+			this.commandMap.map(UpdateActivePet).toCommand(UpdateActivePetCommand);
+			this.commandMap.map(UpdatePetYardSignal).toCommand(UpdatePetYardCommand);
+			this.commandMap.map(UpgradePetSignal).toCommand(UpgradePetCommand);
+			this.commandMap.map(DeactivatePet).toCommand(DeactivatePetCommand);
+			this.commandMap.map(ActivatePet).toCommand(ActivatePetCommand);
+			this.commandMap.map(AddPetsConsoleActionsSignal).toCommand(AddPetsConsoleActionsCommand);
+			this.commandMap.map(OpenCaretakerQueryDialogSignal).toCommand(OpenCaretakerQueryDialogCommand);
+			this.commandMap.map(EvolvePetSignal).toCommand(EvolvePetCommand);
+			this.commandMap.map(NewAbilitySignal).toCommand(NewAbilityCommand);
+			this.commandMap.map(DeletePetSignal).toCommand(DeletePetCommand);
+			this.commandMap.map(HatchPetSignal).toCommand(HatchPetCommand);
+			this.commandMap.map(ReleasePetSignal).toCommand(ReleasePetCommand);
+			this.commandMap.map(ReskinPetFlowStartSignal).toCommand(ReskinPetFlowStartCommand);
+			this.injector.getInstance(AddPetsConsoleActionsSignal).dispatch();
+		}
+		
+		
+	}
 }
