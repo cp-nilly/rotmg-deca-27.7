@@ -3,7 +3,7 @@
     import __AS3__.vec.Vector;
     import kabam.rotmg.stage3D.proxies.Context3DProxy;
     import kabam.rotmg.stage3D.graphic3D.TextureFactory;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import flash.display3D.Program3D;
     import kabam.rotmg.stage3D.graphic3D.Graphic3D;
     import flash.geom.Matrix3D;
@@ -48,7 +48,7 @@
         [Inject]
         public var textureFactory:TextureFactory;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         private var tX:Number;
         private var tY:Number;
         public var program2:Program3D;

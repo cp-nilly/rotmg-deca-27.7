@@ -1,8 +1,8 @@
 ﻿package kabam.rotmg.application
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
-    import flash.display.DisplayObjectContainer;
+	import robotlegs.bender.framework.api.IInjector;
+    import robotlegs.bender.extensions.contextView.ContextView;
     import kabam.rotmg.build.api.BuildData;
     import flash.display.LoaderInfo;
     import kabam.rotmg.application.model.DomainModel;
@@ -21,9 +21,9 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
-        public var root:DisplayObjectContainer;
+        public var root:ContextView;
         [Inject]
         public var data:BuildData;
         [Inject]

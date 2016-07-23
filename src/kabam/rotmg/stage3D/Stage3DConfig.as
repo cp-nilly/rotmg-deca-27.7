@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import com.company.assembleegameclient.util.StageProxy;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import com.company.assembleegameclient.util.Stage3DProxy;
     import flash.events.ErrorEvent;
     import com.company.assembleegameclient.parameters.Parameters;
@@ -27,7 +27,7 @@
         [Inject]
         public var stageProxy:StageProxy;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         public var renderer:Renderer;
         private var stage3D:Stage3DProxy;
 

@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.chat
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageMap;
     import robotlegs.bender.extensions.signalCommandMap.impl.SignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
@@ -34,7 +34,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var messageMap:MessageMap;
         [Inject]
