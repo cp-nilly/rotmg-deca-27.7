@@ -5,7 +5,7 @@
     import __AS3__.vec.Vector;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import com.company.assembleegameclient.objects.Player;
     import kabam.rotmg.promotions.model.BeginnersPackageModel;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
@@ -73,7 +73,7 @@
             this.parseSalesForceData();
             this.parseTOSPopup();
             this.reportUnlocked();
-            var _local3:Injector = StaticInjectorContext.getInjector();
+            var _local3:IInjector = StaticInjectorContext.getInjector();
             if (_local3)
             {
                 _local5 = _local3.getInstance(Account);
@@ -133,7 +133,7 @@
 
         private function getBeginnerModel():BeginnersPackageModel
         {
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             return (_local1.getInstance(BeginnersPackageModel));
         }
 
@@ -335,7 +335,7 @@
 
         private function reportUnlocked():void
         {
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             if (_local1)
             {
                 this.account = _local1.getInstance(Account);

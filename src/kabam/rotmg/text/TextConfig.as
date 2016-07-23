@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.text
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.text.model.FontModel;
@@ -17,7 +17,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]

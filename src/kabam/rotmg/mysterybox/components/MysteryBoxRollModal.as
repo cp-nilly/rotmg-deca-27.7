@@ -21,7 +21,7 @@
     import kabam.rotmg.util.components.UIAssetsHelper;
     import flash.filters.GlowFilter;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.pets.view.components.PopupWindowBackground;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
@@ -132,7 +132,7 @@
             this.plusNavSprite.y = (HEIGHT - 50);
             this.plusNavSprite.alpha = 0;
             addChild(this.plusNavSprite);
-            var _local3:Injector = StaticInjectorContext.getInjector();
+            var _local3:IInjector = StaticInjectorContext.getInjector();
             this.client = _local3.getInstance(AppEngineClient);
             this.account = _local3.getInstance(Account);
             var _local4:uint;
@@ -395,7 +395,7 @@
             var _local5:PlayerModel;
             var _local6:OpenDialogSignal;
             var _local7:Dialog;
-            var _local8:Injector;
+            var _local8:IInjector;
             var _local9:GetMysteryBoxesTask;
             this.requestComplete = true;
             if (_arg1)

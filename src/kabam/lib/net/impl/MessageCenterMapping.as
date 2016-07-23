@@ -1,7 +1,7 @@
 ﻿package kabam.lib.net.impl
 {
     import kabam.lib.net.api.MessageMapping;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageHandlerProxy;
 
     public class MessageCenterMapping implements MessageMapping 
@@ -10,7 +10,7 @@
         private const nullHandler:NullHandlerProxy = new NullHandlerProxy();
 
         private var id:int;
-        private var injector:Injector;
+        private var injector:IInjector;
         private var messageType:Class;
         private var population:int = 1;
         private var handler:MessageHandlerProxy;
@@ -27,7 +27,7 @@
             return (this);
         }
 
-        public function setInjector(_arg1:Injector):MessageCenterMapping
+        public function setInjector(_arg1:IInjector):MessageCenterMapping
         {
             this.injector = _arg1;
             return (this);

@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.characters.model.CharacterModel;
     import kabam.rotmg.characters.model.LegacyCharacterModel;
@@ -15,7 +15,7 @@
         [Inject]
         public var context:IContext;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
 

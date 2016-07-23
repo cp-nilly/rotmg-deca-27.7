@@ -24,7 +24,7 @@
     import kabam.rotmg.questrewards.controller.QuestRedeemCompleteSignal;
     import kabam.rotmg.arena.model.CurrentArenaRunModel;
     import kabam.rotmg.classes.model.ClassesModel;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.game.model.GameModel;
     import kabam.rotmg.pets.controller.UpdateActivePet;
     import kabam.rotmg.pets.data.PetsModel;
@@ -250,7 +250,7 @@
         private var questRedeemComplete:QuestRedeemCompleteSignal;
         private var currentArenaRun:CurrentArenaRunModel;
         private var classesModel:ClassesModel;
-        private var injector:Injector;
+        private var injector:IInjector;
         private var model:GameModel;
         private var updateActivePet:UpdateActivePet;
         private var petsModel:PetsModel;

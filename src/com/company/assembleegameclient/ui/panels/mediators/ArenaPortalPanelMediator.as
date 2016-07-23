@@ -8,7 +8,7 @@
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.game.model.GameModel;
     import kabam.rotmg.arena.model.CurrentArenaRunModel;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.game.signals.ExitGameSignal;
     import kabam.rotmg.account.core.Account;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
@@ -41,7 +41,7 @@
         [Inject]
         public var currentRunModel:CurrentArenaRunModel;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var exitSignal:ExitGameSignal;
         [Inject]

@@ -7,7 +7,7 @@
     import kabam.rotmg.servers.api.Server;
     import org.osflash.signals.Signal;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.util.FameUtil;
     import com.company.assembleegameclient.parameters.Parameters;
@@ -64,7 +64,7 @@
                 return;
             };
             this._inProcessFlag = true;
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             this.task = _local1.getInstance(FriendDataRequestTask);
             this.loadList(FriendConstant.getURL(FriendConstant.FRIEND_LIST), this.onFriendListResponse);
         }

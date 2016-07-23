@@ -2,7 +2,7 @@
 {
     import kabam.rotmg.language.model.LanguageModel;
     import kabam.rotmg.ui.signals.ShowLoadingUISignal;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.language.service.GetLanguageService;
     import kabam.lib.console.signals.HideConsoleSignal;
     import kabam.lib.tasks.TaskMonitor;
@@ -19,7 +19,7 @@
         [Inject]
         public var loading:ShowLoadingUISignal;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var task:GetLanguageService;
         [Inject]

@@ -3,7 +3,7 @@
     import kabam.lib.net.api.MessageMap;
     import kabam.lib.net.api.MessageProvider;
     import __AS3__.vec.Vector;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageMapping;
     import __AS3__.vec.*;
 
@@ -15,10 +15,10 @@
         private const maps:Vector.<MessageCenterMapping> = new Vector.<MessageCenterMapping>(MAX_ID, true);
         private const pools:Vector.<MessagePool> = new Vector.<MessagePool>(MAX_ID, true);
 
-        private var injector:Injector;
+        private var injector:IInjector;
 
 
-        public function setInjector(_arg1:Injector):MessageCenter
+        public function setInjector(_arg1:IInjector):MessageCenter
         {
             this.injector = _arg1;
             return (this);

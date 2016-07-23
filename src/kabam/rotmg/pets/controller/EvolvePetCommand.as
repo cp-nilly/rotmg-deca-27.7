@@ -3,7 +3,7 @@
     import com.company.assembleegameclient.editor.Command;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.messaging.impl.EvolvePetInfo;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.pets.view.dialogs.evolving.EvolveDialog;
 
     public class EvolvePetCommand extends Command 
@@ -14,7 +14,7 @@
         [Inject]
         public var evolvePetInfo:EvolvePetInfo;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
 
 
         override public function execute():void

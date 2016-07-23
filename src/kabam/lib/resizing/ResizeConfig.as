@@ -1,6 +1,6 @@
 ﻿package kabam.lib.resizing
 {
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.lib.resizing.signals.Resize;
     import kabam.lib.resizing.view.Resizable;
@@ -10,7 +10,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
 

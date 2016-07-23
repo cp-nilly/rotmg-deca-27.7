@@ -5,7 +5,7 @@
     import com.company.assembleegameclient.ui.dialogs.CloseDialogComponent;
     import kabam.rotmg.friends.model.FriendRequestVO;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.friends.controller.FriendActionSignal;
     import flash.events.Event;
     import org.osflash.signals.Signal;
@@ -29,7 +29,7 @@
         private function onRightButton(_arg1:Event):void
         {
             removeEventListener(Dialog.RIGHT_BUTTON, this.onRightButton);
-            var _local2:Injector = StaticInjectorContext.getInjector();
+            var _local2:IInjector = StaticInjectorContext.getInjector();
             var _local3:FriendActionSignal = _local2.getInstance(FriendActionSignal);
             _local3.dispatch(this._friendRequestVO);
         }

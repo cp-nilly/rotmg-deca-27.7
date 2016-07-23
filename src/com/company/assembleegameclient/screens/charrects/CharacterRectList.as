@@ -9,7 +9,7 @@
     import kabam.rotmg.classes.model.CharacterClass;
     import com.company.assembleegameclient.appengine.CharacterStats;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import __AS3__.vec.Vector;
     import flash.events.MouseEvent;
     import kabam.rotmg.classes.model.CharacterSkin;
@@ -37,7 +37,7 @@
             var _local10:int;
             var _local11:CreateNewCharacterRect;
             super();
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             this.classes = _local1.getInstance(ClassesModel);
             this.model = _local1.getInstance(PlayerModel);
             this.assetFactory = _local1.getInstance(CharacterFactory);

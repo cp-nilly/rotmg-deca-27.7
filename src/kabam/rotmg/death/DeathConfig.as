@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.death
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.death.model.DeathModel;
@@ -22,7 +22,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]

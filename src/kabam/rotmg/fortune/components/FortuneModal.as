@@ -19,7 +19,7 @@
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.util.Currency;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import flash.utils.getTimer;
     import flash.events.Event;
     import kabam.rotmg.game.model.GameModel;
@@ -142,7 +142,7 @@
             addChild(this.largeCloseButton);
             this.largeCloseButton.y = 4;
             this.largeCloseButton.x = ((modalWidth - this.largeCloseButton.width) - 5);
-            var _local2:Injector = StaticInjectorContext.getInjector();
+            var _local2:IInjector = StaticInjectorContext.getInjector();
             this.client = _local2.getInstance(AppEngineClient);
             this.account = _local2.getInstance(Account);
             this.model = _local2.getInstance(FortuneModel);

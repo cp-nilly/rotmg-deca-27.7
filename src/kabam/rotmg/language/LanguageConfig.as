@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.language
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.startup.control.StartupSequence;
     import kabam.rotmg.application.api.ApplicationSetup;
@@ -21,7 +21,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]

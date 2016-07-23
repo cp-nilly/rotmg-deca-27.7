@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.classes.model.ClassesModel;
@@ -35,7 +35,7 @@
         [Inject]
         public var context:IContext;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
@@ -57,7 +57,7 @@
             this.commandMap.map(ParseClassesXMLSignal).toCommand(ParseClassesXmlCommand);
             this.commandMap.map(ParseClassesXMLSignal).toCommand(ParseSkinsXmlCommand);
             this.commandMap.map(BuyCharacterSkinSignal).toCommand(BuyCharacterSkinCommand).withGuards(IsAccountRegisteredToBuyGoldGuard);
-            this.context.lifecycle.afterInitializing(this.init);
+            this.context.afterInitializing(this.init);
         }
 
         private function init():void

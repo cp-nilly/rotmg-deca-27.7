@@ -1,7 +1,7 @@
 ﻿package kabam.lib.net
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.impl.MessageCenter;
     import flash.net.Socket;
     import kabam.lib.net.api.MessageMap;
@@ -12,7 +12,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         private var messageCenter:MessageCenter;
 
 

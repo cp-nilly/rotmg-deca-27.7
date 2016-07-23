@@ -1,6 +1,6 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.messaging.impl.EvolvePetInfo;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.data.PetsModel;
@@ -10,7 +10,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         private var evolvePetInfo:EvolvePetInfo;
         private var message:EvolvedPetMessage;
         private var finalPet:PetVO;

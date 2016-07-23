@@ -2,7 +2,7 @@
 {
     import flash.display.Sprite;
     import kabam.rotmg.pets.view.components.PetIconFactory;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import flash.display.DisplayObject;
     import kabam.rotmg.pets.data.PetVO;
 
@@ -12,7 +12,7 @@
         [Inject]
         public var petIconFactory:PetIconFactory;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         public var littleSpinner:Spinner;
         public var bigSpinner:Spinner;
         public var petIcon:DisplayObject;

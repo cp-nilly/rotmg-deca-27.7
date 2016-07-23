@@ -6,7 +6,7 @@
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.pets.controller.PetFeedResultSignal;
     import kabam.rotmg.pets.controller.UpgradePetSignal;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
     import kabam.rotmg.messaging.impl.data.SlotObjectData;
@@ -29,7 +29,7 @@
         [Inject]
         public var upgradePet:UpgradePetSignal;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
 
 
         override public function initialize():void

@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.startup.model.impl
 {
     import kabam.rotmg.startup.model.api.StartupDelegate;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import org.osflash.signals.Signal;
     import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.Task;
@@ -9,7 +9,7 @@
     public class SignalTaskDelegate implements StartupDelegate 
     {
 
-        public var injector:Injector;
+        public var injector:IInjector;
         public var signalClass:Class;
         public var priority:int;
 

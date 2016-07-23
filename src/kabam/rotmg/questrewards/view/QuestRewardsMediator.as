@@ -3,7 +3,7 @@
     import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.ui.model.HUDModel;
     import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
     import kabam.rotmg.questrewards.controller.QuestRedeemCompleteSignal;
@@ -29,7 +29,7 @@
         [Inject]
         public var closeDialogs:CloseDialogsSignal;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var hudModel:HUDModel;
         [Inject]

@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
     import kabam.rotmg.appengine.api.RetryLoader;
     import flash.net.URLLoaderDataFormat;
@@ -27,7 +27,7 @@
             this.id_ = _arg1;
             this.instance_ = _arg2;
             this.callback_ = _arg3;
-            var _local4:Injector = StaticInjectorContext.getInjector();
+            var _local4:IInjector = StaticInjectorContext.getInjector();
             this.logger = _local4.getInstance(ILogger);
         }
 

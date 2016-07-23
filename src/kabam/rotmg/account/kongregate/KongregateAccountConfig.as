@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.account.kongregate
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.account.core.Account;
@@ -43,7 +43,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]

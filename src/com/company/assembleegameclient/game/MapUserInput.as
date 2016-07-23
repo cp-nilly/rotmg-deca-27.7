@@ -16,7 +16,7 @@
     import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
     import flash.events.Event;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.application.api.ApplicationSetup;
     import flash.events.MouseEvent;
     import flash.display.Stage;
@@ -79,7 +79,7 @@
             this.gs_ = _arg1;
             this.gs_.addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
             this.gs_.addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
-            var _local2:Injector = StaticInjectorContext.getInjector();
+            var _local2:IInjector = StaticInjectorContext.getInjector();
             this.giftStatusUpdateSignal = _local2.getInstance(GiftStatusUpdateSignal);
             this.reskinPetFlowStart = _local2.getInstance(ReskinPetFlowStartSignal);
             this.addTextLine = _local2.getInstance(AddTextLineSignal);

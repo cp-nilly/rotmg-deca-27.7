@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.dialogs
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.lib.console.signals.RegisterConsoleActionSignal;
     import kabam.lib.console.vo.ConsoleAction;
@@ -18,7 +18,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]

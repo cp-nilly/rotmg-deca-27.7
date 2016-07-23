@@ -4,7 +4,7 @@
     import flash.display.DisplayObject;
     import kabam.rotmg.assets.EmbeddedAssets;
     import kabam.rotmg.pets.view.components.PetIconFactory;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.pets.view.components.PetIcon;
     import kabam.rotmg.messaging.impl.EvolvePetInfo;
     import kabam.rotmg.pets.data.PetVO;
@@ -18,7 +18,7 @@
         [Inject]
         public var petIconFactory:PetIconFactory;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var transition:EvolveTransition;
         public var initialPet:PetIcon;

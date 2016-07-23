@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.game.focus.control.SetGameFocusSignal;
@@ -18,7 +18,7 @@
         [Inject]
         public var context:IContext;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]
@@ -30,7 +30,7 @@
             this.injector.map(SetGameFocusSignal).asSingleton();
             this.commandMap.map(AddGameFocusConsoleActionSignal).toCommand(AddGameFocusConsoleActionCommand);
             this.mediatorMap.map(GameSprite).toMediator(GameFocusMediator);
-            this.context.lifecycle.afterInitializing(this.init);
+            this.context.afterInitializing(this.init);
         }
 
         private function init():void

@@ -9,7 +9,7 @@
     import flash.display.Sprite;
     import flash.display.Bitmap;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.mysterybox.services.GetMysteryBoxesTask;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.model.TextKey;
@@ -50,7 +50,7 @@
         public function FortuneGroundPanel(_arg1:GameSprite, _arg2:uint)
         {
             this.buyItem = new Signal(SellableObject);
-            var _local3:Injector = StaticInjectorContext.getInjector();
+            var _local3:IInjector = StaticInjectorContext.getInjector();
             var _local4:GetMysteryBoxesTask = _local3.getInstance(GetMysteryBoxesTask);
             _local4.start();
             super(_arg1);
@@ -166,7 +166,7 @@
             {
                 return;
             };
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             var _local2:FortuneModel = _local1.getInstance(FortuneModel);
             var _local3:Account = _local1.getInstance(Account);
             var _local4:OpenDialogSignal = _local1.getInstance(OpenDialogSignal);

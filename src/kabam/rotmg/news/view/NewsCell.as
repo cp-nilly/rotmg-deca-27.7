@@ -6,7 +6,7 @@
     import kabam.rotmg.news.model.NewsCellVO;
     import flash.display.Loader;
     import org.osflash.signals.Signal;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.core.StaticInjectorContext;
     import flash.events.MouseEvent;
     import kabam.rotmg.text.view.TextDisplay;
@@ -38,7 +38,7 @@
         private var _loader:Loader;
         private var textSize:uint = 18;
         public var clickSignal:Signal;
-        private var injector:Injector;
+        private var injector:IInjector;
 
         public function NewsCell(_arg1:Number, _arg2:Number)
         {

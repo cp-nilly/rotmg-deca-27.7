@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.minimap.control.MiniMapZoomSignal;
     import kabam.rotmg.minimap.control.SetMiniMapMapSignal;
@@ -17,7 +17,7 @@
         [Inject]
         public var context:IContext;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
 

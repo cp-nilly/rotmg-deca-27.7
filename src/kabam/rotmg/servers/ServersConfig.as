@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.servers
 {
     import robotlegs.bender.framework.api.IConfig;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.build.api.BuildData;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.build.api.BuildEnvironment;
@@ -16,7 +16,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var data:BuildData;
         [Inject]

@@ -9,7 +9,7 @@
     import kabam.rotmg.pets.controller.ActivatePet;
     import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import flash.events.MouseEvent;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.view.petPanel.ConfirmReleaseDialog;
@@ -36,7 +36,7 @@
         [Inject]
         public var openDialog:OpenDialogSignal;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
 
 
         override public function initialize():void

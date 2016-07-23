@@ -1,7 +1,7 @@
 ﻿package kabam.rotmg.arena.view
 {
     import robotlegs.bender.bundles.mvcs.Mediator;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.arena.control.ReloadLeaderboard;
     import kabam.rotmg.arena.model.ArenaLeaderboardModel;
@@ -12,7 +12,7 @@
     {
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var view:ArenaLeaderboard;
         [Inject]

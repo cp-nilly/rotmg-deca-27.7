@@ -3,7 +3,7 @@
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
     import kabam.rotmg.application.api.ApplicationSetup;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.appengine.api.RetryLoader;
     import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
     import kabam.rotmg.appengine.impl.AppEngineRequestStats;
@@ -22,7 +22,7 @@
         [Inject]
         public var setup:ApplicationSetup;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
 
 
         public function configure():void

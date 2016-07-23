@@ -3,7 +3,7 @@
     import kabam.lib.tasks.BaseTask;
     import __AS3__.vec.Vector;
     import kabam.rotmg.startup.model.api.StartupDelegate;
-    import org.swiftsuspenders.Injector;
+    import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.startup.model.impl.SignalTaskDelegate;
     import kabam.rotmg.startup.model.impl.TaskDelegate;
@@ -18,7 +18,7 @@
         private const list:Vector.<StartupDelegate> = new <StartupDelegate>[];
 
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var logger:ILogger;
         private var index:int = 0;

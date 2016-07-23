@@ -10,7 +10,7 @@
 
         public function extend(_arg1:IContext):void
         {
-            _arg1.extend(MediatorMapExtension);
+            _arg1.install(MediatorMapExtension);
             _arg1.configure(ResizeConfig);
         }
 

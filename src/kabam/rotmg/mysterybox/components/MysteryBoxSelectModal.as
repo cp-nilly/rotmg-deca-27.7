@@ -3,7 +3,7 @@
     import flash.display.Sprite;
     import kabam.rotmg.pets.view.components.DialogCloseButton;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.mysterybox.services.MysteryBoxModel;
     import flash.events.Event;
     import kabam.rotmg.pets.view.components.PopupWindowBackground;
@@ -39,7 +39,7 @@
             modalWidth = 385;
             modalHeight = 60;
             aMysteryBoxHeight = 77;
-            var _local1:Injector = StaticInjectorContext.getInjector();
+            var _local1:IInjector = StaticInjectorContext.getInjector();
             var _local2:MysteryBoxModel = _local1.getInstance(MysteryBoxModel);
             this.mysteryData = _local2.getBoxesOrderByWeight();
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);

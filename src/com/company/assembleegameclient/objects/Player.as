@@ -11,7 +11,7 @@
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsPath;
     import kabam.rotmg.core.StaticInjectorContext;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import flash.utils.Dictionary;
     import com.company.util.ConversionUtil;
     import flash.utils.getTimer;
@@ -144,7 +144,7 @@
         public function Player(_arg1:XML)
         {
             this.ip_ = new IntPoint();
-            var _local2:Injector = StaticInjectorContext.getInjector();
+            var _local2:IInjector = StaticInjectorContext.getInjector();
             this.addTextLine = _local2.getInstance(AddTextLineSignal);
             this.factory = _local2.getInstance(CharacterFactory);
             super(_arg1);

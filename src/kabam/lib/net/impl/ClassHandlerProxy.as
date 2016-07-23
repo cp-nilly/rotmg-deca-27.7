@@ -1,12 +1,12 @@
 ﻿package kabam.lib.net.impl
 {
     import kabam.lib.net.api.MessageHandlerProxy;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
 
     public class ClassHandlerProxy implements MessageHandlerProxy 
     {
 
-        private var injector:Injector;
+        private var injector:IInjector;
         private var handlerType:Class;
         private var handler:Object;
 
@@ -17,7 +17,7 @@
             return (this);
         }
 
-        public function setInjector(_arg1:Injector):ClassHandlerProxy
+        public function setInjector(_arg1:IInjector):ClassHandlerProxy
         {
             this.injector = _arg1;
             return (this);

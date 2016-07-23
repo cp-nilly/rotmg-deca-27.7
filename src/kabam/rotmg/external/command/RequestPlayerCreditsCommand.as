@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.bundles.mvcs.Command;
     import kabam.lib.tasks.TaskMonitor;
-    import org.swiftsuspenders.Injector;
+	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.tasks.TaskSequence;
     import kabam.rotmg.external.service.RequestPlayerCreditsTask;
     import kabam.lib.tasks.DispatchSignalTask;
@@ -13,7 +13,7 @@
         [Inject]
         public var taskMonitor:TaskMonitor;
         [Inject]
-        public var injector:Injector;
+        public var injector:IInjector;
         [Inject]
         public var requestPlayerCreditsComplete:RequestPlayerCreditsCompleteSignal;
 
