@@ -18,7 +18,7 @@
         {
             if (this.applicationSetup.isDebug())
             {
-                this.context.extend(ConsoleExtension);
+                this.context.install(ConsoleExtension);
             };
         }
 

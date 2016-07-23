@@ -2,7 +2,7 @@
 {
     import robotlegs.bender.framework.api.ILogTarget;
     import kabam.lib.console.signals.ConsoleLogSignal;
-    import robotlegs.bender.extensions.logging.impl.LogMessageParser;
+    import robotlegs.bender.extensions.enhancedLogging.impl.LogMessageParser;
     import robotlegs.bender.framework.api.IContext;
     import robotlegs.bender.framework.api.LogLevel;
 

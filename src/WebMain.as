@@ -3,6 +3,7 @@
     import flash.display.Sprite;
     import flash.display.Stage;
     import robotlegs.bender.framework.api.IContext;
+	import robotlegs.bender.extensions.contextView.ContextView;
     import flash.events.Event;
     import com.company.assembleegameclient.util.AssetLoader;
     import flash.display.StageScaleMode;
@@ -100,8 +101,51 @@
             this.context.injector.map(LoaderInfo).toValue(root.stage.root.loaderInfo);
             var _local1:StageProxy = new StageProxy(this);
             this.context.injector.map(StageProxy).toValue(_local1);
-            this.context.extend(MVCSBundle).extend(SignalCommandMapExtension).configure(BuildConfig).configure(StartupConfig).configure(NetConfig).configure(AssetsConfig).configure(DialogsConfig).configure(EnvironmentConfig).configure(ApplicationConfig).configure(LanguageConfig).configure(TextConfig).configure(AppEngineConfig).configure(AccountConfig).configure(ErrorConfig).configure(CoreConfig).configure(ApplicationSpecificConfig).configure(DeathConfig).configure(CharactersConfig).configure(ServersConfig).configure(GameConfig).configure(UIConfig).configure(MiniMapConfig).configure(LegendsConfig).configure(NewsConfig).configure(FameConfig).configure(TooltipsConfig).configure(PromotionsConfig).configure(ProTipConfig).configure(MapLoadingConfig).configure(ClassesConfig).configure(PackageConfig).configure(PetsConfig).configure(QuestRewardsConfig).configure(Stage3DConfig).configure(ArenaConfig).configure(ExternalConfig).configure(MysteryBoxConfig).configure(FortuneConfig).configure(FriendConfig).configure(this);
-            this.context.logLevel = LogLevel.DEBUG;
+            this.context
+				.install(
+					MVCSBundle,
+					SignalCommandMapExtension
+				)
+				.configure(
+					BuildConfig,
+					StartupConfig,
+					NetConfig,
+					AssetsConfig,
+					DialogsConfig,
+					EnvironmentConfig,
+					ApplicationConfig,
+					LanguageConfig,
+					TextConfig,
+					AppEngineConfig,
+					AccountConfig, 
+					ErrorConfig,
+					CoreConfig,
+					ApplicationSpecificConfig,
+					DeathConfig,
+					CharactersConfig,
+					ServersConfig,
+					GameConfig,
+					UIConfig,
+					MiniMapConfig,
+					LegendsConfig,
+					NewsConfig,
+					FameConfig,
+					TooltipsConfig,
+					PromotionsConfig,
+					ProTipConfig,
+					MapLoadingConfig,
+					ClassesConfig,
+					PackageConfig,
+					PetsConfig,
+					QuestRewardsConfig,
+					Stage3DConfig,
+					ArenaConfig,
+					ExternalConfig,
+					MysteryBoxConfig,
+					FortuneConfig,
+					FriendConfig,
+					new ContextView(this)
+				);
         }
 
         private function configureForAirIfDesktopPlayer():void
