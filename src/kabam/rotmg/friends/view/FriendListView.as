@@ -38,7 +38,6 @@
         public static const LIST_ITEM_HEIGHT:int = 40;
 
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(TEXT_WIDTH);
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public var closeDialogSignal:Signal;
         public var actionSignal;
@@ -55,20 +54,18 @@
         private var _friendsContainer:FriendListContainer;
         private var _invitationsContainer:FriendListContainer;
         private var _currentServerName:String;
-        private var backgroundFill_:GraphicsSolidFill;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var path_:GraphicsPath;
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function FriendListView()
         {
             this.closeDialogSignal = new Signal();
             this.actionSignal = new Signal(String, String);
             this.tabSignal = new Signal(String);
-            this.backgroundFill_ = new GraphicsSolidFill(0x333333, 1);
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
         }
 

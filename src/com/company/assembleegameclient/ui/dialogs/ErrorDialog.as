@@ -32,11 +32,9 @@
         public static const GREY:int = 0xB3B3B3;
         protected static const WIDTH:int = 300;
 
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         public var ok:Signal;
-        public var box_:Sprite;
-        public var rect_:Shape;
+        public var box_:Sprite = new Sprite();
+        public var rect_:Shape = new Shape();
         public var textText_:TextFieldDisplayConcrete;
         public var titleText_:TextFieldDisplayConcrete = null;
         public var button1_:DeprecatedTextButton = null;
@@ -45,21 +43,16 @@
         public var offsetX:Number = 0;
         public var offsetY:Number = 0;
         public var stageProxy:StageProxy;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var backgroundFill_:GraphicsSolidFill;
-        protected var path_:GraphicsPath;
-        protected var uiWaiter:SignalWaiter;
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
+        protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+        protected var uiWaiter:SignalWaiter = new SignalWaiter();
+
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function ErrorDialog(_arg1:String)
         {
-            this.box_ = new Sprite();
-            this.rect_ = new Shape();
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.backgroundFill_ = new GraphicsSolidFill(0x363636, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-            this.uiWaiter = new SignalWaiter();
             super();
             var _local2:String = ["An error has occured:", _arg1].join("\n");
             this.stageProxy = new StageProxy(this);

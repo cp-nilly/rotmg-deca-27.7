@@ -27,8 +27,6 @@
         public static const TEXT_WIDTH:int = 400;
         public static const TEXT_HEIGHT:int = 400;
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         private var text_:String;
         public var w_:int;
         public var h_:int;
@@ -37,17 +35,15 @@
         private var scrollBar_:Scrollbar;
         private var cancelButton_:DeprecatedTextButton;
         private var saveButton_:DeprecatedTextButton;
-        private var backgroundFill_:GraphicsSolidFill;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var path_:GraphicsPath;
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function EditBoard(_arg1:String)
         {
-            this.backgroundFill_ = new GraphicsSolidFill(0x333333, 1);
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.text_ = _arg1;
             this.mainSprite_ = new Sprite();

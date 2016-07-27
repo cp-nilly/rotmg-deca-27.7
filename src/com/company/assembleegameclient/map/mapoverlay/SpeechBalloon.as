@@ -28,29 +28,24 @@
     public class SpeechBalloon extends Sprite implements IMapOverlayElement 
     {
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         public var go_:GameObject;
         public var lifetime_:int;
         public var hideable_:Boolean;
-        public var offset_:Point;
+        public var offset_:Point = new Point();
         public var text_:TextField;
-        private var backgroundFill_:GraphicsSolidFill;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var path_:GraphicsPath;
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0, 1);
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         private var senderName:String;
         private var isTrade:Boolean;
         private var isGuild:Boolean;
         private var startTime_:int = 0;
+        
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function SpeechBalloon(_arg1:GameObject, _arg2:String, _arg3:String, _arg4:Boolean, _arg5:Boolean, _arg6:uint, _arg7:Number, _arg8:uint, _arg9:Number, _arg10:uint, _arg11:int, _arg12:Boolean, _arg13:Boolean)
         {
-            this.offset_ = new Point();
-            this.backgroundFill_ = new GraphicsSolidFill(0, 1);
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.go_ = _arg1;
             this.senderName = _arg3;

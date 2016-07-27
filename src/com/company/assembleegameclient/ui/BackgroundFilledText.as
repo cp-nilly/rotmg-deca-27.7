@@ -15,20 +15,17 @@
 
         protected static const MARGIN:int = 4;
 
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[enabledFill_, path_, GraphicsUtil.END_FILL];
-
         public var bWidth:int = 0;
         protected var text_:TextFieldDisplayConcrete;
         protected var w_:int;
-        protected var enabledFill_:GraphicsSolidFill;
-        protected var disabledFill_:GraphicsSolidFill;
-        protected var path_:GraphicsPath;
+        protected var enabledFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        protected var disabledFill_:GraphicsSolidFill = new GraphicsSolidFill(0x7F7F7F, 1);
+        protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
 
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[enabledFill_, path_, GraphicsUtil.END_FILL];
+        
         public function BackgroundFilledText(_arg1:int):void
         {
-            this.enabledFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.disabledFill_ = new GraphicsSolidFill(0x7F7F7F, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.bWidth = _arg1;
         }

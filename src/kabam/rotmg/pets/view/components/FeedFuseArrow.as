@@ -13,15 +13,13 @@
     public class FeedFuseArrow extends Sprite 
     {
 
-        private const designGraphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[designFill_, designPath_, GraphicsUtil.END_FILL];
+        private var designFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var designPath_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>(), GraphicsPathWinding.NON_ZERO);
 
-        private var designFill_:GraphicsSolidFill;
-        private var designPath_:GraphicsPath;
+        private const designGraphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[designFill_, designPath_, GraphicsUtil.END_FILL];
 
         public function FeedFuseArrow()
         {
-            this.designFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.designPath_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>(), GraphicsPathWinding.NON_ZERO);
             super();
             this.setColor(0x666666);
         }

@@ -25,27 +25,22 @@
         public static const WIDTH:int = 80;
         public static const HEIGHT:int = 32;
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[internalFill_, lineStyle_, path_, GraphicsUtil.END_STROKE, GraphicsUtil.END_FILL];
-
         public var labels_:Vector.<StringBuilder>;
         public var values_:Array;
         public var selectedIndex_:int = -1;
         public var labelText_:TextFieldDisplayConcrete;
         private var over_:Boolean = false;
         private var color:Number = 0xFFFFFF;
-        private var internalFill_:GraphicsSolidFill;
-        private var overLineFill_:GraphicsSolidFill;
-        private var normalLineFill_:GraphicsSolidFill;
-        private var path_:GraphicsPath;
-        private var lineStyle_:GraphicsStroke;
+        private var internalFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
+        private var overLineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xB3B3B3, 1);
+        private var normalLineFill_:GraphicsSolidFill = new GraphicsSolidFill(0x444444, 1);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, normalLineFill_);
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[internalFill_, lineStyle_, path_, GraphicsUtil.END_STROKE, GraphicsUtil.END_FILL];
 
         public function ChoiceBox(_arg1:Vector.<StringBuilder>, _arg2:Array, _arg3:Object, _arg4:Number=0xFFFFFF)
         {
-            this.internalFill_ = new GraphicsSolidFill(0x333333, 1);
-            this.overLineFill_ = new GraphicsSolidFill(0xB3B3B3, 1);
-            this.normalLineFill_ = new GraphicsSolidFill(0x444444, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-            this.lineStyle_ = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.normalLineFill_);
             super();
             this.color = _arg4;
             this.labels_ = _arg1;

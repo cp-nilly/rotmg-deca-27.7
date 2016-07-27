@@ -26,22 +26,18 @@
         public static const HEIGHT:int = 120;
         private static const CSS_TEXT:String = ".in { margin-left:10px; text-indent: -10px; }";
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         private var meMap_:MEMap;
         private var rectText_:BaseSimpleText;
         private var typeText_:BaseSimpleText;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var backgroundFill_:GraphicsSolidFill;
-        private var path_:GraphicsPath;
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function InfoPane(_arg1:MEMap)
         {
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.backgroundFill_ = new GraphicsSolidFill(0x363636, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.meMap_ = _arg1;
             this.drawBackground();

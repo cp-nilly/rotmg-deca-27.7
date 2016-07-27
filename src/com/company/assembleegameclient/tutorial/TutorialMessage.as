@@ -24,22 +24,19 @@
 
         public static const BORDER:int = 8;
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, fill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         private var tutorial_:Tutorial;
         private var rect_:Rectangle;
         private var messageText_:TextFieldDisplayConcrete;
         private var nextButton_:DeprecatedTextButton = null;
         private var startTime_:int;
-        private var fill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var path_:GraphicsPath;
+        private var fill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, new GraphicsSolidFill(0xFFFFFF));
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, fill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function TutorialMessage(_arg1:Tutorial, _arg2:String, _arg3:Boolean, _arg4:Rectangle)
         {
-            this.fill_ = new GraphicsSolidFill(0x363636, 1);
-            this.lineStyle_ = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, new GraphicsSolidFill(0xFFFFFF));
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.tutorial_ = _arg1;
             this.rect_ = _arg4.clone();

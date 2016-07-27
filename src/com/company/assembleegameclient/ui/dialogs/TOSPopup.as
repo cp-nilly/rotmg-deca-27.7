@@ -35,8 +35,6 @@
         public static const GREY:int = 0xB3B3B3;
         public static const WIDTH:int = 210;
 
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
         public var box_:Sprite;
         public var rect_:Shape;
         public var textText_:TextFieldDisplayConcrete;
@@ -49,22 +47,20 @@
         public var bottomSpace:int = 22;
         public var dialogWidth:int;
         private var textMargin:int = 15;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var backgroundFill_:GraphicsSolidFill;
-        protected var path_:GraphicsPath;
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
+        protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         protected var buttonAccept:DeprecatedTextButton;
         protected var uiWaiter:SignalWaiter;
+
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
 
         public function TOSPopup()
         {
             this.box_ = new Sprite();
             this.rect_ = new Shape();
             this.dialogWidth = this.setDialogWidth();
-            this.outlineFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.lineStyle_ = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.backgroundFill_ = new GraphicsSolidFill(0x363636, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             this.uiWaiter = new SignalWaiter();
             super();
             this._makeUIAndAdd();

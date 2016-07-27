@@ -17,8 +17,6 @@
     public class Scrollbar extends Sprite 
     {
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[backgroundFill_, path_, GraphicsUtil.END_FILL];
-
         private var width_:int;
         private var height_:int;
         private var speed_:Number;
@@ -31,13 +29,13 @@
         private var target_:Sprite;
         private var lastUpdateTime_:int;
         private var change_:Number;
-        private var backgroundFill_:GraphicsSolidFill;
-        private var path_:GraphicsPath;
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[backgroundFill_, path_, GraphicsUtil.END_FILL];
 
         public function Scrollbar(_arg1:int, _arg2:int, _arg3:Number=1, _arg4:Sprite=null)
         {
-            this.backgroundFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.target_ = _arg4;
             this.background_ = new Sprite();

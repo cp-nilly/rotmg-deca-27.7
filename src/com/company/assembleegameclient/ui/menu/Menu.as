@@ -21,22 +21,18 @@
     public class Menu extends Sprite implements UnFocusAble 
     {
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
-        private var backgroundFill_:GraphicsSolidFill;
-        private var outlineFill_:GraphicsSolidFill;
-        private var lineStyle_:GraphicsStroke;
-        private var path_:GraphicsPath;
+        private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0, 1);
+        private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0, 1);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         private var background_:uint;
         private var outline_:uint;
         protected var yOffset:int;
 
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+
         public function Menu(_arg1:uint, _arg2:uint)
         {
-            this.backgroundFill_ = new GraphicsSolidFill(0, 1);
-            this.outlineFill_ = new GraphicsSolidFill(0, 1);
-            this.lineStyle_ = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill_);
-            this.path_ = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             super();
             this.background_ = _arg1;
             this.outline_ = _arg2;
