@@ -12,6 +12,10 @@
     import kabam.rotmg.text.view.BitmapTextFactory;
     import kabam.rotmg.text.model.TextAndMapProvider;
     import kabam.rotmg.language.DebugTextAndMapProvider;
+    import kabam.rotmg.language.model.DebugStringMap;
+    import robotlegs.bender.extensions.viewProcessorMap.api.IViewProcessorMap;
+    import robotlegs.bender.extensions.viewProcessorMap.utils.MediatorCreator;
+    import kabam.rotmg.text.view.TextDisplay;
 
     public class TextConfig implements IConfig 
     {
@@ -21,6 +25,8 @@
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
+        public var viewProcessorMap:IViewProcessorMap;
+        [Inject]
         public var applicationSetup:ApplicationSetup;
 
 
@@ -28,13 +34,14 @@
         {
             this.injector.map(FontModel).asSingleton();
             this.mapTextFieldProvider();
-            this.mediatorMap.map(TextFieldDisplay).toMediator(TextFieldDisplayMediator);
+            this.viewProcessorMap.map(TextFieldDisplay).toProcess(new MediatorCreator(TextFieldDisplayMediator));
             this.mediatorMap.map(BaseSimpleText).toMediator(BaseSimpleTextMediator);
             this.injector.map(BitmapTextFactory);
         }
 
         private function mapTextFieldProvider():void
         {
+            this.injector.map(DebugStringMap).asSingleton();
             this.injector.map(TextAndMapProvider).toType(DebugTextAndMapProvider);
         }
 

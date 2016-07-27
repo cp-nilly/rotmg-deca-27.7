@@ -18,6 +18,7 @@
     import kabam.rotmg.promotions.commands.BuyBeginnersPackageCommand;
     import kabam.rotmg.promotions.signals.MakeBeginnersPackagePaymentSignal;
     import kabam.rotmg.promotions.commands.MakeBeginnersPackagePaymentCommand;
+    import kabam.rotmg.promotions.service.GetDaysRemainingTask;
 
     public class PromotionsConfig implements IConfig 
     {
@@ -32,6 +33,7 @@
 
         public function configure():void
         {
+            this.injector.map(GetDaysRemainingTask).asSingleton();
             this.injector.map(BeginnersPackageModel).asSingleton();
             this.injector.map(BeginnersPackageAvailableSignal).asSingleton();
             this.mediatorMap.map(BeginnersPackageButton).toMediator(BeginnersPackageButtonMediator);

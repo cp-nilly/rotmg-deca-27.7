@@ -80,7 +80,7 @@
             }
             else
             {
-                this.logger.warn("GetPackageTask.onComplete: Request failed.");
+                this.logger.info("GetPackageTask.onComplete: Request failed.");
                 completeTask(false);
             };
         }

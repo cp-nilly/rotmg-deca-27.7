@@ -34,7 +34,7 @@
             {
                 return (null);
             };
-            this.handler = this.injector.getInstance(this.handlerType);
+            this.handler = this.injector.getOrCreateNewInstance(this.handlerType);
             return (this.handler.execute);
         }
 

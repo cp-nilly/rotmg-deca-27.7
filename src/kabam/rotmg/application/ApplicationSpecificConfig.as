@@ -16,10 +16,10 @@
 
         public function configure():void
         {
-            if (this.applicationSetup.isDebug())
-            {
+            //if (this.applicationSetup.isDebug())
+            //{
                 this.context.install(ConsoleExtension);
-            };
+            //};
         }
 
 

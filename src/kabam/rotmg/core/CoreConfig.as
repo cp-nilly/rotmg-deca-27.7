@@ -52,6 +52,7 @@
     import kabam.rotmg.core.view.ScreensMediator;
     import kabam.rotmg.tooltips.TooltipAble;
     import kabam.rotmg.tooltips.controller.TooltipAbleMediator;
+    import kabam.rotmg.account.core.signals.SendConfirmEmailSignal;
 
     public class CoreConfig implements IConfig 
     {
@@ -129,6 +130,7 @@
             this.injector.map(SetLoadingMessageSignal).asSingleton();
             this.injector.map(UpdateNewCharacterScreenSignal).asSingleton();
             this.injector.map(BuyCharacterPendingSignal).asSingleton();
+            this.injector.map(SendConfirmEmailSignal).asSingleton();
         }
 
         private function configureViews():void

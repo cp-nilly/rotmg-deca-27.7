@@ -28,6 +28,9 @@
     import kabam.rotmg.account.kabam.KabamAccountConfig;
     import kabam.rotmg.account.web.WebAccountConfig;
     import kabam.rotmg.account.transfer.TransferAccountConfig;
+    import kabam.rotmg.account.core.model.JSInitializedModel;
+    import kabam.rotmg.account.core.services.GetOffersTask;
+    import kabam.rotmg.account.core.services.BuyCharacterSlotTask;
 
     public class AccountConfig implements IConfig 
     {
@@ -61,8 +64,11 @@
             this.injector.map(UpdateAccountInfoSignal).asSingleton();
             this.injector.map(VerifyAgeTask);
             this.injector.map(GetCharListTask);
+            this.injector.map(GetOffersTask);
+            this.injector.map(BuyCharacterSlotTask);
             this.injector.map(MoneyFrameEnableCancelSignal).asSingleton();
             this.injector.map(OfferModel).asSingleton();
+            this.injector.map(JSInitializedModel).asSingleton();
             this.mediatorMap.map(MoneyFrame).toMediator(MoneyFrameMediator);
             this.commandMap.map(BuyCharacterSlotSignal).toCommand(BuyCharacterSlotCommand).withGuards(IsAccountRegisteredToBuyGoldGuard);
             this.commandMap.map(PurchaseGoldSignal).toCommand(PurchaseGoldCommand);

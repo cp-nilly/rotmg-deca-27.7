@@ -13,6 +13,7 @@
     import kabam.rotmg.legends.control.RequestFameListCommand;
     import kabam.rotmg.legends.control.ExitLegendsSignal;
     import kabam.rotmg.legends.control.ExitLegendsCommand;
+    import kabam.rotmg.legends.service.GetLegendsListTask;
 
     public class LegendsConfig implements IConfig 
     {
@@ -30,6 +31,7 @@
             this.injector.map(LegendFactory).asSingleton();
             this.injector.map(LegendsModel).asSingleton();
             this.injector.map(FameListUpdateSignal).asSingleton();
+            this.injector.map(GetLegendsListTask);
             this.mediatorMap.map(LegendsView).toMediator(LegendsMediator);
             this.commandMap.map(RequestFameListSignal).toCommand(RequestFameListCommand);
             this.commandMap.map(ExitLegendsSignal).toCommand(ExitLegendsCommand);

@@ -23,7 +23,7 @@
         public var model:BeginnersPackageModel;
         [Inject]
         public var openDialog:OpenDialogSignal;
-        [Inject]
+        [Inject(optional=true)]
         public var openAccountPayment:OpenAccountPaymentSignal;
         [Inject]
         public var makePayment:MakeBeginnersPackagePaymentSignal;

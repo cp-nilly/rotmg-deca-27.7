@@ -62,7 +62,7 @@
             _local2.setDepthTest(false, Context3DCompareMode.LESS_EQUAL);
             this.injector.map(Context3DProxy).toValue(_local2);
             Graphic3DHelper.map(this.injector);
-            this.renderer = this.injector.getInstance(Renderer);
+            this.renderer = this.injector.getOrCreateNewInstance(Renderer);
             this.renderer.init(_local2.GetContext3D());
             Model3D.Create3dBuffer(_local2.GetContext3D());
         }

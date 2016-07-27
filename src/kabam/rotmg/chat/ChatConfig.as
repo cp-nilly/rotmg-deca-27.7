@@ -3,7 +3,7 @@
     import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageMap;
-    import robotlegs.bender.extensions.signalCommandMap.impl.SignalCommandMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.chat.model.ChatModel;
     import kabam.rotmg.chat.view.ChatListItemFactory;
@@ -29,6 +29,7 @@
     import kabam.rotmg.chat.view.ChatMediator;
     import kabam.rotmg.chat.view.ChatInputNotAllowed;
     import kabam.rotmg.chat.view.ChatInputNotAllowedMediator;
+    import kabam.rotmg.chat.model.ChatShortcutModel;
 
     public class ChatConfig implements IConfig 
     {
@@ -38,7 +39,7 @@
         [Inject]
         public var messageMap:MessageMap;
         [Inject]
-        public var commandMap:SignalCommandMap;
+        public var commandMap:ISignalCommandMap;
         [Inject]
         public var mediatorMap:IMediatorMap;
 
@@ -52,6 +53,7 @@
             this.injector.map(AddChatSignal).asSingleton();
             this.injector.map(ScrollListSignal).asSingleton();
             this.injector.map(ShowChatInputSignal).asSingleton();
+            this.injector.map(ChatShortcutModel).asSingleton();
             this.commandMap.map(AddTextLineSignal).toCommand(ParseAddTextLineCommand);
             this.commandMap.map(ExitGameSignal).toCommand(ClearTellModelCommand);
             this.commandMap.map(GameClosedSignal).toCommand(ClearTellModelCommand);

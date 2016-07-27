@@ -23,18 +23,16 @@
         private const rarityTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(16777103, 16, true);
         private const buttonBar:FameOrGoldBuyButtons = kabam.rotmg.pets.util.PetsViewAssetFactory.returnFameOrGoldButtonBar("YardUpgraderView.upgrade", 357);
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
-        private const petYardImage:DisplayObject = new PetYardImage();
+        private const petYardImage:DisplayObject = new YardUpgraderView_PetYardImage();
         private const currentMaxBox:StatusBox = new StatusBox();
         public const closed:Signal = new Signal();
 
-        private var PetYardImage:Class;
         public var famePurchase:Signal;
         public var goldPurchase:Signal;
         private var vo:YardUpgraderVO;
 
         public function YardUpgraderView()
         {
-            this.PetYardImage = YardUpgraderView_PetYardImage;
             super();
         }
 

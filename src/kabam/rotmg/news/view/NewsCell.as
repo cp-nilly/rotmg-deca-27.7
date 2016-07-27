@@ -107,7 +107,7 @@
 
         private function updateTextField():void
         {
-            this.textField = this.injector.getInstance(TextDisplay).setSize(this.textSize).setColor(0xFFFFFF);
+            this.textField = this.injector.getOrCreateNewInstance(TextDisplay).setSize(this.textSize).setColor(0xFFFFFF);
             addChild(this.textField);
             this.textField.setBold(true).setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
             this.textField.setStringBuilder(new StaticStringBuilder(this._vo.headline));

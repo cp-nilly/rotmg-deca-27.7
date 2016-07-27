@@ -3,7 +3,7 @@
     import flash.filters.ColorMatrixFilter;
     import flash.geom.ColorTransform;
     import flash.display.BitmapData;
-    import kabam.rotmg.game.logging.RollingMeanLoopMonitor;
+    import kabam.rotmg.game.logging.LoopMonitor;
     import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.BasicObject;
     import flash.utils.Dictionary;
@@ -57,7 +57,7 @@
         public static var texture:BitmapData;
 
         public var ifDrawEffectFlag:Boolean = true;
-        private var loopMonitor:RollingMeanLoopMonitor;
+        private var loopMonitor:LoopMonitor;
         private var inUpdate_:Boolean = false;
         private var objsToAdd_:Vector.<BasicObject>;
         private var idsToRemove_:Vector.<int>;
@@ -93,7 +93,7 @@
             partyOverlay_ = new PartyOverlay(this);
             party_ = new Party(this);
             quest_ = new Quest(this);
-            this.loopMonitor = StaticInjectorContext.getInjector().getInstance(RollingMeanLoopMonitor);
+            this.loopMonitor = StaticInjectorContext.getInjector().getInstance(LoopMonitor);
             StaticInjectorContext.getInjector().getInstance(GameModel).gameObjects = goDict_;
             this.forceSoftwareMap[PET_YARD_1] = true;
             this.forceSoftwareMap[PET_YARD_2] = true;

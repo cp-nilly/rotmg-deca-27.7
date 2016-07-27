@@ -37,7 +37,6 @@
             var _local1:ApplicationSetup = this.makeTestingSetup();
             this.injector.map(DebugSetup).toValue(_local1);
             this.injector.map(ApplicationSetup).toValue(_local1);
-            this.injector.map(PlatformModel).asSingleton();
         }
 
         private function makeTestingSetup():ApplicationSetup

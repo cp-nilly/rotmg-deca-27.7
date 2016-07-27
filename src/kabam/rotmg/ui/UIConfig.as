@@ -4,6 +4,8 @@
 	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.extensions.viewProcessorMap.api.IViewProcessorMap;
+    import robotlegs.bender.extensions.viewProcessorMap.utils.MediatorCreator;
     import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.startup.control.StartupSequence;
     import kabam.rotmg.ui.signals.NameChangedSignal;
@@ -125,6 +127,8 @@
         [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]
+        public var viewProcessorMap:IViewProcessorMap;
+        [Inject]
         public var setup:ApplicationSetup;
         [Inject]
         public var startup:StartupSequence;
@@ -159,9 +163,9 @@
             this.mediatorMap.map(ErrorDialog).toMediator(ErrorDialogMediator);
             this.mediatorMap.map(GraveyardLine).toMediator(NewsLineMediator);
             this.mediatorMap.map(NotEnoughGoldDialog).toMediator(NotEnoughGoldMediator);
-            this.mediatorMap.map(InteractPanel).toMediator(InteractPanelMediator);
-            this.mediatorMap.map(TextPanel).toMediator(TextPanelMediator);
-            this.mediatorMap.map(ItemGrid).toMediator(ItemGridMediator);
+            this.viewProcessorMap.map(InteractPanel).toProcess(new MediatorCreator(InteractPanelMediator));
+            this.viewProcessorMap.map(TextPanel).toProcess(new MediatorCreator(TextPanelMediator));
+            this.viewProcessorMap.map(ItemGrid).toProcess(new MediatorCreator(ItemGridMediator));
             this.mediatorMap.map(ChooseNameRegisterDialog).toMediator(ChooseNameRegisterMediator);
             this.mediatorMap.map(CharacterSlotRegisterDialog).toMediator(CharacterSlotRegisterMediator);
             this.mediatorMap.map(RegisterPromptDialog).toMediator(RegisterPromptDialogMediator);

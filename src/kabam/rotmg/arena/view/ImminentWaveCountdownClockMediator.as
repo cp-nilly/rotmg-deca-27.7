@@ -8,6 +8,7 @@
     import kabam.rotmg.game.signals.GameClosedSignal;
     import flash.utils.Timer;
     import flash.events.TimerEvent;
+    import kabam.rotmg.maploading.view.MapLoadingView;
 
     public class ImminentWaveCountdownClockMediator extends Mediator 
     {
@@ -50,7 +51,7 @@
             };
         }
 
-        private function removeView():void
+        private function removeView(_arg1:MapLoadingView = null):void
         {
             this.view.destroy();
             this.onClose();

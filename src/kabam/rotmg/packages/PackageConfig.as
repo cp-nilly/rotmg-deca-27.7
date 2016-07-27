@@ -4,6 +4,8 @@
 	import robotlegs.bender.framework.api.IInjector;
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.extensions.viewProcessorMap.api.IViewProcessorMap;
+    import robotlegs.bender.extensions.viewProcessorMap.utils.MediatorCreator;
     import kabam.rotmg.startup.control.StartupSequence;
     import kabam.rotmg.packages.services.PackageModel;
     import kabam.rotmg.packages.control.PackageAvailableSignal;
@@ -36,6 +38,8 @@
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
+        public var viewProcessorMap:IViewProcessorMap;
+        [Inject]
         public var commandMap:ISignalCommandMap;
         [Inject]
         public var sequence:StartupSequence;
@@ -49,7 +53,7 @@
             this.mediatorMap.map(PackageButton).toMediator(PackageButtonMediator);
             this.mediatorMap.map(PackageOfferDialog).toMediator(PackageOfferDialogMediator);
             this.mediatorMap.map(PackageInfoDialog).toMediator(PackageInfoMediator);
-            this.mediatorMap.map(Resizable).toMediator(ResizableMediator);
+            this.viewProcessorMap.map(Resizable).toProcess(new MediatorCreator(ResizableMediator));
             this.commandMap.map(BuyPackageSignal).toCommand(BuyPackageCommand).withGuards(IsAccountRegisteredToBuyPackageGuard, IsPackageAffordableGuard);
             this.commandMap.map(AlreadyBoughtPackageSignal).toCommand(AlreadyBoughtPackageCommand);
             this.commandMap.map(BuyPackageSuccessfulSignal).toCommand(BuyPackageSuccessfulCommand);

@@ -86,6 +86,7 @@ package kabam.rotmg.pets
 	import kabam.rotmg.pets.controller.ReleasePetCommand;
 	import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
 	import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartCommand;
+    import kabam.rotmg.messaging.impl.PetUpdater;
 	
 	public class PetsConfig implements IConfig 
 	{
@@ -111,6 +112,7 @@ package kabam.rotmg.pets
 			this.injector.map(FeedFuseCostModel).asSingleton();
 			this.injector.map(PetFormModel).asSingleton();
 			this.injector.map(UpdateSelectedPetForm).asSingleton();
+            this.injector.map(PetUpdater).asSingleton();
 			this.mediatorMap.map(PetSkinGroup).toMediator(PetSkinGroupMediator);
 			this.mediatorMap.map(AvailablePetsView).toMediator(AvailablePetsMediator);
 			this.mediatorMap.map(FeedPetView).toMediator(FeedPetMediator);

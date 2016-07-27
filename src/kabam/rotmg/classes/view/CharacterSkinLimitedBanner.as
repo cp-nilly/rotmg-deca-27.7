@@ -14,11 +14,8 @@
         private const limitedBanner = makeLimitedBanner();
         public const readyForPositioning:Signal = new Signal();
 
-        private var LimitedBanner:Class;
-
         public function CharacterSkinLimitedBanner()
         {
-            this.LimitedBanner = CharacterSkinLimitedBanner_LimitedBanner;
             super();
         }
 
@@ -35,7 +32,7 @@
 
         private function makeLimitedBanner()
         {
-            var _local1:* = new this.LimitedBanner();
+            var _local1:* = new CharacterSkinLimitedBanner_LimitedBanner();
             addChild(_local1);
             return (_local1);
         }

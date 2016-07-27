@@ -33,6 +33,7 @@
     import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
     import kabam.rotmg.game.model.GameInitData;
     import com.company.assembleegameclient.objects.Player;
+    import kabam.rotmg.maploading.view.MapLoadingView;
 
     public class GameSpriteMediator extends Mediator 
     {
@@ -101,7 +102,8 @@
 
         override public function initialize():void
         {
-            this.showLoadingViewSignal.dispatch();
+            var mapLoadingView = new MapLoadingView();
+            this.showLoadingViewSignal.dispatch(mapLoadingView);
             this.view.packageModel = this.packageModel;
             this.setWorldInteraction.add(this.onSetWorldInteraction);
             addViewListener(ReconnectEvent.RECONNECT, this.onReconnect);

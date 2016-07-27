@@ -43,7 +43,8 @@
         {
             this.commandMap.map(TransferAccountSignal).toCommand(TransferAccountCommand);
             this.commandMap.map(CheckKabamAccountSignal).toCommand(CheckKabamAccountCommand);
-            this.injector.map(TaskErrorSignal).asSingleton();
+            if (!this.injector.hasMapping(TaskErrorSignal))
+                this.injector.map(TaskErrorSignal).asSingleton();
         }
 
         protected function mapMediators():void

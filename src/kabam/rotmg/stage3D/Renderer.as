@@ -131,7 +131,7 @@
             this.postFilterVertexBuffer_.uploadFromVector(POST_FILTER_POSITIONS, 0, 4);
             this.postFilterIndexBuffer_ = _arg1.createIndexBuffer(6);
             this.postFilterIndexBuffer_.uploadFromVector(POST_FILTER_TRIS, 0, 6);
-            this.graphic3D_ = this.injector.getInstance(Graphic3D);
+            this.graphic3D_ = this.injector.getOrCreateNewInstance(Graphic3D);
         }
 
         private function UpdateCameraMatrix(_arg1:Camera):void

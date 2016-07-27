@@ -11,6 +11,8 @@
     import kabam.rotmg.maploading.commands.ShowLoadingViewCommand;
     import kabam.rotmg.maploading.view.MapLoadingView;
     import kabam.rotmg.maploading.view.MapLoadingMediator;
+    import kabam.rotmg.maploading.signals.HideMapLoadingSignalNoFade;
+    import kabam.rotmg.maploading.commands.CharacterAnimationFactory;
 
     public class MapLoadingConfig implements IConfig 
     {
@@ -28,6 +30,8 @@
             this.injector.map(HideMapLoadingSignal).asSingleton();
             this.injector.map(ChangeMapSignal).asSingleton();
             this.injector.map(MapLoadedSignal).asSingleton();
+            this.injector.map(HideMapLoadingSignalNoFade).asSingleton();
+            this.injector.map(CharacterAnimationFactory).asSingleton();
             this.commandMap.map(ShowLoadingViewSignal).toCommand(ShowLoadingViewCommand);
             this.mediatorMap.map(MapLoadingView).toMediator(MapLoadingMediator);
         }
