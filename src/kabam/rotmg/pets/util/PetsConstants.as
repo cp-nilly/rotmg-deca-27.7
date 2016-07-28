@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.pets.util
 {
-    public class PetsConstants 
+    public class PetsConstants
     {
-
         public static const MAX_LEVEL:int = 99;
         public static const WINDOW_LINE_ONE_POS_Y:uint = 30;
         public static const WINDOW_LINE_TWO_POS_Y:uint = 302;
@@ -41,8 +40,6 @@
         public static const ABILITY_TOOLTIP_TITLE_POSITION_X:int = 0;
         public static const ABILITY_TOOLTIP_TITLE_POSITION_Y:int = 0;
         public static const FUSION_STRENGTH_Y_POS:uint = 222;
-
-
     }
 }
 

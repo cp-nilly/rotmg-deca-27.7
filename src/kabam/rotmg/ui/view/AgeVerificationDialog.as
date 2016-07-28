@@ -1,32 +1,38 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import com.company.assembleegameclient.ui.dialogs.Dialog;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.account.ui.components.DateField;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
     import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import com.company.assembleegameclient.ui.dialogs.Dialog;
+
     import flash.events.Event;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class AgeVerificationDialog extends Dialog 
+    import kabam.rotmg.account.ui.components.DateField;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class AgeVerificationDialog extends Dialog
     {
-
         private static const WIDTH:int = 300;
-
         private const BIRTH_DATE_BELOW_MINIMUM_ERROR:String = "AgeVerificationDialog.tooYoung";
         private const BIRTH_DATE_INVALID_ERROR:String = "AgeVerificationDialog.invalidBirthDate";
         private const MINIMUM_AGE:uint = 13;
         public const response:Signal = new Signal(Boolean);
-
         private var ageVerificationField:DateField;
         private var errorLabel:TextFieldDisplayConcrete;
 
         public function AgeVerificationDialog()
         {
-            super(TextKey.AGE_VERIFICATION_DIALOG_TITLE, "", TextKey.AGE_VERIFICATION_DIALOG_LEFT, TextKey.AGE_VERIFICATION_DIALOG_RIGHT, "/ageVerificationDialog");
+            super(
+                    TextKey.AGE_VERIFICATION_DIALOG_TITLE,
+                    "",
+                    TextKey.AGE_VERIFICATION_DIALOG_LEFT,
+                    TextKey.AGE_VERIFICATION_DIALOG_RIGHT,
+                    "/ageVerificationDialog"
+            );
             addEventListener(Dialog.LEFT_BUTTON, this.onCancel);
             addEventListener(Dialog.RIGHT_BUTTON, this.onVerify);
         }
@@ -67,12 +73,13 @@
             var _local1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
             var _local2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
             var _local3 = "</a></font>";
-            textText_.setStringBuilder(new LineBuilder().setParams("AgeVerificationDialog.text", {
-                "tou":_local1,
-                "_tou":_local3,
-                "policy":_local2,
-                "_policy":_local3
-            }));
+            textText_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            "AgeVerificationDialog.text", {
+                                "tou": _local1, "_tou": _local3, "policy": _local2, "_policy": _local3
+                            }
+                    )
+            );
         }
 
         override protected function drawAdditionalUI():void
@@ -123,8 +130,8 @@
                     _local4 = "";
                     _local3 = false;
                     this.response.dispatch(true);
-                };
-            };
+                }
+            }
             this.errorLabel.setStringBuilder(new LineBuilder().setParams(_local4));
             this.ageVerificationField.setErrorHighlight(_local3);
             drawButtonsAndBackground();
@@ -138,7 +145,7 @@
             if ((((_local1.month > _local2.month)) || ((((_local1.month == _local2.month)) && ((_local1.date > _local2.date))))))
             {
                 _local3--;
-            };
+            }
             return (_local3);
         }
 
@@ -146,8 +153,6 @@
         {
             return (Date.parse(this.ageVerificationField.getDate()));
         }
-
-
     }
 }
 

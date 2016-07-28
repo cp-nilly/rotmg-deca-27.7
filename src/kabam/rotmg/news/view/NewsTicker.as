@@ -1,23 +1,21 @@
 ﻿package kabam.rotmg.news.view
 {
     import flash.display.Sprite;
+    import flash.events.TimerEvent;
     import flash.text.TextField;
     import flash.utils.Timer;
-    import flash.events.TimerEvent;
+
     import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.text.model.FontModel;
 
-    public class NewsTicker extends Sprite 
+    public class NewsTicker extends Sprite
     {
-
         private static var pendingScrollText:String = "";
-
         private const WIDTH:int = 280;
         private const HEIGHT:int = 25;
         private const MAX_REPEATS:int = 2;
         private const SCROLL_PREPEND:String = "                                                                               ";
         private const SCROLL_APPEND:String = "                                                                                ";
-
         public var scrollText:TextField;
         private var timer:Timer;
         private var currentRepeat:uint = 0;
@@ -34,14 +32,13 @@
             {
                 this.activateNewScrollText(NewsTicker.pendingScrollText);
                 NewsTicker.pendingScrollText = "";
-            };
+            }
         }
 
         public static function setPendingScrollText(_arg1:String):void
         {
             NewsTicker.pendingScrollText = _arg1;
         }
-
 
         public function activateNewScrollText(_arg1:String):void
         {
@@ -52,7 +49,7 @@
             else
             {
                 return;
-            };
+            }
             this.scrollText.text = ((this.SCROLL_PREPEND + _arg1) + this.SCROLL_APPEND);
             this.timer.addEventListener(TimerEvent.TIMER, this.scrollAnimation);
             this.currentRepeat = 1;
@@ -84,8 +81,8 @@
                     this.scrollText.scrollH = 0;
                     this.timer.removeEventListener(TimerEvent.TIMER, this.scrollAnimation);
                     this.visible = false;
-                };
-            };
+                }
+            }
         }
 
         private function align():void
@@ -120,8 +117,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

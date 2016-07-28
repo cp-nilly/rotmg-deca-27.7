@@ -1,13 +1,14 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.ui.components.TimerDisplay;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+
+    import flash.display.Sprite;
     import flash.filters.DropShadowFilter;
 
-    public class ExperienceBoostTimerPopup extends Sprite 
-    {
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
 
+    public class ExperienceBoostTimerPopup extends Sprite
+    {
         private var timerDisplay:TimerDisplay;
         private var textField:TextFieldDisplayConcrete;
 
@@ -39,8 +40,6 @@
             _local1.filters = [new DropShadowFilter(0, 0, 0)];
             return (_local1);
         }
-
-
     }
 }
 

@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.legends.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
+    import flash.events.MouseEvent;
+
     import kabam.rotmg.legends.model.Timespan;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.events.MouseEvent;
 
-    public class LegendsTab extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class LegendsTab extends Sprite
     {
-
         private static const OVER_COLOR:int = 16567065;
         private static const DOWN_COLOR:int = 0xFFFFFF;
         private static const OUT_COLOR:int = 0xB2B2B2;
-
         public const selected:Signal = new Signal(LegendsTab);
-
         private var timespan:Timespan;
         private var label:TextFieldDisplayConcrete;
         private var isOver:Boolean;
@@ -73,8 +72,8 @@
                 else
                 {
                     this.label.setColor(OUT_COLOR);
-                };
-            };
+                }
+            }
         }
 
         public function setIsSelected(_arg1:Boolean):void
@@ -107,8 +106,6 @@
             this.isDown = false;
             this.redraw();
         }
-
-
     }
 }
 

@@ -1,11 +1,9 @@
 ﻿package com.company.assembleegameclient.objects
 {
     import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import __AS3__.vec.Vector;
 
-    public class Character extends GameObject 
+    public class Character extends GameObject
     {
-
         public var hurtSound_:String;
         public var deathSound_:String;
 
@@ -14,7 +12,9 @@
             super(_arg1);
             this.hurtSound_ = ((_arg1.hasOwnProperty("HitSound")) ? String(_arg1.HitSound) : "monster/default_hit");
             SoundEffectLibrary.load(this.hurtSound_);
-            this.deathSound_ = ((_arg1.hasOwnProperty("DeathSound")) ? String(_arg1.DeathSound) : "monster/default_death");
+            this.deathSound_ = ((_arg1.hasOwnProperty("DeathSound"))
+                    ? String(_arg1.DeathSound)
+                    : "monster/default_death");
             SoundEffectLibrary.load(this.deathSound_);
         }
 
@@ -30,11 +30,9 @@
                 if (((_arg5) || ((_arg2 > 0))))
                 {
                     SoundEffectLibrary.play(this.hurtSound_);
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

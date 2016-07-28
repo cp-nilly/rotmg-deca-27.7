@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class InvResult extends IncomingMessage 
+    public class InvResult extends IncomingMessage
     {
-
         public var result_:int;
 
         public function InvResult(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("INVRESULT", "result_"));
         }
-
-
     }
 }
 

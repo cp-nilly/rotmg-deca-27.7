@@ -1,22 +1,21 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import flash.display.Sprite;
-    import flash.utils.Dictionary;
-    import com.company.assembleegameclient.game.AGameSprite;
-    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.background.Background;
+    import com.company.assembleegameclient.game.AGameSprite;
     import com.company.assembleegameclient.map.mapoverlay.MapOverlay;
     import com.company.assembleegameclient.map.partyoverlay.PartyOverlay;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.objects.Party;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.objects.BasicObject;
+    import com.company.assembleegameclient.objects.Party;
+    import com.company.assembleegameclient.objects.Player;
+
+    import flash.display.Sprite;
     import flash.geom.Point;
-    import __AS3__.vec.*;
+    import flash.utils.Dictionary;
 
-    public class AbstractMap extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class AbstractMap extends Sprite
     {
-
         public var goDict_:Dictionary;
         public var gs_:AGameSprite;
         public var name_:String;
@@ -95,8 +94,6 @@
         {
             return (((!((this.name_ == Map.NEXUS))) && (this.allowPlayerTeleport_)));
         }
-
-
     }
 }
 

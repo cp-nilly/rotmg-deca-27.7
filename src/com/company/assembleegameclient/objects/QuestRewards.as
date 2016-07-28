@@ -1,12 +1,12 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import kabam.rotmg.questrewards.view.QuestRewardsPanel;
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.ui.panels.Panel;
 
-    public class QuestRewards extends GameObject implements IInteractiveObject 
-    {
+    import kabam.rotmg.questrewards.view.QuestRewardsPanel;
 
+    public class QuestRewards extends GameObject implements IInteractiveObject
+    {
         public function QuestRewards(_arg1:XML)
         {
             super(_arg1);
@@ -17,8 +17,6 @@
         {
             return (new QuestRewardsPanel(_arg1));
         }
-
-
     }
 }
 

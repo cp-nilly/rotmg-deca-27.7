@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.constants
 {
-    public class ActivationType 
+    public class ActivationType
     {
-
         public static const UNLOCK_PORTAL:String = "UnlockPortal";
         public static const SHOOT:String = "Shoot";
         public static const DECOY:String = "Decoy";
@@ -35,8 +34,6 @@
         public static const SMALL_DIG:String = "Small_Dig";
         public static const FILL:String = "Fill";
         public static const GENERIC_ACTIVATE:String = "GenericActivate";
-
-
     }
 }
 

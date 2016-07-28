@@ -1,31 +1,32 @@
 ﻿package com.company.assembleegameclient.ui.panels.mediators
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import com.company.assembleegameclient.ui.panels.ArenaPortalPanel;
-    import kabam.lib.net.impl.SocketServer;
-    import kabam.lib.net.api.MessageProvider;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.game.model.GameModel;
-    import kabam.rotmg.arena.model.CurrentArenaRunModel;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.game.signals.ExitGameSignal;
-    import kabam.rotmg.account.core.Account;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
+    import com.company.assembleegameclient.ui.panels.ArenaPortalPanel;
     import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.arena.service.GetBestArenaRunTask;
-    import kabam.rotmg.messaging.impl.outgoing.arena.EnterArena;
-    import kabam.rotmg.messaging.impl.GameServerConnection;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.account.core.view.RegisterPromptDialog;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+
     import flash.events.Event;
 
-    public class ArenaPortalPanelMediator extends Mediator 
+    import kabam.lib.net.api.MessageProvider;
+    import kabam.lib.net.impl.SocketServer;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import kabam.rotmg.arena.service.GetBestArenaRunTask;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.game.signals.ExitGameSignal;
+    import kabam.rotmg.messaging.impl.GameServerConnection;
+    import kabam.rotmg.messaging.impl.outgoing.arena.EnterArena;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class ArenaPortalPanelMediator extends Mediator
     {
-
         public static const TEXT:String = "SellableObjectPanelMediator.text";
-
         [Inject]
         public var view:ArenaPortalPanel;
         [Inject]
@@ -48,7 +49,6 @@
         public var account:Account;
         private var dialog:Dialog;
 
-
         override public function initialize():void
         {
             this.view.purchase.add(this.onPurchase);
@@ -63,7 +63,7 @@
             else
             {
                 this.purchaseWithFame();
-            };
+            }
         }
 
         private function purchaseWithFame():void
@@ -82,10 +82,12 @@
             }
             else
             {
-                this.dialog = new Dialog(TextKey.MUST_BE_NAMED_TITLE, TextKey.MUST_BE_NAMED_DESC, TextKey.ERRORDIALOG_OK, null, null);
+                this.dialog = new Dialog(
+                        TextKey.MUST_BE_NAMED_TITLE, TextKey.MUST_BE_NAMED_DESC, TextKey.ERRORDIALOG_OK, null, null
+                );
                 this.dialog.addEventListener(Dialog.LEFT_BUTTON, this.onNoNameDialogClose);
                 this.openDialog.dispatch(this.dialog);
-            };
+            }
         }
 
         private function purchaseWithGold():void
@@ -94,13 +96,15 @@
             var _local2:EnterArena;
             if (!this.account.isRegistered())
             {
-                this.openDialog.dispatch(new RegisterPromptDialog(TEXT, {"type":Currency.typeToName(Currency.GOLD)}));
+                this.openDialog.dispatch(new RegisterPromptDialog(TEXT, {"type": Currency.typeToName(Currency.GOLD)}));
             }
             else
             {
                 if (!this.gameModel.player.nameChosen_)
                 {
-                    this.dialog = new Dialog(TextKey.MUST_BE_NAMED_TITLE, TextKey.MUST_BE_NAMED_DESC, TextKey.ERRORDIALOG_OK, null, null);
+                    this.dialog = new Dialog(
+                            TextKey.MUST_BE_NAMED_TITLE, TextKey.MUST_BE_NAMED_DESC, TextKey.ERRORDIALOG_OK, null, null
+                    );
                     this.dialog.addEventListener(Dialog.LEFT_BUTTON, this.onNoNameDialogClose);
                     this.openDialog.dispatch(this.dialog);
                 }
@@ -119,9 +123,9 @@
                         _local2.currency = Currency.GOLD;
                         this.socketServer.sendMessage(_local2);
                         this.exitSignal.dispatch();
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onNoNameDialogClose(_arg1:Event):void
@@ -129,12 +133,10 @@
             if (((this.dialog) && (this.dialog.hasEventListener(Dialog.LEFT_BUTTON))))
             {
                 this.dialog.removeEventListener(Dialog.LEFT_BUTTON, this.onNoNameDialogClose);
-            };
+            }
             this.dialog = null;
             this.closeDialog.dispatch();
         }
-
-
     }
 }
 

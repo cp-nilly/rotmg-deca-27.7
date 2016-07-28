@@ -1,22 +1,19 @@
 ﻿package kabam.rotmg.text.model
 {
-    import flash.text.TextField;
     import flash.display.BitmapData;
     import flash.geom.Rectangle;
+    import flash.text.TextField;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
 
-    public class FontInfo 
+    public class FontInfo
     {
-
         private static const renderingFontSize:Number = 200;
         private static const GUTTER:Number = 2;
-
         protected var name:String;
         private var textColor:uint = 0;
         private var xHeightRatio:Number;
         private var verticalSpaceRatio:Number;
-
 
         public function setName(_arg1:String):void
         {
@@ -64,8 +61,6 @@
         {
             return ((_arg1 / renderingFontSize));
         }
-
-
     }
 }
 

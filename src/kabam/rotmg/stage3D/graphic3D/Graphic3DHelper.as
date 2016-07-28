@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.stage3D.graphic3D
 {
-	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.stage3D.proxies.IndexBuffer3DProxy;
     import kabam.rotmg.stage3D.proxies.VertexBuffer3DProxy;
 
-    public class Graphic3DHelper 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class Graphic3DHelper
     {
-
-
         public static function map(_arg1:IInjector):void
         {
             injectSingletonIndexBuffer(_arg1);
@@ -25,8 +24,6 @@
             var _local2:VertexBufferFactory = _arg1.getInstance(VertexBufferFactory);
             _arg1.map(VertexBuffer3DProxy).toProvider(_local2);
         }
-
-
     }
 }
 

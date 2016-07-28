@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.chat.control
 {
-    public class TextColors 
+    public class TextColors
     {
-
         public var back:uint;
         public var outline:uint;
         public var text:uint;
@@ -13,7 +12,6 @@
             this.outline = _arg2;
             this.text = _arg3;
         }
-
     }
 }
 

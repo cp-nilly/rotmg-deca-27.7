@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ExitGameSignal extends Signal 
+    public class ExitGameSignal extends Signal
     {
-
-
     }
 }
 

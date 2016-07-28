@@ -1,17 +1,18 @@
 ﻿package kabam.rotmg.dialogs.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.dialogs.control.ShowDialogBackgroundSignal;
-    import kabam.rotmg.dialogs.control.PushDialogSignal;
-    import kabam.rotmg.dialogs.control.PopDialogSignal;
     import flash.display.Sprite;
 
-    public class DialogsMediator extends Mediator 
-    {
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.dialogs.control.PopDialogSignal;
+    import kabam.rotmg.dialogs.control.PushDialogSignal;
+    import kabam.rotmg.dialogs.control.ShowDialogBackgroundSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class DialogsMediator extends Mediator
+    {
         [Inject]
         public var view:DialogsView;
         [Inject]
@@ -26,7 +27,6 @@
         public var pushDialogSignal:PushDialogSignal;
         [Inject]
         public var popDialogSignal:PopDialogSignal;
-
 
         override public function initialize():void
         {
@@ -58,7 +58,7 @@
             this.popDialogSignal.remove(this.onPopDialog);
         }
 
-        private function onShowDialogBackground(_arg1:int=0x151515):void
+        private function onShowDialogBackground(_arg1:int = 0x151515):void
         {
             this.view.showBackground(_arg1);
         }
@@ -78,8 +78,6 @@
             this.view.stage.focus = null;
             this.view.hideAll();
         }
-
-
     }
 }
 

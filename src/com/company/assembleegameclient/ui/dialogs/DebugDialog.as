@@ -1,15 +1,15 @@
 ﻿package com.company.assembleegameclient.ui.dialogs
 {
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import flash.events.Event;
 
-    public class DebugDialog extends StaticDialog 
-    {
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
+    public class DebugDialog extends StaticDialog
+    {
         private var f:Function;
 
-        public function DebugDialog(_arg1:String, _arg2:String="Debug", _arg3:Function=null)
+        public function DebugDialog(_arg1:String, _arg2:String = "Debug", _arg3:Function = null)
         {
             super(_arg2, _arg1, "OK", null, null);
             this.f = _arg3;
@@ -23,14 +23,12 @@
             if (((!((this.parent == null))) && (this.parent.contains(this))))
             {
                 this.parent.removeChild(this);
-            };
+            }
             if (this.f != null)
             {
                 this.f();
-            };
+            }
         }
-
-
     }
 }
 

@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.minimap.model
 {
-    public class UpdateGroundTileVO 
+    public class UpdateGroundTileVO
     {
-
         public var tileX:int;
         public var tileY:int;
         public var tileType:uint;
@@ -13,7 +12,6 @@
             this.tileY = _arg2;
             this.tileType = _arg3;
         }
-
     }
 }
 

@@ -2,11 +2,9 @@
 {
     import flash.display3D.Context3D;
     import flash.geom.Matrix3D;
-    import __AS3__.vec.Vector;
 
-    public class Context3DProxy 
+    public class Context3DProxy
     {
-
         private var context3D:Context3D;
 
         public function Context3DProxy(_arg1:Context3D)
@@ -19,7 +17,7 @@
             return (this.context3D);
         }
 
-        public function configureBackBuffer(_arg1:int, _arg2:int, _arg3:int, _arg4:Boolean=true):void
+        public function configureBackBuffer(_arg1:int, _arg2:int, _arg3:int, _arg4:Boolean = true):void
         {
             this.context3D.configureBackBuffer(_arg1, _arg2, _arg3, _arg4);
         }
@@ -49,17 +47,27 @@
             return (new VertexBuffer3DProxy(this.context3D.createVertexBuffer(_arg1, _arg2)));
         }
 
-        public function setVertexBufferAt(_arg1:int, _arg2:VertexBuffer3DProxy, _arg3:int, _arg4:String="float4"):void
+        public function setVertexBufferAt(_arg1:int, _arg2:VertexBuffer3DProxy, _arg3:int, _arg4:String = "float4"):void
         {
             this.context3D.setVertexBufferAt(_arg1, _arg2.getVertexBuffer3D(), _arg3, _arg4);
         }
 
-        public function setProgramConstantsFromMatrix(_arg1:String, _arg2:int, _arg3:Matrix3D, _arg4:Boolean=false):void
+        public function setProgramConstantsFromMatrix(
+                _arg1:String,
+                _arg2:int,
+                _arg3:Matrix3D,
+                _arg4:Boolean = false
+        ):void
         {
             this.context3D.setProgramConstantsFromMatrix(_arg1, _arg2, _arg3, _arg4);
         }
 
-        public function setProgramConstantsFromVector(_arg1:String, _arg2:int, _arg3:Vector.<Number>, _arg4:int=-1):void
+        public function setProgramConstantsFromVector(
+                _arg1:String,
+                _arg2:int,
+                _arg3:Vector.<Number>,
+                _arg4:int = -1
+        ):void
         {
             this.context3D.setProgramConstantsFromVector(_arg1, _arg2, _arg3, _arg4);
         }
@@ -93,8 +101,6 @@
         {
             this.context3D.setDepthTest(_arg1, _arg2);
         }
-
-
     }
 }
 

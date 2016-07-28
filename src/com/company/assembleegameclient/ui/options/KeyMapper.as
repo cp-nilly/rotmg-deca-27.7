@@ -1,16 +1,16 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
     import com.company.assembleegameclient.parameters.Parameters;
-    import flash.events.Event;
     import com.company.util.MoreColorUtil;
 
-    public class KeyMapper extends BaseOption 
-    {
+    import flash.events.Event;
 
+    public class KeyMapper extends BaseOption
+    {
         private var keyCodeBox_:KeyCodeBox;
         private var disabled_:Boolean;
 
-        public function KeyMapper(_arg1:String, _arg2:String, _arg3:String, _arg4:Boolean=false)
+        public function KeyMapper(_arg1:String, _arg2:String, _arg3:String, _arg4:Boolean = false)
         {
             super(_arg1, _arg2, _arg3);
             this.keyCodeBox_ = new KeyCodeBox(Parameters.data_[paramName_]);
@@ -37,8 +37,6 @@
             Parameters.setKey(paramName_, this.keyCodeBox_.value());
             Parameters.save();
         }
-
-
     }
 }
 

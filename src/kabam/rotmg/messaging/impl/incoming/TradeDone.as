@@ -2,12 +2,10 @@
 {
     import flash.utils.IDataInput;
 
-    public class TradeDone extends IncomingMessage 
+    public class TradeDone extends IncomingMessage
     {
-
         public static const TRADE_SUCCESSFUL:int = 0;
         public static const PLAYER_CANCELED:int = 1;
-
         public var code_:int;
         public var description_:String;
 
@@ -26,8 +24,6 @@
         {
             return (formatToString("TRADEDONE", "code_", "description_"));
         }
-
-
     }
 }
 

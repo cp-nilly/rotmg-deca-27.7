@@ -1,18 +1,16 @@
 ﻿package kabam.rotmg.stage3D.graphic3D
 {
-    import org.swiftsuspenders.dependencyproviders.DependencyProvider;
-    import kabam.rotmg.stage3D.proxies.IndexBuffer3DProxy;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.stage3D.proxies.Context3DProxy;
-    import org.swiftsuspenders.Injector;
     import flash.utils.Dictionary;
-    import __AS3__.vec.*;
 
-    public class IndexBufferFactory implements DependencyProvider 
+    import kabam.rotmg.stage3D.proxies.Context3DProxy;
+    import kabam.rotmg.stage3D.proxies.IndexBuffer3DProxy;
+
+    import org.swiftsuspenders.Injector;
+    import org.swiftsuspenders.dependencyproviders.DependencyProvider;
+
+    public class IndexBufferFactory implements DependencyProvider
     {
-
         private static const numVertices:int = 6;
-
         private var indexBuffer:IndexBuffer3DProxy;
 
         public function IndexBufferFactory(_arg1:Context3DProxy):void
@@ -22,7 +20,7 @@
             {
                 this.indexBuffer = _arg1.createIndexBuffer(numVertices);
                 this.indexBuffer.uploadFromVector(_local2, 0, numVertices);
-            };
+            }
         }
 
         public function apply(_arg1:Class, _arg2:Injector, _arg3:Dictionary):Object
@@ -33,8 +31,6 @@
         public function destroy():void
         {
         }
-
-
     }
 }
 

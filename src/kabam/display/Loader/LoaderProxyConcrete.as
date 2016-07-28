@@ -1,15 +1,15 @@
 ﻿package kabam.display.Loader
 {
-    import flash.display.Loader;
-    import kabam.display.LoaderInfo.LoaderInfoProxy;
     import flash.display.DisplayObject;
-    import kabam.display.LoaderInfo.LoaderInfoProxyConcrete;
+    import flash.display.Loader;
     import flash.net.URLRequest;
     import flash.system.LoaderContext;
 
-    public class LoaderProxyConcrete extends LoaderProxy 
-    {
+    import kabam.display.LoaderInfo.LoaderInfoProxy;
+    import kabam.display.LoaderInfo.LoaderInfoProxyConcrete;
 
+    public class LoaderProxyConcrete extends LoaderProxy
+    {
         private var loader:Loader;
         private var _contentLoaderInfo:LoaderInfoProxy;
 
@@ -30,11 +30,11 @@
             {
                 this._contentLoaderInfo = new LoaderInfoProxyConcrete();
                 this._contentLoaderInfo.loaderInfo = this.loader.contentLoaderInfo;
-            };
+            }
             return (this._contentLoaderInfo);
         }
 
-        override public function load(_arg1:URLRequest, _arg2:LoaderContext=null):void
+        override public function load(_arg1:URLRequest, _arg2:LoaderContext = null):void
         {
             this.loader.load(_arg1, _arg2);
         }
@@ -43,8 +43,6 @@
         {
             this.loader.unload();
         }
-
-
     }
 }
 

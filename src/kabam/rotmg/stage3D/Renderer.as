@@ -1,48 +1,48 @@
 ﻿package kabam.rotmg.stage3D
 {
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.stage3D.proxies.Context3DProxy;
-    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
-	import robotlegs.bender.framework.api.IInjector;
-    import flash.display3D.Program3D;
-    import kabam.rotmg.stage3D.graphic3D.Graphic3D;
-    import flash.geom.Matrix3D;
-    import flash.geom.Vector3D;
-    import flash.display3D.textures.Texture;
-    import flash.display3D.VertexBuffer3D;
-    import flash.display3D.IndexBuffer3D;
-    import kabam.rotmg.stage3D.Object3D.Util;
     import com.adobe.utils.AGALMiniAssembler;
-    import flash.display3D.Context3DProgramType;
-    import flash.utils.ByteArray;
-    import flash.display3D.Context3DTextureFormat;
-    import flash.display3D.Context3D;
     import com.company.assembleegameclient.map.Camera;
-    import flash.display.StageScaleMode;
-    import flash.display.IGraphicsData;
-    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
-    import flash.display.Stage3D;
-    import flash.display3D.Context3DVertexBufferFormat;
-    import flash.display3D.Context3DTriangleFace;
+    import com.company.assembleegameclient.parameters.Parameters;
+
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsGradientFill;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.*;
+    import flash.display.IGraphicsData;
+    import flash.display.Stage3D;
+    import flash.display.StageScaleMode;
+    import flash.display3D.Context3D;
+    import flash.display3D.Context3DProgramType;
+    import flash.display3D.Context3DTextureFormat;
+    import flash.display3D.Context3DTriangleFace;
+    import flash.display3D.Context3DVertexBufferFormat;
+    import flash.display3D.IndexBuffer3D;
+    import flash.display3D.Program3D;
+    import flash.display3D.VertexBuffer3D;
+    import flash.display3D.textures.Texture;
+    import flash.geom.Matrix3D;
+    import flash.geom.Vector3D;
+    import flash.utils.ByteArray;
 
-    public class Renderer 
+    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
+    import kabam.rotmg.stage3D.Object3D.Util;
+    import kabam.rotmg.stage3D.graphic3D.Graphic3D;
+    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
+    import kabam.rotmg.stage3D.proxies.Context3DProxy;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class Renderer
     {
-
         public static const STAGE3D_FILTER_PAUSE:uint = 1;
         public static const STAGE3D_FILTER_BLIND:uint = 2;
         public static const STAGE3D_FILTER_DRUNK:uint = 3;
         private static const POST_FILTER_VERTEX_CONSTANTS:Vector.<Number> = new <Number>[1, 2, 0, 0];
         private static const GRAYSCALE_FRAGMENT_CONSTANTS:Vector.<Number> = new <Number>[0.3, 0.59, 0.11, 0];
         private static const BLIND_FRAGMENT_CONSTANTS:Vector.<Number> = new <Number>[0.05, 0.05, 0.05, 0];
-        private static const POST_FILTER_POSITIONS:Vector.<Number> = new <Number>[-1, 1, 0, 0, 1, 1, 1, 0, 1, -1, 1, 1, -1, -1, 0, 1];
+        private static const POST_FILTER_POSITIONS:Vector.<Number> = new <Number>[
+            -1, 1, 0, 0, 1, 1, 1, 0, 1, -1, 1, 1, -1, -1, 0, 1
+        ];
         private static const POST_FILTER_TRIS:Vector.<uint> = new <uint>[0, 2, 3, 0, 1, 2];
-
         public static var inGame:Boolean;
-
         [Inject]
         public var context3D:Context3DProxy;
         [Inject]
@@ -171,13 +171,20 @@
             this.cameraMatrix_.append(_local3);
         }
 
-        private function onRender(_arg1:Vector.<IGraphicsData>, _arg2:Vector.<Object3DStage3D>, _arg3:Number, _arg4:Number, _arg5:Camera, _arg6:uint):void
+        private function onRender(
+                _arg1:Vector.<IGraphicsData>,
+                _arg2:Vector.<Object3DStage3D>,
+                _arg3:Number,
+                _arg4:Number,
+                _arg5:Camera,
+                _arg6:uint
+        ):void
         {
             WebMain.STAGE.scaleMode = StageScaleMode.NO_SCALE;
             if (((!((((WebMain.STAGE.stageWidth * 3) / 4) == this.stageWidth))) || (!((WebMain.STAGE.stageHeight == this.stageHeight)))))
             {
                 this.resizeStage3DBackBuffer();
-            };
+            }
             if (Renderer.inGame == true)
             {
                 this.setTranslationToGame();
@@ -185,7 +192,7 @@
             else
             {
                 this.setTranslationToTitle();
-            };
+            }
             if (_arg6 > 0)
             {
                 this.renderWithPostEffect(_arg1, _arg2, _arg3, _arg4, _arg5, _arg6);
@@ -193,7 +200,7 @@
             else
             {
                 this.renderScene(_arg1, _arg2, _arg3, _arg4, _arg5);
-            };
+            }
             this.context3D.present();
             WebMain.STAGE.scaleMode = StageScaleMode.EXACT_FIT;
         }
@@ -203,14 +210,23 @@
             if ((((((WebMain.STAGE.stageWidth * 3) / 4) < 1)) || ((WebMain.STAGE.stageHeight < 1))))
             {
                 return;
-            };
+            }
             var _local1:Stage3D = WebMain.STAGE.stage3Ds[0];
-            _local1.context3D.configureBackBuffer(((WebMain.STAGE.stageWidth * 3) / 4), WebMain.STAGE.stageHeight, 2, false);
+            _local1.context3D.configureBackBuffer(
+                    ((WebMain.STAGE.stageWidth * 3) / 4), WebMain.STAGE.stageHeight, 2, false
+            );
             this.stageWidth = ((WebMain.STAGE.stageWidth * 3) / 4);
             this.stageHeight = WebMain.STAGE.stageHeight;
         }
 
-        private function renderWithPostEffect(_arg1:Vector.<IGraphicsData>, _arg2:Vector.<Object3DStage3D>, _arg3:Number, _arg4:Number, _arg5:Camera, _arg6:uint):void
+        private function renderWithPostEffect(
+                _arg1:Vector.<IGraphicsData>,
+                _arg2:Vector.<Object3DStage3D>,
+                _arg3:Number,
+                _arg4:Number,
+                _arg5:Camera,
+                _arg6:uint
+        ):void
         {
             this.context3D.GetContext3D().setRenderToTexture(this.sceneTexture_, true);
             this.renderScene(_arg1, _arg2, _arg3, _arg4, _arg5);
@@ -222,43 +238,68 @@
                     this.context3D.GetContext3D().setProgram(this.postProcessingProgram_);
                     this.context3D.GetContext3D().setTextureAt(0, this.sceneTexture_);
                     this.context3D.GetContext3D().clear(0.5, 0.5, 0.5);
-                    this.context3D.GetContext3D().setVertexBufferAt(0, this.postFilterVertexBuffer_, 0, Context3DVertexBufferFormat.FLOAT_2);
+                    this.context3D.GetContext3D().setVertexBufferAt(
+                            0, this.postFilterVertexBuffer_, 0, Context3DVertexBufferFormat.FLOAT_2
+                    );
                     this.context3D.GetContext3D().setVertexBufferAt(1, null);
                     break;
                 case STAGE3D_FILTER_DRUNK:
                     this.context3D.GetContext3D().setProgram(this.blurPostProcessing_);
                     this.context3D.GetContext3D().setTextureAt(0, this.sceneTexture_);
                     this.context3D.GetContext3D().clear(0.5, 0.5, 0.5);
-                    this.context3D.GetContext3D().setVertexBufferAt(0, this.postFilterVertexBuffer_, 0, Context3DVertexBufferFormat.FLOAT_2);
-                    this.context3D.GetContext3D().setVertexBufferAt(1, this.postFilterVertexBuffer_, 2, Context3DVertexBufferFormat.FLOAT_2);
+                    this.context3D.GetContext3D().setVertexBufferAt(
+                            0, this.postFilterVertexBuffer_, 0, Context3DVertexBufferFormat.FLOAT_2
+                    );
+                    this.context3D.GetContext3D().setVertexBufferAt(
+                            1, this.postFilterVertexBuffer_, 2, Context3DVertexBufferFormat.FLOAT_2
+                    );
                     break;
-            };
+            }
             this.context3D.GetContext3D().setVertexBufferAt(2, null);
             switch (_arg6)
             {
                 case STAGE3D_FILTER_PAUSE:
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.VERTEX, 0, POST_FILTER_VERTEX_CONSTANTS);
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 0, GRAYSCALE_FRAGMENT_CONSTANTS);
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.VERTEX, 0, POST_FILTER_VERTEX_CONSTANTS
+                    );
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.FRAGMENT, 0, GRAYSCALE_FRAGMENT_CONSTANTS
+                    );
                     break;
                 case STAGE3D_FILTER_BLIND:
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.VERTEX, 0, POST_FILTER_VERTEX_CONSTANTS);
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 0, BLIND_FRAGMENT_CONSTANTS);
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.VERTEX, 0, POST_FILTER_VERTEX_CONSTANTS
+                    );
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.FRAGMENT, 0, BLIND_FRAGMENT_CONSTANTS
+                    );
                     break;
                 case STAGE3D_FILTER_DRUNK:
                     if ((((this.blurFragmentConstants_[3] <= 0.2)) || ((this.blurFragmentConstants_[3] >= 1.8))))
                     {
                         this.blurFactor = (this.blurFactor * -1);
-                    };
+                    }
                     this.blurFragmentConstants_[3] = (this.blurFragmentConstants_[3] + this.blurFactor);
                     this.context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, new Matrix3D());
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 0, this.blurFragmentConstants_, (this.blurFragmentConstants_.length / 4));
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.FRAGMENT,
+                            0,
+                            this.blurFragmentConstants_,
+                            (this.blurFragmentConstants_.length / 4)
+                    );
                     break;
-            };
+            }
             this.context3D.GetContext3D().clear(0, 0, 0, 1);
             this.context3D.GetContext3D().drawTriangles(this.postFilterIndexBuffer_);
         }
 
-        private function renderScene(graphicsDatas:Vector.<IGraphicsData>, grahpicsData3d:Vector.<Object3DStage3D>, mapWidth:Number, mapHeight:Number, camera:Camera):void
+        private function renderScene(
+                graphicsDatas:Vector.<IGraphicsData>,
+                grahpicsData3d:Vector.<Object3DStage3D>,
+                mapWidth:Number,
+                mapHeight:Number,
+                camera:Camera
+        ):void
         {
             var test:int;
             var graphicsData:IGraphicsData;
@@ -277,29 +318,40 @@
                     {
                         test = GraphicsBitmapFill(graphicsData).bitmapData.width;
                     }
-                    catch(e:Error)
+                    catch (e:Error)
                     {
                         continue;
-                    };
+                    }
                     this.graphic3D_.setGraphic(GraphicsBitmapFill(graphicsData), this.context3D);
                     finalTransform.identity();
                     finalTransform.append(this.graphic3D_.getMatrix3D());
                     finalTransform.appendScale((1 / Stage3DConfig.HALF_WIDTH), (1 / Stage3DConfig.HALF_HEIGHT), 1);
-                    finalTransform.appendTranslation((this.tX / Stage3DConfig.WIDTH), (this.tY / Stage3DConfig.HEIGHT), 0);
+                    finalTransform.appendTranslation(
+                            (this.tX / Stage3DConfig.WIDTH), (this.tY / Stage3DConfig.HEIGHT), 0
+                    );
                     this.context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, finalTransform, true);
                     this.graphic3D_.render(this.context3D);
-                };
+                }
                 if ((graphicsData is GraphicsGradientFill))
                 {
                     this.context3D.GetContext3D().setProgram(this.shadowProgram_);
-                    this.graphic3D_.setGradientFill(GraphicsGradientFill(graphicsData), this.context3D, Stage3DConfig.HALF_WIDTH, Stage3DConfig.HALF_HEIGHT);
+                    this.graphic3D_.setGradientFill(
+                            GraphicsGradientFill(graphicsData),
+                            this.context3D,
+                            Stage3DConfig.HALF_WIDTH,
+                            Stage3DConfig.HALF_HEIGHT
+                    );
                     finalTransform.identity();
                     finalTransform.append(this.graphic3D_.getMatrix3D());
-                    finalTransform.appendTranslation((this.tX / Stage3DConfig.WIDTH), (this.tY / Stage3DConfig.HEIGHT), 0);
+                    finalTransform.appendTranslation(
+                            (this.tX / Stage3DConfig.WIDTH), (this.tY / Stage3DConfig.HEIGHT), 0
+                    );
                     this.context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, finalTransform, true);
-                    this.context3D.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 4, Vector.<Number>([0.5, 0.25, 0, 0]));
+                    this.context3D.setProgramConstantsFromVector(
+                            Context3DProgramType.FRAGMENT, 4, Vector.<Number>([0.5, 0.25, 0, 0])
+                    );
                     this.graphic3D_.renderShadow(this.context3D);
-                };
+                }
                 if ((((graphicsData == null)) && (!((grahpicsData3d.length == 0)))))
                 {
                     try
@@ -311,31 +363,37 @@
                         finalTransform.append(grahpicsData3d[index3d].GetModelMatrix());
                         finalTransform.append(this.cameraMatrix_);
                         finalTransform.append(this._projection);
-                        finalTransform.appendTranslation((this.tX / Stage3DConfig.WIDTH), ((this.tY / Stage3DConfig.HEIGHT) * 11.5), 0);
-                        this.context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, finalTransform, true);
-                        this.context3D.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 8, grahpicsData3d[index3d].GetModelMatrix(), true);
+                        finalTransform.appendTranslation(
+                                (this.tX / Stage3DConfig.WIDTH), ((this.tY / Stage3DConfig.HEIGHT) * 11.5), 0
+                        );
+                        this.context3D.setProgramConstantsFromMatrix(
+                                Context3DProgramType.VERTEX, 0, finalTransform, true
+                        );
+                        this.context3D.setProgramConstantsFromMatrix(
+                                Context3DProgramType.VERTEX, 8, grahpicsData3d[index3d].GetModelMatrix(), true
+                        );
                         grahpicsData3d[index3d].draw(this.context3D.GetContext3D());
                         index3d++;
                     }
-                    catch(e:Error)
+                    catch (e:Error)
                     {
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function setTranslationToGame():void
         {
             this.tX = 0;
-            this.tY = ((Parameters.data_.centerOnPlayer) ? -50 : ((Camera.OFFSET_SCREEN_RECT.y + (Camera.CENTER_SCREEN_RECT.height / 2)) * 2));
+            this.tY = ((Parameters.data_.centerOnPlayer)
+                    ? -50
+                    : ((Camera.OFFSET_SCREEN_RECT.y + (Camera.CENTER_SCREEN_RECT.height / 2)) * 2));
         }
 
         private function setTranslationToTitle():void
         {
             this.tX = (this.tY = 0);
         }
-
-
     }
 }
 

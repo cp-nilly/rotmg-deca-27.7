@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public class PetSkinGroupVO 
+    public class PetSkinGroupVO
     {
-
         public var textKey:String;
         public var icons:Array;
         public var petRarityEnum:PetRarityEnum;
@@ -15,7 +14,6 @@
             this.petRarityEnum = _arg3;
             this.selectedPetSkinID = _arg4;
         }
-
     }
 }
 

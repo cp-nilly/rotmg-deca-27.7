@@ -1,26 +1,27 @@
 ﻿package com.company.assembleegameclient.ui.guild
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.ui.BaseSimpleText;
-    import flash.display.Bitmap;
-    import flash.display.Shape;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.util.GuildUtil;
+    import com.company.ui.BaseSimpleText;
+    import com.company.util.MoreObjectUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.core.StaticInjectorContext;
+
     import kabam.rotmg.account.core.Account;
-    import com.company.util.MoreObjectUtil;
-    import flash.display.Graphics;
-    import com.company.assembleegameclient.util.GuildUtil;
-    import flash.events.Event;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class GuildPlayerList extends Sprite 
+    public class GuildPlayerList extends Sprite
     {
-
         private var num_:int;
         private var offset_:int;
         private var myName_:String;
@@ -36,7 +37,7 @@
         private var openSlotsText_:TextFieldDisplayConcrete;
         private var scrollBar_:Scrollbar;
 
-        public function GuildPlayerList(_arg1:int, _arg2:int, _arg3:String="", _arg4:int=0)
+        public function GuildPlayerList(_arg1:int, _arg2:int, _arg3:String = "", _arg4:int = 0)
         {
             this.num_ = _arg1;
             this.offset_ = _arg2;
@@ -52,8 +53,7 @@
             addChild(this.loadingText_);
             var _local5:Account = StaticInjectorContext.getInjector().getInstance(Account);
             var _local6:Object = {
-                "num":_arg1,
-                "offset":_arg2
+                "num": _arg1, "offset": _arg2
             };
             MoreObjectUtil.addToObject(_local6, _local5.getCredentials());
             this.listClient_ = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
@@ -71,7 +71,7 @@
             else
             {
                 this.onTextError(_arg2);
-            };
+            }
         }
 
         private function onGenericData(_arg1:String):void
@@ -136,14 +136,20 @@
             {
                 _local7 = (this.myName_ == _local5.Name);
                 _local8 = _local5.Rank;
-                _local9 = new MemberListLine(((this.offset_ + _local4) + 1), _local5.Name, _local5.Rank, _local5.Fame, _local7, this.myRank_);
+                _local9 = new MemberListLine(
+                        ((this.offset_ + _local4) + 1), _local5.Name, _local5.Rank, _local5.Fame, _local7, this.myRank_
+                );
                 _local9.y = (_local4 * MemberListLine.HEIGHT);
                 this.listSprite_.addChild(_local9);
                 _local4++;
-            };
+            }
             _local6 = (GuildUtil.MAX_MEMBERS - (this.offset_ + _local4));
             this.openSlotsText_ = new TextFieldDisplayConcrete().setSize(22).setColor(0xB3B3B3);
-            this.openSlotsText_.setStringBuilder(new LineBuilder().setParams(TextKey.GUILD_PLAYER_LIST_OPENSLOTS, {"openSlots":_local6}));
+            this.openSlotsText_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.GUILD_PLAYER_LIST_OPENSLOTS, {"openSlots": _local6}
+                    )
+            );
             this.openSlotsText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
             this.openSlotsText_.setAutoSize(TextFieldAutoSize.CENTER);
             this.openSlotsText_.x = (MemberListLine.WIDTH / 2);
@@ -158,15 +164,13 @@
                 this.scrollBar_.setIndicatorSize(400, this.listSprite_.height);
                 this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);
                 addChild(this.scrollBar_);
-            };
+            }
         }
 
         private function onScrollBarChange(_arg1:Event):void
         {
             this.listSprite_.y = (-(this.scrollBar_.pos()) * (this.listSprite_.height - 400));
         }
-
-
     }
 }
 

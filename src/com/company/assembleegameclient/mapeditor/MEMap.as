@@ -1,44 +1,35 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.mapeditor.MEMap_transbackgroundEmbed_;
-    import flash.display.BitmapData;
-    import flash.utils.Dictionary;
-    import com.company.assembleegameclient.mapeditor.BigBitmapData;
-    import flash.display.Shape;
-    import com.company.util.IntPoint;
-    import flash.display.Bitmap;
-    import com.company.util.AssetLibrary;
-    import flash.events.Event;
-    import com.company.assembleegameclient.mapeditor.METile;
-    import __AS3__.vec.Vector;
-    import flash.geom.Rectangle;
-    import flash.events.MouseEvent;
-    import flash.events.KeyboardEvent;
-    import flash.ui.Keyboard;
-    import com.company.util.KeyCodes;
-    import com.company.assembleegameclient.mapeditor.Layer;
     import com.company.assembleegameclient.map.GroundLibrary;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.map.RegionLibrary;
-    import flash.display.Graphics;
-    import flash.geom.Matrix;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.util.AssetLibrary;
+    import com.company.util.IntPoint;
+    import com.company.util.KeyCodes;
     import com.company.util.PointUtil;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.mapeditor.*;
 
-    class MEMap extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.geom.Matrix;
+    import flash.geom.Rectangle;
+    import flash.ui.Keyboard;
+    import flash.utils.Dictionary;
+
+    class MEMap extends Sprite
     {
-
         public static const NUM_SQUARES:int = 0x0200;
         public static const SQUARE_SIZE:int = 16;
         public static const SIZE:int = 0x0200;
         public static const MIN_ZOOM:Number = 0.0625;
         public static const MAX_ZOOM:Number = 16;
-
         private static var transbackgroundEmbed_:Class = MEMap_transbackgroundEmbed_;
         private static var transbackgroundBD_:BitmapData = new transbackgroundEmbed_().bitmapData;
-
         public var tileDict_:Dictionary;
         public var fullMap_:BigBitmapData;
         public var regionMap_:BitmapData;
@@ -66,7 +57,9 @@
             graphics.drawRect(0, 0, SIZE, SIZE);
             addChild(new Bitmap(this.map_));
             addChild(this.overlay_);
-            this.posT_ = new IntPoint(((NUM_SQUARES / 2) - (this.sizeInTiles() / 2)), ((NUM_SQUARES / 2) - (this.sizeInTiles() / 2)));
+            this.posT_ = new IntPoint(
+                    ((NUM_SQUARES / 2) - (this.sizeInTiles() / 2)), ((NUM_SQUARES / 2) - (this.sizeInTiles() / 2))
+            );
             this.invisibleTexture_ = AssetLibrary.getImageFromSet("invisible", 0);
             this.replaceTexture_ = AssetLibrary.getImageFromSet("lofiObj3", 0xFF);
             this.draw();
@@ -80,7 +73,7 @@
             if (_local4 == null)
             {
                 return (-1);
-            };
+            }
             return (_local4.types_[_arg3]);
         }
 
@@ -95,7 +88,7 @@
             if (_local5.types_[_arg3] == _arg4)
             {
                 return;
-            };
+            }
             _local5.types_[_arg3] = _arg4;
             this.drawTile(_arg1, _arg2, _local5);
         }
@@ -106,7 +99,7 @@
             if (_local3 == null)
             {
                 return (null);
-            };
+            }
             return (_local3.objName_);
         }
 
@@ -125,7 +118,7 @@
             {
                 _local3 = int(_local2);
                 _local1.push(new IntPoint((_local3 % NUM_SQUARES), (_local3 / NUM_SQUARES)));
-            };
+            }
             return (_local1);
         }
 
@@ -150,7 +143,7 @@
             {
                 _local2 = int(_local1);
                 this.eraseTile((_local2 % NUM_SQUARES), (_local2 / NUM_SQUARES));
-            };
+            }
         }
 
         public function getTileBounds():Rectangle
@@ -175,25 +168,25 @@
                     if (_local8 < _local1)
                     {
                         _local1 = _local8;
-                    };
+                    }
                     if (_local9 < _local2)
                     {
                         _local2 = _local9;
-                    };
+                    }
                     if ((_local8 + 1) > _local3)
                     {
                         _local3 = (_local8 + 1);
-                    };
+                    }
                     if ((_local9 + 1) > _local4)
                     {
                         _local4 = (_local9 + 1);
-                    };
-                };
-            };
+                    }
+                }
+            }
             if (_local1 > _local3)
             {
                 return (null);
-            };
+            }
             return (new Rectangle(_local1, _local2, (_local3 - _local1), (_local4 - _local2)));
         }
 
@@ -207,7 +200,7 @@
             if ((((((_arg1 > 1)) && ((this.zoom_ >= MAX_ZOOM)))) || ((((_arg1 < 1)) && ((this.zoom_ <= MIN_ZOOM))))))
             {
                 return;
-            };
+            }
             var _local2:IntPoint = this.mousePosT();
             this.zoom_ = (this.zoom_ * _arg1);
             var _local3:IntPoint = this.mousePosT();
@@ -224,7 +217,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.modifyZoom(2);
             this.draw();
         }
@@ -234,7 +227,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.modifyZoom(0.5);
             this.draw();
         }
@@ -244,7 +237,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.movePosT(-1, 0);
             this.draw();
         }
@@ -254,7 +247,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.movePosT(1, 0);
             this.draw();
         }
@@ -264,7 +257,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.movePosT(0, -1);
             this.draw();
         }
@@ -274,7 +267,7 @@
             if (!this.canMove())
             {
                 return;
-            };
+            }
             this.movePosT(0, 1);
             this.draw();
         }
@@ -291,7 +284,10 @@
         {
             var _local1:int = Math.max(0, Math.min((SIZE - 1), mouseX));
             var _local2:int = Math.max(0, Math.min((SIZE - 1), mouseY));
-            return (new IntPoint((this.posT_.x_ + (_local1 / (SQUARE_SIZE * this.zoom_))), (this.posT_.y_ + (_local2 / (SQUARE_SIZE * this.zoom_)))));
+            return (new IntPoint(
+                    (this.posT_.x_ + (_local1 / (SQUARE_SIZE * this.zoom_))),
+                    (this.posT_.y_ + (_local2 / (SQUARE_SIZE * this.zoom_)))
+            ));
         }
 
         public function mouseRectT():Rectangle
@@ -300,13 +296,21 @@
             if (this.mouseRectAnchorT_ == null)
             {
                 return (new Rectangle(_local1.x_, _local1.y_, 1, 1));
-            };
-            return (new Rectangle(Math.min(_local1.x_, this.mouseRectAnchorT_.x_), Math.min(_local1.y_, this.mouseRectAnchorT_.y_), (Math.abs((_local1.x_ - this.mouseRectAnchorT_.x_)) + 1), (Math.abs((_local1.y_ - this.mouseRectAnchorT_.y_)) + 1)));
+            }
+            return (new Rectangle(
+                    Math.min(_local1.x_, this.mouseRectAnchorT_.x_),
+                    Math.min(_local1.y_, this.mouseRectAnchorT_.y_),
+                    (Math.abs((_local1.x_ - this.mouseRectAnchorT_.x_)) + 1),
+                    (Math.abs((_local1.y_ - this.mouseRectAnchorT_.y_)) + 1)
+            ));
         }
 
         private function posTToPosP(_arg1:IntPoint):IntPoint
         {
-            return (new IntPoint((((_arg1.x_ - this.posT_.x_) * SQUARE_SIZE) * this.zoom_), (((_arg1.y_ - this.posT_.y_) * SQUARE_SIZE) * this.zoom_)));
+            return (new IntPoint(
+                    (((_arg1.x_ - this.posT_.x_) * SQUARE_SIZE) * this.zoom_),
+                    (((_arg1.y_ - this.posT_.y_) * SQUARE_SIZE) * this.zoom_)
+            ));
         }
 
         private function sizeTToSizeP(_arg1:int):Number
@@ -348,11 +352,17 @@
             switch (_arg1.keyCode)
             {
                 case Keyboard.SHIFT:
-                    if (this.mouseRectAnchorT_ != null) break;
+                    if (this.mouseRectAnchorT_ != null)
+                    {
+                        break;
+                    }
                     this.mouseRectAnchorT_ = this.mousePosT();
                     break;
                 case Keyboard.CONTROL:
-                    if (this.mouseMoveAnchorT_ != null) break;
+                    if (this.mouseMoveAnchorT_ != null)
+                    {
+                        break;
+                    }
                     this.mouseMoveAnchorT_ = this.mousePosT();
                     break;
                 case Keyboard.LEFT:
@@ -373,7 +383,7 @@
                 case KeyCodes.EQUAL:
                     this.increaseZoom();
                     break;
-            };
+            }
             this.draw();
         }
 
@@ -387,7 +397,7 @@
                 case Keyboard.CONTROL:
                     this.mouseMoveAnchorT_ = null;
                     break;
-            };
+            }
             this.draw();
         }
 
@@ -402,8 +412,8 @@
                 if (_arg1.delta < 0)
                 {
                     this.decreaseZoom();
-                };
-            };
+                }
+            }
         }
 
         private function onMouseDown(_arg1:MouseEvent):void
@@ -421,9 +431,9 @@
                 {
                     _local3.push(new IntPoint(_local6, _local7));
                     _local7++;
-                };
+                }
                 _local6++;
-            };
+            }
             dispatchEvent(new TilesEvent(_local3));
         }
 
@@ -452,8 +462,8 @@
                 if (this.mouseRectAnchorT_ == null)
                 {
                     this.mouseRectAnchorT_ = this.mousePosT();
-                };
-            };
+                }
+            }
             if (!_arg1.ctrlKey)
             {
                 this.mouseMoveAnchorT_ = null;
@@ -463,12 +473,12 @@
                 if (this.mouseMoveAnchorT_ == null)
                 {
                     this.mouseMoveAnchorT_ = this.mousePosT();
-                };
-            };
+                }
+            }
             if (_arg1.buttonDown)
             {
                 dispatchEvent(new TilesEvent(new <IntPoint>[this.mousePosT()]));
-            };
+            }
             if (this.mouseMoveAnchorT_ != null)
             {
                 _local2 = this.mousePosT();
@@ -478,7 +488,7 @@
             else
             {
                 this.drawOverlay();
-            };
+            }
         }
 
         private function getOrCreateTile(_arg1:int, _arg2:int):METile
@@ -488,7 +498,7 @@
             if (_local4 != null)
             {
                 return (_local4);
-            };
+            }
             _local4 = new METile();
             this.tileDict_[_local3] = _local4;
             return (_local4);
@@ -504,18 +514,20 @@
             var _local5:BitmapData;
             var _local6:BitmapData;
             var _local7:uint;
-            var _local4:Rectangle = new Rectangle((_arg1 * SQUARE_SIZE), (_arg2 * SQUARE_SIZE), SQUARE_SIZE, SQUARE_SIZE);
+            var _local4:Rectangle = new Rectangle(
+                    (_arg1 * SQUARE_SIZE), (_arg2 * SQUARE_SIZE), SQUARE_SIZE, SQUARE_SIZE
+            );
             this.fullMap_.erase(_local4);
             this.regionMap_.setPixel32(_arg1, _arg2, 0);
             if (_arg3 == null)
             {
                 return;
-            };
+            }
             if (_arg3.types_[Layer.GROUND] != -1)
             {
                 _local5 = GroundLibrary.getBitmapData(_arg3.types_[Layer.GROUND]);
                 this.fullMap_.copyTo(_local5, _local5.rect, _local4);
-            };
+            }
             if (_arg3.types_[Layer.OBJECT] != -1)
             {
                 _local6 = ObjectLibrary.getTextureFromType(_arg3.types_[Layer.OBJECT]);
@@ -526,13 +538,13 @@
                 else
                 {
                     this.fullMap_.copyTo(_local6, _local6.rect, _local4);
-                };
-            };
+                }
+            }
             if (_arg3.types_[Layer.REGION] != -1)
             {
                 _local7 = RegionLibrary.getColor(_arg3.types_[Layer.REGION]);
                 this.regionMap_.setPixel32(_arg1, _arg2, (0x5F000000 | _local7));
-            };
+            }
         }
 
         private function drawOverlay():void
@@ -554,14 +566,20 @@
             var _local4:BitmapData;
             var _local1:int = (SIZE / this.zoom_);
             this.map_.fillRect(this.map_.rect, 0);
-            this.fullMap_.copyFrom(new Rectangle((this.posT_.x_ * SQUARE_SIZE), (this.posT_.y_ * SQUARE_SIZE), _local1, _local1), this.map_, this.map_.rect);
+            this.fullMap_.copyFrom(
+                    new Rectangle(
+                            (this.posT_.x_ * SQUARE_SIZE), (this.posT_.y_ * SQUARE_SIZE), _local1, _local1
+                    ), this.map_, this.map_.rect
+            );
             _local2 = new Matrix();
             _local2.identity();
             _local3 = (SQUARE_SIZE * this.zoom_);
             if (this.zoom_ > 2)
             {
                 _local4 = new BitmapDataSpy((SIZE / _local3), (SIZE / _local3));
-                _local4.copyPixels(this.regionMap_, new Rectangle(this.posT_.x_, this.posT_.y_, _local1, _local1), PointUtil.ORIGIN);
+                _local4.copyPixels(
+                        this.regionMap_, new Rectangle(this.posT_.x_, this.posT_.y_, _local1, _local1), PointUtil.ORIGIN
+                );
                 _local2.scale(_local3, _local3);
                 this.map_.draw(_local4, _local2);
             }
@@ -570,11 +588,9 @@
                 _local2.translate(-(this.posT_.x_), -(this.posT_.y_));
                 _local2.scale(_local3, _local3);
                 this.map_.draw(this.regionMap_, _local2, null, null, this.map_.rect);
-            };
+            }
             this.drawOverlay();
         }
-
-
     }
 }
 

@@ -1,23 +1,24 @@
 ﻿package kabam.rotmg.death.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.objects.Player;
+
+    import flash.utils.Dictionary;
+
     import kabam.rotmg.death.control.ZombifySignal;
     import kabam.rotmg.game.signals.SetWorldInteractionSignal;
     import kabam.rotmg.messaging.impl.incoming.Death;
-    import com.company.assembleegameclient.objects.Player;
-    import flash.utils.Dictionary;
 
-    public class ZombifyGameMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ZombifyGameMediator extends Mediator
     {
-
         [Inject]
         public var view:GameSprite;
         [Inject]
         public var zombify:ZombifySignal;
         [Inject]
         public var setWorldInteraction:SetWorldInteractionSignal;
-
 
         override public function initialize():void
         {
@@ -48,8 +49,6 @@
             var _local2:Dictionary = this.view.map.goDict_;
             ((_local2) && (this.view.setFocus(_local2[_arg1.zombieId])));
         }
-
-
     }
 }
 

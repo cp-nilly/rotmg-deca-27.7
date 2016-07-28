@@ -1,29 +1,28 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.display.Graphics;
-    import flash.display.LineScaleMode;
     import flash.display.CapsStyle;
+    import flash.display.Graphics;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
-    public class CheckBoxField extends Sprite 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+
+    public class CheckBoxField extends Sprite
     {
-
         private static const BOX_SIZE:int = 20;
-
         public var checkBox_:Sprite;
         public var text_:TextFieldDisplayConcrete;
         public var errorText_:TextFieldDisplayConcrete;
         private var checked_:Boolean;
         private var hasError:Boolean;
 
-        public function CheckBoxField(_arg1:String, _arg2:Boolean, _arg3:uint=16)
+        public function CheckBoxField(_arg1:String, _arg2:Boolean, _arg3:uint = 16)
         {
             this.checked_ = _arg2;
             this.checkBox_ = new Sprite();
@@ -100,7 +99,7 @@
                 _local1.lineTo((BOX_SIZE - 2), 2);
                 _local1.lineStyle();
                 this.hasError = false;
-            };
+            }
             if (this.hasError)
             {
                 _local2 = 16549442;
@@ -108,13 +107,11 @@
             else
             {
                 _local2 = 0x454545;
-            };
+            }
             _local1.lineStyle(2, _local2, 1, false, LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
             _local1.drawRect(0, 0, BOX_SIZE, BOX_SIZE);
             _local1.lineStyle();
         }
-
-
     }
 }
 

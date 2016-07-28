@@ -1,23 +1,27 @@
 ﻿package kabam.rotmg.friends.view
 {
+    import com.company.assembleegameclient.ui.dialogs.CloseDialogComponent;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
     import com.company.assembleegameclient.ui.dialogs.DialogCloser;
-    import com.company.assembleegameclient.ui.dialogs.CloseDialogComponent;
-    import kabam.rotmg.friends.model.FriendRequestVO;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.friends.controller.FriendActionSignal;
+
     import flash.events.Event;
+
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.friends.controller.FriendActionSignal;
+    import kabam.rotmg.friends.model.FriendRequestVO;
+
     import org.osflash.signals.Signal;
 
-    public class FriendUpdateConfirmDialog extends Dialog implements DialogCloser 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FriendUpdateConfirmDialog extends Dialog implements DialogCloser
     {
-
         private const closeDialogComponent:CloseDialogComponent = new CloseDialogComponent();
-
         private var _friendRequestVO:FriendRequestVO;
 
-        public function FriendUpdateConfirmDialog(_arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:FriendRequestVO, _arg6:Object=null)
+        public function FriendUpdateConfirmDialog(
+                _arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:FriendRequestVO, _arg6:Object = null
+        )
         {
             super(_arg1, _arg2, _arg3, _arg4, null, _arg6);
             this._friendRequestVO = _arg5;
@@ -38,8 +42,6 @@
         {
             return (this.closeDialogComponent.getCloseSignal());
         }
-
-
     }
 }
 

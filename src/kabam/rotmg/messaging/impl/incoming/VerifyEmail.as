@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class VerifyEmail extends IncomingMessage 
+    public class VerifyEmail extends IncomingMessage
     {
-
         public function VerifyEmail(_arg1:uint, _arg2:Function)
         {
             super(_arg1, _arg2);
@@ -18,8 +17,6 @@
         {
             return (formatToString("VERIFYEMAIL", "asdf", "asdf"));
         }
-
-
     }
 }
 

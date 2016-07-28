@@ -1,20 +1,16 @@
 ﻿package kabam.rotmg.application.model
 {
-    import robotlegs.bender.extensions.contextView.ContextView;
-    import flash.system.Capabilities;
     import flash.display.LoaderInfo;
-    import kabam.rotmg.application.*;
+    import flash.system.Capabilities;
 
-    public class PlatformModel 
+    import robotlegs.bender.extensions.contextView.ContextView;
+
+    public class PlatformModel
     {
-
         private static var platform:PlatformType;
-
         private const DESKTOP:String = "Desktop";
-
         [Inject]
         public var root:ContextView;
-
 
         public function isWeb():Boolean
         {
@@ -37,15 +33,15 @@
             if (this.isKongregate(_local1))
             {
                 return (PlatformType.KONGREGATE);
-            };
+            }
             if (this.isSteam(_local1))
             {
                 return (PlatformType.STEAM);
-            };
+            }
             if (this.isKabam(_local1))
             {
                 return (PlatformType.KABAM);
-            };
+            }
             return (PlatformType.WEB);
         }
 
@@ -63,8 +59,6 @@
         {
             return (!((_arg1.kabam_signed_request == null)));
         }
-
-
     }
 }
 

@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import flash.utils.IDataInput;
 
-    public class ShowEffect extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
 
+    public class ShowEffect extends IncomingMessage
+    {
         public static const UNKNOWN_EFFECT_TYPE:int = 0;
         public static const HEAL_EFFECT_TYPE:int = 1;
         public static const TELEPORT_EFFECT_TYPE:int = 2;
@@ -26,7 +26,6 @@
         public static const SHOCKER_EFFECT_TYPE:int = 17;
         public static const SHOCKEE_EFFECT_TYPE:int = 18;
         public static const RISING_FURY_EFFECT_TYPE:int = 19;
-
         public var effectType_:uint;
         public var targetObjectId_:int;
         public var pos1_:WorldPosData;
@@ -53,8 +52,6 @@
         {
             return (formatToString("SHOW_EFFECT", "effectType_", "targetObjectId_", "pos1_", "pos2_", "color_"));
         }
-
-
     }
 }
 

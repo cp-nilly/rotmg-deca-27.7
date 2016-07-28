@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
+    import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.data.PetsModel;
     import kabam.rotmg.pets.view.components.PetIconFactory;
-    import kabam.rotmg.pets.data.PetSlotsState;
-    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
-    import kabam.rotmg.pets.data.PetVO;
 
-    public class PetPickerMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class PetPickerMediator extends Mediator
     {
-
         [Inject]
         public var view:PetPicker;
         [Inject]
@@ -21,23 +21,24 @@
         [Inject]
         public var openDialog:OpenDialogNoModalSignal;
 
-
         override public function initialize():void
         {
             this.view.setPets(this.model.getAllPets());
-            var _local1:PetVO = (((this.petSlotsState.selected)==PetSlotsState.LEFT) ? this.petSlotsState.rightSlotPetVO : this.petSlotsState.leftSlotPetVO);
+            var _local1:PetVO = (((this.petSlotsState.selected) == PetSlotsState.LEFT)
+                    ? this.petSlotsState.rightSlotPetVO
+                    : this.petSlotsState.leftSlotPetVO);
             if (_local1)
             {
                 this.view.filterFusible(_local1);
-            };
+            }
             if (((this.petSlotsState.rightSlotPetVO) && (this.view.doDisableUsed)))
             {
                 this.view.filterUsedPetVO(this.petSlotsState.rightSlotPetVO);
-            };
+            }
             if (((this.petSlotsState.leftSlotPetVO) && (this.view.doDisableUsed)))
             {
                 this.view.filterUsedPetVO(this.petSlotsState.leftSlotPetVO);
-            };
+            }
             this.view.petPicked.addOnce(this.onPetPicked);
         }
 
@@ -50,14 +51,12 @@
             else
             {
                 this.petSlotsState.rightSlotPetVO = _arg1;
-            };
+            }
             if (this.petSlotsState.caller)
             {
                 this.openDialog.dispatch(new this.petSlotsState.caller());
-            };
+            }
         }
-
-
     }
 }
 

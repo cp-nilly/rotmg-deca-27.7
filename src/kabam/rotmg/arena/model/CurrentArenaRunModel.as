@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.arena.model
 {
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.game.model.GameModel;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.classes.model.ClassesModel;
     import kabam.rotmg.assets.services.CharacterFactory;
     import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.pets.data.PetsModel;
 
-    public class CurrentArenaRunModel 
+    import org.osflash.signals.Signal;
+
+    public class CurrentArenaRunModel
     {
-
         public const waveUpdated:Signal = new Signal();
-
         [Inject]
         public var gameModel:GameModel;
         [Inject]
@@ -48,7 +47,7 @@
             {
                 this.entry.currentWave++;
                 this.waveUpdated.dispatch();
-            };
+            }
         }
 
         public function hasEntry():Boolean
@@ -61,7 +60,9 @@
             this.clear();
             this.entry.name = this.gameModel.player.name_;
             var _local1:CharacterSkin = this.classesModel.getCharacterClass(this.gameModel.player.objectType_).skins.getSkin(this.gameModel.player.skinId);
-            this.entry.playerBitmap = this.factory.makeIcon(_local1.template, 100, this.gameModel.player.getTex1(), this.gameModel.player.getTex2());
+            this.entry.playerBitmap = this.factory.makeIcon(
+                    _local1.template, 100, this.gameModel.player.getTex1(), this.gameModel.player.getTex2()
+            );
             this.entry.pet = this.petModel.getActivePet();
             this.entry.guildName = this.gameModel.player.guildName_;
             this.entry.guildRank = this.gameModel.player.guildRank_;
@@ -69,8 +70,6 @@
             this.entry.equipment = this.gameModel.player.equipment_.concat();
             this.entry.isPersonalRecord = true;
         }
-
-
     }
 }
 

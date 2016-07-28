@@ -1,11 +1,10 @@
 ﻿package kabam.rotmg.messaging.impl
 {
-    import com.company.googleanalytics.GA;
     import com.company.assembleegameclient.util.Currency;
+    import com.company.googleanalytics.GA;
 
-    class OutstandingBuy 
+    class OutstandingBuy
     {
-
         private var id_:String;
         private var price_:int;
         private var currency_:int;
@@ -24,7 +23,9 @@
             switch (this.currency_)
             {
                 case Currency.GOLD:
-                    GA.global().trackEvent("credits", ((this.converted_) ? "buyConverted" : "buy"), this.id_, this.price_);
+                    GA.global().trackEvent(
+                            "credits", ((this.converted_) ? "buyConverted" : "buy"), this.id_, this.price_
+                    );
                     return;
                 case Currency.FAME:
                     GA.global().trackEvent("credits", "buyFame", this.id_, this.price_);
@@ -32,10 +33,8 @@
                 case Currency.GUILD_FAME:
                     GA.global().trackEvent("credits", "buyGuildFame", this.id_, this.price_);
                     return;
-            };
+            }
         }
-
-
     }
 }
 

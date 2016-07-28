@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.text.view
 {
+    import com.company.util.PointUtil;
+
+    import flash.display.BitmapData;
     import flash.filters.GlowFilter;
+    import flash.geom.Matrix;
+    import flash.text.TextFieldAutoSize;
+
     import kabam.rotmg.text.model.FontModel;
     import kabam.rotmg.text.model.TextAndMapProvider;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.geom.Matrix;
-    import flash.display.BitmapData;
-    import flash.text.TextFieldAutoSize;
-    import com.company.util.PointUtil;
 
-    public class BitmapTextFactory 
+    public class BitmapTextFactory
     {
-
         private const glowFilter:GlowFilter = new GlowFilter(0, 1, 3, 3, 2, 1);
-
         public var padding:int = 0;
         private var textfield:TextFieldDisplayConcrete;
 
@@ -25,7 +25,9 @@
             this.textfield.setStringMap(_arg2.getStringMap());
         }
 
-        public function make(_arg1:StringBuilder, _arg2:int, _arg3:uint, _arg4:Boolean, _arg5:Matrix, _arg6:Boolean):BitmapData
+        public function make(
+                _arg1:StringBuilder, _arg2:int, _arg3:uint, _arg4:Boolean, _arg5:Matrix, _arg6:Boolean
+        ):BitmapData
         {
             this.configureTextfield(_arg2, _arg3, _arg4, _arg1);
             return (this.makeBitmapData(_arg6, _arg5));
@@ -46,8 +48,6 @@
             ((_arg1) && (_local5.applyFilter(_local5, _local5.rect, PointUtil.ORIGIN, this.glowFilter)));
             return (_local5);
         }
-
-
     }
 }
 

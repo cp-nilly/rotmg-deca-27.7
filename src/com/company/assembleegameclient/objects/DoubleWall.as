@@ -1,22 +1,19 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.engine3d.Face3D;
-    import flash.display.BitmapData;
-    import com.company.util.BitmapUtil;
-    import com.company.assembleegameclient.map.Square;
-    import flash.display.IGraphicsData;
     import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.map.Square;
+    import com.company.util.BitmapUtil;
 
-    public class DoubleWall extends GameObject 
+    import flash.display.BitmapData;
+    import flash.display.IGraphicsData;
+
+    public class DoubleWall extends GameObject
     {
-
         private static const UVT:Vector.<Number> = new <Number>[0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0];
         private static const UVTHEIGHT:Vector.<Number> = new <Number>[0, 0, 0, 1, 0, 0, 1, 2, 0, 0, 2, 0];
         private static const sqX:Vector.<int> = new <int>[0, 1, 0, -1];
         private static const sqY:Vector.<int> = new <int>[-1, 0, 1, 0];
-
         public var faces_:Vector.<Face3D>;
         private var topFace_:Face3D = null;
         private var topTexture_:BitmapData = null;
@@ -50,11 +47,11 @@
             if (texture_ == null)
             {
                 return;
-            };
+            }
             if (this.faces_.length == 0)
             {
                 this.rebuild3D();
-            };
+            }
             var _local4:BitmapData = texture_;
             if (animations_ != null)
             {
@@ -62,8 +59,8 @@
                 if (_local6 != null)
                 {
                     _local4 = _local6;
-                };
-            };
+                }
+            }
             var _local5:int;
             while (_local5 < this.faces_.length)
             {
@@ -79,11 +76,11 @@
                     if (animations_ != null)
                     {
                         _local7.setTexture(_local4);
-                    };
-                };
+                    }
+                }
                 _local7.draw(_arg1, _arg2);
                 _local5++;
-            };
+            }
             this.topFace_.draw(_arg1, _arg2);
         }
 
@@ -92,7 +89,20 @@
             this.faces_.length = 0;
             var _local1:int = x_;
             var _local2:int = y_;
-            var _local3:Vector.<Number> = new <Number>[_local1, _local2, 2, (_local1 + 1), _local2, 2, (_local1 + 1), (_local2 + 1), 2, _local1, (_local2 + 1), 2];
+            var _local3:Vector.<Number> = new <Number>[
+                _local1,
+                _local2,
+                2,
+                (_local1 + 1),
+                _local2,
+                2,
+                (_local1 + 1),
+                (_local2 + 1),
+                2,
+                _local1,
+                (_local2 + 1),
+                2
+            ];
             this.topFace_ = new Face3D(this.topTexture_, _local3, UVT, false, true);
             this.topFace_.bitmapFill_.repeat = true;
             this.addWall(_local1, _local2, 2, (_local1 + 1), _local2, 2);
@@ -101,15 +111,17 @@
             this.addWall(_local1, (_local2 + 1), 2, _local1, _local2, 2);
         }
 
-        private function addWall(_arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:Number, _arg6:Number):void
+        private function addWall(
+                _arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:Number, _arg6:Number
+        ):void
         {
-            var _local7:Vector.<Number> = new <Number>[_arg1, _arg2, _arg3, _arg4, _arg5, _arg6, _arg4, _arg5, (_arg6 - 2), _arg1, _arg2, (_arg3 - 2)];
+            var _local7:Vector.<Number> = new <Number>[
+                _arg1, _arg2, _arg3, _arg4, _arg5, _arg6, _arg4, _arg5, (_arg6 - 2), _arg1, _arg2, (_arg3 - 2)
+            ];
             var _local8:Face3D = new Face3D(texture_, _local7, UVTHEIGHT, true, true);
             _local8.bitmapFill_.repeat = true;
             this.faces_.push(_local8);
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.editor.Command;
 
-    public class MEObjectNameCommand extends Command 
+    public class MEObjectNameCommand extends Command
     {
-
         private var map_:MEMap;
         private var x_:int;
         private var y_:int;
@@ -29,8 +28,6 @@
         {
             this.map_.modifyObjectName(this.x_, this.y_, this.oldName_);
         }
-
-
     }
 }
 

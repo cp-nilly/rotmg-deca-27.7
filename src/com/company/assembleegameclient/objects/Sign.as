@@ -1,19 +1,20 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import kabam.rotmg.language.model.StringMap;
-    import kabam.rotmg.text.model.FontModel;
-    import kabam.rotmg.core.StaticInjectorContext;
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+
+    import flash.display.BitmapData;
     import flash.text.TextField;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import com.company.assembleegameclient.map.Camera;
 
-    public class Sign extends GameObject 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.language.model.StringMap;
+    import kabam.rotmg.text.model.FontModel;
+
+    public class Sign extends GameObject
     {
-
         private var stringMap:StringMap;
         private var fontModel:FontModel;
 
@@ -30,7 +31,7 @@
             if (texture_ != null)
             {
                 return (texture_);
-            };
+            }
             var _local3:TextField = new TextField();
             _local3.multiline = true;
             _local3.wordWrap = false;
@@ -57,8 +58,6 @@
             var _local2:Boolean = ((((!((_arg1 == null))) && ((_arg1.charAt(0) == "{")))) && ((_arg1.charAt((_arg1.length - 1)) == "}")));
             return (((_local2) ? _arg1.substr(1, (_arg1.length - 2)) : _arg1));
         }
-
-
     }
 }
 

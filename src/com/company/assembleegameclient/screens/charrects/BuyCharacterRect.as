@@ -1,22 +1,21 @@
 ﻿package com.company.assembleegameclient.screens.charrects
 {
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import flash.display.Bitmap;
-    import kabam.rotmg.assets.services.IconFactory;
     import flash.display.BitmapData;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.model.TextKey;
     import flash.display.Shape;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class BuyCharacterRect extends CharacterRect 
+    import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    public class BuyCharacterRect extends CharacterRect
     {
-
         public static const BUY_CHARACTER_RECT_CLASS_NAME_TEXT:String = "BuyCharacterRect.classNameText";
-
         private var model:PlayerModel;
 
         public function BuyCharacterRect(_arg1:PlayerModel)
@@ -24,7 +23,9 @@
             this.model = _arg1;
             super.color = 0x1F1F1F;
             super.overColor = 0x424242;
-            className = new LineBuilder().setParams(BUY_CHARACTER_RECT_CLASS_NAME_TEXT, {"nth":(_arg1.getMaxCharacters() + 1)});
+            className = new LineBuilder().setParams(
+                    BUY_CHARACTER_RECT_CLASS_NAME_TEXT, {"nth": (_arg1.getMaxCharacters() + 1)}
+            );
             super.init();
             this.makeIcon();
             this.makeTagline();
@@ -59,8 +60,12 @@
             var _local2:String = String(_local1);
             if (_local1 != 0)
             {
-                makeTaglineText(new LineBuilder().setParams(TextKey.BUY_CHARACTER_RECT_TAGLINE_TEXT, {"percentage":_local2}));
-            };
+                makeTaglineText(
+                        new LineBuilder().setParams(
+                                TextKey.BUY_CHARACTER_RECT_TAGLINE_TEXT, {"percentage": _local2}
+                        )
+                );
+            }
         }
 
         private function makeIcon():void
@@ -88,8 +93,6 @@
             _local1.graphics.endFill();
             return (_local1);
         }
-
-
     }
 }
 

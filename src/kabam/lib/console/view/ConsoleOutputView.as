@@ -1,27 +1,26 @@
 ﻿package kabam.lib.console.view
 {
-    import flash.display.Sprite;
-    import kabam.lib.resizing.view.Resizable;
-    import flash.text.TextField;
     import com.junkbyte.console.Console;
-    import flash.display.BlendMode;
-    import flash.text.TextFormat;
-    import flash.text.TextFieldAutoSize;
     import com.junkbyte.console.ConsoleConfig;
-    import kabam.lib.console.model.Watch;
+
+    import flash.display.BlendMode;
+    import flash.display.Sprite;
     import flash.geom.Rectangle;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
 
-    public final class ConsoleOutputView extends Sprite implements Resizable 
+    import kabam.lib.console.model.Watch;
+    import kabam.lib.resizing.view.Resizable;
+
+    public final class ConsoleOutputView extends Sprite implements Resizable
     {
-
         private static const DEFAULT_OUTPUT:String = "kabam.lib/console";
-
         private const PATTERN:RegExp = /\[0x(.+)\:(.+)\]/ig;
         private const HTML_TEMPLATE:String = "<font color='#$1'>$2</font>";
         private const logged:Array = [];
         private const watched:Array = [];
         private const watchMap:Object = {};
-
         private var watchTextField:TextField;
         private var logConsole:Console;
         private var watchBottom:Number;
@@ -61,7 +60,7 @@
             {
                 delete this.watchMap[_arg1];
                 this.watched.splice(this.watched.indexOf(_local2), 1);
-            };
+            }
         }
 
         private function makeWatch(_arg1:String):Watch
@@ -86,7 +85,7 @@
             for (_local1 in this.watchMap)
             {
                 delete this.watchMap[_local1];
-            };
+            }
         }
 
         public function resize(_arg1:Rectangle):void
@@ -114,8 +113,6 @@
         {
             return (this.logged.join("\r"));
         }
-
-
     }
 }
 

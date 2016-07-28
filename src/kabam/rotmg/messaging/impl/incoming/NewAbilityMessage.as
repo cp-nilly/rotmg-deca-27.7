@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import kabam.lib.net.impl.Message;
     import flash.utils.IDataInput;
 
-    public class NewAbilityMessage extends Message 
-    {
+    import kabam.lib.net.impl.Message;
 
+    public class NewAbilityMessage extends Message
+    {
         public var type:int;
 
-        public function NewAbilityMessage(_arg1:uint, _arg2:Function=null)
+        public function NewAbilityMessage(_arg1:uint, _arg2:Function = null)
         {
             super(_arg1, _arg2);
         }
@@ -17,8 +17,6 @@
         {
             this.type = _arg1.readInt();
         }
-
-
     }
 }
 

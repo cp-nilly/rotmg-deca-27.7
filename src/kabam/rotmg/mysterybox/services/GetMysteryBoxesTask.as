@@ -1,25 +1,25 @@
 ﻿package kabam.rotmg.mysterybox.services
 {
-    import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.fortune.services.FortuneModel;
-    import kabam.rotmg.account.core.Account;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.language.model.LanguageModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.application.DynamicSettings;
-    import flash.utils.getTimer;
-    import kabam.rotmg.fortune.model.FortuneInfo;
     import com.company.assembleegameclient.util.TimeUtil;
+
+    import flash.utils.getTimer;
+
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.application.DynamicSettings;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.fortune.model.FortuneInfo;
+    import kabam.rotmg.fortune.services.FortuneModel;
+    import kabam.rotmg.language.model.LanguageModel;
     import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
 
-    public class GetMysteryBoxesTask extends BaseTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class GetMysteryBoxesTask extends BaseTask
     {
-
         private static const TEN_MINUTES:int = 600;
-
         private static var version:String = "0";
-
         [Inject]
         public var client:AppEngineClient;
         [Inject]
@@ -36,7 +36,6 @@
         public var openDialogSignal:OpenDialogSignal;
         public var lastRan:uint = 0;
 
-
         override protected function startTask():void
         {
             var _local1:Number;
@@ -48,7 +47,7 @@
             else
             {
                 _local1 = TEN_MINUTES;
-            };
+            }
             if ((((this.lastRan == 0)) || (((this.lastRan + _local1) < (getTimer() / 1000)))))
             {
                 this.lastRan = (getTimer() / 1000);
@@ -63,7 +62,7 @@
             {
                 completeTask(true);
                 reset();
-            };
+            }
         }
 
         public function clearLastRanBlock():void
@@ -82,7 +81,7 @@
             {
                 this.logger.info("GetPackageTask.onComplete: Request failed.");
                 completeTask(false);
-            };
+            }
         }
 
         private function handleOkay(_arg1:*):void
@@ -94,7 +93,7 @@
                 if (this.mysteryBoxModel.isInitialized())
                 {
                     return;
-                };
+                }
                 this.mysteryBoxModel.setInitialized(false);
             }
             else
@@ -106,8 +105,8 @@
                 if (_local3.length() > 0)
                 {
                     this.parseFortune(_local3);
-                };
-            };
+                }
+            }
             completeTask(true);
         }
 
@@ -157,7 +156,7 @@
                     _local5.saleAmount = _local4.Sale.attribute("price").toString();
                     _local5.saleCurrency = _local4.Sale.attribute("currency").toString();
                     _local5.saleEnd = TimeUtil.parseUTCDate(_local4.Sale.End.toString());
-                };
+                }
                 _local5.iconImageUrl = _local4.Icon.toString();
                 _local5.infoImageUrl = _local4.Image.toString();
                 _local5.startTime = TimeUtil.parseUTCDate(_local4.StartTime.toString());
@@ -165,14 +164,12 @@
                 if (((!(_local3)) && (((_local5.isNew()) || (_local5.isOnSale())))))
                 {
                     _local3 = true;
-                };
+                }
                 _local2.push(_local5);
-            };
+            }
             this.mysteryBoxModel.setMysetryBoxes(_local2);
             this.mysteryBoxModel.isNew = _local3;
         }
-
-
     }
 }
 

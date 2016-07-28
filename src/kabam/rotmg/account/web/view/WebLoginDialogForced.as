@@ -1,25 +1,27 @@
 ﻿package kabam.rotmg.account.web.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.account.web.model.AccountData;
-    import flash.events.KeyboardEvent;
-    import flash.events.Event;
     import com.company.util.KeyCodes;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
 
-    public class WebLoginDialogForced extends Frame 
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebLoginDialogForced extends Frame
     {
-
         public var signInForced:Signal;
         public var forgot:Signal;
         public var register:Signal;
@@ -28,7 +30,7 @@
         private var forgotText:DeprecatedClickableText;
         private var registerText:DeprecatedClickableText;
 
-        public function WebLoginDialogForced(_arg1:Boolean=false)
+        public function WebLoginDialogForced(_arg1:Boolean = false)
         {
             super(TextKey.WEB_LOGIN_DIALOG_TITLE, "", TextKey.WEB_LOGIN_DIALOG_RIGHT, "/signIn");
             this.makeUI();
@@ -37,7 +39,7 @@
                 addChild(this.getText("Attention!", -165, -85).setColor(0xFF0000));
                 addChild(this.getText("A new password was sent to your Sign In Email Address.", -165, -65));
                 addChild(this.getText("Please use the new password to Sign In.", -165, -45));
-            };
+            }
             this.forgot = new NativeMappedSignal(this.forgotText, MouseEvent.CLICK);
             this.register = new NativeMappedSignal(this.registerText, MouseEvent.CLICK);
             this.signInForced = new Signal(AccountData);
@@ -69,7 +71,7 @@
             if (_arg1.keyCode == KeyCodes.ENTER)
             {
                 this.onSignInSub();
-            };
+            }
         }
 
         private function onSignIn(_arg1:MouseEvent):void
@@ -86,7 +88,7 @@
                 _local1.username = this.email.text();
                 _local1.password = this.password.text();
                 this.signInForced.dispatch(_local1);
-            };
+            }
         }
 
         private function isPasswordValid():Boolean
@@ -95,7 +97,7 @@
             if (!_local1)
             {
                 this.password.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -105,7 +107,7 @@
             if (!_local1)
             {
                 this.email.setError(TextKey.WEBLOGINDIALOG_EMAIL_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -129,8 +131,6 @@
             _local4.y = _arg3;
             return (_local4);
         }
-
-
     }
 }
 

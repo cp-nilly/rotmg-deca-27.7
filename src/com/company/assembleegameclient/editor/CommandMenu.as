@@ -1,13 +1,12 @@
 ﻿package com.company.assembleegameclient.editor
 {
     import flash.display.Sprite;
-    import flash.utils.Dictionary;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.utils.Dictionary;
 
-    public class CommandMenu extends Sprite 
+    public class CommandMenu extends Sprite
     {
-
         private var keyCodeDict_:Dictionary;
         private var yOffset_:int = 0;
         private var selected_:CommandMenuItem = null;
@@ -38,10 +37,10 @@
                     {
                         this.setSelected(_local3);
                         return;
-                    };
-                };
+                    }
+                }
                 _local2++;
-            };
+            }
         }
 
         protected function setSelected(_arg1:CommandMenuItem):void
@@ -49,7 +48,7 @@
             if (this.selected_ != null)
             {
                 this.selected_.setSelected(false);
-            };
+            }
             this.selected_ = _arg1;
             this.selected_.setSelected(true);
         }
@@ -69,12 +68,12 @@
             if (stage.focus != null)
             {
                 return;
-            };
+            }
             var _local2:CommandMenuItem = this.keyCodeDict_[_arg1.keyCode];
             if (_local2 == null)
             {
                 return;
-            };
+            }
             _local2.callback_(_local2);
         }
 
@@ -87,7 +86,7 @@
             if (this.selected_ == null)
             {
                 this.setSelected(_local5);
-            };
+            }
             this.yOffset_ = (this.yOffset_ + 30);
         }
 
@@ -95,8 +94,6 @@
         {
             this.yOffset_ = (this.yOffset_ + 30);
         }
-
-
     }
 }
 

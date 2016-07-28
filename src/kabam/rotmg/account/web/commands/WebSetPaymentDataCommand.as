@@ -3,14 +3,12 @@
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.web.WebAccount;
 
-    public class WebSetPaymentDataCommand 
+    public class WebSetPaymentDataCommand
     {
-
         [Inject]
         public var characterListData:XML;
         [Inject]
         public var account:Account;
-
 
         public function execute():void
         {
@@ -21,10 +19,8 @@
                 _local2 = XML(this.characterListData.KabamPaymentInfo);
                 _local1.signedRequest = _local2.signedRequest;
                 _local1.kabamId = _local2.naid;
-            };
+            }
         }
-
-
     }
 }
 

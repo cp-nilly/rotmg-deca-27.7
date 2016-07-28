@@ -1,12 +1,12 @@
 ﻿package com.company.assembleegameclient.ui.tooltip.slotcomparisons
 {
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.tooltip.TooltipHelper;
 
-    public class ShieldComparison extends SlotComparison 
-    {
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
+    public class ShieldComparison extends SlotComparison
+    {
         private var projectileComparison:GeneralProjectileComparison;
 
         public function ShieldComparison()
@@ -23,7 +23,7 @@
             for (_local3 in this.projectileComparison.processedTags)
             {
                 processedTags[_local3] = this.projectileComparison.processedTags[_local3];
-            };
+            }
             this.handleException(_arg1);
         }
 
@@ -34,16 +34,17 @@
             if (itemXML.@id == "Shield of Ogmur")
             {
                 tag = itemXML.ConditionEffect.(text() == "Armor Broken")[0];
-                innerLineBuilder = new LineBuilder().setParams(TextKey.EFFECT_FOR_DURATION, {
-                    "effect":TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_ARMOR_BROKEN),
-                    "duration":tag.@duration
-                }).setPrefix(TooltipHelper.getOpenTag(UNTIERED_COLOR)).setPostfix(TooltipHelper.getCloseTag());
-                comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect":innerLineBuilder});
+                innerLineBuilder = new LineBuilder().setParams(
+                        TextKey.EFFECT_FOR_DURATION,
+                        {
+                            "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_ARMOR_BROKEN),
+                            "duration": tag.@duration
+                        }
+                ).setPrefix(TooltipHelper.getOpenTag(UNTIERED_COLOR)).setPostfix(TooltipHelper.getCloseTag());
+                comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect": innerLineBuilder});
                 processedTags[tag.toXMLString()] = true;
-            };
+            }
         }
-
-
     }
 }
 

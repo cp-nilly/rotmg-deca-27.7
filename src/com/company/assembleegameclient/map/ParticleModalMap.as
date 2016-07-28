@@ -1,25 +1,23 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.BasicObject;
+    import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.objects.particles.ConfettiEffect;
+    import com.company.assembleegameclient.objects.particles.LightningEffect;
+    import com.company.assembleegameclient.objects.particles.NovaEffect;
+
     import flash.display.IGraphicsData;
     import flash.events.Event;
     import flash.utils.Dictionary;
     import flash.utils.getTimer;
-    import com.company.assembleegameclient.objects.GameObject;
-    import com.company.assembleegameclient.objects.particles.NovaEffect;
+
     import kabam.rotmg.messaging.impl.data.WorldPosData;
-    import com.company.assembleegameclient.objects.particles.ConfettiEffect;
-    import com.company.assembleegameclient.objects.particles.LightningEffect;
-    import __AS3__.vec.*;
 
-    public class ParticleModalMap extends Map 
+    public class ParticleModalMap extends Map
     {
-
         public static const MODE_SNOW:int = 1;
         public static const MODE_AUTO_UPDATE:int = 2;
         public static const PSCALE:Number = 16;
-
         private var inUpdate_:Boolean = false;
         private var objsToAdd_:Vector.<BasicObject>;
         private var idsToRemove_:Vector.<int>;
@@ -28,7 +26,7 @@
         private var time:uint = 0;
         private var graphicsData_:Vector.<IGraphicsData>;
 
-        public function ParticleModalMap(_arg1:int=-1)
+        public function ParticleModalMap(_arg1:int = -1)
         {
             this.objsToAdd_ = new Vector.<BasicObject>();
             this.idsToRemove_ = new Vector.<int>();
@@ -37,18 +35,17 @@
             if (_arg1 == MODE_SNOW)
             {
                 addEventListener(Event.ENTER_FRAME, this.activateModeSnow);
-            };
+            }
             if (_arg1 == MODE_AUTO_UPDATE)
             {
                 addEventListener(Event.ENTER_FRAME, this.updater);
-            };
+            }
         }
 
         public static function getLocalPos(_arg1:Number):Number
         {
             return ((_arg1 / PSCALE));
         }
-
 
         override public function addObj(_arg1:BasicObject, _arg2:Number, _arg3:Number):void
         {
@@ -61,7 +58,7 @@
             else
             {
                 this.internalAddObj(_arg1);
-            };
+            }
         }
 
         override public function internalAddObj(_arg1:BasicObject):void
@@ -70,7 +67,7 @@
             if (_local2[_arg1.objectId_] != null)
             {
                 return;
-            };
+            }
             _arg1.map_ = this;
             _local2[_arg1.objectId_] = _arg1;
         }
@@ -82,7 +79,7 @@
             if (_local3 == null)
             {
                 return;
-            };
+            }
             _local3.removeFromMap();
             delete _local2[_arg1];
         }
@@ -97,18 +94,18 @@
                 if (!_local3.update(_arg1, _arg2))
                 {
                     this.idsToRemove_.push(_local3.objectId_);
-                };
-            };
+                }
+            }
             this.inUpdate_ = false;
             for each (_local3 in this.objsToAdd_)
             {
                 this.internalAddObj(_local3);
-            };
+            }
             this.objsToAdd_.length = 0;
             for each (_local4 in this.idsToRemove_)
             {
                 this.internalRemoveObj(_local4);
-            };
+            }
             this.idsToRemove_.length = 0;
         }
 
@@ -122,12 +119,12 @@
                 _local4++;
                 _local3.computeSortValNoCamera(PSCALE);
                 _local3.draw(this.graphicsData_, _arg1, _arg2);
-            };
+            }
             graphics.clear();
             if (this.graphicsData_.length > 0)
             {
                 graphics.drawGraphicsData(this.graphicsData_);
-            };
+            }
         }
 
         private function activateModeSnow(_arg1:Event):void
@@ -137,14 +134,14 @@
             if (this.time != 0)
             {
                 this.dt = (getTimer() - this.time);
-            };
+            }
             this.dtBuildup = (this.dtBuildup + this.dt);
             this.time = getTimer();
             if (this.dtBuildup > 500)
             {
                 this.dtBuildup = 0;
                 this.doSnow((Math.random() * 600), -100);
-            };
+            }
             this.update(this.time, this.dt);
             this.draw(null, this.time);
         }
@@ -154,13 +151,13 @@
             if (this.time != 0)
             {
                 this.dt = (getTimer() - this.time);
-            };
+            }
             this.time = getTimer();
             this.update(this.time, this.dt);
             this.draw(null, this.time);
         }
 
-        public function doNova(_arg1:Number, _arg2:Number, _arg3:int=20, _arg4:int=12447231):void
+        public function doNova(_arg1:Number, _arg2:Number, _arg3:int = 20, _arg4:int = 12447231):void
         {
             var _local5:GameObject = new GameObject(null);
             _local5.x_ = getLocalPos(_arg1);
@@ -169,7 +166,7 @@
             this.addObj(_local6, _local5.x_, _local5.y_);
         }
 
-        private function doSnow(_arg1:Number, _arg2:Number, _arg3:int=20, _arg4:int=12447231):void
+        private function doSnow(_arg1:Number, _arg2:Number, _arg3:int = 20, _arg4:int = 12447231):void
         {
             var _local5:WorldPosData = new WorldPosData();
             var _local6:WorldPosData = new WorldPosData();
@@ -181,7 +178,15 @@
             this.addObj(_local7, _local5.x_, _local5.y_);
         }
 
-        public function doLightning(_arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:int=200, _arg6:int=12447231, _arg7:Number=1):void
+        public function doLightning(
+                _arg1:Number,
+                _arg2:Number,
+                _arg3:Number,
+                _arg4:Number,
+                _arg5:int = 200,
+                _arg6:int = 12447231,
+                _arg7:Number = 1
+        ):void
         {
             var _local8:GameObject = new GameObject(null);
             _local8.x_ = getLocalPos(_arg1);
@@ -192,8 +197,6 @@
             var _local10:LightningEffect = new LightningEffect(_local8, _local9, _arg6, _arg5, _arg7);
             this.addObj(_local10, _local8.x_, _local8.y_);
         }
-
-
     }
 }
 

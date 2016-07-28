@@ -1,12 +1,9 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import __AS3__.vec.Vector;
     import flash.utils.IDataInput;
-    import __AS3__.vec.*;
 
-    public class MapInfo extends IncomingMessage 
+    public class MapInfo extends IncomingMessage
     {
-
         public var width_:int;
         public var height_:int;
         public var name_:String;
@@ -58,7 +55,7 @@
                 _local4 = _arg1.readInt();
                 this.clientXML_.push(_arg1.readUTFBytes(_local4));
                 _local3++;
-            };
+            }
             _local2 = _arg1.readShort();
             this.extraXML_.length = 0;
             _local3 = 0;
@@ -67,15 +64,24 @@
                 _local4 = _arg1.readInt();
                 this.extraXML_.push(_arg1.readUTFBytes(_local4));
                 _local3++;
-            };
+            }
         }
 
         override public function toString():String
         {
-            return (formatToString("MAPINFO", "width_", "height_", "name_", "fp_", "background_", "allowPlayerTeleport_", "showDisplays_", "clientXML_", "extraXML_"));
+            return (formatToString(
+                    "MAPINFO",
+                    "width_",
+                    "height_",
+                    "name_",
+                    "fp_",
+                    "background_",
+                    "allowPlayerTeleport_",
+                    "showDisplays_",
+                    "clientXML_",
+                    "extraXML_"
+            ));
         }
-
-
     }
 }
 

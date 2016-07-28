@@ -1,17 +1,15 @@
 ﻿package com.company.assembleegameclient.engine3d
 {
-    import __AS3__.vec.Vector;
-    import flash.geom.Matrix3D;
-    import flash.geom.Vector3D;
-    import flash.geom.Utils3D;
-    import flash.display.IGraphicsData;
     import com.company.assembleegameclient.map.Camera;
+
     import flash.display.BitmapData;
-    import __AS3__.vec.*;
+    import flash.display.IGraphicsData;
+    import flash.geom.Matrix3D;
+    import flash.geom.Utils3D;
+    import flash.geom.Vector3D;
 
-    public class Object3D 
+    public class Object3D
     {
-
         public var model_:Model3D = null;
         public var vL_:Vector.<Number>;
         public var uvts_:Vector.<Number>;
@@ -20,7 +18,7 @@
         public var vW_:Vector.<Number>;
         public var lToW_:Matrix3D;
 
-        public function Object3D(_arg1:Model3D=null)
+        public function Object3D(_arg1:Model3D = null)
         {
             var _local2:ModelFace3D;
             this.faces_ = new Vector.<ObjectFace3D>();
@@ -36,22 +34,21 @@
                 for each (_local2 in this.model_.faces_)
                 {
                     this.faces_.push(new ObjectFace3D(this, _local2.indicies_, _local2.useTexture_));
-                };
+                }
             }
             else
             {
                 this.vL_ = new Vector.<Number>();
                 this.uvts_ = new Vector.<Number>();
-            };
+            }
             this.setPosition(0, 0, 0, 0);
         }
 
         public static function getObject(_arg1:String):Object3D
         {
             var _local2:Model3D = Model3D.getModel(_arg1);
-            return (new (Object3D)(_local2));
+            return (new Object3D(_local2));
         }
-
 
         public function dispose():void
         {
@@ -61,7 +58,7 @@
             for each (_local1 in this.faces_)
             {
                 _local1.dispose();
-            };
+            }
             this.faces_.length = 0;
             this.faces_ = null;
             this.vS_ = null;
@@ -79,7 +76,7 @@
             for each (_local5 in this.faces_)
             {
                 _local5.computeLighting();
-            };
+            }
         }
 
         public function getVecW(_arg1:int):Vector3D
@@ -88,7 +85,7 @@
             if (_local2 >= this.vW_.length)
             {
                 return (null);
-            };
+            }
             return (new Vector3D(this.vW_[_local2], this.vW_[(_local2 + 1)], this.vW_[(_local2 + 2)]));
         }
 
@@ -99,10 +96,8 @@
             for each (_local5 in this.faces_)
             {
                 _local5.draw(_arg1, _arg3, _arg4);
-            };
+            }
         }
-
-
     }
 }
 

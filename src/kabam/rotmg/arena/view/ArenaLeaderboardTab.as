@@ -1,29 +1,28 @@
 ﻿package kabam.rotmg.arena.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
 
-    public class ArenaLeaderboardTab extends Sprite 
-    {
+    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
+    import org.osflash.signals.Signal;
+
+    public class ArenaLeaderboardTab extends Sprite
+    {
         private static const OVER_COLOR:int = 16567065;
         private static const DOWN_COLOR:int = 0xFFFFFF;
         private static const OUT_COLOR:int = 0xB2B2B2;
-
         public var label:StaticTextDisplay = makeLabel();
         private var filter:ArenaLeaderboardFilter;
         private var isOver:Boolean;
         private var isDown:Boolean;
         private var isSelected:Boolean = false;
-
         public const readyToAlign:Signal = label.textChanged;
         public const selected:Signal = new Signal(ArenaLeaderboardTab);
-        
+
         public function ArenaLeaderboardTab(_arg1:ArenaLeaderboardFilter)
         {
             super();
@@ -72,7 +71,7 @@
             if (!this.isSelected)
             {
                 this.selected.dispatch(this);
-            };
+            }
         }
 
         private function redraw():void
@@ -90,8 +89,8 @@
                 else
                 {
                     this.label.setColor(OUT_COLOR);
-                };
-            };
+                }
+            }
         }
 
         private function onMouseUp(_arg1:MouseEvent):void
@@ -127,8 +126,6 @@
             _local1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
             return (_local1);
         }
-
-
     }
 }
 

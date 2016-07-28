@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.core.service
 {
-    import com.google.analytics.GATracker;
     import com.company.googleanalytics.GA;
+    import com.google.analytics.GATracker;
+
     import flash.display.Stage;
 
-    public class GoogleAnalytics 
+    public class GoogleAnalytics
     {
-
         private var tracker:GATracker;
-
 
         public function init(_arg1:Stage, _arg2:String):void
         {
@@ -25,8 +24,6 @@
         {
             this.tracker.trackPageview(_arg1);
         }
-
-
     }
 }
 

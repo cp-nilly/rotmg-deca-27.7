@@ -1,21 +1,15 @@
 ﻿package kabam.rotmg.classes.model
 {
     import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class ClassesModel 
+    public class ClassesModel
     {
-
         public static const WIZARD_ID:int = 782;
-
         public const selected:Signal = new Signal(CharacterClass);
         private const map:Object = {};
         private const classes:Vector.<CharacterClass> = new <CharacterClass>[];
-
         private var count:uint = 0;
         private var selectedChar:CharacterClass;
-
 
         public function getCount():uint
         {
@@ -47,7 +41,7 @@
                 ((this.selectedChar) && (this.selectedChar.setIsSelected(false)));
                 this.selectedChar = _arg1;
                 this.selected.dispatch(_arg1);
-            };
+            }
         }
 
         public function getSelected():CharacterClass
@@ -62,12 +56,13 @@
             for each (_local3 in this.classes)
             {
                 _local2 = _local3.skins.getSkin(_arg1);
-                if (_local2 != _local3.skins.getDefaultSkin()) break;
-            };
+                if (_local2 != _local3.skins.getDefaultSkin())
+                {
+                    break;
+                }
+            }
             return (_local2);
         }
-
-
     }
 }
 

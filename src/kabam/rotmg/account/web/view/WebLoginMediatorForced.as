@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.signals.LoginSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.signals.LoginSignal;
+    import kabam.rotmg.account.web.model.AccountData;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.account.web.model.AccountData;
 
-    public class WebLoginMediatorForced extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class WebLoginMediatorForced extends Mediator
     {
-
         [Inject]
         public var view:WebLoginDialogForced;
         [Inject]
@@ -26,7 +26,6 @@
         public var loginError:TaskErrorSignal;
         [Inject]
         public var account:Account;
-
 
         override public function initialize():void
         {
@@ -52,18 +51,18 @@
             if (this.account.getUserId().toLowerCase() == _arg1.username.toLowerCase())
             {
                 _local2 = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
-                _local2.sendRequest("/account/verify", {
-                    "guid":_arg1.username,
-                    "password":_arg1.password,
-                    "fromResetFlow":"yes"
-                });
+                _local2.sendRequest(
+                        "/account/verify", {
+                            "guid": _arg1.username, "password": _arg1.password, "fromResetFlow": "yes"
+                        }
+                );
                 _local2.complete.addOnce(this.onComplete);
             }
             else
             {
                 this.view.email.setError(TextKey.WEBLOGINDIALOG_EMAIL_MATCH_ERROR);
                 this.view.enable();
-            };
+            }
         }
 
         private function onRegister():void
@@ -85,7 +84,7 @@
             else
             {
                 this.openDialog.dispatch(new WebChangePasswordDialogForced());
-            };
+            }
         }
 
         private function onLoginError(_arg1:String):void
@@ -93,8 +92,6 @@
             this.view.setError(_arg1);
             this.view.enable();
         }
-
-
     }
 }
 

@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.ui.dropdown
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
     import com.company.ui.BaseSimpleText;
-    import flash.events.MouseEvent;
+
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.geom.Point;
 
-    public class DropDown extends Sprite 
+    public class DropDown extends Sprite
     {
-
         protected var strings_:Vector.<String>;
         protected var w_:int;
         protected var h_:int;
@@ -18,7 +17,7 @@
         protected var selected_:DropDownItem;
         protected var all_:Sprite;
 
-        public function DropDown(_arg1:Vector.<String>, _arg2:int, _arg3:int, _arg4:String=null)
+        public function DropDown(_arg1:Vector.<String>, _arg2:int, _arg3:int, _arg4:String = null)
         {
             this.all_ = new Sprite();
             super();
@@ -33,7 +32,7 @@
                 this.labelText_.updateMetrics();
                 addChild(this.labelText_);
                 this.xOffset_ = (this.labelText_.width + 5);
-            };
+            }
             this.setIndex(0);
         }
 
@@ -51,9 +50,9 @@
                 {
                     this.setIndex(_local2);
                     return;
-                };
+                }
                 _local2++;
-            };
+            }
         }
 
         public function setIndex(_arg1:int):void
@@ -69,16 +68,16 @@
                 if (this.selected_.getValue() == this.strings_[_local1])
                 {
                     return (_local1);
-                };
+                }
                 _local1++;
-            };
+            }
             return (-1);
         }
 
         private function setSelected(_arg1:String):void
         {
             var _local2:String;
-            _local2 = (((this.selected_)!=null) ? this.selected_.getValue() : null);
+            _local2 = (((this.selected_) != null) ? this.selected_.getValue() : null);
             this.selected_ = new DropDownItem(_arg1, this.w_, this.h_);
             this.selected_.x = this.xOffset_;
             this.selected_.y = 0;
@@ -87,7 +86,7 @@
             if (_arg1 != _local2)
             {
                 dispatchEvent(new Event(Event.CHANGE));
-            };
+            }
         }
 
         private function onClick(_arg1:MouseEvent):void
@@ -97,7 +96,7 @@
             if (contains(this.selected_))
             {
                 removeChild(this.selected_);
-            };
+            }
             this.showAll();
         }
 
@@ -120,7 +119,7 @@
                 this.all_.addChild(_local4);
                 _local1 = (_local1 + _local4.h_);
                 _local3++;
-            };
+            }
             this.all_.addEventListener(MouseEvent.ROLL_OUT, this.onOut);
             stage.addChild(this.all_);
         }
@@ -144,8 +143,6 @@
             this.hideAll();
             this.setSelected(this.selected_.getValue());
         }
-
-
     }
 }
 

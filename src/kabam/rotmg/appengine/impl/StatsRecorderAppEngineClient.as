@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.appengine.impl
 {
     import flash.events.EventDispatcher;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import org.osflash.signals.OnceSignal;
     import flash.utils.getTimer;
 
-    public class StatsRecorderAppEngineClient extends EventDispatcher implements AppEngineClient 
-    {
+    import kabam.rotmg.appengine.api.AppEngineClient;
 
+    import org.osflash.signals.OnceSignal;
+
+    public class StatsRecorderAppEngineClient extends EventDispatcher implements AppEngineClient
+    {
         [Inject]
         public var stats:AppEngineRequestStats;
         [Inject]
         public var wrapped:SimpleAppEngineClient;
         private var timeAtRequest:int;
         private var target:String;
-
 
         public function get complete():OnceSignal
         {
@@ -53,8 +53,6 @@
         {
             return (false);
         }
-
-
     }
 }
 

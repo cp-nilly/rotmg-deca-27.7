@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.outgoing
 {
-    import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import flash.utils.IDataOutput;
 
-    public class InvDrop extends OutgoingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.SlotObjectData;
 
+    public class InvDrop extends OutgoingMessage
+    {
         public var slotObject_:SlotObjectData;
 
         public function InvDrop(_arg1:uint, _arg2:Function)
@@ -23,8 +23,6 @@
         {
             return (formatToString("INVDROP", "slotObject_"));
         }
-
-
     }
 }
 

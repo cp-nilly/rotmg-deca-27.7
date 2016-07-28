@@ -1,18 +1,17 @@
 ﻿package kabam.rotmg.classes.control
 {
-    import kabam.rotmg.classes.model.ClassesModel;
     import com.company.assembleegameclient.objects.ObjectLibrary;
+
     import kabam.rotmg.assets.EmbeddedData;
-    import kabam.rotmg.classes.model.CharacterSkin;
     import kabam.rotmg.assets.model.CharacterTemplate;
     import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.ClassesModel;
 
-    public class ParseSkinsXmlCommand 
+    public class ParseSkinsXmlCommand
     {
-
         [Inject]
         public var model:ClassesModel;
-
 
         private static function parseNodeEquipment(_arg1:XML):void
         {
@@ -30,12 +29,11 @@
                     if (_local3.attribute("color").length() != 0)
                     {
                         _local5 = int(_local3.@color);
-                    };
+                    }
                     ObjectLibrary.skinSetXMLDataLibrary_[_local4] = _local3;
-                };
-            };
+                }
+            }
         }
-
 
         public function execute():void
         {
@@ -47,13 +45,13 @@
             for each (_local3 in _local2)
             {
                 this.parseNode(_local3);
-            };
+            }
             _local1 = EmbeddedData.skinsEquipmentSetsXML;
             _local2 = _local1.children();
             for each (_local3 in _local2)
             {
                 parseNodeEquipment(_local3);
-            };
+            }
         }
 
         private function parseNode(_arg1:XML):void
@@ -67,17 +65,15 @@
             if (_arg1.hasOwnProperty("NoSkinSelect"))
             {
                 _local4.skinSelectEnabled = false;
-            };
+            }
             if (_arg1.hasOwnProperty("UnlockSpecial"))
             {
                 _local4.unlockSpecial = _arg1.UnlockSpecial;
-            };
+            }
             _local4.template = new CharacterTemplate(_local2, _local3);
             var _local5:CharacterClass = this.model.getCharacterClass(_arg1.PlayerClassType);
             _local5.skins.addSkin(_local4);
         }
-
-
     }
 }
 

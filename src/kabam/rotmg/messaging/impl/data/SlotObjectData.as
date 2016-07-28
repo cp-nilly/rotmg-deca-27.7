@@ -3,13 +3,11 @@
     import flash.utils.IDataInput;
     import flash.utils.IDataOutput;
 
-    public class SlotObjectData 
+    public class SlotObjectData
     {
-
         public var objectId_:int;
         public var slotId_:int;
         public var objectType_:int;
-
 
         public function parseFromInput(_arg1:IDataInput):void
         {
@@ -29,8 +27,6 @@
         {
             return (((((("objectId_: " + this.objectId_) + " slotId_: ") + this.slotId_) + " objectType_: ") + this.objectType_));
         }
-
-
     }
 }
 

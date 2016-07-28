@@ -1,32 +1,31 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.account.ui.components.Selectable;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import com.company.assembleegameclient.util.offer.Offer;
-    import kabam.rotmg.account.core.model.MoneyConfig;
     import com.company.assembleegameclient.account.ui.components.BackgroundBox;
-    import kabam.rotmg.util.components.RadioButton;
-    import flash.display.BitmapData;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.events.MouseEvent;
-    import com.company.util.AssetLibrary;
+    import com.company.assembleegameclient.account.ui.components.Selectable;
     import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.assembleegameclient.util.offer.Offer;
+    import com.company.util.AssetLibrary;
     import com.company.util.BitmapUtil;
+
     import flash.display.Bitmap;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
 
-    public class OfferRadioButton extends Sprite implements Selectable 
-    {
+    import kabam.rotmg.account.core.model.MoneyConfig;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.components.RadioButton;
 
+    public class OfferRadioButton extends Sprite implements Selectable
+    {
         private static const SELECTED_COLOR:int = 0x777777;
         private static const OVER_COLOR:int = 0x5B5B5B;
         private static const DEFAULT_COLOR:int = 0x454545;
-
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var offer:Offer;
         private var config:MoneyConfig;
         private var background:BackgroundBox;
@@ -80,7 +79,7 @@
             if (this.bonusText)
             {
                 this.bonusText.visible = _arg1;
-            };
+            }
         }
 
         private function makeBackgroundBox():void
@@ -109,7 +108,9 @@
         {
             this.coinBitmap = AssetLibrary.getImageFromSet("lofiObj3", 225);
             this.coinBitmap = TextureRedrawer.redraw(this.coinBitmap, 50, true, 0, false);
-            this.coinBitmap = BitmapUtil.cropToBitmapData(this.coinBitmap, 8, 8, (this.coinBitmap.width - 16), (this.coinBitmap.height - 16));
+            this.coinBitmap = BitmapUtil.cropToBitmapData(
+                    this.coinBitmap, 8, 8, (this.coinBitmap.width - 16), (this.coinBitmap.height - 16)
+            );
             var _local1:Bitmap = new Bitmap(this.coinBitmap);
             _local1.x = (this.toggle.x + 35);
             this.container.addChild(_local1);
@@ -118,7 +119,11 @@
         private function makeGoldText():void
         {
             this.goldText = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setBold(true);
-            this.goldText.setStringBuilder(new LineBuilder().setParams(TextKey.PAYMENTS_GOLD_AMOUNT, {"amount":this.offer.realmGold_}));
+            this.goldText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.PAYMENTS_GOLD_AMOUNT, {"amount": this.offer.realmGold_}
+                    )
+            );
             this.goldText.filters = [new DropShadowFilter(0, 0, 0)];
             this.waiter.push(this.goldText.textChanged);
             this.container.addChild(this.goldText);
@@ -138,9 +143,13 @@
             if (!this.hasBonus())
             {
                 return;
-            };
+            }
             this.bonusText = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setBold(true);
-            this.bonusText.setStringBuilder(new LineBuilder().setParams(TextKey.PAYMENTS_GOLD_BONUS, {"percent":this.offer.bonus}));
+            this.bonusText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.PAYMENTS_GOLD_BONUS, {"percent": this.offer.bonus}
+                    )
+            );
             this.bonusText.filters = [new DropShadowFilter(0, 0, 0)];
             this.waiter.push(this.bonusText.textChanged);
             this.container.addChild(this.bonusText);
@@ -151,7 +160,7 @@
             if (this.hasTagline())
             {
                 this.makeTaglineText();
-            };
+            }
         }
 
         private function makeTaglineText():void
@@ -183,12 +192,12 @@
             {
                 this.bonusText.x = 280;
                 this.bonusText.y = ((this.coinBitmap.height / 2) - (this.bonusText.height / 2));
-            };
+            }
             if (((this.hasTagline()) && (!((this.taglineText == null)))))
             {
                 this.taglineText.x = 400;
                 this.taglineText.y = ((this.coinBitmap.height / 2) - (this.taglineText.height / 2));
-            };
+            }
         }
 
         private function updateBackgroundColor():void
@@ -206,8 +215,6 @@
         {
             this.setOver(false);
         }
-
-
     }
 }
 

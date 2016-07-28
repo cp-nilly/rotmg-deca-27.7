@@ -1,43 +1,43 @@
 ﻿package com.company.assembleegameclient.ui.panels.mediators
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
-    import kabam.rotmg.core.model.MapModel;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.game.model.PotionInventoryModel;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.pets.data.PetSlotsState;
-    import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-    import kabam.rotmg.pets.data.PetFormModel;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.game.signals.AddTextLineSignal;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileEvent;
-    import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.InteractiveItemTile;
-    import kabam.rotmg.game.view.components.TabStripView;
-    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
-    import com.company.assembleegameclient.util.DisplayHierarchy;
-    import kabam.rotmg.questrewards.view.QuestRewardsView;
     import com.company.assembleegameclient.map.Map;
-    import kabam.rotmg.messaging.impl.GameServerConnection;
-    import kabam.rotmg.constants.ItemConstants;
-    import com.company.assembleegameclient.objects.OneWayContainer;
     import com.company.assembleegameclient.objects.Container;
-    import __AS3__.vec.Vector;
+    import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTile;
+    import com.company.assembleegameclient.objects.OneWayContainer;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.ui.panels.itemgrids.ContainerGrid;
     import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
-    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.InteractiveItemTile;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTile;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileEvent;
+    import com.company.assembleegameclient.ui.tooltip.ToolTip;
+    import com.company.assembleegameclient.util.DisplayHierarchy;
+
     import kabam.rotmg.chat.model.ChatMessage;
-    import com.company.assembleegameclient.objects.GameObject;
-    import com.company.assembleegameclient.objects.Player;
+    import kabam.rotmg.constants.ItemConstants;
+    import kabam.rotmg.core.model.MapModel;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.game.model.PotionInventoryModel;
+    import kabam.rotmg.game.signals.AddTextLineSignal;
+    import kabam.rotmg.game.view.components.TabStripView;
+    import kabam.rotmg.messaging.impl.GameServerConnection;
+    import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
+    import kabam.rotmg.pets.data.PetFormModel;
+    import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
+    import kabam.rotmg.questrewards.view.QuestRewardsView;
+    import kabam.rotmg.ui.model.HUDModel;
+    import kabam.rotmg.ui.model.TabStripModel;
 
-    public class ItemGridMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ItemGridMediator extends Mediator
     {
-
         [Inject]
         public var view:ItemGrid;
         [Inject]
@@ -62,7 +62,6 @@
         public var petsModel:PetsModel;
         [Inject]
         public var addTextLine:AddTextLineSignal;
-
 
         override public function initialize():void
         {
@@ -91,19 +90,21 @@
             var _local7:FoodFeedFuseSlot;
             var _local8:int;
             var _local2:InteractiveItemTile = _arg1.tile;
-            var _local3:* = DisplayHierarchy.getParentWithTypeArray(_local2.getDropTarget(), TabStripView, InteractiveItemTile, FoodFeedFuseSlot, QuestRewardsView, Map);
+            var _local3:* = DisplayHierarchy.getParentWithTypeArray(
+                    _local2.getDropTarget(), TabStripView, InteractiveItemTile, FoodFeedFuseSlot, QuestRewardsView, Map
+            );
             if ((((_local2.getItemId() == PotionInventoryModel.HEALTH_POTION_ID)) || ((((_local2.getItemId() == PotionInventoryModel.MAGIC_POTION_ID)) && (!(Boolean((_local3 as FoodFeedFuseSlot))))))))
             {
                 this.onPotionMove(_arg1);
                 return;
-            };
+            }
             if ((_local3 is InteractiveItemTile))
             {
                 _local4 = (_local3 as InteractiveItemTile);
                 if (this.canSwapItems(_local2, _local4))
                 {
                     this.swapItemTiles(_local2, _local4);
-                };
+                }
             }
             else
             {
@@ -113,10 +114,18 @@
                     _local6 = _local2.ownerGrid.curPlayer.nextAvailableInventorySlot();
                     if (_local6 != -1)
                     {
-                        GameServerConnection.instance.invSwap(this.view.curPlayer, _local2.ownerGrid.owner, _local2.tileId, _local2.itemSprite.itemId, this.view.curPlayer, _local6, ItemConstants.NO_ITEM);
+                        GameServerConnection.instance.invSwap(
+                                this.view.curPlayer,
+                                _local2.ownerGrid.owner,
+                                _local2.tileId,
+                                _local2.itemSprite.itemId,
+                                this.view.curPlayer,
+                                _local6,
+                                ItemConstants.NO_ITEM
+                        );
                         _local2.setItem(ItemConstants.NO_ITEM);
                         _local2.updateUseability(this.view.curPlayer);
-                    };
+                    }
                 }
                 else
                 {
@@ -128,22 +137,27 @@
                             this.petSlotsState.rightSlotId = _local2.tileId;
                             this.petSlotsState.rightSlotOwnerId = _local2.ownerGrid.owner.objectId_;
                             _local8 = _local2.getItemId();
-                            _local7.setItem(_local8, _local2.tileId, _local2.ownerGrid.owner.objectId_, this.petFoodCancel(_local2));
+                            _local7.setItem(
+                                    _local8,
+                                    _local2.tileId,
+                                    _local2.ownerGrid.owner.objectId_,
+                                    this.petFoodCancel(_local2)
+                            );
                             _local2.setItem(ItemConstants.NO_ITEM);
                             _local2.blockingItemUpdates = true;
                             _local2.updateUseability(this.view.curPlayer);
                             _local7.setItemPart2(_local8);
-                        };
+                        }
                     }
                     else
                     {
                         if ((((_local3 is Map)) || ((this.hudModel.gameSprite.map.mouseX < 300))))
                         {
                             this.dropItem(_local2);
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             _local2.resetItemPosition();
         }
 
@@ -168,8 +182,8 @@
                 if ((((_local3 is Map)) || ((this.hudModel.gameSprite.map.mouseX < 300))))
                 {
                     this.dropItem(_local2);
-                };
-            };
+                }
+            }
             _local2.resetItemPosition();
         }
 
@@ -178,8 +192,16 @@
             if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg1)))) || ((this.potionInventoryModel.getPotionModel(_arg1.getItemId()).maxPotionCount <= this.hudModel.gameSprite.map.player_.getPotionCount(_arg1.getItemId())))))
             {
                 return;
-            };
-            GameServerConnection.instance.invSwapPotion(this.view.curPlayer, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, this.view.curPlayer, PotionInventoryModel.getPotionSlot(_arg1.getItemId()), ItemConstants.NO_ITEM);
+            }
+            GameServerConnection.instance.invSwapPotion(
+                    this.view.curPlayer,
+                    this.view.owner,
+                    _arg1.tileId,
+                    _arg1.itemSprite.itemId,
+                    this.view.curPlayer,
+                    PotionInventoryModel.getPotionSlot(_arg1.getItemId()),
+                    ItemConstants.NO_ITEM
+            );
             _arg1.setItem(ItemConstants.NO_ITEM);
             _arg1.updateUseability(this.view.curPlayer);
         }
@@ -189,19 +211,19 @@
             if (!_arg1.canHoldItem(_arg2.getItemId()))
             {
                 return (false);
-            };
+            }
             if (!_arg2.canHoldItem(_arg1.getItemId()))
             {
                 return (false);
-            };
+            }
             if ((ItemGrid(_arg2.parent).owner is OneWayContainer))
             {
                 return (false);
-            };
+            }
             if (((_arg1.blockingItemUpdates) || (_arg2.blockingItemUpdates)))
             {
                 return (false);
-            };
+            }
             return (true);
         }
 
@@ -223,9 +245,12 @@
                     _local7 = 0;
                     while (_local7 < _local6)
                     {
-                        if (_local5[_local7] < 0) break;
+                        if (_local5[_local7] < 0)
+                        {
+                            break;
+                        }
                         _local7++;
-                    };
+                    }
                     if (_local7 < _local6)
                     {
                         this.dropWithoutDestTile(_arg1, _local4, _local7);
@@ -233,13 +258,13 @@
                     else
                     {
                         GameServerConnection.instance.invDrop(this.view.owner, _arg1.tileId, _arg1.getItemId());
-                    };
+                    }
                 }
                 else
                 {
                     GameServerConnection.instance.invDrop(this.view.owner, _arg1.tileId, _arg1.getItemId());
-                };
-            };
+                }
+            }
             _arg1.setItem(-1);
         }
 
@@ -248,8 +273,16 @@
             if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg1)))) || (!(_arg2))))
             {
                 return (false);
-            };
-            GameServerConnection.instance.invSwap(this.view.curPlayer, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, _arg2.ownerGrid.owner, _arg2.tileId, _arg2.itemSprite.itemId);
+            }
+            GameServerConnection.instance.invSwap(
+                    this.view.curPlayer,
+                    this.view.owner,
+                    _arg1.tileId,
+                    _arg1.itemSprite.itemId,
+                    _arg2.ownerGrid.owner,
+                    _arg2.tileId,
+                    _arg2.itemSprite.itemId
+            );
             var _local3:int = _arg1.getItemId();
             _arg1.setItem(_arg2.getItemId());
             _arg2.setItem(_local3);
@@ -263,8 +296,10 @@
             if (((((((!(GameServerConnection.instance)) || (!(this.view.interactive)))) || (!(_arg1)))) || (!(_arg2))))
             {
                 return;
-            };
-            GameServerConnection.instance.invSwap(this.view.curPlayer, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, _arg2, _arg3, -1);
+            }
+            GameServerConnection.instance.invSwap(
+                    this.view.curPlayer, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, _arg2, _arg3, -1
+            );
             _arg1.setItem(ItemConstants.NO_ITEM);
         }
 
@@ -274,7 +309,7 @@
             if ((((_local2.ownerGrid is InventoryGrid)) || ((_local2.ownerGrid is ContainerGrid))))
             {
                 GameServerConnection.instance.useItem_new(_local2.ownerGrid.owner, _local2.tileId);
-            };
+            }
         }
 
         private function onCtrlClick(_arg1:ItemTileEvent):void
@@ -289,12 +324,20 @@
                     _local3 = _local2.ownerGrid.curPlayer.swapInventoryIndex(this.tabStripModel.currentSelection);
                     if (_local3 != -1)
                     {
-                        GameServerConnection.instance.invSwap(this.view.curPlayer, _local2.ownerGrid.owner, _local2.tileId, _local2.itemSprite.itemId, this.view.curPlayer, _local3, ItemConstants.NO_ITEM);
+                        GameServerConnection.instance.invSwap(
+                                this.view.curPlayer,
+                                _local2.ownerGrid.owner,
+                                _local2.tileId,
+                                _local2.itemSprite.itemId,
+                                this.view.curPlayer,
+                                _local3,
+                                ItemConstants.NO_ITEM
+                        );
                         _local2.setItem(ItemConstants.NO_ITEM);
                         _local2.updateUseability(this.view.curPlayer);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onDoubleClick(_arg1:ItemTileEvent):void
@@ -319,9 +362,9 @@
                     else
                     {
                         this.equipOrUseInventory(_local2);
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.view.refreshTooltip();
         }
 
@@ -341,8 +384,8 @@
                 else
                 {
                     this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "server.use_in_petyard"));
-                };
-            };
+                }
+            }
         }
 
         private function isPetFormStone(_arg1:InteractiveItemTile):Boolean
@@ -360,8 +403,16 @@
             var _local2:int = this.view.curPlayer.nextAvailableInventorySlot();
             if (_local2 != -1)
             {
-                GameServerConnection.instance.invSwap(this.view.curPlayer, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, this.view.curPlayer, _local2, ItemConstants.NO_ITEM);
-            };
+                GameServerConnection.instance.invSwap(
+                        this.view.curPlayer,
+                        this.view.owner,
+                        _arg1.tileId,
+                        _arg1.itemSprite.itemId,
+                        this.view.curPlayer,
+                        _local2,
+                        ItemConstants.NO_ITEM
+                );
+            }
         }
 
         private function equipOrUseContainer(_arg1:InteractiveItemTile):void
@@ -371,12 +422,20 @@
             var _local4:int = this.view.curPlayer.nextAvailableInventorySlot();
             if (_local4 != -1)
             {
-                GameServerConnection.instance.invSwap(_local3, this.view.owner, _arg1.tileId, _arg1.itemSprite.itemId, this.view.curPlayer, _local4, ItemConstants.NO_ITEM);
+                GameServerConnection.instance.invSwap(
+                        _local3,
+                        this.view.owner,
+                        _arg1.tileId,
+                        _arg1.itemSprite.itemId,
+                        this.view.curPlayer,
+                        _local4,
+                        ItemConstants.NO_ITEM
+                );
             }
             else
             {
                 GameServerConnection.instance.useItem_new(_local2, _arg1.tileId);
-            };
+            }
         }
 
         private function equipOrUseInventory(_arg1:InteractiveItemTile):void
@@ -386,15 +445,15 @@
             var _local4:int = ObjectLibrary.getMatchingSlotIndex(_arg1.getItemId(), _local3);
             if (_local4 != -1)
             {
-                GameServerConnection.instance.invSwap(_local3, _local2, _arg1.tileId, _arg1.getItemId(), _local3, _local4, _local3.equipment_[_local4]);
+                GameServerConnection.instance.invSwap(
+                        _local3, _local2, _arg1.tileId, _arg1.getItemId(), _local3, _local4, _local3.equipment_[_local4]
+                );
             }
             else
             {
                 GameServerConnection.instance.useItem_new(_local2, _arg1.tileId);
-            };
+            }
         }
-
-
     }
 }
 

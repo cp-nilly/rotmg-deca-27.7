@@ -2,15 +2,12 @@
 {
     import kabam.rotmg.language.model.StringMap;
 
-    public class PatternBuilder implements StringBuilder 
+    public class PatternBuilder implements StringBuilder
     {
-
         private const PATTERN:RegExp = /(\{([^\{]+?)\})/gi;
-
         private var pattern:String = "";
         private var keys:Array;
         private var provider:StringMap;
-
 
         public function setPattern(_arg1:String):PatternBuilder
         {
@@ -31,11 +28,9 @@
             for each (_local2 in this.keys)
             {
                 _local1 = _local1.replace(_local2, this.provider.getValue(_local2.substr(1, (_local2.length - 2))));
-            };
+            }
             return (_local1.replace(/\\n/g, "\n"));
         }
-
-
     }
 }
 

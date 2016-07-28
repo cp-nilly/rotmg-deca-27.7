@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.pets.data
 {
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.util.AnimatedChar;
     import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.util.AnimatedChar;
+    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.MaskedImage;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.display.BitmapData;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
+
     import flash.display.Bitmap;
-    import com.company.assembleegameclient.util.AnimatedChars;
+    import flash.display.BitmapData;
 
-    public class PetVO 
+    import org.osflash.signals.Signal;
+
+    public class PetVO
     {
-
         public const updated:Signal = new Signal();
-
         private var staticData:XML;
         private var id:int;
         private var type:int;
@@ -25,13 +25,12 @@
         private var skinID:int;
         private var skin:AnimatedChar;
 
-        public function PetVO(_arg1:int=undefined)
+        public function PetVO(_arg1:int = undefined)
         {
             this.abilityList = [new AbilityVO(), new AbilityVO(), new AbilityVO()];
             super();
             this.id = _arg1;
-            this.staticData = <data/>
-            ;
+            this.staticData = <data/>;
             this.listenToAbilities();
         }
 
@@ -47,9 +46,8 @@
 
         public static function clone(_arg1:PetVO):PetVO
         {
-            return (new (PetVO)(_arg1.id));
+            return (new PetVO(_arg1.id));
         }
-
 
         private function listenToAbilities():void
         {
@@ -57,7 +55,7 @@
             for each (_local1 in this.abilityList)
             {
                 _local1.updated.add(this.onAbilityUpdate);
-            };
+            }
         }
 
         public function maxedAllAbilities():Boolean
@@ -69,8 +67,8 @@
                 if (_local2.level == 100)
                 {
                     _local1++;
-                };
-            };
+                }
+            }
             return ((_local1 == this.abilityList.length));
         }
 
@@ -110,7 +108,7 @@
                 _local4.level = _arg1.Abilities.Ability[_local2].@power;
                 _local4.points = _arg1.Abilities.Ability[_local2].@points;
                 _local2++;
-            };
+            }
         }
 
         public function getFamily():String
@@ -214,8 +212,6 @@
             var _local3:int = _local1.AnimatedTexture.Index;
             this.skin = AnimatedChars.getAnimatedChar(_local2, _local3);
         }
-
-
     }
 }
 

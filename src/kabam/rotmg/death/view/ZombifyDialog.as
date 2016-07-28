@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.death.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
+
+    import flash.display.Sprite;
     import flash.events.Event;
 
-    public class ZombifyDialog extends Sprite 
-    {
+    import org.osflash.signals.Signal;
 
+    public class ZombifyDialog extends Sprite
+    {
         public static const TITLE:String = "ZombifyDialog.title";
         public static const BODY:String = "ZombifyDialog.body";
         public static const BUTTON:String = "ZombifyDialog.button";
-
         public const closed:Signal = new Signal();
-
         private var dialog:Dialog;
 
         public function ZombifyDialog()
@@ -29,8 +28,6 @@
         {
             this.closed.dispatch();
         }
-
-
     }
 }
 

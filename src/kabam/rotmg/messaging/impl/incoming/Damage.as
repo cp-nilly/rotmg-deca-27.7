@@ -1,12 +1,9 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import __AS3__.vec.Vector;
     import flash.utils.IDataInput;
-    import __AS3__.vec.*;
 
-    public class Damage extends IncomingMessage 
+    public class Damage extends IncomingMessage
     {
-
         public var targetId_:int;
         public var effects_:Vector.<uint>;
         public var damageAmount_:int;
@@ -30,7 +27,7 @@
             {
                 this.effects_.push(_arg1.readUnsignedByte());
                 _local3++;
-            };
+            }
             this.damageAmount_ = _arg1.readUnsignedShort();
             this.kill_ = _arg1.readBoolean();
             this.bulletId_ = _arg1.readUnsignedByte();
@@ -39,10 +36,10 @@
 
         override public function toString():String
         {
-            return (formatToString("DAMAGE", "targetId_", "effects_", "damageAmount_", "kill_", "bulletId_", "objectId_"));
+            return (formatToString(
+                    "DAMAGE", "targetId_", "effects_", "damageAmount_", "kill_", "bulletId_", "objectId_"
+            ));
         }
-
-
     }
 }
 

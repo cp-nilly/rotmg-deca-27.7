@@ -1,16 +1,15 @@
 ﻿package kabam.rotmg.friends.view
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import flash.display.Shape;
-    import flash.events.Event;
+
     import flash.display.DisplayObject;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
 
-    public class FriendListContainer extends Sprite 
+    public class FriendListContainer extends Sprite
     {
-
         private const GAP_Y:int = 3;
-
         private var _currentY:int;
         private var _width:Number;
         private var _height:Number;
@@ -62,7 +61,7 @@
             if (_local2 != null)
             {
                 this._currentY = (this._currentY - (_local2.height + this.GAP_Y));
-            };
+            }
             return ((this._itemContainer.removeChildAt(_arg1) as Sprite));
         }
 
@@ -71,7 +70,7 @@
             while (this._itemContainer.numChildren > 0)
             {
                 this._itemContainer.removeChildAt((this._itemContainer.numChildren - 1));
-            };
+            }
             this._currentY = 0;
         }
 
@@ -81,15 +80,13 @@
             if (_arg1)
             {
                 this._scrollbar.setIndicatorSize(this._height, this._currentY);
-            };
+            }
         }
 
         private function onScrollBarChange(_arg1:Event):void
         {
             this._itemContainer.y = (-(this._scrollbar.pos()) * ((this._itemContainer.height - this._height) + 20));
         }
-
-
     }
 }
 

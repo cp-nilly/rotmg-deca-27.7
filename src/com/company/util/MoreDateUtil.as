@@ -1,9 +1,7 @@
 ﻿package com.company.util
 {
-    public class MoreDateUtil 
+    public class MoreDateUtil
     {
-
-
         public static function getDayStringInPT():String
         {
             var _local1:Date = new Date();
@@ -14,8 +12,6 @@
             _local3.formatString = "MMMM D, YYYY";
             return (_local3.format(_local1));
         }
-
-
     }
 }
 

@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.ui.tooltip.slotcomparisons
 {
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import com.company.assembleegameclient.ui.tooltip.TooltipHelper;
+
     import kabam.rotmg.constants.*;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class SkullComparison extends SlotComparison 
+    public class SkullComparison extends SlotComparison
     {
-
-
         override protected function compareSlots(_arg1:XML, _arg2:XML):void
         {
             var _local3:XML;
@@ -31,22 +30,25 @@
                 _local8 = int(_local4.@totalDamage);
                 _local9 = ((0.5 * _local5) + (0.5 * _local7));
                 _local10 = ((0.5 * _local6) + (0.5 * _local8));
-                comparisonStringBuilder.pushParams(TextKey.STEAL, {"effect":new LineBuilder().setParams(TextKey.HP_WITHIN_SQRS, {
-                        "amount":_local7,
-                        "range":_local5
-                    }).setPrefix(TooltipHelper.getOpenTag(getTextColor((_local9 - _local10)))).setPostfix(TooltipHelper.getCloseTag())});
+                comparisonStringBuilder.pushParams(
+                        TextKey.STEAL, {
+                            "effect": new LineBuilder().setParams(
+                                    TextKey.HP_WITHIN_SQRS, {
+                                        "amount": _local7, "range": _local5
+                                    }
+                            ).setPrefix(TooltipHelper.getOpenTag(getTextColor((_local9 - _local10)))).setPostfix(TooltipHelper.getCloseTag())
+                        }
+                );
                 processedTags[_local3.toXMLString()] = true;
-            };
+            }
         }
 
         private function getVampireBlastTag(xml:XML):XML
         {
             var matches:XMLList;
             matches = xml.Activate.(text() == ActivationType.VAMPIRE_BLAST);
-            return ((((matches.length())>=1) ? matches[0] : null));
+            return ((((matches.length()) >= 1) ? matches[0] : null));
         }
-
-
     }
 }
 

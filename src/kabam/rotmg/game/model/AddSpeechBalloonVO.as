@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class AddSpeechBalloonVO 
+    public class AddSpeechBalloonVO
     {
-
         public var go:GameObject;
         public var text:String;
         public var name:String;
@@ -19,7 +18,21 @@
         public var bold:Boolean;
         public var hideable:Boolean;
 
-        public function AddSpeechBalloonVO(_arg1:GameObject, _arg2:String, _arg3:String, _arg4:Boolean, _arg5:Boolean, _arg6:uint, _arg7:Number, _arg8:uint, _arg9:Number, _arg10:uint, _arg11:int, _arg12:Boolean, _arg13:Boolean)
+        public function AddSpeechBalloonVO(
+                _arg1:GameObject,
+                _arg2:String,
+                _arg3:String,
+                _arg4:Boolean,
+                _arg5:Boolean,
+                _arg6:uint,
+                _arg7:Number,
+                _arg8:uint,
+                _arg9:Number,
+                _arg10:uint,
+                _arg11:int,
+                _arg12:Boolean,
+                _arg13:Boolean
+        )
         {
             this.go = _arg1;
             this.text = _arg2;
@@ -35,7 +48,6 @@
             this.bold = _arg12;
             this.hideable = _arg13;
         }
-
     }
 }
 

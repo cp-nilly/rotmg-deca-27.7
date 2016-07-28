@@ -1,47 +1,47 @@
 ﻿package kabam.rotmg.questrewards.view
 {
-    import kabam.rotmg.account.core.view.EmptyFrame;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.questrewards.components.ModalItemSlot;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.display.Loader.LoaderProxy;
-    import flash.display.DisplayObject;
+    import com.company.assembleegameclient.map.ParticleModalMap;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.util.Currency;
-    import kabam.display.Loader.LoaderProxyConcrete;
+    import com.gskinner.motion.GTween;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.DisplayObject;
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.IOErrorEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.filters.GlowFilter;
+    import flash.net.URLRequest;
     import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.events.Event;
-    import flash.display.BitmapData;
-    import flash.display.Bitmap;
-    import flash.events.IOErrorEvent;
-    import flash.net.URLRequest;
-    import flash.display.Shape;
-    import flash.display.Graphics;
-    import com.gskinner.motion.GTween;
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
+
+    import kabam.display.Loader.LoaderProxy;
+    import kabam.display.Loader.LoaderProxyConcrete;
+    import kabam.rotmg.account.core.view.EmptyFrame;
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.questrewards.components.ModalItemSlot;
     import kabam.rotmg.text.model.FontModel;
-    import flash.filters.GlowFilter;
-    import com.company.assembleegameclient.map.ParticleModalMap;
-    import flash.filters.DropShadowFilter;
-    import flash.text.TextFieldAutoSize;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
 
-    public class QuestRewardsView extends EmptyFrame 
+    import org.osflash.signals.Signal;
+
+    public class QuestRewardsView extends EmptyFrame
     {
-
         public static const closed:Signal = new Signal();
         public static const MODAL_WIDTH:int = 600;
         public static const MODAL_HEIGHT:int = 600;
-
         public static var backgroundImageEmbed:Class = QuestRewardsView_backgroundImageEmbed;
         public static var questCompleteBanner:Class = QuestRewardsView_questCompleteBanner;
         public static var dailyQuestBanner:Class = QuestRewardsView_dailyQuestBanner;
         public static var rewardgranted:Class = QuestRewardsView_rewardgranted;
-
         private var rightSlot:ModalItemSlot;
         private var prevSlot:ModalItemSlot;
         private var nextSlot:ModalItemSlot;
@@ -85,7 +85,7 @@
                 _local10 = title.getTextFormat(0, _local5.length);
                 _local10.leading = 10;
                 title.setTextFormat(_local10, 0, _local5.length);
-            };
+            }
             var _local6:TextFormat = new TextFormat();
             _local6.size = 13;
             _local6.font = "Myraid Pro";
@@ -111,7 +111,7 @@
             if (_arg1 == 1)
             {
                 this.prevSlot.visible = false;
-            };
+            }
             addChild(this.nextSlot);
             this.nextSlot.setQuestionMark();
             this.rightSlot.setUsageText("Drag the item from your inventory into the slot", 14, 0xFFFF);
@@ -154,7 +154,7 @@
             if (this.infoImage == null)
             {
                 return;
-            };
+            }
             this.infoImage.alpha = 0;
             addChild(this.infoImage);
             var _local1:int = 8;
@@ -167,7 +167,7 @@
             _local3.endFill();
             addChild(_local2);
             this.infoImage.mask = _local2;
-            new GTween(this.infoImage, 1.25, {"alpha":1});
+            new GTween(this.infoImage, 1.25, {"alpha": 1});
         }
 
         private function onRewardLoadComplete(_arg1:Event):void
@@ -179,7 +179,7 @@
             if (((!((this.infoImage == null))) && (!((this.infoImage.parent == null)))))
             {
                 removeChild(this.infoImage);
-            };
+            }
             this.infoImage = DisplayObject(this.infoImageLoader);
             this.addInfoImageChild();
         }
@@ -265,7 +265,7 @@
             addChild(_local1);
         }
 
-        public function constructDescription(_arg1:String, _arg2:String=""):void
+        public function constructDescription(_arg1:String, _arg2:String = ""):void
         {
             var _local4:String;
             var _local6:TextFormat;
@@ -278,14 +278,14 @@
             else
             {
                 _local4 = _arg1;
-            };
+            }
             setDesc(_local4, true);
             desc.setColor(16689154);
             desc.setBold(false);
             desc.setSize(15);
             desc.setTextWidth(315);
             desc.x = ((((modalWidth / 4) * 1.1) - (desc.width / 2)) + 3);
-            desc.y = (((title)!=null) ? ((title.y + title.height) + 6) : 165);
+            desc.y = (((title) != null) ? ((title.y + title.height) + 6) : 165);
             desc.setAutoSize(TextFieldAutoSize.LEFT);
             desc.setHorizontalAlign("left");
             desc.filters = [new DropShadowFilter(0, 0, 0)];
@@ -299,7 +299,7 @@
                 _local6.color = 196098;
                 _local6.bold = true;
                 desc.setTextFormat(_local6, _local3, (_local3 + _arg2.length));
-            };
+            }
         }
 
         public function onQuestComplete():void
@@ -309,23 +309,21 @@
             _local1.y = 180;
             _local1.scaleX = 0.1;
             _local1.scaleY = 0.1;
-            new GTween(_local1, 0.4, {
-                "alpha":1,
-                "scaleX":0.6,
-                "scaleY":0.6,
-                "x":30,
-                "y":130
-            });
+            new GTween(
+                    _local1, 0.4, {
+                        "alpha": 1, "scaleX": 0.6, "scaleY": 0.6, "x": 30, "y": 130
+                    }
+            );
             addChild(_local1);
             var _local2:DisplayObject = new rewardgranted();
             _local2.x = (this.infoImage.x + 4);
             _local2.y = (this.infoImage.y + 4);
             _local2.alpha = 0;
             addChild(_local2);
-            new GTween(_local2, 0.4, {"alpha":1});
-            new GTween(desc, 0.4, {"alpha":0.2});
-            new GTween(this.dqbanner, 0.4, {"alpha":0.2});
-            new GTween(title, 0.4, {"alpha":0.2});
+            new GTween(_local2, 0.4, {"alpha": 1});
+            new GTween(desc, 0.4, {"alpha": 0.2});
+            new GTween(this.dqbanner, 0.4, {"alpha": 0.2});
+            new GTween(title, 0.4, {"alpha": 0.2});
             this.rightSlot.highLightAll(0x545454);
             this.rightSlot.stopOutLineAnimation();
         }
@@ -334,8 +332,6 @@
         {
             this.rightSlot.playOutLineAnimation(-1);
         }
-
-
     }
 }
 

@@ -1,18 +1,18 @@
 ﻿package com.company.assembleegameclient.objects
 {
     import com.company.assembleegameclient.map.Map;
-    import flash.utils.Dictionary;
     import com.company.util.PointUtil;
+
+    import flash.utils.Dictionary;
+
     import kabam.rotmg.messaging.impl.incoming.AccountList;
 
-    public class Party 
+    public class Party
     {
-
         public static const NUM_MEMBERS:int = 6;
         private static const SORT_ON_FIELDS:Array = ["starred_", "distSqFromThisPlayer_", "objectId_"];
         private static const SORT_ON_PARAMS:Array = [(Array.NUMERIC | Array.DESCENDING), Array.NUMERIC, Array.NUMERIC];
         private static const PARTY_DISTANCE_SQ:int = (50 * 50);//2500
-
         public var map_:Map;
         public var members_:Array;
         private var starred_:Dictionary;
@@ -35,14 +35,14 @@
             if (_arg1 < (this.lastUpdate_ + 500))
             {
                 return;
-            };
+            }
             this.lastUpdate_ = _arg1;
             this.members_.length = 0;
             var _local3:Player = this.map_.player_;
             if (_local3 == null)
             {
                 return;
-            };
+            }
             for each (_local4 in this.map_.goDict_)
             {
                 _local5 = (_local4 as Player);
@@ -50,18 +50,20 @@
                 {
                     _local5.starred_ = !((this.starred_[_local5.accountId_] == undefined));
                     _local5.ignored_ = !((this.ignored_[_local5.accountId_] == undefined));
-                    _local5.distSqFromThisPlayer_ = PointUtil.distanceSquaredXY(_local3.x_, _local3.y_, _local5.x_, _local5.y_);
+                    _local5.distSqFromThisPlayer_ = PointUtil.distanceSquaredXY(
+                            _local3.x_, _local3.y_, _local5.x_, _local5.y_
+                    );
                     if (!(((_local5.distSqFromThisPlayer_ > PARTY_DISTANCE_SQ)) && (!(_local5.starred_))))
                     {
                         this.members_.push(_local5);
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.members_.sortOn(SORT_ON_FIELDS, SORT_ON_PARAMS);
             if (this.members_.length > NUM_MEMBERS)
             {
                 this.members_.length = NUM_MEMBERS;
-            };
+            }
         }
 
         public function lockPlayer(_arg1:Player):void
@@ -89,7 +91,7 @@
                 this.starred_[_local3] = 1;
                 this.lastUpdate_ = int.MIN_VALUE;
                 _local2++;
-            };
+            }
         }
 
         public function removeStars(_arg1:AccountList):void
@@ -102,7 +104,7 @@
                 delete this.starred_[_local3];
                 this.lastUpdate_ = int.MIN_VALUE;
                 _local2++;
-            };
+            }
         }
 
         public function ignorePlayer(_arg1:Player):void
@@ -131,10 +133,8 @@
                 this.ignored_[_local3] = 1;
                 this.lastUpdate_ = int.MIN_VALUE;
                 _local2++;
-            };
+            }
         }
-
-
     }
 }
 

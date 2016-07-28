@@ -1,26 +1,23 @@
 ﻿package kabam.rotmg.arena.service
 {
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.assets.services.CharacterFactory;
-    import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import com.company.util.ConversionUtil;
+
     import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import kabam.rotmg.assets.services.CharacterFactory;
     import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.CharacterSkin;
-    import com.company.util.ConversionUtil;
-    import __AS3__.vec.*;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.pets.data.PetVO;
 
-    public class ArenaLeaderboardFactory 
+    public class ArenaLeaderboardFactory
     {
-
         [Inject]
         public var classesModel:ClassesModel;
         [Inject]
         public var factory:CharacterFactory;
         [Inject]
         public var currentRunModel:CurrentArenaRunModel;
-
 
         public function makeEntries(_arg1:XMLList):Vector.<ArenaLeaderboardEntry>
         {
@@ -31,7 +28,7 @@
             {
                 _local2.push(this.makeArenaEntry(_local4, _local3));
                 _local3++;
-            };
+            }
             _local2 = this.removeDuplicateUser(_local2);
             return (this.addCurrentRun(_local2));
         }
@@ -53,23 +50,23 @@
                         this.currentRunModel.entry.rank = _local5.rank;
                         _local2.push(this.currentRunModel.entry);
                         _local3 = true;
-                    };
+                    }
                     if (_local5.isPersonalRecord)
                     {
                         _local4 = true;
-                    };
+                    }
                     if (_local3)
                     {
                         _local5.rank++;
-                    };
+                    }
                     _local2.push(_local5);
-                };
+                }
                 if ((((((_local2.length < 20)) && (!(_local3)))) && (!(_local4))))
                 {
                     this.currentRunModel.entry.rank = (_local2.length + 1);
                     _local2.push(this.currentRunModel.entry);
-                };
-            };
+                }
+            }
             return ((((_local2.length > 0)) ? _local2 : _arg1));
         }
 
@@ -95,14 +92,14 @@
                         if (_local3)
                         {
                             _local5.rank--;
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             if (_local2 != -1)
             {
                 _arg1.splice(_local2, 1);
-            };
+            }
             return (_arg1);
         }
 
@@ -119,8 +116,12 @@
             var _local5:int = _arg1.PlayData.CharacterData.Class;
             var _local6:CharacterClass = this.classesModel.getCharacterClass(_local5);
             var _local7:CharacterSkin = _local6.skins.getSkin(_local4);
-            var _local8:int = ((_arg1.PlayData.CharacterData.hasOwnProperty("Tex1")) ? _arg1.PlayData.CharacterData.Tex1 : 0);
-            var _local9:int = ((_arg1.PlayData.CharacterData.hasOwnProperty("Tex2")) ? _arg1.PlayData.CharacterData.Tex2 : 0);
+            var _local8:int = ((_arg1.PlayData.CharacterData.hasOwnProperty("Tex1"))
+                    ? _arg1.PlayData.CharacterData.Tex1
+                    : 0);
+            var _local9:int = ((_arg1.PlayData.CharacterData.hasOwnProperty("Tex2"))
+                    ? _arg1.PlayData.CharacterData.Tex2
+                    : 0);
             _local3.playerBitmap = this.factory.makeIcon(_local7.template, 100, _local8, _local9);
             _local3.equipment = ConversionUtil.toIntVector(_arg1.PlayData.CharacterData.Inventory);
             _local3.slotTypes = _local6.slotTypes;
@@ -133,11 +134,9 @@
                 _local11 = new XML(_arg1.PlayData.Pet);
                 _local10.apply(_local11);
                 _local3.pet = _local10;
-            };
+            }
             return (_local3);
         }
-
-
     }
 }
 

@@ -2,14 +2,11 @@
 {
     import kabam.lib.console.signals.ConsoleWatchSignal;
 
-    public class AppEngineRequestStats 
+    public class AppEngineRequestStats
     {
-
         private const nameMap:Object = {};
-
         [Inject]
         public var watch:ConsoleWatchSignal;
-
 
         public function recordStats(_arg1:String, _arg2:Boolean, _arg3:int):void
         {
@@ -17,26 +14,32 @@
             _local4.addResponse(_arg2, _arg3);
             this.watch.dispatch(_local4);
         }
-
-
     }
 }
 
 import kabam.lib.console.model.Watch;
 
-class StatsWatch extends Watch 
+class StatsWatch extends Watch
 {
 
-    /*private*/ static const STATS_PATTERN:String = "[APPENGINE STATS] [0xFFEE00:{/x={MEAN}ms, ok={OK}/{COUNT}} {NAME}]";
-    /*private*/ static const MEAN:String = "{MEAN}";
-    /*private*/ static const COUNT:String = "{COUNT}";
-    /*private*/ static const OK:String = "{OK}";
-    /*private*/ static const NAME:String = "{NAME}";
-
-    /*private*/ var count:int;
-    /*private*/ var time:int;
-    /*private*/ var mean:int;
-    /*private*/ var ok:int;
+    /*private*/
+    static const STATS_PATTERN:String = "[APPENGINE STATS] [0xFFEE00:{/x={MEAN}ms, ok={OK}/{COUNT}} {NAME}]";
+    /*private*/
+    static const MEAN:String = "{MEAN}";
+    /*private*/
+    static const COUNT:String = "{COUNT}";
+    /*private*/
+    static const OK:String = "{OK}";
+    /*private*/
+    static const NAME:String = "{NAME}";
+    /*private*/
+    var count:int;
+    /*private*/
+    var time:int;
+    /*private*/
+    var mean:int;
+    /*private*/
+    var ok:int;
 
     public function StatsWatch(_arg1:String)
     {
@@ -54,11 +57,13 @@ class StatsWatch extends Watch
         data = this.report();
     }
 
-    /*private*/ function report():String
+    /*private*/
+    function report():String
     {
-        return (STATS_PATTERN.replace(MEAN, this.mean).replace(COUNT, this.count).replace(OK, this.ok).replace(NAME, name));
+        return (STATS_PATTERN.replace(MEAN, this.mean).replace(COUNT, this.count).replace(OK, this.ok).replace(
+                NAME,
+                name
+        ));
     }
-
-
 }
 

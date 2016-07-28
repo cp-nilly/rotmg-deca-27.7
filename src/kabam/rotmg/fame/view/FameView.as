@@ -1,33 +1,35 @@
 ﻿package kabam.rotmg.fame.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import flash.display.DisplayObjectContainer;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.screens.ScoringBox;
-    import com.company.assembleegameclient.screens.ScoreTextLine;
-    import com.company.assembleegameclient.screens.TitleMenuOption;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.text.TextFieldAutoSize;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import com.gskinner.motion.GTween;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import flash.display.BitmapData;
-    import flash.filters.DropShadowFilter;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import com.company.rotmg.graphics.FameIconBackgroundDesign;
-    import flash.geom.Rectangle;
+    import com.company.assembleegameclient.screens.ScoreTextLine;
+    import com.company.assembleegameclient.screens.ScoringBox;
+    import com.company.assembleegameclient.screens.TitleMenuOption;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
     import com.company.assembleegameclient.util.FameUtil;
-    import com.company.util.BitmapUtil;
+    import com.company.rotmg.graphics.FameIconBackgroundDesign;
     import com.company.rotmg.graphics.ScreenGraphic;
+    import com.company.util.BitmapUtil;
+    import com.gskinner.motion.GTween;
 
-    public class FameView extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Rectangle;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.components.ScreenBase;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class FameView extends Sprite
     {
-
         public var closed:Signal;
         private var infoContainer:DisplayObjectContainer;
         private var overlayContainer:Bitmap;
@@ -59,7 +61,7 @@
         public function setBackground(_arg1:BitmapData):void
         {
             this.overlayContainer.bitmapData = _arg1;
-            var _local2:GTween = new GTween(this.overlayContainer, 2, {"alpha":0});
+            var _local2:GTween = new GTween(this.overlayContainer, 2, {"alpha": 0});
             _local2.onComplete = this.onFadeComplete;
             SoundEffectLibrary.play("death_screen");
         }
@@ -76,7 +78,7 @@
             if (this.isDataPopulated)
             {
                 this.makeContinueButton();
-            };
+            }
         }
 
         public function setCharacterInfo(_arg1:String, _arg2:int, _arg3:int):void
@@ -85,11 +87,13 @@
             this.title.setBold(true).setAutoSize(TextFieldAutoSize.CENTER);
             this.title.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
             var _local4:String = ObjectLibrary.typeToDisplayId_[_arg3];
-            this.title.setStringBuilder(new LineBuilder().setParams(TextKey.CHARACTER_INFO, {
-                "name":_arg1,
-                "level":_arg2,
-                "type":_local4
-            }));
+            this.title.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.CHARACTER_INFO, {
+                                "name": _arg1, "level": _arg2, "type": _local4
+                            }
+                    )
+            );
             this.title.x = (stage.stageWidth / 2);
             this.title.y = 225;
             this.infoContainer.addChild(this.title);
@@ -103,15 +107,16 @@
             var _local3:LineBuilder = new LineBuilder();
             if (_arg2)
             {
-                _local3.setParams(TextKey.DEATH_INFO_LONG, {
-                    "date":_arg1,
-                    "killer":_arg2
-                });
+                _local3.setParams(
+                        TextKey.DEATH_INFO_LONG, {
+                            "date": _arg1, "killer": _arg2
+                        }
+                );
             }
             else
             {
-                _local3.setParams(TextKey.DEATH_INFO_SHORT, {"date":this.date});
-            };
+                _local3.setParams(TextKey.DEATH_INFO_SHORT, {"date": this.date});
+            }
             this.date.setStringBuilder(_local3);
             this.date.x = (stage.stageWidth / 2);
             this.date.y = 272;
@@ -144,7 +149,18 @@
             this.infoContainer.addChild(this.scoringBox);
             var _local3:BitmapData = FameUtil.getFameIcon();
             _local3 = BitmapUtil.cropToBitmapData(_local3, 6, 6, (_local3.width - 12), (_local3.height - 12));
-            this.finalLine = new ScoreTextLine(24, 0xCCCCCC, 0xFFC800, TextKey.FAMEVIEW_TOTAL_FAME_EARNED, null, 0, _arg1, "", "", new Bitmap(_local3));
+            this.finalLine = new ScoreTextLine(
+                    24,
+                    0xCCCCCC,
+                    0xFFC800,
+                    TextKey.FAMEVIEW_TOTAL_FAME_EARNED,
+                    null,
+                    0,
+                    _arg1,
+                    "",
+                    "",
+                    new Bitmap(_local3)
+            );
             this.finalLine.x = 10;
             this.finalLine.y = 470;
             this.infoContainer.addChild(this.finalLine);
@@ -152,7 +168,7 @@
             if (((!(this.isAnimation)) || (this.isFadeComplete)))
             {
                 this.makeContinueButton();
-            };
+            }
         }
 
         private function makeContinueButton():void
@@ -168,10 +184,8 @@
             else
             {
                 this.scoringBox.showScore();
-            };
+            }
         }
-
-
     }
 }
 

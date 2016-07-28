@@ -1,23 +1,25 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import com.company.assembleegameclient.screens.NewCharacterScreen;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.core.signals.SetScreenSignal;
-    import kabam.rotmg.game.signals.PlayGameSignal;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
-    import kabam.rotmg.core.signals.UpdateNewCharacterScreenSignal;
-    import kabam.rotmg.core.signals.BuyCharacterPendingSignal;
-    import kabam.rotmg.core.signals.PurchaseCharacterSignal;
-    import kabam.rotmg.classes.model.ClassesModel;
     import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
-    import kabam.rotmg.classes.view.CharacterSkinView;
+    import com.company.assembleegameclient.screens.NewCharacterScreen;
+
     import flash.display.Sprite;
 
-    public class NewCharacterMediator extends Mediator 
-    {
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.classes.view.CharacterSkinView;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.signals.BuyCharacterPendingSignal;
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.PurchaseCharacterSignal;
+    import kabam.rotmg.core.signals.SetScreenSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.core.signals.UpdateNewCharacterScreenSignal;
+    import kabam.rotmg.game.signals.PlayGameSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class NewCharacterMediator extends Mediator
+    {
         [Inject]
         public var view:NewCharacterScreen;
         [Inject]
@@ -38,7 +40,6 @@
         public var purchaseCharacter:PurchaseCharacterSignal;
         [Inject]
         public var classesModel:ClassesModel;
-
 
         override public function initialize():void
         {
@@ -86,7 +87,7 @@
             else
             {
                 this.hideTooltips.dispatch();
-            };
+            }
         }
 
         private function onUpdate():void
@@ -98,8 +99,6 @@
         {
             this.purchaseCharacter.dispatch(_arg1);
         }
-
-
     }
 }
 

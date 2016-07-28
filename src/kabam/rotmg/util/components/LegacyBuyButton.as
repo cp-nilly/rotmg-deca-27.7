@@ -1,33 +1,32 @@
 ﻿package kabam.rotmg.util.components
 {
-    import kabam.rotmg.util.components.api.BuyButton;
-    import flash.display.BitmapData;
-    import kabam.rotmg.assets.services.IconFactory;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.util.Currency;
-    import flash.display.GraphicsStroke;
-    import flash.display.LineScaleMode;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.CapsStyle;
-    import flash.display.JointStyle;
     import flash.display.Graphics;
-    import __AS3__.vec.*;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.GraphicsStroke;
+    import flash.display.IGraphicsData;
+    import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
 
-    public class LegacyBuyButton extends BuyButton 
+    import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.components.api.BuyButton;
+
+    public class LegacyBuyButton extends BuyButton
     {
-
         private static const BEVEL:int = 4;
         private static const PADDING:int = 2;
         public static const coin:BitmapData = IconFactory.makeCoin();
@@ -35,13 +34,13 @@
         public static const fame:BitmapData = IconFactory.makeFame();
         public static const guildFame:BitmapData = IconFactory.makeGuildFame();
         private static const grayfilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
         private const enabledFill:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         private const disabledFill:GraphicsSolidFill = new GraphicsSolidFill(0x7F7F7F, 1);
         private const graphicsPath:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[enabledFill, graphicsPath, GraphicsUtil.END_FILL];
+        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[
+            enabledFill, graphicsPath, GraphicsUtil.END_FILL
+        ];
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var prefix:String;
         public var text:TextFieldDisplayConcrete;
         private var staticStringBuilder:StaticStringBuilder;
@@ -56,7 +55,7 @@
         private var fixedHeight:int = -1;
         private var textVertMargin:int = 4;
 
-        public function LegacyBuyButton(_arg1:String, _arg2:int, _arg3:int, _arg4:int, _arg5:Boolean=false)
+        public function LegacyBuyButton(_arg1:String, _arg2:int, _arg3:int, _arg4:int, _arg5:Boolean = false)
         {
             this.staticStringBuilder = new StaticStringBuilder("");
             this.lineBuilder = new LineBuilder();
@@ -64,7 +63,9 @@
             this.prefix = _arg1;
             this.text = new TextFieldDisplayConcrete().setSize(_arg2).setColor(0x363636).setBold(true);
             this.waiter.push(this.text.textChanged);
-            var _local6:StringBuilder = (((_arg1)!="") ? this.lineBuilder.setParams(_arg1, {"cost":_arg3.toString()}) : this.staticStringBuilder.setString(_arg3.toString()));
+            var _local6:StringBuilder = (((_arg1) != "")
+                    ? this.lineBuilder.setParams(_arg1, {"cost": _arg3.toString()})
+                    : this.staticStringBuilder.setString(_arg3.toString()));
             this.text.setStringBuilder(_local6);
             this.waiter.complete.add(this.updateUI);
             this.waiter.complete.addOnce(this.readyForPlacementDispatch);
@@ -84,10 +85,12 @@
             {
                 this.price = _arg1;
                 this.currency = _arg2;
-                _local3 = (((this.prefix)!="") ? this.lineBuilder.setParams(this.prefix, {"cost":_arg1.toString()}) : this.staticStringBuilder.setString(_arg1.toString()));
+                _local3 = (((this.prefix) != "")
+                        ? this.lineBuilder.setParams(this.prefix, {"cost": _arg1.toString()})
+                        : this.staticStringBuilder.setString(_arg1.toString()));
                 this.text.setStringBuilder(_local3);
                 this.updateUI();
-            };
+            }
         }
 
         public function setStringBuilder(_arg1:StringBuilder)
@@ -114,7 +117,7 @@
                 mouseEnabled = _arg1;
                 filters = ((_arg1) ? [] : [grayfilter]);
                 this.draw();
-            };
+            }
         }
 
         override public function setWidth(_arg1:int):void
@@ -155,14 +158,18 @@
                     break;
                 default:
                     this.icon.bitmapData = null;
-            };
+            }
             this.updateIconPosition();
         }
 
         private function updateBackground():void
         {
             GraphicsUtil.clearPath(this.graphicsPath);
-            GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), BEVEL, [1, 1, 1, 1], this.graphicsPath);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this.getWidth(), this.getHeight(), BEVEL, [
+                        1, 1, 1, 1
+                    ], this.graphicsPath
+            );
         }
 
         private function updateText():void
@@ -197,17 +204,19 @@
             if (this.withOutLine)
             {
                 this.drawOutline(graphics);
-            };
+            }
         }
 
         private function getWidth():int
         {
-            return ((((this.fixedWidth)!=-1) ? this.fixedWidth : Math.max(this._width, ((this.text.width + this.icon.width) + (3 * PADDING)))));
+            return ((((this.fixedWidth) != -1) ? this.fixedWidth : Math.max(
+                    this._width, ((this.text.width + this.icon.width) + (3 * PADDING))
+            )));
         }
 
         private function getHeight():int
         {
-            return ((((this.fixedHeight)!=-1) ? this.fixedHeight : (this.text.height + (this.textVertMargin * 2))));
+            return ((((this.fixedHeight) != -1) ? this.fixedHeight : (this.text.height + (this.textVertMargin * 2))));
         }
 
         public function freezeSize():void
@@ -243,14 +252,16 @@
         {
             var _local2:GraphicsSolidFill = new GraphicsSolidFill(0, 0.01);
             var _local3:GraphicsSolidFill = new GraphicsSolidFill(this.outLineColor, 0.6);
-            var _local4:GraphicsStroke = new GraphicsStroke(4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local3);
+            var _local4:GraphicsStroke = new GraphicsStroke(
+                    4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local3
+            );
             var _local5:GraphicsPath = new GraphicsPath();
             GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), 4, GraphicsUtil.ALL_CUTS, _local5);
-            var _local6:Vector.<IGraphicsData> = new <IGraphicsData>[_local4, _local2, _local5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+            var _local6:Vector.<IGraphicsData> = new <IGraphicsData>[
+                _local4, _local2, _local5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+            ];
             _arg1.drawGraphicsData(_local6);
         }
-
-
     }
 }
 

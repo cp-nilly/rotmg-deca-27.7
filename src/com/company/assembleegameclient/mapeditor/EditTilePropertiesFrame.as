@@ -2,12 +2,12 @@
 {
     import com.company.assembleegameclient.account.ui.Frame;
     import com.company.assembleegameclient.account.ui.TextInputField;
-    import flash.events.MouseEvent;
+
     import flash.events.Event;
+    import flash.events.MouseEvent;
 
-    public class EditTilePropertiesFrame extends Frame 
+    public class EditTilePropertiesFrame extends Frame
     {
-
         public var objectName_:TextInputField;
 
         public function EditTilePropertiesFrame(_arg1:String)
@@ -17,7 +17,7 @@
             if (_arg1 != null)
             {
                 this.objectName_.inputText_.text = _arg1;
-            };
+            }
             addTextInputField(this.objectName_);
             leftButton_.addEventListener(MouseEvent.CLICK, this.onCancel);
             rightButton_.addEventListener(MouseEvent.CLICK, this.onDone);
@@ -32,8 +32,6 @@
         {
             dispatchEvent(new Event(Event.COMPLETE));
         }
-
-
     }
 }
 

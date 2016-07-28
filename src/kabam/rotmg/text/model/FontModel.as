@@ -1,15 +1,13 @@
 ﻿package kabam.rotmg.text.model
 {
     import flash.text.Font;
-    import flash.text.TextFormat;
     import flash.text.TextField;
+    import flash.text.TextFormat;
 
-    public class FontModel 
+    public class FontModel
     {
-
         public static const MyriadPro:Class = FontModel_MyriadPro;
         public static const MyriadPro_Bold:Class = FontModel_MyriadPro_Bold;
-
         private var fontInfo:FontInfo;
 
         public function FontModel()
@@ -26,7 +24,7 @@
             return (this.fontInfo);
         }
 
-        public function apply(_arg1:TextField, _arg2:int, _arg3:uint, _arg4:Boolean, _arg5:Boolean=false):TextFormat
+        public function apply(_arg1:TextField, _arg2:int, _arg3:uint, _arg4:Boolean, _arg5:Boolean = false):TextFormat
         {
             var _local6:TextFormat = _arg1.defaultTextFormat;
             _local6.size = _arg2;
@@ -36,7 +34,7 @@
             if (_arg5)
             {
                 _local6.align = "center";
-            };
+            }
             _arg1.defaultTextFormat = _local6;
             _arg1.setTextFormat(_local6);
             return (_local6);
@@ -51,8 +49,6 @@
             _local5.bold = _arg4;
             return (_local5);
         }
-
-
     }
 }
 

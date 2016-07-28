@@ -3,11 +3,9 @@
     import kabam.rotmg.text.view.stringBuilder.PatternBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
 
-    public class PortalNameParser 
+    public class PortalNameParser
     {
-
         public static const NAME_PARSER:RegExp = /(.+)\s\((.+)\)/;
-
 
         public function parse(_arg1:String):String
         {
@@ -15,7 +13,7 @@
             if (_local2 == null)
             {
                 return (this.wrapNameWithBracesIfRequired(_arg1));
-            };
+            }
             return (this.makePatternFromParts(_local2));
         }
 
@@ -24,7 +22,7 @@
             if ((((_arg1.charAt(0) == "{")) && ((_arg1.charAt((_arg1.length - 1)) == "}"))))
             {
                 return (_arg1);
-            };
+            }
             return ((("{" + _arg1) + "}"));
         }
 
@@ -34,7 +32,7 @@
             if (_arg1.length > 1)
             {
                 _local2 = (_local2 + ((" (" + _arg1[2]) + ")"));
-            };
+            }
             return (_local2);
         }
 
@@ -42,8 +40,6 @@
         {
             return (new PatternBuilder().setPattern(this.parse(_arg1)));
         }
-
-
     }
 }
 

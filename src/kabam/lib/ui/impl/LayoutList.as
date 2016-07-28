@@ -1,28 +1,25 @@
 ﻿package kabam.lib.ui.impl
 {
-    import flash.display.Sprite;
-    import kabam.lib.ui.api.List;
-    import kabam.lib.ui.api.Layout;
-    import kabam.lib.ui.api.Size;
-    import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
-    import flash.display.Shape;
-    import flash.geom.Rectangle;
     import flash.display.Graphics;
-    import __AS3__.vec.*;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.geom.Rectangle;
 
-    public class LayoutList extends Sprite implements List 
+    import kabam.lib.ui.api.Layout;
+    import kabam.lib.ui.api.List;
+    import kabam.lib.ui.api.Size;
+
+    import org.osflash.signals.Signal;
+
+    public class LayoutList extends Sprite implements List
     {
-
         private static const NULL_LAYOUT:Layout = new NullLayout();
         private static const ZERO_SIZE:Size = new Size(0, 0);
-
         public const itemsChanged:Signal = new Signal();
         private const list:Vector.<DisplayObject> = new <DisplayObject>[];
         private const container:Sprite = new Sprite();
         private const containerMask:Shape = new Shape();
-
         private var layout:Layout;
         private var size:Size;
         private var offset:int = 0;
@@ -106,7 +103,7 @@
             while (_local1--)
             {
                 this.container.removeChild(this.list[_local1]);
-            };
+            }
             this.list.length = 0;
         }
 
@@ -116,7 +113,7 @@
             for each (_local2 in _arg1)
             {
                 this.addToListAndContainer(_local2);
-            };
+            }
         }
 
         private function addToListAndContainer(_arg1:DisplayObject):void
@@ -140,8 +137,6 @@
         {
             this.layout.layout(this.list, -(this.offset));
         }
-
-
     }
 }
 

@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
     import com.company.assembleegameclient.ui.dialogs.Dialog;
+
     import flash.text.TextFormatAlign;
+
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
 
-    public class PetDialogStyler 
+    public class PetDialogStyler
     {
-
         private static const lineToTextSpace:int = 14;
-
         private var dialog:Dialog;
 
         public function PetDialogStyler(_arg1:Dialog):void
@@ -44,8 +44,6 @@
             var _local1:TextFieldDisplayConcrete = this.dialog.titleText_;
             this.dialog.textText_.y = ((_local1.getBounds(this.dialog.rect_).bottom + this.dialog.titleYPosition) + lineToTextSpace);
         }
-
-
     }
 }
 

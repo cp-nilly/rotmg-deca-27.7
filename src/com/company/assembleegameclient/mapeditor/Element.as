@@ -1,18 +1,16 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
 
-    public class Element extends Sprite 
+    public class Element extends Sprite
     {
-
         public static const WIDTH:int = 50;
         public static const HEIGHT:int = 50;
-
         protected static var toolTip_:ToolTip = null;
-
         public var type_:int;
         protected var selected_:Boolean = false;
         protected var mouseOver_:Boolean = false;
@@ -63,7 +61,7 @@
             if (toolTip_ != null)
             {
                 stage.addChild(toolTip_);
-            };
+            }
         }
 
         protected function removeTooltip():void
@@ -73,9 +71,9 @@
                 if (toolTip_.parent != null)
                 {
                     toolTip_.parent.removeChild(toolTip_);
-                };
+                }
                 toolTip_ = null;
-            };
+            }
         }
 
         protected function getToolTip():ToolTip
@@ -91,17 +89,15 @@
             {
                 graphics.lineStyle(1, 0xFFFFFF);
                 _local1 = 0x7F7F7F;
-            };
+            }
             graphics.beginFill(((this.mouseOver_) ? 0x565656 : 0x363636), 1);
             graphics.drawRect(2, 2, (WIDTH - 4), (HEIGHT - 4));
             if (this.selected_)
             {
                 graphics.lineStyle();
-            };
+            }
             graphics.endFill();
         }
-
-
     }
 }
 

@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class NewsButtonRefreshSignal extends Signal 
+    public class NewsButtonRefreshSignal extends Signal
     {
-
-
     }
 }
 

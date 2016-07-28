@@ -1,8 +1,7 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    public class SparkParticle extends Particle 
+    public class SparkParticle extends Particle
     {
-
         public var lifetime_:int;
         public var timeLeft_:int;
         public var initialSize_:int;
@@ -24,14 +23,12 @@
             if (this.timeLeft_ <= 0)
             {
                 return (false);
-            };
+            }
             x_ = (x_ + ((this.dx_ * _arg2) / 1000));
             y_ = (y_ + ((this.dy_ * _arg2) / 1000));
             setSize(((this.timeLeft_ / this.lifetime_) * this.initialSize_));
             return (true);
         }
-
-
     }
 }
 

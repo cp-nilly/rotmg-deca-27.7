@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class AllyShoot extends IncomingMessage 
+    public class AllyShoot extends IncomingMessage
     {
-
         public var bulletId_:uint;
         public var ownerId_:int;
         public var containerType_:int;
@@ -27,8 +26,6 @@
         {
             return (formatToString("ALLYSHOOT", "bulletId_", "ownerId_", "containerType_", "angle_"));
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class EvolvedPetMessage extends IncomingMessage 
+    public class EvolvedPetMessage extends IncomingMessage
     {
-
         public var petID:int;
         public var initialSkin:int;
         public var finalSkin:int;
@@ -20,8 +19,6 @@
             this.initialSkin = _arg1.readInt();
             this.finalSkin = _arg1.readInt();
         }
-
-
     }
 }
 

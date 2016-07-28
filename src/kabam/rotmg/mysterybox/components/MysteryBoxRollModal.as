@@ -1,57 +1,55 @@
 ﻿package kabam.rotmg.mysterybox.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
-    import __AS3__.vec.Vector;
-    import flash.display.Bitmap;
-    import kabam.rotmg.fortune.components.ItemWithTooltip;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
     import com.company.assembleegameclient.map.ParticleModalMap;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.utils.Timer;
-    import flash.display.DisplayObject;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.assets.EmbeddedAssets;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
-    import kabam.rotmg.util.components.UIAssetsHelper;
-    import flash.filters.GlowFilter;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.text.TextFieldAutoSize;
-    import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.pets.view.dialogs.evolving.Spinner;
-    import flash.events.TimerEvent;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
-    import kabam.rotmg.mysterybox.services.GetMysteryBoxesTask;
-    import kabam.rotmg.game.model.GameModel;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
     import com.company.assembleegameclient.ui.dialogs.NotEnoughFameDialog;
+    import com.company.assembleegameclient.util.Currency;
     import com.gskinner.motion.GTween;
     import com.gskinner.motion.easing.Sine;
-    import __AS3__.vec.*;
 
-    public class MysteryBoxRollModal extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.filters.GlowFilter;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormatAlign;
+    import flash.utils.Timer;
+
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.assets.EmbeddedAssets;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.fortune.components.ItemWithTooltip;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
+    import kabam.rotmg.mysterybox.services.GetMysteryBoxesTask;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.pets.view.dialogs.evolving.Spinner;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+    import kabam.rotmg.util.components.UIAssetsHelper;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class MysteryBoxRollModal extends Sprite
     {
-
         public static const WIDTH:int = 415;
         public static const HEIGHT:int = 400;
         public static const TEXT_MARGIN:int = 20;
-
         public static var open:Boolean;
-
         private const ROLL_STATE:int = 1;
         private const IDLE_STATE:int = 0;
         private const iconSize:Number = 160;
@@ -59,7 +57,6 @@
         private const playAgainXTimesString:String = "MysteryBoxRollModal.playAgainXTimesString";
         private const youWonString:String = "MysteryBoxRollModal.youWonString";
         private const rewardsInVaultString:String = "MysteryBoxRollModal.rewardsInVaultString";
-
         public var client:AppEngineClient;
         public var account:Account;
         public var parentSelectModal:MysteryBoxSelectModal;
@@ -140,7 +137,7 @@
             {
                 this.indexInRolls.push(0);
                 _local4++;
-            };
+            }
             this.centerModal();
             this.configureRollByQuantity(_arg2);
             this.sendRollRequest();
@@ -152,7 +149,6 @@
             _local3.draw(_arg1, _arg2, PopupWindowBackground.TYPE_TRANSPARENT_WITH_HEADER);
             return (_local3);
         }
-
 
         private function configureRollByQuantity(_arg1:*)
         {
@@ -184,7 +180,7 @@
                     this.rollTarget = 1;
                     this.swapImageTimer.delay = 50;
                     this.totalRollTimer.delay = 2000;
-            };
+            }
             if (this.mbi.isOnSale())
             {
                 _local2 = (this.mbi.saleAmount * this.quantity_);
@@ -194,7 +190,7 @@
             {
                 _local2 = (this.mbi.priceAmount * this.quantity_);
                 _local3 = this.mbi.priceCurrency;
-            };
+            }
             if (this.quantity_ == 1)
             {
                 this.boxButton.setPrice(_local2, this.mbi.priceCurrency);
@@ -203,14 +199,17 @@
             {
                 this.boxButton.currency = _local3;
                 this.boxButton.price = _local2;
-                this.boxButton.setStringBuilder(new LineBuilder().setParams(this.playAgainXTimesString, {
-                    "cost":_local2.toString(),
-                    "repeat":this.quantity_.toString()
-                }));
-            };
+                this.boxButton.setStringBuilder(
+                        new LineBuilder().setParams(
+                                this.playAgainXTimesString, {
+                                    "cost": _local2.toString(), "repeat": this.quantity_.toString()
+                                }
+                        )
+                );
+            }
         }
 
-        public function getText(_arg1:String, _arg2:int, _arg3:int, _arg4:Boolean=false):TextFieldDisplayConcrete
+        public function getText(_arg1:String, _arg2:int, _arg3:int, _arg4:Boolean = false):TextFieldDisplayConcrete
         {
             var _local5:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((WIDTH - (TEXT_MARGIN * 2)));
             _local5.setBold(true);
@@ -221,7 +220,7 @@
             else
             {
                 _local5.setStringBuilder(new LineBuilder().setParams(_arg1));
-            };
+            }
             _local5.setWordWrap(true);
             _local5.setMultiLine(true);
             _local5.setAutoSize(TextFieldAutoSize.CENTER);
@@ -268,7 +267,7 @@
             if (!this.moneyCheckPass())
             {
                 return;
-            };
+            }
             this.state = this.ROLL_STATE;
             this.closeButton.visible = false;
             var _local1:Object = this.account.getCredentials();
@@ -284,7 +283,7 @@
                 _local1.quantity = this.mbi._quantity;
                 _local1.price = this.mbi._priceAmount;
                 _local1.currency = this.mbi._priceCurrency;
-            };
+            }
             this.client.sendRequest("/account/purchaseMysteryBox", _local1);
             this.titleText = this.getText(this.mbi._title, TEXT_MARGIN, 6, true).setSize(18);
             this.titleText.setColor(0xFFDE00);
@@ -305,10 +304,14 @@
             var _local1:int;
             while (_local1 < this.mbi._rollsWithContents.length)
             {
-                _local2 = new Bitmap(ObjectLibrary.getRedrawnTextureFromType(this.mbi._rollsWithContentsUnique[this.indexInRolls[_local1]], this.iconSize, true));
+                _local2 = new Bitmap(
+                        ObjectLibrary.getRedrawnTextureFromType(
+                                this.mbi._rollsWithContentsUnique[this.indexInRolls[_local1]], this.iconSize, true
+                        )
+                );
                 this.itemBitmaps.push(_local2);
                 _local1++;
-            };
+            }
             this.displayItems(this.itemBitmaps);
             this.swapImageTimer.addEventListener(TimerEvent.TIMER, this.swapItemImage);
             this.swapImageTimer.start();
@@ -321,7 +324,7 @@
             if (this.requestComplete)
             {
                 this.showReward(this.lastReward);
-            };
+            }
             this.totalRollTimer.removeEventListener(TimerEvent.TIMER, this.onTotalRollTimeComplete);
         }
 
@@ -351,10 +354,14 @@
                 else
                 {
                     this.indexInRolls[_local2] = 0;
-                };
-                this.itemBitmaps[_local2].bitmapData = new Bitmap(ObjectLibrary.getRedrawnTextureFromType(this.mbi._rollsWithContentsUnique[this.indexInRolls[_local2]], this.iconSize, true)).bitmapData;
+                }
+                this.itemBitmaps[_local2].bitmapData = new Bitmap(
+                        ObjectLibrary.getRedrawnTextureFromType(
+                                this.mbi._rollsWithContentsUnique[this.indexInRolls[_local2]], this.iconSize, true
+                        )
+                ).bitmapData;
                 _local2++;
-            };
+            }
             this.swapImageTimer.start();
         }
 
@@ -381,11 +388,11 @@
                     _arg1[2].x = (_arg1[2].x + ((WIDTH / 2) + 60));
                     _arg1[2].y = (_arg1[2].y + (HEIGHT / 3));
                     break;
-            };
+            }
             for each (_local2 in _arg1)
             {
                 addChild(_local2);
-            };
+            }
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -405,7 +412,7 @@
                 if (this.timerComplete)
                 {
                     this.showReward(_local3.Awards);
-                };
+                }
                 _local4 = StaticInjectorContext.getInjector().getInstance(GameModel).player;
                 if (_local4 != null)
                 {
@@ -418,8 +425,8 @@
                         if (_local3.hasOwnProperty("Fame"))
                         {
                             _local4.fame_ = _local3.Fame;
-                        };
-                    };
+                        }
+                    }
                 }
                 else
                 {
@@ -435,15 +442,21 @@
                             if (_local3.hasOwnProperty("Fame"))
                             {
                                 _local5.setFame(int(_local3.Fame));
-                            };
-                        };
-                    };
-                };
+                            }
+                        }
+                    }
+                }
             }
             else
             {
                 _local6 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
-                _local7 = new Dialog("MysteryBoxRollModal.purchaseFailedString", "MysteryBoxRollModal.pleaseTryAgainString", "MysteryBoxRollModal.okString", null, null);
+                _local7 = new Dialog(
+                        "MysteryBoxRollModal.purchaseFailedString",
+                        "MysteryBoxRollModal.pleaseTryAgainString",
+                        "MysteryBoxRollModal.okString",
+                        null,
+                        null
+                );
                 _local7.addEventListener(Dialog.LEFT_BUTTON, this.onErrorOk);
                 _local6.dispatch(_local7);
                 _local8 = StaticInjectorContext.getInjector();
@@ -451,7 +464,7 @@
                 _local9.clearLastRanBlock();
                 _local9.start();
                 this.close(true);
-            };
+            }
         }
 
         private function onErrorOk(_arg1:Event):void
@@ -476,7 +489,7 @@
             {
                 _local1 = int(this.mbi.priceCurrency);
                 _local2 = (int(this.mbi.priceAmount) * this.quantity_);
-            };
+            }
             var _local3:Boolean = true;
             var _local4:int;
             var _local5:int;
@@ -493,8 +506,8 @@
                 {
                     _local5 = _local8.getCredits();
                     _local4 = _local8.getFame();
-                };
-            };
+                }
+            }
             if ((((_local1 == Currency.GOLD)) && ((_local5 < _local2))))
             {
                 _local7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
@@ -508,8 +521,8 @@
                     _local7 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                     _local7.dispatch(new NotEnoughFameDialog());
                     _local3 = false;
-                };
-            };
+                }
+            }
             return (_local3);
         }
 
@@ -518,13 +531,13 @@
             this.close();
         }
 
-        private function close(_arg1:Boolean=false):void
+        private function close(_arg1:Boolean = false):void
         {
             var _local2:OpenDialogSignal;
             if (this.state == this.ROLL_STATE)
             {
                 return;
-            };
+            }
             if (!_arg1)
             {
                 _local2 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
@@ -535,8 +548,8 @@
                 else
                 {
                     _local2.dispatch(new MysteryBoxSelectModal());
-                };
-            };
+                }
+            }
             open = false;
         }
 
@@ -557,7 +570,7 @@
             {
                 this.nextRollTimer.addEventListener(TimerEvent.TIMER, this.onNextRollTimerComplete);
                 this.nextRollTimer.start();
-            };
+            }
             this.closeButton.visible = true;
             var _local2:Array = _arg1.split(",");
             removeChild(this.infoText);
@@ -566,51 +579,57 @@
             var _local3:int = 40;
             for each (_local4 in _local2)
             {
-                _local6 = this.getText(ObjectLibrary.typeToDisplayId_[_local4], TEXT_MARGIN, _local3).setSize(16).setColor(0);
+                _local6 = this.getText(
+                        ObjectLibrary.typeToDisplayId_[_local4], TEXT_MARGIN, _local3
+                ).setSize(16).setColor(0);
                 _local6.filters = [];
                 _local6.setSize(18);
                 _local6.x = 20;
                 addChild(_local6);
                 this.descTexts.push(_local6);
                 _local3 = (_local3 + 25);
-            };
+            }
             _local5 = 0;
             while (_local5 < _local2.length)
             {
                 if (_local5 < this.itemBitmaps.length)
                 {
-                    this.itemBitmaps[_local5].bitmapData = new Bitmap(ObjectLibrary.getRedrawnTextureFromType(int(_local2[_local5]), this.iconSize, true)).bitmapData;
-                };
+                    this.itemBitmaps[_local5].bitmapData = new Bitmap(
+                            ObjectLibrary.getRedrawnTextureFromType(
+                                    int(_local2[_local5]), this.iconSize, true
+                            )
+                    ).bitmapData;
+                }
                 _local5++;
-            };
+            }
             _local5 = 0;
             while (_local5 < this.itemBitmaps.length)
             {
-                this.doEaseInAnimation(this.itemBitmaps[_local5], {
-                    "scaleX":1.25,
-                    "scaleY":1.25
-                }, {
-                    "scaleX":1,
-                    "scaleY":1
-                });
+                this.doEaseInAnimation(
+                        this.itemBitmaps[_local5], {
+                            "scaleX": 1.25, "scaleY": 1.25
+                        }, {
+                            "scaleX": 1, "scaleY": 1
+                        }
+                );
                 _local5++;
-            };
+            }
             this.boxButton.alpha = 0;
             addChild(this.boxButton);
             if (this.rollCount == this.rollTarget)
             {
-                this.doEaseInAnimation(this.boxButton, {"alpha":0}, {"alpha":1});
-                this.doEaseInAnimation(this.minusNavSprite, {"alpha":0}, {"alpha":1});
-                this.doEaseInAnimation(this.plusNavSprite, {"alpha":0}, {"alpha":1});
-            };
-            this.doEaseInAnimation(this.spinners, {"alpha":0}, {"alpha":1});
+                this.doEaseInAnimation(this.boxButton, {"alpha": 0}, {"alpha": 1});
+                this.doEaseInAnimation(this.minusNavSprite, {"alpha": 0}, {"alpha": 1});
+                this.doEaseInAnimation(this.plusNavSprite, {"alpha": 0}, {"alpha": 1});
+            }
+            this.doEaseInAnimation(this.spinners, {"alpha": 0}, {"alpha": 1});
             this.isShowReward = true;
         }
 
-        private function doEaseInAnimation(_arg1:DisplayObject, _arg2:Object=null, _arg3:Object=null):void
+        private function doEaseInAnimation(_arg1:DisplayObject, _arg2:Object = null, _arg3:Object = null):void
         {
-            var _local4:GTween = new GTween(_arg1, (0.5 * 1), _arg2, {"ease":Sine.easeOut});
-            _local4.nextTween = new GTween(_arg1, (0.5 * 1), _arg3, {"ease":Sine.easeIn});
+            var _local4:GTween = new GTween(_arg1, (0.5 * 1), _arg2, {"ease": Sine.easeOut});
+            _local4.nextTween = new GTween(_arg1, (0.5 * 1), _arg3, {"ease": Sine.easeIn});
             _local4.nextTween.paused = true;
         }
 
@@ -638,7 +657,7 @@
                 this.particleModalMap.doLightning(_local5, _local6, _local7, _local8, 115, 15787660, 0.2);
                 addChild(_local2);
                 this.rewardsArray.push(_local2);
-            };
+            }
         }
 
         private function clearReward():void
@@ -652,20 +671,20 @@
             for each (_local1 in this.descTexts)
             {
                 removeChild(_local1);
-            };
+            }
             while (this.descTexts.length > 0)
             {
                 this.descTexts.pop();
-            };
+            }
             removeChild(this.boxButton);
             for each (_local2 in this.itemBitmaps)
             {
                 removeChild(_local2);
-            };
+            }
             while (this.itemBitmaps.length > 0)
             {
                 this.itemBitmaps.pop();
-            };
+            }
         }
 
         private function clearShelveReward():void
@@ -674,11 +693,11 @@
             for each (_local1 in this.rewardsArray)
             {
                 removeChild(_local1);
-            };
+            }
             while (this.rewardsArray.length > 0)
             {
                 this.rewardsArray.pop();
-            };
+            }
         }
 
         private function centerModal():void
@@ -699,7 +718,7 @@
                     case 10:
                         this.configureRollByQuantity(5);
                         break;
-                };
+                }
             }
             else
             {
@@ -713,9 +732,9 @@
                         case 5:
                             this.configureRollByQuantity(10);
                             return;
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onRollClick(_arg1:MouseEvent):void
@@ -725,8 +744,6 @@
             this.clearShelveReward();
             this.sendRollRequest();
         }
-
-
     }
 }
 

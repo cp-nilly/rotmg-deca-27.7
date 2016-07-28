@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.ui.dialogs.Dialog;
 
-    public class PetDialog extends Dialog 
+    public class PetDialog extends Dialog
     {
-
         protected var petDialogStyler:PetDialogStyler;
 
         public function PetDialog(_arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:String)
@@ -23,8 +22,6 @@
         {
             this.petDialogStyler.drawGraphics();
         }
-
-
     }
 }
 

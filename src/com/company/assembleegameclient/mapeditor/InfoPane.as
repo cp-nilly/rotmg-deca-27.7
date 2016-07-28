@@ -1,40 +1,40 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
+    import com.company.assembleegameclient.map.GroundLibrary;
+    import com.company.assembleegameclient.map.RegionLibrary;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.ui.BaseSimpleText;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import flash.filters.DropShadowFilter;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.filters.DropShadowFilter;
     import flash.geom.Rectangle;
-    import com.company.assembleegameclient.map.GroundLibrary;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import com.company.assembleegameclient.map.RegionLibrary;
-    import __AS3__.vec.*;
 
-    public class InfoPane extends Sprite 
+    public class InfoPane extends Sprite
     {
-
         public static const WIDTH:int = 134;
         public static const HEIGHT:int = 120;
         private static const CSS_TEXT:String = ".in { margin-left:10px; text-indent: -10px; }";
-
         private var meMap_:MEMap;
         private var rectText_:BaseSimpleText;
         private var typeText_:BaseSimpleText;
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function InfoPane(_arg1:MEMap)
         {
@@ -73,14 +73,22 @@
             if ((((_local2.width > 1)) || ((_local2.height > 1))))
             {
                 this.rectText_.text = (this.rectText_.text + ((("\nRect: " + _local2.width) + ", ") + _local2.height));
-            };
+            }
             this.rectText_.useTextDimensions();
             var _local3:METile = this.meMap_.getTile(_local2.x, _local2.y);
             var _local4:Vector.<int> = (((_local3 == null)) ? Layer.EMPTY_TILE : _local3.types_);
-            var _local5:String = (((_local4[Layer.GROUND] == -1)) ? "None" : GroundLibrary.getIdFromType(_local4[Layer.GROUND]));
-            var _local6:String = (((_local4[Layer.OBJECT] == -1)) ? "None" : ObjectLibrary.getIdFromType(_local4[Layer.OBJECT]));
-            var _local7:String = (((_local4[Layer.REGION] == -1)) ? "None" : RegionLibrary.getIdFromType(_local4[Layer.REGION]));
-            this.typeText_.htmlText = (((((((("<span class='in'>" + "Ground: ") + _local5) + "\nObject: ") + _local6) + (((((_local3 == null)) || ((_local3.objName_ == null)))) ? "" : ((" (" + _local3.objName_) + ")"))) + "\nRegion: ") + _local7) + "</span>");
+            var _local5:String = (((_local4[Layer.GROUND] == -1))
+                    ? "None"
+                    : GroundLibrary.getIdFromType(_local4[Layer.GROUND]));
+            var _local6:String = (((_local4[Layer.OBJECT] == -1))
+                    ? "None"
+                    : ObjectLibrary.getIdFromType(_local4[Layer.OBJECT]));
+            var _local7:String = (((_local4[Layer.REGION] == -1))
+                    ? "None"
+                    : RegionLibrary.getIdFromType(_local4[Layer.REGION]));
+            this.typeText_.htmlText = (((((((("<span class='in'>" + "Ground: ") + _local5) + "\nObject: ") + _local6) + (((((_local3 == null)) || ((_local3.objName_ == null))))
+                    ? ""
+                    : ((" (" + _local3.objName_) + ")"))) + "\nRegion: ") + _local7) + "</span>");
             this.typeText_.useTextDimensions();
         }
 
@@ -90,8 +98,6 @@
             GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, [1, 1, 1, 1], this.path_);
             graphics.drawGraphicsData(this.graphicsData_);
         }
-
-
     }
 }
 

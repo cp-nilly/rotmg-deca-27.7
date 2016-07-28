@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
     import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import flash.display.Sprite;
+
+    import kabam.rotmg.pets.data.PetFamilyKeys;
+    import kabam.rotmg.pets.data.PetRarityEnum;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.ui.model.TabStripModel;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.pets.data.PetRarityEnum;
-    import kabam.rotmg.pets.data.PetFamilyKeys;
+    import kabam.rotmg.ui.model.TabStripModel;
 
-    public class PetsTabContentView extends Sprite 
+    public class PetsTabContentView extends Sprite
     {
-
         public var petBitmap:Bitmap;
         private var petsContent:Sprite;
         public var petRarityTextField:TextFieldDisplayConcrete;
@@ -67,7 +67,7 @@
                 _local3.y = (72 + (17 * _local1));
                 this.petsContent.addChild(_local3);
                 _local1++;
-            };
+            }
         }
 
         private function getNumAbilities():uint
@@ -76,7 +76,7 @@
             if (_local1)
             {
                 return (2);
-            };
+            }
             return (3);
         }
 
@@ -109,8 +109,6 @@
             this.petFamilyTextField.x = 45;
             this.petFamilyTextField.y = 47;
         }
-
-
     }
 }
 

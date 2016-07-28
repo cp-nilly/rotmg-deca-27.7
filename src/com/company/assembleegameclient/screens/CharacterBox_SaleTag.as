@@ -1,9 +1,9 @@
-package com.company.assembleegameclient.screens 
+package com.company.assembleegameclient.screens
 {
     import mx.core.*;
-    
+
     [Embed(source="CharacterBox_SaleTag.png")]
-    public class CharacterBox_SaleTag extends mx.core.BitmapAsset
+    public class CharacterBox_SaleTag extends BitmapAsset
     {
         public function CharacterBox_SaleTag()
         {

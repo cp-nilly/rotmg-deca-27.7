@@ -2,13 +2,12 @@
 {
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
     import com.company.ui.BaseSimpleText;
+
     import flash.filters.DropShadowFilter;
 
-    public class GroundTypeToolTip extends ToolTip 
+    public class GroundTypeToolTip extends ToolTip
     {
-
         private static const MAX_WIDTH:int = 180;
-
         private var titleText_:BaseSimpleText;
         private var descText_:BaseSimpleText;
 
@@ -32,31 +31,31 @@
             else
             {
                 _local2 = (_local2 + "Speed: 1.00\n");
-            };
+            }
             if (_arg1.hasOwnProperty("NoWalk"))
             {
                 _local2 = (_local2 + "Unwalkable\n");
-            };
+            }
             if (_arg1.hasOwnProperty("Push"))
             {
                 _local2 = (_local2 + "Push\n");
-            };
+            }
             if (_arg1.hasOwnProperty("Sink"))
             {
                 _local2 = (_local2 + "Sink\n");
-            };
+            }
             if (_arg1.hasOwnProperty("Sinking"))
             {
                 _local2 = (_local2 + "Sinking\n");
-            };
+            }
             if (_arg1.hasOwnProperty("Animate"))
             {
                 _local2 = (_local2 + "Animated\n");
-            };
+            }
             if (_arg1.hasOwnProperty("RandomOffset"))
             {
                 _local2 = (_local2 + "Randomized\n");
-            };
+            }
             this.descText_ = new BaseSimpleText(14, 0xB3B3B3, false, MAX_WIDTH, 0);
             this.descText_.wordWrap = true;
             this.descText_.text = String(_local2);
@@ -66,7 +65,6 @@
             this.descText_.y = (this.titleText_.height + 2);
             addChild(this.descText_);
         }
-
     }
 }
 

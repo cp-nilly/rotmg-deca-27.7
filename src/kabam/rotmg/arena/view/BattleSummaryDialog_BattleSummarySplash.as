@@ -1,9 +1,9 @@
-package kabam.rotmg.arena.view 
+package kabam.rotmg.arena.view
 {
     import mx.core.*;
-    
+
     [Embed(source="BattleSummaryDialog_BattleSummarySplash.jpg")]
-    public class BattleSummaryDialog_BattleSummarySplash extends mx.core.BitmapAsset
+    public class BattleSummaryDialog_BattleSummarySplash extends BitmapAsset
     {
         public function BattleSummaryDialog_BattleSummarySplash()
         {

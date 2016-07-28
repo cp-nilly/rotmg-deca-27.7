@@ -3,9 +3,8 @@
     import flash.utils.ByteArray;
     import flash.utils.IDataInput;
 
-    public class Reconnect extends IncomingMessage 
+    public class Reconnect extends IncomingMessage
     {
-
         public var name_:String;
         public var host_:String;
         public var port_:int;
@@ -35,10 +34,10 @@
 
         override public function toString():String
         {
-            return (formatToString("RECONNECT", "name_", "host_", "port_", "gameId_", "keyTime_", "key_", "isFromArena_"));
+            return (formatToString(
+                    "RECONNECT", "name_", "host_", "port_", "gameId_", "keyTime_", "key_", "isFromArena_"
+            ));
         }
-
-
     }
 }
 

@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.legends.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.legends.model.LegendsModel;
+    import kabam.rotmg.core.signals.TrackPageViewSignal;
     import kabam.rotmg.death.model.DeathModel;
     import kabam.rotmg.fame.control.ShowFameViewSignal;
-    import kabam.rotmg.legends.control.RequestFameListSignal;
-    import kabam.rotmg.legends.control.FameListUpdateSignal;
     import kabam.rotmg.legends.control.ExitLegendsSignal;
-    import kabam.rotmg.core.signals.TrackPageViewSignal;
-    import kabam.rotmg.legends.model.Timespan;
+    import kabam.rotmg.legends.control.FameListUpdateSignal;
+    import kabam.rotmg.legends.control.RequestFameListSignal;
     import kabam.rotmg.legends.model.Legend;
+    import kabam.rotmg.legends.model.LegendsModel;
+    import kabam.rotmg.legends.model.Timespan;
 
-    public class LegendsMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class LegendsMediator extends Mediator
     {
-
         [Inject]
         public var view:LegendsView;
         [Inject]
@@ -30,7 +30,6 @@
         public var exit:ExitLegendsSignal;
         [Inject]
         public var track:TrackPageViewSignal;
-
 
         override public function initialize():void
         {
@@ -67,7 +66,7 @@
             else
             {
                 this.showLoadingAndRequestFameList();
-            };
+            }
         }
 
         private function showLoadingAndRequestFameList():void
@@ -77,7 +76,7 @@
             this.requestFameList.dispatch(this.model.getTimespan());
         }
 
-        private function updateLegendList(_arg1:Timespan=null):void
+        private function updateLegendList(_arg1:Timespan = null):void
         {
             _arg1 = ((_arg1) || (this.model.getTimespan()));
             this.view.hideLoading();
@@ -88,8 +87,6 @@
         {
             this.showFameDetail.dispatch(_arg1);
         }
-
-
     }
 }
 

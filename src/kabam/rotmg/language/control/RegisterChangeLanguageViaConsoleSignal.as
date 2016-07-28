@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class RegisterChangeLanguageViaConsoleSignal extends Signal 
+    public class RegisterChangeLanguageViaConsoleSignal extends Signal
     {
-
-
     }
 }
 

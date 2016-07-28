@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.editor.Command;
 
-    public class MEModifyCommand extends Command 
+    public class MEModifyCommand extends Command
     {
-
         private var map_:MEMap;
         private var x_:int;
         private var y_:int;
@@ -31,8 +30,6 @@
         {
             this.map_.modifyTile(this.x_, this.y_, this.layer_, this.oldType_);
         }
-
-
     }
 }
 

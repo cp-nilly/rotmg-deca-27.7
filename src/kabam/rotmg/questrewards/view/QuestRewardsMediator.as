@@ -1,27 +1,28 @@
 ﻿package kabam.rotmg.questrewards.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import com.gskinner.motion.GTween;
+
+    import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.ui.model.HUDModel;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.fortune.components.TimerCallback;
+    import kabam.rotmg.messaging.impl.GameServerConnection;
+    import kabam.rotmg.messaging.impl.incoming.QuestFetchResponse;
+    import kabam.rotmg.messaging.impl.incoming.QuestRedeemResponse;
+    import kabam.rotmg.questrewards.components.ModalItemSlot;
     import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
     import kabam.rotmg.questrewards.controller.QuestRedeemCompleteSignal;
-    import kabam.rotmg.questrewards.components.ModalItemSlot;
+    import kabam.rotmg.ui.model.HUDModel;
     import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.messaging.impl.GameServerConnection;
-    import com.gskinner.motion.GTween;
-    import kabam.rotmg.fortune.components.TimerCallback;
-    import flash.events.TimerEvent;
-    import kabam.rotmg.messaging.impl.incoming.QuestFetchResponse;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.messaging.impl.incoming.QuestRedeemResponse;
 
-    public class QuestRewardsMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class QuestRewardsMediator extends Mediator
     {
-
         public static var questsCompletedDayUTC:Number = -1;
-
         [Inject]
         public var container:QuestRewardsContainer;
         [Inject]
@@ -44,27 +45,26 @@
         private var oldView:QuestRewardsView;
         private var state_tinkering:Boolean = false;
 
-
         override public function initialize():void
         {
             if (this.container.parent == null)
             {
                 return;
-            };
+            }
             var _local1:Number = 0.2;
             if (((!((this.view == null))) && (!((this.view.parent == null)))))
             {
                 this.removeEvents();
                 this.oldView = this.view;
                 this.resetVars();
-                new GTween(this.oldView, 0.4, {"alpha":0});
+                new GTween(this.oldView, 0.4, {"alpha": 0});
                 new TimerCallback(0.4, this.removeOldView);
                 _local1 = 0.4;
-            };
+            }
             this.view = new QuestRewardsView();
             this.container.addChild(this.view);
             this.view.alpha = 0;
-            new GTween(this.view, _local1, {"alpha":1});
+            new GTween(this.view, _local1, {"alpha": 1});
             if (((((!((this.hudModel == null))) && (!((this.hudModel.gameSprite == null))))) && (!((this.hudModel.gameSprite.gsc_ == null)))))
             {
                 this.gsc = this.hudModel.gameSprite.gsc_;
@@ -75,7 +75,7 @@
             {
                 this.onClose();
                 return;
-            };
+            }
             this.questFetchComplete.add(this.onQuestFetchComplete);
             this.questRedeemComplete.add(this.onQuestRedeemComplete);
             QuestRewardsView.closed.add(this.onClose);
@@ -92,7 +92,7 @@
             if (((!((this.oldView == null))) && (!((this.oldView.parent == null)))))
             {
                 this.container.removeChild(this.oldView);
-            };
+            }
         }
 
         private function onClose():void
@@ -106,12 +106,22 @@
         {
             if (Math.random() < 0.5)
             {
-                this.view.init(1, 3205, "AAAAAAHHH we are in need of this {goal} now. Help help help.", "http://i.imgur.com/ceobPxd.png");
+                this.view.init(
+                        1,
+                        3205,
+                        "AAAAAAHHH we are in need of this {goal} now. Help help help.",
+                        "http://i.imgur.com/ceobPxd.png"
+                );
             }
             else
             {
-                this.view.init(1, 1793, "WOAAH we are in need of this {goal} now. Help help.", "https://www.google.com/images/srpr/logo11w.png");
-            };
+                this.view.init(
+                        1,
+                        1793,
+                        "WOAAH we are in need of this {goal} now. Help help.",
+                        "https://www.google.com/images/srpr/logo11w.png"
+                );
+            }
         }
 
         private function onQuestFetchComplete(_arg1:QuestFetchResponse):void
@@ -135,13 +145,13 @@
                     else
                     {
                         this.onClose();
-                    };
+                    }
                 }
                 else
                 {
                     this.view.constructDescription(_arg1.description);
-                };
-            };
+                }
+            }
         }
 
         private function onQuestRedeemComplete(_arg1:QuestRedeemResponse):void
@@ -158,7 +168,7 @@
                 this.exchangeButton.draw();
                 this.itemslot.setCheckMark();
                 this.view.onQuestComplete();
-            };
+            }
         }
 
         private function setupEvents():void
@@ -181,12 +191,12 @@
             {
                 this.itemslot.foodLoaded.remove(this.onNewItem);
                 this.itemslot.foodUnloaded.remove(this.onClearItem);
-            };
+            }
             if (this.exchangeButton != null)
             {
                 this.exchangeButton.removeEventListener(MouseEvent.CLICK, this.onExchangeClick);
                 this.exchangeButton.removeEventListener(MouseEvent.CLICK, this.onOKClick);
-            };
+            }
         }
 
         private function resetVars():void
@@ -221,8 +231,8 @@
                     this.itemslot.clearItem();
                     this.itemslot.makeRedTemporarily();
                     this.itemslot.hideOuterSlot(true);
-                };
-            };
+                }
+            }
         }
 
         private function onClearItem():void
@@ -240,15 +250,13 @@
                 this.state_tinkering = true;
                 this.gsc.questRedeem(this.itemslot.objectId, this.itemslot.slotId, this.itemslot.itemId);
                 this.view.onExchangeClick();
-            };
+            }
         }
 
         private function onOKClick(_arg1:MouseEvent):void
         {
             this.initialize();
         }
-
-
     }
 }
 

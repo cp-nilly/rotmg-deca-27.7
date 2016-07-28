@@ -1,25 +1,26 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.view.MoneyFrame;
-    import kabam.rotmg.account.core.model.OfferModel;
-    import kabam.rotmg.account.core.model.MoneyConfig;
-    import kabam.rotmg.account.core.signals.PurchaseGoldSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
-    import kabam.rotmg.account.core.services.GetOffersTask;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.arena.model.CurrentArenaRunModel;
     import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
-    import kabam.lib.tasks.Task;
-    import kabam.rotmg.arena.view.ContinueOrQuitDialog;
     import com.company.assembleegameclient.util.offer.Offer;
 
-    public class MoneyFrameMediator extends Mediator 
-    {
+    import kabam.lib.tasks.Task;
+    import kabam.rotmg.account.core.model.MoneyConfig;
+    import kabam.rotmg.account.core.model.OfferModel;
+    import kabam.rotmg.account.core.services.GetOffersTask;
+    import kabam.rotmg.account.core.signals.PurchaseGoldSignal;
+    import kabam.rotmg.account.core.view.MoneyFrame;
+    import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import kabam.rotmg.arena.view.ContinueOrQuitDialog;
+    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.ui.model.HUDModel;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class MoneyFrameMediator extends Mediator
+    {
         [Inject]
         public var view:MoneyFrame;
         [Inject]
@@ -43,7 +44,6 @@
         [Inject]
         public var currentArenaRun:CurrentArenaRunModel;
 
-
         override public function initialize():void
         {
             this.view.buyNow.add(this.onBuyNow);
@@ -61,7 +61,7 @@
             else
             {
                 this.requestOffersData();
-            };
+            }
         }
 
         private function requestOffersData():void
@@ -70,7 +70,7 @@
             this.getOffers.start();
         }
 
-        private function onOffersReceived(_arg1:Task, _arg2:Boolean, _arg3:String=""):void
+        private function onOffersReceived(_arg1:Task, _arg2:Boolean, _arg3:String = ""):void
         {
             if (_arg2)
             {
@@ -79,7 +79,7 @@
             else
             {
                 this.openDialog.dispatch(new ErrorDialog("Unable to get gold offer information"));
-            };
+            }
         }
 
         override public function destroy():void
@@ -87,7 +87,7 @@
             if (this.hudModel.gameSprite.map.name_ == "Arena")
             {
                 this.openDialog.dispatch(new ContinueOrQuitDialog(this.currentArenaRun.costOfContinue, true));
-            };
+            }
             this.view.buyNow.add(this.onBuyNow);
             this.view.cancel.add(this.onCancel);
         }
@@ -107,8 +107,6 @@
         {
             this.closeDialogs.dispatch();
         }
-
-
     }
 }
 

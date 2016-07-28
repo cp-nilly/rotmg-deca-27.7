@@ -1,12 +1,7 @@
 ﻿package kabam.lib.console.model
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-    import kabam.lib.console.model.*;
-
-    final class ActionHistory 
+    final class ActionHistory
     {
-
         private var stack:Vector.<String>;
         private var index:int;
 
@@ -35,8 +30,6 @@
         {
             return ((((this.index < (this.stack.length - 1))) ? this.stack[++this.index] : ""));
         }
-
-
     }
 }
 

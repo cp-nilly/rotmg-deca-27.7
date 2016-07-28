@@ -1,32 +1,32 @@
 ﻿package kabam.rotmg.game.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.tooltips.TooltipAble;
-    import kabam.rotmg.tooltips.HoverTooltipDelegate;
-    import flash.display.Bitmap;
-    import flash.display.BitmapData;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.tooltip.TextToolTip;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.util.AssetLibrary;
-    import kabam.rotmg.ui.UIUtils;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.filters.DropShadowFilter;
     import flash.geom.Rectangle;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
+
     import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.tooltips.HoverTooltipDelegate;
+    import kabam.rotmg.tooltips.TooltipAble;
+    import kabam.rotmg.ui.UIUtils;
 
-    public class GiftStatusDisplay extends Sprite implements TooltipAble 
+    public class GiftStatusDisplay extends Sprite implements TooltipAble
     {
-
         public static const IMAGE_NAME:String = "lofiObj2";
         public static const IMAGE_ID:int = 127;
         public static const NOTIFICATION_BACKGROUND_WIDTH:Number = 110;
         public static const NOTIFICATION_BACKGROUND_HEIGHT:Number = 25;
         public static const NOTIFICATION_BACKGROUND_ALPHA:Number = 0.4;
         public static const NOTIFICATION_BACKGROUND_COLOR:Number = 0;
-
         public var hoverTooltipDelegate:HoverTooltipDelegate;
         private var bitmap:Bitmap;
         private var background:Sprite;
@@ -40,7 +40,9 @@
             this.tooltip = new TextToolTip(0x363636, 0x9B9B9B, null, TextKey.BUYPACKAGETASK_NEWGIFTS, 200);
             super();
             mouseChildren = false;
-            this.giftOpenProcessedTexture = TextureRedrawer.redraw(AssetLibrary.getImageFromSet(IMAGE_NAME, IMAGE_ID), 40, true, 0);
+            this.giftOpenProcessedTexture = TextureRedrawer.redraw(
+                    AssetLibrary.getImageFromSet(IMAGE_NAME, IMAGE_ID), 40, true, 0
+            );
             this.background = UIUtils.makeStaticHUDBackground();
             this.bitmap = new Bitmap(this.giftOpenProcessedTexture);
             this.bitmap.x = -5;
@@ -90,18 +92,16 @@
             if (((this.background) && ((this.background.parent == this))))
             {
                 removeChild(this.background);
-            };
+            }
             if (((this.text) && ((this.text.parent == this))))
             {
                 removeChild(this.text);
-            };
+            }
             if (((this.bitmap) && ((this.bitmap.parent == this))))
             {
                 removeChild(this.bitmap);
-            };
+            }
         }
-
-
     }
 }
 

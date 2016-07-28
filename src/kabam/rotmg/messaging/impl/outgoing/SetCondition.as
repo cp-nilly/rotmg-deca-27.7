@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class SetCondition extends OutgoingMessage 
+    public class SetCondition extends OutgoingMessage
     {
-
         public var conditionEffect_:uint;
         public var conditionDuration_:Number;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("SETCONDITION", "conditionEffect_", "conditionDuration_"));
         }
-
-
     }
 }
 

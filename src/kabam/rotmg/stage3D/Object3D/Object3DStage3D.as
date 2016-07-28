@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.stage3D.Object3D
 {
     import flash.display.BitmapData;
+    import flash.display3D.Context3D;
+    import flash.display3D.Context3DTextureFormat;
+    import flash.display3D.Context3DVertexBufferFormat;
+    import flash.display3D.textures.Texture;
     import flash.geom.Matrix3D;
     import flash.geom.Vector3D;
-    import flash.display3D.textures.Texture;
+
     import kabam.rotmg.stage3D.graphic3D.TextureFactory;
-    import flash.display3D.Context3DVertexBufferFormat;
-    import flash.display3D.Context3DTextureFormat;
-    import flash.display3D.Context3D;
 
-    public class Object3DStage3D 
+    public class Object3DStage3D
     {
-
         public static const missingTextureBitmap:BitmapData = new BitmapData(1, 1, true, 0x888888FF);
-
         public var model_:Model3D_stage3d = null;
         private var bitmapData:BitmapData;
         public var modelMatrix_:Matrix3D;
@@ -48,7 +47,8 @@
             {
                 this.texture_.dispose();
                 this.texture_ = null;
-            };
+            }
+            ;
             this.bitmapData = null;
             this.modelMatrix_ = null;
             this.modelView_ = null;
@@ -78,7 +78,12 @@
             _arg1.setVertexBufferAt(2, this.model_.vertexBuffer, 6, Context3DVertexBufferFormat.FLOAT_2);
             if ((((this.texture_ == null)) && (!((this.bitmapData == null)))))
             {
-                this.texture_ = _arg1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
+                this.texture_ = _arg1.createTexture(
+                        this.bitmapData.width,
+                        this.bitmapData.height,
+                        Context3DTextureFormat.BGRA,
+                        false
+                );
                 this.texture_.uploadFromBitmapData(this.bitmapData);
             }
             else
@@ -86,21 +91,28 @@
                 if (this.texture_ == null)
                 {
                     this.bitmapData = missingTextureBitmap;
-                    this.texture_ = _arg1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
+                    this.texture_ = _arg1.createTexture(
+                            this.bitmapData.width,
+                            this.bitmapData.height,
+                            Context3DTextureFormat.BGRA,
+                            false
+                    );
                     this.texture_.uploadFromBitmapData(this.bitmapData);
-                };
-            };
+                }
+                ;
+            }
+            ;
             _arg1.setTextureAt(0, this.texture_);
             for each (_local2 in this.model_.groups)
             {
                 if (_local2.indexBuffer != null)
                 {
                     _arg1.drawTriangles(_local2.indexBuffer);
-                };
-            };
+                }
+                ;
+            }
+            ;
         }
-
-
     }
 }
 

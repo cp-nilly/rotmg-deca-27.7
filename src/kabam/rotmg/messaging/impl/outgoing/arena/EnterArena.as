@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.outgoing.arena
 {
-    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
     import flash.utils.IDataOutput;
 
-    public class EnterArena extends OutgoingMessage 
-    {
+    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
 
+    public class EnterArena extends OutgoingMessage
+    {
         public var currency:int;
 
         public function EnterArena(_arg1:uint, _arg2:Function)
@@ -22,8 +22,6 @@
         {
             return (formatToString("ENTER_ARENA", "currency"));
         }
-
-
     }
 }
 

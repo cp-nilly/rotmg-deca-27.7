@@ -2,9 +2,8 @@
 {
     import com.google.analytics.GATracker;
 
-    public class GA 
+    public class GA
     {
-
         private static var tracker:GATracker = null;
 
         public function GA()
@@ -21,8 +20,6 @@
         {
             GA.tracker = _arg1;
         }
-
-
     }
 }
 

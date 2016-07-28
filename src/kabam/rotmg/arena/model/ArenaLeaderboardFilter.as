@@ -1,10 +1,7 @@
 ﻿package kabam.rotmg.arena.model
 {
-    import __AS3__.vec.Vector;
-
-    public class ArenaLeaderboardFilter 
+    public class ArenaLeaderboardFilter
     {
-
         private var name:String;
         private var key:String;
         private var entries:Vector.<ArenaLeaderboardEntry>;
@@ -44,8 +41,6 @@
         {
             this.entries = null;
         }
-
-
     }
 }
 

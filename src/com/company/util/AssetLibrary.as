@@ -1,13 +1,12 @@
 ﻿package com.company.util
 {
-    import flash.utils.Dictionary;
     import flash.display.BitmapData;
     import flash.media.Sound;
     import flash.media.SoundTransform;
+    import flash.utils.Dictionary;
 
-    public class AssetLibrary 
+    public class AssetLibrary
     {
-
         private static var images_:Dictionary = new Dictionary();
         private static var imageSets_:Dictionary = new Dictionary();
         private static var sounds_:Dictionary = new Dictionary();
@@ -34,7 +33,7 @@
             {
                 imageLookup_[_local5.images_[_local6]] = [_arg1, _local6];
                 _local6++;
-            };
+            }
         }
 
         public static function addToImageSet(_arg1:String, _arg2:BitmapData):void
@@ -44,7 +43,7 @@
             {
                 _local3 = new ImageSet();
                 imageSets_[_arg1] = _local3;
-            };
+            }
             _local3.add(_arg2);
             var _local4:int = (_local3.images_.length - 1);
             imageLookup_[_local3.images_[_local4]] = [_arg1, _local4];
@@ -56,7 +55,7 @@
             if (_local3 == null)
             {
                 sounds_[_arg1] = new Array();
-            };
+            }
             sounds_[_arg1].push(_arg2);
         }
 
@@ -88,7 +87,7 @@
             return (new (sounds_[_arg1][_local3])());
         }
 
-        public static function playSound(_arg1:String, _arg2:Number=1):void
+        public static function playSound(_arg1:String, _arg2:Number = 1):void
         {
             var _local3:Array = sounds_[_arg1];
             var _local4:int = (Math.random() * _local3.length);
@@ -97,17 +96,12 @@
             if (_arg2 != 1)
             {
                 _local6 = new SoundTransform(_arg2);
-            };
+            }
             _local5.play(0, 0, _local6);
         }
-
-
     }
 }
-
-class StaticEnforcer 
+class StaticEnforcer
 {
-
-
 }
 

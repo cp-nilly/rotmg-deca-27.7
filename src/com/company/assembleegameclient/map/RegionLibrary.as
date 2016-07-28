@@ -2,13 +2,10 @@
 {
     import flash.utils.Dictionary;
 
-    public class RegionLibrary 
+    public class RegionLibrary
     {
-
         public static const xmlLibrary_:Dictionary = new Dictionary();
-
         public static var idToType_:Dictionary = new Dictionary();
-
 
         public static function parseFromXML(_arg1:XML):void
         {
@@ -19,7 +16,7 @@
                 _local3 = int(_local2.@type);
                 xmlLibrary_[_local3] = _local2;
                 idToType_[String(_local2.@id)] = _local3;
-            };
+            }
         }
 
         public static function getIdFromType(_arg1:int):String
@@ -28,7 +25,7 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (String(_local2.@id));
         }
 
@@ -38,11 +35,9 @@
             if (_local2 == null)
             {
                 return (0);
-            };
+            }
             return (uint(_local2.Color));
         }
-
-
     }
 }
 

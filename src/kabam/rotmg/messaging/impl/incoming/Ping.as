@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class Ping extends IncomingMessage 
+    public class Ping extends IncomingMessage
     {
-
         public var serial_:int;
 
         public function Ping(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("PING", "serial_"));
         }
-
-
     }
 }
 

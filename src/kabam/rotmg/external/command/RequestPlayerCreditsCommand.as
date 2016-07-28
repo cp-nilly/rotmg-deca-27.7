@@ -1,22 +1,21 @@
 ﻿package kabam.rotmg.external.command
 {
-    import robotlegs.bender.bundles.mvcs.Command;
+    import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.TaskMonitor;
-	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.tasks.TaskSequence;
     import kabam.rotmg.external.service.RequestPlayerCreditsTask;
-    import kabam.lib.tasks.DispatchSignalTask;
 
-    public class RequestPlayerCreditsCommand extends Command 
+    import robotlegs.bender.bundles.mvcs.Command;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class RequestPlayerCreditsCommand extends Command
     {
-
         [Inject]
         public var taskMonitor:TaskMonitor;
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var requestPlayerCreditsComplete:RequestPlayerCreditsCompleteSignal;
-
 
         override public function execute():void
         {
@@ -26,8 +25,6 @@
             this.taskMonitor.add(_local1);
             _local1.start();
         }
-
-
     }
 }
 

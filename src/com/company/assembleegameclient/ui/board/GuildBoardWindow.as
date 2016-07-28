@@ -1,18 +1,19 @@
 ﻿package com.company.assembleegameclient.ui.board
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import flash.display.Graphics;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.account.core.Account;
-    import flash.events.Event;
     import com.company.util.MoreObjectUtil;
 
-    public class GuildBoardWindow extends Sprite 
-    {
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
 
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
+
+    public class GuildBoardWindow extends Sprite
+    {
         private var canEdit_:Boolean;
         private var darkBox_:Shape;
         private var dialog_:Dialog;
@@ -54,7 +55,7 @@
             else
             {
                 this.reportError(_arg2);
-            };
+            }
         }
 
         private function showGuildBoard(_arg1:String):void
@@ -103,7 +104,7 @@
         private function onEditComplete(_arg1:Event):void
         {
             var _local2:Account = StaticInjectorContext.getInjector().getInstance(Account);
-            var _local3:Object = {"board":this.editBoard_.getText()};
+            var _local3:Object = {"board": this.editBoard_.getText()};
             MoreObjectUtil.addToObject(_local3, _local2.getCredentials());
             this.client = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
             this.client.complete.addOnce(this.onSetBoardComplete);
@@ -124,7 +125,7 @@
             else
             {
                 this.onSaveError(_arg2);
-            };
+            }
         }
 
         private function onSaveDone(_arg1:String):void
@@ -139,8 +140,6 @@
         private function onSaveError(_arg1:String):void
         {
         }
-
-
     }
 }
 

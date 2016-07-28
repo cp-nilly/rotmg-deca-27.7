@@ -1,30 +1,30 @@
 ﻿package com.company.assembleegameclient.screens.charrects
 {
-    import com.company.assembleegameclient.ui.tooltip.MyPlayerToolTip;
-    import org.osflash.signals.Signal;
-    import flash.display.Sprite;
     import com.company.assembleegameclient.appengine.CharacterStats;
     import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.classes.model.CharacterClass;
-    import flash.display.DisplayObject;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.Event;
-    import flash.events.MouseEvent;
+    import com.company.assembleegameclient.screens.events.DeleteCharacterEvent;
+    import com.company.assembleegameclient.ui.tooltip.MyPlayerToolTip;
     import com.company.assembleegameclient.util.FameUtil;
     import com.company.rotmg.graphics.DeleteXGraphic;
-    import com.company.assembleegameclient.screens.events.DeleteCharacterEvent;
 
-    public class CurrentCharacterRect extends CharacterRect 
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class CurrentCharacterRect extends CharacterRect
     {
-
         private static var toolTip_:MyPlayerToolTip = null;
-
         public const selected:Signal = new Signal();
         public const deleteCharacter:Signal = new Signal();
         public const showToolTip:Signal = new Signal(Sprite);
         public const hideTooltip:Signal = new Signal();
-
         public var charName:String;
         public var charStats:CharacterStats;
         public var char:SavedCharacter;
@@ -33,7 +33,9 @@
         private var deleteButton:Sprite;
         private var icon:DisplayObject;
 
-        public function CurrentCharacterRect(_arg1:String, _arg2:CharacterClass, _arg3:SavedCharacter, _arg4:CharacterStats)
+        public function CurrentCharacterRect(
+                _arg1:String, _arg2:CharacterClass, _arg3:SavedCharacter, _arg4:CharacterStats
+        )
         {
             this.myPlayerToolTipFactory = new MyPlayerToolTipFactory();
             super();
@@ -43,10 +45,11 @@
             this.charStats = _arg4;
             var _local5:String = _arg2.name;
             var _local6:int = _arg3.charXML_.Level;
-            super.className = new LineBuilder().setParams(TextKey.CURRENT_CHARACTER_DESCRIPTION, {
-                "className":_local5,
-                "level":_local6
-            });
+            super.className = new LineBuilder().setParams(
+                    TextKey.CURRENT_CHARACTER_DESCRIPTION, {
+                        "className": _local5, "level": _local6
+                    }
+            );
             super.color = 0x5C5C5C;
             super.overColor = 0x7F7F7F;
             super.init();
@@ -86,17 +89,22 @@
             if (this.getNextStarFame() > 0)
             {
                 super.makeTaglineIcon();
-                super.makeTaglineText(new LineBuilder().setParams(TextKey.CURRENT_CHARACTER_TAGLINE, {
-                    "fame":this.char.fame(),
-                    "nextStarFame":this.getNextStarFame()
-                }));
+                super.makeTaglineText(
+                        new LineBuilder().setParams(
+                                TextKey.CURRENT_CHARACTER_TAGLINE, {
+                                    "fame": this.char.fame(), "nextStarFame": this.getNextStarFame()
+                                }
+                        )
+                );
                 taglineText.x = (taglineText.x + taglineIcon.width);
-            };
+            }
         }
 
         private function getNextStarFame():int
         {
-            return (FameUtil.nextStarFame((((this.charStats == null)) ? 0 : this.charStats.bestFame()), this.char.fame()));
+            return (FameUtil.nextStarFame(
+                    (((this.charStats == null)) ? 0 : this.charStats.bestFame()), this.char.fame()
+            ));
         }
 
         private function makeDeleteButton():void
@@ -138,8 +146,6 @@
             _arg1.stopImmediatePropagation();
             dispatchEvent(new DeleteCharacterEvent(this.char));
         }
-
-
     }
 }
 

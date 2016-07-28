@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.web.signals.WebChangePasswordSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.web.signals.WebChangePasswordSignal;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.text.model.TextKey;
 
-    public class WebChangePasswordMediatorForced extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class WebChangePasswordMediatorForced extends Mediator
+    {
         [Inject]
         public var view:WebChangePasswordDialogForced;
         [Inject]
@@ -26,7 +26,6 @@
         [Inject]
         public var account:Account;
         private var newPassword:String;
-
 
         override public function initialize():void
         {
@@ -56,7 +55,7 @@
                 _local2.guid = this.account.getUserId();
                 _local1.sendRequest("/account/changePassword", _local2);
                 _local1.complete.addOnce(this.onComplete);
-            };
+            }
         }
 
         private function isCurrentPasswordValid():Boolean
@@ -65,7 +64,7 @@
             if (!_local1)
             {
                 this.view.password_.setError(TextKey.WEB_CHANGE_PASSWORD_INCORRECT);
-            };
+            }
             return (_local1);
         }
 
@@ -75,7 +74,7 @@
             if (!_local1)
             {
                 this.view.newPassword_.setError(TextKey.REGISTER_WEB_SHORT_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -85,7 +84,7 @@
             if (!_local1)
             {
                 this.view.retypeNewPassword_.setError(TextKey.REGISTER_WEB_MATCH_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -99,7 +98,7 @@
             {
                 this.account.updateUser(this.account.getUserId(), this.newPassword);
                 this.closeDialogs.dispatch();
-            };
+            }
         }
 
         private function onError(_arg1:String):void
@@ -107,8 +106,6 @@
             this.view.newPassword_.setError(_arg1);
             this.view.enable();
         }
-
-
     }
 }
 

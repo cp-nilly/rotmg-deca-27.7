@@ -2,14 +2,12 @@
 {
     import flash.utils.IDataInput;
 
-    public class TradeItem 
+    public class TradeItem
     {
-
         public var item_:int;
         public var slotType_:int;
         public var tradeable_:Boolean;
         public var included_:Boolean;
-
 
         public function parseFromInput(_arg1:IDataInput):void
         {
@@ -23,8 +21,6 @@
         {
             return (((((((("item: " + this.item_) + " slotType: ") + this.slotType_) + " tradeable: ") + this.tradeable_) + " included:") + this.included_));
         }
-
-
     }
 }
 

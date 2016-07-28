@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    public class TabConstants 
+    public class TabConstants
     {
-
         public static const BACKGROUND_COLOR:uint = 2368034;
         public static const TAB_COLOR:uint = 7039594;
         public static const TAB_WIDTH:Number = 28;
@@ -15,8 +14,6 @@
         public static const STATS_ICON_ID:int = 25;
         public static const BACKPACK_ICON_ID:int = 26;
         public static const PETS_ICON_ID:int = 27;
-
-
     }
 }
 

@@ -1,22 +1,22 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import kabam.rotmg.game.signals.TextPanelMessageUpdateSignal;
-    import kabam.rotmg.pets.data.PetVO;
-    import com.company.assembleegameclient.util.AnimatedChar;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import com.company.assembleegameclient.ui.tooltip.TextToolTip;
-    import kabam.rotmg.text.model.TextKey;
-    import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import kabam.rotmg.pets.view.petPanel.PetPanel;
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.ui.panels.Panel;
-    import com.company.assembleegameclient.util.MaskedImage;
+    import com.company.assembleegameclient.ui.tooltip.TextToolTip;
+    import com.company.assembleegameclient.ui.tooltip.ToolTip;
+    import com.company.assembleegameclient.util.AnimatedChar;
     import com.company.assembleegameclient.util.AnimatedChars;
+    import com.company.assembleegameclient.util.MaskedImage;
 
-    public class Pet extends GameObject implements IInteractiveObject 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.game.signals.TextPanelMessageUpdateSignal;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.pets.view.petPanel.PetPanel;
+    import kabam.rotmg.text.model.TextKey;
+
+    public class Pet extends GameObject implements IInteractiveObject
     {
-
         private var textPanelUpdateSignal:TextPanelMessageUpdateSignal;
         public var vo:PetVO;
         public var skin:AnimatedChar;
@@ -36,7 +36,9 @@
 
         public function getTooltip():ToolTip
         {
-            return (new TextToolTip(0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200));
+            return (new TextToolTip(
+                    0x363636, 0x9B9B9B, TextKey.CLOSEDGIFTCHEST_TITLE, TextKey.TEXTPANEL_GIFTCHESTISEMPTY, 200
+            ));
         }
 
         public function getPanel(_arg1:GameSprite):Panel
@@ -60,7 +62,7 @@
             else
             {
                 this.skin = AnimatedChars.getAnimatedChar(_local3, _local4);
-            };
+            }
             this.isDefaultAnimatedChar = (this.skin == this.defaultSkin);
             _local5 = this.skin.imageFromAngle(0, AnimatedChar.STAND, 0);
             animatedChar_ = this.skin;
@@ -75,15 +77,13 @@
             if (this.defaultSkin == null)
             {
                 return;
-            };
+            }
             _local1 = this.defaultSkin.imageFromAngle(0, AnimatedChar.STAND, 0);
             this.isDefaultAnimatedChar = true;
             animatedChar_ = this.defaultSkin;
             texture_ = _local1.image_;
             mask_ = _local1.mask_;
         }
-
-
     }
 }
 

@@ -2,11 +2,9 @@
 {
     import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
 
-    public class GenericArmorComparison extends SlotComparison 
+    public class GenericArmorComparison extends SlotComparison
     {
-
         private static const DEFENSE_STAT:String = "21";
-
         private var defTags:XMLList;
         private var otherDefTags:XMLList;
 
@@ -25,7 +23,7 @@
             {
                 defense = int(this.defTags.@amount);
                 otherDefense = int(this.otherDefTags.@amount);
-            };
+            }
         }
 
         private function compareDefense(_arg1:int, _arg2:int):String
@@ -33,8 +31,6 @@
             var _local3:uint = getTextColor((_arg1 - _arg2));
             return (wrapInColoredFont((("+" + _arg1) + " Defense"), _local3));
         }
-
-
     }
 }
 

@@ -1,17 +1,15 @@
 ﻿package kabam.rotmg.text.view
 {
     import flash.text.TextField;
+
     import kabam.rotmg.language.model.DebugStringMap;
     import kabam.rotmg.text.model.DebugTextInfo;
 
-    public class DebugTextField extends TextField 
+    public class DebugTextField extends TextField
     {
-
         public static const WRONG_LANGUAGE_COLOR:uint = 977663;
         public static const INVALID_KEY_COLOR:uint = 15874138;
-
         public var debugStringMap:DebugStringMap;
-
 
         override public function set text(_arg1:String):void
         {
@@ -36,9 +34,9 @@
                 else
                 {
                     this.setBackground(INVALID_KEY_COLOR);
-                };
+                }
                 return (_local2.key);
-            };
+            }
             return (_arg1);
         }
 
@@ -47,8 +45,6 @@
             background = true;
             backgroundColor = _arg1;
         }
-
-
     }
 }
 

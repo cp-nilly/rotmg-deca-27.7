@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.errors.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-	import robotlegs.bender.extensions.contextView.ContextView;
-    import kabam.rotmg.errors.control.ErrorSignal;
-    import robotlegs.bender.framework.api.ILogger;
     import flash.display.LoaderInfo;
-    import flash.events.IEventDispatcher;
     import flash.events.ErrorEvent;
+    import flash.events.IEventDispatcher;
 
-    public class ErrorMediator extends Mediator 
+    import kabam.rotmg.errors.control.ErrorSignal;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.extensions.contextView.ContextView;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class ErrorMediator extends Mediator
     {
-
         private const UNCAUGHT_ERROR_EVENTS:String = "uncaughtErrorEvents";
         private const UNCAUGHT_ERROR:String = "uncaughtError";
-
         [Inject]
         public var contextView:ContextView;
         [Inject]
@@ -22,14 +22,13 @@
         public var logger:ILogger;
         private var loaderInfo:LoaderInfo;
 
-
         override public function initialize():void
         {
             this.loaderInfo = this.contextView.view.loaderInfo;
             if (this.canCatchGlobalErrors())
             {
                 this.addGlobalErrorListener();
-            };
+            }
         }
 
         override public function destroy():void
@@ -37,7 +36,7 @@
             if (this.canCatchGlobalErrors())
             {
                 this.removeGlobalErrorListener();
-            };
+            }
         }
 
         private function canCatchGlobalErrors():Boolean
@@ -61,8 +60,6 @@
         {
             this.error.dispatch(_arg1);
         }
-
-
     }
 }
 

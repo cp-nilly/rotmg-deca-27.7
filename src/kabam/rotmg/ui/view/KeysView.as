@@ -1,20 +1,18 @@
 ﻿package kabam.rotmg.ui.view
 {
     import flash.display.Sprite;
-    import mx.core.BitmapAsset;
-    import __AS3__.vec.Vector;
+
     import kabam.rotmg.ui.model.Key;
-    import __AS3__.vec.*;
 
-    public class KeysView extends Sprite 
+    import mx.core.BitmapAsset;
+
+    public class KeysView extends Sprite
     {
-
         private static var keyBackgroundPng:Class = KeysView_keyBackgroundPng;
         private static var greenKeyPng:Class = KeysView_greenKeyPng;
         private static var redKeyPng:Class = KeysView_redKeyPng;
         private static var yellowKeyPng:Class = KeysView_yellowKeyPng;
         private static var purpleKeyPng:Class = KeysView_purpleKeyPng;
-
         private var base:BitmapAsset;
         private var keys:Vector.<BitmapAsset>;
 
@@ -33,7 +31,7 @@
                 this.keys[_local1].x = (12 + (40 * _local1));
                 this.keys[_local1].y = 12;
                 _local1++;
-            };
+            }
         }
 
         public function showKey(_arg1:Key):void
@@ -42,7 +40,7 @@
             if (!contains(_local2))
             {
                 addChild(_local2);
-            };
+            }
         }
 
         public function hideKey(_arg1:Key):void
@@ -51,10 +49,8 @@
             if (contains(_local2))
             {
                 removeChild(_local2);
-            };
+            }
         }
-
-
     }
 }
 

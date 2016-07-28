@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.pets.view.dialogs.evolving
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
+
     import kabam.rotmg.assets.EmbeddedAssets;
-    import kabam.rotmg.pets.view.components.PetIconFactory;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.pets.view.components.PetIcon;
     import kabam.rotmg.messaging.impl.EvolvePetInfo;
     import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.view.components.PetIcon;
+    import kabam.rotmg.pets.view.components.PetIconFactory;
 
-    public class EvolveAnimation extends Sprite 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class EvolveAnimation extends Sprite
     {
-
         public const background:DisplayObject = new EmbeddedAssets.EvolveBackground();
         public const backgroundMask:DisplayObject = new EmbeddedAssets.EvolveBackground();
-
         [Inject]
         public var petIconFactory:PetIconFactory;
         [Inject]
@@ -69,8 +69,6 @@
             removeChild(this.initialPet);
             addChildAt(this.evolvedPet, getChildIndex(this.transition));
         }
-
-
     }
 }
 

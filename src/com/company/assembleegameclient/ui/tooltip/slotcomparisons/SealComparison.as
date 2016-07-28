@@ -1,17 +1,16 @@
 ﻿package com.company.assembleegameclient.ui.tooltip.slotcomparisons
 {
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.tooltip.TooltipHelper;
 
-    public class SealComparison extends SlotComparison 
-    {
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
 
+    public class SealComparison extends SlotComparison
+    {
         private var healingTag:XML;
         private var damageTag:XML;
         private var otherHealingTag:XML;
         private var otherDamageTag:XML;
-
 
         override protected function compareSlots(itemXML:XML, curItemXML:XML):void
         {
@@ -28,14 +27,19 @@
                 if (itemXML.@id == "Seal of Blasphemous Prayer")
                 {
                     tag = itemXML.Activate.(text() == "ConditionEffectSelf")[0];
-                    comparisonStringBuilder.pushParams(TextKey.EFFECT_ON_SELF, {"effect":""});
-                    comparisonStringBuilder.pushParams(TextKey.EFFECT_FOR_DURATION, {
-                        "effect":TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_INVULERABLE),
-                        "duration":tag.@duration
-                    }, TooltipHelper.getOpenTag(UNTIERED_COLOR), TooltipHelper.getCloseTag());
+                    comparisonStringBuilder.pushParams(TextKey.EFFECT_ON_SELF, {"effect": ""});
+                    comparisonStringBuilder.pushParams(
+                            TextKey.EFFECT_FOR_DURATION,
+                            {
+                                "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_INVULERABLE),
+                                "duration": tag.@duration
+                            },
+                            TooltipHelper.getOpenTag(UNTIERED_COLOR),
+                            TooltipHelper.getCloseTag()
+                    );
                     processedTags[tag.toXMLString()] = true;
-                };
-            };
+                }
+            }
         }
 
         private function canCompare():Boolean
@@ -53,8 +57,8 @@
                 if (tag.@effect == effectName)
                 {
                     return (tag);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -68,12 +72,22 @@
             var _local6:Number = (((0.5 * _local2) * 0.5) * _local4);
             var _local7:uint = getTextColor((_local5 - _local6));
             var _local8:AppendingLineBuilder = new AppendingLineBuilder();
-            _local8.pushParams(TextKey.WITHIN_SQRS, {"range":this.healingTag.@range}, TooltipHelper.getOpenTag(_local7), TooltipHelper.getCloseTag());
-            _local8.pushParams(TextKey.EFFECT_FOR_DURATION, {
-                "effect":TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_HEALING),
-                "duration":_local1.toString()
-            }, TooltipHelper.getOpenTag(_local7), TooltipHelper.getCloseTag());
-            comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect":_local8});
+            _local8.pushParams(
+                    TextKey.WITHIN_SQRS,
+                    {"range": this.healingTag.@range},
+                    TooltipHelper.getOpenTag(_local7),
+                    TooltipHelper.getCloseTag()
+            );
+            _local8.pushParams(
+                    TextKey.EFFECT_FOR_DURATION,
+                    {
+                        "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_HEALING),
+                        "duration": _local1.toString()
+                    },
+                    TooltipHelper.getOpenTag(_local7),
+                    TooltipHelper.getCloseTag()
+            );
+            comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect": _local8});
             processedTags[this.healingTag.toXMLString()] = true;
         }
 
@@ -87,16 +101,24 @@
             var _local6:Number = (((0.5 * _local2) * 0.5) * _local4);
             var _local7:uint = getTextColor((_local5 - _local6));
             var _local8:AppendingLineBuilder = new AppendingLineBuilder();
-            _local8.pushParams(TextKey.WITHIN_SQRS, {"range":this.damageTag.@range}, TooltipHelper.getOpenTag(_local7), TooltipHelper.getCloseTag());
-            _local8.pushParams(TextKey.EFFECT_FOR_DURATION, {
-                "effect":TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_DAMAGING),
-                "duration":_local1.toString()
-            }, TooltipHelper.getOpenTag(_local7), TooltipHelper.getCloseTag());
-            comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect":_local8});
+            _local8.pushParams(
+                    TextKey.WITHIN_SQRS,
+                    {"range": this.damageTag.@range},
+                    TooltipHelper.getOpenTag(_local7),
+                    TooltipHelper.getCloseTag()
+            );
+            _local8.pushParams(
+                    TextKey.EFFECT_FOR_DURATION,
+                    {
+                        "effect": TextKey.wrapForTokenResolution(TextKey.ACTIVE_EFFECT_DAMAGING),
+                        "duration": _local1.toString()
+                    },
+                    TooltipHelper.getOpenTag(_local7),
+                    TooltipHelper.getCloseTag()
+            );
+            comparisonStringBuilder.pushParams(TextKey.PARTY_EFFECT, {"effect": _local8});
             processedTags[this.damageTag.toXMLString()] = true;
         }
-
-
     }
 }
 

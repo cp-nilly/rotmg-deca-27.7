@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
     import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.PetIcon;
+
     import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.view.components.PetIcon;
 
-    public class PetItem extends Sprite implements Disableable 
+    public class PetItem extends Sprite implements Disableable
     {
-
         public static const TOP_LEFT:String = "topLeft";
         public static const TOP_RIGHT:String = "topRight";
         public static const BOTTOM_RIGHT:String = "bottomRight";
         public static const BOTTOM_LEFT:String = "bottomLeft";
         public static const REGULAR:String = "regular";
         private static const CUT_STATES:Array = [TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT];
-
         public var itemBackgroundFactory:ItemBackgroundFactory;
         private var petIcon:PetIcon;
         private var background:String;
@@ -53,7 +52,7 @@
             if (this.backgroundGraphic)
             {
                 removeChild(this.backgroundGraphic);
-            };
+            }
             this.backgroundGraphic = PetItemBackground(this.itemBackgroundFactory.create(this.size, this.getCuts()));
             addChildAt(this.backgroundGraphic, 0);
         }
@@ -64,7 +63,7 @@
             if (this.background != REGULAR)
             {
                 _local1[CUT_STATES.indexOf(this.background)] = 1;
-            };
+            }
             return (_local1);
         }
 
@@ -77,8 +76,6 @@
         {
             return (this.petIcon.getPetVO());
         }
-
-
     }
 }
 

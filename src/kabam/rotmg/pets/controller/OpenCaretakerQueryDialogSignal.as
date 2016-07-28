@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class OpenCaretakerQueryDialogSignal extends Signal 
+    public class OpenCaretakerQueryDialogSignal extends Signal
     {
-
-
     }
 }
 

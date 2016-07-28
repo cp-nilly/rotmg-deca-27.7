@@ -1,11 +1,9 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public class PetSlotsState 
+    public class PetSlotsState
     {
-
         public static const LEFT:String = "leftSide";
         public static const RIGHT:String = "rightSide";
-
         public var leftSlotPetVO:PetVO;
         public var rightSlotItemId:int = -1;
         public var rightSlotPetVO:PetVO;
@@ -13,7 +11,6 @@
         public var rightSlotId:int = -1;
         public var caller:Class;
         public var selected:String;
-
 
         public function clear():void
         {
@@ -34,8 +31,6 @@
         {
             return (((!((this.rightSlotPetVO == null))) && (!((this.leftSlotPetVO == null)))));
         }
-
-
     }
 }
 

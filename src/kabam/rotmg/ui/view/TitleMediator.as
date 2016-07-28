@@ -1,35 +1,36 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.assembleegameclient.mapeditor.MapEditor;
+    import com.company.assembleegameclient.screens.ServersScreen;
+    import com.company.assembleegameclient.ui.language.LanguageOptionOverlay;
+
+    import flash.events.Event;
+    import flash.external.ExternalInterface;
+    import flash.net.URLRequest;
+    import flash.net.URLRequestMethod;
+    import flash.net.URLVariables;
+    import flash.net.navigateToURL;
+    import flash.system.Capabilities;
+
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
+    import kabam.rotmg.application.DynamicSettings;
+    import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.core.model.PlayerModel;
     import kabam.rotmg.core.signals.SetScreenSignal;
     import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.ui.signals.EnterGameSignal;
-    import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.core.view.Layers;
-    import robotlegs.bender.framework.api.ILogger;
-    import flash.net.URLVariables;
-    import flash.net.URLRequest;
-    import kabam.rotmg.application.DynamicSettings;
-    import flash.net.URLRequestMethod;
-    import flash.net.navigateToURL;
-    import flash.system.Capabilities;
-    import flash.external.ExternalInterface;
-    import com.company.assembleegameclient.ui.language.LanguageOptionOverlay;
-    import kabam.rotmg.ui.model.EnvironmentData;
-    import com.company.assembleegameclient.screens.ServersScreen;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.legends.view.LegendsView;
-    import com.company.assembleegameclient.mapeditor.MapEditor;
-    import flash.events.Event;
+    import kabam.rotmg.ui.model.EnvironmentData;
+    import kabam.rotmg.ui.signals.EnterGameSignal;
 
-    public class TitleMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class TitleMediator extends Mediator
     {
-
         private static var supportCalledBefore:Boolean = false;
-
         [Inject]
         public var view:TitleView;
         [Inject]
@@ -53,7 +54,6 @@
         [Inject]
         public var logger:ILogger;
 
-
         override public function initialize():void
         {
             this.view.optionalButtonsAdded.add(this.onOptionalButtonsAdded);
@@ -74,7 +74,7 @@
             if (((DynamicSettings.settingExists("SalesforceMobile")) && ((DynamicSettings.getSettingValue("SalesforceMobile") == 1))))
             {
                 _local3 = true;
-            };
+            }
             var _local4:String = this.playerModel.getSalesForceData();
             if ((((_local4 == "unavailable")) || (!(_local3))))
             {
@@ -98,7 +98,7 @@
                     else
                     {
                         ExternalInterface.call("reopenSalesForce");
-                    };
+                    }
                 }
                 else
                 {
@@ -107,8 +107,8 @@
                     _local2.method = URLRequestMethod.GET;
                     _local2.data = _local1;
                     navigateToURL(_local2, "_blank");
-                };
-            };
+                }
+            }
         }
 
         private function onOptionalButtonsAdded():void
@@ -178,8 +178,6 @@
         {
             dispatch(new Event("APP_CLOSE_EVENT"));
         }
-
-
     }
 }
 

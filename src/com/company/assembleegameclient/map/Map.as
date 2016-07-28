@@ -1,42 +1,41 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import flash.filters.ColorMatrixFilter;
-    import flash.geom.ColorTransform;
-    import flash.display.BitmapData;
-    import kabam.rotmg.game.logging.LoopMonitor;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.objects.BasicObject;
-    import flash.utils.Dictionary;
-    import flash.display.DisplayObject;
-    import flash.display.IGraphicsData;
-    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
-    import kabam.rotmg.assets.EmbeddedAssets;
+    import com.company.assembleegameclient.background.Background;
+    import com.company.assembleegameclient.game.AGameSprite;
     import com.company.assembleegameclient.map.mapoverlay.MapOverlay;
     import com.company.assembleegameclient.map.partyoverlay.PartyOverlay;
-    import com.company.assembleegameclient.objects.Party;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.game.model.GameModel;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.game.AGameSprite;
-    import com.company.assembleegameclient.background.Background;
+    import com.company.assembleegameclient.objects.BasicObject;
     import com.company.assembleegameclient.objects.GameObject;
-    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
-    import kabam.rotmg.stage3D.GraphicsFillExtra;
-    import kabam.rotmg.stage3D.graphic3D.Program3DFactory;
-    import flash.geom.Point;
+    import com.company.assembleegameclient.objects.Party;
     import com.company.assembleegameclient.objects.particles.ParticleEffect;
-    import kabam.rotmg.stage3D.Render3D;
-    import flash.geom.Rectangle;
-    import kabam.rotmg.stage3D.Renderer;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.util.ConditionEffect;
+
+    import flash.display.BitmapData;
+    import flash.display.DisplayObject;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsSolidFill;
-    import com.company.assembleegameclient.util.ConditionEffect;
+    import flash.display.IGraphicsData;
     import flash.filters.BlurFilter;
-    import __AS3__.vec.*;
+    import flash.filters.ColorMatrixFilter;
+    import flash.geom.ColorTransform;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
+    import flash.utils.Dictionary;
 
-    public class Map extends AbstractMap 
+    import kabam.rotmg.assets.EmbeddedAssets;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.game.logging.LoopMonitor;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.stage3D.GraphicsFillExtra;
+    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
+    import kabam.rotmg.stage3D.Render3D;
+    import kabam.rotmg.stage3D.Renderer;
+    import kabam.rotmg.stage3D.graphic3D.Program3DFactory;
+    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
+
+    public class Map extends AbstractMap
     {
-
         public static const CLOTH_BAZAAR:String = "Cloth Bazaar";
         public static const NEXUS:String = "Nexus";
         public static const DAILY_QUEST_ROOM:String = "Daily Quest Room";
@@ -50,12 +49,14 @@
         public static const VAULT:String = "Vault";
         private static const VISIBLE_SORT_FIELDS:Array = ["sortVal_", "objectId_"];
         private static const VISIBLE_SORT_PARAMS:Array = [Array.NUMERIC, Array.NUMERIC];
-        protected static const BLIND_FILTER:ColorMatrixFilter = new ColorMatrixFilter([0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 1, 0]);
-
+        protected static const BLIND_FILTER:ColorMatrixFilter = new ColorMatrixFilter(
+                [
+                    0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 1, 0
+                ]
+        );
         public static var forceSoftwareRender:Boolean = false;
         protected static var BREATH_CT:ColorTransform = new ColorTransform((0xFF / 0xFF), (55 / 0xFF), (0 / 0xFF), 0);
         public static var texture:BitmapData;
-
         public var ifDrawEffectFlag:Boolean = true;
         private var loopMonitor:LoopMonitor;
         private var inUpdate_:Boolean = false;
@@ -111,7 +112,9 @@
             wasLastFrameGpu = Parameters.isGpuRender();
         }
 
-        override public function setProps(_arg1:int, _arg2:int, _arg3:String, _arg4:int, _arg5:Boolean, _arg6:Boolean):void
+        override public function setProps(
+                _arg1:int, _arg2:int, _arg3:String, _arg4:int, _arg5:Boolean, _arg6:Boolean
+        ):void
         {
             width_ = _arg1;
             height_ = _arg2;
@@ -134,7 +137,7 @@
             if (background_ != null)
             {
                 addChild(background_);
-            };
+            }
             addChild(map_);
             addChild(hurtOverlay_);
             addChild(gradientOverlay_);
@@ -158,7 +161,7 @@
             for each (_local1 in squareList_)
             {
                 _local1.dispose();
-            };
+            }
             squareList_.length = 0;
             squareList_ = null;
             squares_.length = 0;
@@ -166,12 +169,12 @@
             for each (_local2 in goDict_)
             {
                 _local2.dispose();
-            };
+            }
             goDict_ = null;
             for each (_local3 in boDict_)
             {
                 _local3.dispose();
-            };
+            }
             boDict_ = null;
             merchLookup_ = null;
             player_ = null;
@@ -194,25 +197,25 @@
                 if (!_local3.update(_arg1, _arg2))
                 {
                     this.idsToRemove_.push(_local3.objectId_);
-                };
-            };
+                }
+            }
             for each (_local3 in boDict_)
             {
                 if (!_local3.update(_arg1, _arg2))
                 {
                     this.idsToRemove_.push(_local3.objectId_);
-                };
-            };
+                }
+            }
             this.inUpdate_ = false;
             for each (_local3 in this.objsToAdd_)
             {
                 this.internalAddObj(_local3);
-            };
+            }
             this.objsToAdd_.length = 0;
             for each (_local4 in this.idsToRemove_)
             {
                 this.internalRemoveObj(_local4);
-            };
+            }
             this.idsToRemove_.length = 0;
             party_.update(_arg1, _arg2);
         }
@@ -225,8 +228,8 @@
                 if (((!((_local3.faces_.length == 0))) && (_local3.faces_[0].face_.contains(_arg1, _arg2))))
                 {
                     return (new Point(_local3.center_.x, _local3.center_.y));
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -250,11 +253,11 @@
                     if (((!((_local10 == null))) && (((_local10.props_.hasEdge_) || (!((_local10.tileType_ == _arg3)))))))
                     {
                         _local10.faces_.length = 0;
-                    };
+                    }
                     _local8++;
-                };
+                }
                 _local7++;
-            };
+            }
         }
 
         override public function addObj(_arg1:BasicObject, _arg2:Number, _arg3:Number):void
@@ -264,7 +267,7 @@
             if ((_arg1 is ParticleEffect))
             {
                 (_arg1 as ParticleEffect).reducedDrawEnabled = !(Parameters.data_.particleEffect);
-            };
+            }
             if (this.inUpdate_)
             {
                 this.objsToAdd_.push(_arg1);
@@ -272,7 +275,7 @@
             else
             {
                 this.internalAddObj(_arg1);
-            };
+            }
         }
 
         public function internalAddObj(_arg1:BasicObject):void
@@ -280,15 +283,15 @@
             if (!_arg1.addTo(this, _arg1.x_, _arg1.y_))
             {
                 return;
-            };
+            }
             var _local2:Dictionary = (((_arg1 is GameObject)) ? goDict_ : boDict_);
             if (_local2[_arg1.objectId_] != null)
             {
                 if (!isPetYard)
                 {
                     return;
-                };
-            };
+                }
+            }
             _local2[_arg1.objectId_] = _arg1;
         }
 
@@ -301,7 +304,7 @@
             else
             {
                 this.internalRemoveObj(_arg1);
-            };
+            }
         }
 
         public function internalRemoveObj(_arg1:int):void
@@ -315,8 +318,8 @@
                 if (_local3 == null)
                 {
                     return;
-                };
-            };
+                }
+            }
             _local3.removeFromMap();
             delete _local2[_arg1];
         }
@@ -326,7 +329,7 @@
             if ((((((((_arg1 < 0)) || ((_arg1 >= width_)))) || ((_arg2 < 0)))) || ((_arg2 >= height_))))
             {
                 return (null);
-            };
+            }
             var _local3:int = (int(_arg1) + (int(_arg2) * width_));
             var _local4:Square = squares_[_local3];
             if (_local4 == null)
@@ -334,7 +337,7 @@
                 _local4 = new Square(this, int(_arg1), int(_arg2));
                 squares_[_local3] = _local4;
                 squareList_.push(_local4);
-            };
+            }
             return (_local4);
         }
 
@@ -343,7 +346,7 @@
             if ((((((((_arg1 < 0)) || ((_arg1 >= width_)))) || ((_arg2 < 0)))) || ((_arg2 >= height_))))
             {
                 return (null);
-            };
+            }
             return (squares_[(_arg1 + (_arg2 * width_))]);
         }
 
@@ -373,19 +376,22 @@
                 else
                 {
                     map_.graphics.clear();
-                };
+                }
                 signalRenderSwitch.dispatch(wasLastFrameGpu);
                 wasLastFrameGpu = Parameters.isGpuRender();
-            };
+            }
             var _local3:Rectangle = _arg1.clipRect_;
             x = -(_local3.x);
             y = -(_local3.y);
             var _local4:Number = ((-(_local3.y) - (_local3.height / 2)) / 50);
-            var _local5:Point = new Point((_arg1.x_ + (_local4 * Math.cos((_arg1.angleRad_ - (Math.PI / 2))))), (_arg1.y_ + (_local4 * Math.sin((_arg1.angleRad_ - (Math.PI / 2))))));
+            var _local5:Point = new Point(
+                    (_arg1.x_ + (_local4 * Math.cos((_arg1.angleRad_ - (Math.PI / 2))))),
+                    (_arg1.y_ + (_local4 * Math.sin((_arg1.angleRad_ - (Math.PI / 2)))))
+            );
             if (background_ != null)
             {
                 background_.draw(_arg1, _arg2);
-            };
+            }
             this.visible_.length = 0;
             this.visibleUnder_.length = 0;
             this.visibleSquares_.length = 0;
@@ -418,13 +424,13 @@
                             if (_local6.topFace_ != null)
                             {
                                 this.topSquares_.push(_local6);
-                            };
-                        };
-                    };
+                            }
+                        }
+                    }
                     _local15++;
-                };
+                }
                 _local12++;
-            };
+            }
             for each (_local13 in goDict_)
             {
                 _local13.drawn_ = false;
@@ -444,15 +450,15 @@
                             else
                             {
                                 this.visibleUnder_.push(_local13);
-                            };
+                            }
                         }
                         else
                         {
                             this.visible_.push(_local13);
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             for each (_local14 in boDict_)
             {
                 _local14.drawn_ = false;
@@ -462,16 +468,16 @@
                     _local14.drawn_ = true;
                     _local14.computeSortVal(_arg1);
                     this.visible_.push(_local14);
-                };
-            };
+                }
+            }
             if (this.visibleUnder_.length > 0)
             {
                 this.visibleUnder_.sortOn(VISIBLE_SORT_FIELDS, VISIBLE_SORT_PARAMS);
                 for each (_local14 in this.visibleUnder_)
                 {
                     _local14.draw(this.graphicsData_, _arg1, _arg2);
-                };
-            };
+                }
+            }
             this.visible_.sortOn(VISIBLE_SORT_FIELDS, VISIBLE_SORT_PARAMS);
             if (Parameters.data_.drawShadows)
             {
@@ -480,24 +486,24 @@
                     if (_local14.hasShadow_)
                     {
                         _local14.drawShadow(this.graphicsData_, _arg1, _arg2);
-                    };
-                };
-            };
+                    }
+                }
+            }
             for each (_local14 in this.visible_)
             {
                 _local14.draw(this.graphicsData_, _arg1, _arg2);
                 if (Parameters.isGpuRender())
                 {
                     _local14.draw3d(this.graphicsData3d_);
-                };
-            };
+                }
+            }
             if (this.topSquares_.length > 0)
             {
                 for each (_local6 in this.topSquares_)
                 {
                     _local6.drawTop(this.graphicsData_, _arg1, _arg2);
-                };
-            };
+                }
+            }
             if (((((!((player_ == null))) && ((player_.breath_ >= 0)))) && ((player_.breath_ < Parameters.BREATH_THRESH))))
             {
                 _local19 = ((Parameters.BREATH_THRESH - player_.breath_) / Parameters.BREATH_THRESH);
@@ -511,7 +517,7 @@
             else
             {
                 hurtOverlay_.visible = false;
-            };
+            }
             if (((!((player_ == null))) && (!(Parameters.screenShotMode_))))
             {
                 gradientOverlay_.visible = true;
@@ -521,7 +527,7 @@
             else
             {
                 gradientOverlay_.visible = false;
-            };
+            }
             if (((Parameters.isGpuRender()) && (Renderer.inGame)))
             {
                 _local21 = this.getFilterIndex();
@@ -543,10 +549,10 @@
                             this.graphicsDataStageSoftware_.push(this.graphicsData_[_local23]);
                             this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local23 + 1)]);
                             this.graphicsDataStageSoftware_.push(this.graphicsData_[(_local23 + 2)]);
-                        };
-                    };
+                        }
+                    }
                     _local23++;
-                };
+                }
                 if (this.graphicsDataStageSoftware_.length > 0)
                 {
                     map_.graphics.clear();
@@ -554,7 +560,7 @@
                     if (this.lastSoftwareClear)
                     {
                         this.lastSoftwareClear = false;
-                    };
+                    }
                 }
                 else
                 {
@@ -562,18 +568,18 @@
                     {
                         map_.graphics.clear();
                         this.lastSoftwareClear = true;
-                    };
-                };
+                    }
+                }
                 if ((_arg2 % 149) == 0)
                 {
                     GraphicsFillExtra.manageSize();
-                };
+                }
             }
             else
             {
                 map_.graphics.clear();
                 map_.graphics.drawGraphicsData(this.graphicsData_);
-            };
+            }
             map_.filters.length = 0;
             if (((!((player_ == null))) && (!(((player_.condition_[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) == 0)))))
             {
@@ -582,11 +588,11 @@
                 {
                     _local25 = (20 + (10 * Math.sin((_arg2 / 1000))));
                     _local24.push(new BlurFilter(_local25, _local25));
-                };
+                }
                 if (player_.isBlind())
                 {
                     _local24.push(BLIND_FILTER);
-                };
+                }
                 map_.filters = _local24;
             }
             else
@@ -594,8 +600,8 @@
                 if (map_.filters.length > 0)
                 {
                     map_.filters = [];
-                };
-            };
+                }
+            }
             mapOverlay_.draw(_arg1, _arg2);
             partyOverlay_.draw(_arg1, _arg2);
             if (((player_) && (player_.isDarkness())))
@@ -610,8 +616,8 @@
                 if (contains(this.darkness))
                 {
                     removeChild(this.darkness);
-                };
-            };
+                }
+            }
         }
 
         private function getFilterIndex():uint
@@ -634,14 +640,12 @@
                         if (player_.isDrunk())
                         {
                             _local1 = Renderer.STAGE3D_FILTER_DRUNK;
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             return (_local1);
         }
-
-
     }
 }
 

@@ -1,12 +1,12 @@
 ﻿package kabam.lib.util
 {
     import flash.display.DisplayObject;
-    import org.osflash.signals.Signal;
     import flash.events.Event;
 
-    public class StageLifecycleUtil 
-    {
+    import org.osflash.signals.Signal;
 
+    public class StageLifecycleUtil
+    {
         private var target:DisplayObject;
         private var _addedToStage:Signal;
         private var _removedFromStage:Signal;
@@ -40,8 +40,6 @@
         {
             return ((this._removedFromStage = ((this._removedFromStage) || (new Signal()))));
         }
-
-
     }
 }
 

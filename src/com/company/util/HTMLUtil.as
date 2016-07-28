@@ -1,14 +1,12 @@
 ﻿package com.company.util
 {
+    import flash.external.ExternalInterface;
     import flash.xml.XMLDocument;
     import flash.xml.XMLNode;
     import flash.xml.XMLNodeType;
-    import flash.external.ExternalInterface;
 
-    public class HTMLUtil 
+    public class HTMLUtil
     {
-
-
         public static function unescape(_arg1:String):String
         {
             return (new XMLDocument(_arg1).firstChild.nodeValue);
@@ -34,13 +32,11 @@
                     if (_local3.indexOf("www.kabam") != -1)
                     {
                         _local3 = "http://www.realmofthemadgod.com";
-                    };
+                    }
                     ExternalInterface.call("window.location.assign", _local3);
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

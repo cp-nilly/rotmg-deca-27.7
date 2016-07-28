@@ -1,19 +1,18 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import flash.filters.GlowFilter;
-    import flash.filters.BitmapFilterQuality;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.display.BitmapData;
-    import flash.geom.Matrix;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
+    import com.company.util.AssetLibrary;
     import com.company.util.PointUtil;
-    import __AS3__.vec.*;
 
-    public class ConditionEffect 
+    import flash.display.BitmapData;
+    import flash.filters.BitmapFilterQuality;
+    import flash.filters.GlowFilter;
+    import flash.geom.Matrix;
+
+    import kabam.rotmg.text.model.TextKey;
+
+    public class ConditionEffect
     {
-
         public static const NOTHING:uint = 0;
         public static const DEAD:uint = 1;
         public static const QUIET:uint = 2;
@@ -115,21 +114,123 @@
         public static const CE_SECOND_BATCH:uint = 1;
         public static const NUMBER_CE_BATCHES:uint = 2;
         public static const NEW_CON_THREASHOLD:uint = 32;
-        private static const GLOW_FILTER:GlowFilter = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
-
-        public static var effects_:Vector.<ConditionEffect> = new <ConditionEffect>[new (ConditionEffect)("Nothing", 0, null, TextKey.CONDITIONEFFECT_NOTHING), new (ConditionEffect)("Dead", DEAD_BIT, null, TextKey.CONDITIONEFFECT_DEAD), new (ConditionEffect)("Quiet", QUIET_BIT, [32], TextKey.CONDITIONEFFECT_QUIET), new (ConditionEffect)("Weak", WEAK_BIT, [34, 35, 36, 37], TextKey.CONDITIONEFFECT_WEAK), new (ConditionEffect)("Slowed", SLOWED_BIT, [1], TextKey.CONDITION_EFFECT_SLOWED), new (ConditionEffect)("Sick", SICK_BIT, [39], TextKey.CONDITIONEFFECT_SICK), new (ConditionEffect)("Dazed", DAZED_BIT, [44], TextKey.CONDITION_EFFECT_DAZED), new (ConditionEffect)("Stunned", STUNNED_BIT, [45], TextKey.CONDITIONEFFECT_STUNNED), new (ConditionEffect)("Blind", BLIND_BIT, [41], TextKey.CONDITIONEFFECT_BLIND), new (ConditionEffect)("Hallucinating", HALLUCINATING_BIT, [42], TextKey.CONDITIONEFFECT_HALLUCINATING), new (ConditionEffect)("Drunk", DRUNK_BIT, [43], TextKey.CONDITIONEFFECT_DRUNK), new (ConditionEffect)("Confused", CONFUSED_BIT, [2], TextKey.CONDITIONEFFECT_CONFUSED), new (ConditionEffect)("Stun Immune", STUN_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_STUN_IMMUNE), new (ConditionEffect)("Invisible", INVISIBLE_BIT, null, TextKey.CONDITIONEFFECT_INVISIBLE), new (ConditionEffect)("Paralyzed", PARALYZED_BIT, [53, 54], TextKey.CONDITION_EFFECT_PARALYZED), new (ConditionEffect)("Speedy", SPEEDY_BIT, [0], TextKey.CONDITIONEFFECT_SPEEDY), new (ConditionEffect)("Bleeding", BLEEDING_BIT, [46], TextKey.CONDITIONEFFECT_BLEEDING), new (ConditionEffect)("Armor Broken Immune", ARMORBROKEN_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_ARMOR_BROKEN_IMMUNE), new (ConditionEffect)("Healing", HEALING_BIT, [47], TextKey.CONDITIONEFFECT_HEALING), new (ConditionEffect)("Damaging", DAMAGING_BIT, [49], TextKey.CONDITIONEFFECT_DAMAGING), new (ConditionEffect)("Berserk", BERSERK_BIT, [50], TextKey.CONDITIONEFFECT_BERSERK), new (ConditionEffect)("Paused", PAUSED_BIT, null, TextKey.CONDITIONEFFECT_PAUSED), new (ConditionEffect)("Stasis", STASIS_BIT, null, TextKey.CONDITIONEFFECT_STASIS), new (ConditionEffect)("Stasis Immune", STASIS_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_STASIS_IMMUNE), new (ConditionEffect)("Invincible", INVINCIBLE_BIT, null, TextKey.CONDITIONEFFECT_INVINCIBLE), new (ConditionEffect)("Invulnerable", INVULNERABLE_BIT, [17], TextKey.CONDITIONEFFECT_INVULNERABLE), new (ConditionEffect)("Armored", ARMORED_BIT, [16], TextKey.CONDITIONEFFECT_ARMORED), new (ConditionEffect)("Armor Broken", ARMORBROKEN_BIT, [55], TextKey.CONDITIONEFFECT_ARMOR_BROKEN), new (ConditionEffect)("Hexed", HEXED_BIT, [42], TextKey.CONDITIONEFFECT_HEXED), new (ConditionEffect)("Ninja Speedy", NINJA_SPEEDY_BIT, [0], TextKey.CONDITIONEFFECT_NINJA_SPEEDY), new (ConditionEffect)("Unstable", UNSTABLE_BIT, [56], TextKey.CONDITIONEFFECT_UNSTABLE), new (ConditionEffect)("Darkness", DARKNESS_BIT, [57], TextKey.CONDITIONEFFECT_DARKNESS), new (ConditionEffect)("Slowed Immune", SLOWED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_SLOWIMMUNE), new (ConditionEffect)("Dazed Immune", DAZED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_DAZEDIMMUNE), new (ConditionEffect)("Paralyzed Immune", PARALYZED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_PARALYZEDIMMUNE), new (ConditionEffect)("Petrify", PETRIFIED_BIT, null, TextKey.CONDITIONEFFECT_PETRIFIED), new (ConditionEffect)("Petrify Immune", PETRIFIED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_PETRIFY_IMMUNE), new (ConditionEffect)("Pet Disable", PET_EFFECT_ICON_BIT, [27], TextKey.CONDITIONEFFECT_STASIS, true), new (ConditionEffect)("Curse", CURSE_BIT, [58], TextKey.CONDITIONEFFECT_CURSE), new (ConditionEffect)("Curse Immune", CURSE_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_CURSE_IMMUNE), new (ConditionEffect)("HP Boost", HP_BOOST_BIT, [32], "HP Boost", true), new (ConditionEffect)("MP Boost", MP_BOOST_BIT, [33], "MP Boost", true), new (ConditionEffect)("Att Boost", ATT_BOOST_BIT, [34], "Att Boost", true), new (ConditionEffect)("Def Boost", DEF_BOOST_BIT, [35], "Def Boost", true), new (ConditionEffect)("Spd Boost", SPD_BOOST_BIT, [36], "Spd Boost", true), new (ConditionEffect)("Vit Boost", VIT_BOOST_BIT, [38], "Vit Boost", true), new (ConditionEffect)("Wis Boost", WIS_BOOST_BIT, [39], "Wis Boost", true), new (ConditionEffect)("Dex Boost", DEX_BOOST_BIT, [37], "Dex Boost", true)];
+        private static const GLOW_FILTER:GlowFilter = new GlowFilter(
+                0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false
+        );
+        public static var effects_:Vector.<ConditionEffect> = new <ConditionEffect>[
+            new ConditionEffect(
+                    "Nothing", 0, null, TextKey.CONDITIONEFFECT_NOTHING
+            ), new ConditionEffect(
+                    "Dead", DEAD_BIT, null, TextKey.CONDITIONEFFECT_DEAD
+            ), new ConditionEffect(
+                    "Quiet", QUIET_BIT, [32], TextKey.CONDITIONEFFECT_QUIET
+            ), new ConditionEffect(
+                    "Weak", WEAK_BIT, [
+                        34, 35, 36, 37
+                    ], TextKey.CONDITIONEFFECT_WEAK
+            ), new ConditionEffect(
+                    "Slowed", SLOWED_BIT, [1], TextKey.CONDITION_EFFECT_SLOWED
+            ), new ConditionEffect(
+                    "Sick", SICK_BIT, [39], TextKey.CONDITIONEFFECT_SICK
+            ), new ConditionEffect(
+                    "Dazed", DAZED_BIT, [44], TextKey.CONDITION_EFFECT_DAZED
+            ), new ConditionEffect(
+                    "Stunned", STUNNED_BIT, [45], TextKey.CONDITIONEFFECT_STUNNED
+            ), new ConditionEffect(
+                    "Blind", BLIND_BIT, [41], TextKey.CONDITIONEFFECT_BLIND
+            ), new ConditionEffect(
+                    "Hallucinating", HALLUCINATING_BIT, [42], TextKey.CONDITIONEFFECT_HALLUCINATING
+            ), new ConditionEffect(
+                    "Drunk", DRUNK_BIT, [43], TextKey.CONDITIONEFFECT_DRUNK
+            ), new ConditionEffect(
+                    "Confused", CONFUSED_BIT, [2], TextKey.CONDITIONEFFECT_CONFUSED
+            ), new ConditionEffect(
+                    "Stun Immune", STUN_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_STUN_IMMUNE
+            ), new ConditionEffect(
+                    "Invisible", INVISIBLE_BIT, null, TextKey.CONDITIONEFFECT_INVISIBLE
+            ), new ConditionEffect(
+                    "Paralyzed", PARALYZED_BIT, [
+                        53, 54
+                    ], TextKey.CONDITION_EFFECT_PARALYZED
+            ), new ConditionEffect(
+                    "Speedy", SPEEDY_BIT, [0], TextKey.CONDITIONEFFECT_SPEEDY
+            ), new ConditionEffect(
+                    "Bleeding", BLEEDING_BIT, [46], TextKey.CONDITIONEFFECT_BLEEDING
+            ), new ConditionEffect(
+                    "Armor Broken Immune", ARMORBROKEN_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_ARMOR_BROKEN_IMMUNE
+            ), new ConditionEffect(
+                    "Healing", HEALING_BIT, [47], TextKey.CONDITIONEFFECT_HEALING
+            ), new ConditionEffect(
+                    "Damaging", DAMAGING_BIT, [49], TextKey.CONDITIONEFFECT_DAMAGING
+            ), new ConditionEffect(
+                    "Berserk", BERSERK_BIT, [50], TextKey.CONDITIONEFFECT_BERSERK
+            ), new ConditionEffect(
+                    "Paused", PAUSED_BIT, null, TextKey.CONDITIONEFFECT_PAUSED
+            ), new ConditionEffect(
+                    "Stasis", STASIS_BIT, null, TextKey.CONDITIONEFFECT_STASIS
+            ), new ConditionEffect(
+                    "Stasis Immune", STASIS_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_STASIS_IMMUNE
+            ), new ConditionEffect(
+                    "Invincible", INVINCIBLE_BIT, null, TextKey.CONDITIONEFFECT_INVINCIBLE
+            ), new ConditionEffect(
+                    "Invulnerable", INVULNERABLE_BIT, [17], TextKey.CONDITIONEFFECT_INVULNERABLE
+            ), new ConditionEffect(
+                    "Armored", ARMORED_BIT, [16], TextKey.CONDITIONEFFECT_ARMORED
+            ), new ConditionEffect(
+                    "Armor Broken", ARMORBROKEN_BIT, [55], TextKey.CONDITIONEFFECT_ARMOR_BROKEN
+            ), new ConditionEffect(
+                    "Hexed", HEXED_BIT, [42], TextKey.CONDITIONEFFECT_HEXED
+            ), new ConditionEffect(
+                    "Ninja Speedy", NINJA_SPEEDY_BIT, [0], TextKey.CONDITIONEFFECT_NINJA_SPEEDY
+            ), new ConditionEffect(
+                    "Unstable", UNSTABLE_BIT, [56], TextKey.CONDITIONEFFECT_UNSTABLE
+            ), new ConditionEffect(
+                    "Darkness", DARKNESS_BIT, [57], TextKey.CONDITIONEFFECT_DARKNESS
+            ), new ConditionEffect(
+                    "Slowed Immune", SLOWED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_SLOWIMMUNE
+            ), new ConditionEffect(
+                    "Dazed Immune", DAZED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_DAZEDIMMUNE
+            ), new ConditionEffect(
+                    "Paralyzed Immune", PARALYZED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_PARALYZEDIMMUNE
+            ), new ConditionEffect(
+                    "Petrify", PETRIFIED_BIT, null, TextKey.CONDITIONEFFECT_PETRIFIED
+            ), new ConditionEffect(
+                    "Petrify Immune", PETRIFIED_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_PETRIFY_IMMUNE
+            ), new ConditionEffect(
+                    "Pet Disable", PET_EFFECT_ICON_BIT, [27], TextKey.CONDITIONEFFECT_STASIS, true
+            ), new ConditionEffect(
+                    "Curse", CURSE_BIT, [58], TextKey.CONDITIONEFFECT_CURSE
+            ), new ConditionEffect(
+                    "Curse Immune", CURSE_IMMUNE_BIT, null, TextKey.CONDITIONEFFECT_CURSE_IMMUNE
+            ), new ConditionEffect(
+                    "HP Boost", HP_BOOST_BIT, [32], "HP Boost", true
+            ), new ConditionEffect(
+                    "MP Boost", MP_BOOST_BIT, [33], "MP Boost", true
+            ), new ConditionEffect(
+                    "Att Boost", ATT_BOOST_BIT, [34], "Att Boost", true
+            ), new ConditionEffect(
+                    "Def Boost", DEF_BOOST_BIT, [35], "Def Boost", true
+            ), new ConditionEffect(
+                    "Spd Boost", SPD_BOOST_BIT, [36], "Spd Boost", true
+            ), new ConditionEffect(
+                    "Vit Boost", VIT_BOOST_BIT, [38], "Vit Boost", true
+            ), new ConditionEffect(
+                    "Wis Boost", WIS_BOOST_BIT, [39], "Wis Boost", true
+            ), new ConditionEffect(
+                    "Dex Boost", DEX_BOOST_BIT, [37], "Dex Boost", true
+            )
+        ];
         private static var conditionEffectFromName_:Object = null;
         private static var effectIconCache:Object = null;
         private static var bitToIcon_:Object = null;
         private static var bitToIcon2_:Object = null;
-
         public var name_:String;
         public var bit_:uint;
         public var iconOffsets_:Array;
         public var localizationKey_:String;
         public var icon16Bit_:Boolean;
 
-        public function ConditionEffect(_arg1:String, _arg2:uint, _arg3:Array, _arg4:String="", _arg5:Boolean=false)
+        public function ConditionEffect(_arg1:String, _arg2:uint, _arg3:Array, _arg4:String = "", _arg5:Boolean = false)
         {
             this.name_ = _arg1;
             this.bit_ = _arg2;
@@ -149,8 +250,8 @@
                 {
                     conditionEffectFromName_[effects_[_local2].name_] = _local2;
                     _local2++;
-                };
-            };
+                }
+            }
             return (conditionEffectFromName_[_arg1]);
         }
 
@@ -162,8 +263,8 @@
                 if (_local2.name_ == _arg1)
                 {
                     return (_local2);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -180,9 +281,9 @@
                 if (_local6 != null)
                 {
                     _arg2.push(_local6[(_arg3 % _local6.length)]);
-                };
+                }
                 _arg1 = _local4;
-            };
+            }
         }
 
         public static function getConditionEffectIcons2(_arg1:uint, _arg2:Vector.<BitmapData>, _arg3:int):void
@@ -198,9 +299,9 @@
                 if (_local6 != null)
                 {
                     _arg2.push(_local6[(_arg3 % _local6.length)]);
-                };
+                }
                 _arg1 = _local4;
-            };
+            }
         }
 
         public static function addConditionEffectIcon(_arg1:Vector.<BitmapData>, _arg2:int, _arg3:Boolean):void
@@ -211,7 +312,7 @@
             if (effectIconCache == null)
             {
                 effectIconCache = {};
-            };
+            }
             if (effectIconCache[_arg2])
             {
                 _local4 = effectIconCache[_arg2];
@@ -231,11 +332,11 @@
                 {
                     _local4 = new BitmapDataSpy(16, 16, true, 0);
                     _local4.draw(AssetLibrary.getImageFromSet("lofiInterface2", _arg2), _local5);
-                };
+                }
                 _local4 = GlowRedrawer.outlineGlow(_local4, 0xFFFFFFFF);
                 _local4.applyFilter(_local4, _local4.rect, PointUtil.ORIGIN, GLOW_FILTER);
                 effectIconCache[_arg2] = _local4;
-            };
+            }
             _arg1.push(_local4);
         }
 
@@ -262,17 +363,21 @@
                         while (_local5 < effects_[_local3].iconOffsets_.length)
                         {
                             _local6 = new BitmapDataSpy(16, 16, true, 0);
-                            _local6.draw(AssetLibrary.getImageFromSet("lofiInterface2", effects_[_local3].iconOffsets_[_local5]), _local2);
+                            _local6.draw(
+                                    AssetLibrary.getImageFromSet(
+                                            "lofiInterface2", effects_[_local3].iconOffsets_[_local5]
+                                    ), _local2
+                            );
                             _local6 = GlowRedrawer.outlineGlow(_local6, 0xFFFFFFFF);
                             _local6.applyFilter(_local6, _local6.rect, PointUtil.ORIGIN, GLOW_FILTER);
                             _local4.push(_local6);
                             _local5++;
-                        };
-                    };
+                        }
+                    }
                     bitToIcon_[effects_[_local3].bit_] = _local4;
                     _local3++;
-                };
-            };
+                }
+            }
             return (bitToIcon_[_arg1]);
         }
 
@@ -305,31 +410,37 @@
                             if (effects_[_local6].icon16Bit_)
                             {
                                 _local3 = new BitmapDataSpy(18, 18, true, 0);
-                                _local3.draw(AssetLibrary.getImageFromSet("lofiInterfaceBig", effects_[_local6].iconOffsets_[_local7]), _local5);
+                                _local3.draw(
+                                        AssetLibrary.getImageFromSet(
+                                                "lofiInterfaceBig", effects_[_local6].iconOffsets_[_local7]
+                                        ), _local5
+                                );
                             }
                             else
                             {
                                 _local3 = new BitmapDataSpy(16, 16, true, 0);
-                                _local3.draw(AssetLibrary.getImageFromSet("lofiInterface2", effects_[_local6].iconOffsets_[_local7]), _local4);
-                            };
+                                _local3.draw(
+                                        AssetLibrary.getImageFromSet(
+                                                "lofiInterface2", effects_[_local6].iconOffsets_[_local7]
+                                        ), _local4
+                                );
+                            }
                             _local3 = GlowRedrawer.outlineGlow(_local3, 0xFFFFFFFF);
                             _local3.applyFilter(_local3, _local3.rect, PointUtil.ORIGIN, GLOW_FILTER);
                             _local2.push(_local3);
                             _local7++;
-                        };
-                    };
+                        }
+                    }
                     bitToIcon2_[effects_[_local6].bit_] = _local2;
                     _local6++;
-                };
-            };
+                }
+            }
             if (((!((bitToIcon2_ == null))) && (!((bitToIcon2_[_arg1] == null)))))
             {
                 return (bitToIcon2_[_arg1]);
-            };
+            }
             return (null);
         }
-
-
     }
 }
 

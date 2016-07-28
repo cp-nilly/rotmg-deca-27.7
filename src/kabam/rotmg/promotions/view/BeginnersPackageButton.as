@@ -1,21 +1,21 @@
 ﻿package kabam.rotmg.promotions.view
 {
-    import kabam.rotmg.packages.view.BasePackageButton;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import flash.display.DisplayObject;
     import flash.display.Sprite;
-    import kabam.rotmg.ui.UIUtils;
-    import org.osflash.signals.natives.NativeMappedSignal;
     import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.packages.view.BasePackageButton;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.UIUtils;
 
-    public class BeginnersPackageButton extends BasePackageButton 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class BeginnersPackageButton extends BasePackageButton
     {
-
         private static const FONT_SIZE:int = 16;
-
         public var clicked:Signal;
         private var timeLeftText:TextFieldDisplayConcrete;
         private var lootIcon:DisplayObject;
@@ -37,7 +37,7 @@
             {
                 this.daysRemaining = _arg1;
                 this.updateTimeLeftPosition();
-            };
+            }
         }
 
         public function destroy():void
@@ -65,15 +65,17 @@
         private function updateTimeLeftPosition():void
         {
             this.timeLeftText.textChanged.addOnce(this.onTextChanged);
-            this.timeLeftText.setStringBuilder(new StaticStringBuilder(((this.daysRemaining.toString() + " day") + (((this.daysRemaining)>1) ? "s" : ""))));
+            this.timeLeftText.setStringBuilder(
+                    new StaticStringBuilder(
+                            ((this.daysRemaining.toString() + " day") + (((this.daysRemaining) > 1) ? "s" : ""))
+                    )
+            );
         }
 
         private function onTextChanged():void
         {
             positionText(this.lootIcon, this.timeLeftText);
         }
-
-
     }
 }
 

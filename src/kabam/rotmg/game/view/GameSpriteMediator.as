@@ -1,43 +1,45 @@
 ﻿package kabam.rotmg.game.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.game.GameSprite;
-    import kabam.rotmg.game.signals.SetWorldInteractionSignal;
-    import kabam.rotmg.core.signals.InvalidateDataSignal;
-    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.core.signals.SetScreenSignal;
-    import kabam.rotmg.game.signals.PlayGameSignal;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.game.signals.GameClosedSignal;
+    import com.company.assembleegameclient.game.events.ReconnectEvent;
+    import com.company.assembleegameclient.objects.Player;
+
+    import flash.utils.getTimer;
+
+    import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.core.model.MapModel;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.signals.InvalidateDataSignal;
+    import kabam.rotmg.core.signals.SetScreenSignal;
+    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
+    import kabam.rotmg.core.signals.TrackPageViewSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.game.logging.LoopMonitor;
+    import kabam.rotmg.game.model.GameInitData;
+    import kabam.rotmg.game.signals.GameClosedSignal;
+    import kabam.rotmg.game.signals.PlayGameSignal;
+    import kabam.rotmg.game.signals.SetWorldInteractionSignal;
+    import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
+    import kabam.rotmg.maploading.signals.ShowLoadingViewSignal;
+    import kabam.rotmg.maploading.view.MapLoadingView;
+    import kabam.rotmg.news.controller.NewsButtonRefreshSignal;
+    import kabam.rotmg.packages.control.BeginnersPackageAvailableSignal;
+    import kabam.rotmg.packages.control.InitPackagesSignal;
+    import kabam.rotmg.packages.control.OpenPackageSignal;
+    import kabam.rotmg.packages.control.PackageAvailableSignal;
+    import kabam.rotmg.packages.model.PackageInfo;
+    import kabam.rotmg.packages.services.PackageModel;
+    import kabam.rotmg.pets.controller.ShowPetTooltip;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.promotions.signals.ShowBeginnersPackageSignal;
+    import kabam.rotmg.ui.signals.HUDModelInitialized;
     import kabam.rotmg.ui.signals.HUDSetupStarted;
     import kabam.rotmg.ui.signals.UpdateHUDSignal;
-    import kabam.rotmg.ui.signals.HUDModelInitialized;
-    import kabam.rotmg.core.signals.TrackPageViewSignal;
-    import kabam.rotmg.packages.control.BeginnersPackageAvailableSignal;
-    import kabam.rotmg.packages.control.PackageAvailableSignal;
-    import kabam.rotmg.packages.control.InitPackagesSignal;
-    import kabam.rotmg.promotions.signals.ShowBeginnersPackageSignal;
-    import kabam.rotmg.packages.services.PackageModel;
-    import kabam.rotmg.packages.control.OpenPackageSignal;
-    import kabam.rotmg.pets.controller.ShowPetTooltip;
-    import kabam.rotmg.maploading.signals.ShowLoadingViewSignal;
-    import kabam.rotmg.news.controller.NewsButtonRefreshSignal;
-    import flash.utils.getTimer;
-    import com.company.assembleegameclient.game.events.ReconnectEvent;
-    import kabam.rotmg.packages.model.PackageInfo;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
-    import kabam.rotmg.game.model.GameInitData;
-    import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.maploading.view.MapLoadingView;
 
-    public class GameSpriteMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class GameSpriteMediator extends Mediator
     {
-
         [Inject]
         public var view:GameSprite;
         [Inject]
@@ -89,16 +91,17 @@
         [Inject]
         public var newsButtonRefreshSignal:NewsButtonRefreshSignal;
 
-
         public static function sleepForMs(_arg1:int):void
         {
             var _local2:int = getTimer();
             while (true)
             {
-                if ((getTimer() - _local2) >= _arg1) break;
-            };
+                if ((getTimer() - _local2) >= _arg1)
+                {
+                    break;
+                }
+            }
         }
-
 
         override public function initialize():void
         {
@@ -128,7 +131,7 @@
             if (_local1)
             {
                 this.openPackageSignal.dispatch(_local1.packageID);
-            };
+            }
         }
 
         override public function destroy():void
@@ -181,7 +184,7 @@
             if (this.view.isEditor)
             {
                 return;
-            };
+            }
             var _local2:GameInitData = new GameInitData();
             _local2.server = _arg1.server_;
             _local2.gameId = _arg1.gameId_;
@@ -220,8 +223,6 @@
         {
             this.view.refreshNewsUpdateButton();
         }
-
-
     }
 }
 

@@ -2,13 +2,11 @@
 {
     import flash.display.DisplayObjectContainer;
 
-    public class QueuedStatusTextList 
+    public class QueuedStatusTextList
     {
-
         public var target:DisplayObjectContainer;
         private var head:QueuedStatusText;
         private var tail:QueuedStatusText;
-
 
         public function shift():void
         {
@@ -21,7 +19,7 @@
             else
             {
                 this.tail = null;
-            };
+            }
         }
 
         public function append(_arg1:QueuedStatusText):void
@@ -36,10 +34,8 @@
             {
                 this.head = (this.tail = _arg1);
                 this.target.addChild(_arg1);
-            };
+            }
         }
-
-
     }
 }
 

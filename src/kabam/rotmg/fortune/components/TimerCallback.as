@@ -1,11 +1,10 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import flash.utils.Timer;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
 
-    public class TimerCallback 
+    public class TimerCallback
     {
-
         private var f:Function;
         private var data1;
         private var data2;
@@ -17,41 +16,52 @@
         private var data8;
         private var tbo:Timer;
 
-        public function TimerCallback(_arg1:Number, _arg2:Function, _arg3:*=null, _arg4:*=null, _arg5:*=null, _arg6:*=null, _arg7:*=null, _arg8:*=null, _arg9:*=null, _arg10:*=null)
+        public function TimerCallback(
+                _arg1:Number,
+                _arg2:Function,
+                _arg3:* = null,
+                _arg4:* = null,
+                _arg5:* = null,
+                _arg6:* = null,
+                _arg7:* = null,
+                _arg8:* = null,
+                _arg9:* = null,
+                _arg10:* = null
+        )
         {
             this.f = _arg2;
             if (_arg3 != null)
             {
                 this.data1 = _arg3;
-            };
+            }
             if (_arg4 != null)
             {
                 this.data2 = _arg4;
-            };
+            }
             if (_arg5 != null)
             {
                 this.data3 = _arg5;
-            };
+            }
             if (_arg6 != null)
             {
                 this.data4 = _arg6;
-            };
+            }
             if (_arg7 != null)
             {
                 this.data5 = _arg7;
-            };
+            }
             if (_arg8 != null)
             {
                 this.data6 = _arg8;
-            };
+            }
             if (_arg9 != null)
             {
                 this.data7 = _arg9;
-            };
+            }
             if (_arg10 != null)
             {
                 this.data8 = _arg10;
-            };
+            }
             this.tbo = new Timer((_arg1 * 1000), 1);
             this.tbo.addEventListener(TimerEvent.TIMER_COMPLETE, this.callbackWrapper);
             this.tbo.start();
@@ -109,17 +119,15 @@
                                         else
                                         {
                                             this.f();
-                                        };
-                                    };
-                                };
-                            };
-                        };
-                    };
-                };
-            };
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-
     }
 }
 

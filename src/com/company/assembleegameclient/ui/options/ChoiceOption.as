@@ -1,17 +1,25 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
     import com.company.assembleegameclient.parameters.Parameters;
+
     import flash.events.Event;
-    import __AS3__.vec.Vector;
+
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
 
-    public class ChoiceOption extends BaseOption 
+    public class ChoiceOption extends BaseOption
     {
-
         private var callback_:Function;
         private var choiceBox_:ChoiceBox;
 
-        public function ChoiceOption(_arg1:String, _arg2:Vector.<StringBuilder>, _arg3:Array, _arg4:String, _arg5:String, _arg6:Function, _arg7:Number=0xFFFFFF)
+        public function ChoiceOption(
+                _arg1:String,
+                _arg2:Vector.<StringBuilder>,
+                _arg3:Array,
+                _arg4:String,
+                _arg5:String,
+                _arg6:Function,
+                _arg7:Number = 0xFFFFFF
+        )
         {
             super(_arg1, _arg4, _arg5);
             desc_.setColor(_arg7);
@@ -38,11 +46,9 @@
             if (this.callback_ != null)
             {
                 this.callback_();
-            };
+            }
             Parameters.save();
         }
-
-
     }
 }
 

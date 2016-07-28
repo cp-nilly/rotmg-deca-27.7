@@ -1,17 +1,17 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import flash.events.MouseEvent;
-    import flash.filters.GlowFilter;
     import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.sound.Music;
     import com.company.assembleegameclient.sound.SFX;
+    import com.company.util.AssetLibrary;
 
-    public class SoundIcon extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.GlowFilter;
+
+    public class SoundIcon extends Sprite
     {
-
         private var bitmap_:Bitmap;
 
         public function SoundIcon()
@@ -28,7 +28,9 @@
 
         private function setBitmap():void
         {
-            this.bitmap_.bitmapData = ((((Parameters.data_.playMusic) || (Parameters.data_.playSFX))) ? AssetLibrary.getImageFromSet("lofiInterfaceBig", 3) : AssetLibrary.getImageFromSet("lofiInterfaceBig", 4));
+            this.bitmap_.bitmapData = ((((Parameters.data_.playMusic) || (Parameters.data_.playSFX)))
+                    ? AssetLibrary.getImageFromSet("lofiInterfaceBig", 3)
+                    : AssetLibrary.getImageFromSet("lofiInterfaceBig", 4));
         }
 
         private function onIconClick(_arg1:MouseEvent):void
@@ -40,8 +42,6 @@
             Parameters.save();
             this.setBitmap();
         }
-
-
     }
 }
 

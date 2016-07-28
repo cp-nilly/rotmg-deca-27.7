@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.account.web
 {
-    import kabam.rotmg.account.core.Account;
-    import flash.external.ExternalInterface;
-    import com.company.assembleegameclient.util.GUID;
-    import flash.net.SharedObject;
     import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.util.GUID;
 
-    public class WebAccount implements Account 
+    import flash.external.ExternalInterface;
+    import flash.net.SharedObject;
+
+    import kabam.rotmg.account.core.Account;
+
+    public class WebAccount implements Account
     {
-
         public static const NETWORK_NAME:String = "rotmg";
         private static const WEB_USER_ID:String = "";
         private static const WEB_PLAY_PLATFORM_NAME:String = "rotmg";
-
         private var userId:String = "";
         private var password:String;
         private var entryTag:String = "";
@@ -27,9 +27,9 @@
             {
                 this.entryTag = ExternalInterface.call("rotmg.UrlLib.getParam", "entrypt");
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         public function getUserName():String
@@ -50,8 +50,7 @@
         public function getCredentials():Object
         {
             return ({
-                "guid":this.getUserId(),
-                "password":this.getPassword()
+                "guid": this.getUserId(), "password": this.getPassword()
             });
         }
 
@@ -72,9 +71,9 @@
                 _local3.data["Password"] = _arg2;
                 _local3.flush();
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         public function clear():void
@@ -148,8 +147,6 @@
         {
             return (this.kabamId);
         }
-
-
     }
 }
 

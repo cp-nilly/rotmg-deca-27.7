@@ -1,8 +1,7 @@
 ﻿package com.company.util
 {
-    public class ArrayIterator implements IIterator 
+    public class ArrayIterator implements IIterator
     {
-
         private var objects_:Array;
         private var index_:int;
 
@@ -26,8 +25,6 @@
         {
             return ((this.index_ < this.objects_.length));
         }
-
-
     }
 }
 

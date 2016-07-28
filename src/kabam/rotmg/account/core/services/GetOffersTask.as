@@ -1,16 +1,18 @@
 ﻿package kabam.rotmg.account.core.services
 {
+    import com.company.assembleegameclient.util.offer.Offers;
+
+    import flash.utils.getTimer;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.model.OfferModel;
-    import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.appengine.api.AppEngineClient;
-    import flash.utils.getTimer;
-    import com.company.assembleegameclient.util.offer.Offers;
 
-    public class GetOffersTask extends BaseTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class GetOffersTask extends BaseTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -21,7 +23,6 @@
         public var client:AppEngineClient;
         private var target:String;
         private var guid:String;
-
 
         override protected function startTask():void
         {
@@ -38,7 +39,7 @@
             {
                 this.model.lastOfferRequestGUID = this.guid;
                 this.model.lastOfferRequestTime = _local1;
-            };
+            }
         }
 
         private function sendGetOffersRequest():void
@@ -67,7 +68,7 @@
             else
             {
                 this.onTextError(_arg2);
-            };
+            }
             completeTask(_arg1);
         }
 
@@ -80,8 +81,6 @@
         {
             this.logger.error(_arg1);
         }
-
-
     }
 }
 

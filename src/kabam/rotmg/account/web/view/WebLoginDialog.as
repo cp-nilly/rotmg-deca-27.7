@@ -1,20 +1,22 @@
 ﻿package kabam.rotmg.account.web.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.account.web.model.AccountData;
-    import flash.events.KeyboardEvent;
-    import flash.events.Event;
     import com.company.util.KeyCodes;
 
-    public class WebLoginDialog extends Frame 
-    {
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.text.model.TextKey;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebLoginDialog extends Frame
+    {
         public var cancel:Signal;
         public var signIn:Signal;
         public var forgot:Signal;
@@ -26,7 +28,12 @@
 
         public function WebLoginDialog()
         {
-            super(TextKey.WEB_LOGIN_DIALOG_TITLE, TextKey.WEB_LOGIN_DIALOG_LEFT, TextKey.WEB_LOGIN_DIALOG_RIGHT, "/signIn");
+            super(
+                    TextKey.WEB_LOGIN_DIALOG_TITLE,
+                    TextKey.WEB_LOGIN_DIALOG_LEFT,
+                    TextKey.WEB_LOGIN_DIALOG_RIGHT,
+                    "/signIn"
+            );
             this.makeUI();
             this.forgot = new NativeMappedSignal(this.forgotText, MouseEvent.CLICK);
             this.register = new NativeMappedSignal(this.registerText, MouseEvent.CLICK);
@@ -60,7 +67,7 @@
             if (_arg1.keyCode == KeyCodes.ENTER)
             {
                 this.onSignInSub();
-            };
+            }
         }
 
         private function onCancel(_arg1:MouseEvent):void
@@ -82,7 +89,7 @@
                 _local1.username = this.email.text();
                 _local1.password = this.password.text();
                 this.signIn.dispatch(_local1);
-            };
+            }
         }
 
         private function isPasswordValid():Boolean
@@ -91,7 +98,7 @@
             if (!_local1)
             {
                 this.password.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -101,7 +108,7 @@
             if (!_local1)
             {
                 this.email.setError(TextKey.WEBLOGINDIALOG_EMAIL_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -114,8 +121,6 @@
         {
             this.email.inputText_.text = _arg1;
         }
-
-
     }
 }
 

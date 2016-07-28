@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class QueueStatusTextSignal extends Signal 
+    public class QueueStatusTextSignal extends Signal
     {
-
         public function QueueStatusTextSignal()
         {
             super(String, uint);
         }
-
     }
 }
 

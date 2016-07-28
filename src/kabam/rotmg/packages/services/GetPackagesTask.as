@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.packages.services
 {
-    import kabam.lib.tasks.BaseTask;
-    import flash.utils.Timer;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.account.core.Account;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.language.model.LanguageModel;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.language.model.LanguageModel;
     import kabam.rotmg.packages.model.PackageInfo;
 
-    public class GetPackagesTask extends BaseTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class GetPackagesTask extends BaseTask
     {
-
         private static const HOUR:int = ((1000 * 60) * 60);//3600000
-
         public var timer:Timer;
         [Inject]
         public var client:AppEngineClient;
@@ -50,7 +50,7 @@
             {
                 this.logger.info("GetPackageTask.onComplete: Request failed.");
                 completeTask(false);
-            };
+            }
         }
 
         private function handleOkay(_arg1:*):void
@@ -67,7 +67,7 @@
             {
                 _local2 = XML(_arg1);
                 this.parse(_local2);
-            };
+            }
             completeTask(true);
         }
 
@@ -105,7 +105,7 @@
                 _local13 = new PackageInfo();
                 _local13.setData(_local4, _local10, _local5, _local7, _local8, _local9, _local6, _local11, _local12);
                 _local2.push(_local13);
-            };
+            }
             this.packageModel.setPackages(_local2);
         }
 
@@ -120,8 +120,8 @@
                 if (packageHistory)
                 {
                     numPurchased = int(packageHistory.Count);
-                };
-            };
+                }
+            }
             return (numPurchased);
         }
 
@@ -131,8 +131,6 @@
             this.timer.stop();
             this.startTask();
         }
-
-
     }
 }
 

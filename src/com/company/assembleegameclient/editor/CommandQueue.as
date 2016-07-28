@@ -1,11 +1,7 @@
 ﻿package com.company.assembleegameclient.editor
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-
-    public class CommandQueue 
+    public class CommandQueue
     {
-
         private var list_:Vector.<CommandList>;
         private var currPos:int = 0;
 
@@ -28,7 +24,7 @@
             if (this.currPos == 0)
             {
                 return;
-            };
+            }
             this.list_[--this.currPos].unexecute();
         }
 
@@ -37,7 +33,7 @@
             if (this.currPos == this.list_.length)
             {
                 return;
-            };
+            }
             this.list_[this.currPos++].execute();
         }
 
@@ -46,8 +42,6 @@
             this.currPos = 0;
             this.list_.length = 0;
         }
-
-
     }
 }
 

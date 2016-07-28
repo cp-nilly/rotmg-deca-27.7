@@ -1,35 +1,34 @@
 ﻿package kabam.rotmg.util.components
 {
-    import kabam.rotmg.util.components.api.BuyButton;
-    import flash.display.BitmapData;
-    import kabam.rotmg.assets.services.IconFactory;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.util.Currency;
     import com.company.util.GraphicsUtil;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import flash.text.TextField;
+    import com.company.util.MoreColorUtil;
+
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.GraphicsStroke;
+    import flash.display.IGraphicsData;
+    import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-    import flash.text.TextFieldAutoSize;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.util.Currency;
     import flash.ui.Mouse;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import flash.display.GraphicsStroke;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
-    import flash.display.JointStyle;
-    import flash.display.Graphics;
-    import __AS3__.vec.*;
 
-    public class SimpleButton extends BuyButton 
+    import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.components.api.BuyButton;
+
+    public class SimpleButton extends BuyButton
     {
-
         private static const BEVEL:int = 4;
         private static const PADDING:int = 2;
         public static const coin:BitmapData = IconFactory.makeCoin();
@@ -37,13 +36,13 @@
         public static const fame:BitmapData = IconFactory.makeFame();
         public static const guildFame:BitmapData = IconFactory.makeGuildFame();
         private static const grayfilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
         private const enabledFill:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         private const disabledFill:GraphicsSolidFill = new GraphicsSolidFill(0x7F7F7F, 1);
         private const graphicsPath:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[enabledFill, graphicsPath, GraphicsUtil.END_FILL];
+        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[
+            enabledFill, graphicsPath, GraphicsUtil.END_FILL
+        ];
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var prefix:String;
         public var text:TextField;
         public var icon:Bitmap;
@@ -56,7 +55,7 @@
         private var fixedHeight:int = -1;
         private var textVertMargin:int = 4;
 
-        public function SimpleButton(_arg1:String, _arg2:int=-1, _arg3:int=-1, _arg4:Boolean=false)
+        public function SimpleButton(_arg1:String, _arg2:int = -1, _arg3:int = -1, _arg4:Boolean = false)
         {
             this.prefix = _arg1;
             this.text = new TextField();
@@ -88,7 +87,7 @@
             {
                 this.text.text = _arg1;
                 this.updateUI();
-            };
+            }
             this.withOutLine = _arg4;
         }
 
@@ -100,7 +99,7 @@
                 this.currency = _arg2;
                 this.text.text = (this.prefix + _arg1.toString());
                 this.updateUI();
-            };
+            }
         }
 
         public function getPrice():int
@@ -121,7 +120,7 @@
                 mouseEnabled = _arg1;
                 filters = ((_arg1) ? [] : [grayfilter]);
                 this.draw();
-            };
+            }
         }
 
         override public function setWidth(_arg1:int):void
@@ -162,14 +161,18 @@
                     break;
                 default:
                     this.icon.bitmapData = null;
-            };
+            }
             this.updateIconPosition();
         }
 
         private function updateBackground():void
         {
             GraphicsUtil.clearPath(this.graphicsPath);
-            GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), BEVEL, [1, 1, 1, 1], this.graphicsPath);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this.getWidth(), this.getHeight(), BEVEL, [
+                        1, 1, 1, 1
+                    ], this.graphicsPath
+            );
         }
 
         private function updateText():void
@@ -206,17 +209,19 @@
             if (this.withOutLine)
             {
                 this.drawOutline(graphics);
-            };
+            }
         }
 
         private function getWidth():int
         {
-            return ((((this.fixedWidth)!=-1) ? this.fixedWidth : Math.max(this._width, ((this.text.width + this.icon.width) + (3 * PADDING)))));
+            return ((((this.fixedWidth) != -1) ? this.fixedWidth : Math.max(
+                    this._width, ((this.text.width + this.icon.width) + (3 * PADDING))
+            )));
         }
 
         private function getHeight():int
         {
-            return ((((this.fixedHeight)!=-1) ? this.fixedHeight : (this.text.height + (this.textVertMargin * 2))));
+            return ((((this.fixedHeight) != -1) ? this.fixedHeight : (this.text.height + (this.textVertMargin * 2))));
         }
 
         public function freezeSize():void
@@ -252,14 +257,16 @@
         {
             var _local2:GraphicsSolidFill = new GraphicsSolidFill(0, 0.01);
             var _local3:GraphicsSolidFill = new GraphicsSolidFill(this.outLineColor, 0.6);
-            var _local4:GraphicsStroke = new GraphicsStroke(4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local3);
+            var _local4:GraphicsStroke = new GraphicsStroke(
+                    4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local3
+            );
             var _local5:GraphicsPath = new GraphicsPath();
             GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), 4, GraphicsUtil.ALL_CUTS, _local5);
-            var _local6:Vector.<IGraphicsData> = new <IGraphicsData>[_local4, _local2, _local5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+            var _local6:Vector.<IGraphicsData> = new <IGraphicsData>[
+                _local4, _local2, _local5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+            ];
             _arg1.drawGraphicsData(_local6);
         }
-
-
     }
 }
 

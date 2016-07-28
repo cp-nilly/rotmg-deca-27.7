@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.screens.LoadingScreen;
+
     import kabam.rotmg.core.signals.SetLoadingMessageSignal;
 
-    public class LoadingMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class LoadingMediator extends Mediator
+    {
         [Inject]
         public var view:LoadingScreen;
         [Inject]
         public var setMessage:SetLoadingMessageSignal;
-
 
         override public function initialize():void
         {
@@ -28,8 +28,6 @@
         {
             this.view.setTextKey(_arg1);
         }
-
-
     }
 }
 

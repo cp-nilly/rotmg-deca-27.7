@@ -1,12 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
+
+    import flash.geom.Point;
+
     import kabam.rotmg.messaging.impl.data.WorldPosData;
 
-    public class BurstEffect extends ParticleEffect 
+    public class BurstEffect extends ParticleEffect
     {
-
         public var center_:Point;
         public var edgePoint_:Point;
         public var color_:int;
@@ -32,11 +33,16 @@
             while (_local6 < _local5)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local5);
-                _local8 = new Point((this.center_.x + (_local3 * Math.cos(_local7))), (this.center_.y + (_local3 * Math.sin(_local7))));
-                _local9 = new SparkerParticle(_local4, this.color_, (100 + (Math.random() * 200)), this.center_, _local8);
+                _local8 = new Point(
+                        (this.center_.x + (_local3 * Math.cos(_local7))),
+                        (this.center_.y + (_local3 * Math.sin(_local7)))
+                );
+                _local9 = new SparkerParticle(
+                        _local4, this.color_, (100 + (Math.random() * 200)), this.center_, _local8
+                );
                 map_.addObj(_local9, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
 
@@ -54,15 +60,16 @@
             while (_local6 < _local5)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local5);
-                _local8 = new Point((this.center_.x + (_local3 * Math.cos(_local7))), (this.center_.y + (_local3 * Math.sin(_local7))));
+                _local8 = new Point(
+                        (this.center_.x + (_local3 * Math.cos(_local7))),
+                        (this.center_.y + (_local3 * Math.sin(_local7)))
+                );
                 _local9 = new SparkerParticle(_local4, this.color_, (50 + (Math.random() * 20)), this.center_, _local8);
                 map_.addObj(_local9, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

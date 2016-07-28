@@ -1,12 +1,9 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import __AS3__.vec.Vector;
     import flash.utils.IDataInput;
-    import __AS3__.vec.*;
 
-    public class AccountList extends IncomingMessage 
+    public class AccountList extends IncomingMessage
     {
-
         public var accountListId_:int;
         public var accountIds_:Vector.<String>;
         public var lockAction_:int = -1;
@@ -28,7 +25,7 @@
             {
                 this.accountIds_.push(_arg1.readUTF());
                 _local2++;
-            };
+            }
             this.lockAction_ = _arg1.readInt();
         }
 
@@ -36,8 +33,6 @@
         {
             return (formatToString("ACCOUNTLIST", "accountListId_", "accountIds_", "lockAction_"));
         }
-
-
     }
 }
 

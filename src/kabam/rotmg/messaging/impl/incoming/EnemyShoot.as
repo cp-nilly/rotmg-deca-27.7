@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import flash.utils.IDataInput;
 
-    public class EnemyShoot extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
 
+    public class EnemyShoot extends IncomingMessage
+    {
         public var bulletId_:uint;
         public var ownerId_:int;
         public var bulletType_:int;
@@ -38,15 +38,23 @@
             {
                 this.numShots_ = 1;
                 this.angleInc_ = 0;
-            };
+            }
         }
 
         override public function toString():String
         {
-            return (formatToString("SHOOT", "bulletId_", "ownerId_", "bulletType_", "startingPos_", "angle_", "damage_", "numShots_", "angleInc_"));
+            return (formatToString(
+                    "SHOOT",
+                    "bulletId_",
+                    "ownerId_",
+                    "bulletType_",
+                    "startingPos_",
+                    "angle_",
+                    "damage_",
+                    "numShots_",
+                    "angleInc_"
+            ));
         }
-
-
     }
 }
 

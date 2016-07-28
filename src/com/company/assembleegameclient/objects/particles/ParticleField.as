@@ -1,18 +1,17 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
     import com.company.assembleegameclient.objects.thrown.BitmapParticle;
-    import flash.display.Sprite;
-    import flash.utils.Timer;
+
     import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.TimerEvent;
     import flash.geom.Point;
+    import flash.utils.Timer;
 
-    public class ParticleField extends BitmapParticle 
+    public class ParticleField extends BitmapParticle
     {
-
         private const SMALL:String = "SMALL";
         private const LARGE:String = "LARGE";
-
         private var bitmapSize:String;
         private var width:int;
         private var height:int;
@@ -63,7 +62,7 @@
             if (this.doDestroy)
             {
                 return (false);
-            };
+            }
             var _local4:uint = this.squares.length;
             _local3 = 0;
             while (_local3 < _local4)
@@ -71,9 +70,9 @@
                 if (this.squares[_local3])
                 {
                     this.squares[_local3].move();
-                };
+                }
                 _local3++;
-            };
+            }
             _bitmapData = new BitmapData(this.width, this.height, true, 0);
             _bitmapData.draw(this.spriteSource);
             return (true);
@@ -106,7 +105,11 @@
 
         private function getStartPoint():Point
         {
-            var _local1:Array = (((Math.random() < 0.5)) ? ["x", "y", "width", "visibleHeight"] : ["y", "x", "visibleHeight", "width"]);
+            var _local1:Array = (((Math.random() < 0.5)) ? [
+                "x", "y", "width", "visibleHeight"
+            ] : [
+                                     "y", "x", "visibleHeight", "width"
+                                 ]);
             var _local2:Point = new Point(0, 0);
             _local2[_local1[0]] = (Math.random() * this[_local1[2]]);
             _local2[_local1[1]] = (((Math.random() < 0.5)) ? 0 : this[_local1[3]]);
@@ -125,29 +128,31 @@
                 this.timer.removeEventListener(TimerEvent.TIMER, this.onTimer);
                 this.timer.stop();
                 this.timer = null;
-            };
+            }
             this.spriteSource = null;
             this.squares = [];
             this.doDestroy = true;
         }
-
-
     }
 }
 
 import flash.display.Shape;
 import flash.geom.Point;
+
 import org.osflash.signals.Signal;
 
-class Square extends Shape 
+class Square extends Shape
 {
-
     public var start:Point;
     public var end:Point;
-    /*private*/ var lifespan:uint;
-    /*private*/ var moveX:Number;
-    /*private*/ var moveY:Number;
-    /*private*/ var angle:Number;
+    /*private*/
+    var lifespan:uint;
+    /*private*/
+    var moveX:Number;
+    /*private*/
+    var moveY:Number;
+    /*private*/
+    var angle:Number;
     public var complete:Signal;
 
     public function Square(_arg1:Point, _arg2:Point, _arg3:uint)
@@ -164,7 +169,8 @@ class Square extends Shape
         this.position();
     }
 
-    /*private*/ function position():void
+    /*private*/
+    function position():void
     {
         this.x = this.start.x;
         this.y = this.start.y;
@@ -178,9 +184,7 @@ class Square extends Shape
         if (!this.lifespan)
         {
             this.complete.dispatch(this);
-        };
+        }
     }
-
-
 }
 

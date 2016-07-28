@@ -1,12 +1,11 @@
 ﻿package kabam.lib.console.model
 {
     import kabam.lib.console.vo.ConsoleAction;
+
     import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
 
-    public final class Console 
+    public final class Console
     {
-
         private var hash:ActionHash;
         private var history:ActionHistory;
 
@@ -46,8 +45,6 @@
         {
             return (this.history.getNext());
         }
-
-
     }
 }
 

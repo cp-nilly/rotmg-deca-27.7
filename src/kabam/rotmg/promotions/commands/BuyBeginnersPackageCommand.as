@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.promotions.commands
 {
-    import kabam.rotmg.text.model.TextKey;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.account.core.PaymentData;
     import kabam.rotmg.account.core.signals.OpenAccountPaymentSignal;
-    import kabam.rotmg.promotions.signals.MakeBeginnersPackagePaymentSignal;
     import kabam.rotmg.account.core.signals.OpenMoneyWindowSignal;
+    import kabam.rotmg.account.core.view.RegisterPromptDialog;
     import kabam.rotmg.account.kabam.KabamAccount;
     import kabam.rotmg.account.web.WebAccount;
-    import kabam.rotmg.account.core.PaymentData;
-    import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.promotions.signals.MakeBeginnersPackagePaymentSignal;
+    import kabam.rotmg.text.model.TextKey;
 
-    public class BuyBeginnersPackageCommand 
+    public class BuyBeginnersPackageCommand
     {
-
         private static const REGISTER_DIALOG_TEXT:String = TextKey.BUY_BEGINNERS_PACKAGE_COMMAND_REGISTER_DIALOG;//"BuyBeginnersPackageCommand.registerDialog"
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -30,7 +28,6 @@
         [Inject]
         public var openMoneyWindow:OpenMoneyWindowSignal;
 
-
         public function execute():void
         {
             if (this.account.isRegistered())
@@ -40,7 +37,7 @@
             else
             {
                 this.promptUserToRegisterAndAbort();
-            };
+            }
         }
 
         private function openAccountSpecificPaymentScreen():void
@@ -52,7 +49,7 @@
             else
             {
                 this.makePaymentImmediately();
-            };
+            }
         }
 
         private function makePaymentImmediately():void
@@ -66,8 +63,6 @@
         {
             this.openDialog.dispatch(new RegisterPromptDialog(REGISTER_DIALOG_TEXT));
         }
-
-
     }
 }
 

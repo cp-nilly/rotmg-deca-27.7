@@ -2,11 +2,9 @@
 {
     import flash.events.Event;
 
-    public class GuildResultEvent extends Event 
+    public class GuildResultEvent extends Event
     {
-
         public static const EVENT:String = "GUILDRESULTEVENT";
-
         public var success_:Boolean;
         public var errorKey:String;
         public var errorTokens:Object;
@@ -18,7 +16,6 @@
             this.errorKey = _arg2;
             this.errorTokens = _arg3;
         }
-
     }
 }
 

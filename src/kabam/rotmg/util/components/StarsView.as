@@ -1,25 +1,21 @@
 ﻿package kabam.rotmg.util.components
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
     import com.company.rotmg.graphics.StarGraphic;
+
     import flash.display.Graphics;
+    import flash.display.Sprite;
     import flash.geom.ColorTransform;
-    import __AS3__.vec.*;
 
-    public class StarsView extends Sprite 
+    public class StarsView extends Sprite
     {
-
         private static const TOTAL:int = 5;
         private static const MARGIN:int = 4;
         private static const CORNER:int = 15;
         private static const BACKGROUND_COLOR:uint = 0x252525;
         private static const EMPTY_STAR_COLOR:uint = 0x838383;
         private static const FILLED_STAR_COLOR:uint = 0xFFFFFF;
-
         private const stars:Vector.<StarGraphic> = makeStars();
         private const background:Sprite = makeBackground();
-
 
         private function makeStars():Vector.<StarGraphic>
         {
@@ -37,7 +33,7 @@
                 _local1[_local2] = new StarGraphic();
                 addChild(_local1[_local2]);
                 _local2++;
-            };
+            }
             return (_local1);
         }
 
@@ -49,7 +45,7 @@
                 _arg1[_local2].x = (MARGIN + (_arg1[0].width * _local2));
                 _arg1[_local2].y = MARGIN;
                 _local2++;
-            };
+            }
         }
 
         private function makeBackground():Sprite
@@ -78,7 +74,7 @@
             {
                 this.updateStar(_local2, _arg1);
                 _local2++;
-            };
+            }
         }
 
         private function updateStar(_arg1:int, _arg2:int):void
@@ -88,8 +84,6 @@
             _local4.color = (((_arg1 < _arg2)) ? FILLED_STAR_COLOR : EMPTY_STAR_COLOR);
             _local3.transform.colorTransform = _local4;
         }
-
-
     }
 }
 

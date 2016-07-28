@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.game.view.components
 {
     import flash.display.Sprite;
+
     import kabam.rotmg.ui.model.TabStripModel;
 
-    public class StatsTabContent extends Sprite 
+    public class StatsTabContent extends Sprite
     {
-
         private var stats:StatsView;
 
         public function StatsTabContent(_arg1:uint)
@@ -31,8 +31,6 @@
         {
             this.stats.name = TabStripModel.STATS;
         }
-
-
     }
 }
 

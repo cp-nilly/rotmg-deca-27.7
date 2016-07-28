@@ -1,31 +1,32 @@
 ﻿package kabam.rotmg.account.ui.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.ui.BaseSimpleText;
-    import kabam.lib.util.DateValidator;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.TextEvent;
-    import flash.events.FocusEvent;
-    import flash.events.Event;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.display.LineScaleMode;
+
     import flash.display.CapsStyle;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.FocusEvent;
+    import flash.events.TextEvent;
+    import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
+
+    import kabam.lib.util.DateValidator;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import org.osflash.signals.Signal;
 
-    public class DateField extends Sprite 
+    public class DateField extends Sprite
     {
-
         private static const BACKGROUND_COLOR:uint = 0x333333;
         private static const ERROR_BORDER_COLOR:uint = 16549442;
         private static const NORMAL_BORDER_COLOR:uint = 0x454545;
         private static const TEXT_COLOR:uint = 0xB3B3B3;
         private static const INPUT_RESTRICTION:String = "1234567890";
         private static const FORMAT_HINT_COLOR:uint = 0x555555;
-
         public var label:TextFieldDisplayConcrete;
         public var days:BaseSimpleText;
         public var months:BaseSimpleText;
@@ -104,7 +105,12 @@
             var _local5:uint = ((_arg4) ? ERROR_BORDER_COLOR : NORMAL_BORDER_COLOR);
             graphics.lineStyle(2, _local5, 1, false, LineScaleMode.NORMAL, CapsStyle.ROUND, JointStyle.ROUND);
             graphics.beginFill(BACKGROUND_COLOR, 1);
-            graphics.drawRect(((_arg1.x - _arg2) - 5), (_arg1.y - _arg3), (_arg1.width + (_arg2 * 2)), (_arg1.height + (_arg3 * 2)));
+            graphics.drawRect(
+                    ((_arg1.x - _arg2) - 5),
+                    (_arg1.y - _arg3),
+                    (_arg1.width + (_arg2 * 2)),
+                    (_arg1.height + (_arg3 * 2))
+            );
             graphics.endFill();
             graphics.lineStyle();
         }
@@ -127,7 +133,7 @@
             if (((!((_local2 == "0"))) && (!(this.validator.isValidMonth(_local3)))))
             {
                 _arg1.preventDefault();
-            };
+            }
         }
 
         private function onMonthFocusOut(_arg1:FocusEvent):void
@@ -136,7 +142,7 @@
             if ((((_local2 < 10)) && (!((this.days.text == "")))))
             {
                 this.months.text = ("0" + _local2.toString());
-            };
+            }
         }
 
         private function onEditMonth(_arg1:Event):void
@@ -151,7 +157,7 @@
             if (((!((_local2 == "0"))) && (!(this.validator.isValidDay(_local3)))))
             {
                 _arg1.preventDefault();
-            };
+            }
         }
 
         private function onDayFocusOut(_arg1:FocusEvent):void
@@ -160,7 +166,7 @@
             if ((((_local2 < 10)) && (!((this.days.text == "")))))
             {
                 this.days.text = ("0" + _local2.toString());
-            };
+            }
         }
 
         private function onEditDay(_arg1:Event):void
@@ -175,7 +181,7 @@
             if (_local3 > this.thisYear)
             {
                 _arg1.preventDefault();
-            };
+            }
         }
 
         private function getEarliestYear(_arg1:String):int
@@ -183,7 +189,7 @@
             while (_arg1.length < 4)
             {
                 _arg1 = (_arg1 + "0");
-            };
+            }
             return (int(_arg1));
         }
 
@@ -213,7 +219,7 @@
             while (_arg1.length < _arg2)
             {
                 _arg1 = ("0" + _arg1);
-            };
+            }
             return (_arg1);
         }
 
@@ -221,8 +227,6 @@
         {
             return (this.label.textChanged);
         }
-
-
     }
 }
 

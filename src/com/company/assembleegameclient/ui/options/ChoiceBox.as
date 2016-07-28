@@ -1,30 +1,28 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
     import com.company.util.GraphicsUtil;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import flash.display.GraphicsStroke;
-    import flash.display.LineScaleMode;
+
     import flash.display.CapsStyle;
-    import flash.display.JointStyle;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
     import flash.display.Graphics;
-    import __AS3__.vec.*;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.GraphicsStroke;
+    import flash.display.IGraphicsData;
+    import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class ChoiceBox extends Sprite 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+
+    public class ChoiceBox extends Sprite
     {
-
         public static const WIDTH:int = 80;
         public static const HEIGHT:int = 32;
-
         public var labels_:Vector.<StringBuilder>;
         public var values_:Array;
         public var selectedIndex_:int = -1;
@@ -35,11 +33,14 @@
         private var overLineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xB3B3B3, 1);
         private var normalLineFill_:GraphicsSolidFill = new GraphicsSolidFill(0x444444, 1);
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, normalLineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, normalLineFill_
+        );
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            internalFill_, lineStyle_, path_, GraphicsUtil.END_STROKE, GraphicsUtil.END_FILL
+        ];
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[internalFill_, lineStyle_, path_, GraphicsUtil.END_STROKE, GraphicsUtil.END_FILL];
-
-        public function ChoiceBox(_arg1:Vector.<StringBuilder>, _arg2:Array, _arg3:Object, _arg4:Number=0xFFFFFF)
+        public function ChoiceBox(_arg1:Vector.<StringBuilder>, _arg2:Array, _arg3:Object, _arg4:Number = 0xFFFFFF)
         {
             super();
             this.color = _arg4;
@@ -58,7 +59,7 @@
             addEventListener(MouseEvent.CLICK, this.onClick);
         }
 
-        public function setValue(_arg1:*, _arg2:Boolean=true):void
+        public function setValue(_arg1:*, _arg2:Boolean = true):void
         {
             var _local3:int;
             while (_local3 < this.values_.length)
@@ -68,17 +69,17 @@
                     if (_local3 == this.selectedIndex_)
                     {
                         return;
-                    };
+                    }
                     this.selectedIndex_ = _local3;
                     break;
-                };
+                }
                 _local3++;
-            };
+            }
             this.setSelected(this.selectedIndex_);
             if (_arg2)
             {
                 dispatchEvent(new Event(Event.CHANGE));
-            };
+            }
         }
 
         public function value()
@@ -121,7 +122,7 @@
             if ((((this.selectedIndex_ < 0)) || ((this.selectedIndex_ >= this.labels_.length))))
             {
                 this.selectedIndex_ = 0;
-            };
+            }
             this.setText(this.labels_[this.selectedIndex_]);
         }
 
@@ -130,8 +131,6 @@
             this.labelText_.setStringBuilder(_arg1);
             this.drawBackground();
         }
-
-
     }
 }
 

@@ -3,12 +3,11 @@
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class BuyCharacterSlotTask extends BaseTask 
+    public class BuyCharacterSlotTask extends BaseTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -19,7 +18,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var model:PlayerModel;
-
 
         override protected function startTask():void
         {
@@ -39,8 +37,6 @@
             this.model.setMaxCharacters((this.model.getMaxCharacters() + 1));
             this.model.changeCredits(-(this.price));
         }
-
-
     }
 }
 

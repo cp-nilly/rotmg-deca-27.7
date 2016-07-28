@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.messaging.impl
 {
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.game.AGameSprite;
-    import kabam.rotmg.servers.api.Server;
-    import flash.utils.ByteArray;
-    import kabam.lib.net.impl.SocketServer;
     import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.objects.Projectile;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.objects.Projectile;
 
-    public class GameServerConnection 
+    import flash.utils.ByteArray;
+
+    import kabam.lib.net.impl.SocketServer;
+    import kabam.rotmg.servers.api.Server;
+
+    import org.osflash.signals.Signal;
+
+    public class GameServerConnection
     {
-
         public static const FAILURE:int = 0;
         public static const CREATE_SUCCESS:int = 86;
         public static const CREATE:int = 90;
@@ -106,9 +107,7 @@
         public static const PET_CHANGE_FORM_MSG:int = 42;
         public static const KEY_INFO_REQUEST:int = 13;
         public static const KEY_INFO_RESPONSE:int = 81;
-
         public static var instance:GameServerConnection;
-
         public var changeMapSignal:Signal;
         public var gs_:AGameSprite;
         public var server_:Server;
@@ -123,7 +122,6 @@
         public var jitterWatcher_:JitterWatcher;
         public var serverConnection:SocketServer;
         public var outstandingBuy_:OutstandingBuy = null;
-
 
         public function chooseName(_arg1:String):void
         {
@@ -248,12 +246,16 @@
         {
         }
 
-        public function invSwap(_arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int):Boolean
+        public function invSwap(
+                _arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int
+        ):Boolean
         {
             return (false);
         }
 
-        public function invSwapPotion(_arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int):Boolean
+        public function invSwapPotion(
+                _arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int
+        ):Boolean
         {
             return (false);
         }
@@ -277,8 +279,6 @@
         public function questRedeem(_arg1:int, _arg2:int, _arg3:int):void
         {
         }
-
-
     }
 }
 

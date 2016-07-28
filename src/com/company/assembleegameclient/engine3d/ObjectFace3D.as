@@ -1,29 +1,26 @@
 ﻿package com.company.assembleegameclient.engine3d
 {
-    import flash.display.BitmapData;
-    import flash.display.GraphicsBitmapFill;
-    import __AS3__.vec.Vector;
-    import flash.geom.Vector3D;
-    import flash.display.GraphicsPath;
-    import flash.display.GraphicsSolidFill;
-    import flash.geom.Matrix;
-    import flash.display.GraphicsPathCommand;
     import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.util.MoreColorUtil;
-    import flash.geom.ColorTransform;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.util.GraphicsUtil;
-    import kabam.rotmg.stage3D.GraphicsFillExtra;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.BitmapData;
+    import flash.display.GraphicsBitmapFill;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsPathCommand;
+    import flash.display.GraphicsSolidFill;
     import flash.display.IGraphicsData;
-    import __AS3__.vec.*;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+    import flash.geom.Vector3D;
 
-    public class ObjectFace3D 
+    import kabam.rotmg.stage3D.GraphicsFillExtra;
+
+    public class ObjectFace3D
     {
-
         public static const blackBitmap:BitmapData = new BitmapData(1, 1, true, 0xFF000000);
-
         public const bitmapFill_:GraphicsBitmapFill = new GraphicsBitmapFill();
-
         public var obj_:Object3D;
         public var indices_:Vector.<int>;
         public var useTexture_:Boolean;
@@ -37,7 +34,7 @@
         private var tToS_:Matrix;
         private var tempMatrix_:Matrix;
 
-        public function ObjectFace3D(_arg1:Object3D, _arg2:Vector.<int>, _arg3:Boolean=true)
+        public function ObjectFace3D(_arg1:Object3D, _arg2:Vector.<int>, _arg3:Boolean = true)
         {
             this.solidFill_ = new GraphicsSolidFill(0xFFFFFF, 1);
             this.tToS_ = new Matrix();
@@ -52,7 +49,7 @@
             {
                 _local4.push((((_local5 == 0)) ? GraphicsPathCommand.MOVE_TO : GraphicsPathCommand.LINE_TO));
                 _local5++;
-            };
+            }
             var _local6:Vector.<Number> = new Vector.<Number>();
             _local6.length = (this.indices_.length * 2);
             this.path_ = new GraphicsPath(_local4, _local6);
@@ -69,12 +66,17 @@
         public function computeLighting():void
         {
             this.normalW_ = new Vector3D();
-            Plane3D.computeNormal(this.obj_.getVecW(this.indices_[0]), this.obj_.getVecW(this.indices_[1]), this.obj_.getVecW(this.indices_[(this.indices_.length - 1)]), this.normalW_);
+            Plane3D.computeNormal(
+                    this.obj_.getVecW(this.indices_[0]),
+                    this.obj_.getVecW(this.indices_[1]),
+                    this.obj_.getVecW(this.indices_[(this.indices_.length - 1)]),
+                    this.normalW_
+            );
             this.shade_ = Lighting3D.shadeValue(this.normalW_, 0.75);
             if (this.normalL_ != null)
             {
                 this.normalW_ = this.obj_.lToW_.deltaTransformVector(this.normalL_);
-            };
+            }
         }
 
         public function draw(_arg1:Vector.<IGraphicsData>, _arg2:uint, _arg3:BitmapData):void
@@ -91,10 +93,14 @@
             if (((_local8 * _local11) - (_local9 * _local10)) < 0)
             {
                 return;
-            };
+            }
             if (((!(Parameters.data_.GPURender)) && (((!(this.useTexture_)) || ((_arg3 == null))))))
             {
-                this.solidFill_.color = MoreColorUtil.transformColor(new ColorTransform(this.shade_, this.shade_, this.shade_), _arg2);
+                this.solidFill_.color = MoreColorUtil.transformColor(
+                        new ColorTransform(
+                                this.shade_, this.shade_, this.shade_
+                        ), _arg2
+                );
                 _arg1.push(this.solidFill_);
             }
             else
@@ -106,11 +112,11 @@
                 else
                 {
                     _arg3 = TextureRedrawer.redrawFace(_arg3, this.shade_);
-                };
+                }
                 this.bitmapFill_.bitmapData = _arg3;
                 this.bitmapFill_.matrix = this.tToS(_arg3);
                 _arg1.push(this.bitmapFill_);
-            };
+            }
             var _local12:int;
             while (_local12 < this.indices_.length)
             {
@@ -118,13 +124,13 @@
                 this.path_.data[(_local12 * 2)] = _local7[(_local13 * 2)];
                 this.path_.data[((_local12 * 2) + 1)] = _local7[((_local13 * 2) + 1)];
                 _local12++;
-            };
+            }
             _arg1.push(this.path_);
             _arg1.push(GraphicsUtil.END_FILL);
             if (((((this.softwareException_) && (Parameters.isGpuRender()))) && (!((this.bitmapFill_ == null)))))
             {
                 GraphicsFillExtra.setSoftwareDraw(this.bitmapFill_, true);
-            };
+            }
         }
 
         private function tToS(_arg1:BitmapData):Matrix
@@ -155,8 +161,6 @@
             this.tToS_.concat(this.tempMatrix_);
             return (this.tToS_);
         }
-
-
     }
 }
 

@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import flash.display.Sprite;
     import com.company.ui.BaseSimpleText;
-    import flash.display.Bitmap;
     import com.company.util.AssetLibrary;
+
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
     import flash.geom.ColorTransform;
 
-    public class TabTextView extends TabView 
+    public class TabTextView extends TabView
     {
-
         private var background:Sprite;
         private var text:BaseSimpleText;
         private var badgeBG:Bitmap;
@@ -21,7 +21,7 @@
             if (_arg3)
             {
                 this.initTabText(_arg3);
-            };
+            }
         }
 
         public function setBadge(_arg1:int):void
@@ -40,7 +40,7 @@
                 this.badgeBG.y = 3;
                 this.badgeBG.scaleX = (this.badgeBG.scaleY = 2);
                 addChild(this.badgeBG);
-            };
+            }
             this.badgeIcon.visible = (this.badgeBG.visible = (_arg1 > 0));
         }
 
@@ -63,8 +63,6 @@
             _local2.color = ((_arg1) ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR);
             this.background.transform.colorTransform = _local2;
         }
-
-
     }
 }
 

@@ -1,18 +1,14 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import __AS3__.vec.Vector;
-    import flash.display.BitmapData;
-    import flash.geom.Rectangle;
-    import flash.geom.Matrix;
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.Sprite;
-    import __AS3__.vec.*;
+    import flash.geom.Matrix;
+    import flash.geom.Rectangle;
 
-    public class BigBitmapData 
+    public class BigBitmapData
     {
-
         private static const CHUNK_SIZE:int = 0x0100;
-
         public var width_:int;
         public var height_:int;
         public var fillColor_:uint;
@@ -40,11 +36,13 @@
                 {
                     _local7 = Math.min(CHUNK_SIZE, (this.width_ - (_local5 * CHUNK_SIZE)));
                     _local8 = Math.min(CHUNK_SIZE, (this.height_ - (_local6 * CHUNK_SIZE)));
-                    this.chunks_[(_local5 + (_local6 * this.maxChunkX_))] = new BitmapDataSpy(_local7, _local8, _arg3, this.fillColor_);
+                    this.chunks_[(_local5 + (_local6 * this.maxChunkX_))] = new BitmapDataSpy(
+                            _local7, _local8, _arg3, this.fillColor_
+                    );
                     _local6++;
-                };
+                }
                 _local5++;
-            };
+            }
         }
 
         public function copyTo(_arg1:BitmapData, _arg2:Rectangle, _arg3:Rectangle):void
@@ -68,13 +66,21 @@
                     _local13 = this.chunks_[(_local11 + (_local12 * this.maxChunkX_))];
                     _local10.identity();
                     _local10.scale(_local4, _local5);
-                    _local10.translate(((_arg3.x - (_local11 * CHUNK_SIZE)) - (_arg2.x * _local4)), ((_arg3.y - (_local12 * CHUNK_SIZE)) - (_arg2.x * _local5)));
-                    _local14 = new Rectangle((_arg3.x - (_local11 * CHUNK_SIZE)), (_arg3.y - (_local12 * CHUNK_SIZE)), _arg3.width, _arg3.height);
+                    _local10.translate(
+                            ((_arg3.x - (_local11 * CHUNK_SIZE)) - (_arg2.x * _local4)),
+                            ((_arg3.y - (_local12 * CHUNK_SIZE)) - (_arg2.x * _local5))
+                    );
+                    _local14 = new Rectangle(
+                            (_arg3.x - (_local11 * CHUNK_SIZE)),
+                            (_arg3.y - (_local12 * CHUNK_SIZE)),
+                            _arg3.width,
+                            _arg3.height
+                    );
                     _local13.draw(_arg1, _local10, null, null, _local14, false);
                     _local12++;
-                };
+                }
                 _local11++;
-            };
+            }
         }
 
         public function copyFrom(_arg1:Rectangle, _arg2:BitmapData, _arg3:Rectangle):void
@@ -97,13 +103,16 @@
                 {
                     _local14 = this.chunks_[(_local12 + (_local13 * this.maxChunkX_))];
                     _local11.identity();
-                    _local11.translate((((_arg3.x / _local4) - _arg1.x) + (_local12 * CHUNK_SIZE)), (((_arg3.y / _local5) - _arg1.y) + (_local13 * CHUNK_SIZE)));
+                    _local11.translate(
+                            (((_arg3.x / _local4) - _arg1.x) + (_local12 * CHUNK_SIZE)),
+                            (((_arg3.y / _local5) - _arg1.y) + (_local13 * CHUNK_SIZE))
+                    );
                     _local11.scale(_local4, _local5);
                     _arg2.draw(_local14, _local11, null, null, _arg3, false);
                     _local13++;
-                };
+                }
                 _local12++;
-            };
+            }
         }
 
         public function erase(_arg1:Rectangle):void
@@ -128,9 +137,9 @@
                     _local6.bottom = (_arg1.bottom - (_local8 * CHUNK_SIZE));
                     _local9.fillRect(_local6, this.fillColor_);
                     _local8++;
-                };
+                }
                 _local7++;
-            };
+            }
         }
 
         public function getDebugSprite():Sprite
@@ -151,13 +160,11 @@
                     _local5.y = (_local3 * CHUNK_SIZE);
                     _local1.addChild(_local5);
                     _local3++;
-                };
+                }
                 _local2++;
-            };
+            }
             return (_local1);
         }
-
-
     }
 }
 

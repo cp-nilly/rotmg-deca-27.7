@@ -1,32 +1,32 @@
 ﻿package kabam.rotmg.news.view
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.news.model.NewsCellVO;
     import flash.display.Loader;
-    import org.osflash.signals.Signal;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.TextDisplay;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
     import flash.net.URLRequest;
+    import flash.text.TextFieldAutoSize;
 
-    public class NewsCell extends Sprite 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.news.model.NewsCellVO;
+    import kabam.rotmg.text.view.TextDisplay;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class NewsCell extends Sprite
     {
-
         private static const BOX_HEIGHT:uint = 30;
         private static const LARGE:String = "LARGE";
         private static const SMALL:String = "SMALL";
-
         static var DefaultGraphicLarge:Class = NewsCell_DefaultGraphicLarge;
         static var DefaultGraphicSmall:Class = NewsCell_DefaultGraphicSmall;
-
         private var imageContainer:Sprite;
         private var maskShape:Shape;
         private var boxShape:Shape;
@@ -64,8 +64,8 @@
                 if ((((_arg1 == 151)) && ((_arg2 == 189))))
                 {
                     this.size = SMALL;
-                };
-            };
+                }
+            }
         }
 
         public function init(_arg1:NewsCellVO):void
@@ -124,7 +124,7 @@
                 this.textSize = (this.textSize - 2);
                 this.textField.setSize(this.textSize).setColor(0xFFFFFF);
                 this.resizeTextField();
-            };
+            }
         }
 
         public function load():void
@@ -150,15 +150,13 @@
                 case SMALL:
                     this.imageContainer.addChild(new DefaultGraphicSmall());
                     return;
-            };
+            }
         }
 
         private function onMouseDown(_arg1:MouseEvent):void
         {
             this.clickSignal.dispatch(this._vo);
         }
-
-
     }
 }
 

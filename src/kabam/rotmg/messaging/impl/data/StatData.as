@@ -1,12 +1,12 @@
 ﻿package kabam.rotmg.messaging.impl.data
 {
-    import kabam.rotmg.text.model.TextKey;
     import flash.utils.IDataInput;
     import flash.utils.IDataOutput;
 
-    public class StatData 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    public class StatData
+    {
         public static const MAX_HP_STAT:int = 0;
         public static const HP_STAT:int = 1;
         public static const SIZE_STAT:int = 2;
@@ -102,11 +102,9 @@
         public static const PET_THIRDABILITY_TYPE_STAT:int = 95;
         public static const NEW_CON_STAT:int = 96;
         public static const FORTUNE_TOKEN_STAT:int = 97;
-
         public var statType_:uint = 0;
         public var statValue_:int;
         public var strStatValue_:String;
-
 
         public static function statToName(_arg1:int):String
         {
@@ -138,10 +136,9 @@
                     return (TextKey.STAT_MODEL_WISDOM_LONG);
                 case DEXTERITY_STAT:
                     return (TextKey.STAT_MODEL_DEXTERITY_LONG);
-            };
+            }
             return (TextKey.STAT_DATA_UNKNOWN_STAT);
         }
-
 
         public function isStringStat():Boolean
         {
@@ -153,7 +150,7 @@
                 case ACCOUNT_ID_STAT:
                 case OWNER_ACCOUNT_ID_STAT:
                     return (true);
-            };
+            }
             return (false);
         }
 
@@ -167,7 +164,7 @@
             else
             {
                 this.strStatValue_ = _arg1.readUTF();
-            };
+            }
         }
 
         public function writeToOutput(_arg1:IDataOutput):void
@@ -180,7 +177,7 @@
             else
             {
                 _arg1.writeUTF(this.strStatValue_);
-            };
+            }
         }
 
         public function toString():String
@@ -188,11 +185,9 @@
             if (!this.isStringStat())
             {
                 return ((((("[" + this.statType_) + ": ") + this.statValue_) + "]"));
-            };
+            }
             return ((((("[" + this.statType_) + ': "') + this.strStatValue_) + '"]'));
         }
-
-
     }
 }
 

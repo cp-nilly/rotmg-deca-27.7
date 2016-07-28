@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class GotoAck extends OutgoingMessage 
+    public class GotoAck extends OutgoingMessage
     {
-
         public var time_:int;
 
         public function GotoAck(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("GOTOACK", "time_"));
         }
-
-
     }
 }
 

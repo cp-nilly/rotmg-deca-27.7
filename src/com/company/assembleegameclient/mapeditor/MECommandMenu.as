@@ -1,13 +1,12 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import com.company.assembleegameclient.editor.CommandMenu;
-    import com.company.util.KeyCodes;
     import com.company.assembleegameclient.editor.CommandEvent;
+    import com.company.assembleegameclient.editor.CommandMenu;
     import com.company.assembleegameclient.editor.CommandMenuItem;
+    import com.company.util.KeyCodes;
 
-    public class MECommandMenu extends CommandMenu 
+    public class MECommandMenu extends CommandMenu
     {
-
         public static const NONE_COMMAND:int = 0;
         public static const DRAW_COMMAND:int = 1;
         public static const ERASE_COMMAND:int = 2;
@@ -69,8 +68,6 @@
         {
             dispatchEvent(new CommandEvent(CommandEvent.TEST_COMMAND_EVENT));
         }
-
-
     }
 }
 

@@ -1,22 +1,22 @@
 ﻿package com.company.assembleegameclient.sound
 {
-    import flash.media.Sound;
-    import flash.media.SoundTransform;
-    import flash.media.SoundChannel;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.application.api.ApplicationSetup;
     import com.company.assembleegameclient.parameters.Parameters;
-    import flash.net.URLRequest;
     import com.company.googleanalytics.GA;
 
-    public class Music 
-    {
+    import flash.media.Sound;
+    import flash.media.SoundChannel;
+    import flash.media.SoundTransform;
+    import flash.net.URLRequest;
 
+    import kabam.rotmg.application.api.ApplicationSetup;
+    import kabam.rotmg.core.StaticInjectorContext;
+
+    public class Music
+    {
         private static var music_:Sound = null;
         private static var musicVolumeTransform:SoundTransform;
         private static var musicChannel_:SoundChannel = null;
         private static var volume:Number = 0.3;
-
 
         public static function load():void
         {
@@ -45,7 +45,7 @@
             if (!Parameters.data_.playMusic)
             {
                 return;
-            };
+            }
             if (musicVolumeTransform != null)
             {
                 musicVolumeTransform.volume = _arg1;
@@ -53,11 +53,9 @@
             else
             {
                 musicVolumeTransform = new SoundTransform(_arg1);
-            };
+            }
             musicChannel_.soundTransform = musicVolumeTransform;
         }
-
-
     }
 }
 

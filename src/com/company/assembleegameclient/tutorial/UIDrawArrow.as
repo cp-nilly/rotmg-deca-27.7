@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.tutorial
 {
-    import flash.geom.Point;
     import com.company.util.ConversionUtil;
     import com.company.util.PointUtil;
+
     import flash.display.Graphics;
+    import flash.geom.Point;
 
-    public class UIDrawArrow 
+    public class UIDrawArrow
     {
-
         public const ANIMATION_MS:int = 500;
-
         public var p0_:Point;
         public var p1_:Point;
         public var color_:uint;
@@ -35,7 +34,7 @@
             {
                 _local4.x = this.p1_.x;
                 _local4.y = this.p1_.y;
-            };
+            }
             _arg2.lineStyle(_arg1, this.color_);
             _arg2.moveTo(this.p0_.x, this.p0_.y);
             _arg2.lineTo(_local4.x, _local4.y);
@@ -46,8 +45,6 @@
             _arg2.moveTo(_local4.x, _local4.y);
             _arg2.lineTo(_local6.x, _local6.y);
         }
-
-
     }
 }
 

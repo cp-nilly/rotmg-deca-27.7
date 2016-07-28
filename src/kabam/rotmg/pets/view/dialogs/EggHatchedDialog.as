@@ -1,28 +1,31 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.DisplayObject;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.Signal;
+
     import flash.display.Bitmap;
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class EggHatchedDialog extends Sprite 
-    {
+    import org.osflash.signals.Signal;
 
+    public class EggHatchedDialog extends Sprite
+    {
         private const background:PopupWindowBackground = PetsViewAssetFactory.returnEggHatchWindowBackground(289, 279);
-        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 18, true);
+        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xFFFFFF, 18, true
+        );
         private const typeTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(16777103, 16, true);
         private const eggHatchImage:DisplayObject = new EggHatchImage();
         private const sendToYardButton:DeprecatedTextButton = new DeprecatedTextButton(16, "Pets.sendToYard", 120);
         public const closed:Signal = new Signal();
-
         private var EggHatchImage:Class;
         var skinType:int;
         private var petBitmap:Bitmap;
@@ -111,8 +114,6 @@
             this.typeTextfield.x = ((287 - this.typeTextfield.width) * 0.5);
             this.typeTextfield.y = 230;
         }
-
-
     }
 }
 

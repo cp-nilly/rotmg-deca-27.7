@@ -1,62 +1,62 @@
 ﻿package kabam.rotmg.core
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.extensions.contextView.ContextView;
-    import kabam.rotmg.application.api.ApplicationSetup;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import kabam.rotmg.startup.control.StartupSequence;
-    import kabam.rotmg.core.view.Layers;
-    import kabam.rotmg.core.signals.SetupDomainSecuritySignal;
-    import kabam.rotmg.core.signals.SetupAnalyticsSignal;
-    import kabam.rotmg.core.service.RequestAppInitTask;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.core.model.MapModel;
-    import kabam.rotmg.core.model.ScreenModel;
-    import kabam.rotmg.chat.control.SpamFilter;
-    import kabam.rotmg.core.commands.SetupDomainSecurityCommand;
-    import kabam.rotmg.core.commands.SetupAnalyticsCommand;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import kabam.rotmg.core.commands.TrackEventCommand;
-    import kabam.rotmg.core.signals.TrackPageViewSignal;
-    import kabam.rotmg.core.commands.TrackPageViewCommand;
-    import kabam.rotmg.core.signals.InvalidateDataSignal;
-    import kabam.rotmg.core.commands.InvalidateDataCommand;
-    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.core.commands.SetScreenWithValidDataCommand;
-    import kabam.rotmg.core.signals.PurchaseCharacterSignal;
-    import kabam.rotmg.core.commands.PurchaseCharacterCommand;
-    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
-    import kabam.rotmg.core.commands.ConfigurePaymentsWindowCommand;
-    import kabam.rotmg.core.commands.ConfigureSpamFilterCommand;
-    import kabam.rotmg.account.core.signals.CharListDataSignal;
-    import kabam.rotmg.core.commands.UpdatePlayerModelCommand;
-    import kabam.rotmg.core.commands.UpdatePetsModelCommand;
     import kabam.lib.json.JsonParser;
     import kabam.lib.json.SoftwareJsonParser;
     import kabam.lib.tasks.TaskMonitor;
+    import kabam.rotmg.account.core.signals.CharListDataSignal;
+    import kabam.rotmg.account.core.signals.SendConfirmEmailSignal;
+    import kabam.rotmg.application.api.ApplicationSetup;
+    import kabam.rotmg.chat.control.SpamFilter;
+    import kabam.rotmg.core.commands.ConfigurePaymentsWindowCommand;
+    import kabam.rotmg.core.commands.ConfigureSpamFilterCommand;
+    import kabam.rotmg.core.commands.InvalidateDataCommand;
+    import kabam.rotmg.core.commands.PurchaseCharacterCommand;
+    import kabam.rotmg.core.commands.SetScreenWithValidDataCommand;
+    import kabam.rotmg.core.commands.SetupAnalyticsCommand;
+    import kabam.rotmg.core.commands.SetupDomainSecurityCommand;
+    import kabam.rotmg.core.commands.TrackEventCommand;
+    import kabam.rotmg.core.commands.TrackPageViewCommand;
+    import kabam.rotmg.core.commands.UpdatePetsModelCommand;
+    import kabam.rotmg.core.commands.UpdatePlayerModelCommand;
+    import kabam.rotmg.core.model.MapModel;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.model.ScreenModel;
+    import kabam.rotmg.core.service.GoogleAnalytics;
     import kabam.rotmg.core.service.PurchaseCharacterClassTask;
     import kabam.rotmg.core.service.PurchaseCharacterErrorTask;
-    import kabam.rotmg.core.service.GoogleAnalytics;
-    import kabam.rotmg.core.signals.SetScreenSignal;
-    import kabam.rotmg.core.signals.GotoPreviousScreenSignal;
-    import kabam.rotmg.core.signals.LaunchGameSignal;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
-    import kabam.rotmg.core.signals.SetLoadingMessageSignal;
-    import kabam.rotmg.core.signals.UpdateNewCharacterScreenSignal;
+    import kabam.rotmg.core.service.RequestAppInitTask;
+    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
     import kabam.rotmg.core.signals.BuyCharacterPendingSignal;
-    import kabam.rotmg.core.view.ScreensView;
+    import kabam.rotmg.core.signals.GotoPreviousScreenSignal;
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.InvalidateDataSignal;
+    import kabam.rotmg.core.signals.LaunchGameSignal;
+    import kabam.rotmg.core.signals.PurchaseCharacterSignal;
+    import kabam.rotmg.core.signals.SetLoadingMessageSignal;
+    import kabam.rotmg.core.signals.SetScreenSignal;
+    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
+    import kabam.rotmg.core.signals.SetupAnalyticsSignal;
+    import kabam.rotmg.core.signals.SetupDomainSecuritySignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.core.signals.TrackPageViewSignal;
+    import kabam.rotmg.core.signals.UpdateNewCharacterScreenSignal;
+    import kabam.rotmg.core.view.Layers;
     import kabam.rotmg.core.view.ScreensMediator;
+    import kabam.rotmg.core.view.ScreensView;
+    import kabam.rotmg.startup.control.StartupSequence;
     import kabam.rotmg.tooltips.TooltipAble;
     import kabam.rotmg.tooltips.controller.TooltipAbleMediator;
-    import kabam.rotmg.account.core.signals.SendConfirmEmailSignal;
 
-    public class CoreConfig implements IConfig 
+    import robotlegs.bender.extensions.contextView.ContextView;
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class CoreConfig implements IConfig
     {
-
         [Inject]
         public var context:IContext;
         [Inject]
@@ -72,7 +72,6 @@
         [Inject]
         public var startup:StartupSequence;
         private var layers:Layers;
-
 
         public function configure():void
         {
@@ -146,8 +145,6 @@
             this.injector.map(Layers).toValue(this.layers);
             this.contextView.view.addChild(this.layers);
         }
-
-
     }
 }
 

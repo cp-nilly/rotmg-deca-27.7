@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class SendPasswordReminderSignal extends Signal 
+    public class SendPasswordReminderSignal extends Signal
     {
-
         public function SendPasswordReminderSignal()
         {
             super(String);
         }
-
     }
 }
 

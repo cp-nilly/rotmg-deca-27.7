@@ -1,38 +1,39 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import flash.geom.ColorTransform;
     import com.company.assembleegameclient.appengine.CharacterStats;
-    import kabam.rotmg.core.model.PlayerModel;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import org.osflash.signals.natives.NativeSignal;
-    import com.company.rotmg.graphics.LockedCharBoxGraphic;
-    import com.company.rotmg.graphics.FullCharBoxGraphic;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.util.AnimatedChar;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import com.company.assembleegameclient.util.FameUtil;
-    import com.company.util.AssetLibrary;
-    import com.gskinner.motion.GTween;
+    import com.company.assembleegameclient.appengine.SavedCharacter;
     import com.company.assembleegameclient.ui.tooltip.ClassToolTip;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import com.company.rotmg.graphics.StarGraphic;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.util.AnimatedChar;
     import com.company.assembleegameclient.util.Currency;
+    import com.company.assembleegameclient.util.FameUtil;
+    import com.company.rotmg.graphics.FullCharBoxGraphic;
+    import com.company.rotmg.graphics.LockedCharBoxGraphic;
+    import com.company.rotmg.graphics.StarGraphic;
+    import com.company.util.AssetLibrary;
+    import com.gskinner.motion.GTween;
 
-    public class CharacterBox extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.ColorTransform;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class CharacterBox extends Sprite
     {
-
         public static const DELETE_CHAR:String = "DELETE_CHAR";
         public static const ENTER_NAME:String = "ENTER_NAME";
         private static const fullCT:ColorTransform = new ColorTransform(0.8, 0.8, 0.8);
         private static const emptyCT:ColorTransform = new ColorTransform(0.2, 0.2, 0.2);
-
         private var SaleTag:Class;
         public var playerXML_:XML = null;
         public var charStats_:CharacterStats;
@@ -52,7 +53,7 @@
         public var buyButtonClicked_:NativeSignal;
         public var characterSelectClicked_:NativeSignal;
 
-        public function CharacterBox(_arg1:XML, _arg2:CharacterStats, _arg3:PlayerModel, _arg4:Boolean=false)
+        public function CharacterBox(_arg1:XML, _arg2:CharacterStats, _arg3:PlayerModel, _arg4:Boolean = false)
         {
             var _local5:Sprite;
             this.SaleTag = CharacterBox_SaleTag;
@@ -69,7 +70,7 @@
             else
             {
                 this.graphic_ = new FullCharBoxGraphic();
-            };
+            }
             this.graphicContainer_ = new Sprite();
             addChild(this.graphicContainer_);
             this.graphicContainer_.addChild(this.graphic_);
@@ -103,7 +104,7 @@
                 addChild(this.lock_);
                 addChild(this.statusText_);
                 this.classNameText_.y = 78;
-            };
+            }
         }
 
         public function objectType():int
@@ -127,24 +128,26 @@
                 if (contains(this.statusText_))
                 {
                     removeChild(this.statusText_);
-                };
+                }
                 if (contains(this.buyButton_))
                 {
                     removeChild(this.buyButton_);
-                };
+                }
                 if (((this.lock_) && (contains(this.lock_))))
                 {
                     removeChild(this.lock_);
-                };
+                }
                 if (((this.saleTag_) && (contains(this.saleTag_))))
                 {
                     removeChild(this.saleTag_);
-                };
+                }
                 if (((this.saleText_) && (contains(this.saleText_))))
                 {
                     removeChild(this.saleText_);
-                };
-                _local1 = this.getStars(FameUtil.numStars(this.model.getBestFame(this.objectType())), FameUtil.STARS.length);
+                }
+                _local1 = this.getStars(
+                        FameUtil.numStars(this.model.getBestFame(this.objectType())), FameUtil.STARS.length
+                );
                 _local1.y = 60;
                 _local1.x = ((this.graphic_.width / 2) - (_local1.width / 2));
                 _local1.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4)];
@@ -153,14 +156,15 @@
                 if (!this.unlockedText_)
                 {
                     this.getCharacterUnlockText();
-                };
+                }
                 addChild(this.unlockedText_);
-                _local2 = new GTween(this.unlockedText_, 2.5, {
-                    "alpha":0,
-                    "y":-30
-                });
+                _local2 = new GTween(
+                        this.unlockedText_, 2.5, {
+                            "alpha": 0, "y": -30
+                        }
+                );
                 _local2.onComplete = this.removeUnlockText;
-            };
+            }
         }
 
         private function removeUnlockText(_arg1:GTween):void
@@ -178,7 +182,7 @@
             if (!this.available_)
             {
                 return;
-            };
+            }
             if (_arg1)
             {
                 transform.colorTransform = new ColorTransform(1.2, 1.2, 1.2);
@@ -186,12 +190,14 @@
             else
             {
                 transform.colorTransform = new ColorTransform(1, 1, 1);
-            };
+            }
         }
 
         private function setImage(_arg1:int, _arg2:int, _arg3:Number):void
         {
-            this.bitmap_.bitmapData = SavedCharacter.getImage(null, this.playerXML_, _arg1, _arg2, _arg3, this.available_, false);
+            this.bitmap_.bitmapData = SavedCharacter.getImage(
+                    null, this.playerXML_, _arg1, _arg2, _arg3, this.available_, false
+            );
             this.bitmap_.x = ((this.graphic_.width / 2) - (this.bitmap_.bitmapData.width / 2));
         }
 
@@ -209,7 +215,7 @@
                 _local3.addChild(_local5);
                 _local6 = (_local6 + _local5.width);
                 _local4++;
-            };
+            }
             while (_local4 < _arg2)
             {
                 _local5 = new StarGraphic();
@@ -218,7 +224,7 @@
                 _local3.addChild(_local5);
                 _local6 = (_local6 + _local5.width);
                 _local4++;
-            };
+            }
             return (_local3);
         }
 
@@ -230,13 +236,17 @@
                 this.saleTag_.x = 38;
                 this.saleTag_.y = 8;
                 addChild(this.saleTag_);
-            };
+            }
             if (!this.saleText_)
             {
                 this.setSaleText();
                 addChild(this.saleText_);
-            };
-            this.saleText_.setStringBuilder(new LineBuilder().setParams(TextKey.PERCENT_OFF, {"percent":String(_arg1)}));
+            }
+            this.saleText_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.PERCENT_OFF, {"percent": String(_arg1)}
+                    )
+            );
         }
 
         private function setBuyButton():void
@@ -274,8 +284,6 @@
         {
             this.buyButton_.setEnabled(_arg1);
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Teleport extends OutgoingMessage 
+    public class Teleport extends OutgoingMessage
     {
-
         public var objectId_:int;
 
         public function Teleport(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("TELEPORT", "objectId_"));
         }
-
-
     }
 }
 

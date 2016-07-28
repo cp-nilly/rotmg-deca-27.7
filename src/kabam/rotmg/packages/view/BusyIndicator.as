@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import flash.display.Sprite;
-    import flash.utils.Timer;
-    import flash.events.Event;
     import flash.display.BlendMode;
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
 
-    public class BusyIndicator extends Sprite 
+    public class BusyIndicator extends Sprite
     {
-
         private const pinwheel:Sprite = makePinWheel();
         private const innerCircleMask:Sprite = makeInner();
         private const quarterCircleMask:Sprite = makeQuarter();
@@ -78,8 +77,6 @@
         {
             this.quarterCircleMask.rotation = (this.quarterCircleMask.rotation + 20);
         }
-
-
     }
 }
 

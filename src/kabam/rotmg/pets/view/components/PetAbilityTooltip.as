@@ -1,20 +1,24 @@
 ﻿package kabam.rotmg.pets.view.components
 {
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+
     import kabam.rotmg.pets.data.AbilityVO;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class PetAbilityTooltip extends ToolTip 
+    public class PetAbilityTooltip extends ToolTip
     {
-
         private const abilityContent:Sprite = new Sprite();
-        private const titleTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xFFFFFF, 16, true, true);
-        private const descriptionTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xFFFFFF, 14, false, true);
-
+        private const titleTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xFFFFFF, 16, true, true
+        );
+        private const descriptionTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xFFFFFF, 14, false, true
+        );
         private var abilityVO:AbilityVO;
 
         public function PetAbilityTooltip(_arg1:AbilityVO)
@@ -48,8 +52,6 @@
             this.descriptionTextField.x = PetsConstants.ABILITY_TOOLTIP_TITLE_POSITION_X;
             this.descriptionTextField.y = (this.titleTextField.y + this.titleTextField.height);
         }
-
-
     }
 }
 

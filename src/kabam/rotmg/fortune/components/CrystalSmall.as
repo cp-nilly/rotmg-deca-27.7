@@ -1,30 +1,29 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import __AS3__.vec.Vector;
-    import flash.text.TextField;
-    import flash.filters.GlowFilter;
-    import flash.display.BitmapData;
-    import com.company.util.AssetLibrary;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.filters.ColorMatrixFilter;
+    import com.company.util.AssetLibrary;
     import com.company.util.MoreColorUtil;
+    import com.gskinner.motion.GTween;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.filters.GlowFilter;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.text.TextFieldAutoSize;
-    import com.gskinner.motion.GTween;
     import flash.ui.Mouse;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.*;
 
-    public class CrystalSmall extends Sprite 
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class CrystalSmall extends Sprite
     {
-
         public static const ANIM_PULSE:int = 1;
         public static const ANIM_HOVER:int = 2;
         public static const ANIM_CLICKED:int = 3;
@@ -32,11 +31,9 @@
         public static const GLOW_STATE_FADE:int = 1;
         public static const GLOW_STATE_PULSE:int = 2;
         private static const MAX_SHAKE:Number = 5;
-
         private const ANIMATION_FRAMES:Number = 3;
         private const STARTING_FRAME_INDEX:Number = 80;
         private const EXCITING_MODE_SQUARE_RANGE:int = 3500;
-
         public var crystal:Bitmap;
         public var crystalGrey:Bitmap;
         private var item:ItemWithTooltip;
@@ -76,7 +73,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 3)
             {
@@ -84,7 +82,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 7)
             {
@@ -92,7 +91,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 7)
             {
@@ -100,7 +100,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 5)
             {
@@ -108,7 +109,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 8)
             {
@@ -116,7 +118,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0xFFFFFF, true);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local1 = AssetLibrary.getImageFromSet("lofiCharBig", 0x0100);
             _local1 = TextureRedrawer.redraw(_local1, this.size_, true, 0, true);
             this.crystal = new Bitmap(_local1);
@@ -190,7 +193,8 @@
             if (this.glowState == GLOW_STATE_PULSE)
             {
                 this.glowFilter.alpha = 1;
-            };
+            }
+            ;
         }
 
         public function doItemReveal(_arg1:int):void
@@ -198,20 +202,21 @@
             if ((((this.parent == null)) || ((this.parent.parent == null))))
             {
                 return;
-            };
+            }
+            ;
             this.removeItemReveal();
             this.item = new ItemWithTooltip(_arg1);
             this.item.itemBitmap.alpha = 1;
             parent.addChild(this.item);
             this.item.setXPos(this.getCenterX());
             this.item.setYPos(this.getCenterY());
-            FortuneModal.doEaseOutInAnimation(this.item, {
-                "scaleX":1.25,
-                "scaleY":1.25
-            }, {
-                "scaleX":1,
-                "scaleY":1
-            });
+            FortuneModal.doEaseOutInAnimation(
+                    this.item, {
+                        "scaleX": 1.25, "scaleY": 1.25
+                    }, {
+                        "scaleX": 1, "scaleY": 1
+                    }
+            );
             this.setInactive();
         }
 
@@ -220,11 +225,13 @@
             if (((!((this.item == null))) && (this.item.parent)))
             {
                 parent.removeChild(this.item);
-            };
+            }
+            ;
             if (((!((this.itemNameField == null))) && (this.itemNameField.parent)))
             {
                 parent.removeChild(this.itemNameField);
-            };
+            }
+            ;
         }
 
         public function doItemShow(_arg1:int):void
@@ -232,7 +239,8 @@
             if ((((this.parent == null)) || ((this.parent.parent == null))))
             {
                 return;
-            };
+            }
+            ;
             this.removeItemReveal();
             var _local2:TextFormat = new TextFormat();
             _local2.size = 18;
@@ -257,14 +265,14 @@
             this.itemNameField.x = (this.item.getCenterX() - (this.itemNameField.width / 2));
             this.itemNameField.y = (this.item.y + 80);
             parent.addChild(this.itemNameField);
-            var _local3:GTween = new GTween(this.item, 1, {"alpha":1});
-            FortuneModal.doEaseOutInAnimation(this.item, {
-                "scaleX":1.25,
-                "scaleY":1.25
-            }, {
-                "scaleX":1,
-                "scaleY":1
-            });
+            var _local3:GTween = new GTween(this.item, 1, {"alpha": 1});
+            FortuneModal.doEaseOutInAnimation(
+                    this.item, {
+                        "scaleX": 1.25, "scaleY": 1.25
+                    }, {
+                        "scaleX": 1, "scaleY": 1
+                    }
+            );
             this.setActive();
         }
 
@@ -274,10 +282,11 @@
             this.returnY = this.y;
             var _local3:Number = this.calculateXPos(_arg1);
             var _local4:Number = this.calculateYPos(_arg2);
-            var _local5:GTween = new GTween(this, 0.5, {
-                "x":_local3,
-                "y":_local4
-            });
+            var _local5:GTween = new GTween(
+                    this, 0.5, {
+                        "x": _local3, "y": _local4
+                    }
+            );
         }
 
         public function saveReturnPotion():void
@@ -290,10 +299,11 @@
 
         public function doItemReturn():void
         {
-            var _local1:GTween = new GTween(this, 0.12, {
-                "x":this.returnX,
-                "y":this.returnY
-            });
+            var _local1:GTween = new GTween(
+                    this, 0.12, {
+                        "x": this.returnX, "y": this.returnY
+                    }
+            );
             this.filters = [this.glowFilter];
             this.setGlowState(GLOW_STATE_PULSE);
         }
@@ -306,7 +316,8 @@
                 this.crystalGrey.alpha = 1;
                 this.setAnimation(0, 3);
                 this.setAnimationDuration(100);
-            };
+            }
+            ;
             this.active = true;
         }
 
@@ -321,12 +332,15 @@
                 if (this.crystal != null)
                 {
                     this.crystal.alpha = 1;
-                };
+                }
+                ;
                 if (this.crystalGrey != null)
                 {
                     this.crystalGrey.alpha = 0;
-                };
-            };
+                }
+                ;
+            }
+            ;
             this.active = false;
         }
 
@@ -345,7 +359,8 @@
                 {
                     this.crystalGrey.alpha = 0;
                     this.crystal.alpha = 1;
-                };
+                }
+                ;
             }
             else
             {
@@ -358,8 +373,10 @@
                 {
                     this.crystalGrey.alpha = 1;
                     this.crystal.alpha = 0;
-                };
-            };
+                }
+                ;
+            }
+            ;
             if (this.glowState == GLOW_STATE_FADE)
             {
                 this.glowFilter.alpha = (this.glowFilter.alpha - 0.07);
@@ -367,7 +384,8 @@
                 if (this.glowFilter.alpha <= 0.03)
                 {
                     this.filters = [];
-                };
+                }
+                ;
             }
             else
             {
@@ -382,13 +400,17 @@
                         if ((((this.glowFilter.alpha <= 0.5)) && (!(this.pulsePolarity))))
                         {
                             this.pulsePolarity = true;
-                        };
-                    };
+                        }
+                        ;
+                    }
+                    ;
                     _local3 = ((this.pulsePolarity) ? 1 : -1);
                     this.glowFilter.alpha = (this.glowFilter.alpha + (0.01 * _local3));
                     this.filters = [this.glowFilter];
-                };
-            };
+                }
+                ;
+            }
+            ;
             if (this.isTrackingMouse_)
             {
                 _local4 = this.squareDistanceTo(FortuneModal.fMouseX, FortuneModal.fMouseY);
@@ -397,7 +419,8 @@
                     if (this.currentAnimation != ANIM_HOVER)
                     {
                         this.setAnimationHover();
-                    };
+                    }
+                    ;
                     this.animationDuration_ = Math.max((_local4 / 8), 70);
                     this.animationDuration_ = Math.min(this.animationDuration_, 170);
                 }
@@ -406,9 +429,12 @@
                     if (this.currentAnimation != ANIM_PULSE)
                     {
                         this.setAnimationPulse();
-                    };
-                };
-            };
+                    }
+                    ;
+                }
+                ;
+            }
+            ;
             if (this.shake)
             {
                 this.setXPos((this.originX + ((Math.random() * 6) - 3)));
@@ -418,8 +444,10 @@
                 {
                     this.shake = false;
                     this.shakeCount = 0;
-                };
-            };
+                }
+                ;
+            }
+            ;
             this.drawAnimation(_arg1, _arg2);
         }
 
@@ -444,8 +472,10 @@
                     if (this.frameOffset_ > this.numFramesofLoop_)
                     {
                         this.frameOffset_ = 0;
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 this.crystal = this.crystalFrames[(this.startFrame_ + this.frameOffset_)];
                 if (this.currentAnimation == ANIM_CLICKED)
                 {
@@ -460,10 +490,13 @@
                     {
                         this.scaleX = 0.01;
                         this.scaleY = 0.01;
-                    };
-                };
+                    }
+                    ;
+                }
+                ;
                 addChild(this.crystal);
-            };
+            }
+            ;
         }
 
         public function setAnimationDuration(_arg1:Number):void
@@ -540,8 +573,6 @@
             this.scaleX = 1;
             this.scaleY = 1;
         }
-
-
     }
 }
 

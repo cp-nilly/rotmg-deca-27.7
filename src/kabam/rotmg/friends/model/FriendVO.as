@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.friends.model
 {
     import com.company.assembleegameclient.objects.Player;
+
     import flash.display.BitmapData;
 
-    public class FriendVO 
+    public class FriendVO
     {
-
         public var playerName:String;
         private var _player:Player;
         private var _isOnline:Boolean;
         private var _serverName:String;
         private var _serverAddr:String;
 
-        public function FriendVO(_arg1:Player, _arg2:Boolean=false, _arg3:String="", _arg4:String="")
+        public function FriendVO(_arg1:Player, _arg2:Boolean = false, _arg3:String = "", _arg4:String = "")
         {
             this._player = _arg1;
             this._isOnline = _arg2;
@@ -60,8 +60,6 @@
             this._serverName = "";
             this._serverAddr = "";
         }
-
-
     }
 }
 

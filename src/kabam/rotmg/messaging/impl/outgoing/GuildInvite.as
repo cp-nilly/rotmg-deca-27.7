@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class GuildInvite extends OutgoingMessage 
+    public class GuildInvite extends OutgoingMessage
     {
-
         public var name_:String;
 
         public function GuildInvite(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("GUILDINVITE", "name_"));
         }
-
-
     }
 }
 

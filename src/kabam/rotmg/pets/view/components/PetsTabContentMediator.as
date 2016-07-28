@@ -1,16 +1,15 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.rotmg.pets.data.PetsModel;
 
-    public class PetsTabContentMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class PetsTabContentMediator extends Mediator
+    {
         [Inject]
         public var view:PetsTabContentView;
         [Inject]
         public var model:PetsModel;
-
 
         override public function initialize():void
         {
@@ -20,8 +19,6 @@
         override public function destroy():void
         {
         }
-
-
     }
 }
 

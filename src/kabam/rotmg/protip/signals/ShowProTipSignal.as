@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ShowProTipSignal extends Signal 
+    public class ShowProTipSignal extends Signal
     {
-
-
     }
 }
 

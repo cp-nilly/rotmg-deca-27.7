@@ -1,17 +1,17 @@
 ﻿package com.company.assembleegameclient.parameters
 {
-    import flash.display.DisplayObject;
-    import flash.net.SharedObject;
-    import flash.utils.Dictionary;
-    import com.company.util.KeyCodes;
     import com.company.assembleegameclient.map.Map;
-    import flash.events.Event;
+    import com.company.util.KeyCodes;
     import com.company.util.MoreDateUtil;
+
+    import flash.display.DisplayObject;
+    import flash.events.Event;
+    import flash.net.SharedObject;
     import flash.system.Capabilities;
+    import flash.utils.Dictionary;
 
-    public class Parameters 
+    public class Parameters
     {
-
         public static const BUILD_VERSION:String = "27.7";
         public static const MINOR_VERSION:String = "DECA";
         public static const ENABLE_ENCRYPTION:Boolean = true;
@@ -39,7 +39,6 @@
         public static const RANDOM1:String = "311f80691451c71b09a13a2a6e";
         public static const RANDOM2:String = "72c5583cafb6818995cbd74b80";
         public static const RSA_PUBLIC_KEY:String = ((((("-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO") + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo") + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7") + "F3yWYqUbZd/HCBtawwIDAQAB\n") + "-----END PUBLIC KEY-----");
-
         public static var root:DisplayObject;
         public static var data_:Object = null;
         public static var GPURenderError:Boolean = false;
@@ -53,7 +52,6 @@
         public static var toggleHPBar_:Boolean = false;
         private static var keyNames_:Dictionary = new Dictionary();
 
-
         public static function load():void
         {
             try
@@ -61,10 +59,10 @@
                 savedOptions_ = SharedObject.getLocal("AssembleeGameClientOptions", "/");
                 data_ = savedOptions_.data;
             }
-            catch(error:Error)
+            catch (error:Error)
             {
                 data_ = new Object();
-            };
+            }
             setDefaults();
             save();
         }
@@ -76,11 +74,11 @@
                 if (savedOptions_ != null)
                 {
                     savedOptions_.flush();
-                };
+                }
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         private static function setDefaultKey(_arg1:String, _arg2:uint):void
@@ -88,7 +86,7 @@
             if (!data_.hasOwnProperty(_arg1))
             {
                 data_[_arg1] = _arg2;
-            };
+            }
             keyNames_[_arg1] = true;
         }
 
@@ -100,8 +98,8 @@
                 if (data_[_local3] == _arg2)
                 {
                     data_[_local3] = KeyCodes.UNSET;
-                };
-            };
+                }
+            }
             data_[_arg1] = _arg2;
         }
 
@@ -110,7 +108,7 @@
             if (!data_.hasOwnProperty(_arg1))
             {
                 data_[_arg1] = _arg2;
-            };
+            }
         }
 
         public static function isGpuRender():Boolean
@@ -213,7 +211,7 @@
             else
             {
                 setDefault("GPURender", false);
-            };
+            }
             setDefault("forceChatQuality", false);
             setDefault("hidePlayerChat", false);
             setDefault("chatStarRequirement", 1);
@@ -230,7 +228,7 @@
             else
             {
                 setDefault("musicVolume", 0);
-            };
+            }
             if (((data_.hasOwnProperty("playSFX")) && ((data_.playMusic == true))))
             {
                 setDefault("SFXVolume", 1);
@@ -238,7 +236,7 @@
             else
             {
                 setDefault("SFXVolume", 0);
-            };
+            }
             setDefault("friendList", KeyCodes.UNSET);
             setDefault("tradeWithFriends", false);
             setDefault("chatFriend", false);
@@ -274,11 +272,9 @@
                         data_.playTimeLeftTillSurvey = (2 * 60);
                         data_.surveyGroup = "2WeekRealtime";
                         return;
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

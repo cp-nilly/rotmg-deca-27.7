@@ -1,10 +1,7 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import __AS3__.vec.Vector;
-
-    public class ExplosionEffect extends ParticleEffect 
+    public class ExplosionEffect extends ParticleEffect
     {
-
         public var colors_:Vector.<uint>;
         public var numParts_:int;
 
@@ -31,9 +28,9 @@
                     else
                     {
                         this.numParts_ = _arg3;
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         override public function runNormalRendering(_arg1:int, _arg2:int):Boolean
@@ -43,19 +40,27 @@
             if (this.colors_.length == 0)
             {
                 return (false);
-            };
+            }
             if (ExplosionParticle.total_ > 400)
             {
                 return (false);
-            };
+            }
             var _local3:int;
             while (_local3 < this.numParts_)
             {
                 _local4 = this.colors_[int((this.colors_.length * Math.random()))];
-                _local5 = new ExplosionParticle(_local4, 0.5, size_, (200 + (Math.random() * 100)), (Math.random() - 0.5), (Math.random() - 0.5), 0);
+                _local5 = new ExplosionParticle(
+                        _local4,
+                        0.5,
+                        size_,
+                        (200 + (Math.random() * 100)),
+                        (Math.random() - 0.5),
+                        (Math.random() - 0.5),
+                        0
+                );
                 map_.addObj(_local5, x_, y_);
                 _local3++;
-            };
+            }
             return (false);
         }
 
@@ -66,41 +71,49 @@
             if (this.colors_.length == 0)
             {
                 return (false);
-            };
+            }
             if (ExplosionParticle.total_ > 400)
             {
                 return (false);
-            };
+            }
             this.numParts_ = 2;
             var _local3:int;
             while (_local3 < this.numParts_)
             {
                 _local4 = this.colors_[int((this.colors_.length * Math.random()))];
-                _local5 = new ExplosionParticle(_local4, 0.5, size_, (50 + (Math.random() * 100)), (Math.random() - 0.5), (Math.random() - 0.5), 0);
+                _local5 = new ExplosionParticle(
+                        _local4,
+                        0.5,
+                        size_,
+                        (50 + (Math.random() * 100)),
+                        (Math.random() - 0.5),
+                        (Math.random() - 0.5),
+                        0
+                );
                 map_.addObj(_local5, x_, y_);
                 _local3++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
+
 import flash.geom.Vector3D;
 
-class ExplosionParticle extends Particle 
+class ExplosionParticle extends Particle
 {
-
     public static var total_:int = 0;
-
     public var lifetime_:int;
     public var timeLeft_:int;
     protected var moveVec_:Vector3D;
-    /*private*/ var deleted:Boolean = false;
+    /*private*/
+    var deleted:Boolean = false;
 
-    public function ExplosionParticle(_arg1:uint, _arg2:Number, _arg3:int, _arg4:int, _arg5:Number, _arg6:Number, _arg7:Number)
+    public function ExplosionParticle(
+            _arg1:uint, _arg2:Number, _arg3:int, _arg4:int, _arg5:Number, _arg6:Number, _arg7:Number
+    )
     {
         this.moveVec_ = new Vector3D();
         super(_arg1, _arg2, _arg3);
@@ -120,15 +133,13 @@ class ExplosionParticle extends Particle
             {
                 total_--;
                 this.deleted = true;
-            };
+            }
             return (false);
-        };
+        }
         x_ = (x_ + ((this.moveVec_.x * _arg2) * 0.008));
         y_ = (y_ + ((this.moveVec_.y * _arg2) * 0.008));
         z_ = (z_ + ((this.moveVec_.z * _arg2) * 0.008));
         return (true);
     }
-
-
 }
 

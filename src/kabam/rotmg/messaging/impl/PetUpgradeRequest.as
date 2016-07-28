@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.messaging.impl
 {
-    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
-    import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import flash.utils.IDataOutput;
 
-    public class PetUpgradeRequest extends OutgoingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.SlotObjectData;
+    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
 
+    public class PetUpgradeRequest extends OutgoingMessage
+    {
         public static const GOLD_PAYMENT_TYPE:int = 0;
         public static const FAME_PAYMENT_TYPE:int = 1;
-
         public var petTransType:int;
         public var PIDOne:int;
         public var PIDTwo:int;
@@ -32,8 +31,6 @@
             this.slotObject.writeToOutput(_arg1);
             _arg1.writeByte(this.paymentTransType);
         }
-
-
     }
 }
 

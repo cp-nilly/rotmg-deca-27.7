@@ -1,22 +1,22 @@
 ﻿package kabam.rotmg.death.control
 {
-    import kabam.rotmg.messaging.impl.incoming.Death;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import kabam.rotmg.account.core.services.GetCharListTask;
-    import kabam.rotmg.fame.control.ShowFameViewSignal;
+    import com.company.assembleegameclient.appengine.SavedCharacter;
+    import com.company.assembleegameclient.parameters.Parameters;
+
+    import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.account.core.services.GetCharListTask;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.fame.control.ShowFameViewSignal;
     import kabam.rotmg.fame.model.FameVO;
     import kabam.rotmg.fame.model.SimpleFameVO;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.core.service.TrackingData;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.lib.tasks.TaskSequence;
-    import kabam.lib.tasks.DispatchSignalTask;
+    import kabam.rotmg.messaging.impl.incoming.Death;
 
-    public class HandleNormalDeathCommand 
+    public class HandleNormalDeathCommand
     {
-
         [Inject]
         public var death:Death;
         [Inject]
@@ -30,7 +30,6 @@
         [Inject]
         public var monitor:TaskMonitor;
         private var fameVO:FameVO;
-
 
         public function execute():void
         {
@@ -66,7 +65,7 @@
             else
             {
                 this.showFame.dispatch(this.fameVO);
-            };
+            }
         }
 
         private function gotoFameViewOnceDataIsLoaded():void
@@ -77,8 +76,6 @@
             this.monitor.add(_local1);
             _local1.start();
         }
-
-
     }
 }
 

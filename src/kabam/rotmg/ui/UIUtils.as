@@ -2,15 +2,13 @@
 {
     import flash.display.Sprite;
 
-    public class UIUtils 
+    public class UIUtils
     {
-
         private static const NOTIFICATION_BACKGROUND_WIDTH:Number = 95;
         public static const NOTIFICATION_BACKGROUND_HEIGHT:Number = 25;
         private static const NOTIFICATION_BACKGROUND_ALPHA:Number = 0.4;
         private static const NOTIFICATION_BACKGROUND_COLOR:Number = 0;
         public static const NOTIFICATION_SPACE:uint = 28;
-
 
         public static function makeStaticHUDBackground():Sprite
         {
@@ -32,8 +30,6 @@
             _arg1.graphics.endFill();
             return (_arg1);
         }
-
-
     }
 }
 

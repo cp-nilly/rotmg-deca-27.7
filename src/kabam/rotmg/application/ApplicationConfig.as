@@ -1,25 +1,25 @@
 ﻿package kabam.rotmg.application
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.contextView.ContextView;
-    import kabam.rotmg.build.api.BuildData;
     import flash.display.LoaderInfo;
-    import kabam.rotmg.application.model.DomainModel;
+
     import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.application.api.DebugSetup;
-    import kabam.rotmg.application.model.PlatformModel;
-    import kabam.rotmg.build.api.BuildEnvironment;
+    import kabam.rotmg.application.impl.FixedIPSetup;
     import kabam.rotmg.application.impl.LocalhostSetup;
     import kabam.rotmg.application.impl.PrivateSetup;
-    import kabam.rotmg.application.impl.TestingSetup;
-    import kabam.rotmg.application.impl.Testing2Setup;
     import kabam.rotmg.application.impl.ProductionSetup;
-    import kabam.rotmg.application.impl.FixedIPSetup;
+    import kabam.rotmg.application.impl.Testing2Setup;
+    import kabam.rotmg.application.impl.TestingSetup;
+    import kabam.rotmg.application.model.DomainModel;
+    import kabam.rotmg.build.api.BuildData;
+    import kabam.rotmg.build.api.BuildEnvironment;
 
-    public class ApplicationConfig implements IConfig 
+    import robotlegs.bender.extensions.contextView.ContextView;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class ApplicationConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
@@ -30,7 +30,6 @@
         public var loaderInfo:LoaderInfo;
         [Inject]
         public var domainModel:DomainModel;
-
 
         public function configure():void
         {
@@ -56,15 +55,13 @@
                     return (new Testing2Setup());
                 default:
                     return (new ProductionSetup());
-            };
+            }
         }
 
         private function makeFixedIPSetup():FixedIPSetup
         {
             return (new FixedIPSetup().setAddress(this.data.getEnvironmentString()));
         }
-
-
     }
 }
 

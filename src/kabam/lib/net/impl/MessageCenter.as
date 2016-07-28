@@ -1,22 +1,17 @@
 ﻿package kabam.lib.net.impl
 {
     import kabam.lib.net.api.MessageMap;
-    import kabam.lib.net.api.MessageProvider;
-    import __AS3__.vec.Vector;
-	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageMapping;
-    import __AS3__.vec.*;
+    import kabam.lib.net.api.MessageProvider;
 
-    public class MessageCenter implements MessageMap, MessageProvider 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class MessageCenter implements MessageMap, MessageProvider
     {
-
         private static const MAX_ID:int = 0x0100;
-
         private const maps:Vector.<MessageCenterMapping> = new Vector.<MessageCenterMapping>(MAX_ID, true);
         private const pools:Vector.<MessagePool> = new Vector.<MessagePool>(MAX_ID, true);
-
         private var injector:IInjector;
-
 
         public function setInjector(_arg1:IInjector):MessageCenter
         {
@@ -52,8 +47,6 @@
             var _local2:MessageCenterMapping = this.maps[_arg1];
             return (((_local2) ? _local2.makePool() : null));
         }
-
-
     }
 }
 

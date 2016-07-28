@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class ShootAck extends OutgoingMessage 
+    public class ShootAck extends OutgoingMessage
     {
-
         public var time_:int;
 
         public function ShootAck(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("SHOOTACK", "time_"));
         }
-
-
     }
 }
 

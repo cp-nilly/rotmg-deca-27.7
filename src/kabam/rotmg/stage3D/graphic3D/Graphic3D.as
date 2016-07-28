@@ -1,29 +1,65 @@
 ﻿package kabam.rotmg.stage3D.graphic3D
 {
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.stage3D.proxies.TextureProxy;
-    import flash.geom.Matrix3D;
-    import kabam.rotmg.stage3D.proxies.Context3DProxy;
-    import kabam.rotmg.stage3D.proxies.VertexBuffer3DProxy;
-    import kabam.rotmg.stage3D.proxies.IndexBuffer3DProxy;
     import flash.display.BitmapData;
-    import flash.geom.Matrix;
-    import flash.display3D.VertexBuffer3D;
-    import flash.display3D.IndexBuffer3D;
-    import kabam.rotmg.stage3D.GraphicsFillExtra;
-    import flash.geom.ColorTransform;
-    import flash.display3D.Context3DProgramType;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsGradientFill;
+    import flash.display3D.Context3DProgramType;
     import flash.display3D.Context3DVertexBufferFormat;
-    import __AS3__.vec.*;
+    import flash.display3D.IndexBuffer3D;
+    import flash.display3D.VertexBuffer3D;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+    import flash.geom.Matrix3D;
 
-    public class Graphic3D 
+    import kabam.rotmg.stage3D.GraphicsFillExtra;
+    import kabam.rotmg.stage3D.proxies.Context3DProxy;
+    import kabam.rotmg.stage3D.proxies.IndexBuffer3DProxy;
+    import kabam.rotmg.stage3D.proxies.TextureProxy;
+    import kabam.rotmg.stage3D.proxies.VertexBuffer3DProxy;
+
+    public class Graphic3D
     {
-
-        private static const gradientVertex:Vector.<Number> = Vector.<Number>([-0.5, 0.5, 0, 0, 0, 0, 0.01, 0, 1, 0.5, 0.5, 0, 0, 0, 0, 0.3, 1, 1, -0.5, -0.5, 0, 0, 0, 0, 0.1, 0, 0, 0.5, -0.5, 0, 0, 0, 0, 0.2, 1, 0]);
+        private static const gradientVertex:Vector.<Number> = Vector.<Number>(
+                [
+                    -0.5,
+                    0.5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.01,
+                    0,
+                    1,
+                    0.5,
+                    0.5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.3,
+                    1,
+                    1,
+                    -0.5,
+                    -0.5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.1,
+                    0,
+                    0,
+                    0.5,
+                    -0.5,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0.2,
+                    1,
+                    0
+                ]
+        );
         private static const indices:Vector.<uint> = Vector.<uint>([0, 1, 2, 2, 1, 3]);
-
         public var texture:TextureProxy;
         public var matrix3D:Matrix3D;
         public var context3D:Context3DProxy;
@@ -61,14 +97,34 @@
             if (this.sinkLevel != 0)
             {
                 this.offsetMatrix = Vector.<Number>([0, -(this.sinkLevel), 0, 0]);
-            };
+            }
             this.transform();
             var _local3:ColorTransform = GraphicsFillExtra.getColorTransform(this.bitmapData);
-            _arg2.GetContext3D().setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 2, Vector.<Number>([_local3.redMultiplier, _local3.greenMultiplier, _local3.blueMultiplier, _local3.alphaMultiplier]));
-            _arg2.GetContext3D().setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 3, Vector.<Number>([(_local3.redOffset / 0xFF), (_local3.greenOffset / 0xFF), (_local3.blueOffset / 0xFF), (_local3.alphaOffset / 0xFF)]));
+            _arg2.GetContext3D().setProgramConstantsFromVector(
+                    Context3DProgramType.FRAGMENT, 2, Vector.<Number>(
+                            [
+                                _local3.redMultiplier,
+                                _local3.greenMultiplier,
+                                _local3.blueMultiplier,
+                                _local3.alphaMultiplier
+                            ]
+                    )
+            );
+            _arg2.GetContext3D().setProgramConstantsFromVector(
+                    Context3DProgramType.FRAGMENT, 3, Vector.<Number>(
+                            [
+                                (_local3.redOffset / 0xFF),
+                                (_local3.greenOffset / 0xFF),
+                                (_local3.blueOffset / 0xFF),
+                                (_local3.alphaOffset / 0xFF)
+                            ]
+                    )
+            );
         }
 
-        public function setGradientFill(_arg1:GraphicsGradientFill, _arg2:Context3DProxy, _arg3:Number, _arg4:Number):void
+        public function setGradientFill(
+                _arg1:GraphicsGradientFill, _arg2:Context3DProxy, _arg3:Number, _arg4:Number
+        ):void
         {
             this.shadowMatrix2D = _arg1.matrix;
             if ((((this.gradientVB == null)) || ((this.gradientIB == null))))
@@ -77,7 +133,7 @@
                 this.gradientVB.uploadFromVector(gradientVertex, 0, 4);
                 this.gradientIB = _arg2.GetContext3D().createIndexBuffer(6);
                 this.gradientIB.uploadFromVector(indices, 0, 6);
-            };
+            }
             this.shadowTransform(_arg3, _arg4);
         }
 
@@ -116,8 +172,12 @@
             _arg1.setTextureAt(0, this.texture);
             if (this.vertexBufferCustom != null)
             {
-                _arg1.GetContext3D().setVertexBufferAt(0, this.vertexBufferCustom, 0, Context3DVertexBufferFormat.FLOAT_3);
-                _arg1.GetContext3D().setVertexBufferAt(1, this.vertexBufferCustom, 3, Context3DVertexBufferFormat.FLOAT_2);
+                _arg1.GetContext3D().setVertexBufferAt(
+                        0, this.vertexBufferCustom, 0, Context3DVertexBufferFormat.FLOAT_3
+                );
+                _arg1.GetContext3D().setVertexBufferAt(
+                        1, this.vertexBufferCustom, 3, Context3DVertexBufferFormat.FLOAT_2
+                );
                 _arg1.GetContext3D().setProgramConstantsFromVector(Context3DProgramType.VERTEX, 4, this.offsetMatrix);
                 _arg1.GetContext3D().setVertexBufferAt(2, null, 6, Context3DVertexBufferFormat.FLOAT_2);
                 _arg1.drawTriangles(this.indexBuffer);
@@ -129,7 +189,7 @@
                 _arg1.GetContext3D().setProgramConstantsFromVector(Context3DProgramType.VERTEX, 4, this.offsetMatrix);
                 _arg1.GetContext3D().setVertexBufferAt(2, null, 6, Context3DVertexBufferFormat.FLOAT_2);
                 _arg1.drawTriangles(this.indexBuffer);
-            };
+            }
         }
 
         public function renderShadow(_arg1:Context3DProxy):void
@@ -145,8 +205,6 @@
         {
             return (this.matrix3D);
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.map.RegionLibrary;
 
-    public class RegionChooser extends Chooser 
+    public class RegionChooser extends Chooser
     {
-
         public function RegionChooser()
         {
             var _local1:XML;
@@ -14,9 +13,8 @@
             {
                 _local2 = new RegionElement(_local1);
                 addElement(_local2);
-            };
+            }
         }
-
     }
 }
 

@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ShowConsoleSignal extends Signal 
+    public class ShowConsoleSignal extends Signal
     {
-
-
     }
 }
 

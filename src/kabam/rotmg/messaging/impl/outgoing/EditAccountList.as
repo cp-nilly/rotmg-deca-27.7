@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class EditAccountList extends OutgoingMessage 
+    public class EditAccountList extends OutgoingMessage
     {
-
         public var accountListId_:int;
         public var add_:Boolean;
         public var objectId_:int;
@@ -25,8 +24,6 @@
         {
             return (formatToString("EDITACCOUNTLIST", "accountListId_", "add_", "objectId_"));
         }
-
-
     }
 }
 

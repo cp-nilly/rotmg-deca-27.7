@@ -1,34 +1,32 @@
 ﻿package com.company.assembleegameclient.ui.guild
 {
-    import flash.display.Sprite;
-    import flash.geom.ColorTransform;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.text.TextFieldAutoSize;
-    import com.company.assembleegameclient.util.GuildUtil;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.events.MouseEvent;
-    import com.company.rotmg.graphics.DeleteXGraphic;
-    import flash.display.Graphics;
-    import com.company.util.MoreColorUtil;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import com.company.assembleegameclient.ui.guild.GuildPlayerListEvent;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import com.company.assembleegameclient.util.GuildUtil;
+    import com.company.rotmg.graphics.DeleteXGraphic;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.Graphics;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import com.company.assembleegameclient.ui.guild.*;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.ColorTransform;
+    import flash.text.TextFieldAutoSize;
 
-    class MemberListLine extends Sprite 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    class MemberListLine extends Sprite
     {
-
         public static const WIDTH:int = 756;
         public static const HEIGHT:int = 32;
         protected static const mouseOverCT:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
-
         private var name_:String;
         private var rank_:int;
         private var placeText_:TextFieldDisplayConcrete;
@@ -51,7 +49,7 @@
             if (_arg5)
             {
                 _local7 = 16564761;
-            };
+            }
             this.placeText_ = new TextFieldDisplayConcrete().setSize(22).setColor(_local7);
             this.placeText_.setStringBuilder(new StaticStringBuilder((_arg1.toString() + ".")));
             this.placeText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
@@ -94,7 +92,7 @@
                 this.promoteButton_.x = (670 + 6);
                 this.promoteButton_.y = (HEIGHT / 2);
                 addChild(this.promoteButton_);
-            };
+            }
             if (GuildUtil.canDemote(_arg6, _arg3))
             {
                 this.demoteButton_ = this.createArrow(false);
@@ -103,7 +101,7 @@
                 this.demoteButton_.x = (700 + 6);
                 this.demoteButton_.y = (HEIGHT / 2);
                 addChild(this.demoteButton_);
-            };
+            }
             if (GuildUtil.canRemove(_arg6, _arg3))
             {
                 this.removeButton_ = new DeleteXGraphic();
@@ -112,7 +110,7 @@
                 this.removeButton_.x = 730;
                 this.removeButton_.y = ((HEIGHT / 2) - (this.removeButton_.height / 2));
                 addChild(this.removeButton_);
-            };
+            }
         }
 
         private function createArrow(_arg1:Boolean):Sprite
@@ -127,7 +125,7 @@
             if (_arg1)
             {
                 _local2.rotation = 180;
-            };
+            }
             return (_local2);
         }
 
@@ -152,12 +150,15 @@
         private function onPromote(_arg1:MouseEvent):void
         {
             var _local2:String = GuildUtil.rankToString(GuildUtil.promotedRank(this.rank_));
-            var _local3:Dialog = new Dialog("", "", TextKey.PROMOTE_LEFTBUTTON, TextKey.PROMOTE_RIGHTBUTTON, "/promote");
-            _local3.setTextParams(TextKey.PROMOTE_TEXT, {
-                "name":this.name_,
-                "rank":_local2
-            });
-            _local3.setTitleStringBuilder(new LineBuilder().setParams(TextKey.PROMOTE_TITLE, {"name":this.name_}));
+            var _local3:Dialog = new Dialog(
+                    "", "", TextKey.PROMOTE_LEFTBUTTON, TextKey.PROMOTE_RIGHTBUTTON, "/promote"
+            );
+            _local3.setTextParams(
+                    TextKey.PROMOTE_TEXT, {
+                        "name": this.name_, "rank": _local2
+                    }
+            );
+            _local3.setTitleStringBuilder(new LineBuilder().setParams(TextKey.PROMOTE_TITLE, {"name": this.name_}));
             _local3.addEventListener(Dialog.LEFT_BUTTON, this.onCancelDialog);
             _local3.addEventListener(Dialog.RIGHT_BUTTON, this.onVerifiedPromote);
             StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(_local3);
@@ -165,7 +166,11 @@
 
         private function onVerifiedPromote(_arg1:Event):void
         {
-            dispatchEvent(new GuildPlayerListEvent(GuildPlayerListEvent.SET_RANK, this.name_, GuildUtil.promotedRank(this.rank_)));
+            dispatchEvent(
+                    new GuildPlayerListEvent(
+                            GuildPlayerListEvent.SET_RANK, this.name_, GuildUtil.promotedRank(this.rank_)
+                    )
+            );
             StaticInjectorContext.getInjector().getInstance(CloseDialogsSignal).dispatch();
         }
 
@@ -173,11 +178,12 @@
         {
             var _local2:String = GuildUtil.rankToString(GuildUtil.demotedRank(this.rank_));
             var _local3:Dialog = new Dialog("", "", TextKey.DEMOTE_LEFT, TextKey.DEMOTE_RIGHT, "/demote");
-            _local3.setTextParams(TextKey.DEMOTE_TEXT, {
-                "name":this.name_,
-                "rank":_local2
-            });
-            _local3.setTitleStringBuilder(new LineBuilder().setParams(TextKey.DEMOTE_TITLE, {"name":this.name_}));
+            _local3.setTextParams(
+                    TextKey.DEMOTE_TEXT, {
+                        "name": this.name_, "rank": _local2
+                    }
+            );
+            _local3.setTitleStringBuilder(new LineBuilder().setParams(TextKey.DEMOTE_TITLE, {"name": this.name_}));
             _local3.addEventListener(Dialog.LEFT_BUTTON, this.onCancelDialog);
             _local3.addEventListener(Dialog.RIGHT_BUTTON, this.onVerifiedDemote);
             StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(_local3);
@@ -185,15 +191,19 @@
 
         private function onVerifiedDemote(_arg1:Event):void
         {
-            dispatchEvent(new GuildPlayerListEvent(GuildPlayerListEvent.SET_RANK, this.name_, GuildUtil.demotedRank(this.rank_)));
+            dispatchEvent(
+                    new GuildPlayerListEvent(
+                            GuildPlayerListEvent.SET_RANK, this.name_, GuildUtil.demotedRank(this.rank_)
+                    )
+            );
             StaticInjectorContext.getInjector().getInstance(CloseDialogsSignal).dispatch();
         }
 
         private function onRemove(_arg1:MouseEvent):void
         {
             var _local2:Dialog = new Dialog("", "", TextKey.REMOVE_LEFT, TextKey.REMOVE_RIGHT, "/removeFromGuild");
-            _local2.setTextParams(TextKey.REMOVE_TEXT, {"name":this.name_});
-            _local2.setTitleStringBuilder(new LineBuilder().setParams(TextKey.REMOVE_TITLE, {"name":this.name_}));
+            _local2.setTextParams(TextKey.REMOVE_TEXT, {"name": this.name_});
+            _local2.setTitleStringBuilder(new LineBuilder().setParams(TextKey.REMOVE_TITLE, {"name": this.name_}));
             _local2.addEventListener(Dialog.LEFT_BUTTON, this.onCancelDialog);
             _local2.addEventListener(Dialog.RIGHT_BUTTON, this.onVerifiedRemove);
             StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(_local2);
@@ -209,8 +219,6 @@
         {
             StaticInjectorContext.getInjector().getInstance(CloseDialogsSignal).dispatch();
         }
-
-
     }
 }
 

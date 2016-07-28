@@ -1,23 +1,20 @@
 ﻿package kabam.rotmg.game.commands
 {
-    import robotlegs.bender.bundles.mvcs.Command;
     import com.company.assembleegameclient.game.GiftStatusModel;
 
-    public class GiftStatusUpdateCommand extends Command 
-    {
+    import robotlegs.bender.bundles.mvcs.Command;
 
+    public class GiftStatusUpdateCommand extends Command
+    {
         [Inject]
         public var model:GiftStatusModel;
         [Inject]
         public var hasGift:Boolean;
 
-
         override public function execute():void
         {
             this.model.setHasGift(this.hasGift);
         }
-
-
     }
 }
 

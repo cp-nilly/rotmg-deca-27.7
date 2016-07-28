@@ -1,25 +1,26 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.screens.AccountScreen;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import kabam.rotmg.account.web.view.WebAccountInfoView;
-    import kabam.rotmg.account.web.WebAccount;
-    import kabam.rotmg.account.kabam.view.KabamAccountInfoView;
-    import kabam.rotmg.account.kabam.KabamAccount;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoView;
-    import kabam.rotmg.account.kongregate.KongregateAccount;
-    import kabam.rotmg.account.steam.view.SteamAccountInfoView;
-    import kabam.rotmg.account.steam.SteamAccount;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
 
-    public class AccountScreenMediator extends Mediator 
-    {
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.AccountInfoView;
+    import kabam.rotmg.account.kabam.KabamAccount;
+    import kabam.rotmg.account.kabam.view.KabamAccountInfoView;
+    import kabam.rotmg.account.kongregate.KongregateAccount;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoView;
+    import kabam.rotmg.account.steam.SteamAccount;
+    import kabam.rotmg.account.steam.view.SteamAccountInfoView;
+    import kabam.rotmg.account.web.WebAccount;
+    import kabam.rotmg.account.web.view.WebAccountInfoView;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class AccountScreenMediator extends Mediator
+    {
         [Inject]
         public var view:AccountScreen;
         [Inject]
@@ -30,7 +31,6 @@
         public var showTooltip:ShowTooltipSignal;
         [Inject]
         public var hideTooltips:HideTooltipsSignal;
-
 
         override public function initialize():void
         {
@@ -57,7 +57,7 @@
                 case SteamAccount.NETWORK_NAME:
                     _local1 = new SteamAccountInfoView();
                     break;
-            };
+            }
             return (_local1);
         }
 
@@ -71,8 +71,6 @@
         {
             this.showTooltip.dispatch(_arg1);
         }
-
-
     }
 }
 

@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.pets.view.components
 {
+    import flash.display.Bitmap;
     import flash.display.Sprite;
-    import kabam.rotmg.tooltips.TooltipAble;
+    import flash.events.Event;
+    import flash.geom.ColorTransform;
+
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.view.dialogs.Disableable;
     import kabam.rotmg.tooltips.HoverTooltipDelegate;
-    import flash.display.Bitmap;
-    import kabam.rotmg.pets.data.PetVO;
-    import flash.geom.ColorTransform;
-    import flash.events.Event;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.tooltips.TooltipAble;
 
-    public class PetIcon extends Sprite implements TooltipAble, Disableable 
+    public class PetIcon extends Sprite implements TooltipAble, Disableable
     {
-
         public static const DISABLE_COLOR:uint = 0x292929;
-
         public var hoverTooltipDelegate:HoverTooltipDelegate;
         private var bitmap:Bitmap;
         private var enabled:Boolean = true;
@@ -49,7 +48,7 @@
             if (this.enabled)
             {
                 return (super.dispatchEvent(_arg1));
-            };
+            }
             return (false);
         }
 
@@ -89,10 +88,8 @@
             this.doShowTooltip = _arg1;
             if (!_arg1)
             {
-            };
+            }
         }
-
-
     }
 }
 

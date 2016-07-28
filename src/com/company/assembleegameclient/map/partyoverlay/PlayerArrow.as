@@ -1,17 +1,15 @@
 ﻿package com.company.assembleegameclient.map.partyoverlay
 {
-    import com.company.assembleegameclient.ui.tooltip.PlayerGroupToolTip;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.objects.Player;
-    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
-    import com.company.assembleegameclient.ui.menu.Menu;
     import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.menu.Menu;
+    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
+    import com.company.assembleegameclient.ui.tooltip.PlayerGroupToolTip;
 
-    public class PlayerArrow extends GameObjectArrow 
+    import flash.events.MouseEvent;
+
+    public class PlayerArrow extends GameObjectArrow
     {
-
         public function PlayerArrow()
         {
             super(0xFFFFFF, 4179794, false);
@@ -42,12 +40,12 @@
             if ((((_local1 == null)) || ((_local1.map_ == null))))
             {
                 return (null);
-            };
+            }
             var _local2:Player = _local1.map_.player_;
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (new PlayerGroupMenu(_local1.map_, this.getFullPlayerVec()));
         }
 
@@ -58,11 +56,9 @@
             for each (_local2 in extraGOs_)
             {
                 _local1.push((_local2 as Player));
-            };
+            }
             return (_local1);
         }
-
-
     }
 }
 

@@ -1,22 +1,23 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
     import com.company.util.GraphicsUtil;
-    import flash.display.GraphicsSolidFill;
+
     import flash.display.GraphicsPath;
     import flash.display.GraphicsPathWinding;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
     import flash.geom.ColorTransform;
-    import __AS3__.vec.*;
 
-    public class FeedFuseArrow extends Sprite 
+    public class FeedFuseArrow extends Sprite
     {
-
         private var designFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var designPath_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>(), GraphicsPathWinding.NON_ZERO);
-
-        private const designGraphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[designFill_, designPath_, GraphicsUtil.END_FILL];
+        private var designPath_:GraphicsPath = new GraphicsPath(
+                new Vector.<int>(), new Vector.<Number>(), GraphicsPathWinding.NON_ZERO
+        );
+        private const designGraphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            designFill_, designPath_, GraphicsUtil.END_FILL
+        ];
 
         public function FeedFuseArrow()
         {
@@ -49,8 +50,6 @@
             this.designPath_.lineTo(0, 20);
             graphics.drawGraphicsData(this.designGraphicsData_);
         }
-
-
     }
 }
 

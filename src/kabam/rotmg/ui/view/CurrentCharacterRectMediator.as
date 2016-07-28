@@ -1,24 +1,26 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import com.company.assembleegameclient.screens.charrects.CurrentCharacterRect;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import kabam.rotmg.game.signals.PlayGameSignal;
-    import kabam.rotmg.characters.model.CharacterModel;
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
-    import flash.display.Sprite;
-    import kabam.rotmg.classes.model.CharacterClass;
     import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.core.service.TrackingData;
-    import kabam.rotmg.game.model.GameInitData;
+    import com.company.assembleegameclient.screens.charrects.CurrentCharacterRect;
+
+    import flash.display.Sprite;
+
     import kabam.rotmg.characters.deletion.view.ConfirmDeleteCharacterDialog;
+    import kabam.rotmg.characters.model.CharacterModel;
+    import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.game.model.GameInitData;
+    import kabam.rotmg.game.signals.PlayGameSignal;
 
-    public class CurrentCharacterRectMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class CurrentCharacterRectMediator extends Mediator
     {
-
         [Inject]
         public var view:CurrentCharacterRect;
         [Inject]
@@ -35,7 +37,6 @@
         public var showTooltip:ShowTooltipSignal;
         [Inject]
         public var hideTooltips:HideTooltipsSignal;
-
 
         override public function initialize():void
         {
@@ -96,8 +97,6 @@
             this.model.select(_arg1);
             this.openDialog.dispatch(new ConfirmDeleteCharacterDialog());
         }
-
-
     }
 }
 

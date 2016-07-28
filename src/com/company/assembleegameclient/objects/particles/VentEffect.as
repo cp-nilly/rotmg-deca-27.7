@@ -3,11 +3,9 @@
     import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.util.FreeList;
 
-    public class VentEffect extends ParticleEffect 
+    public class VentEffect extends ParticleEffect
     {
-
         private static const BUBBLE_PERIOD:int = 50;
-
         public var go_:GameObject;
         public var lastUpdate_:int = -1;
 
@@ -27,11 +25,11 @@
             if (this.go_.map_ == null)
             {
                 return (false);
-            };
+            }
             if (this.lastUpdate_ < 0)
             {
                 this.lastUpdate_ = Math.max(0, (_arg1 - 400));
-            };
+            }
             x_ = this.go_.x_;
             y_ = this.go_.y_;
             var _local3:int = int((this.lastUpdate_ / BUBBLE_PERIOD));
@@ -46,21 +44,18 @@
                 _local9 = (this.go_.y_ + (_local7 * Math.sin(_local6)));
                 map_.addObj(_local5, _local8, _local9);
                 _local3++;
-            };
+            }
             this.lastUpdate_ = _arg1;
             return (true);
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
 import com.company.assembleegameclient.util.FreeList;
 
-class VentParticle extends Particle 
+class VentParticle extends Particle
 {
-
     public var startTime_:int;
     public var speed_:int;
 
@@ -90,7 +85,5 @@ class VentParticle extends Particle
         z_ = (0 + (this.speed_ * _local3));
         return ((z_ < 1));
     }
-
-
 }
 

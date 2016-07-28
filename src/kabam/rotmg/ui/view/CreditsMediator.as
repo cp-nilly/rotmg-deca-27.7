@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.screens.CreditsScreen;
+
     import kabam.rotmg.core.signals.SetScreenSignal;
 
-    public class CreditsMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class CreditsMediator extends Mediator
+    {
         [Inject]
         public var view:CreditsScreen;
         [Inject]
         public var setScreen:SetScreenSignal;
-
 
         override public function initialize():void
         {
@@ -28,8 +28,6 @@
         {
             this.setScreen.dispatch(new TitleView());
         }
-
-
     }
 }
 

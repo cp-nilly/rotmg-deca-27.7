@@ -1,17 +1,18 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import com.company.assembleegameclient.util.FameUtil;
 
-    public class RankText extends Sprite 
-    {
+    import flash.display.Sprite;
+    import flash.filters.DropShadowFilter;
 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class RankText extends Sprite
+    {
         public var background:Sprite = null;
         public var largeText_:Boolean;
         private var numStars_:int = -1;
@@ -31,7 +32,7 @@
                 this.prefix_.filters = [new DropShadowFilter(0, 0, 0)];
                 this.prefix_.textChanged.addOnce(this.position);
                 addChild(this.prefix_);
-            };
+            }
             mouseEnabled = false;
             mouseChildren = false;
             this.draw(_arg1);
@@ -66,30 +67,32 @@
             if (numStars == this.numStars_)
             {
                 return;
-            };
+            }
             this.numStars_ = numStars;
             if (((!((this.background == null))) && (contains(this.background))))
             {
                 removeChild(this.background);
-            };
+            }
             if (this.numStars_ < 0)
             {
                 return;
-            };
+            }
             this.background = new Sprite();
             text = this.makeText();
             text.setVerticalAlign(TextFieldDisplayConcrete.BOTTOM);
             text.setStringBuilder(new StaticStringBuilder(this.numStars_.toString()));
             text.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
             this.background.addChild(text);
-            this.icon = ((this.largeText_) ? FameUtil.numStarsToBigImage(this.numStars_) : FameUtil.numStarsToImage(this.numStars_));
+            this.icon = ((this.largeText_)
+                    ? FameUtil.numStarsToBigImage(this.numStars_)
+                    : FameUtil.numStarsToImage(this.numStars_));
             this.background.addChild(this.icon);
             text.textChanged.addOnce(onTextChanged);
             addChild(this.background);
             if (this.prefix_ != null)
             {
                 this.positionWhenTextIsReady();
-            };
+            }
         }
 
         private function positionWhenTextIsReady():void
@@ -101,7 +104,7 @@
             else
             {
                 this.waiter.complete.addOnce(this.position);
-            };
+            }
         }
 
         private function position():void
@@ -110,10 +113,8 @@
             {
                 this.background.x = this.prefix_.width;
                 this.prefix_.y = (this.icon.y - 3);
-            };
+            }
         }
-
-
     }
 }
 

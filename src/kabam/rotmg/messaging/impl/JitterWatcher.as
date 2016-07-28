@@ -1,21 +1,18 @@
 ﻿package kabam.rotmg.messaging.impl
 {
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import __AS3__.vec.Vector;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
     import flash.events.Event;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
     import flash.utils.getTimer;
+
     import kabam.rotmg.text.model.TextKey;
-    import __AS3__.vec.*;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class JitterWatcher extends Sprite 
+    public class JitterWatcher extends Sprite
     {
-
         private static const lineBuilder:LineBuilder = new LineBuilder();
-
         private var text_:TextFieldDisplayConcrete = null;
         private var lastRecord_:int = -1;
         private var ticks_:Vector.<int>;
@@ -41,7 +38,7 @@
             {
                 this.lastRecord_ = _local1;
                 return;
-            };
+            }
             var _local2:int = (_local1 - this.lastRecord_);
             this.ticks_.push(_local2);
             this.sum_ = (this.sum_ + _local2);
@@ -49,7 +46,7 @@
             {
                 _local3 = this.ticks_.shift();
                 this.sum_ = (this.sum_ - _local3);
-            };
+            }
             this.lastRecord_ = _local1;
         }
 
@@ -65,7 +62,7 @@
 
         private function onEnterFrame(_arg1:Event):void
         {
-            this.text_.setStringBuilder(lineBuilder.setParams(TextKey.JITTERWATCHER_DESC, {"jitter":this.jitter()}));
+            this.text_.setStringBuilder(lineBuilder.setParams(TextKey.JITTERWATCHER_DESC, {"jitter": this.jitter()}));
         }
 
         private function jitter():Number
@@ -75,17 +72,15 @@
             if (_local1 == 0)
             {
                 return (0);
-            };
+            }
             var _local2:Number = (this.sum_ / _local1);
             var _local3:Number = 0;
             for each (_local4 in this.ticks_)
             {
                 _local3 = (_local3 + ((_local4 - _local2) * (_local4 - _local2)));
-            };
+            }
             return (Math.sqrt((_local3 / _local1)));
         }
-
-
     }
 }
 

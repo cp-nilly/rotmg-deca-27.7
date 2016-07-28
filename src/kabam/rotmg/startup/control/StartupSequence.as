@@ -1,30 +1,25 @@
 ﻿package kabam.rotmg.startup.control
 {
     import kabam.lib.tasks.BaseTask;
-    import __AS3__.vec.Vector;
+    import kabam.lib.tasks.Task;
     import kabam.rotmg.startup.model.api.StartupDelegate;
-    import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.startup.model.impl.SignalTaskDelegate;
     import kabam.rotmg.startup.model.impl.TaskDelegate;
-    import kabam.lib.tasks.Task;
-    import __AS3__.vec.*;
 
-    public class StartupSequence extends BaseTask 
+    import robotlegs.bender.framework.api.IInjector;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class StartupSequence extends BaseTask
     {
-
         public static const LAST:int = int.MAX_VALUE;//2147483647
-
         private const list:Vector.<StartupDelegate> = new <StartupDelegate>[];
-
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var logger:ILogger;
         private var index:int = 0;
 
-
-        public function addSignal(_arg1:Class, _arg2:int=0):void
+        public function addSignal(_arg1:Class, _arg2:int = 0):void
         {
             var _local3:SignalTaskDelegate = new SignalTaskDelegate();
             _local3.injector = this.injector;
@@ -33,7 +28,7 @@
             this.list.push(_local3);
         }
 
-        public function addTask(_arg1:Class, _arg2:int=0):void
+        public function addTask(_arg1:Class, _arg2:int = 0):void
         {
             var _local3:TaskDelegate = new TaskDelegate();
             _local3.injector = this.injector;
@@ -63,7 +58,7 @@
             else
             {
                 completeTask(true);
-            };
+            }
         }
 
         private function isAnotherTask():Boolean
@@ -89,10 +84,8 @@
             else
             {
                 completeTask(false, _arg3);
-            };
+            }
         }
-
-
     }
 }
 

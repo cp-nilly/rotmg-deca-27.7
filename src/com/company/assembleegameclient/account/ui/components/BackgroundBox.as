@@ -2,13 +2,11 @@
 {
     import flash.display.Shape;
 
-    public class BackgroundBox extends Shape 
+    public class BackgroundBox extends Shape
     {
-
         private var _width:int;
         private var _height:int;
         private var _color:int;
-
 
         public function setSize(_arg1:int, _arg2:int):void
         {
@@ -30,8 +28,6 @@
             graphics.drawRect(0, 0, this._width, this._height);
             graphics.endFill();
         }
-
-
     }
 }
 

@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.arena.component
 {
     import flash.display.Sprite;
-    import flash.utils.Timer;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import flash.events.TimerEvent;
     import flash.filters.DropShadowFilter;
+    import flash.utils.Timer;
 
-    public class LeaderboardWeeklyResetTimer extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class LeaderboardWeeklyResetTimer extends Sprite
     {
-
         private const MONDAY:Number = 1;
         private const UTC_COUNTOFF_HOUR:Number = 7;
-
         private var differenceMilliseconds:Number;
         private var updateTimer:Timer;
         private var resetClock:StaticTextDisplay;
@@ -26,7 +25,11 @@
             this.resetClockStringBuilder = new LineBuilder();
             super();
             addChild(this.resetClock);
-            this.resetClock.setStringBuilder(this.resetClockStringBuilder.setParams(TextKey.ARENA_WEEKLY_RESET_LABEL, {"time":this.getDateString()}));
+            this.resetClock.setStringBuilder(
+                    this.resetClockStringBuilder.setParams(
+                            TextKey.ARENA_WEEKLY_RESET_LABEL, {"time": this.getDateString()}
+                    )
+            );
             this.updateTimer = new Timer(1000);
             this.updateTimer.addEventListener(TimerEvent.TIMER, this.onUpdateTime);
             this.updateTimer.start();
@@ -35,7 +38,11 @@
         private function onUpdateTime(_arg1:TimerEvent):void
         {
             this.differenceMilliseconds = (this.differenceMilliseconds - 1000);
-            this.resetClock.setStringBuilder(this.resetClockStringBuilder.setParams(TextKey.ARENA_WEEKLY_RESET_LABEL, {"time":this.getDateString()}));
+            this.resetClock.setStringBuilder(
+                    this.resetClockStringBuilder.setParams(
+                            TextKey.ARENA_WEEKLY_RESET_LABEL, {"time": this.getDateString()}
+                    )
+            );
         }
 
         private function getDateString():String
@@ -56,7 +63,7 @@
             else
             {
                 _local6 = (((((_local3 + " hours, ") + _local4) + " minutes, ") + _local5) + " seconds");
-            };
+            }
             return (_local6);
         }
 
@@ -74,7 +81,7 @@
             {
                 _local1.setUTCHours((this.UTC_COUNTOFF_HOUR - _local1.hoursUTC));
                 return (_local1);
-            };
+            }
             _local1.setUTCHours(7);
             _local1.setUTCMinutes(0);
             _local1.setUTCSeconds(0);
@@ -83,7 +90,7 @@
             while (_local1.dayUTC != this.MONDAY)
             {
                 _local1.setUTCDate((_local1.dateUTC + 1));
-            };
+            }
             return (_local1);
         }
 
@@ -94,8 +101,6 @@
             _local1.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
             return (_local1);
         }
-
-
     }
 }
 

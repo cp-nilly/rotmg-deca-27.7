@@ -1,17 +1,18 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.rotmg.graphics.ScreenGraphic;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
-    import flash.events.Event;
 
-    public class AccountLoadingScreen extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class AccountLoadingScreen extends Sprite
     {
-
         private var loadingText_:TextFieldDisplayConcrete;
 
         public function AccountLoadingScreen()
@@ -31,8 +32,6 @@
             this.loadingText_.x = (stage.stageWidth / 2);
             this.loadingText_.y = 550;
         }
-
-
     }
 }
 

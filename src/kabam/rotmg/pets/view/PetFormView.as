@@ -1,38 +1,39 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import com.company.assembleegameclient.ui.dialogs.DialogCloser;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.natives.NativeSignal;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.ui.dialogs.DialogCloser;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import kabam.lib.ui.api.Size;
-    import kabam.rotmg.pets.view.dialogs.PetPicker;
     import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.ui.view.SignalWaiter;
     import kabam.rotmg.pets.data.ReskinViewState;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.pets.view.dialogs.PetPicker;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PetFormView extends PetInteractionView implements DialogCloser 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PetFormView extends PetInteractionView implements DialogCloser
     {
-
         private static const closeDialogSignal:Signal = new Signal();
-
         private const background:PopupWindowBackground = PetsViewAssetFactory.returnFuserWindowBackground();
-        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 18, true);
+        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xB3B3B3, 18, true
+        );
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
         private const NUM_CATEGORIES:int = 3;
         public const closed:Signal = new Signal();
         public const skinGroupsInitialized:Signal = new Signal();
         public const reskinRequest:Signal = new Signal();
-
         private var petPickerContainer:Sprite;
         private var reskinContainer:Sprite;
         private var skinGroups:Vector.<PetSkinGroup>;
@@ -77,7 +78,7 @@
                 _arg1[_local3].initComplete.add(this.onSkinGroupInit);
                 this.reskinContainer.addChild(_arg1[_local3]);
                 _local3++;
-            };
+            }
         }
 
         public function onSkinGroupInit()
@@ -87,7 +88,7 @@
             {
                 this.positionSkinGroups();
                 this.skinGroupsInitialized.dispatch();
-            };
+            }
         }
 
         private function positionSkinGroups():void
@@ -100,7 +101,7 @@
                 this.skinGroups[_local1].y = this.posY;
                 this.posY = (this.posY + this.skinGroups[_local1].height);
                 _local1++;
-            };
+            }
             this.reskinButton.y = (this.posY + 10);
             this.background.height = (this.posY + 50);
         }
@@ -171,7 +172,7 @@
                 if (contains(this.reskinContainer))
                 {
                     removeChild(this.reskinContainer);
-                };
+                }
             }
             else
             {
@@ -181,12 +182,10 @@
                     if (contains(this.petPickerContainer))
                     {
                         removeChild(this.petPickerContainer);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
-
-
     }
 }
 

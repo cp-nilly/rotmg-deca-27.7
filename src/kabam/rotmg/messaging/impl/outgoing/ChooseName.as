@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class ChooseName extends OutgoingMessage 
+    public class ChooseName extends OutgoingMessage
     {
-
         public var name_:String;
 
         public function ChooseName(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("CHOOSENAME", "name_"));
         }
-
-
     }
 }
 

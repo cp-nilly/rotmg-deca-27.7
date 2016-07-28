@@ -1,21 +1,19 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import flash.utils.Dictionary;
     import com.company.assembleegameclient.objects.TextureDataConcrete;
-    import flash.display.BitmapData;
     import com.company.util.BitmapUtil;
 
-    public class GroundLibrary 
-    {
+    import flash.display.BitmapData;
+    import flash.utils.Dictionary;
 
+    public class GroundLibrary
+    {
         public static const propsLibrary_:Dictionary = new Dictionary();
         public static const xmlLibrary_:Dictionary = new Dictionary();
         public static const typeToTextureData_:Dictionary = new Dictionary();
-
         private static var tileTypeColorDict_:Dictionary = new Dictionary();
         public static var idToType_:Dictionary = new Dictionary();
         public static var defaultProps_:GroundProperties;
-
 
         public static function parseFromXML(_arg1:XML):void
         {
@@ -28,7 +26,7 @@
                 xmlLibrary_[_local3] = _local2;
                 typeToTextureData_[_local3] = new TextureDataConcrete(_local2);
                 idToType_[String(_local2.@id)] = _local3;
-            };
+            }
             defaultProps_ = propsLibrary_[0xFF];
         }
 
@@ -38,11 +36,11 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (_local2.id_);
         }
 
-        public static function getBitmapData(_arg1:int, _arg2:int=0):BitmapData
+        public static function getBitmapData(_arg1:int, _arg2:int = 0):BitmapData
         {
             return (typeToTextureData_[_arg1].getTexture(_arg2));
         }
@@ -63,13 +61,11 @@
                 {
                     _local4 = getBitmapData(_arg1);
                     _local3 = BitmapUtil.mostCommonColor(_local4);
-                };
+                }
                 tileTypeColorDict_[_arg1] = _local3;
-            };
+            }
             return (tileTypeColorDict_[_arg1]);
         }
-
-
     }
 }
 

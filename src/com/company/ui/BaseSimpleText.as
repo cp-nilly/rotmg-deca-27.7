@@ -1,34 +1,32 @@
 ﻿package com.company.ui
 {
-    import flash.text.TextField;
-    import flash.text.Font;
-    import flash.text.TextFormat;
-    import flash.text.TextFieldType;
     import flash.events.Event;
+    import flash.text.Font;
+    import flash.text.TextField;
+    import flash.text.TextFieldType;
+    import flash.text.TextFormat;
     import flash.text.TextLineMetrics;
 
-    public class BaseSimpleText extends TextField 
+    public class BaseSimpleText extends TextField
     {
-
         public static const MyriadPro:Class = BaseSimpleText_MyriadPro;
-
         public var inputWidth_:int;
         public var inputHeight_:int;
         public var actualWidth_:int;
         public var actualHeight_:int;
 
-        public function BaseSimpleText(_arg1:int, _arg2:uint, _arg3:Boolean=false, _arg4:int=0, _arg5:int=0)
+        public function BaseSimpleText(_arg1:int, _arg2:uint, _arg3:Boolean = false, _arg4:int = 0, _arg5:int = 0)
         {
             this.inputWidth_ = _arg4;
             if (this.inputWidth_ != 0)
             {
                 width = _arg4;
-            };
+            }
             this.inputHeight_ = _arg5;
             if (this.inputHeight_ != 0)
             {
                 height = _arg5;
-            };
+            }
             Font.registerFont(MyriadPro);
             var _local6:Font = new MyriadPro();
             var _local7:TextFormat = this.defaultTextFormat;
@@ -50,7 +48,7 @@
             {
                 selectable = false;
                 mouseEnabled = false;
-            };
+            }
         }
 
         public function setFont(_arg1:String):void
@@ -120,21 +118,19 @@
                 if (_local3 > this.actualWidth_)
                 {
                     this.actualWidth_ = _local3;
-                };
+                }
                 this.actualHeight_ = (this.actualHeight_ + _local4);
                 _local1++;
-            };
-            width = (((this.inputWidth_)==0) ? this.actualWidth_ : this.inputWidth_);
-            height = (((this.inputHeight_)==0) ? this.actualHeight_ : this.inputHeight_);
+            }
+            width = (((this.inputWidth_) == 0) ? this.actualWidth_ : this.inputWidth_);
+            height = (((this.inputHeight_) == 0) ? this.actualHeight_ : this.inputHeight_);
         }
 
         public function useTextDimensions():void
         {
-            width = (((this.inputWidth_)==0) ? (textWidth + 4) : this.inputWidth_);
-            height = (((this.inputHeight_)==0) ? (textHeight + 4) : this.inputHeight_);
+            width = (((this.inputWidth_) == 0) ? (textWidth + 4) : this.inputWidth_);
+            height = (((this.inputHeight_) == 0) ? (textHeight + 4) : this.inputHeight_);
         }
-
-
     }
 }
 

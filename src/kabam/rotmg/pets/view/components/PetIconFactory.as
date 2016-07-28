@@ -1,16 +1,16 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.BitmapData;
-    import flash.display.Bitmap;
-    import kabam.rotmg.pets.data.PetVO;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
 
-    public class PetIconFactory 
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+
+    import kabam.rotmg.pets.data.PetVO;
+
+    public class PetIconFactory
     {
-
         public var outlineSize:Number = 1.4;
-
 
         public function create(_arg1:PetVO, _arg2:int):PetIcon
         {
@@ -32,11 +32,9 @@
                 _local5 = TextureRedrawer.resize(_local3, _arg1.getSkinMaskedImage().mask_, 100, true, 0, 0, _local4);
                 _local5 = GlowRedrawer.outlineGlow(_local5, 0, this.outlineSize);
                 return (_local5);
-            };
+            }
             return (new BitmapDataSpy(_arg2, _arg2));
         }
-
-
     }
 }
 

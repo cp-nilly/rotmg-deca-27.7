@@ -1,15 +1,16 @@
 ﻿package kabam.rotmg.chat.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.chat.model.ChatModel;
-    import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.ui.signals.HUDModelInitialized;
     import flash.events.MouseEvent;
 
-    public class ChatInputNotAllowedMediator extends Mediator 
-    {
+    import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
+    import kabam.rotmg.chat.model.ChatModel;
+    import kabam.rotmg.ui.model.HUDModel;
+    import kabam.rotmg.ui.signals.HUDModelInitialized;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ChatInputNotAllowedMediator extends Mediator
+    {
         [Inject]
         public var view:ChatInputNotAllowed;
         [Inject]
@@ -20,7 +21,6 @@
         public var hudModel:HUDModel;
         [Inject]
         public var hudModelInitialized:HUDModelInitialized;
-
 
         override public function initialize():void
         {
@@ -38,7 +38,7 @@
             {
                 this.view.mouseEnabled = false;
                 this.view.mouseChildren = false;
-            };
+            }
         }
 
         override public function destroy():void
@@ -50,8 +50,6 @@
         {
             this.openAccountManagement.dispatch();
         }
-
-
     }
 }
 

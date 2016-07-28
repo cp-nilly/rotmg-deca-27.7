@@ -1,32 +1,29 @@
 ﻿package com.company.assembleegameclient.ui.board
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import com.company.ui.BaseSimpleText;
-    import com.company.assembleegameclient.ui.Scrollbar;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.Scrollbar;
+    import com.company.ui.BaseSimpleText;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
     import flash.display.Shape;
-    import flash.display.Graphics;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.text.model.TextKey;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.ui.board.*;
 
-    class EditBoard extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+
+    class EditBoard extends Sprite
     {
-
         public static const TEXT_WIDTH:int = 400;
         public static const TEXT_HEIGHT:int = 400;
-
         private var text_:String;
         public var w_:int;
         public var h_:int;
@@ -37,10 +34,13 @@
         private var saveButton_:DeprecatedTextButton;
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function EditBoard(_arg1:String)
         {
@@ -122,7 +122,7 @@
             if (this.scrollBar_ == null)
             {
                 return;
-            };
+            }
             this.scrollBar_.setIndicatorSize(TEXT_HEIGHT, this.boardText_.textHeight, false);
             if (this.boardText_.maxScrollV == 1)
             {
@@ -131,10 +131,8 @@
             else
             {
                 this.scrollBar_.setPos(((this.boardText_.scrollV - 1) / (this.boardText_.maxScrollV - 1)));
-            };
+            }
         }
-
-
     }
 }
 

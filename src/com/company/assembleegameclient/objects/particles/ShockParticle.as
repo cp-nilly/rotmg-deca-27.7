@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import com.company.assembleegameclient.objects.thrown.BitmapParticle;
     import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import flash.display.BitmapData;
+    import com.company.assembleegameclient.objects.thrown.BitmapParticle;
     import com.company.assembleegameclient.parameters.Parameters;
+
+    import flash.display.BitmapData;
     import flash.geom.Point;
 
-    public class ShockParticle extends BitmapParticle 
+    public class ShockParticle extends BitmapParticle
     {
-
         private var numFramesRemaining:int;
         private var dx_:Number;
         private var dy_:Number;
@@ -25,7 +24,16 @@
         private var cameraAngle:Number;
         private var images:Vector.<BitmapData>;
 
-        public function ShockParticle(_arg1:uint, _arg2:int, _arg3:uint, _arg4:Point, _arg5:Point, _arg6:Number, _arg7:GameObject, _arg8:Vector.<BitmapData>)
+        public function ShockParticle(
+                _arg1:uint,
+                _arg2:int,
+                _arg3:uint,
+                _arg4:Point,
+                _arg5:Point,
+                _arg6:Number,
+                _arg7:GameObject,
+                _arg8:Vector.<BitmapData>
+        )
         {
             this.cameraAngle = Parameters.data_.cameraAngle;
             this.go = _arg7;
@@ -47,12 +55,12 @@
             if (this.numFramesRemaining <= 0)
             {
                 return (false);
-            };
+            }
             this.frameUpdateModulator++;
             if ((this.frameUpdateModulator % 2))
             {
                 this.currentFrame++;
-            };
+            }
             _bitmapData = this.images[(this.currentFrame % this.numFrames)];
             this.plusX = (this.plusX + this.dx_);
             this.plusY = (this.plusY + this.dy_);
@@ -60,12 +68,10 @@
             {
                 this.cameraAngle = Parameters.data_.cameraAngle;
                 _rotation = (-(this.radians) - this.cameraAngle);
-            };
+            }
             moveTo(((this.go.x_ + this.originX) + this.plusX), ((this.go.y_ + this.originY) + this.plusY));
             return (true);
         }
-
-
     }
 }
 

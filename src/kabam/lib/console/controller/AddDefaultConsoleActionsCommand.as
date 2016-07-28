@@ -1,15 +1,14 @@
 ﻿package kabam.lib.console.controller
 {
-    import kabam.lib.console.signals.RegisterConsoleActionSignal;
-    import kabam.lib.console.signals.ListActionsSignal;
     import kabam.lib.console.signals.ClearConsoleSignal;
-    import kabam.lib.console.signals.RemoveConsoleSignal;
     import kabam.lib.console.signals.CopyConsoleTextSignal;
+    import kabam.lib.console.signals.ListActionsSignal;
+    import kabam.lib.console.signals.RegisterConsoleActionSignal;
+    import kabam.lib.console.signals.RemoveConsoleSignal;
     import kabam.lib.console.vo.ConsoleAction;
 
-    public class AddDefaultConsoleActionsCommand 
+    public class AddDefaultConsoleActionsCommand
     {
-
         [Inject]
         public var register:RegisterConsoleActionSignal;
         [Inject]
@@ -20,7 +19,6 @@
         public var removeConsole:RemoveConsoleSignal;
         [Inject]
         public var copyConsoleText:CopyConsoleTextSignal;
-
 
         public function execute():void
         {
@@ -42,8 +40,6 @@
             this.register.dispatch(_local3, this.removeConsole);
             this.register.dispatch(_local4, this.copyConsoleText);
         }
-
-
     }
 }
 

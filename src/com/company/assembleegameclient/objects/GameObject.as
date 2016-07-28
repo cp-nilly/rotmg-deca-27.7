@@ -1,70 +1,68 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.geom.Matrix;
-    import flash.display.BitmapData;
-    import flash.display.GraphicsBitmapFill;
-    import flash.display.GraphicsPath;
-    import com.company.assembleegameclient.objects.particles.ShockerEffect;
-    import com.company.assembleegameclient.util.AnimatedChar;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.engine3d.Object3D;
-    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
-    import com.company.assembleegameclient.objects.particles.ParticleEffect;
-    import com.company.assembleegameclient.objects.animation.Animations;
-    import flash.utils.Dictionary;
-    import flash.geom.Point;
-    import flash.geom.Vector3D;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsGradientFill;
-    import com.company.util.GraphicsUtil;
     import com.company.assembleegameclient.engine3d.Model3D;
-    import com.company.assembleegameclient.objects.animation.AnimationsData;
-    import com.company.util.ConversionUtil;
-    import com.company.assembleegameclient.util.ConditionEffect;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import com.company.util.BitmapUtil;
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
+    import com.company.assembleegameclient.engine3d.Object3D;
+    import com.company.assembleegameclient.map.Camera;
     import com.company.assembleegameclient.map.Map;
     import com.company.assembleegameclient.map.Square;
     import com.company.assembleegameclient.map.mapoverlay.CharacterStatusText;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import com.company.assembleegameclient.util.BloodComposition;
+    import com.company.assembleegameclient.objects.animation.Animations;
+    import com.company.assembleegameclient.objects.animation.AnimationsData;
     import com.company.assembleegameclient.objects.particles.ExplosionEffect;
     import com.company.assembleegameclient.objects.particles.HitEffect;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import kabam.rotmg.text.view.BitmapTextFactory;
-    import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import com.company.util.AssetLibrary;
+    import com.company.assembleegameclient.objects.particles.ParticleEffect;
+    import com.company.assembleegameclient.objects.particles.ShockerEffect;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
+    import com.company.assembleegameclient.util.AnimatedChar;
+    import com.company.assembleegameclient.util.BloodComposition;
+    import com.company.assembleegameclient.util.ConditionEffect;
     import com.company.assembleegameclient.util.MaskedImage;
-    import com.company.util.CachingColorTransformer;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
-    import flash.utils.getTimer;
-    import kabam.rotmg.stage3D.GraphicsFillExtra;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import flash.geom.ColorTransform;
+    import com.company.util.AssetLibrary;
+    import com.company.util.BitmapUtil;
+    import com.company.util.CachingColorTransformer;
+    import com.company.util.ConversionUtil;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.BitmapData;
     import flash.display.GradientType;
+    import flash.display.GraphicsBitmapFill;
+    import flash.display.GraphicsGradientFill;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.filters.ColorMatrixFilter;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+    import flash.geom.Point;
+    import flash.geom.Vector3D;
+    import flash.utils.Dictionary;
     import flash.utils.getQualifiedClassName;
-    import __AS3__.vec.*;
+    import flash.utils.getTimer;
 
-    public class GameObject extends BasicObject 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.stage3D.GraphicsFillExtra;
+    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.BitmapTextFactory;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+
+    public class GameObject extends BasicObject
     {
-
         protected static const PAUSED_FILTER:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
         protected static const CURSED_FILTER:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
         protected static const IDENTITY_MATRIX:Matrix = new Matrix();
         private static const ZERO_LIMIT:Number = 1E-5;
         private static const NEGATIVE_ZERO_LIMIT:Number = -(ZERO_LIMIT);
         public static const ATTACK_PERIOD:int = 300;
-
         public var nameBitmapData_:BitmapData = null;
         private var nameFill_:GraphicsBitmapFill = null;
         private var namePath_:GraphicsPath = null;
@@ -149,7 +147,7 @@
             if (_arg1 == null)
             {
                 return;
-            };
+            }
             this.objectType_ = int(_arg1.@type);
             this.props_ = ObjectLibrary.propsLibrary_[this.objectType_];
             hasShadow_ = (this.props_.shadowSize_ > 0);
@@ -161,11 +159,11 @@
             if (_local2.effectProps_ != null)
             {
                 this.effect_ = ParticleEffect.fromProps(_local2.effectProps_, this);
-            };
+            }
             if (this.texture_ != null)
             {
                 this.sizeMult_ = (this.texture_.height / 8);
-            };
+            }
             if (_arg1.hasOwnProperty("Model"))
             {
                 this.obj3D_ = Model3D.getObject3D(String(_arg1.Model));
@@ -173,23 +171,23 @@
                 if (this.texture_ != null)
                 {
                     this.object3d_.setBitMapData(this.texture_);
-                };
-            };
+                }
+            }
             var _local3:AnimationsData = ObjectLibrary.typeToAnimationsData_[this.objectType_];
             if (_local3 != null)
             {
                 this.animations_ = new Animations(_local3);
-            };
+            }
             z_ = this.props_.z_;
             this.flying_ = this.props_.flying_;
             if (_arg1.hasOwnProperty("MaxHitPoints"))
             {
                 this.hp_ = (this.maxHP_ = int(_arg1.MaxHitPoints));
-            };
+            }
             if (_arg1.hasOwnProperty("Defense"))
             {
                 this.defense_ = int(_arg1.Defense);
-            };
+            }
             if (_arg1.hasOwnProperty("SlotTypes"))
             {
                 this.slotTypes_ = ConversionUtil.toIntVector(_arg1.SlotTypes);
@@ -199,28 +197,28 @@
                 {
                     this.equipment_[_local4] = -1;
                     _local4++;
-                };
-            };
+                }
+            }
             if (_arg1.hasOwnProperty("Tex1"))
             {
                 this.tex1Id_ = int(_arg1.Tex1);
-            };
+            }
             if (_arg1.hasOwnProperty("Tex2"))
             {
                 this.tex2Id_ = int(_arg1.Tex2);
-            };
+            }
             if (_arg1.hasOwnProperty("StunImmune"))
             {
                 this.isStunImmune_ = true;
-            };
+            }
             if (_arg1.hasOwnProperty("ParalyzeImmune"))
             {
                 this.isParalyzeImmune_ = true;
-            };
+            }
             if (_arg1.hasOwnProperty("DazedImmune"))
             {
                 this.isDazedImmune_ = true;
-            };
+            }
             this.props_.loadSounds();
         }
 
@@ -236,25 +234,24 @@
                 if ((_arg4[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.ARMORED_BIT) != 0)
                 {
                     _local5 = (_local5 * 2);
-                };
-            };
+                }
+            }
             var _local6:int = ((_arg1 * 3) / 20);
             var _local7:int = Math.max(_local6, (_arg1 - _local5));
             if ((_arg4[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.INVULNERABLE_BIT) != 0)
             {
                 _local7 = 0;
-            };
+            }
             if ((_arg4[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.PETRIFIED_BIT) != 0)
             {
                 _local7 = (_local7 * 0.9);
-            };
+            }
             if ((_arg4[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.CURSE_BIT) != 0)
             {
                 _local7 = (_local7 * 1.2);
-            };
+            }
             return (_local7);
         }
-
 
         public function setObjectId(_arg1:int):void
         {
@@ -269,8 +266,8 @@
                 if (this.object3d_ != null)
                 {
                     this.object3d_.setBitMapData(this.texture_);
-                };
-            };
+                }
+            }
         }
 
         public function setAltTexture(_arg1:int):void
@@ -287,8 +284,8 @@
                 if (_local3 == null)
                 {
                     return;
-                };
-            };
+                }
+            }
             this.texture_ = _local3.texture_;
             this.mask_ = _local3.mask_;
             this.animatedChar_ = _local3.animatedChar_;
@@ -296,15 +293,15 @@
             {
                 map_.removeObj(this.effect_.objectId_);
                 this.effect_ = null;
-            };
+            }
             if (_local3.effectProps_ != null)
             {
                 this.effect_ = ParticleEffect.fromProps(_local3.effectProps_, this);
                 if (map_ != null)
                 {
                     map_.addObj(this.effect_, x_, y_);
-                };
-            };
+                }
+            }
         }
 
         public function setTex1(_arg1:int):void
@@ -312,7 +309,7 @@
             if (_arg1 == this.tex1Id_)
             {
                 return;
-            };
+            }
             this.tex1Id_ = _arg1;
             this.texturingCache_ = new Dictionary();
             this.portrait_ = null;
@@ -323,7 +320,7 @@
             if (_arg1 == this.tex2Id_)
             {
                 return;
-            };
+            }
             this.tex2Id_ = _arg1;
             this.texturingCache_ = new Dictionary();
             this.portrait_ = null;
@@ -347,7 +344,7 @@
             {
                 this.portrait_.dispose();
                 this.portrait_ = null;
-            };
+            }
             if (this.texturingCache_ != null)
             {
                 for each (_local1 in this.texturingCache_)
@@ -366,29 +363,29 @@
                             if (_local5 != null)
                             {
                                 _local5.dispose();
-                            };
-                        };
-                    };
-                };
+                            }
+                        }
+                    }
+                }
                 this.texturingCache_ = null;
-            };
+            }
             if (this.obj3D_ != null)
             {
                 this.obj3D_.dispose();
                 this.obj3D_ = null;
-            };
+            }
             if (this.object3d_ != null)
             {
                 this.object3d_.dispose();
                 this.object3d_ = null;
-            };
+            }
             this.slotTypes_ = null;
             this.equipment_ = null;
             if (this.nameBitmapData_ != null)
             {
                 this.nameBitmapData_.dispose();
                 this.nameBitmapData_ = null;
-            };
+            }
             this.nameFill_ = null;
             this.namePath_ = null;
             this.bitmapFill_ = null;
@@ -406,7 +403,7 @@
                 this.shadowPath_.commands = null;
                 this.shadowPath_.data = null;
                 this.shadowPath_ = null;
-            };
+            }
         }
 
         public function isQuiet():Boolean
@@ -584,7 +581,7 @@
             return (!(((this.condition_[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.CURSE_IMMUNE_BIT) == 0)));
         }
 
-        public function isSafe(_arg1:int=20):Boolean
+        public function isSafe(_arg1:int = 20):Boolean
         {
             var _local2:GameObject;
             var _local3:int;
@@ -598,15 +595,17 @@
                     if ((((_local3 < _arg1)) && ((_local4 < _arg1))))
                     {
                         return (false);
-                    };
-                };
-            };
+                    }
+                }
+            }
             return (true);
         }
 
         public function getName():String
         {
-            return ((((((this.name_ == null)) || ((this.name_ == "")))) ? ObjectLibrary.typeToDisplayId_[this.objectType_] : this.name_));
+            return ((((((this.name_ == null)) || ((this.name_ == ""))))
+                    ? ObjectLibrary.typeToDisplayId_[this.objectType_]
+                    : this.name_));
         }
 
         public function getColor():uint
@@ -638,7 +637,7 @@
             {
                 this.isShocked = false;
                 this.isShockedTransformSet = false;
-            };
+            }
         }
 
         public function toggleChargingEffect(_arg1:Boolean):void
@@ -651,7 +650,7 @@
             {
                 this.isCharging = false;
                 this.isChargingTransformSet = false;
-            };
+            }
         }
 
         override public function addTo(_arg1:Map, _arg2:Number, _arg3:Number):Boolean
@@ -663,11 +662,11 @@
             {
                 map_ = null;
                 return (false);
-            };
+            }
             if (this.effect_ != null)
             {
                 map_.addObj(this.effect_, _arg2, _arg3);
-            };
+            }
             return (true);
         }
 
@@ -678,13 +677,13 @@
                 if (square_.obj_ == this)
                 {
                     square_.obj_ = null;
-                };
+                }
                 square_ = null;
-            };
+            }
             if (this.effect_ != null)
             {
                 map_.removeObj(this.effect_.objectId_);
-            };
+            }
             super.removeFromMap();
             this.dispose();
         }
@@ -695,7 +694,7 @@
             if (_local3 == null)
             {
                 return (false);
-            };
+            }
             x_ = _arg1;
             y_ = _arg2;
             if (this.props_.static_)
@@ -703,18 +702,18 @@
                 if (square_ != null)
                 {
                     square_.obj_ = null;
-                };
+                }
                 _local3.obj_ = this;
-            };
+            }
             square_ = _local3;
             if (this.obj3D_ != null)
             {
                 this.obj3D_.setPosition(x_, y_, 0, this.props_.rotation_);
-            };
+            }
             if (this.object3d_ != null)
             {
                 this.object3d_.setPosition(x_, y_, 0, this.props_.rotation_);
-            };
+            }
             return (true);
         }
 
@@ -739,8 +738,8 @@
                     _local6 = (this.posAtTick_.y + (_local4 * this.moveVec_.y));
                     this.moveTo(_local5, _local6);
                     _local3 = true;
-                };
-            };
+                }
+            }
             if (this.props_.whileMoving_ != null)
             {
                 if (!_local3)
@@ -752,8 +751,8 @@
                 {
                     z_ = this.props_.whileMoving_.z_;
                     this.flying_ = this.props_.whileMoving_.flying_;
-                };
-            };
+                }
+            }
             return (true);
         }
 
@@ -774,7 +773,7 @@
             if (this.myLastTickId_ < map_.gs_.gsc_.lastTickId_)
             {
                 this.moveTo(this.tickPosition_.x, this.tickPosition_.y);
-            };
+            }
             this.lastTickUpdateTime_ = map_.gs_.lastUpdate_;
             this.tickPosition_.x = _arg1;
             this.tickPosition_.y = _arg2;
@@ -817,7 +816,7 @@
                                 _local10 = ConditionEffect.effects_[_local9];
                                 this.showConditionEffectPet(_local8, _local10.name_);
                                 _local8 = (_local8 + 500);
-                            };
+                            }
                         }
                         else
                         {
@@ -854,7 +853,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.ARMORBROKEN:
                                     if (this.isArmorBrokenImmune())
@@ -866,7 +865,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.STUNNED:
                                     if (this.isStunImmune())
@@ -878,7 +877,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.DAZED:
                                     if (this.isDazedImmune())
@@ -890,7 +889,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.PARALYZED:
                                     if (this.isParalyzeImmune())
@@ -902,7 +901,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.PETRIFIED:
                                     if (this.isPetrifiedImmune())
@@ -914,7 +913,7 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.CURSE:
                                     if (this.isCursedImmune())
@@ -926,33 +925,41 @@
                                     else
                                     {
                                         _local10 = ConditionEffect.effects_[_local9];
-                                    };
+                                    }
                                     break;
                                 case ConditionEffect.GROUND_DAMAGE:
                                     _local6 = true;
                                     break;
-                            };
+                            }
                             if (_local10 != null)
                             {
                                 if (_local9 < ConditionEffect.NEW_CON_THREASHOLD)
                                 {
-                                    if ((this.condition_[ConditionEffect.CE_FIRST_BATCH] | _local10.bit_) == this.condition_[ConditionEffect.CE_FIRST_BATCH]) continue;
+                                    if ((this.condition_[ConditionEffect.CE_FIRST_BATCH] | _local10.bit_) == this.condition_[ConditionEffect.CE_FIRST_BATCH])
+                                    {
+                                        continue;
+                                    }
                                     this.condition_[ConditionEffect.CE_FIRST_BATCH] = (this.condition_[ConditionEffect.CE_FIRST_BATCH] | _local10.bit_);
                                 }
                                 else
                                 {
-                                    if ((this.condition_[ConditionEffect.CE_SECOND_BATCH] | _local10.bit_) == this.condition_[ConditionEffect.CE_SECOND_BATCH]) continue;
+                                    if ((this.condition_[ConditionEffect.CE_SECOND_BATCH] | _local10.bit_) == this.condition_[ConditionEffect.CE_SECOND_BATCH])
+                                    {
+                                        continue;
+                                    }
                                     this.condition_[ConditionEffect.CE_SECOND_BATCH] = (this.condition_[ConditionEffect.CE_SECOND_BATCH] | _local10.bit_);
-                                };
+                                }
                                 _local14 = _local10.localizationKey_;
                                 this.showConditionEffect(_local8, _local14);
                                 _local8 = (_local8 + 500);
-                            };
-                        };
-                    };
-                };
-            };
-            var _local7:Vector.<uint> = BloodComposition.getBloodComposition(this.objectType_, this.texture_, this.props_.bloodProb_, this.props_.bloodColor_);
+                            }
+                        }
+                    }
+                }
+            }
+            var _local7:Vector.<uint> = BloodComposition.getBloodComposition(
+                    this.objectType_, this.texture_, this.props_.bloodProb_, this.props_.bloodColor_
+            );
             if (this.dead_)
             {
                 map_.addObj(new ExplosionEffect(_local7, this.size_, 30), x_, y_);
@@ -966,13 +973,13 @@
                 else
                 {
                     map_.addObj(new ExplosionEffect(_local7, this.size_, 10), x_, y_);
-                };
-            };
+                }
+            }
             if (_arg2 > 0)
             {
                 _local15 = ((((this.isArmorBroken()) || (((!((_arg5 == null))) && (_arg5.projProps_.armorPiercing_))))) || (_local6));
                 this.showDamageText(_arg2, _local15);
-            };
+            }
         }
 
         public function showConditionEffect(_arg1:int, _arg2:String):void
@@ -1011,12 +1018,21 @@
                 this.nameBitmapData_ = this.makeNameBitmapData();
                 this.nameFill_ = new GraphicsBitmapFill(null, new Matrix(), false, false);
                 this.namePath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
-            };
+            }
             var _local3:int = ((this.nameBitmapData_.width / 2) + 1);
             var _local4:int = 30;
             var _local5:Vector.<Number> = this.namePath_.data;
             _local5.length = 0;
-            _local5.push((posS_[0] - _local3), posS_[1], (posS_[0] + _local3), posS_[1], (posS_[0] + _local3), (posS_[1] + _local4), (posS_[0] - _local3), (posS_[1] + _local4));
+            _local5.push(
+                    (posS_[0] - _local3),
+                    posS_[1],
+                    (posS_[0] + _local3),
+                    posS_[1],
+                    (posS_[0] + _local3),
+                    (posS_[1] + _local4),
+                    (posS_[0] - _local3),
+                    (posS_[1] + _local4)
+            );
             this.nameFill_.bitmapData = this.nameBitmapData_;
             var _local6:Matrix = this.nameFill_.matrix;
             _local6.identity();
@@ -1031,7 +1047,7 @@
             if (this.hallucinatingTexture_ == null)
             {
                 this.hallucinatingTexture_ = AssetLibrary.getImageFromSet("lofiChar8x8", int((Math.random() * 239)));
-            };
+            }
             return (this.hallucinatingTexture_);
         }
 
@@ -1053,16 +1069,16 @@
                     if (_local6.skinId != 32912)
                     {
                         _local6.setSkin(32912);
-                    };
+                    }
                 }
                 else
                 {
                     if (!_local6.isDefaultAnimatedChar)
                     {
                         _local6.setDefaultSkin();
-                    };
-                };
-            };
+                    }
+                }
+            }
             var _local3:BitmapData = this.texture_;
             var _local4:int = this.size_;
             var _local5:BitmapData;
@@ -1075,7 +1091,7 @@
                     if (!this.props_.dontFaceAttacks_)
                     {
                         this.facing_ = this.attackAngle_;
-                    };
+                    }
                     _local7 = (((_arg2 - this.attackStart_) % ATTACK_PERIOD) / ATTACK_PERIOD);
                     _local8 = AnimatedChar.ATTACK;
                 }
@@ -1093,10 +1109,10 @@
                         else
                         {
                             _local8 = AnimatedChar.STAND;
-                        };
+                        }
                         _local7 = ((_arg2 % _local10) / _local10);
-                    };
-                };
+                    }
+                }
                 _local9 = this.animatedChar_.imageFromFacing(this.facing_, _arg1, _local8, _local7);
                 _local3 = _local9.image_;
                 _local5 = _local9.mask_;
@@ -1109,28 +1125,28 @@
                     if (_local11 != null)
                     {
                         _local3 = _local11;
-                    };
-                };
-            };
+                    }
+                }
+            }
             if (((this.props_.drawOnGround_) || (!((this.obj3D_ == null)))))
             {
                 return (_local3);
-            };
+            }
             if (_arg1.isHallucinating_)
             {
                 _local12 = (((_local3 == null)) ? 8 : _local3.width);
                 _local3 = this.getHallucinatingTexture();
                 _local5 = null;
                 _local4 = (this.size_ * Math.min(1.5, (_local12 / _local3.width)));
-            };
+            }
             if (((this.isCursed()) && (!((this is Pet)))))
             {
                 _local3 = CachingColorTransformer.filterBitmapData(_local3, CURSED_FILTER);
-            };
+            }
             if (((((this.isStasis()) || (this.isPetrified()))) && (!((this is Pet)))))
             {
                 _local3 = CachingColorTransformer.filterBitmapData(_local3, PAUSED_FILTER);
-            };
+            }
             if ((((this.tex1Id_ == 0)) && ((this.tex2Id_ == 0))))
             {
                 _local3 = TextureRedrawer.redraw(_local3, _local4, false, 0);
@@ -1145,15 +1161,15 @@
                 else
                 {
                     _local13 = this.texturingCache_[_local3];
-                };
+                }
                 if (_local13 == null)
                 {
                     _local13 = TextureRedrawer.resize(_local3, _local5, _local4, false, this.tex1Id_, this.tex2Id_);
                     _local13 = GlowRedrawer.outlineGlow(_local13, 0);
                     this.texturingCache_[_local3] = _local13;
-                };
+                }
                 _local3 = _local13;
-            };
+            }
             return (_local3);
         }
 
@@ -1169,11 +1185,11 @@
             var _local2:int;
             if (this.portrait_ == null)
             {
-                _local1 = (((this.props_.portrait_)!=null) ? this.props_.portrait_.getTexture() : this.texture_);
+                _local1 = (((this.props_.portrait_) != null) ? this.props_.portrait_.getTexture() : this.texture_);
                 _local2 = ((4 / _local1.width) * 100);
                 this.portrait_ = TextureRedrawer.resize(_local1, this.mask_, _local2, true, this.tex1Id_, this.tex2Id_);
                 this.portrait_ = GlowRedrawer.outlineGlow(this.portrait_, 0);
-            };
+            }
             return (this.portrait_);
         }
 
@@ -1188,7 +1204,7 @@
             if (this.object3d_ != null)
             {
                 _arg1.push(this.object3d_);
-            };
+            }
         }
 
         protected function drawHpBar(_arg1:Vector.<IGraphicsData>, _arg2:int):void
@@ -1201,22 +1217,33 @@
                 this.hpbarBackPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
                 this.hpbarFill_ = new GraphicsSolidFill(0x10FF00);
                 this.hpbarPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
-            };
+            }
             var _local3:Number = this.maxHP_;
             if (this.hp_ <= _local3)
             {
                 _local7 = ((_local3 - this.hp_) / _local3);
-                this.hpbarBackFill_.color = MoreColorUtil.lerpColor(0x545454, 0xFF0000, (Math.abs(Math.sin((_arg2 / 300))) * _local7));
+                this.hpbarBackFill_.color = MoreColorUtil.lerpColor(
+                        0x545454, 0xFF0000, (Math.abs(Math.sin((_arg2 / 300))) * _local7)
+                );
             }
             else
             {
                 this.hpbarBackFill_.color = 0x545454;
-            };
+            }
             var _local4:int = 20;
             var _local5:int = 4;
             var _local6:int = 6;
             this.hpbarBackPath_.data.length = 0;
-            this.hpbarBackPath_.data.push((posS_[0] - _local4), (posS_[1] + _local5), (posS_[0] + _local4), (posS_[1] + _local5), (posS_[0] + _local4), ((posS_[1] + _local5) + _local6), (posS_[0] - _local4), ((posS_[1] + _local5) + _local6));
+            this.hpbarBackPath_.data.push(
+                    (posS_[0] - _local4),
+                    (posS_[1] + _local5),
+                    (posS_[0] + _local4),
+                    (posS_[1] + _local5),
+                    (posS_[0] + _local4),
+                    ((posS_[1] + _local5) + _local6),
+                    (posS_[0] - _local4),
+                    ((posS_[1] + _local5) + _local6)
+            );
             _arg1.push(this.hpbarBackFill_);
             _arg1.push(this.hpbarBackPath_);
             _arg1.push(GraphicsUtil.END_FILL);
@@ -1224,11 +1251,20 @@
             {
                 _local8 = (((this.hp_ / this.maxHP_) * 2) * _local4);
                 this.hpbarPath_.data.length = 0;
-                this.hpbarPath_.data.push((posS_[0] - _local4), (posS_[1] + _local5), ((posS_[0] - _local4) + _local8), (posS_[1] + _local5), ((posS_[0] - _local4) + _local8), ((posS_[1] + _local5) + _local6), (posS_[0] - _local4), ((posS_[1] + _local5) + _local6));
+                this.hpbarPath_.data.push(
+                        (posS_[0] - _local4),
+                        (posS_[1] + _local5),
+                        ((posS_[0] - _local4) + _local8),
+                        (posS_[1] + _local5),
+                        ((posS_[0] - _local4) + _local8),
+                        ((posS_[1] + _local5) + _local6),
+                        (posS_[0] - _local4),
+                        ((posS_[1] + _local5) + _local6)
+                );
                 _arg1.push(this.hpbarFill_);
                 _arg1.push(this.hpbarPath_);
                 _arg1.push(GraphicsUtil.END_FILL);
-            };
+            }
             GraphicsFillExtra.setSoftwareDrawSolid(this.hpbarFill_, true);
             GraphicsFillExtra.setSoftwareDrawSolid(this.hpbarBackFill_, true);
         }
@@ -1244,7 +1280,7 @@
                 if (square_.faces_.length == 0)
                 {
                     return;
-                };
+                }
                 this.path_.data = square_.faces_[0].face_.vout_;
                 this.bitmapFill_.bitmapData = _local4;
                 square_.baseTexMatrix_.calculateTextureMatrix(this.path_.data);
@@ -1253,29 +1289,31 @@
                 _arg1.push(this.path_);
                 _arg1.push(GraphicsUtil.END_FILL);
                 return;
-            };
+            }
             if (((!((this.obj3D_ == null))) && (!(Parameters.isGpuRender()))))
             {
                 this.obj3D_.draw(_arg1, _arg2, this.props_.color_, _local4);
                 return;
-            };
+            }
             if (((!((this.obj3D_ == null))) && (Parameters.isGpuRender())))
             {
                 _arg1.push(null);
                 return;
-            };
+            }
             var _local5:int = _local4.width;
             var _local6:int = _local4.height;
             var _local7:int = (square_.sink_ + this.sinkLevel_);
             if ((((_local7 > 0)) && (((this.flying_) || (((!((square_.obj_ == null))) && (square_.obj_.props_.protectFromSink_)))))))
             {
                 _local7 = 0;
-            };
+            }
             if (Parameters.isGpuRender())
             {
                 if (_local7 != 0)
                 {
-                    GraphicsFillExtra.setSinkLevel(this.bitmapFill_, Math.max((((_local7 / _local6) * 1.65) - 0.02), 0));
+                    GraphicsFillExtra.setSinkLevel(
+                            this.bitmapFill_, Math.max((((_local7 / _local6) * 1.65) - 0.02), 0)
+                    );
                     _local7 = (-(_local7) + 0.02);
                 }
                 else
@@ -1283,11 +1321,20 @@
                     if ((((_local7 == 0)) && (!((GraphicsFillExtra.getSinkLevel(this.bitmapFill_) == 0)))))
                     {
                         GraphicsFillExtra.clearSink(this.bitmapFill_);
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.vS_.length = 0;
-            this.vS_.push((posS_[3] - (_local5 / 2)), ((posS_[4] - _local6) + _local7), (posS_[3] + (_local5 / 2)), ((posS_[4] - _local6) + _local7), (posS_[3] + (_local5 / 2)), posS_[4], (posS_[3] - (_local5 / 2)), posS_[4]);
+            this.vS_.push(
+                    (posS_[3] - (_local5 / 2)),
+                    ((posS_[4] - _local6) + _local7),
+                    (posS_[3] + (_local5 / 2)),
+                    ((posS_[4] - _local6) + _local7),
+                    (posS_[3] + (_local5 / 2)),
+                    posS_[4],
+                    (posS_[3] - (_local5 / 2)),
+                    posS_[4]
+            );
             this.path_.data = this.vS_;
             if (this.flash_ != null)
             {
@@ -1300,28 +1347,32 @@
                     else
                     {
                         _local4 = this.flash_.apply(_local4, _arg3);
-                    };
+                    }
                 }
                 else
                 {
                     this.flash_ = null;
-                };
-            };
+                }
+            }
             if (((this.isShocked) && (!(this.isShockedTransformSet))))
             {
                 if (Parameters.isGpuRender())
                 {
-                    GraphicsFillExtra.setColorTransform(_local4, new ColorTransform(-1, -1, -1, 1, 0xFF, 0xFF, 0xFF, 0));
+                    GraphicsFillExtra.setColorTransform(
+                            _local4, new ColorTransform(-1, -1, -1, 1, 0xFF, 0xFF, 0xFF, 0)
+                    );
                 }
                 else
                 {
                     _local8 = _local4.clone();
                     _local8.colorTransform(_local8.rect, new ColorTransform(-1, -1, -1, 1, 0xFF, 0xFF, 0xFF, 0));
-                    _local8 = CachingColorTransformer.filterBitmapData(_local8, new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix));
+                    _local8 = CachingColorTransformer.filterBitmapData(
+                            _local8, new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix)
+                    );
                     _local4 = _local8;
-                };
+                }
                 this.isShockedTransformSet = true;
-            };
+            }
             if (((this.isCharging) && (!(this.isChargingTransformSet))))
             {
                 if (Parameters.isGpuRender())
@@ -1333,9 +1384,9 @@
                     _local8 = _local4.clone();
                     _local8.colorTransform(_local8.rect, new ColorTransform(1, 1, 1, 1, 0xFF, 0xFF, 0xFF, 0));
                     _local4 = _local8;
-                };
+                }
                 this.isChargingTransformSet = true;
-            };
+            }
             this.bitmapFill_.bitmapData = _local4;
             this.fillMatrix_.identity();
             this.fillMatrix_.translate(this.vS_[0], this.vS_[1]);
@@ -1346,14 +1397,18 @@
             if (((((((!(this.isPaused())) && (((this.condition_[ConditionEffect.CE_FIRST_BATCH]) || (this.condition_[ConditionEffect.CE_SECOND_BATCH]))))) && (!(Parameters.screenShotMode_)))) && (!((this is Pet)))))
             {
                 this.drawConditionIcons(_arg1, _arg2, _arg3);
-            };
+            }
             if (((((this.props_.showName_) && (!((this.name_ == null))))) && (!((this.name_.length == 0)))))
             {
                 this.drawName(_arg1, _arg2);
-            };
+            }
             if (((((((((this.props_) && (((this.props_.isEnemy_) || (this.props_.isPlayer_))))) && (!(this.isInvisible())))) && (!(this.isInvulnerable())))) && (!(this.props_.noMiniMap_))))
             {
-                _local9 = ((_local4.getPixel32((_local4.width / 4), (_local4.height / 4)) | _local4.getPixel32((_local4.width / 2), (_local4.height / 2))) | _local4.getPixel32(((_local4.width * 3) / 4), ((_local4.height * 3) / 4)));
+                _local9 = ((_local4.getPixel32(
+                        (_local4.width / 4), (_local4.height / 4)
+                ) | _local4.getPixel32(
+                        (_local4.width / 2), (_local4.height / 2)
+                )) | _local4.getPixel32(((_local4.width * 3) / 4), ((_local4.height * 3) / 4)));
                 _local10 = (_local9 >> 24);
                 if (_local10 != 0)
                 {
@@ -1361,13 +1416,13 @@
                     if (Parameters.data_.HPBar)
                     {
                         this.drawHpBar(_arg1, _arg3);
-                    };
+                    }
                 }
                 else
                 {
                     hasShadow_ = false;
-                };
-            };
+                }
+            }
         }
 
         public function drawConditionIcons(_arg1:Vector.<IGraphicsData>, _arg2:Camera, _arg3:int):void
@@ -1383,11 +1438,15 @@
                 this.icons_ = new Vector.<BitmapData>();
                 this.iconFills_ = new Vector.<GraphicsBitmapFill>();
                 this.iconPaths_ = new Vector.<GraphicsPath>();
-            };
+            }
             this.icons_.length = 0;
             var _local4:int = (_arg3 / 500);
-            ConditionEffect.getConditionEffectIcons(this.condition_[ConditionEffect.CE_FIRST_BATCH], this.icons_, _local4);
-            ConditionEffect.getConditionEffectIcons2(this.condition_[ConditionEffect.CE_SECOND_BATCH], this.icons_, _local4);
+            ConditionEffect.getConditionEffectIcons(
+                    this.condition_[ConditionEffect.CE_FIRST_BATCH], this.icons_, _local4
+            );
+            ConditionEffect.getConditionEffectIcons2(
+                    this.condition_[ConditionEffect.CE_SECOND_BATCH], this.icons_, _local4
+            );
             var _local5:Number = posS_[3];
             var _local6:Number = this.vS_[1];
             var _local7:int = this.icons_.length;
@@ -1399,14 +1458,23 @@
                 {
                     this.iconFills_.push(new GraphicsBitmapFill(null, new Matrix(), false, false));
                     this.iconPaths_.push(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>()));
-                };
+                }
                 _local10 = this.iconFills_[_local8];
                 _local11 = this.iconPaths_[_local8];
                 _local10.bitmapData = _local9;
                 _local12 = ((_local5 - ((_local9.width * _local7) / 2)) + (_local8 * _local9.width));
                 _local13 = (_local6 - (_local9.height / 2));
                 _local11.data.length = 0;
-                _local11.data.push(_local12, _local13, (_local12 + _local9.width), _local13, (_local12 + _local9.width), (_local13 + _local9.height), _local12, (_local13 + _local9.height));
+                _local11.data.push(
+                        _local12,
+                        _local13,
+                        (_local12 + _local9.width),
+                        _local13,
+                        (_local12 + _local9.width),
+                        (_local13 + _local9.height),
+                        _local12,
+                        (_local13 + _local9.height)
+                );
                 _local14 = _local10.matrix;
                 _local14.identity();
                 _local14.translate(_local12, _local13);
@@ -1414,23 +1482,40 @@
                 _arg1.push(_local11);
                 _arg1.push(GraphicsUtil.END_FILL);
                 _local8++;
-            };
+            }
         }
 
         override public function drawShadow(_arg1:Vector.<IGraphicsData>, _arg2:Camera, _arg3:int):void
         {
             if (this.shadowGradientFill_ == null)
             {
-                this.shadowGradientFill_ = new GraphicsGradientFill(GradientType.RADIAL, [this.props_.shadowColor_, this.props_.shadowColor_], [0.5, 0], null, new Matrix());
+                this.shadowGradientFill_ = new GraphicsGradientFill(
+                        GradientType.RADIAL, [
+                            this.props_.shadowColor_, this.props_.shadowColor_
+                        ], [
+                            0.5, 0
+                        ], null, new Matrix()
+                );
                 this.shadowPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
-            };
+            }
             var _local4:Number = (((this.size_ / 100) * (this.props_.shadowSize_ / 100)) * this.sizeMult_);
             var _local5:Number = (30 * _local4);
             var _local6:Number = (15 * _local4);
-            this.shadowGradientFill_.matrix.createGradientBox((_local5 * 2), (_local6 * 2), 0, (posS_[0] - _local5), (posS_[1] - _local6));
+            this.shadowGradientFill_.matrix.createGradientBox(
+                    (_local5 * 2), (_local6 * 2), 0, (posS_[0] - _local5), (posS_[1] - _local6)
+            );
             _arg1.push(this.shadowGradientFill_);
             this.shadowPath_.data.length = 0;
-            this.shadowPath_.data.push((posS_[0] - _local5), (posS_[1] - _local6), (posS_[0] + _local5), (posS_[1] - _local6), (posS_[0] + _local5), (posS_[1] + _local6), (posS_[0] - _local5), (posS_[1] + _local6));
+            this.shadowPath_.data.push(
+                    (posS_[0] - _local5),
+                    (posS_[1] - _local6),
+                    (posS_[0] + _local5),
+                    (posS_[1] - _local6),
+                    (posS_[0] + _local5),
+                    (posS_[1] + _local6),
+                    (posS_[0] - _local5),
+                    (posS_[1] + _local6)
+            );
             _arg1.push(this.shadowPath_);
             _arg1.push(GraphicsUtil.END_FILL);
         }
@@ -1439,8 +1524,6 @@
         {
             return ((((((((((("[" + getQualifiedClassName(this)) + " id: ") + objectId_) + " type: ") + ObjectLibrary.typeToDisplayId_[this.objectType_]) + " pos: ") + x_) + ", ") + y_) + "]"));
         }
-
-
     }
 }
 

@@ -1,20 +1,20 @@
 ﻿package kabam.lib.net
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.lib.net.impl.MessageCenter;
     import flash.net.Socket;
+
     import kabam.lib.net.api.MessageMap;
     import kabam.lib.net.api.MessageProvider;
+    import kabam.lib.net.impl.MessageCenter;
     import kabam.lib.net.impl.SocketServer;
 
-    public class NetConfig implements IConfig 
-    {
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
 
+    public class NetConfig implements IConfig
+    {
         [Inject]
         public var injector:IInjector;
         private var messageCenter:MessageCenter;
-
 
         public function configure():void
         {
@@ -24,8 +24,6 @@
             this.injector.map(MessageProvider).toValue(this.messageCenter);
             this.injector.map(SocketServer).asSingleton();
         }
-
-
     }
 }
 

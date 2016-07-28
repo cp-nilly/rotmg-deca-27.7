@@ -1,19 +1,21 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.ui.BaseSimpleText;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import org.osflash.signals.Signal;
 
-    public class LabeledField extends FormField 
+    public class LabeledField extends FormField
     {
-
         public var nameText_:TextFieldDisplayConcrete;
         public var inputText_:BaseSimpleText;
         public var isHighlighted:Boolean;
 
-        public function LabeledField(_arg1:String, _arg2:Boolean, _arg3:uint=238, _arg4:uint=30)
+        public function LabeledField(_arg1:String, _arg2:Boolean, _arg3:uint = 238, _arg4:uint = 30)
         {
             this.nameText_ = new TextFieldDisplayConcrete().setSize(18).setColor(TEXT_COLOR);
             this.nameText_.setBold(true);
@@ -50,8 +52,6 @@
             this.isHighlighted = _arg1;
             drawSimpleTextBackground(this.inputText_, 0, 0, _arg1);
         }
-
-
     }
 }
 

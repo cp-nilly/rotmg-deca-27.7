@@ -1,39 +1,40 @@
 ﻿package com.company.assembleegameclient.tutorial
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import flash.geom.Rectangle;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.events.MouseEvent;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.geom.Rectangle;
     import flash.utils.getTimer;
-    import __AS3__.vec.*;
 
-    public class TutorialMessage extends Sprite 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class TutorialMessage extends Sprite
     {
-
         public static const BORDER:int = 8;
-
         private var tutorial_:Tutorial;
         private var rect_:Rectangle;
         private var messageText_:TextFieldDisplayConcrete;
         private var nextButton_:DeprecatedTextButton = null;
         private var startTime_:int;
         private var fill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, new GraphicsSolidFill(0xFFFFFF));
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, new GraphicsSolidFill(0xFFFFFF)
+        );
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, fill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, fill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function TutorialMessage(_arg1:Tutorial, _arg2:String, _arg3:Boolean, _arg4:Rectangle)
         {
@@ -54,7 +55,7 @@
                 this.nextButton_.addEventListener(MouseEvent.CLICK, this.onNextButton);
                 this.nextButton_.x = ((this.rect_.width - this.nextButton_.width) - 20);
                 this.nextButton_.y = ((this.rect_.height - this.nextButton_.height) - 10);
-            };
+            }
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         }
@@ -68,13 +69,17 @@
                 if (this.nextButton_ != null)
                 {
                     addChild(this.nextButton_);
-                };
+                }
                 removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
             var _local2:Rectangle = this.rect_.clone();
             _local2.inflate(((-((1 - _local1)) * this.rect_.width) / 2), ((-((1 - _local1)) * this.rect_.height) / 2));
             GraphicsUtil.clearPath(this.path_);
-            GraphicsUtil.drawCutEdgeRect(_local2.x, _local2.y, _local2.width, _local2.height, 4, [1, 1, 1, 1], this.path_);
+            GraphicsUtil.drawCutEdgeRect(
+                    _local2.x, _local2.y, _local2.width, _local2.height, 4, [
+                        1, 1, 1, 1
+                    ], this.path_
+            );
             graphics.clear();
             graphics.drawGraphicsData(this.graphicsData_);
         }
@@ -99,8 +104,6 @@
         {
             this.tutorial_.doneAction(Tutorial.NEXT_ACTION);
         }
-
-
     }
 }
 

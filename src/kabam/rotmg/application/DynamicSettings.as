@@ -1,11 +1,8 @@
 ﻿package kabam.rotmg.application
 {
-    public class DynamicSettings 
+    public class DynamicSettings
     {
-
         private static var _xml:XML;
-
-
         public static function get xml():XML
         {
             return (_xml);
@@ -25,8 +22,6 @@
         {
             return (Number(_xml.child(_arg1).toString()));
         }
-
-
     }
 }
 

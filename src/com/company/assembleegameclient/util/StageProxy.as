@@ -1,16 +1,14 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import flash.events.IEventDispatcher;
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     import flash.display.InteractiveObject;
     import flash.events.Event;
+    import flash.events.IEventDispatcher;
 
-    public class StageProxy implements IEventDispatcher 
+    public class StageProxy implements IEventDispatcher
     {
-
         private static var stage3D:Stage3DProxy = null;
-
         protected var reference:DisplayObject;
 
         public function StageProxy(_arg1:DisplayObject)
@@ -28,7 +26,7 @@
             if (this.reference.stage != null)
             {
                 return (this.reference.stage.stageWidth);
-            };
+            }
             return (800);
         }
 
@@ -37,7 +35,7 @@
             if (this.reference.stage != null)
             {
                 return (this.reference.stage.stageHeight);
-            };
+            }
             return (600);
         }
 
@@ -51,12 +49,14 @@
             this.reference.stage.focus = _arg1;
         }
 
-        public function addEventListener(_arg1:String, _arg2:Function, _arg3:Boolean=false, _arg4:int=0, _arg5:Boolean=false):void
+        public function addEventListener(
+                _arg1:String, _arg2:Function, _arg3:Boolean = false, _arg4:int = 0, _arg5:Boolean = false
+        ):void
         {
             this.reference.stage.addEventListener(_arg1, _arg2, _arg3, _arg4, _arg5);
         }
 
-        public function removeEventListener(_arg1:String, _arg2:Function, _arg3:Boolean=false):void
+        public function removeEventListener(_arg1:String, _arg2:Function, _arg3:Boolean = false):void
         {
             this.reference.stage.removeEventListener(_arg1, _arg2, _arg3);
         }
@@ -91,11 +91,9 @@
             if (stage3D == null)
             {
                 stage3D = new Stage3DProxy(this.reference.stage.stage3Ds[_arg1]);
-            };
+            }
             return (stage3D);
         }
-
-
     }
 }
 

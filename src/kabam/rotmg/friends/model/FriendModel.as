@@ -1,21 +1,22 @@
 ﻿package kabam.rotmg.friends.model
 {
-    import kabam.rotmg.servers.api.ServerModel;
-    import kabam.rotmg.friends.service.FriendDataRequestTask;
-    import __AS3__.vec.Vector;
-    import flash.utils.Dictionary;
-    import kabam.rotmg.servers.api.Server;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
     import com.company.assembleegameclient.objects.Player;
-    import com.company.assembleegameclient.util.FameUtil;
     import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.util.FameUtil;
 
-    public class FriendModel 
+    import flash.utils.Dictionary;
+
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.friends.service.FriendDataRequestTask;
+    import kabam.rotmg.servers.api.Server;
+    import kabam.rotmg.servers.api.ServerModel;
+
+    import org.osflash.signals.Signal;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FriendModel
     {
-
         [Inject]
         public var serverModel:ServerModel;
         public var task:FriendDataRequestTask;
@@ -62,7 +63,8 @@
             if (this._inProcessFlag)
             {
                 return;
-            };
+            }
+            ;
             this._inProcessFlag = true;
             var _local1:IInjector = StaticInjectorContext.getInjector();
             this.task = _local1.getInstance(FriendDataRequestTask);
@@ -76,24 +78,26 @@
             this.task.start();
         }
 
-        private function onFriendListResponse(_arg1:FriendDataRequestTask, _arg2:Boolean, _arg3:String=""):void
+        private function onFriendListResponse(_arg1:FriendDataRequestTask, _arg2:Boolean, _arg3:String = ""):void
         {
             if (_arg2)
             {
                 this.seedFriends(_arg1.xml);
-            };
+            }
+            ;
             this._isFriDataOK = _arg2;
             this.errorStr = _arg3;
             _arg1.reset();
             this.loadList(FriendConstant.getURL(FriendConstant.INVITE_LIST), this.onInvitationListResponse);
         }
 
-        private function onInvitationListResponse(_arg1:FriendDataRequestTask, _arg2:Boolean, _arg3:String=""):void
+        private function onInvitationListResponse(_arg1:FriendDataRequestTask, _arg2:Boolean, _arg3:String = ""):void
         {
             if (_arg2)
             {
                 this.seedInvitations(_arg1.xml);
-            };
+            }
+            ;
             this._isInvDataOK = _arg2;
             this.errorStr = _arg3;
             _arg1.reset();
@@ -113,7 +117,9 @@
             for each (_local6 in _arg1.Account)
             {
                 _local2 = _local6.Name;
-                _local5 = (((this._friends[_local2])!=null) ? (this._friends[_local2].vo as FriendVO) : new FriendVO(Player.fromPlayerXML(_local2, _local6.Character[0])));
+                _local5 = (((this._friends[_local2]) != null)
+                        ? (this._friends[_local2].vo as FriendVO)
+                        : new FriendVO(Player.fromPlayerXML(_local2, _local6.Character[0])));
                 if (_local6.hasOwnProperty("Online"))
                 {
                     _local4 = String(_local6.Online);
@@ -121,8 +127,7 @@
                     _local5.online(_local3, _local4);
                     this._onlineFriends.push(_local5);
                     this._friends[_local5.getName()] = {
-                        "vo":_local5,
-                        "list":this._onlineFriends
+                        "vo": _local5, "list": this._onlineFriends
                     };
                 }
                 else
@@ -130,11 +135,12 @@
                     _local5.offline();
                     this._offlineFriends.push(_local5);
                     this._friends[_local5.getName()] = {
-                        "vo":_local5,
-                        "list":this._offlineFriends
+                        "vo": _local5, "list": this._offlineFriends
                     };
-                };
-            };
+                }
+                ;
+            }
+            ;
             this._onlineFriends.sort(this.sortFriend);
             this._offlineFriends.sort(this.sortFriend);
             this._friendTotal = (this._onlineFriends.length + this._offlineFriends.length);
@@ -149,14 +155,20 @@
             this._invitationTotal = 0;
             for each (_local3 in _arg1.Account)
             {
-                if (this.starFilter(int(_local3.Character[0].ObjectType), int(_local3.Character[0].CurrentFame), _local3.Stats[0]))
+                if (this.starFilter(
+                                int(_local3.Character[0].ObjectType),
+                                int(_local3.Character[0].CurrentFame),
+                                _local3.Stats[0]
+                        ))
                 {
                     _local2 = _local3.Name;
                     _local4 = Player.fromPlayerXML(_local2, _local3.Character[0]);
                     this._invitations[_local2] = new FriendVO(_local4);
                     this._invitationTotal++;
-                };
-            };
+                }
+                ;
+            }
+            ;
         }
 
         public function isMyFriend(_arg1:String):Boolean
@@ -173,7 +185,8 @@
                 _local3 = this._friends[_arg1];
                 _local4 = (_local3.vo as FriendVO);
                 _local4.updatePlayer(_arg2);
-            };
+            }
+            ;
         }
 
         public function getFilterFriends(_arg1:String):Vector.<FriendVO>
@@ -188,9 +201,11 @@
                 if (_local3.getName().search(_local2) >= 0)
                 {
                     _local4.push(_local3);
-                };
+                }
+                ;
                 _local5++;
-            };
+            }
+            ;
             _local5 = 0;
             while (_local5 < this._offlineFriends.length)
             {
@@ -198,9 +213,11 @@
                 if (_local3.getName().search(_local2) >= 0)
                 {
                     _local4.push(_local3);
-                };
+                }
+                ;
                 _local5++;
-            };
+            }
+            ;
             return (_local4);
         }
 
@@ -221,7 +238,8 @@
             for each (_local2 in this._invitations)
             {
                 _local1.push(_local2);
-            };
+            }
+            ;
             _local1.sort(this.sortFriend);
             return (_local1);
         }
@@ -235,7 +253,8 @@
                 this._friends[_arg1] = null;
                 delete this._friends[_arg1];
                 return (true);
-            };
+            }
+            ;
             return (false);
         }
 
@@ -246,7 +265,8 @@
                 this._invitations[_arg1] = null;
                 delete this._invitations[_arg1];
                 return (true);
-            };
+            }
+            ;
             return (false);
         }
 
@@ -261,9 +281,11 @@
                 {
                     _arg1.slice(_local4, 1);
                     return;
-                };
+                }
+                ;
                 _local4++;
-            };
+            }
+            ;
         }
 
         private function sortFriend(_arg1:FriendVO, _arg2:FriendVO):Number
@@ -271,11 +293,13 @@
             if (_arg1.getName() < _arg2.getName())
             {
                 return (-1);
-            };
+            }
+            ;
             if (_arg1.getName() > _arg2.getName())
             {
                 return (1);
-            };
+            }
+            ;
             return (0);
         }
 
@@ -285,13 +309,15 @@
             if (this._serverDict)
             {
                 return (this._serverDict);
-            };
+            }
+            ;
             var _local1:Vector.<Server> = this.serverModel.getServers();
             this._serverDict = new Dictionary(true);
             for each (_local2 in _local1)
             {
                 this._serverDict[_local2.address] = _local2.name;
-            };
+            }
+            ;
             return (this._serverDict);
         }
 
@@ -299,8 +325,6 @@
         {
             return ((FameUtil.numAllTimeStars(_arg1, _arg2, _arg3) >= Parameters.data_.friendStarRequirement));
         }
-
-
     }
 }
 

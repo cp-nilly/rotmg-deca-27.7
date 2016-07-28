@@ -2,14 +2,13 @@
 {
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.model.PlayerModel;
     import kabam.rotmg.account.transfer.model.TransferAccountData;
-    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.account.transfer.view.KabamLoginView;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.model.PlayerModel;
 
-    public class CheckKabamAccountTask extends BaseTask 
+    public class CheckKabamAccountTask extends BaseTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -20,7 +19,6 @@
         public var client:AppEngineClient;
         [Inject]
         public var view:KabamLoginView;
-
 
         override protected function startTask():void
         {
@@ -38,7 +36,7 @@
             else
             {
                 this.onChangeDone();
-            };
+            }
             completeTask(_arg1, _arg2);
         }
 
@@ -55,8 +53,6 @@
             this.account.updateUser(this.data.newEmail, this.data.newPassword);
             completeTask(true);
         }
-
-
     }
 }
 

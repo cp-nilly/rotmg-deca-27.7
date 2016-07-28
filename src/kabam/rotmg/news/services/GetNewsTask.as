@@ -2,9 +2,8 @@
 {
     import kabam.lib.tasks.Task;
 
-    public interface GetNewsTask extends Task 
+    public interface GetNewsTask extends Task
     {
-
     }
 }
 

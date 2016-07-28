@@ -2,14 +2,13 @@
 {
     import kabam.rotmg.language.model.StringMap;
 
-    public class StaticStringBuilder implements StringBuilder 
+    public class StaticStringBuilder implements StringBuilder
     {
-
         private var string:String;
         private var prefix:String;
         private var postfix:String;
 
-        public function StaticStringBuilder(_arg1:String="")
+        public function StaticStringBuilder(_arg1:String = "")
         {
             this.string = _arg1;
             this.prefix = "";
@@ -42,8 +41,6 @@
         {
             return (((this.prefix + this.string) + this.postfix));
         }
-
-
     }
 }
 

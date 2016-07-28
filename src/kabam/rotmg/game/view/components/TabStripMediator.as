@@ -1,25 +1,27 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.assembleegameclient.objects.ImageFactory;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
+
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.friends.view.FriendListView;
+    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.pets.view.components.PetsTabContentView;
     import kabam.rotmg.ui.model.HUDModel;
     import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.ui.signals.UpdateHUDSignal;
     import kabam.rotmg.ui.signals.UpdateBackpackTabSignal;
-    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
-    import kabam.rotmg.assets.services.IconFactory;
-    import com.company.assembleegameclient.objects.ImageFactory;
-    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
+    import kabam.rotmg.ui.signals.UpdateHUDSignal;
     import kabam.rotmg.ui.view.StatsDockedSignal;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.friends.view.FriendListView;
-    import kabam.rotmg.pets.view.components.PetsTabContentView;
-    import com.company.assembleegameclient.objects.Player;
 
-    public class TabStripMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class TabStripMediator extends Mediator
     {
-
         [Inject]
         public var view:TabStripView;
         [Inject]
@@ -49,7 +51,6 @@
         [Inject]
         public var openDialog:OpenDialogSignal;
         private var doShowStats:Boolean = true;
-
 
         override public function initialize():void
         {
@@ -103,24 +104,31 @@
             if (!_arg1)
             {
                 return;
-            };
-            this.view.addTab(this.iconFactory.makeIconBitmap(TabConstants.INVENTORY_ICON_ID), new InventoryTabContent(_arg1));
+            }
+            this.view.addTab(
+                    this.iconFactory.makeIconBitmap(TabConstants.INVENTORY_ICON_ID), new InventoryTabContent(_arg1)
+            );
             if (this.doShowStats)
             {
-                this.view.addTab(this.iconFactory.makeIconBitmap(TabConstants.STATS_ICON_ID), new StatsTabContent(this.view.HEIGHT));
-            };
+                this.view.addTab(
+                        this.iconFactory.makeIconBitmap(TabConstants.STATS_ICON_ID),
+                        new StatsTabContent(this.view.HEIGHT)
+                );
+            }
             if (_arg1.hasBackpack_)
             {
-                this.view.addTab(this.iconFactory.makeIconBitmap(TabConstants.BACKPACK_ICON_ID), new BackpackTabContent(_arg1));
+                this.view.addTab(
+                        this.iconFactory.makeIconBitmap(TabConstants.BACKPACK_ICON_ID), new BackpackTabContent(_arg1)
+                );
             }
             else
             {
                 this.updateBackpack.add(this.onUpdateBackPack);
-            };
+            }
             if (this.petModel.getActivePet())
             {
                 this.view.addTab(this.iconFactory.makeIconBitmap(TabConstants.PETS_ICON_ID), new PetsTabContentView());
-            };
+            }
         }
 
         private function clearTabs():void
@@ -139,9 +147,11 @@
             if (_arg1)
             {
                 _local2 = this.hudModel.gameSprite.map.player_;
-                this.view.addTab(this.iconFactory.makeIconBitmap(TabConstants.BACKPACK_ICON_ID), new BackpackTabContent(_local2));
+                this.view.addTab(
+                        this.iconFactory.makeIconBitmap(TabConstants.BACKPACK_ICON_ID), new BackpackTabContent(_local2)
+                );
                 this.updateBackpack.remove(this.onUpdateBackPack);
-            };
+            }
         }
 
         private function onNotifyActivePetUpdated():void
@@ -149,8 +159,6 @@
             this.clearTabs();
             this.addTabs(this.hudModel.gameSprite.map.player_);
         }
-
-
     }
 }
 

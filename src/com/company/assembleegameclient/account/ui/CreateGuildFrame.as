@@ -1,20 +1,21 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.game.GameSprite;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.game.events.GuildResultEvent;
     import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.game.model.GameModel;
     import com.company.assembleegameclient.parameters.Parameters;
 
-    public class CreateGuildFrame extends Frame 
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.text.model.TextKey;
+
+    import org.osflash.signals.Signal;
+
+    public class CreateGuildFrame extends Frame
     {
-
         public const close:Signal = new Signal();
-
         private var name_:TextInputField;
         private var gs_:GameSprite;
 
@@ -27,7 +28,7 @@
             var _local2:int = 20;
             this.name_.inputText_.maxChars = _local2;
             addTextInputField(this.name_);
-            addPlainText(TextKey.FRAME_MAX_CHAR, {"maxChars":_local2});
+            addPlainText(TextKey.FRAME_MAX_CHAR, {"maxChars": _local2});
             addPlainText(TextKey.FRAME_RESTRICT_CHAR);
             addPlainText(TextKey.GUILD_WARNING);
             leftButton_.addEventListener(MouseEvent.CLICK, this.onCancel);
@@ -56,17 +57,15 @@
                 if (_local2 != null)
                 {
                     _local2.fame_ = (_local2.fame_ - Parameters.GUILD_CREATION_PRICE);
-                };
+                }
                 this.close.dispatch();
             }
             else
             {
                 this.name_.setError(_arg1.errorKey, _arg1.errorTokens);
                 enable();
-            };
+            }
         }
-
-
     }
 }
 

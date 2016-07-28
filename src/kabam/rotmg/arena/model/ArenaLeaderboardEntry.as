@@ -1,12 +1,11 @@
 ﻿package kabam.rotmg.arena.model
 {
     import flash.display.BitmapData;
+
     import kabam.rotmg.pets.data.PetVO;
-    import __AS3__.vec.Vector;
 
-    public class ArenaLeaderboardEntry 
+    public class ArenaLeaderboardEntry
     {
-
         public var playerBitmap:BitmapData;
         public var name:String;
         public var pet:PetVO;
@@ -19,7 +18,6 @@
         public var rank:int = -1;
         public var isPersonalRecord:Boolean = false;
 
-
         public function isEqual(_arg1:ArenaLeaderboardEntry):Boolean
         {
             return ((((((_arg1.name == this.name)) && ((this.runtime == _arg1.runtime)))) && ((this.currentWave == _arg1.currentWave))));
@@ -29,8 +27,6 @@
         {
             return ((((this.currentWave > _arg1.currentWave)) || ((((this.currentWave == _arg1.currentWave)) && ((this.runtime < _arg1.runtime))))));
         }
-
-
     }
 }
 

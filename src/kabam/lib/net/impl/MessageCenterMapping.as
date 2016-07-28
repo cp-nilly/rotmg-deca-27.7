@@ -1,14 +1,13 @@
 ﻿package kabam.lib.net.impl
 {
-    import kabam.lib.net.api.MessageMapping;
-	import robotlegs.bender.framework.api.IInjector;
     import kabam.lib.net.api.MessageHandlerProxy;
+    import kabam.lib.net.api.MessageMapping;
 
-    public class MessageCenterMapping implements MessageMapping 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class MessageCenterMapping implements MessageMapping
     {
-
         private const nullHandler:NullHandlerProxy = new NullHandlerProxy();
-
         private var id:int;
         private var injector:IInjector;
         private var messageType:Class;
@@ -63,22 +62,16 @@
             _local1.populate(this.population);
             return (_local1);
         }
-
-
     }
 }
 
 import kabam.lib.net.api.MessageHandlerProxy;
 
-class NullHandlerProxy implements MessageHandlerProxy 
+class NullHandlerProxy implements MessageHandlerProxy
 {
-
-
     public function getMethod():Function
     {
         return (null);
     }
-
-
 }
 

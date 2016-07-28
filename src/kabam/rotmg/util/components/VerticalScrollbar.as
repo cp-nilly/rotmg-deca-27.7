@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.util.components
 {
     import flash.display.Sprite;
+
     import kabam.lib.ui.api.Scrollbar;
+
     import org.osflash.signals.Signal;
 
-    public class VerticalScrollbar extends Sprite implements Scrollbar 
+    public class VerticalScrollbar extends Sprite implements Scrollbar
     {
-
         public static const WIDTH:int = 20;
         public static const BEVEL:int = 4;
         public static const PADDING:int = 0;
-
         public const groove:VerticalScrollbarGroove = new VerticalScrollbarGroove();
         public const bar:VerticalScrollbarBar = new VerticalScrollbarBar();
-
         private var _positionChanged:Signal;
         private var position:Number = 0;
         private var range:int;
@@ -49,8 +48,8 @@
                 else
                 {
                     this.removeMouseListeners();
-                };
-            };
+                }
+            }
         }
 
         private function addMouseListeners():void
@@ -108,8 +107,8 @@
                 if (_arg1 > 1)
                 {
                     _arg1 = 1;
-                };
-            };
+                }
+            }
             this.position = _arg1;
             this.bar.y = (PADDING + (this.range * this.position));
             ((this._positionChanged) && (this._positionChanged.dispatch(this.position)));
@@ -133,8 +132,6 @@
             var _local4:int = (this.groove.rect.height - _local2);
             this.setPosition((_local3 / _local4));
         }
-
-
     }
 }
 

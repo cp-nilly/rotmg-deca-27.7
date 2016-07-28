@@ -1,13 +1,14 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import com.company.assembleegameclient.util.RandomUtil;
 
-    public class LineEffect extends ParticleEffect 
-    {
+    import flash.geom.Point;
 
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
+
+    public class LineEffect extends ParticleEffect
+    {
         public var start_:Point;
         public var end_:Point;
         public var color_:int;
@@ -30,10 +31,12 @@
             while (_local4 < _local3)
             {
                 _local5 = Point.interpolate(this.start_, this.end_, (_local4 / _local3));
-                _local6 = new SparkParticle(100, this.color_, 700, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1));
+                _local6 = new SparkParticle(
+                        100, this.color_, 700, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)
+                );
                 map_.addObj(_local6, _local5.x, _local5.y);
                 _local4++;
-            };
+            }
             return (false);
         }
 
@@ -48,14 +51,14 @@
             while (_local4 < _local3)
             {
                 _local5 = Point.interpolate(this.start_, this.end_, (_local4 / _local3));
-                _local6 = new SparkParticle(100, this.color_, 200, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1));
+                _local6 = new SparkParticle(
+                        100, this.color_, 200, 0.5, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)
+                );
                 map_.addObj(_local6, _local5.x, _local5.y);
                 _local4++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

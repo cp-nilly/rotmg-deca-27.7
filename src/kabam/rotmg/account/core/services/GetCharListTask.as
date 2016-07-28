@@ -1,30 +1,31 @@
 ﻿package kabam.rotmg.account.core.services
 {
-    import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.core.signals.SetLoadingMessageSignal;
-    import kabam.rotmg.account.core.signals.CharListDataSignal;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import flash.utils.Timer;
     import com.company.assembleegameclient.parameters.Parameters;
     import com.company.util.MoreObjectUtil;
+
+    import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.signals.CharListDataSignal;
     import kabam.rotmg.account.web.view.MigrationDialog;
     import kabam.rotmg.account.web.view.WebLoginDialog;
-    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.signals.SetLoadingMessageSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.fortune.components.TimerCallback;
-    import flash.events.TimerEvent;
+    import kabam.rotmg.text.model.TextKey;
 
-    public class GetCharListTask extends BaseTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class GetCharListTask extends BaseTask
     {
-
         private static const ONE_SECOND_IN_MS:int = 1000;
         private static const MAX_RETRIES:int = 7;
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -45,7 +46,6 @@
         private var retryTimer:Timer;
         private var numRetries:int = 0;
         private var fromMigration:Boolean = false;
-
 
         override protected function startTask():void
         {
@@ -70,7 +70,7 @@
             else
             {
                 this.onTextError(_arg2);
-            };
+            }
         }
 
         public function makeRequestData():Object
@@ -95,7 +95,7 @@
                 if (_local3 == 5)
                 {
                     this.sendRequest();
-                };
+                }
                 _local4 = new MigrationDialog(this.account, _local3);
                 this.fromMigration = true;
                 _local4.done.addOnce(this.sendRequest);
@@ -106,11 +106,11 @@
             {
                 this.charListData.dispatch(XML(_arg1));
                 completeTask(true);
-            };
+            }
             if (this.retryTimer != null)
             {
                 this.stopRetryTimer();
-            };
+            }
         }
 
         private function onTextError(_arg1:String):void
@@ -125,7 +125,7 @@
                     _local2.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_INVALID);
                     _local2.setEmail(this.account.getUserId());
                     StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(_local2);
-                };
+                }
                 this.clearAccountAndReloadCharacters();
             }
             else
@@ -138,8 +138,8 @@
                 else
                 {
                     this.waitForASecondThenRetryRequest();
-                };
-            };
+                }
+            }
         }
 
         private function clearAccountAndReloadCharacters():void
@@ -178,10 +178,8 @@
             {
                 this.clearAccountAndReloadCharacters();
                 this.setLoadingMessage.dispatch("LoginError.tooManyFails");
-            };
+            }
         }
-
-
     }
 }
 

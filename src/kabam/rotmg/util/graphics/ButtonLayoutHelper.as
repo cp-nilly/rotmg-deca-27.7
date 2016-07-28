@@ -1,14 +1,12 @@
 ﻿package kabam.rotmg.util.graphics
 {
+    import flash.display.DisplayObject;
     import flash.errors.IllegalOperationError;
     import flash.geom.Rectangle;
-    import flash.display.DisplayObject;
 
-    public class ButtonLayoutHelper 
+    public class ButtonLayoutHelper
     {
-
-
-        public function layout(_arg1:int, ... _args):void
+        public function layout(_arg1:int, ..._args):void
         {
             var _local3:int = _args.length;
             switch (_local3)
@@ -21,7 +19,7 @@
                     return;
                 default:
                     throw (new IllegalOperationError("Currently unable to layout more than 2 buttons"));
-            };
+            }
         }
 
         private function centerButton(_arg1:int, _arg2:DisplayObject):void
@@ -38,8 +36,6 @@
             _arg2.x = (((_arg1 - (2 * _arg2.width)) * 0.25) - _local4.left);
             _arg3.x = ((((3 * _arg1) - (2 * _arg3.width)) * 0.25) - _local5.left);
         }
-
-
     }
 }
 

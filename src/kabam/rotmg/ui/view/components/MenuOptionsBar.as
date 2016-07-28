@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.ui.view.components
 {
-    import flash.display.Sprite;
-    import com.company.rotmg.graphics.ScreenGraphic;
     import com.company.assembleegameclient.screens.TitleMenuOption;
+    import com.company.rotmg.graphics.ScreenGraphic;
+
+    import flash.display.Sprite;
     import flash.geom.Rectangle;
 
-    public class MenuOptionsBar extends Sprite 
+    public class MenuOptionsBar extends Sprite
     {
-
         private static const Y_POSITION:Number = 550;
         private static const SPACING:int = 20;
         public static const CENTER:String = "CENTER";
         public static const RIGHT:String = "RIGHT";
         public static const LEFT:String = "LEFT";
-
         private const leftObjects:Array = [];
         private const rightObjects:Array = [];
-
         private var screenGraphic:ScreenGraphic;
 
         public function MenuOptionsBar()
@@ -50,7 +48,7 @@
                     this.rightObjects.push(_arg1);
                     _arg1.changed.add(this.layoutRightButtons);
                     return;
-            };
+            }
         }
 
         private function layoutLeftButtons():void
@@ -60,7 +58,7 @@
             {
                 this.layoutToLeftOf(this.leftObjects[(_local1 - 1)], this.leftObjects[_local1]);
                 _local1++;
-            };
+            }
         }
 
         private function layoutToLeftOf(_arg1:TitleMenuOption, _arg2:TitleMenuOption):void
@@ -78,7 +76,7 @@
             {
                 this.layoutToRightOf(this.rightObjects[(_local1 - 1)], this.rightObjects[_local1]);
                 _local1++;
-            };
+            }
         }
 
         private function layoutToRightOf(_arg1:TitleMenuOption, _arg2:TitleMenuOption):void
@@ -88,8 +86,6 @@
             _arg2.x = (((_arg1.x + _local3.right) - _local4.left) + SPACING);
             _arg2.y = Y_POSITION;
         }
-
-
     }
 }
 

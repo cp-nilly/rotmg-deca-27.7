@@ -1,34 +1,31 @@
 ﻿package com.company.assembleegameclient.ui.board
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import com.company.ui.BaseSimpleText;
-    import com.company.assembleegameclient.ui.Scrollbar;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.Scrollbar;
+    import com.company.ui.BaseSimpleText;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.HTMLUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
     import flash.display.Shape;
-    import flash.display.Graphics;
-    import com.company.util.HTMLUtil;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.text.model.TextKey;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.ui.board.*;
 
-    class ViewBoard extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+
+    class ViewBoard extends Sprite
     {
-
         public static const TEXT_WIDTH:int = 400;
         public static const TEXT_HEIGHT:int = 400;
         private static const URL_REGEX:RegExp = /((https?|ftp):((\/\/)|(\\\\))+[\w\d:#@%\/;$()~_?\+-=\\\.&]*)/g;
-
         private var text_:String;
         public var w_:int;
         public var h_:int;
@@ -39,10 +36,13 @@
         private var closeButton_:DeprecatedTextButton;
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function ViewBoard(_arg1:String, _arg2:Boolean)
         {
@@ -58,7 +58,9 @@
             this.mainSprite_.mask = _local3;
             addChild(this.mainSprite_);
             var _local5:String = HTMLUtil.escape(_arg1);
-            _local5 = _local5.replace(URL_REGEX, ('<font color="#7777EE"><a href="$1" target="_blank">' + "$1</a></font>"));
+            _local5 = _local5.replace(
+                    URL_REGEX, ('<font color="#7777EE"><a href="$1" target="_blank">' + "$1</a></font>")
+            );
             this.boardText_ = new BaseSimpleText(16, 0xB3B3B3, false, TEXT_WIDTH, 0);
             this.boardText_.border = false;
             this.boardText_.mouseEnabled = true;
@@ -76,7 +78,7 @@
                 this.scrollBar_.setIndicatorSize(400, this.boardText_.height);
                 this.scrollBar_.addEventListener(Event.CHANGE, this.onScrollBarChange);
                 addChild(this.scrollBar_);
-            };
+            }
             this.w_ = (TEXT_WIDTH + ((_local6) ? 26 : 0));
             this.editButton_ = new DeprecatedTextButton(14, TextKey.VIEW_GUILD_BOARD_EDIT, 120);
             this.editButton_.x = 4;
@@ -117,8 +119,6 @@
         {
             dispatchEvent(new Event(Event.COMPLETE));
         }
-
-
     }
 }
 

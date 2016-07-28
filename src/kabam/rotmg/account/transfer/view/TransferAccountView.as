@@ -1,26 +1,27 @@
 ﻿package kabam.rotmg.account.transfer.view
 {
-    import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.account.web.view.LabeledField;
     import com.company.assembleegameclient.account.ui.CheckBoxField;
-    import kabam.rotmg.account.ui.components.DateField;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.account.ui.Frame;
     import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.account.transfer.model.TransferAccountData;
     import com.company.util.EmailValidator;
 
-    public class TransferAccountView extends Frame 
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.account.transfer.model.TransferAccountData;
+    import kabam.rotmg.account.ui.components.DateField;
+    import kabam.rotmg.account.web.view.LabeledField;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class TransferAccountView extends Frame
     {
-
         private const errors:Array = [];
-
         public var transfer:Signal;
         public var cancel:Signal;
         private var kbmEmail:String = "";
@@ -38,7 +39,13 @@
 
         public function TransferAccountView(_arg1:String, _arg2:String)
         {
-            super("Register your account on realmofthemadgod.com", "RegisterWebAccountDialog.leftButton", "RegisterWebAccountDialog.rightButton", "", 326);
+            super(
+                    "Register your account on realmofthemadgod.com",
+                    "RegisterWebAccountDialog.leftButton",
+                    "RegisterWebAccountDialog.rightButton",
+                    "",
+                    326
+            );
             this.kbmEmail = _arg1;
             this.kbmPassword = _arg2;
             this.makeUIElements();
@@ -79,12 +86,13 @@
             this.tosText = new TextFieldDisplayConcrete();
             var _local1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
             var _local2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
-            this.tosText.setStringBuilder(new LineBuilder().setParams(TextKey.TOS_TEXT, {
-                "tou":_local1,
-                "_tou":this.endLink,
-                "policy":_local2,
-                "_policy":this.endLink
-            }));
+            this.tosText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.TOS_TEXT, {
+                                "tou": _local1, "_tou": this.endLink, "policy": _local2, "_policy": this.endLink
+                            }
+                    )
+            );
             this.configureTextAndAdd(this.tosText);
         }
 
@@ -112,7 +120,7 @@
             if (_local2)
             {
                 this.sendData();
-            };
+            }
         }
 
         private function areInputsValid():Boolean
@@ -133,7 +141,7 @@
             else
             {
                 this.displayErrorText((((this.errors.length == 1)) ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE));
-            };
+            }
         }
 
         public function displayServerError(_arg1:String):void
@@ -160,7 +168,7 @@
             if (!_local2)
             {
                 this.errors.push(TextKey.INVALID_EMAIL_ADDRESS);
-            };
+            }
             return (_local2);
         }
 
@@ -171,7 +179,7 @@
             if (!_local2)
             {
                 this.errors.push(TextKey.PASSWORD_TOO_SHORT);
-            };
+            }
             return (_local2);
         }
 
@@ -182,7 +190,7 @@
             if (!_local1)
             {
                 this.errors.push(TextKey.PASSWORDS_DONT_MATCH);
-            };
+            }
             return (_local1);
         }
 
@@ -195,8 +203,6 @@
             _local1.newPassword = this.newPasswordInput.text();
             this.transfer.dispatch(_local1);
         }
-
-
     }
 }
 

@@ -1,14 +1,10 @@
 ﻿package com.company.assembleegameclient.util
 {
     import flash.utils.Dictionary;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class FreeList 
+    public class FreeList
     {
-
         private static var dict_:Dictionary = new Dictionary();
-
 
         public static function newObject(_arg1:Class):Object
         {
@@ -23,9 +19,9 @@
                 if (_local2.length > 0)
                 {
                     return (_local2.pop());
-                };
-            };
-            return (new (_arg1)());
+                }
+            }
+            return (new _arg1());
         }
 
         public static function storeObject(_arg1:*, _arg2:Object):void
@@ -35,7 +31,7 @@
             {
                 _local3 = new Vector.<Object>();
                 dict_[_arg1] = _local3;
-            };
+            }
             _local3.push(_arg2);
         }
 
@@ -45,7 +41,7 @@
             if (((!((_local2 == null))) && ((_local2.length > 0))))
             {
                 return (_local2.pop());
-            };
+            }
             return (null);
         }
 
@@ -62,11 +58,9 @@
             {
                 _local3 = new Vector.<Object>();
                 dict_[_local2] = _local3;
-            };
+            }
             _local3.push(_arg1);
         }
-
-
     }
 }
 

@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.pets.view.components
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.view.components.slot.PetFeedFuseSlot;
+
     import kabam.rotmg.pets.data.PetSlotsState;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
     import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.slot.PetFeedFuseSlot;
 
-    public class PetFuser extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class PetFuser extends Sprite
     {
-
         public const openPetPicker:Signal = new Signal(String);
-
         private var leftSlot:PetFeedFuseSlot;
         private var arrow:FeedFuseArrow;
         private var rightSlot:PetFeedFuseSlot;
@@ -38,7 +38,7 @@
             if (this.state.rightSlotPetVO)
             {
                 this.setPet(this.state.rightSlotPetVO, PetSlotsState.RIGHT);
-            };
+            }
             this.updateHighlights();
         }
 
@@ -49,7 +49,7 @@
             {
                 _local3 = (((_arg2 == PetSlotsState.LEFT)) ? this.leftSlot : this.rightSlot);
                 _local3.setPet(_arg1);
-            };
+            }
         }
 
         private function onOpenLeftPetPicker():void
@@ -75,10 +75,8 @@
                 this.rightSlot.highlight((this.state.rightSlotPetVO == null));
                 this.leftSlot.highlight((this.state.leftSlotPetVO == null));
                 this.arrow.highlight(false);
-            };
+            }
         }
-
-
     }
 }
 

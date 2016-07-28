@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class TextPanelMessageUpdateSignal extends Signal 
+    public class TextPanelMessageUpdateSignal extends Signal
     {
-
         public function TextPanelMessageUpdateSignal()
         {
             super(String);
         }
-
     }
 }
 

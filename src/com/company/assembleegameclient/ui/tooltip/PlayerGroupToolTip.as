@@ -1,22 +1,21 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.ui.GameObjectListItem;
+
+    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.text.model.TextKey;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
-    import __AS3__.vec.*;
 
-    public class PlayerGroupToolTip extends ToolTip 
+    public class PlayerGroupToolTip extends ToolTip
     {
-
         public var players_:Vector.<Player> = null;
         private var playerPanels_:Vector.<GameObjectListItem>;
         private var clickMessage_:TextFieldDisplayConcrete;
 
-        public function PlayerGroupToolTip(_arg1:Vector.<Player>, _arg2:Boolean=true)
+        public function PlayerGroupToolTip(_arg1:Vector.<Player>, _arg2:Boolean = true)
         {
             this.playerPanels_ = new Vector.<GameObjectListItem>();
             super(0x363636, 0.5, 0xFFFFFF, 1, _arg2);
@@ -28,7 +27,7 @@
             if (!_arg2)
             {
                 filters = [];
-            };
+            }
             waiter.push(this.clickMessage_.textChanged);
         }
 
@@ -41,7 +40,7 @@
             if ((((this.players_ == null)) || ((this.players_.length == 0))))
             {
                 return;
-            };
+            }
             var _local2:int;
             for each (_local3 in _arg1)
             {
@@ -51,7 +50,7 @@
                 addChild(_local4);
                 this.playerPanels_.push(_local4);
                 _local2 = (_local2 + 32);
-            };
+            }
             this.clickMessage_.x = ((width / 2) - (this.clickMessage_.width / 2));
             this.clickMessage_.y = _local2;
             draw();
@@ -64,11 +63,9 @@
             for each (_local1 in this.playerPanels_)
             {
                 removeChild(_local1);
-            };
+            }
             this.playerPanels_.length = 0;
         }
-
-
     }
 }
 

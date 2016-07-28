@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class InvalidateDataSignal extends Signal 
+    public class InvalidateDataSignal extends Signal
     {
-
-
     }
 }
 

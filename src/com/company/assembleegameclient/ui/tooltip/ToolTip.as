@@ -1,27 +1,25 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
     import com.company.util.GraphicsUtil;
-    import kabam.rotmg.ui.view.SignalWaiter;
+
+    import flash.display.CapsStyle;
     import flash.display.DisplayObject;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import flash.filters.DropShadowFilter;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
+    import flash.filters.DropShadowFilter;
 
-    public class ToolTip extends Sprite 
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class ToolTip extends Sprite
     {
-
         protected const waiter:SignalWaiter = new SignalWaiter();
-
         private var background_:uint;
         private var backgroundAlpha_:Number;
         private var outline_:uint;
@@ -34,12 +32,15 @@
         private var targetObj:DisplayObject;
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0, 1);
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
-        public function ToolTip(_arg1:uint, _arg2:Number, _arg3:uint, _arg4:Number, _arg5:Boolean=true)
+        public function ToolTip(_arg1:uint, _arg2:Number, _arg3:uint, _arg4:Number, _arg5:Boolean = true)
         {
             super();
             this.background_ = _arg1;
@@ -72,7 +73,7 @@
             {
                 this.targetObj = _arg1;
                 this.targetObj.addEventListener(MouseEvent.ROLL_OUT, this.onLeaveTarget);
-            };
+            }
         }
 
         public function detachFromTarget():void
@@ -83,9 +84,9 @@
                 if (parent)
                 {
                     parent.removeChild(this);
-                };
+                }
                 this.targetObj = null;
-            };
+            }
         }
 
         public function forcePostionLeft():void
@@ -110,12 +111,12 @@
             if (this.waiter.isEmpty())
             {
                 this.draw();
-            };
+            }
             if (this.followMouse_)
             {
                 this.position();
                 addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         private function onRemovedFromStage(_arg1:Event):void
@@ -123,7 +124,7 @@
             if (this.followMouse_)
             {
                 removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         private function onEnterFrame(_arg1:Event):void
@@ -136,7 +137,7 @@
             if (stage == null)
             {
                 return;
-            };
+            }
             if (((((!(this.forcePositionLeft_)) && ((stage.mouseX < (stage.stageWidth / 2))))) || (this.forcePositionRight_)))
             {
                 x = (stage.mouseX + 12);
@@ -144,11 +145,11 @@
             else
             {
                 x = ((stage.mouseX - width) - 1);
-            };
+            }
             if (x < 12)
             {
                 x = 12;
-            };
+            }
             if (((((!(this.forcePositionLeft_)) && ((stage.mouseY < (stage.stageHeight / 3))))) || (this.forcePositionRight_)))
             {
                 y = (stage.mouseY + 12);
@@ -156,11 +157,11 @@
             else
             {
                 y = ((stage.mouseY - height) - 1);
-            };
+            }
             if (y < 12)
             {
                 y = 12;
-            };
+            }
         }
 
         public function draw():void
@@ -173,11 +174,13 @@
             this.contentWidth_ = width;
             this.contentHeight_ = height;
             GraphicsUtil.clearPath(this.path_);
-            GraphicsUtil.drawCutEdgeRect(-6, -6, (this.contentWidth_ + 12), (this.contentHeight_ + 12), 4, [1, 1, 1, 1], this.path_);
+            GraphicsUtil.drawCutEdgeRect(
+                    -6, -6, (this.contentWidth_ + 12), (this.contentHeight_ + 12), 4, [
+                        1, 1, 1, 1
+                    ], this.path_
+            );
             graphics.drawGraphicsData(this.graphicsData_);
         }
-
-
     }
 }
 

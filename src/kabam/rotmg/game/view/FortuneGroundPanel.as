@@ -1,43 +1,43 @@
 ﻿package kabam.rotmg.game.view
 {
-    import com.company.assembleegameclient.ui.panels.Panel;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.objects.SellableObject;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.mysterybox.services.GetMysteryBoxesTask;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.fortune.services.FortuneModel;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.arena.util.ArenaViewAssetFactory;
-    import flash.events.Event;
-    import kabam.rotmg.fortune.components.FortuneModal;
-    import flash.events.MouseEvent;
-    import flash.events.KeyboardEvent;
     import com.company.assembleegameclient.game.GameSprite;
-    import kabam.rotmg.fortune.model.FortuneInfo;
-    import kabam.rotmg.util.components.InfoHoverPaneFactory;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.account.core.view.RegisterPromptDialog;
-    import com.company.assembleegameclient.util.Currency;
+    import com.company.assembleegameclient.objects.SellableObject;
     import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.ui.panels.*;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.panels.Panel;
+    import com.company.assembleegameclient.util.Currency;
 
-    public class FortuneGroundPanel extends Panel 
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.arena.util.ArenaViewAssetFactory;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.fortune.components.FortuneModal;
+    import kabam.rotmg.fortune.model.FortuneInfo;
+    import kabam.rotmg.fortune.services.FortuneModel;
+    import kabam.rotmg.mysterybox.services.GetMysteryBoxesTask;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.components.InfoHoverPaneFactory;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+
+    import org.osflash.signals.Signal;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FortuneGroundPanel extends Panel
     {
-
         private static var hovering:Boolean;
-
         private const BUTTON_OFFSET:int = 17;
-
         public var buyItem:Signal;
         private var owner_:SellableObject;
         private var nameText_:TextFieldDisplayConcrete;
@@ -80,7 +80,7 @@
             {
                 this.infoButton_ = new DeprecatedTextButton(16, _local6);
                 addChild(this.infoButton_);
-            };
+            }
             this.nameText_.setStringBuilder(new LineBuilder().setParams(_local7));
             this.bitmap_.bitmapData = ArenaViewAssetFactory.returnHostBitmap(_arg2).bitmapData;
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
@@ -93,7 +93,7 @@
             else
             {
                 FortuneModal.closed.add(this.enableInteract);
-            };
+            }
         }
 
         private function enableInteract():void
@@ -115,8 +115,8 @@
                 if (this.onHoverPanel != null)
                 {
                     addChild(this.onHoverPanel);
-                };
-            };
+                }
+            }
         }
 
         private function onHoverExit(_arg1:MouseEvent):void
@@ -125,7 +125,7 @@
             {
                 removeChild(this.onHoverPanel);
                 this.onHoverPanel = null;
-            };
+            }
         }
 
         public function setOwner(_arg1:SellableObject):void
@@ -133,7 +133,7 @@
             if (_arg1 == this.owner_)
             {
                 return;
-            };
+            }
             this.owner_ = _arg1;
             this.buyButton_.setPrice(this.owner_.price_, this.owner_.currency_);
             var _local2:String = this.owner_.soldObjectName();
@@ -165,7 +165,7 @@
             if (FortuneModal.modalIsOpen)
             {
                 return;
-            };
+            }
             var _local1:IInjector = StaticInjectorContext.getInjector();
             var _local2:FortuneModel = _local1.getInstance(FortuneModel);
             var _local3:Account = _local1.getInstance(Account);
@@ -181,9 +181,13 @@
             {
                 if (!_local3.isRegistered())
                 {
-                    _local4.dispatch(new RegisterPromptDialog("SellableObjectPanelMediator.text", {"type":Currency.typeToName(Currency.GOLD)}));
-                };
-            };
+                    _local4.dispatch(
+                            new RegisterPromptDialog(
+                                    "SellableObjectPanelMediator.text", {"type": Currency.typeToName(Currency.GOLD)}
+                            )
+                    );
+                }
+            }
         }
 
         private function onKeyDown(_arg1:KeyboardEvent):void
@@ -191,21 +195,19 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 this.onInfoButton();
-            };
+            }
         }
 
         override public function draw():void
         {
-            this.nameText_.y = (((this.nameText_.height)>30) ? 0 : 12);
+            this.nameText_.y = (((this.nameText_.height) > 30) ? 0 : 12);
             this.infoButton_.x = ((WIDTH / 2) - (this.infoButton_.width / 2));
             this.infoButton_.y = ((HEIGHT - (this.infoButton_.height / 2)) - this.BUTTON_OFFSET);
             if (!contains(this.infoButton_))
             {
                 addChild(this.infoButton_);
-            };
+            }
         }
-
-
     }
 }
 

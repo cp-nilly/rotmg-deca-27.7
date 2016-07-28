@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ShowLoadingUISignal extends Signal 
+    public class ShowLoadingUISignal extends Signal
     {
-
-
     }
 }
 

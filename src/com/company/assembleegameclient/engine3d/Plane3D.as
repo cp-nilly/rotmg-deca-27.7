@@ -1,27 +1,24 @@
 ﻿package com.company.assembleegameclient.engine3d
 {
     import flash.geom.Vector3D;
-    import __AS3__.vec.Vector;
 
-    public class Plane3D 
+    public class Plane3D
     {
-
         public static const NONE:int = 0;
         public static const POSITIVE:int = 1;
         public static const NEGATIVE:int = 2;
         public static const EQUAL:int = 3;
-
         public var normal_:Vector3D;
         public var d_:Number;
 
-        public function Plane3D(_arg1:Vector3D=null, _arg2:Vector3D=null, _arg3:Vector3D=null)
+        public function Plane3D(_arg1:Vector3D = null, _arg2:Vector3D = null, _arg3:Vector3D = null)
         {
             if (((((!((_arg1 == null))) && (!((_arg2 == null))))) && (!((_arg3 == null)))))
             {
                 this.normal_ = new Vector3D();
                 computeNormal(_arg1, _arg2, _arg3, this.normal_);
                 this.d_ = -(this.normal_.dotProduct(_arg1));
-            };
+            }
         }
 
         public static function computeNormal(_arg1:Vector3D, _arg2:Vector3D, _arg3:Vector3D, _arg4:Vector3D):void
@@ -52,18 +49,17 @@
             _arg2.normalize();
         }
 
-
         public function testPoint(_arg1:Vector3D):int
         {
             var _local2:Number = (this.normal_.dotProduct(_arg1) + this.d_);
             if (_local2 > 0.001)
             {
                 return (POSITIVE);
-            };
+            }
             if (_local2 < -0.001)
             {
                 return (NEGATIVE);
-            };
+            }
             return (EQUAL);
         }
 
@@ -74,7 +70,7 @@
             if (_local3 == 0)
             {
                 return (NaN);
-            };
+            }
             return ((_local2 / _local3));
         }
 
@@ -87,8 +83,6 @@
         {
             return ((((("Plane(n = " + this.normal_) + ", d = ") + this.d_) + ")"));
         }
-
-
     }
 }
 

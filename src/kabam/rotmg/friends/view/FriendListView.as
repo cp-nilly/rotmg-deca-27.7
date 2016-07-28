@@ -1,44 +1,42 @@
 ﻿package kabam.rotmg.friends.view
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.ui.dialogs.DialogCloser;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.account.ui.TextInputField;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.dialogs.DialogCloser;
+    import com.company.ui.BaseSimpleText;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.friends.model.FriendVO;
-    import flash.events.MouseEvent;
     import flash.events.FocusEvent;
-    import kabam.rotmg.friends.model.FriendConstant;
-    import kabam.rotmg.text.model.TextKey;
+    import flash.events.MouseEvent;
     import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import com.company.ui.BaseSimpleText;
     import flash.text.TextFormatAlign;
-    import __AS3__.vec.*;
 
-    public class FriendListView extends Sprite implements DialogCloser 
+    import kabam.rotmg.friends.model.FriendConstant;
+    import kabam.rotmg.friends.model.FriendVO;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class FriendListView extends Sprite implements DialogCloser
     {
-
         public static const TEXT_WIDTH:int = 500;
         public static const TEXT_HEIGHT:int = 500;
         public static const LIST_ITEM_WIDTH:int = 490;
         public static const LIST_ITEM_HEIGHT:int = 40;
-
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(TEXT_WIDTH);
-
         public var closeDialogSignal:Signal;
         public var actionSignal;
         public var tabSignal;
@@ -56,10 +54,13 @@
         private var _currentServerName:String;
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x333333, 1);
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function FriendListView()
         {
@@ -90,7 +91,7 @@
             while (numChildren > 0)
             {
                 this.removeChildAt((numChildren - 1));
-            };
+            }
             this._addButton.removeEventListener(MouseEvent.CLICK, this.onAddFriendClicked);
             this._addButton = null;
             this._tabView.destroy();
@@ -112,7 +113,7 @@
             {
                 this._friendsContainer.removeChildAt((this._friendsContainer.getTotal() - 1));
                 _local5--;
-            };
+            }
             _local5 = 0;
             while (_local5 < this._friendsContainer.getTotal())
             {
@@ -121,16 +122,16 @@
                 {
                     _local4 = (this._friendsContainer.getChildAt(_local5) as FListItem);
                     _local4.update(_local3, _arg2);
-                };
+                }
                 _local5++;
-            };
+            }
             for each (_local3 in _arg1)
             {
                 _local4 = new FriendListItem(_local3, LIST_ITEM_WIDTH, LIST_ITEM_HEIGHT, _arg2);
                 _local4.actionSignal.add(this.onListItemAction);
                 _local4.x = 2;
                 this._friendsContainer.addListItem(_local4);
-            };
+            }
             _arg1.length = 0;
             _arg1 = null;
         }
@@ -147,7 +148,7 @@
             {
                 this._invitationsContainer.removeChildAt((this._invitationsContainer.getTotal() - 1));
                 _local4--;
-            };
+            }
             _local4 = 0;
             while (_local4 < this._invitationsContainer.getTotal())
             {
@@ -156,15 +157,15 @@
                 {
                     _local3 = (this._invitationsContainer.getChildAt(_local4) as FListItem);
                     _local3.update(_local2, "");
-                };
+                }
                 _local4++;
-            };
+            }
             for each (_local2 in _arg1)
             {
                 _local3 = new InvitationListItem(_local2, LIST_ITEM_WIDTH, LIST_ITEM_HEIGHT);
                 _local3.actionSignal.add(this.onListItemAction);
                 this._invitationsContainer.addListItem(_local3);
-            };
+            }
             _arg1.length = 0;
             _arg1 = null;
         }
@@ -228,7 +229,11 @@
 
         private function seedData(_arg1:Vector.<FriendVO>, _arg2:Vector.<FriendVO>):void
         {
-            this._friendTotalText.setStringBuilder(new LineBuilder().setParams(TextKey.FRIEND_TOTAL, {"total":_arg1.length}));
+            this._friendTotalText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.FRIEND_TOTAL, {"total": _arg1.length}
+                    )
+            );
             this.updateFriendTab(_arg1, this._currentServerName);
             this.updateInvitationTab(_arg2);
         }
@@ -243,7 +248,7 @@
             return (this.closeDialogSignal);
         }
 
-        public function updateInput(_arg1:String, _arg2:Object=null):void
+        public function updateInput(_arg1:String, _arg2:Object = null):void
         {
             this._nameInput.setError(_arg1, _arg2);
         }
@@ -286,8 +291,6 @@
             GraphicsUtil.drawCutEdgeRect(-6, -6, (this._w + 12), (this._h + 12), 4, [1, 1, 1, 1], this.path_);
             graphics.drawGraphicsData(this.graphicsData_);
         }
-
-
     }
 }
 

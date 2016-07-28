@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.chat.control
 {
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.game.signals.AddTextLineSignal;
-    import kabam.rotmg.chat.model.ChatMessage;
     import com.company.assembleegameclient.parameters.Parameters;
+
+    import kabam.rotmg.chat.model.ChatMessage;
+    import kabam.rotmg.game.signals.AddTextLineSignal;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.ui.model.HUDModel;
 
-    public class ParseChatMessageCommand 
+    public class ParseChatMessageCommand
     {
-
         [Inject]
         public var data:String;
         [Inject]
         public var hudModel:HUDModel;
         [Inject]
         public var addTextLine:AddTextLineSignal;
-
 
         public function execute():void
         {
@@ -26,10 +25,8 @@
             else
             {
                 this.hudModel.gameSprite.gsc_.playerText(this.data);
-            };
+            }
         }
-
-
     }
 }
 

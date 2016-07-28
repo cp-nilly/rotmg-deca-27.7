@@ -1,23 +1,24 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.assembleegameclient.util.FameUtil;
+
+    import flash.events.TimerEvent;
     import flash.utils.Timer;
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.classes.control.FocusCharacterSkinSignal;
+
+    import kabam.rotmg.assets.model.Animation;
     import kabam.rotmg.assets.services.CharacterFactory;
+    import kabam.rotmg.classes.control.FocusCharacterSkinSignal;
     import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.CharacterSkin;
-    import flash.events.TimerEvent;
-    import com.company.assembleegameclient.util.FameUtil;
-    import kabam.rotmg.assets.model.Animation;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.core.model.PlayerModel;
 
-    public class ClassDetailMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ClassDetailMediator extends Mediator
     {
-
         private const skins:Object = new Object();
         private const nextSkinTimer:Timer = new Timer(250, 1);
-
         [Inject]
         public var view:ClassDetailView;
         [Inject]
@@ -30,7 +31,6 @@
         public var factory:CharacterFactory;
         private var character:CharacterClass;
         private var nextSkin:CharacterSkin;
-
 
         override public function initialize():void
         {
@@ -53,12 +53,18 @@
         {
             var _local1:int = this.playerModel.charList.bestFame(this.character.id);
             var _local2:int = FameUtil.numStars(_local1);
-            this.view.setData(this.character.name, this.character.description, _local2, this.playerModel.charList.bestLevel(this.character.id), _local1);
+            this.view.setData(
+                    this.character.name,
+                    this.character.description,
+                    _local2,
+                    this.playerModel.charList.bestLevel(this.character.id),
+                    _local1
+            );
             var _local3:int = FameUtil.nextStarFame(_local1, 0);
             this.view.setNextGoal(this.character.name, _local3);
         }
 
-        private function onFocusSet(_arg1:CharacterSkin=null):void
+        private function onFocusSet(_arg1:CharacterSkin = null):void
         {
             _arg1 = ((_arg1) || (this.character.skins.getSelectedSkin()));
             this.nextSkin = _arg1;
@@ -67,7 +73,9 @@
 
         private function delayedFocusSet(_arg1:TimerEvent):void
         {
-            var _local2:Animation = (this.skins[this.nextSkin.id] = ((this.skins[this.nextSkin.id]) || (this.factory.makeWalkingIcon(this.nextSkin.template, 200))));
+            var _local2:Animation = (this.skins[this.nextSkin.id] = ((this.skins[this.nextSkin.id]) || (this.factory.makeWalkingIcon(
+                    this.nextSkin.template, 200
+            ))));
             this.view.setWalkingAnimation(_local2);
         }
 
@@ -80,10 +88,8 @@
                 _local2 = this.skins[_local1];
                 _local2.dispose();
                 delete this.skins[_local1];
-            };
+            }
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class PlaySound extends IncomingMessage 
+    public class PlaySound extends IncomingMessage
     {
-
         public var ownerId_:int;
         public var soundId_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("PLAYSOUND", "ownerId_", "soundId_"));
         }
-
-
     }
 }
 

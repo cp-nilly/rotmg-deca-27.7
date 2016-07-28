@@ -2,9 +2,8 @@
 {
     import kabam.rotmg.build.api.BuildEnvironment;
 
-    public final class BuildEnvironments 
+    public final class BuildEnvironments
     {
-
         public static const LOCALHOST:String = "localhost";
         public static const PRIVATE:String = "private";
         public static const DEV:String = "dev";
@@ -13,7 +12,6 @@
         public static const PRODTEST:String = "prodtest";
         public static const PRODUCTION:String = "production";
         private static const IP_MATCHER:RegExp = /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/;
-
 
         public function getEnvironment(_arg1:String):BuildEnvironment
         {
@@ -43,11 +41,9 @@
                     return (BuildEnvironment.PRODTEST);
                 case PRODUCTION:
                     return (BuildEnvironment.PRODUCTION);
-            };
+            }
             return (null);
         }
-
-
     }
 }
 

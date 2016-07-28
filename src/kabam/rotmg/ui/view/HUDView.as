@@ -1,30 +1,29 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import flash.display.Sprite;
-    import flash.geom.Point;
-    import kabam.rotmg.minimap.view.MiniMapImp;
-    import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
-    import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.game.view.components.TabStripView;
-    import com.company.assembleegameclient.ui.panels.InteractPanel;
-    import com.company.assembleegameclient.ui.TradePanel;
-    import com.company.assembleegameclient.game.GameSprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import com.company.util.GraphicsUtil;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.AGameSprite;
-    import kabam.rotmg.messaging.impl.incoming.TradeStart;
-    import kabam.rotmg.messaging.impl.incoming.TradeChanged;
-    import kabam.rotmg.messaging.impl.incoming.TradeAccepted;
+    import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.TradePanel;
+    import com.company.assembleegameclient.ui.panels.InteractPanel;
+    import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
+    import com.company.util.GraphicsUtil;
     import com.company.util.SpriteUtil;
-    import __AS3__.vec.*;
 
-    public class HUDView extends Sprite implements UnFocusAble 
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.geom.Point;
+
+    import kabam.rotmg.game.view.components.TabStripView;
+    import kabam.rotmg.messaging.impl.incoming.TradeAccepted;
+    import kabam.rotmg.messaging.impl.incoming.TradeChanged;
+    import kabam.rotmg.messaging.impl.incoming.TradeStart;
+    import kabam.rotmg.minimap.view.MiniMapImp;
+
+    public class HUDView extends Sprite implements UnFocusAble
     {
-
         private const BG_POSITION:Point = new Point(0, 0);
         private const MAP_POSITION:Point = new Point(4, 4);
         private const CHARACTER_DETAIL_PANEL_POSITION:Point = new Point(0, 198);
@@ -32,7 +31,6 @@
         private const EQUIPMENT_INVENTORY_POSITION:Point = new Point(14, 304);
         private const TAB_STRIP_POSITION:Point = new Point(7, 346);
         private const INTERACT_PANEL_POSITION:Point = new Point(0, 500);
-
         private var background:CharacterWindowBackground;
         private var miniMap:MiniMapImp;
         private var equippedGrid:EquippedGrid;
@@ -126,11 +124,11 @@
             if (this.equippedGrid)
             {
                 this.equippedGrid.draw();
-            };
+            }
             if (this.interactPanel)
             {
                 this.interactPanel.draw();
-            };
+            }
         }
 
         public function startTrade(_arg1:AGameSprite, _arg2:TradeStart):void
@@ -142,7 +140,7 @@
                 this.tradePanel.addEventListener(Event.CANCEL, this.onTradeCancel);
                 addChild(this.tradePanel);
                 this.setNonTradePanelAssetsVisible(false);
-            };
+            }
         }
 
         private function setNonTradePanelAssetsVisible(_arg1:Boolean):void
@@ -165,7 +163,7 @@
             if (this.tradePanel)
             {
                 this.tradePanel.setYourOffer(_arg1.offer_);
-            };
+            }
         }
 
         public function tradeAccepted(_arg1:TradeAccepted):void
@@ -173,7 +171,7 @@
             if (this.tradePanel)
             {
                 this.tradePanel.youAccepted(_arg1.myOffer_, _arg1.yourOffer_);
-            };
+            }
         }
 
         private function onTradeCancel(_arg1:Event):void
@@ -189,10 +187,8 @@
                 this.tradePanel.removeEventListener(Event.CANCEL, this.onTradeCancel);
                 this.tradePanel = null;
                 this.setNonTradePanelAssetsVisible(true);
-            };
+            }
         }
-
-
     }
 }
 

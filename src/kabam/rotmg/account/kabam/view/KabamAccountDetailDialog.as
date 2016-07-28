@@ -1,18 +1,20 @@
 ﻿package kabam.rotmg.account.kabam.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.account.ui.Frame;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
-    public class KabamAccountDetailDialog extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class KabamAccountDetailDialog extends Sprite
     {
-
         public var done:Signal;
         private var loginText_:TextFieldDisplayConcrete;
         private var usernameText_:TextFieldDisplayConcrete;
@@ -25,7 +27,12 @@
         public function setInfo(_arg1:String):void
         {
             var _local2:Frame;
-            _local2 = new Frame(TextKey.KABAMACCOUNTDETAILDIALOG_TITLE, "", TextKey.KABAMACCOUNTDETAILDIALOG_RIGHTBUTTON, "/currentKabamLogin");
+            _local2 = new Frame(
+                    TextKey.KABAMACCOUNTDETAILDIALOG_TITLE,
+                    "",
+                    TextKey.KABAMACCOUNTDETAILDIALOG_RIGHTBUTTON,
+                    "/currentKabamLogin"
+            );
             addChild(_local2);
             this.loginText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);
             this.loginText_.setBold(true);
@@ -48,8 +55,6 @@
         {
             this.done.dispatch();
         }
-
-
     }
 }
 

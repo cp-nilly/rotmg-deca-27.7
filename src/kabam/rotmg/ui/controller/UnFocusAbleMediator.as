@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.ui.controller
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.ui.view.UnFocusAble;
     import com.company.assembleegameclient.util.StageProxy;
+
     import flash.events.MouseEvent;
 
-    public class UnFocusAbleMediator extends Mediator 
-    {
+    import kabam.rotmg.ui.view.UnFocusAble;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class UnFocusAbleMediator extends Mediator
+    {
         [Inject]
         public var unFocusAble:UnFocusAble;
         [Inject]
         public var stageProxy:StageProxy;
-
 
         override public function initialize():void
         {
@@ -28,8 +29,6 @@
         {
             this.unFocusAble.removeEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
         }
-
-
     }
 }
 

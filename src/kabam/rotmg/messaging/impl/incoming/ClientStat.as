@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class ClientStat extends IncomingMessage 
+    public class ClientStat extends IncomingMessage
     {
-
         public var name_:String;
         public var value_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("CLIENTSTAT", "name_", "value_"));
         }
-
-
     }
 }
 

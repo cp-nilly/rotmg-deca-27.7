@@ -2,13 +2,11 @@
 {
     import org.osflash.signals.Signal;
 
-    public class AlreadyBoughtPackageSignal extends Signal 
+    public class AlreadyBoughtPackageSignal extends Signal
     {
-
         public function AlreadyBoughtPackageSignal():void
         {
         }
-
     }
 }
 

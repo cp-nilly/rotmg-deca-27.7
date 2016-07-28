@@ -1,9 +1,7 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    public class TeleportEffect extends ParticleEffect 
+    public class TeleportEffect extends ParticleEffect
     {
-
-
         override public function runNormalRendering(_arg1:int, _arg2:int):Boolean
         {
             var _local5:Number;
@@ -20,7 +18,7 @@
                 _local8 = new TeleportParticle(0xFF, 50, 0.1, _local7);
                 map_.addObj(_local8, (x_ + (_local6 * Math.cos(_local5))), (y_ + (_local6 * Math.sin(_local5))));
                 _local4++;
-            };
+            }
             return (false);
         }
 
@@ -40,20 +38,18 @@
                 _local8 = new TeleportParticle(0xFF, 50, 0.1, _local7);
                 map_.addObj(_local8, (x_ + (_local6 * Math.cos(_local5))), (y_ + (_local6 * Math.sin(_local5))));
                 _local4++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
+
 import flash.geom.Vector3D;
 
-class TeleportParticle extends Particle 
+class TeleportParticle extends Particle
 {
-
     public var timeLeft_:int;
     protected var moveVec_:Vector3D;
 
@@ -71,11 +67,9 @@ class TeleportParticle extends Particle
         if (this.timeLeft_ <= 0)
         {
             return (false);
-        };
+        }
         z_ = (z_ + ((this.moveVec_.z * _arg2) * 0.008));
         return (true);
     }
-
-
 }
 

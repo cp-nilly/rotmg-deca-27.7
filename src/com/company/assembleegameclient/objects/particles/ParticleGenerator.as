@@ -1,15 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.GameObject;
-    import flash.display.BitmapData;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import __AS3__.vec.*;
+    import com.company.util.AssetLibrary;
 
-    public class ParticleGenerator extends ParticleEffect 
+    import flash.display.BitmapData;
+
+    public class ParticleGenerator extends ParticleEffect
     {
-
         private var particlePool:Vector.<BaseParticle>;
         private var liveParticles:Vector.<BaseParticle>;
         private var targetGO:GameObject;
@@ -27,20 +25,21 @@
             this.effectProps = _arg1;
             if (this.effectProps.bitmapFile)
             {
-                this.bitmapData = AssetLibrary.getImageFromSet(this.effectProps.bitmapFile, this.effectProps.bitmapIndex);
+                this.bitmapData = AssetLibrary.getImageFromSet(
+                        this.effectProps.bitmapFile, this.effectProps.bitmapIndex
+                );
                 this.bitmapData = TextureRedrawer.redraw(this.bitmapData, this.effectProps.size, true, 0);
             }
             else
             {
                 this.bitmapData = TextureRedrawer.redrawSolidSquare(this.effectProps.color, this.effectProps.size);
-            };
+            }
         }
 
         public static function attachParticleGenerator(_arg1:EffectProperties, _arg2:GameObject):ParticleGenerator
         {
-            return (new (ParticleGenerator)(_arg1, _arg2));
+            return (new ParticleGenerator(_arg1, _arg2));
         }
-
 
         override public function update(_arg1:int, _arg2:int):Boolean
         {
@@ -52,7 +51,7 @@
             if (this.targetGO.map_ == null)
             {
                 return (false);
-            };
+            }
             x_ = this.targetGO.x_;
             y_ = this.targetGO.y_;
             z_ = (this.targetGO.z_ + this.effectProps.zOffset);
@@ -69,12 +68,22 @@
                 else
                 {
                     _local9 = new BaseParticle(this.bitmapData);
-                };
-                _local9.initialize((this.effectProps.life + (this.effectProps.lifeVariance * ((2 * Math.random()) - 1))), (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))), (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))), (this.effectProps.rise + (this.effectProps.riseVariance * ((2 * Math.random()) - 1))), z_);
-                map_.addObj(_local9, (x_ + (this.effectProps.rangeX * ((2 * Math.random()) - 1))), (y_ + (this.effectProps.rangeY * ((2 * Math.random()) - 1))));
+                }
+                _local9.initialize(
+                        (this.effectProps.life + (this.effectProps.lifeVariance * ((2 * Math.random()) - 1))),
+                        (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))),
+                        (this.effectProps.speed + (this.effectProps.speedVariance * ((2 * Math.random()) - 1))),
+                        (this.effectProps.rise + (this.effectProps.riseVariance * ((2 * Math.random()) - 1))),
+                        z_
+                );
+                map_.addObj(
+                        _local9,
+                        (x_ + (this.effectProps.rangeX * ((2 * Math.random()) - 1))),
+                        (y_ + (this.effectProps.rangeY * ((2 * Math.random()) - 1)))
+                );
                 this.liveParticles.push(_local9);
                 _local7++;
-            };
+            }
             this.generatedParticles = (this.generatedParticles + _local6);
             var _local8:int;
             while (_local8 < this.liveParticles.length)
@@ -94,9 +103,9 @@
                     _local10.x_ = (_local10.x_ + (_local10.spdX * _local4));
                     _local10.y_ = (_local10.y_ + (_local10.spdY * _local4));
                     _local10.z_ = (_local10.z_ + (_local10.spdZ * _local4));
-                };
+                }
                 _local8++;
-            };
+            }
             return (true);
         }
 
@@ -106,13 +115,11 @@
             for each (_local1 in this.liveParticles)
             {
                 map_.removeObj(_local1.objectId_);
-            };
+            }
             this.liveParticles = null;
             this.particlePool = null;
             super.removeFromMap();
         }
-
-
     }
 }
 

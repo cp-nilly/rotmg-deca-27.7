@@ -1,38 +1,34 @@
 ﻿package kabam.rotmg.minimap.view
 {
-    import flash.utils.Dictionary;
-    import flash.geom.Rectangle;
-    import flash.geom.Point;
-    import flash.display.BitmapData;
-    import __AS3__.vec.Vector;
-    import flash.display.Shape;
-    import com.company.assembleegameclient.objects.GameObject;
-    import com.company.assembleegameclient.ui.tooltip.PlayerGroupToolTip;
-    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
-    import flash.geom.Matrix;
-    import com.company.assembleegameclient.objects.Player;
-    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.map.AbstractMap;
-    import com.company.util.AssetLibrary;
-    import flash.geom.ColorTransform;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
     import com.company.assembleegameclient.map.GroundLibrary;
-    import flash.display.Graphics;
-    import com.company.util.PointUtil;
     import com.company.assembleegameclient.objects.Character;
+    import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.objects.GuildHallPortal;
+    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.objects.Portal;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
+    import com.company.assembleegameclient.ui.tooltip.PlayerGroupToolTip;
+    import com.company.util.AssetLibrary;
+    import com.company.util.PointUtil;
     import com.company.util.RectangleUtil;
-    import __AS3__.vec.*;
 
-    public class MiniMapImp extends MiniMap 
+    import flash.display.BitmapData;
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
+    import flash.utils.Dictionary;
+
+    public class MiniMapImp extends MiniMap
     {
-
         public static const MOUSE_DIST_SQ:int = (5 * 5);//25
-
         private static var objectTypeColorDict_:Dictionary = new Dictionary();
-
         public var _width:int;
         public var _height:int;
         public var zoomIndex:int = 0;
@@ -76,10 +72,9 @@
             if (!objectTypeColorDict_.hasOwnProperty(_local2))
             {
                 objectTypeColorDict_[_local2] = _arg1.getColor();
-            };
+            }
             return (objectTypeColorDict_[_local2]);
         }
-
 
         override public function setMap(_arg1:AbstractMap):void
         {
@@ -103,7 +98,7 @@
             {
                 this.zoomLevels.push(_local2);
                 _local2 = (_local2 / 2);
-            };
+            }
             this.zoomLevels.push(_local1);
             ((this.zoomButtons) && (this.zoomButtons.setZoomLevels(this.zoomLevels.length)));
         }
@@ -178,7 +173,7 @@
             if ((((((((this.tooltip == null)) || ((this.tooltip.parent == null)))) || ((this.tooltip.players_ == null)))) || ((this.tooltip.players_.length == 0))))
             {
                 return;
-            };
+            }
             this.removeMenu();
             this.addMenu();
             this.removeTooltip();
@@ -217,9 +212,9 @@
                 if (this.tooltip.parent != null)
                 {
                     this.tooltip.parent.removeChild(this.tooltip);
-                };
+                }
                 this.tooltip = null;
-            };
+            }
         }
 
         private function removeMenu():void
@@ -229,9 +224,9 @@
                 if (this.menu.parent != null)
                 {
                     this.menu.parent.removeChild(this.menu);
-                };
+                }
                 this.menu = null;
-            };
+            }
         }
 
         override public function draw():void
@@ -251,11 +246,11 @@
             if (!this.focus)
             {
                 return;
-            };
+            }
             if (!this.active)
             {
                 return;
-            };
+            }
             var _local1:Number = this.zoomLevels[this.zoomIndex];
             this.mapMatrix_.identity();
             this.mapMatrix_.translate(-(this.focus.x_), -(this.focus.y_));
@@ -272,8 +267,8 @@
                 if (_local3.x < this.windowRect_.right)
                 {
                     _local4 = (this.windowRect_.right - _local3.x);
-                };
-            };
+                }
+            }
             var _local5:Number = 0;
             if (_local2.y > this.windowRect_.top)
             {
@@ -284,14 +279,14 @@
                 if (_local3.y < this.windowRect_.bottom)
                 {
                     _local5 = (this.windowRect_.bottom - _local3.y);
-                };
-            };
+                }
+            }
             this.mapMatrix_.translate(_local4, _local5);
             _local2 = this.mapMatrix_.transformPoint(PointUtil.ORIGIN);
             if ((((_local1 >= 1)) && (this._rotateEnableFlag)))
             {
                 this.mapMatrix_.rotate(-(Parameters.data_.cameraAngle));
-            };
+            }
             var _local6:Rectangle = new Rectangle();
             _local6.x = Math.max(this.windowRect_.x, _local2.x);
             _local6.y = Math.max(this.windowRect_.y, _local2.y);
@@ -325,8 +320,8 @@
                             else
                             {
                                 _local15 = 0xFFFF00;
-                            };
-                        };
+                            }
+                        }
                     }
                     else
                     {
@@ -339,7 +334,7 @@
                             else
                             {
                                 _local15 = gameObjectToColor(_local10);
-                            };
+                            }
                         }
                         else
                         {
@@ -350,17 +345,19 @@
                             else
                             {
                                 continue;
-                            };
-                        };
-                    };
+                            }
+                        }
+                    }
                     _local17 = (((this.mapMatrix_.a * _local10.x_) + (this.mapMatrix_.c * _local10.y_)) + this.mapMatrix_.tx);
                     _local18 = (((this.mapMatrix_.b * _local10.x_) + (this.mapMatrix_.d * _local10.y_)) + this.mapMatrix_.ty);
                     if ((((((((_local17 <= (-(this._width) / 2))) || ((_local17 >= (this._width / 2))))) || ((_local18 <= (-(this._height) / 2))))) || ((_local18 >= (this._height / 2)))))
                     {
-                        RectangleUtil.lineSegmentIntersectXY(this.windowRect_, 0, 0, _local17, _local18, this.tempPoint);
+                        RectangleUtil.lineSegmentIntersectXY(
+                                this.windowRect_, 0, 0, _local17, _local18, this.tempPoint
+                        );
                         _local17 = this.tempPoint.x;
                         _local18 = this.tempPoint.y;
-                    };
+                    }
                     if (((((!((_local16 == null))) && (this.isMouseOver))) && ((((this.menu == null)) || ((this.menu.parent == null))))))
                     {
                         _local19 = (_local8 - _local17);
@@ -369,13 +366,13 @@
                         if (_local21 < MOUSE_DIST_SQ)
                         {
                             this.players_.push(_local16);
-                        };
-                    };
+                        }
+                    }
                     _local7.beginFill(_local15);
                     _local7.drawRect((_local17 - 2), (_local18 - 2), 4, 4);
                     _local7.endFill();
-                };
-            };
+                }
+            }
             if (this.players_.length != 0)
             {
                 if (this.tooltip == null)
@@ -388,8 +385,8 @@
                     if (!this.areSamePlayers(this.tooltip.players_, this.players_))
                     {
                         this.tooltip.setPlayers(this.players_);
-                    };
-                };
+                    }
+                }
             }
             else
             {
@@ -398,10 +395,10 @@
                     if (this.tooltip.parent != null)
                     {
                         this.tooltip.parent.removeChild(this.tooltip);
-                    };
+                    }
                     this.tooltip = null;
-                };
-            };
+                }
+            }
             var _local11:Number = this.focus.x_;
             var _local12:Number = this.focus.y_;
             var _local13:Number = (((this.mapMatrix_.a * _local11) + (this.mapMatrix_.c * _local12)) + this.mapMatrix_.tx);
@@ -412,7 +409,7 @@
             if (!(((_local1 >= 1)) && (this._rotateEnableFlag)))
             {
                 this.arrowMatrix_.rotate(Parameters.data_.cameraAngle);
-            };
+            }
             this.arrowMatrix_.translate(_local13, _local14);
             _local7.beginBitmapFill(this.blueArrow_, this.arrowMatrix_, false);
             _local7.drawRect((_local13 - 16), (_local14 - 16), 32, 32);
@@ -425,16 +422,16 @@
             if (_local3 != _arg2.length)
             {
                 return (false);
-            };
+            }
             var _local4:int;
             while (_local4 < _local3)
             {
                 if (_arg1[_local4] != _arg2[_local4])
                 {
                     return (false);
-                };
+                }
                 _local4++;
-            };
+            }
             return (true);
         }
 
@@ -451,8 +448,6 @@
         override public function deactivate():void
         {
         }
-
-
     }
 }
 

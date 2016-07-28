@@ -1,27 +1,25 @@
 ﻿package com.company.assembleegameclient.ui.panels.itemgrids.itemtiles
 {
-    import flash.display.Sprite;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import flash.display.Shape;
-    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
-    import com.company.util.GraphicsUtil;
-    import kabam.rotmg.constants.ItemConstants;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.objects.Player;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
+    import com.company.util.GraphicsUtil;
 
-    public class ItemTile extends Sprite 
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+
+    import kabam.rotmg.constants.ItemConstants;
+
+    public class ItemTile extends Sprite
     {
-
         public static const TILE_DOUBLE_CLICK:String = "TILE_DOUBLE_CLICK";
         public static const TILE_SINGLE_CLICK:String = "TILE_SINGLE_CLICK";
         public static const WIDTH:int = 40;
         public static const HEIGHT:int = 40;
         public static const BORDER:int = 4;
-
         private var fill_:GraphicsSolidFill;
         private var path_:GraphicsPath;
         private var graphicsData_:Vector.<IGraphicsData>;
@@ -64,11 +62,11 @@
             if (_arg1 == this.itemSprite.itemId)
             {
                 return (false);
-            };
+            }
             if (this.blockingItemUpdates)
             {
                 return (true);
-            };
+            }
             this.itemSprite.setType(_arg1);
             this.updateUseability(this.ownerGrid.curPlayer);
             return (true);
@@ -91,7 +89,7 @@
             else
             {
                 this.restrictedUseIndicator.visible = false;
-            };
+            }
         }
 
         public function canHoldItem(_arg1:int):Boolean
@@ -113,8 +111,6 @@
         {
             return (0x545454);
         }
-
-
     }
 }
 

@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.pets.data.PetVO;
     import flash.display.DisplayObject;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
 
-    public class PetPicker extends GridList implements ClearsPetSlots 
+    import kabam.rotmg.pets.data.PetVO;
+
+    import org.osflash.signals.Signal;
+
+    public class PetPicker extends GridList implements ClearsPetSlots
     {
-
         [Inject]
         public var petIconFactory:PetItemFactory;
         public var petPicked:Signal;
@@ -32,7 +31,6 @@
             return ((_local4 - _local3));
         }
 
-
         public function setPets(_arg1:Vector.<PetVO>):void
         {
             this.makePetItems(_arg1);
@@ -47,7 +45,7 @@
             for each (_local1 in this.petItems)
             {
                 this.items.push(_local1);
-            };
+            }
         }
 
         private function makePetItems(_arg1:Vector.<PetVO>):void
@@ -57,7 +55,7 @@
             for each (_local2 in _arg1)
             {
                 this.addPet(_local2);
-            };
+            }
             this.petItems.sort(sortByFirstAbilityPoints);
         }
 
@@ -74,7 +72,7 @@
             if (_arg1)
             {
                 PetItem(_arg1).setBackground(_arg2);
-            };
+            }
         }
 
         public function setPetSize(_arg1:int):void
@@ -102,9 +100,9 @@
                 if (!this.isFusible(_arg1, _local3))
                 {
                     this.petItems[_local2].disable();
-                };
+                }
                 _local2++;
-            };
+            }
         }
 
         public function filterUsedPetVO(_arg1:PetVO):void
@@ -117,9 +115,9 @@
                 if (_local3.getID() == _arg1.getID())
                 {
                     this.petItems[_local2].disable();
-                };
+                }
                 _local2++;
-            };
+            }
         }
 
         private function isFusible(_arg1:PetVO, _arg2:PetVO):Boolean
@@ -136,14 +134,12 @@
                 if (pet.isEnabled())
                 {
                     petPicked.dispatch(petVO);
-                };
+                }
             };
             pet = this.petIconFactory.create(petVO, this.petSize);
             this.petItems.push(pet);
             pet.addEventListener(MouseEvent.CLICK, pet_clickHandler);
         }
-
-
     }
 }
 

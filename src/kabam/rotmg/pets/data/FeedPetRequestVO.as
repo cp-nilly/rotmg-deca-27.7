@@ -2,9 +2,8 @@
 {
     import kabam.rotmg.messaging.impl.data.SlotObjectData;
 
-    public class FeedPetRequestVO implements IUpgradePetRequestVO 
+    public class FeedPetRequestVO implements IUpgradePetRequestVO
     {
-
         public var petInstanceId:int;
         public var slotObject:SlotObjectData;
         public var paymentTransType:int;
@@ -15,7 +14,6 @@
             this.slotObject = _arg2;
             this.paymentTransType = _arg3;
         }
-
     }
 }
 

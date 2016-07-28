@@ -1,30 +1,25 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import com.company.assembleegameclient.mapeditor.Element;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import flash.display.Shape;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.mapeditor.*;
 
-    class Chooser extends Sprite 
+    class Chooser extends Sprite
     {
-
         public static const WIDTH:int = 136;
         public static const HEIGHT:int = 480;
         private static const SCROLLBAR_WIDTH:int = 20;
-
         public var layer_:int;
         private var elementSprite_:Sprite;
         public var selected_:Element;
@@ -32,11 +27,14 @@
         private var mask_:Shape;
         private var elements_:Vector.<Element> = new Vector.<Element>();
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function Chooser(_arg1:int)
         {
@@ -74,21 +72,21 @@
                 {
                     this.setSelected(_local2);
                     return;
-                };
-            };
+                }
+            }
         }
 
         protected function addElement(_arg1:Element):void
         {
             var _local2:int;
             _local2 = this.elements_.length;
-            _arg1.x = ((((_local2 % 2))==0) ? 0 : (2 + Element.WIDTH));
+            _arg1.x = ((((_local2 % 2)) == 0) ? 0 : (2 + Element.WIDTH));
             _arg1.y = ((int((_local2 / 2)) * Element.HEIGHT) + 6);
             this.elementSprite_.addChild(_arg1);
             if (_local2 == 0)
             {
                 this.setSelected(_arg1);
-            };
+            }
             _arg1.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
             this.elements_.push(_arg1);
         }
@@ -104,7 +102,7 @@
             if (this.selected_ != null)
             {
                 this.selected_.setSelected(false);
-            };
+            }
             this.selected_ = _arg1;
             this.selected_.setSelected(true);
         }
@@ -132,8 +130,6 @@
             GraphicsUtil.drawCutEdgeRect(0, 0, WIDTH, HEIGHT, 4, [1, 1, 1, 1], this.path_);
             graphics.drawGraphicsData(this.graphicsData_);
         }
-
-
     }
 }
 

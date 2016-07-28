@@ -1,12 +1,11 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import flash.display.Sprite;
     import flash.display.Bitmap;
+    import flash.display.Sprite;
     import flash.geom.ColorTransform;
 
-    public class TabIconView extends TabView 
+    public class TabIconView extends TabView
     {
-
         private var background:Sprite;
         private var icon:Bitmap;
 
@@ -17,7 +16,7 @@
             if (_arg3)
             {
                 this.initIcon(_arg3);
-            };
+            }
         }
 
         private function initBackground(_arg1:Sprite):void
@@ -40,8 +39,6 @@
             _local2.color = ((_arg1) ? TabConstants.BACKGROUND_COLOR : TabConstants.TAB_COLOR);
             this.background.transform.colorTransform = _local2;
         }
-
-
     }
 }
 

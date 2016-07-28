@@ -1,18 +1,15 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
-    import kabam.rotmg.util.components.VerticalScrollingList;
+    import flash.display.Sprite;
+
     import kabam.lib.ui.api.Size;
     import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
-    import __AS3__.vec.*;
+    import kabam.rotmg.util.components.VerticalScrollingList;
 
-    public class ArenaLeaderboardList extends Sprite 
+    public class ArenaLeaderboardList extends Sprite
     {
-
         private const MAX_SIZE:int = 20;
-
         private var listItemPool:Vector.<DisplayObject>;
         private var scrollList:VerticalScrollingList;
 
@@ -26,7 +23,7 @@
             {
                 this.listItemPool[_local1] = new ArenaLeaderboardListItem();
                 _local1++;
-            };
+            }
             this.scrollList.setSize(new Size(786, 400));
             addChild(this.scrollList);
         }
@@ -42,11 +39,9 @@
                 _local5 = (this.listItemPool[_local3] as ArenaLeaderboardListItem);
                 _local5.apply(_local4, _arg2);
                 _local3++;
-            };
+            }
             this.scrollList.setItems(this.listItemPool);
         }
-
-
     }
 }
 

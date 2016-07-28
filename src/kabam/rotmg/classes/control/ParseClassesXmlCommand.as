@@ -1,24 +1,20 @@
 ﻿package kabam.rotmg.classes.control
 {
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.classes.model.CharacterClass;
-    import kabam.rotmg.classes.model.CharacterSkin;
-    import kabam.rotmg.text.model.TextKey;
     import kabam.rotmg.assets.model.CharacterTemplate;
-    import kabam.rotmg.classes.model.CharacterSkinState;
-    import kabam.rotmg.classes.model.CharacterClassUnlock;
+    import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.CharacterClassStat;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
+    import kabam.rotmg.classes.model.CharacterClassUnlock;
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.CharacterSkinState;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.text.model.TextKey;
 
-    public class ParseClassesXmlCommand 
+    public class ParseClassesXmlCommand
     {
-
         [Inject]
         public var data:XML;
         [Inject]
         public var classes:ClassesModel;
-
 
         public function execute():void
         {
@@ -27,7 +23,7 @@
             for each (_local2 in _local1)
             {
                 this.parseCharacterClass(_local2);
-            };
+            }
         }
 
         private function parseCharacterClass(_arg1:XML):void
@@ -60,7 +56,7 @@
             for each (_local3 in _arg2.UnlockLevel)
             {
                 _arg1.unlocks.push(this.parseUnlock(_local3));
-            };
+            }
             _arg1.skins.addSkin(this.makeDefaultSkin(_arg2), true);
         }
 
@@ -96,8 +92,8 @@
                 if (_local5.text() == _arg2)
                 {
                     _local4 = _local5;
-                };
-            };
+                }
+            }
             _local6 = new CharacterClassStat();
             _local6.initial = int(_local3.toString());
             _local6.max = _local3.@max;
@@ -116,11 +112,9 @@
             {
                 _local4[_local5] = int(_local2[_local5]);
                 _local5++;
-            };
+            }
             return (_local4);
         }
-
-
     }
 }
 

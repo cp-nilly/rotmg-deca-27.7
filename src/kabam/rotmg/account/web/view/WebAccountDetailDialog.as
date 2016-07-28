@@ -1,18 +1,20 @@
 ﻿package kabam.rotmg.account.web.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import org.osflash.signals.natives.NativeMappedSignal;
+
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import flash.filters.DropShadowFilter;
 
-    public class WebAccountDetailDialog extends Frame 
-    {
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebAccountDetailDialog extends Frame
+    {
         public var cancel:Signal;
         public var change:Signal;
         public var logout:Signal;
@@ -24,7 +26,9 @@
         private var logoutText:DeprecatedClickableText;
         private var headerText:String;
 
-        public function WebAccountDetailDialog(_arg1:String="WebAccountDetailDialog.title", _arg2:String="WebAccountDetailDialog.loginText")
+        public function WebAccountDetailDialog(
+                _arg1:String = "WebAccountDetailDialog.title", _arg2:String = "WebAccountDetailDialog.loginText"
+        )
         {
             super(_arg1, "", "WebAccountDetailDialog.rightButton", "/currentLogin");
             this.headerText = _arg2;
@@ -43,7 +47,7 @@
             if (!_arg2)
             {
                 this.makeVerifyEmailText();
-            };
+            }
             this.makeChangeText();
             this.makeLogoutText();
         }
@@ -53,7 +57,7 @@
             if (this.verifyEmail != null)
             {
                 removeChild(this.verifyEmail);
-            };
+            }
             this.verifyEmail = new DeprecatedClickableText(12, false, "WebAccountDetailDialog.verify");
             addNavigationText(this.verifyEmail);
             this.verifyEmail.addEventListener(MouseEvent.CLICK, this.onVerifyEmail);
@@ -64,7 +68,7 @@
             if (this.changeText != null)
             {
                 removeChild(this.changeText);
-            };
+            }
             this.changeText = new DeprecatedClickableText(12, false, "WebAccountDetailDialog.changePassword");
             this.changeText.addEventListener(MouseEvent.CLICK, this.onChange);
             addNavigationText(this.changeText);
@@ -80,7 +84,7 @@
             if (this.logoutText != null)
             {
                 removeChild(this.logoutText);
-            };
+            }
             this.logoutText = new DeprecatedClickableText(12, false, "WebAccountDetailDialog.logout");
             this.logoutText.addEventListener(MouseEvent.CLICK, this.onLogout);
             addNavigationText(this.logoutText);
@@ -115,8 +119,6 @@
             this.verify.dispatch();
             this.verifyEmail.makeStatic("WebAccountDetailDialog.sent");
         }
-
-
     }
 }
 

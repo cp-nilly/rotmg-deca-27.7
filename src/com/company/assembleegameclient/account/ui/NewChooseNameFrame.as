@@ -1,15 +1,15 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.model.TextKey;
     import flash.events.MouseEvent;
 
-    public class NewChooseNameFrame extends Frame 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    import org.osflash.signals.Signal;
+
+    public class NewChooseNameFrame extends Frame
+    {
         public const choose:Signal = new Signal();
         public const cancel:Signal = new Signal();
-
         private var name_:TextInputField;
 
         public function NewChooseNameFrame()
@@ -20,7 +20,7 @@
             var _local1:int = 10;
             this.name_.inputText_.maxChars = _local1;
             addTextInputField(this.name_);
-            addPlainText(TextKey.FRAME_MAX_CHAR, {"maxChars":_local1});
+            addPlainText(TextKey.FRAME_MAX_CHAR, {"maxChars": _local1});
             addPlainText(TextKey.FRAME_RESTRICT_CHAR);
             addPlainText(TextKey.CHOOSE_NAME_WARNING);
             leftButton_.addEventListener(MouseEvent.CLICK, this.onCancel);
@@ -41,8 +41,6 @@
         {
             this.name_.setError(_arg1);
         }
-
-
     }
 }
 

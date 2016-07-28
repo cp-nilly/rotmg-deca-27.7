@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import flash.utils.getTimer;
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class Quest 
-    {
+    import flash.utils.getTimer;
 
+    public class Quest
+    {
         public var map_:Map;
         public var objectId_:int = -1;
         private var questAvailableAt_:int = 0;
@@ -22,7 +22,7 @@
             {
                 this.questAvailableAt_ = (getTimer() + 4000);
                 this.questOldAt_ = (this.questAvailableAt_ + 2000);
-            };
+            }
             this.objectId_ = _arg1;
         }
 
@@ -37,7 +37,7 @@
             if (_arg1 < this.questAvailableAt_)
             {
                 return (null);
-            };
+            }
             return (this.map_.goDict_[this.objectId_]);
         }
 
@@ -45,8 +45,6 @@
         {
             return ((_arg1 < this.questOldAt_));
         }
-
-
     }
 }
 

@@ -1,12 +1,11 @@
 ﻿package kabam.rotmg.legends.model
 {
-    import kabam.rotmg.fame.model.FameVO;
-    import __AS3__.vec.Vector;
     import flash.display.BitmapData;
 
-    public class Legend implements FameVO 
-    {
+    import kabam.rotmg.fame.model.FameVO;
 
+    public class Legend implements FameVO
+    {
         public var isOwnLegend:Boolean;
         public var place:int;
         public var accountId:String;
@@ -18,7 +17,6 @@
         public var character:BitmapData;
         public var isFocus:Boolean;
 
-
         public function getAccountId():String
         {
             return (this.accountId);
@@ -28,8 +26,6 @@
         {
             return (this.charId);
         }
-
-
     }
 }
 

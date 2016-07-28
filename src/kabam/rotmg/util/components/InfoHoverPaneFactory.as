@@ -1,20 +1,19 @@
 ﻿package kabam.rotmg.util.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
 
-    public class InfoHoverPaneFactory extends Sprite 
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+
+    public class InfoHoverPaneFactory extends Sprite
     {
-
-
         public static function make(_arg1:DisplayObject):Sprite
         {
             var _local4:PopupWindowBackground;
             if (_arg1 == null)
             {
                 return (null);
-            };
+            }
             var _local2:Sprite = new Sprite();
             var _local3:int = 8;
             _arg1.width = (291 - _local3);
@@ -27,8 +26,6 @@
             _local2.addChild(_local4);
             return (_local2);
         }
-
-
     }
 }
 

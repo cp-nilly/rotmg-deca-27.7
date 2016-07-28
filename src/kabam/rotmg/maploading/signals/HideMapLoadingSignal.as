@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class HideMapLoadingSignal extends Signal 
+    public class HideMapLoadingSignal extends Signal
     {
-
-
     }
 }
 

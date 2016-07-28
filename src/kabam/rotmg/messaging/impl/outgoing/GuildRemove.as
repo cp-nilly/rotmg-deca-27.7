@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class GuildRemove extends OutgoingMessage 
+    public class GuildRemove extends OutgoingMessage
     {
-
         public var name_:String;
 
         public function GuildRemove(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("GUILDREMOVE", "name_"));
         }
-
-
     }
 }
 

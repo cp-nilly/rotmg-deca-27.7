@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.messaging.impl.EvolvePetInfo;
+    import kabam.rotmg.pets.controller.EvolvePetSignal;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.controller.EvolvePetSignal;
 
-    public class EvolvedMessageHandler 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class EvolvedMessageHandler
     {
-
         [Inject]
         public var injector:IInjector;
         private var evolvePetInfo:EvolvePetInfo;
         private var message:EvolvedPetMessage;
         private var finalPet:PetVO;
         private var initialPet:PetVO;
-
 
         public function handleMessage(_arg1:EvolvedPetMessage):void
         {
@@ -46,8 +45,6 @@
             var _local1:EvolvePetSignal = this.injector.getInstance(EvolvePetSignal);
             _local1.dispatch(this.evolvePetInfo);
         }
-
-
     }
 }
 

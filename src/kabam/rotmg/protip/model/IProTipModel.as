@@ -1,10 +1,8 @@
 ﻿package kabam.rotmg.protip.model
 {
-    public interface IProTipModel 
+    public interface IProTipModel
     {
-
         function getTip():String;
-
     }
 }
 

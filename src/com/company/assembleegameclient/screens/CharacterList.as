@@ -1,19 +1,19 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
-    import flash.display.Graphics;
     import com.company.assembleegameclient.screens.charrects.CharacterRectList;
+
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+
     import kabam.rotmg.core.model.PlayerModel;
 
-    public class CharacterList extends Sprite 
+    public class CharacterList extends Sprite
     {
-
         public static const WIDTH:int = 760;
         public static const HEIGHT:int = 415;
         public static const TYPE_CHAR_SELECT:int = 1;
         public static const TYPE_GRAVE_SELECT:int = 2;
-
         public var charRectList_:Sprite;
 
         public function CharacterList(_arg1:PlayerModel, _arg2:int)
@@ -31,7 +31,7 @@
                     break;
                 default:
                     this.charRectList_ = new Sprite();
-            };
+            }
             addChild(this.charRectList_);
             if (height > 400)
             {
@@ -42,15 +42,13 @@
                 _local4.endFill();
                 addChild(_local3);
                 mask = _local3;
-            };
+            }
         }
 
         public function setPos(_arg1:Number):void
         {
             this.charRectList_.y = _arg1;
         }
-
-
     }
 }
 

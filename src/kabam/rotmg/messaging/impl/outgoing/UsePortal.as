@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class UsePortal extends OutgoingMessage 
+    public class UsePortal extends OutgoingMessage
     {
-
         public var objectId_:int;
 
         public function UsePortal(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("USEPORTAL", "objectId_"));
         }
-
-
     }
 }
 

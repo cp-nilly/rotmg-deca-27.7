@@ -1,11 +1,11 @@
 ﻿package kabam.lib.tasks
 {
     import flash.errors.IllegalOperationError;
+
     import org.osflash.signals.Signal;
 
-    public class BaseTask implements Task 
+    public class BaseTask implements Task
     {
-
         private var _started:TaskStartedSignal;
         private var _finished:TaskResultSignal;
         private var _lastly:TaskResultSignal;
@@ -14,7 +14,6 @@
         private var _isOK:Boolean;
         private var _error:String;
 
-
         final public function start():void
         {
             if (!this._isStarted)
@@ -22,7 +21,7 @@
                 this._isStarted = true;
                 ((this._started) && (this._started.dispatch(this)));
                 this.startTask();
-            };
+            }
         }
 
         final public function reset():void
@@ -33,8 +32,8 @@
                 if (!this._isFinished)
                 {
                     throw (new IllegalOperationError("Unable to Task.reset() when a task is ongoing"));
-                };
-            };
+                }
+            }
             ((this._started) && (this._started.removeAll()));
             ((this._finished) && (this._finished.removeAll()));
             ((this._lastly) && (this._lastly.removeAll()));
@@ -49,7 +48,7 @@
         {
         }
 
-        final protected function completeTask(_arg1:Boolean, _arg2:String=""):void
+        final protected function completeTask(_arg1:Boolean, _arg2:String = ""):void
         {
             this._isOK = _arg1;
             this._error = _arg2;
@@ -92,8 +91,6 @@
         {
             return (this._error);
         }
-
-
     }
 }
 

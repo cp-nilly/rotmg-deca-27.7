@@ -1,16 +1,15 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.lib.ui.api.Size;
     import com.company.assembleegameclient.ui.LineBreakDesign;
 
-    public class PetPickerDialog extends PetDialog 
-    {
+    import kabam.lib.ui.api.Size;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
 
+    public class PetPickerDialog extends PetDialog
+    {
         private static const padding:int = 12;
         private static const pickerHeight:int = 217;
-
         public var petPicker:PetPicker;
         public var closeButton:DialogCloseButton;
 
@@ -67,8 +66,6 @@
         {
             return ((super.getBoxHeight() - (this.petPicker.height - pickerHeight)));
         }
-
-
     }
 }
 

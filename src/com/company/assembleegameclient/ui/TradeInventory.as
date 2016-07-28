@@ -1,29 +1,41 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.game.AGameSprite;
     import com.company.ui.BaseSimpleText;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.messaging.impl.data.TradeItem;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.constants.GeneralConstants;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import flash.display.Sprite;
     import flash.events.Event;
-    import __AS3__.vec.*;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
-    public class TradeInventory extends Sprite 
+    import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.messaging.impl.data.TradeItem;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class TradeInventory extends Sprite
     {
-
         private static const NO_CUT:Array = [0, 0, 0, 0];
-        private static const cuts:Array = [[1, 0, 0, 1], NO_CUT, NO_CUT, [0, 1, 1, 0], [1, 0, 0, 0], NO_CUT, NO_CUT, [0, 1, 0, 0], [0, 0, 0, 1], NO_CUT, NO_CUT, [0, 0, 1, 0]];
+        private static const cuts:Array = [
+            [
+                1, 0, 0, 1
+            ], NO_CUT, NO_CUT, [
+                0, 1, 1, 0
+            ], [
+                1, 0, 0, 0
+            ], NO_CUT, NO_CUT, [
+                0, 1, 0, 0
+            ], [
+                0, 0, 0, 1
+            ], NO_CUT, NO_CUT, [
+                0, 0, 1, 0
+            ]
+        ];
         public static const CLICKITEMS_MESSAGE:int = 0;
         public static const NOTENOUGHSPACE_MESSAGE:int = 1;
         public static const TRADEACCEPTED_MESSAGE:int = 2;
         public static const TRADEWAITING_MESSAGE:int = 3;
-
         public var gs_:AGameSprite;
         public var playerName_:String;
         private var message_:int;
@@ -56,18 +68,26 @@
             while (_local5 < (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS))
             {
                 _local6 = _arg3[_local5];
-                _local7 = new TradeSlot(_local6.item_, _local6.tradeable_, _local6.included_, _local6.slotType_, (_local5 - 3), cuts[_local5], _local5);
+                _local7 = new TradeSlot(
+                        _local6.item_,
+                        _local6.tradeable_,
+                        _local6.included_,
+                        _local6.slotType_,
+                        (_local5 - 3),
+                        cuts[_local5],
+                        _local5
+                );
                 _local7.setPlayer(this.gs_.map.player_);
                 _local7.x = (int((_local5 % 4)) * (Slot.WIDTH + 4));
                 _local7.y = ((int((_local5 / 4)) * (Slot.HEIGHT + 4)) + 46);
                 if (((_arg4) && (_local6.tradeable_)))
                 {
                     _local7.addEventListener(MouseEvent.MOUSE_DOWN, this.onSlotClick);
-                };
+                }
                 this.slots_.push(_local7);
                 addChild(_local7);
                 _local5++;
-            };
+            }
         }
 
         public function getOffer():Vector.<Boolean>
@@ -78,7 +98,7 @@
             {
                 _local1.push(this.slots_[_local2].included_);
                 _local2++;
-            };
+            }
             return (_local1);
         }
 
@@ -89,7 +109,7 @@
             {
                 this.slots_[_local2].setIncluded(_arg1[_local2]);
                 _local2++;
-            };
+            }
         }
 
         public function isOffer(_arg1:Vector.<Boolean>):Boolean
@@ -100,9 +120,9 @@
                 if (_arg1[_local2] != this.slots_[_local2].included_)
                 {
                     return (false);
-                };
+                }
                 _local2++;
-            };
+            }
             return (true);
         }
 
@@ -115,9 +135,9 @@
                 if (this.slots_[_local2].included_)
                 {
                     _local1++;
-                };
+                }
                 _local2++;
-            };
+            }
             return (_local1);
         }
 
@@ -130,9 +150,9 @@
                 if (this.slots_[_local2].isEmpty())
                 {
                     _local1++;
-                };
+                }
                 _local2++;
-            };
+            }
             return (_local1);
         }
 
@@ -161,7 +181,7 @@
                     this.taglineText_.setColor(0xB3B3B3);
                     _local2 = TextKey.TRADEINVENTORY_PLAYERISSELECTINGITEMS;
                     break;
-            };
+            }
             this.taglineText_.setStringBuilder(new LineBuilder().setParams(_local2));
         }
 
@@ -171,8 +191,6 @@
             _local2.setIncluded(!(_local2.included_));
             dispatchEvent(new Event(Event.CHANGE));
         }
-
-
     }
 }
 

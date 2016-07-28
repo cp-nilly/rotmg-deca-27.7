@@ -1,24 +1,25 @@
 ﻿package kabam.rotmg.account.kongregate.view
 {
+    import com.company.assembleegameclient.screens.TitleMenuOption;
+
+    import flash.display.DisplayObject;
     import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
     import kabam.rotmg.account.core.view.AccountInfoView;
     import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.natives.NativeMappedSignal;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.screens.TitleMenuOption;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import org.osflash.signals.Signal;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.display.DisplayObject;
 
-    public class KongregateAccountInfoView extends Sprite implements AccountInfoView 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class KongregateAccountInfoView extends Sprite implements AccountInfoView
     {
-
         private static const REGISTER:String = TextKey.KONGREGATEACCOUNTINFOVIEW_REGISTER;//"KongregateAccountInfoView.register"
         private static const FONT_SIZE:int = 18;
-
         private var _register:NativeMappedSignal;
         private var accountText:TextFieldDisplayConcrete;
         private var registerButton:TitleMenuOption;
@@ -63,7 +64,7 @@
             else
             {
                 this.refreshUnregisteredAccount();
-            };
+            }
         }
 
         private function removeUIElements():void
@@ -71,7 +72,7 @@
             while (numChildren)
             {
                 removeChildAt(0);
-            };
+            }
         }
 
         public function get register():Signal
@@ -81,7 +82,11 @@
 
         private function refreshRegisteredAccount():void
         {
-            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.KONGREGATEACCOUNTINFOVIEW_LOGGEDIN, {"userName":this.userName}));
+            this.accountText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.KONGREGATEACCOUNTINFOVIEW_LOGGEDIN, {"userName": this.userName}
+                    )
+            );
             this.addElements(this.accountText);
         }
 
@@ -92,7 +97,7 @@
             this.accountText.x = this.registerButton.getBounds(this).left;
         }
 
-        private function addElements(... _args):void
+        private function addElements(..._args):void
         {
             var _local3:DisplayObject;
             var _local2:int = _args.length;
@@ -100,10 +105,8 @@
             {
                 _local3 = _args[_local2];
                 addChild(_local3);
-            };
+            }
         }
-
-
     }
 }
 

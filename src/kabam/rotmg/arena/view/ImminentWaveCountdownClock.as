@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.arena.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.utils.Timer;
     import flash.events.TimerEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import flash.filters.DropShadowFilter;
+    import flash.utils.Timer;
 
-    public class ImminentWaveCountdownClock extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class ImminentWaveCountdownClock extends Sprite
     {
-
         public const close:Signal = new Signal();
         private const countDownContainer:Sprite = new Sprite();
         private const nextWaveText:StaticTextDisplay = makeNextWaveText();
@@ -25,7 +26,6 @@
         private const waveNumberText:StaticTextDisplay = makeWaveNumberText();
         private const startText:StaticTextDisplay = makeStartText();
         private const waveStartTimer:Timer = new Timer(1500, 1);
-
         private var WaveAsset:Class;
         private var count:int = 5;
         private var waveNumber:int = -1;
@@ -87,7 +87,7 @@
                 this.waveStartTimer.addEventListener(TimerEvent.TIMER, this.cleanup);
                 this.waveStartTimer.start();
                 this.center();
-            };
+            }
         }
 
         private function cleanup(_arg1:TimerEvent):void
@@ -159,8 +159,6 @@
             this.waveStartContainer.addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

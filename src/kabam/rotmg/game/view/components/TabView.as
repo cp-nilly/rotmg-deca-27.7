@@ -2,9 +2,8 @@
 {
     import flash.display.Sprite;
 
-    public class TabView extends Sprite 
+    public class TabView extends Sprite
     {
-
         public var index:int;
 
         public function TabView(_arg1:int):void
@@ -15,8 +14,6 @@
         public function setSelected(_arg1:Boolean):void
         {
         }
-
-
     }
 }
 

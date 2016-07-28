@@ -3,9 +3,8 @@
     import flash.display.BitmapData;
     import flash.utils.IDataInput;
 
-    public class Death extends IncomingMessage 
+    public class Death extends IncomingMessage
     {
-
         public var accountId_:String;
         public var charId_:int;
         public var killedBy_:String;
@@ -39,8 +38,6 @@
         {
             return (formatToString("DEATH", "accountId_", "charId_", "killedBy_"));
         }
-
-
     }
 }
 

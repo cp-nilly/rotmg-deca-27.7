@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.minimap.view
 {
-    import flash.display.Sprite;
-    import flash.geom.ColorTransform;
-    import org.osflash.signals.Signal;
-    import flash.display.Bitmap;
     import com.company.util.AssetLibrary;
+
+    import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
+    import flash.geom.ColorTransform;
 
-    public class MiniMapZoomButtons extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class MiniMapZoomButtons extends Sprite
     {
-
         private const FADE:ColorTransform = new ColorTransform(0.5, 0.5, 0.5);
         private const NORM:ColorTransform = new ColorTransform(1, 1, 1);
         public const zoom:Signal = new Signal(int);
-
         private var zoomOut:Sprite;
         private var zoomIn:Sprite;
         private var zoomLevels:int;
@@ -38,7 +38,7 @@
             if (this.zoomLevels == 0)
             {
                 return (this.zoomLevel);
-            };
+            }
             if (_arg1 < 0)
             {
                 _arg1 = 0;
@@ -48,8 +48,8 @@
                 if (_arg1 >= (this.zoomLevels - 1))
                 {
                     _arg1 = (this.zoomLevels - 1);
-                };
-            };
+                }
+            }
             this.zoomLevel = _arg1;
             this.updateButtons();
             return (this.zoomLevel);
@@ -61,7 +61,7 @@
             if (this.zoomLevel >= this.zoomLevels)
             {
                 this.zoomLevel = (this.zoomLevels - 1);
-            };
+            }
             this.updateButtons();
             return (this.zoomLevels);
         }
@@ -103,7 +103,7 @@
             {
                 this.zoom.dispatch(--this.zoomLevel);
                 this.zoomOut.transform.colorTransform = ((this.canZoomOut()) ? this.NORM : this.FADE);
-            };
+            }
         }
 
         private function canZoomOut():Boolean
@@ -118,7 +118,7 @@
             {
                 this.zoom.dispatch(++this.zoomLevel);
                 this.zoomIn.transform.colorTransform = ((this.canZoomIn()) ? this.NORM : this.FADE);
-            };
+            }
         }
 
         private function canZoomIn():Boolean
@@ -131,8 +131,6 @@
             this.zoomIn.transform.colorTransform = ((this.canZoomIn()) ? this.NORM : this.FADE);
             this.zoomOut.transform.colorTransform = ((this.canZoomOut()) ? this.NORM : this.FADE);
         }
-
-
     }
 }
 

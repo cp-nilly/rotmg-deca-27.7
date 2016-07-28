@@ -5,18 +5,15 @@
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.arena.model.BestArenaRunModel;
 
-    public class GetBestArenaRunTask extends BaseTask 
+    public class GetBestArenaRunTask extends BaseTask
     {
-
         private static const REQUEST:String = "arena/getPersonalBest";
-
         [Inject]
         public var account:Account;
         [Inject]
         public var client:AppEngineClient;
         [Inject]
         public var bestRunModel:BestArenaRunModel;
-
 
         override protected function startTask():void
         {
@@ -41,8 +38,6 @@
         {
             return (this.account.getCredentials());
         }
-
-
     }
 }
 

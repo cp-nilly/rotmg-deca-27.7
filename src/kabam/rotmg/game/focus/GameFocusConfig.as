@@ -1,20 +1,22 @@
 ﻿package kabam.rotmg.game.focus
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import kabam.rotmg.game.focus.control.SetGameFocusSignal;
-    import kabam.rotmg.game.focus.control.AddGameFocusConsoleActionSignal;
-    import kabam.rotmg.game.focus.control.AddGameFocusConsoleActionCommand;
     import com.company.assembleegameclient.game.GameSprite;
+
+    import kabam.rotmg.game.focus.control.AddGameFocusConsoleActionCommand;
+    import kabam.rotmg.game.focus.control.AddGameFocusConsoleActionSignal;
+    import kabam.rotmg.game.focus.control.SetGameFocusSignal;
     import kabam.rotmg.game.focus.view.GameFocusMediator;
+
     import org.osflash.signals.Signal;
 
-    public class GameFocusConfig implements IConfig 
-    {
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
 
+    public class GameFocusConfig implements IConfig
+    {
         [Inject]
         public var context:IContext;
         [Inject]
@@ -23,7 +25,6 @@
         public var commandMap:ISignalCommandMap;
         [Inject]
         public var mediatorMap:IMediatorMap;
-
 
         public function configure():void
         {
@@ -37,8 +38,6 @@
         {
             Signal(this.injector.getInstance(AddGameFocusConsoleActionSignal)).dispatch();
         }
-
-
     }
 }
 

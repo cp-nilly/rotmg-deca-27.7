@@ -3,14 +3,12 @@
     import kabam.lib.signals.DeferredQueueSignal;
     import kabam.rotmg.chat.model.ChatMessage;
 
-    public class AddChatSignal extends DeferredQueueSignal 
+    public class AddChatSignal extends DeferredQueueSignal
     {
-
         public function AddChatSignal()
         {
             super(ChatMessage);
         }
-
     }
 }
 

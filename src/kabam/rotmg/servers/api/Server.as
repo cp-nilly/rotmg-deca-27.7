@@ -1,15 +1,13 @@
 ﻿package kabam.rotmg.servers.api
 {
-    public class Server 
+    public class Server
     {
-
         public var name:String;
         public var address:String;
         public var port:int;
         public var latLong:LatLong;
         public var usage:Number;
         public var isAdminOnly:Boolean;
-
 
         public function setName(_arg1:String):Server
         {
@@ -52,11 +50,11 @@
             if (this.isAdminOnly)
             {
                 return (2);
-            };
+            }
             if (this.isCrowded())
             {
                 return (1);
-            };
+            }
             return (0);
         }
 
@@ -74,8 +72,6 @@
         {
             return ((((((((((((("[" + this.name) + ": ") + this.address) + ":") + this.port) + ":") + this.latLong) + ":") + this.usage) + ":") + this.isAdminOnly) + "]"));
         }
-
-
     }
 }
 

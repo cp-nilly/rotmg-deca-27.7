@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.death.control
 {
-    import kabam.rotmg.messaging.impl.incoming.Death;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.death.model.DeathModel;
     import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.death.model.DeathModel;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.messaging.impl.incoming.Death;
 
-    public class HandleDeathCommand 
+    public class HandleDeathCommand
     {
-
         [Inject]
         public var death:Death;
         [Inject]
@@ -23,7 +22,6 @@
         [Inject]
         public var normal:HandleNormalDeathSignal;
 
-
         public function execute():void
         {
             this.closeDialogs.dispatch();
@@ -34,7 +32,7 @@
             else
             {
                 this.updateModelAndHandleDeath();
-            };
+            }
         }
 
         private function isZombieDeathPending():Boolean
@@ -63,11 +61,9 @@
                 else
                 {
                     this.normal.dispatch(this.death);
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class BuyResult extends IncomingMessage 
+    public class BuyResult extends IncomingMessage
     {
-
         public static const UNKNOWN_ERROR_BRID:int = -1;
         public static const SUCCESS_BRID:int = 0;
         public static const INVALID_CHARACTER_BRID:int = 1;
@@ -14,7 +13,6 @@
         public static const TOO_LOW_RANK_BRID:int = 5;
         public static const NOT_ENOUGH_FAME_BRID:int = 6;
         public static const PET_FEED_SUCCESS_BRID:int = 7;
-
         public var result_:int;
         public var resultString_:String;
 
@@ -33,8 +31,6 @@
         {
             return (formatToString("BUYRESULT", "result_", "resultString_"));
         }
-
-
     }
 }
 

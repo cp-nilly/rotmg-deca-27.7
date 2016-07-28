@@ -1,12 +1,12 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import kabam.rotmg.game.view.FortuneGroundPanel;
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.ui.panels.Panel;
 
-    public class FortuneGround extends GameObject implements IInteractiveObject 
-    {
+    import kabam.rotmg.game.view.FortuneGroundPanel;
 
+    public class FortuneGround extends GameObject implements IInteractiveObject
+    {
         public function FortuneGround(_arg1:XML)
         {
             super(_arg1);
@@ -17,8 +17,6 @@
         {
             return (new FortuneGroundPanel(_arg1, objectType_));
         }
-
-
     }
 }
 

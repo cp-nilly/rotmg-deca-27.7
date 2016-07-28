@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.account.kongregate.services
 {
     import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.LoginTask;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.services.LoginTask;
     import kabam.rotmg.account.kongregate.view.KongregateApi;
     import kabam.rotmg.appengine.api.AppEngineClient;
 
-    public class KongregateLoginTask extends BaseTask implements LoginTask 
+    public class KongregateLoginTask extends BaseTask implements LoginTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -17,7 +16,6 @@
         public var local:KongregateSharedObject;
         [Inject]
         public var client:AppEngineClient;
-
 
         override protected function startTask():void
         {
@@ -39,8 +37,6 @@
             this.account.setPlatformToken(_local2.PlatformToken);
             completeTask(true);
         }
-
-
     }
 }
 

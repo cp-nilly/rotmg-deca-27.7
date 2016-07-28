@@ -1,19 +1,51 @@
 ﻿package kabam.rotmg.game.view.components
 {
+    import com.company.assembleegameclient.objects.Player;
+
     import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.GlowFilter;
+
     import kabam.rotmg.game.model.StatModel;
     import kabam.rotmg.text.model.TextKey;
-    import __AS3__.vec.Vector;
+
     import org.osflash.signals.natives.NativeSignal;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.objects.Player;
-    import flash.filters.GlowFilter;
-    import __AS3__.vec.*;
 
-    public class StatsView extends Sprite 
+    public class StatsView extends Sprite
     {
-
-        private static const statsModel:Array = [new StatModel(TextKey.STAT_MODEL_ATTACK_SHORT, TextKey.STAT_MODEL_ATTACK_LONG, TextKey.STAT_MODEL_ATTACK_DESCRIPTION, true), new StatModel(TextKey.STAT_MODEL_DEFENSE_SHORT, TextKey.STAT_MODEL_DEFENSE_LONG, TextKey.STAT_MODEL_DEFENSE_DESCRIPTION, false), new StatModel(TextKey.STAT_MODEL_SPEED_SHORT, TextKey.STAT_MODEL_SPEED_LONG, TextKey.STAT_MODEL_SPEED_DESCRIPTION, true), new StatModel(TextKey.STAT_MODEL_DEXTERITY_SHORT, TextKey.STAT_MODEL_DEXTERITY_LONG, TextKey.STAT_MODEL_DEXTERITY_DESCRIPTION, true), new StatModel(TextKey.STAT_MODEL_VITALITY_SHORT, TextKey.STAT_MODEL_VITALITY_LONG, TextKey.STAT_MODEL_VITALITY_DESCRIPTION, true), new StatModel(TextKey.STAT_MODEL_WISDOM_SHORT, TextKey.STAT_MODEL_WISDOM_LONG, TextKey.STAT_MODEL_WISDOM_DESCRIPTION, true)];
+        private static const statsModel:Array = [
+            new StatModel(
+                    TextKey.STAT_MODEL_ATTACK_SHORT,
+                    TextKey.STAT_MODEL_ATTACK_LONG,
+                    TextKey.STAT_MODEL_ATTACK_DESCRIPTION,
+                    true
+            ), new StatModel(
+                    TextKey.STAT_MODEL_DEFENSE_SHORT,
+                    TextKey.STAT_MODEL_DEFENSE_LONG,
+                    TextKey.STAT_MODEL_DEFENSE_DESCRIPTION,
+                    false
+            ), new StatModel(
+                    TextKey.STAT_MODEL_SPEED_SHORT,
+                    TextKey.STAT_MODEL_SPEED_LONG,
+                    TextKey.STAT_MODEL_SPEED_DESCRIPTION,
+                    true
+            ), new StatModel(
+                    TextKey.STAT_MODEL_DEXTERITY_SHORT,
+                    TextKey.STAT_MODEL_DEXTERITY_LONG,
+                    TextKey.STAT_MODEL_DEXTERITY_DESCRIPTION,
+                    true
+            ), new StatModel(
+                    TextKey.STAT_MODEL_VITALITY_SHORT,
+                    TextKey.STAT_MODEL_VITALITY_LONG,
+                    TextKey.STAT_MODEL_VITALITY_DESCRIPTION,
+                    true
+            ), new StatModel(
+                    TextKey.STAT_MODEL_WISDOM_SHORT,
+                    TextKey.STAT_MODEL_WISDOM_LONG,
+                    TextKey.STAT_MODEL_WISDOM_DESCRIPTION,
+                    true
+            )
+        ];
         public static const ATTACK:int = 0;
         public static const DEFENSE:int = 1;
         public static const SPEED:int = 2;
@@ -23,10 +55,8 @@
         public static const STATE_UNDOCKED:String = "state_undocked";
         public static const STATE_DOCKED:String = "state_docked";
         public static const STATE_DEFAULT:String = STATE_DOCKED;//"state_docked"
-
         private const WIDTH:int = 191;
         private const HEIGHT:int = 45;
-
         private var background:Sprite;
         public var stats_:Vector.<StatView>;
         public var containerSprite:Sprite;
@@ -58,7 +88,7 @@
                 this.containerSprite.addChild(_local3);
                 _local1 = (_local1 + (_local2 % 2));
                 _local2++;
-            };
+            }
         }
 
         private function createStat(_arg1:int, _arg2:int):StatView
@@ -77,7 +107,7 @@
             {
                 this.setBackgroundVisibility();
                 this.drawStats(_arg1);
-            };
+            }
             this.containerSprite.x = ((this.WIDTH - this.containerSprite.width) / 2);
         }
 
@@ -123,11 +153,9 @@
                 if (this.currentState == STATE_DOCKED)
                 {
                     this.background.alpha = 0;
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

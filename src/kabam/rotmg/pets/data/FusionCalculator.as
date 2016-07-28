@@ -1,10 +1,8 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public class FusionCalculator 
+    public class FusionCalculator
     {
-
         private static var ranges:Object = makeRanges();
-
 
         private static function makeRanges():Object
         {
@@ -35,8 +33,6 @@
             var _local4:int = (_arg1.abilityList[0].level - _local3);
             return ((_local4 / _local2));
         }
-
-
     }
 }
 

@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class GotoPreviousScreenSignal extends Signal 
+    public class GotoPreviousScreenSignal extends Signal
     {
-
-
     }
 }
 

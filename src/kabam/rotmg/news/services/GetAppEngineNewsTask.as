@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.news.services
 {
+    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
+
+    import flash.utils.getTimer;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.news.model.NewsModel;
     import kabam.rotmg.language.model.LanguageModel;
-    import flash.utils.getTimer;
-    import kabam.rotmg.news.model.NewsCellVO;
-    import __AS3__.vec.Vector;
     import kabam.rotmg.news.model.NewsCellLinkType;
-    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
-    import __AS3__.vec.*;
+    import kabam.rotmg.news.model.NewsCellVO;
+    import kabam.rotmg.news.model.NewsModel;
 
-    public class GetAppEngineNewsTask extends BaseTask implements GetNewsTask 
+    public class GetAppEngineNewsTask extends BaseTask implements GetNewsTask
     {
-
         private static const TEN_MINUTES:int = 600;
-
         [Inject]
         public var client:AppEngineClient;
         [Inject]
@@ -29,7 +27,6 @@
         private var numUpdateAttempts:int = 0;
         private var updateCooldown:int = 600;
 
-
         override protected function startTask():void
         {
             this.numUpdateAttempts++;
@@ -37,17 +34,17 @@
             {
                 this.lastRan = (getTimer() / 1000);
                 this.client.complete.addOnce(this.onComplete);
-                this.client.sendRequest("/app/globalNews", {"language":this.languageModel.getLanguage()});
+                this.client.sendRequest("/app/globalNews", {"language": this.languageModel.getLanguage()});
             }
             else
             {
                 completeTask(true);
                 reset();
-            };
+            }
             if (((((!(("production".toLowerCase() == "dev"))) && (!((this.updateCooldown == 0))))) && ((this.numUpdateAttempts >= 2))))
             {
                 this.updateCooldown = 0;
-            };
+            }
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -59,7 +56,7 @@
             else
             {
                 this.onNewsRequestError(_arg2);
-            };
+            }
             completeTask(_arg1, _arg2);
             reset();
         }
@@ -72,7 +69,7 @@
             for each (_local4 in _local3)
             {
                 _local2.push(this.returnNewsCellVO(_local4));
-            };
+            }
             this.model.updateNews(_local2);
         }
 
@@ -95,8 +92,6 @@
         {
             this.openDialog.dispatch(new ErrorDialog("Unable to get news data."));
         }
-
-
     }
 }
 

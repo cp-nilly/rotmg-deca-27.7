@@ -1,24 +1,24 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.game.AGameSprite;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import flash.utils.Timer;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import flash.events.Event;
     import flash.events.MouseEvent;
     import flash.events.TimerEvent;
-    import com.company.assembleegameclient.game.AGameSprite;
-    import flash.events.Event;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+    import flash.utils.Timer;
 
-    public class GuildInvitePanel extends Panel 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class GuildInvitePanel extends Panel
     {
-
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var name_:String;
         private var title_:TextFieldDisplayConcrete;
         private var guildName_:String;
@@ -33,7 +33,11 @@
             this.name_ = _arg2;
             this.guildName_ = _arg3;
             this.title_ = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(WIDTH).setBold(true).setAutoSize(TextFieldAutoSize.CENTER).setHTML(true);
-            this.title_.setStringBuilder(new LineBuilder().setParams(TextKey.GUILD_INVITATION, {"playerName":_arg2}).setPrefix('<p align="center">').setPostfix("</p>"));
+            this.title_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.GUILD_INVITATION, {"playerName": _arg2}
+                    ).setPrefix('<p align="center">').setPostfix("</p>")
+            );
             this.title_.filters = [new DropShadowFilter(0, 0, 0)];
             this.title_.y = 0;
             addChild(this.title_);
@@ -79,8 +83,6 @@
             gs_.gsc_.joinGuild(this.guildName_);
             dispatchEvent(new Event(Event.COMPLETE));
         }
-
-
     }
 }
 

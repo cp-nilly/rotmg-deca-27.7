@@ -1,28 +1,30 @@
 ﻿package kabam.rotmg.characters.reskin.view
 {
-    import com.company.assembleegameclient.ui.panels.Panel;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.panels.Panel;
+
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import org.osflash.signals.Signal;
     import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.game.GameSprite;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import flash.events.KeyboardEvent;
 
-    public class ReskinPanel extends Panel 
+    public class ReskinPanel extends Panel
     {
-
         private const title:TextFieldDisplayConcrete = makeTitle();
         private const button:DeprecatedTextButton = makeButton();
         private const click:Signal = new NativeMappedSignal(button, MouseEvent.CLICK);
         public const reskin:Signal = new Signal();
 
-        public function ReskinPanel(_arg1:GameSprite=null)
+        public function ReskinPanel(_arg1:GameSprite = null)
         {
             super(_arg1);
             this.click.add(this.onClick);
@@ -64,10 +66,8 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 this.reskin.dispatch();
-            };
+            }
         }
-
-
     }
 }
 

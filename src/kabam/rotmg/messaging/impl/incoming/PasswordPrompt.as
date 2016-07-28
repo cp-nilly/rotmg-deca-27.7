@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class PasswordPrompt extends IncomingMessage 
+    public class PasswordPrompt extends IncomingMessage
     {
-
         public var cleanPasswordStatus:int;
 
         public function PasswordPrompt(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("PASSWORDPROMPT", "cleanPasswordStatus"));
         }
-
-
     }
 }
 

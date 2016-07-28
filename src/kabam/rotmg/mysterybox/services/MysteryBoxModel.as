@@ -2,13 +2,11 @@
 {
     import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
 
-    public class MysteryBoxModel 
+    public class MysteryBoxModel
     {
-
         private var models:Object;
         private var initialized:Boolean = false;
         private var _isNew:Boolean = false;
-
 
         public function getBoxesOrderByWeight():Object
         {
@@ -22,7 +20,7 @@
             for each (_local2 in _arg1)
             {
                 this.models[_local2.id] = _local2;
-            };
+            }
             this.initialized = true;
         }
 
@@ -45,8 +43,6 @@
         {
             this._isNew = _arg1;
         }
-
-
     }
 }
 

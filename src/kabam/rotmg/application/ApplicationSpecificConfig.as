@@ -1,28 +1,25 @@
 ﻿package kabam.rotmg.application
 {
+    import kabam.lib.console.ConsoleExtension;
+    import kabam.rotmg.application.api.ApplicationSetup;
+
     import robotlegs.bender.framework.api.IConfig;
     import robotlegs.bender.framework.api.IContext;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import kabam.lib.console.ConsoleExtension;
 
-    public class ApplicationSpecificConfig implements IConfig 
+    public class ApplicationSpecificConfig implements IConfig
     {
-
         [Inject]
         public var context:IContext;
         [Inject]
         public var applicationSetup:ApplicationSetup;
 
-
         public function configure():void
         {
             //if (this.applicationSetup.isDebug())
             //{
-                this.context.install(ConsoleExtension);
+            this.context.install(ConsoleExtension);
             //};
         }
-
-
     }
 }
 

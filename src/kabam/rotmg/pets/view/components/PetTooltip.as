@@ -1,28 +1,34 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
     import com.company.assembleegameclient.ui.LineBreakDesign;
+    import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
     import flash.display.Bitmap;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.pets.data.PetFamilyKeys;
-    import kabam.rotmg.pets.util.PetsConstants;
+    import flash.display.Sprite;
+
     import kabam.rotmg.pets.data.AbilityVO;
+    import kabam.rotmg.pets.data.PetFamilyKeys;
     import kabam.rotmg.pets.data.PetRarityEnum;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.model.TabStripModel;
 
-    public class PetTooltip extends ToolTip 
+    public class PetTooltip extends ToolTip
     {
-
         private const petsContent:Sprite = new Sprite();
-        private const titleTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 16, true);
-        private const petRarityTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xB3B3B3, 12, false);
-        private const petFamilyTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xB3B3B3, 12, false);
+        private const titleTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xFFFFFF, 16, true
+        );
+        private const petRarityTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xB3B3B3, 12, false
+        );
+        private const petFamilyTextField:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xB3B3B3, 12, false
+        );
         private const lineBreak:LineBreakDesign = PetsViewAssetFactory.returnTooltipLineBreak();
-
         private var petBitmap:Bitmap;
         private var petVO:PetVO;
 
@@ -76,7 +82,7 @@
                 _local4.y = (86 + (17 * _local1));
                 this.petsContent.addChild(_local4);
                 _local1++;
-            };
+            }
         }
 
         private function getNumAbilities():uint
@@ -85,7 +91,7 @@
             if (_local1)
             {
                 return (2);
-            };
+            }
             return (3);
         }
 
@@ -98,8 +104,6 @@
             this.petFamilyTextField.x = 55;
             this.petFamilyTextField.y = 48;
         }
-
-
     }
 }
 

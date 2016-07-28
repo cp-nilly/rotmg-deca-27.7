@@ -1,23 +1,24 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import com.company.util.SpriteUtil;
     import com.company.assembleegameclient.util.GuildUtil;
+    import com.company.util.SpriteUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
-    public class GuildText extends Sprite 
+    public class GuildText extends Sprite
     {
-
         private var name_:String;
         private var rank_:int;
         private var icon_:Bitmap;
         private var guildName_:TextFieldDisplayConcrete;
 
-        public function GuildText(_arg1:String, _arg2:int, _arg3:int=0)
+        public function GuildText(_arg1:String, _arg2:int, _arg3:int = 0)
         {
             this.icon_ = new Bitmap(null);
             this.icon_.y = -8;
@@ -36,7 +37,7 @@
             if ((((this.name_ == _arg1)) && ((_arg2 == _arg2))))
             {
                 return;
-            };
+            }
             this.name_ = _arg1;
             this.rank_ = _arg2;
             if ((((this.name_ == null)) || ((this.name_ == ""))))
@@ -50,10 +51,8 @@
                 SpriteUtil.safeAddChild(this, this.icon_);
                 this.guildName_.setStringBuilder(new StaticStringBuilder(this.name_));
                 SpriteUtil.safeAddChild(this, this.guildName_);
-            };
+            }
         }
-
-
     }
 }
 

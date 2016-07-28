@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.editor.Command;
 
-    public class MEReplaceCommand extends Command 
+    public class MEReplaceCommand extends Command
     {
-
         private var map_:MEMap;
         private var x_:int;
         private var y_:int;
@@ -19,11 +18,11 @@
             if (_arg4 != null)
             {
                 this.oldTile_ = _arg4.clone();
-            };
+            }
             if (_arg5 != null)
             {
                 this.newTile_ = _arg5.clone();
-            };
+            }
         }
 
         override public function execute():void
@@ -35,7 +34,7 @@
             else
             {
                 this.map_.setTile(this.x_, this.y_, this.newTile_);
-            };
+            }
         }
 
         override public function unexecute():void
@@ -47,10 +46,8 @@
             else
             {
                 this.map_.setTile(this.x_, this.y_, this.oldTile_);
-            };
+            }
         }
-
-
     }
 }
 

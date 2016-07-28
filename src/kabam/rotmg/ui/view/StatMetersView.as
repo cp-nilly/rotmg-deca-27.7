@@ -1,15 +1,16 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.ui.StatusBar;
-    import com.company.assembleegameclient.ui.ExperienceBoostTimerPopup;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.ExperienceBoostTimerPopup;
+    import com.company.assembleegameclient.ui.StatusBar;
+
+    import flash.display.Sprite;
     import flash.events.Event;
 
-    public class StatMetersView extends Sprite 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    public class StatMetersView extends Sprite
+    {
         private var expBar_:StatusBar;
         private var fameBar_:StatusBar;
         private var hpBar_:StatusBar;
@@ -36,18 +37,18 @@
 
         public function update(_arg1:Player):void
         {
-            this.expBar_.setLabelText(TextKey.EXP_BAR_LEVEL, {"level":_arg1.level_});
+            this.expBar_.setLabelText(TextKey.EXP_BAR_LEVEL, {"level": _arg1.level_});
             if (_arg1.level_ != 20)
             {
                 if (this.expTimer)
                 {
                     this.expTimer.update(_arg1.xpTimer);
-                };
+                }
                 if (!this.expBar_.visible)
                 {
                     this.expBar_.visible = true;
                     this.fameBar_.visible = false;
-                };
+                }
                 this.expBar_.draw(_arg1.exp_, _arg1.nextLevelExp_, 0);
                 if (this.curXPBoost != _arg1.xpBoost_)
                 {
@@ -59,8 +60,8 @@
                     else
                     {
                         this.expBar_.hideMultiplierText();
-                    };
-                };
+                    }
+                }
                 if (_arg1.xpTimer)
                 {
                     if (!this.areTempXpListenersAdded)
@@ -68,7 +69,7 @@
                         this.expBar_.addEventListener("MULTIPLIER_OVER", this.onExpBarOver);
                         this.expBar_.addEventListener("MULTIPLIER_OUT", this.onExpBarOut);
                         this.areTempXpListenersAdded = true;
-                    };
+                    }
                 }
                 else
                 {
@@ -77,13 +78,13 @@
                         this.expBar_.removeEventListener("MULTIPLIER_OVER", this.onExpBarOver);
                         this.expBar_.removeEventListener("MULTIPLIER_OUT", this.onExpBarOut);
                         this.areTempXpListenersAdded = false;
-                    };
+                    }
                     if (((this.expTimer) && (this.expTimer.parent)))
                     {
                         removeChild(this.expTimer);
                         this.expTimer = null;
-                    };
-                };
+                    }
+                }
             }
             else
             {
@@ -91,9 +92,9 @@
                 {
                     this.fameBar_.visible = true;
                     this.expBar_.visible = false;
-                };
+                }
                 this.fameBar_.draw(_arg1.currFame_, _arg1.nextClassQuestFame_, 0);
-            };
+            }
             this.hpBar_.draw(_arg1.hp_, _arg1.maxHP_, _arg1.maxHPBoost_, _arg1.maxHPMax_);
             this.mpBar_.draw(_arg1.mp_, _arg1.maxMP_, _arg1.maxMPBoost_, _arg1.maxMPMax_);
         }
@@ -109,10 +110,8 @@
             {
                 removeChild(this.expTimer);
                 this.expTimer = null;
-            };
+            }
         }
-
-
     }
 }
 

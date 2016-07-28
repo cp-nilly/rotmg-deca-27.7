@@ -2,11 +2,14 @@
 {
     import flash.geom.ColorTransform;
 
-    public class MoreColorUtil 
+    public class MoreColorUtil
     {
-
-        public static const greyscaleFilterMatrix:Array = [0.3, 0.59, 0.11, 0, 0, 0.3, 0.59, 0.11, 0, 0, 0.3, 0.59, 0.11, 0, 0, 0, 0, 0, 1, 0];
-        public static const redFilterMatrix:Array = [0.3, 0.59, 0.11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0];
+        public static const greyscaleFilterMatrix:Array = [
+            0.3, 0.59, 0.11, 0, 0, 0.3, 0.59, 0.11, 0, 0, 0.3, 0.59, 0.11, 0, 0, 0, 0, 0, 1, 0
+        ];
+        public static const redFilterMatrix:Array = [
+            0.3, 0.59, 0.11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0
+        ];
         public static const identity:ColorTransform = new ColorTransform();
         public static const invisible:ColorTransform = new ColorTransform(1, 1, 1, 0, 0, 0, 0, 0);
         public static const transparentCT:ColorTransform = new ColorTransform(1, 1, 1, 0.3, 0, 0, 0, 0);
@@ -78,8 +81,12 @@
                     _local10 = _local6;
                     _local11 = _local7;
                     break;
-            };
-            return ((((int(Math.min(0xFF, Math.floor((_local9 * 0xFF)))) << 16) | (int(Math.min(0xFF, Math.floor((_local10 * 0xFF)))) << 8)) | int(Math.min(0xFF, Math.floor((_local11 * 0xFF))))));
+            }
+            return ((((int(Math.min(0xFF, Math.floor((_local9 * 0xFF)))) << 16) | (int(
+                    Math.min(
+                            0xFF, Math.floor((_local10 * 0xFF))
+                    )
+            ) << 8)) | int(Math.min(0xFF, Math.floor((_local11 * 0xFF))))));
         }
 
         public static function randomColor():uint
@@ -105,21 +112,41 @@
 
         public static function copyColorTransform(_arg1:ColorTransform):ColorTransform
         {
-            return (new ColorTransform(_arg1.redMultiplier, _arg1.greenMultiplier, _arg1.blueMultiplier, _arg1.alphaMultiplier, _arg1.redOffset, _arg1.greenOffset, _arg1.blueOffset, _arg1.alphaOffset));
+            return (new ColorTransform(
+                    _arg1.redMultiplier,
+                    _arg1.greenMultiplier,
+                    _arg1.blueMultiplier,
+                    _arg1.alphaMultiplier,
+                    _arg1.redOffset,
+                    _arg1.greenOffset,
+                    _arg1.blueOffset,
+                    _arg1.alphaOffset
+            ));
         }
 
-        public static function lerpColorTransform(_arg1:ColorTransform, _arg2:ColorTransform, _arg3:Number):ColorTransform
+        public static function lerpColorTransform(
+                _arg1:ColorTransform, _arg2:ColorTransform, _arg3:Number
+        ):ColorTransform
         {
             if (_arg1 == null)
             {
                 _arg1 = identity;
-            };
+            }
             if (_arg2 == null)
             {
                 _arg2 = identity;
-            };
+            }
             var _local4:Number = (1 - _arg3);
-            var _local5:ColorTransform = new ColorTransform(((_arg1.redMultiplier * _local4) + (_arg2.redMultiplier * _arg3)), ((_arg1.greenMultiplier * _local4) + (_arg2.greenMultiplier * _arg3)), ((_arg1.blueMultiplier * _local4) + (_arg2.blueMultiplier * _arg3)), ((_arg1.alphaMultiplier * _local4) + (_arg2.alphaMultiplier * _arg3)), ((_arg1.redOffset * _local4) + (_arg2.redOffset * _arg3)), ((_arg1.greenOffset * _local4) + (_arg2.greenOffset * _arg3)), ((_arg1.blueOffset * _local4) + (_arg2.blueOffset * _arg3)), ((_arg1.alphaOffset * _local4) + (_arg2.alphaOffset * _arg3)));
+            var _local5:ColorTransform = new ColorTransform(
+                    ((_arg1.redMultiplier * _local4) + (_arg2.redMultiplier * _arg3)),
+                    ((_arg1.greenMultiplier * _local4) + (_arg2.greenMultiplier * _arg3)),
+                    ((_arg1.blueMultiplier * _local4) + (_arg2.blueMultiplier * _arg3)),
+                    ((_arg1.alphaMultiplier * _local4) + (_arg2.alphaMultiplier * _arg3)),
+                    ((_arg1.redOffset * _local4) + (_arg2.redOffset * _arg3)),
+                    ((_arg1.greenOffset * _local4) + (_arg2.greenOffset * _arg3)),
+                    ((_arg1.blueOffset * _local4) + (_arg2.blueOffset * _arg3)),
+                    ((_arg1.alphaOffset * _local4) + (_arg2.alphaOffset * _arg3))
+            );
             return (_local5);
         }
 
@@ -176,7 +203,12 @@
         public static function colorToShaderParameter(_arg1:uint):Array
         {
             var _local2:Number = (((_arg1 >> 24) & 0xFF) / 0x0100);
-            return ([(_local2 * (((_arg1 >> 16) & 0xFF) / 0x0100)), (_local2 * (((_arg1 >> 8) & 0xFF) / 0x0100)), (_local2 * ((_arg1 & 0xFF) / 0x0100)), _local2]);
+            return ([
+                (_local2 * (((_arg1 >> 16) & 0xFF) / 0x0100)),
+                (_local2 * (((_arg1 >> 8) & 0xFF) / 0x0100)),
+                (_local2 * ((_arg1 & 0xFF) / 0x0100)),
+                _local2
+            ]);
         }
 
         public static function rgbToGreyscale(_arg1:uint):uint
@@ -187,16 +219,32 @@
 
         public static function singleColorFilterMatrix(_arg1:uint):Array
         {
-            return ([0, 0, 0, 0, ((_arg1 & 0xFF0000) >> 16), 0, 0, 0, 0, ((_arg1 & 0xFF00) >> 8), 0, 0, 0, 0, (_arg1 & 0xFF), 0, 0, 0, 1, 0]);
+            return ([
+                0,
+                0,
+                0,
+                0,
+                ((_arg1 & 0xFF0000) >> 16),
+                0,
+                0,
+                0,
+                0,
+                ((_arg1 & 0xFF00) >> 8),
+                0,
+                0,
+                0,
+                0,
+                (_arg1 & 0xFF),
+                0,
+                0,
+                0,
+                1,
+                0
+            ]);
         }
-
-
     }
 }
-
-class StaticEnforcer 
+class StaticEnforcer
 {
-
-
 }
 

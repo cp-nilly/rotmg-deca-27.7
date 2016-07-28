@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.core.service
 {
+    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.ui.view.NotEnoughGoldDialog;
-    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
 
-    public class PurchaseCharacterErrorTask extends BaseTask 
+    public class PurchaseCharacterErrorTask extends BaseTask
     {
-
         [Inject]
         public var openDialog:OpenDialogSignal;
         public var parentTask:PurchaseCharacterClassTask;
-
 
         override protected function startTask():void
         {
@@ -22,10 +21,8 @@
             else
             {
                 this.openDialog.dispatch(new ErrorDialog(this.parentTask.error));
-            };
+            }
         }
-
-
     }
 }
 

@@ -1,15 +1,17 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.natives.NativeSignal;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.ui.view.SignalWaiter;
+
     import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PetsButtonBar extends Sprite 
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PetsButtonBar extends Sprite
     {
-
         public var buttonOne:DeprecatedTextButton;
         public var buttonTwo:DeprecatedTextButton;
         public var buttonOneSignal:NativeSignal;
@@ -40,7 +42,7 @@
             for each (_local3 in _local1)
             {
                 _local2.push(_local3.textChanged);
-            };
+            }
             _local2.complete.addOnce(this.positionButtons);
         }
 
@@ -49,8 +51,6 @@
             this.buttonOne.x = PetsConstants.BUTTON_BAR_SPACING;
             this.buttonTwo.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonTwo.width) - PetsConstants.BUTTON_BAR_SPACING);
         }
-
-
     }
 }
 

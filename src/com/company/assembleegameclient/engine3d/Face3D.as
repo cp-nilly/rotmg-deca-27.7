@@ -1,25 +1,22 @@
 ﻿package com.company.assembleegameclient.engine3d
 {
-    import flash.display.GraphicsSolidFill;
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.Triangle;
+
     import flash.display.BitmapData;
-    import __AS3__.vec.Vector;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsPath;
-    import flash.geom.Vector3D;
     import flash.display.GraphicsPathCommand;
-    import flash.geom.Utils3D;
-    import com.company.util.GraphicsUtil;
+    import flash.display.GraphicsSolidFill;
     import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import com.company.util.Triangle;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import __AS3__.vec.*;
+    import flash.geom.Utils3D;
+    import flash.geom.Vector3D;
 
-    public class Face3D 
+    public class Face3D
     {
-
         private static const blackOutFill_:GraphicsSolidFill = new GraphicsSolidFill(0, 1);
-
         public var origTexture_:BitmapData;
         public var vin_:Vector.<Number>;
         public var uvt_:Vector.<Number>;
@@ -32,7 +29,13 @@
         public var bitmapFill_:GraphicsBitmapFill;
         private var path_:GraphicsPath;
 
-        public function Face3D(_arg1:BitmapData, _arg2:Vector.<Number>, _arg3:Vector.<Number>, _arg4:Boolean=false, _arg5:Boolean=false)
+        public function Face3D(
+                _arg1:BitmapData,
+                _arg2:Vector.<Number>,
+                _arg3:Vector.<Number>,
+                _arg4:Boolean = false,
+                _arg5:Boolean = false
+        )
         {
             var _local7:Vector3D;
             this.vout_ = new Vector.<Number>();
@@ -48,14 +51,14 @@
                 _local7 = new Vector3D();
                 Plane3D.computeNormalVec(_arg2, _local7);
                 this.shade_ = Lighting3D.shadeValue(_local7, 0.75);
-            };
+            }
             this.path_.commands.push(GraphicsPathCommand.MOVE_TO);
             var _local6:int = 3;
             while (_local6 < this.vin_.length)
             {
                 this.path_.commands.push(GraphicsPathCommand.LINE_TO);
                 _local6 = (_local6 + 3);
-            };
+            }
             this.path_.data = this.vout_;
         }
 
@@ -77,7 +80,7 @@
             if (this.origTexture_ == _arg1)
             {
                 return;
-            };
+            }
             this.origTexture_ = _arg1;
             this.needGen_ = true;
         }
@@ -98,9 +101,9 @@
                 if (this.vout_[(_local3 + 1)] > _local1)
                 {
                     _local1 = this.vout_[(_local3 + 1)];
-                };
+                }
                 _local3 = (_local3 + 2);
-            };
+            }
             return (_local1);
         }
 
@@ -123,8 +126,8 @@
                 if (((_local11 * _local14) - (_local12 * _local13)) > 0)
                 {
                     return (false);
-                };
-            };
+                }
+            }
             var _local3:Number = (_arg2.clipRect_.x - 10);
             var _local4:Number = (_arg2.clipRect_.y - 10);
             var _local5:Number = (_arg2.clipRect_.right + 10);
@@ -139,24 +142,24 @@
                 {
                     _local7 = false;
                     break;
-                };
+                }
                 _local9 = (_local9 + 2);
-            };
+            }
             if (_local7)
             {
                 return (false);
-            };
+            }
             if (this.blackOut_)
             {
                 _arg1.push(blackOutFill_);
                 _arg1.push(this.path_);
                 _arg1.push(GraphicsUtil.END_FILL);
                 return (true);
-            };
+            }
             if (this.needGen_)
             {
                 this.generateTextureMatrix();
-            };
+            }
             this.textureMatrix_.calculateTextureMatrix(this.vout_);
             this.bitmapFill_.bitmapData = this.textureMatrix_.texture_;
             this.bitmapFill_.matrix = this.textureMatrix_.tToS_;
@@ -168,14 +171,32 @@
 
         public function contains(_arg1:Number, _arg2:Number):Boolean
         {
-            if (Triangle.containsXY(this.vout_[0], this.vout_[1], this.vout_[2], this.vout_[3], this.vout_[4], this.vout_[5], _arg1, _arg2))
+            if (Triangle.containsXY(
+                            this.vout_[0],
+                            this.vout_[1],
+                            this.vout_[2],
+                            this.vout_[3],
+                            this.vout_[4],
+                            this.vout_[5],
+                            _arg1,
+                            _arg2
+                    ))
             {
                 return (true);
-            };
-            if ((((this.vout_.length == 8)) && (Triangle.containsXY(this.vout_[0], this.vout_[1], this.vout_[4], this.vout_[5], this.vout_[6], this.vout_[7], _arg1, _arg2))))
+            }
+            if ((((this.vout_.length == 8)) && (Triangle.containsXY(
+                            this.vout_[0],
+                            this.vout_[1],
+                            this.vout_[4],
+                            this.vout_[5],
+                            this.vout_[6],
+                            this.vout_[7],
+                            _arg1,
+                            _arg2
+                    ))))
             {
                 return (true);
-            };
+            }
             return (false);
         }
 
@@ -190,11 +211,9 @@
             {
                 this.textureMatrix_.texture_ = _local1;
                 this.textureMatrix_.calculateUVMatrix(this.uvt_);
-            };
+            }
             this.needGen_ = false;
         }
-
-
     }
 }
 

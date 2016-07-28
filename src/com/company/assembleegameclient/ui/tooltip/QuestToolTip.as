@@ -1,15 +1,16 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.GameObjectListItem;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
     import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.ui.GameObjectListItem;
 
-    public class QuestToolTip extends ToolTip 
+    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class QuestToolTip extends ToolTip
     {
-
         private var text_:TextFieldDisplayConcrete;
         public var enemyGOLI_:GameObjectListItem;
 
@@ -30,7 +31,6 @@
             addChild(this.enemyGOLI_);
             filters = [];
         }
-
     }
 }
 

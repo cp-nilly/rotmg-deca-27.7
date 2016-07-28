@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class GlobalNotification extends IncomingMessage 
+    public class GlobalNotification extends IncomingMessage
     {
-
         public var type:int;
         public var text:String;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("GLOBAL_NOTIFICATION", "type", "text"));
         }
-
-
     }
 }
 

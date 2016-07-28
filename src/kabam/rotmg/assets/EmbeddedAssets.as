@@ -1,12 +1,10 @@
 ﻿package kabam.rotmg.assets
 {
-    public class EmbeddedAssets 
+    public class EmbeddedAssets
     {
-
         public static const StarburstSpinner:Class = EmbeddedAssets_StarburstSpinner;
         public static const EvolveBackground:Class = EmbeddedAssets_EvolveBackground;
         public static const DarknessBackground:Class = EmbeddedAssets_DarknessBackground;
-
         public static var particlesEmbed:Class = EmbeddedAssets_particlesEmbed;
         public static var lofiCharEmbed_:Class = EmbeddedAssets_lofiCharEmbed_;
         public static var lofiChar2Embed_:Class = EmbeddedAssets_lofiChar2Embed_;
@@ -131,56 +129,54 @@
         public static var d3LofiObjBigEmbed_:Class = EmbeddedAssets_d3LofiObjBigEmbed_;
         public static var cursorsEmbed_:Class = EmbeddedAssets_cursorsEmbed_;
         public static var models_:Object = {
-            "Monster Tank1":new monsterTank1Embed_(),
-            "Monster Tank2":new monsterTank2Embed_(),
-            "Monster Tank3":new monsterTank3Embed_(),
-            "Monster Tank4":new monsterTank4Embed_(),
-            "GasEmitter":new gasEmitter_(),
-            "Lab Tank":new labTankEmbed_(),
-            "Tesla":new teslaEmbed_(),
-            "CloningVat":new cloningVatEmbed_(),
-            "Crate":new crateEmbed_(),
-            "ThreeSideCube":new threeSideCubeEmbed_(),
-            "Squatty3Side":new squatty3Side_(),
-            "Cube":new cubeEmbed_(),
-            "Big Cube":new bigcubeEmbed_(),
-            "Ico":new icosahedronEmbed_(),
-            "Octa":new octahedronEmbed_(),
-            "Pyramid":new pyramidEmbed_(),
-            "Tetra":new tetrahedronEmbed_(),
-            "Dodec":new dodecahedronEmbed_(),
-            "Pillar":new pillarEmbed_(),
-            "Broken Pillar":new brokenPillarEmbed_(),
-            "Tower":new towerEmbed_(),
-            "Obelisk":new obeliskEmbed_(),
-            "Table":new tableEmbed_(),
-            "Table Edge":new tableEdgeEmbed_(),
-            "Sign":new signEmbed_(),
-            "Web":new webEmbed_(),
-            "Candy Col Broken":new candyColBrokenEmbed_(),
-            "Candy Col Whole":new candyColWholeEmbed_(),
-            "Column One and a Half":new columnOneAndHalfEmbed_(),
-            "Two High Wall":new twoHighWall_(),
-            "Candy Doughnut 1":new candyDoughnut1Embed_(),
-            "Candy Doughnut 2":new candyDoughnut2Embed_(),
-            "Candy Doughnut 3":new candyDoughnut3Embed_(),
-            "Candy Doughnut 4":new candyDoughnut4Embed_(),
-            "Gate":new newGateEmbed_(),
-            "Gate Entry":new newGateEntryEmbed_(),
-            "Gate Entry 2":new newGateEntry2Embed_(),
-            "Gate End 1":new newGateEnd1Embed_(),
-            "Gate End 2":new newGateEnd2Embed_(),
-            "Monument 1":new newMonument1Embed_(),
-            "Monument 2":new newMonument2Embed_(),
-            "Monument 3":new newMonument3Embed_(),
-            "Large Monument 1":new largeMonument1Embed_(),
-            "Large Monument 2":new largeMonument2Embed_(),
-            "Large Monument 3":new largeMonument3Embed_(),
-            "Jacko":new jackoEmbed_(),
-            "Pet Upgrader Obj":new petUpgrader_()
+            "Monster Tank1": new monsterTank1Embed_(),
+            "Monster Tank2": new monsterTank2Embed_(),
+            "Monster Tank3": new monsterTank3Embed_(),
+            "Monster Tank4": new monsterTank4Embed_(),
+            "GasEmitter": new gasEmitter_(),
+            "Lab Tank": new labTankEmbed_(),
+            "Tesla": new teslaEmbed_(),
+            "CloningVat": new cloningVatEmbed_(),
+            "Crate": new crateEmbed_(),
+            "ThreeSideCube": new threeSideCubeEmbed_(),
+            "Squatty3Side": new squatty3Side_(),
+            "Cube": new cubeEmbed_(),
+            "Big Cube": new bigcubeEmbed_(),
+            "Ico": new icosahedronEmbed_(),
+            "Octa": new octahedronEmbed_(),
+            "Pyramid": new pyramidEmbed_(),
+            "Tetra": new tetrahedronEmbed_(),
+            "Dodec": new dodecahedronEmbed_(),
+            "Pillar": new pillarEmbed_(),
+            "Broken Pillar": new brokenPillarEmbed_(),
+            "Tower": new towerEmbed_(),
+            "Obelisk": new obeliskEmbed_(),
+            "Table": new tableEmbed_(),
+            "Table Edge": new tableEdgeEmbed_(),
+            "Sign": new signEmbed_(),
+            "Web": new webEmbed_(),
+            "Candy Col Broken": new candyColBrokenEmbed_(),
+            "Candy Col Whole": new candyColWholeEmbed_(),
+            "Column One and a Half": new columnOneAndHalfEmbed_(),
+            "Two High Wall": new twoHighWall_(),
+            "Candy Doughnut 1": new candyDoughnut1Embed_(),
+            "Candy Doughnut 2": new candyDoughnut2Embed_(),
+            "Candy Doughnut 3": new candyDoughnut3Embed_(),
+            "Candy Doughnut 4": new candyDoughnut4Embed_(),
+            "Gate": new newGateEmbed_(),
+            "Gate Entry": new newGateEntryEmbed_(),
+            "Gate Entry 2": new newGateEntry2Embed_(),
+            "Gate End 1": new newGateEnd1Embed_(),
+            "Gate End 2": new newGateEnd2Embed_(),
+            "Monument 1": new newMonument1Embed_(),
+            "Monument 2": new newMonument2Embed_(),
+            "Monument 3": new newMonument3Embed_(),
+            "Large Monument 1": new largeMonument1Embed_(),
+            "Large Monument 2": new largeMonument2Embed_(),
+            "Large Monument 3": new largeMonument3Embed_(),
+            "Jacko": new jackoEmbed_(),
+            "Pet Upgrader Obj": new petUpgrader_()
         };
-
-
     }
 }
 

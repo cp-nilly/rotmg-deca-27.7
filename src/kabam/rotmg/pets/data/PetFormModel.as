@@ -1,13 +1,14 @@
 ﻿package kabam.rotmg.pets.data
 {
-    import flash.utils.Dictionary;
-    import kabam.rotmg.messaging.impl.data.SlotObjectData;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.InteractiveItemTile;
 
-    public class PetFormModel 
-    {
+    import flash.utils.Dictionary;
 
+    import kabam.rotmg.messaging.impl.data.SlotObjectData;
+    import kabam.rotmg.text.model.TextKey;
+
+    public class PetFormModel
+    {
         private var Data:Class;
         private var petsXML:XML;
         private var branches:Dictionary;
@@ -25,9 +26,21 @@
         public function get petSkinGroupVOs():Array
         {
             var _local1:Array = [];
-            _local1[0] = new PetSkinGroupVO(TextKey.PET_RARITY_COMMON, this.getIconGroup("Common"), PetRarityEnum.COMMON, this.selectedPet.getSkinID());
-            _local1[1] = new PetSkinGroupVO(TextKey.PET_RARITY_RARE, this.getIconGroup("Rare"), PetRarityEnum.RARE, this.selectedPet.getSkinID());
-            _local1[2] = new PetSkinGroupVO(TextKey.PET_RARITY_DIVINE, this.getIconGroup("Divine"), PetRarityEnum.DIVINE, this.selectedPet.getSkinID());
+            _local1[0] = new PetSkinGroupVO(
+                    TextKey.PET_RARITY_COMMON,
+                    this.getIconGroup("Common"),
+                    PetRarityEnum.COMMON,
+                    this.selectedPet.getSkinID()
+            );
+            _local1[1] = new PetSkinGroupVO(
+                    TextKey.PET_RARITY_RARE, this.getIconGroup("Rare"), PetRarityEnum.RARE, this.selectedPet.getSkinID()
+            );
+            _local1[2] = new PetSkinGroupVO(
+                    TextKey.PET_RARITY_DIVINE,
+                    this.getIconGroup("Divine"),
+                    PetRarityEnum.DIVINE,
+                    this.selectedPet.getSkinID()
+            );
             return (_local1);
         }
 
@@ -44,9 +57,9 @@
                 if (this.petIsInFamilyTree(_local3))
                 {
                     this.addPetToAppropriateRarityList(_local3);
-                };
+                }
                 _local1++;
-            };
+            }
         }
 
         private function addPetToAppropriateRarityList(_arg1:XML):void
@@ -60,7 +73,7 @@
             else
             {
                 this.branches[_local2] = [_local3];
-            };
+            }
         }
 
         public function setSelectedPet(_arg1:PetVO):void
@@ -93,10 +106,10 @@
                     if (_local5 == _arg1)
                     {
                         return (int(_local4.@type));
-                    };
-                };
+                    }
+                }
                 _local2++;
-            };
+            }
             return (-1);
         }
 
@@ -152,9 +165,9 @@
                 if (_local5 == _arg1)
                 {
                     return (this.fetchPetTypeBySkinID(_local4.@id));
-                };
+                }
                 _local2++;
-            };
+            }
             return (-1);
         }
 
@@ -172,13 +185,11 @@
                 if (_local5 == _arg1)
                 {
                     return (_local4.@type);
-                };
+                }
                 _local2++;
-            };
+            }
             return (-1);
         }
-
-
     }
 }
 

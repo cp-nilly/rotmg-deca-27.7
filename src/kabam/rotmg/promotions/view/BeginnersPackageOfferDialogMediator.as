@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.promotions.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.promotions.signals.BuyBeginnersPackageSignal;
     import kabam.rotmg.game.signals.SetWorldInteractionSignal;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.promotions.signals.BuyBeginnersPackageSignal;
 
-    public class BeginnersPackageOfferDialogMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class BeginnersPackageOfferDialogMediator extends Mediator
     {
-
         [Inject]
         public var view:BeginnersPackageOfferDialog;
         [Inject]
@@ -19,7 +19,6 @@
         public var buyPackage:BuyBeginnersPackageSignal;
         [Inject]
         public var setWorldInteraction:SetWorldInteractionSignal;
-
 
         override public function initialize():void
         {
@@ -47,8 +46,6 @@
         {
             this.closeDialog.dispatch();
         }
-
-
     }
 }
 

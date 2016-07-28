@@ -2,9 +2,8 @@
 {
     import flash.geom.Point;
 
-    public class PointUtil 
+    public class PointUtil
     {
-
         public static const ORIGIN:Point = new Point(0, 0);
 
         public function PointUtil(_arg1:StaticEnforcer)
@@ -55,14 +54,9 @@
             _local4.y = (_arg1.y + (_arg3 * Math.sin(_arg2)));
             return (_local4);
         }
-
-
     }
 }
-
-class StaticEnforcer 
+class StaticEnforcer
 {
-
-
 }
 

@@ -1,20 +1,20 @@
 ﻿package com.company.assembleegameclient.ui.panels.itemgrids.itemtiles
 {
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.Bitmap;
-    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.display.BitmapData;
-    import kabam.rotmg.constants.ItemConstants;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
+    import com.company.util.AssetLibrary;
+    import com.company.util.MoreColorUtil;
 
-    public class EquipmentTile extends InteractiveItemTile 
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.filters.ColorMatrixFilter;
+
+    import kabam.rotmg.constants.ItemConstants;
+
+    public class EquipmentTile extends InteractiveItemTile
     {
-
         private static const greyColorFilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.singleColorFilterMatrix(0x363636));
-
         public var backgroundDetail:Bitmap;
         public var itemType:int;
         private var minManaUsage:int;
@@ -110,7 +110,7 @@
                 case ItemConstants.SHURIKEN_TYPE:
                     _local2 = AssetLibrary.getImageFromSet("lofiObj3", 555);
                     break;
-            };
+            }
             if (_local2 != null)
             {
                 this.backgroundDetail = new Bitmap(_local2);
@@ -120,7 +120,7 @@
                 this.backgroundDetail.scaleY = 4;
                 this.backgroundDetail.filters = [greyColorFilter];
                 addChildAt(this.backgroundDetail, 0);
-            };
+            }
             this.itemType = _arg1;
         }
 
@@ -131,7 +131,7 @@
             {
                 this.backgroundDetail.visible = (itemSprite.itemId <= 0);
                 this.updateMinMana();
-            };
+            }
             return (_local2);
         }
 
@@ -151,9 +151,9 @@
                     else
                     {
                         this.minManaUsage = _local1.MpCost;
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         public function updateDim(_arg1:Player):void
@@ -175,8 +175,6 @@
         {
             return (0x454545);
         }
-
-
     }
 }
 

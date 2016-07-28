@@ -1,56 +1,57 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import kabam.rotmg.account.core.view.EmptyFrame;
-    import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
-    import flash.text.TextField;
-    import kabam.rotmg.util.components.SimpleButton;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.util.components.CountdownTimer;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.fortune.services.FortuneModel;
-    import kabam.rotmg.fortune.model.FortuneInfo;
-    import com.company.assembleegameclient.map.ParticleModalMap;
-    import flash.utils.Timer;
-    import kabam.rotmg.ui.view.components.MapBackground;
-    import flash.display.Sprite;
-    import kabam.rotmg.game.view.CreditDisplay;
     import com.company.assembleegameclient.game.GameSprite;
-    import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import flash.utils.getTimer;
-    import flash.events.Event;
-    import kabam.rotmg.game.model.GameModel;
+    import com.company.assembleegameclient.map.ParticleModalMap;
+    import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.objects.Player;
-    import com.company.util.AssetLibrary;
-    import flash.display.BitmapData;
+    import com.company.assembleegameclient.objects.particles.LightningEffect;
+    import com.company.assembleegameclient.objects.particles.NovaEffect;
+    import com.company.assembleegameclient.ui.dialogs.DebugDialog;
+    import com.company.assembleegameclient.ui.dialogs.Dialog;
+    import com.company.assembleegameclient.util.Currency;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.util.components.InfoHoverPaneFactory;
+    import com.company.util.AssetLibrary;
     import com.gskinner.motion.GTween;
     import com.gskinner.motion.easing.Sine;
+
+    import flash.display.BitmapData;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+    import flash.filters.GlowFilter;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
     import flash.text.TextFormat;
     import flash.text.TextFormatAlign;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.GlowFilter;
-    import flash.events.TimerEvent;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
-    import com.company.assembleegameclient.ui.dialogs.Dialog;
+    import flash.utils.Timer;
+    import flash.utils.getTimer;
+
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.EmptyFrame;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import com.company.assembleegameclient.ui.dialogs.DebugDialog;
-    import com.company.assembleegameclient.objects.GameObject;
-    import com.company.assembleegameclient.objects.particles.NovaEffect;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.fortune.model.FortuneInfo;
+    import kabam.rotmg.fortune.services.FortuneModel;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.game.view.CreditDisplay;
     import kabam.rotmg.messaging.impl.data.WorldPosData;
-    import com.company.assembleegameclient.objects.particles.LightningEffect;
-    import __AS3__.vec.*;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+    import kabam.rotmg.ui.view.components.MapBackground;
+    import kabam.rotmg.util.components.CountdownTimer;
+    import kabam.rotmg.util.components.InfoHoverPaneFactory;
+    import kabam.rotmg.util.components.SimpleButton;
 
-    public class FortuneModal extends EmptyFrame 
+    import org.osflash.signals.Signal;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FortuneModal extends EmptyFrame
     {
-
         public static const MODAL_WIDTH:int = 800;
         public static const MODAL_HEIGHT:int = 600;
         public static const STATE_ROUND_1:int = 1;
@@ -58,7 +59,6 @@
         public static const INIT_RADIUS_FROM_MAINCRYTAL:Number = 200;
         private static const ITEM_SIZE_IN_MC:int = 120;
         public static const closed:Signal = new Signal();
-
         public static var backgroundImageEmbed:Class = FortuneModal_backgroundImageEmbed;
         public static var fortunePlatformEmbed:Class = FortuneModal_fortunePlatformEmbed;
         public static var fortunePlatformEmbed2:Class = FortuneModal_fortunePlatformEmbed2;
@@ -69,7 +69,6 @@
         public static var fMouseY:int;
         public static var crystalMainY:int = ((MODAL_HEIGHT / 2) - 20);//280
         public static var modalIsOpen:Boolean = false;
-
         private const SWITCH_DELAY_NORMAL:Number = 1200;
         private const SWITCH_DELAY_FAST:Number = 100;
         private const GAME_STAGE_IDLE:int = 0;
@@ -82,7 +81,6 @@
         private const DISPLAY_PRIZE_TIME_2:Number = 5;
         private const NOVA_DELAY_TIME:Number = 0.12;
         private const COUNTDOWN_AMOUNT:Number = 10;
-
         public var crystalMain:CrystalMain;
         public var crystals:Vector.<CrystalSmall>;
         public var crystalClicked:CrystalSmall = null;
@@ -122,7 +120,7 @@
         private var chooseingState:Boolean = false;
         private var items:Array;
 
-        public function FortuneModal(_arg1:GameSprite=null)
+        public function FortuneModal(_arg1:GameSprite = null)
         {
             this.crystalMain = new CrystalMain();
             this.crystals = Vector.<CrystalSmall>([new CrystalSmall(), new CrystalSmall(), new CrystalSmall()]);
@@ -150,7 +148,7 @@
             if (this.fortuneInfo == null)
             {
                 return;
-            };
+            }
             this.crystalMain.setXPos((modalWidth / 2));
             this.crystalMain.setYPos(crystalMainY);
             this.resetBalls();
@@ -169,12 +167,12 @@
             if (_local3 != null)
             {
                 this.creditDisplay_.draw(_local3.credits_, 0, _local3.tokens_);
-            };
+            }
             if (_arg1 != null)
             {
                 this.gs_ = _arg1;
                 this.gs_.creditDisplay_.visible = false;
-            };
+            }
             var _local4:BitmapData = AssetLibrary.getImageFromSet("lofiObj3", 1172);
             _local4 = TextureRedrawer.redraw(_local4, 75, true, 0);
             this.crystalMain.addEventListener(MouseEvent.ROLL_OVER, this.displayInfoHover);
@@ -191,15 +189,16 @@
             this.onHoverPanel.visible = false;
         }
 
-        public static function doEaseOutInAnimation(_arg1:DisplayObject, _arg2:Object=null, _arg3:Object=null, _arg4:Function=null):void
+        public static function doEaseOutInAnimation(
+                _arg1:DisplayObject, _arg2:Object = null, _arg3:Object = null, _arg4:Function = null
+        ):void
         {
-            var _local5:GTween = new GTween(_arg1, (0.5 * 1), _arg2, {"ease":Sine.easeOut});
-            _local5.nextTween = new GTween(_arg1, (0.5 * 1), _arg3, {"ease":Sine.easeIn});
+            var _local5:GTween = new GTween(_arg1, (0.5 * 1), _arg2, {"ease": Sine.easeOut});
+            _local5.nextTween = new GTween(_arg1, (0.5 * 1), _arg3, {"ease": Sine.easeIn});
             _local5.nextTween.paused = true;
             _local5.nextTween.end();
             _local5.nextTween.onComplete = _arg4;
         }
-
 
         private function displayInfoHover(_arg1:MouseEvent):void
         {
@@ -211,7 +210,7 @@
             if (!(_arg1.relatedObject is ItemWithTooltip))
             {
                 this.onHoverPanel.visible = false;
-            };
+            }
         }
 
         private function InitButtons():void
@@ -242,7 +241,26 @@
         {
             var _local4:TextField;
             texts_ = new Vector.<TextField>();
-            var _local1:Vector.<String> = Vector.<String>(["HOW WILL YOU PLAY?", "THE FIVE MASTERS OF GOZOR WILL DETERMINE YOUR PRIZE!", "HERE'S WHAT YOU CAN WIN!", "Shuffling!", "PICK ONE TO WIN A PRIZE!", "YOU WON! ITEMS WILL BE PLACED IN YOUR GIFT CHEST", "TWO ITEMS LEFT! TAKE ANOTHER SHOT!", "PICK A SECOND PRIZE!", "PLAY AGAIN?", "Choose now or I will choose for you!", "Determining Prizes!", "Sorting Loot!", "What can you win?", "Big Prizes! Big Orbs! I love it!", "Wooah! Awesome lewt!", "Processing hadoop data..."]);
+            var _local1:Vector.<String> = Vector.<String>(
+                    [
+                        "HOW WILL YOU PLAY?",
+                        "THE FIVE MASTERS OF GOZOR WILL DETERMINE YOUR PRIZE!",
+                        "HERE'S WHAT YOU CAN WIN!",
+                        "Shuffling!",
+                        "PICK ONE TO WIN A PRIZE!",
+                        "YOU WON! ITEMS WILL BE PLACED IN YOUR GIFT CHEST",
+                        "TWO ITEMS LEFT! TAKE ANOTHER SHOT!",
+                        "PICK A SECOND PRIZE!",
+                        "PLAY AGAIN?",
+                        "Choose now or I will choose for you!",
+                        "Determining Prizes!",
+                        "Sorting Loot!",
+                        "What can you win?",
+                        "Big Prizes! Big Orbs! I love it!",
+                        "Wooah! Awesome lewt!",
+                        "Processing hadoop data..."
+                    ]
+            );
             var _local2:TextFormat = new TextFormat();
             _local2.size = 24;
             _local2.font = "Myriad Pro";
@@ -264,7 +282,7 @@
                 _local4.filters = [new GlowFilter(0xFFFFFF, 1, 2, 2, 1.5, 1)];
                 texts_.push(_local4);
                 _local3++;
-            };
+            }
         }
 
         private function setString(_arg1:int):void
@@ -272,15 +290,15 @@
             if (this.parent == null)
             {
                 return;
-            };
+            }
             if ((((this.currentString >= 0)) && (!((texts_[this.currentString].parent == null)))))
             {
                 removeChild(texts_[this.currentString]);
-            };
+            }
             if (_arg1 < 0)
             {
                 return;
-            };
+            }
             this.currentString = _arg1;
             var _local2:TextField = texts_[this.currentString];
             _local2.x = ((modalWidth / 2) - (_local2.width / 2));
@@ -309,28 +327,39 @@
             if (this.gs_ != null)
             {
                 this.gs_.creditDisplay_.visible = false;
-            };
+            }
         }
 
-        private function onItemSwitch(_arg1:TimerEvent=null):void
+        private function onItemSwitch(_arg1:TimerEvent = null):void
         {
             var _local5:ItemWithTooltip;
             this.tooltipItemIDIndex++;
             if (this.tooltipItems == null)
             {
-                this.tooltipItems = Vector.<ItemWithTooltip>([new ItemWithTooltip(this.fortuneInfo._rollsWithContentsUnique[this.tooltipItemIDIndex], ITEM_SIZE_IN_MC), new ItemWithTooltip(this.fortuneInfo._rollsWithContentsUnique[(this.tooltipItemIDIndex + 1)], ITEM_SIZE_IN_MC)]);
-            };
+                this.tooltipItems = Vector.<ItemWithTooltip>(
+                        [
+                            new ItemWithTooltip(
+                                    this.fortuneInfo._rollsWithContentsUnique[this.tooltipItemIDIndex], ITEM_SIZE_IN_MC
+                            ), new ItemWithTooltip(
+                                this.fortuneInfo._rollsWithContentsUnique[(this.tooltipItemIDIndex + 1)],
+                                ITEM_SIZE_IN_MC
+                        )
+                        ]
+                );
+            }
             if (this.tooltipItemIDIndex >= this.fortuneInfo._rollsWithContentsUnique.length)
             {
                 this.tooltipItemIDIndex = 0;
-            };
+            }
             var _local2:int = (this.tooltipItemIDIndex % 2);
             if (((!((this.tooltipItems[this.currenttooltipItem] == null))) && (!((this.tooltipItems[this.currenttooltipItem].parent == null)))))
             {
                 _local5 = this.tooltipItems[this.currenttooltipItem];
-                this.doEaseInAnimation(_local5, {"alpha":0}, this.removeChildAfterTween);
-            };
-            var _local3:ItemWithTooltip = new ItemWithTooltip(this.fortuneInfo._rollsWithContentsUnique[this.tooltipItemIDIndex], ITEM_SIZE_IN_MC, true);
+                this.doEaseInAnimation(_local5, {"alpha": 0}, this.removeChildAfterTween);
+            }
+            var _local3:ItemWithTooltip = new ItemWithTooltip(
+                    this.fortuneInfo._rollsWithContentsUnique[this.tooltipItemIDIndex], ITEM_SIZE_IN_MC, true
+            );
             _local3.onMouseOver.add(this.onItemSwitchPause);
             _local3.onMouseOut.add(this.onItemSwitchContinue);
             _local3.setXPos(this.crystalMain.getCenterX());
@@ -338,13 +367,13 @@
             this.tooltipItems[_local2] = _local3;
             _local3.alpha = 0;
             addChild(_local3);
-            this.doEaseInAnimation(_local3, {"alpha":1});
+            this.doEaseInAnimation(_local3, {"alpha": 1});
             this.currenttooltipItem = _local2;
             var _local4:Player = StaticInjectorContext.getInjector().getInstance(GameModel).player;
             if (((!((this.creditDisplay_ == null))) && (!((_local4 == null)))))
             {
                 this.creditDisplay_.draw(_local4.credits_, 0, _local4.tokens_);
-            };
+            }
         }
 
         private function removeChildAfterTween(_arg1:GTween):void
@@ -352,7 +381,7 @@
             if (_arg1.target.parent != null)
             {
                 _arg1.target.parent.removeChild(_arg1.target);
-            };
+            }
         }
 
         public function onItemSwitchPause():void
@@ -385,9 +414,9 @@
                     this.tooltipItems[_local1].onMouseOut.removeAll();
                     this.tooltipItems[_local1].onMouseOver.removeAll();
                     this.tooltipItems[_local1].parent.removeChild(this.tooltipItems[_local1]);
-                };
+                }
                 _local1++;
-            };
+            }
             this.onItemSwitchPause();
         }
 
@@ -396,25 +425,25 @@
             return (FortuneModel.HAS_FORTUNES);
         }
 
-        private function doEaseInAnimation(_arg1:DisplayObject, _arg2:Object=null, _arg3:Function=null):void
+        private function doEaseInAnimation(_arg1:DisplayObject, _arg2:Object = null, _arg3:Function = null):void
         {
-            var _local4:GTween = new GTween(_arg1, 0.5, _arg2, {
-                "ease":Sine.easeOut,
-                "onComplete":_arg3
-            });
+            var _local4:GTween = new GTween(
+                    _arg1, 0.5, _arg2, {
+                        "ease": Sine.easeOut, "onComplete": _arg3
+                    }
+            );
         }
 
         private function onCountdownComplete():void
         {
             var _local2:int;
             var _local1:CrystalSmall;
-            do 
-            {
+            do {
                 _local2 = int((Math.random() * 3));
                 if ((((this.state == STATE_ROUND_1)) || (!((this.crystals[_local2] == this.crystalClicked)))))
                 {
                     _local1 = this.crystals[_local2];
-                };
+                }
             } while (_local1 == null);
             this.smallBallClick(_local1);
         }
@@ -475,7 +504,7 @@
             if (!this.canUseFortuneModal())
             {
                 this.fortuneEventOver();
-            };
+            }
             var _local2:Player = StaticInjectorContext.getInjector().getInstance(GameModel).player;
             if (_local2 != null)
             {
@@ -484,18 +513,18 @@
                     _local4 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                     _local4.dispatch(new NotEnoughGoldDialog());
                     return;
-                };
+                }
                 if ((((_arg1 == Currency.GOLD)) && (((_local2.credits_ - this.goldPrice_) < 0))))
                 {
                     _local4 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                     _local4.dispatch(new NotEnoughGoldDialog());
                     return;
-                };
+                }
                 if ((((_arg1 == Currency.FORTUNE)) && (((_local2.tokens_ - this.tokenPrice_) < 0))))
                 {
                     return;
-                };
-            };
+                }
+            }
             this.itemSwitchTimer.delay = this.SWITCH_DELAY_FAST;
             this.crystalMain.setAnimationStage(CrystalMain.ANIMATION_STAGE_WAITING);
             var _local3:Object = this.makeBasicParams();
@@ -512,13 +541,13 @@
                 else
                 {
                     return;
-                };
-            };
+                }
+            }
             if (this.state == STATE_ROUND_1)
             {
                 _local3.status = 0;
                 this.crystalMain.removeEventListener(MouseEvent.ROLL_OVER, this.displayInfoHover);
-            };
+            }
             if ((((this.state == STATE_ROUND_1)) && (!(this.client.requestInProgress()))))
             {
                 this.buyButtonsDisable();
@@ -535,11 +564,11 @@
                         if ((_local2.tokens_ - this.tokenPrice_) < 0)
                         {
                             return;
-                        };
+                        }
                         _local2.tokens_ = (_local2.tokens_ - this.tokenPrice_);
                         this.creditDisplay_.draw(_local2.credits_, 0, _local2.tokens_);
-                    };
-                };
+                    }
+                }
                 this.client.sendRequest("/account/playFortuneGame", _local3);
                 this.setString((10 + int((Math.random() * 6))));
                 this.client.complete.addOnce(this.onFirstBuyComplete);
@@ -557,11 +586,11 @@
                     {
                         _local2.credits_ = (_local2.credits_ - this.goldPriceSecond_);
                         this.creditDisplay_.draw(_local2.credits_, 0, _local2.tokens_);
-                    };
+                    }
                     this.buyButtonGold.visible = false;
                     this.resetButton.visible = false;
-                };
-            };
+                }
+            }
         }
 
         private function onFirstBuyComplete(_arg1:Boolean, _arg2:*):void
@@ -599,9 +628,9 @@
                         {
                             _local4.tokens_ = int(_local3.FortuneToken);
                             this.creditDisplay_.draw(_local4.credits_, 0, _local4.tokens_);
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 _local5 = Vector.<int>([0, 2, 1]);
                 _local6 = Math.floor((Math.random() * 3));
                 _local7 = (Math.random() > 0.5);
@@ -628,7 +657,7 @@
                         _local11 = this.crystals[_local5[_local6]].getCenterY();
                         new TimerCallback(_local15, this.doLightning, _local13, _local14, _local10, _local11);
                         new TimerCallback((_local15 + 0.1), this.crystals[_local5[_local6]].doItemShow, int(_local17));
-                    };
+                    }
                     _local13 = _local10;
                     _local14 = _local11;
                     _local15 = (_local15 + _local16);
@@ -639,15 +668,15 @@
                     }
                     else
                     {
-                        _local6 = (((--_local6)<0) ? 2 : _local6);
-                    };
-                };
+                        _local6 = (((--_local6) < 0) ? 2 : _local6);
+                    }
+                }
                 new TimerCallback(this.SHOW_PRIZES_TIME, this.onFirstBuyAnimateSub);
             }
             else
             {
                 this.handleError();
-            };
+            }
         }
 
         private function onFirstBuyAnimateSub():void
@@ -655,7 +684,7 @@
             if ((((this.state == STATE_ROUND_2)) && (!((this.crystalClicked == null)))))
             {
                 this.resetBallsRound2();
-            };
+            }
             var _local1:int;
             while (_local1 < 3)
             {
@@ -664,7 +693,7 @@
                 this.crystals[_local1].setAnimation(6, 7);
                 this.crystals[_local1].setAnimationDuration(50);
                 _local1++;
-            };
+            }
             this.setGameStage(this.GAME_STAGE_SPIN);
             this.crystalMain.setAnimationStage(CrystalMain.ANIMATION_STAGE_INNERROTATION);
             new TimerCallback(this.SPIN_TIME, this.onFirstBuyAnimateComplete);
@@ -681,7 +710,7 @@
             else
             {
                 this.setString(4);
-            };
+            }
             this.ballClickEnable(this.crystalClicked);
             this.crystalMain.setAnimationStage(CrystalMain.ANIMATION_STAGE_BUZZING);
             this.doNova(this.crystalMain.getCenterX(), this.crystalMain.getCenterY(), 10, 0xFFFF);
@@ -692,16 +721,25 @@
                 {
                     this.crystals[_local1].setActive2();
                     this.crystals[_local1].doItemReturn();
-                    new TimerCallback(this.NOVA_DELAY_TIME, this.doNova, int(this.crystals[_local1].returnCenterX()), int(this.crystals[_local1].returnCenterY()), 5, 0xFFFF);
+                    new TimerCallback(
+                            this.NOVA_DELAY_TIME,
+                            this.doNova,
+                            int(this.crystals[_local1].returnCenterX()),
+                            int(this.crystals[_local1].returnCenterY()),
+                            5,
+                            0xFFFF
+                    );
                     new TimerCallback(this.NOVA_DELAY_TIME, this.crystals[_local1].setAnimationPulse);
-                };
+                }
                 _local1++;
-            };
+            }
             if (this.countdownTimer == null)
             {
                 return;
-            };
-            new TimerCallback(this.NOVA_DELAY_TIME, this.crystalMain.setAnimationStage, CrystalMain.ANIMATION_STAGE_PULSE);
+            }
+            new TimerCallback(
+                    this.NOVA_DELAY_TIME, this.crystalMain.setAnimationStage, CrystalMain.ANIMATION_STAGE_PULSE
+            );
             this.countdownTimer.start(this.COUNTDOWN_AMOUNT);
             this.countdownTimer.setXPos(this.crystalMain.getCenterX());
             this.countdownTimer.setYPos(this.crystalMain.getCenterY());
@@ -714,14 +752,20 @@
             if (((!((this.countdownTimer == null))) && (this.countdownTimer.isRunning())))
             {
                 this.setString(9);
-            };
+            }
         }
 
         private function handleError():void
         {
             var _local1:OpenDialogSignal;
             _local1 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
-            var _local2:Dialog = new Dialog("MysteryBoxRollModal.purchaseFailedString", "MysteryBoxRollModal.pleaseTryAgainString", "MysteryBoxRollModal.okString", null, null);
+            var _local2:Dialog = new Dialog(
+                    "MysteryBoxRollModal.purchaseFailedString",
+                    "MysteryBoxRollModal.pleaseTryAgainString",
+                    "MysteryBoxRollModal.okString",
+                    null,
+                    null
+            );
             _local2.addEventListener(Dialog.LEFT_BUTTON, this.onErrorOk, false, 0, true);
             _local1.dispatch(_local2);
         }
@@ -762,14 +806,14 @@
                 {
                     this.smallBallClickSub(_local3, _local2);
                     this.crystals[_local3].setAnimationClicked();
-                };
+                }
                 if (this.crystals[_local3] != this.crystalClicked)
                 {
                     _local2++;
-                };
+                }
                 this.crystals[_local3].setGlowState(CrystalSmall.GLOW_STATE_FADE);
                 _local3++;
-            };
+            }
             this.chooseingState = false;
         }
 
@@ -786,7 +830,7 @@
                 this.crystalClicked = this.crystals[_arg1];
                 this.client.sendRequest("/account/playFortuneGame", _local3);
                 this.client.complete.addOnce(this.onSmallBallClickComplete);
-            };
+            }
         }
 
         private function onSmallBallClickComplete(_arg1:Boolean, _arg2:*):void
@@ -798,7 +842,14 @@
                 _local3 = new XML(_arg2);
                 if (this.state == STATE_ROUND_2)
                 {
-                    new TimerCallback(0.25, this.doNova, this.crystalClicked.getCenterX(), this.crystalClicked.getCenterY(), 6, 0xFFFF);
+                    new TimerCallback(
+                            0.25,
+                            this.doNova,
+                            this.crystalClicked.getCenterX(),
+                            this.crystalClicked.getCenterY(),
+                            6,
+                            0xFFFF
+                    );
                     new TimerCallback(0.25, this.crystalClicked.doItemReveal, _local3.Awards);
                     new TimerCallback(this.DISPLAY_PRIZE_TIME_2, this.resetGame);
                 }
@@ -807,11 +858,20 @@
                     if (this.state == STATE_ROUND_1)
                     {
                         this.state = STATE_ROUND_2;
-                        new TimerCallback(this.DISPLAY_PRIZE_TIME_1, this.onSmallBallClickCompleteRound2, _local3.Awards);
-                        new TimerCallback(0.25, this.doNova, this.crystalClicked.getCenterX(), this.crystalClicked.getCenterY(), 6, 0xFFFF);
+                        new TimerCallback(
+                                this.DISPLAY_PRIZE_TIME_1, this.onSmallBallClickCompleteRound2, _local3.Awards
+                        );
+                        new TimerCallback(
+                                0.25,
+                                this.doNova,
+                                this.crystalClicked.getCenterX(),
+                                this.crystalClicked.getCenterY(),
+                                6,
+                                0xFFFF
+                        );
                         new TimerCallback(0.25, this.crystalClicked.doItemReveal, _local3.Awards);
-                    };
-                };
+                    }
+                }
                 new TimerCallback(0.5, this.setString, 5);
             }
             else
@@ -820,13 +880,17 @@
                 _local4 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                 if (this.state == STATE_ROUND_1)
                 {
-                    _local4.dispatch(new DebugDialog("You have run out of time to choose, but an item has been chosen for you.", "Oh no!"));
+                    _local4.dispatch(
+                            new DebugDialog(
+                                    "You have run out of time to choose, but an item has been chosen for you.", "Oh no!"
+                            )
+                    );
                 }
                 else
                 {
                     _local4.dispatch(new DebugDialog("You have run out of time to choose.", "Oh no!"));
-                };
-            };
+                }
+            }
         }
 
         private function onSmallBallClickCompleteRound2(_arg1:int):void
@@ -844,9 +908,9 @@
                 if (int(this.items[_local2]) == _arg1)
                 {
                     this.items[_local2] = this.items[(this.items.length - 1)];
-                };
+                }
                 _local2++;
-            };
+            }
             this.items.pop();
             _local2 = 0;
             while (_local2 < this.crystals.length)
@@ -854,9 +918,9 @@
                 if (this.crystals[_local2] != this.crystalClicked)
                 {
                     this.crystals[_local2].doItemShow(int(this.items.pop()));
-                };
+                }
                 _local2++;
-            };
+            }
             this.setString(6);
         }
 
@@ -880,7 +944,7 @@
             {
                 this.crystals[_local1].resetVars();
                 _local1++;
-            };
+            }
             this.resetBalls();
         }
 
@@ -903,7 +967,7 @@
             if (this.state == STATE_ROUND_1)
             {
                 this.buyButtonFortune.addEventListener(MouseEvent.CLICK, this.onBuyWithFortuneClick);
-            };
+            }
             this.buyButtonGold.addEventListener(MouseEvent.CLICK, this.onBuyWithGoldClick);
         }
 
@@ -914,10 +978,10 @@
             {
                 this.crystals[_local1].removeEventListener(MouseEvent.CLICK, this.onSmallBallClick);
                 _local1++;
-            };
+            }
         }
 
-        private function ballClickEnable(_arg1:CrystalSmall=null):void
+        private function ballClickEnable(_arg1:CrystalSmall = null):void
         {
             var _local2:int;
             while (_local2 < 3)
@@ -930,9 +994,9 @@
                 {
                     this.crystals[_local2].addEventListener(MouseEvent.CLICK, this.onSmallBallClick);
                     this.crystals[_local2].setMouseTracking(true);
-                };
+                }
                 _local2++;
-            };
+            }
         }
 
         private function resetBalls():void
@@ -954,13 +1018,13 @@
                     if (this.crystals[_local2].visible == false)
                     {
                         this.crystals[_local2].visible = true;
-                    };
-                };
+                    }
+                }
                 this.crystals[_local2].removeItemReveal();
                 this.crystals[_local2].setInactive();
                 this.crystals[_local2].reset();
                 _local2++;
-            };
+            }
             this.crystalClicked = null;
         }
 
@@ -973,7 +1037,7 @@
             {
                 this.crystalClicked.visible = false;
                 this.crystalClicked.setInactive();
-            };
+            }
             var _local3:int;
             while (_local3 < 3)
             {
@@ -983,9 +1047,9 @@
                     this.crystals[_local3].setXPos((this.crystalMain.getCenterX() + (_local2 * Math.sin(_local4))));
                     this.crystals[_local3].setYPos((this.crystalMain.getCenterY() + (_local2 * Math.cos(_local4))));
                     _local1++;
-                };
+                }
                 _local3++;
-            };
+            }
         }
 
         public function spinCrystals():void
@@ -995,7 +1059,7 @@
             if (this.spinSpeed < this.MAX_SPIN_SPEED)
             {
                 this.spinSpeed = (this.spinSpeed + 4);
-            };
+            }
             var _local2:int;
             while (_local2 < 3)
             {
@@ -1003,11 +1067,11 @@
                 this.crystals[_local2].setXPos((this.crystalMain.getCenterX() + (this.radius * Math.sin(_local3))));
                 this.crystals[_local2].setYPos((this.crystalMain.getCenterY() + (this.radius * Math.cos(_local3))));
                 _local2++;
-            };
+            }
             if (this.radius == INIT_RADIUS_FROM_MAINCRYTAL)
             {
                 this.direction = (this.direction * -1);
-            };
+            }
             if (this.radius < 0)
             {
                 this.radius = 0;
@@ -1017,8 +1081,8 @@
                 if (this.spinSpeed == this.MAX_SPIN_SPEED)
                 {
                     this.radius = (this.radius - ((this.direction * 2.85) / this.SPIN_TIME));
-                };
-            };
+                }
+            }
         }
 
         public function onEnterFrame(_arg1:Event):void
@@ -1032,13 +1096,13 @@
             {
                 this.spinCrystals();
                 this.crystalMain.setAnimationDuration(((this.MAX_SPIN_SPEED + 80) - this.spinSpeed));
-            };
+            }
             var _local4:int;
             while (_local4 < 3)
             {
                 this.crystals[_local4].update(_local2, _local3);
                 _local4++;
-            };
+            }
             this.rotateAroundCenter(this.platformMain, 0.1);
             this.rotateAroundCenter(this.platformMainSub, -0.15);
             if (this.chooseingState)
@@ -1047,8 +1111,8 @@
                 if (_local5 < 0.05)
                 {
                     this.crystals[int(((_local5 * 200) % 3))].setShake(true);
-                };
-            };
+                }
+            }
             this.draw(_local2, _local3);
         }
 
@@ -1062,7 +1126,7 @@
             else
             {
                 _arg1.rotation = ((_arg1.rotation + _arg2) % 360);
-            };
+            }
         }
 
         public function draw(_arg1:int, _arg2:int):void
@@ -1073,7 +1137,7 @@
             this.lastUpdate_ = _arg1;
         }
 
-        private function doNova(_arg1:Number, _arg2:Number, _arg3:int=20, _arg4:int=12447231):void
+        private function doNova(_arg1:Number, _arg2:Number, _arg3:int = 20, _arg4:int = 12447231):void
         {
             var _local5:GameObject;
             var _local6:NovaEffect;
@@ -1084,15 +1148,17 @@
                 _local5.y_ = ParticleModalMap.getLocalPos(_arg2);
                 _local6 = new NovaEffect(_local5, _arg3, _arg4);
                 this.particleMap.addObj(_local6, _local5.x_, _local5.y_);
-            };
+            }
         }
 
-        private function doLightning(_arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:int=200, _arg6:int=12447231):void
+        private function doLightning(
+                _arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:int = 200, _arg6:int = 12447231
+        ):void
         {
             if (this.parent == null)
             {
                 return;
-            };
+            }
             var _local7:GameObject = new GameObject(null);
             _local7.x_ = ParticleModalMap.getLocalPos(_arg1);
             _local7.y_ = ParticleModalMap.getLocalPos(_arg2);
@@ -1107,8 +1173,6 @@
         {
             this.gameStage_ = _arg1;
         }
-
-
     }
 }
 

@@ -1,34 +1,32 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import flash.utils.getTimer;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.util.GraphicsUtil;
-    import flash.events.Event;
-    import flash.events.MouseEvent;
+
+    import flash.display.CapsStyle;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import __AS3__.vec.*;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.text.TextFieldAutoSize;
+    import flash.utils.getTimer;
 
-    public class TradeButton extends BackgroundFilledText 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class TradeButton extends BackgroundFilledText
     {
-
         private static const WAIT_TIME:int = 2999;
         private static const COUNTDOWN_STATE:int = 0;
         private static const NORMAL_STATE:int = 1;
         private static const WAITING_STATE:int = 2;
         private static const DISABLED_STATE:int = 3;
-
         public var statusBar_:Sprite;
         public var barMask_:Shape;
         public var myText:StaticTextDisplay;
@@ -38,7 +36,7 @@
         private var barGraphicsData_:Vector.<IGraphicsData>;
         private var outlineGraphicsData_:Vector.<IGraphicsData>;
 
-        public function TradeButton(_arg1:int, _arg2:int=0)
+        public function TradeButton(_arg1:int, _arg2:int = 0)
         {
             super(_arg2);
             this.makeGraphics();
@@ -47,7 +45,7 @@
             this.myText.setAutoSize(TextFieldAutoSize.CENTER).setVerticalAlign(TextFieldDisplayConcrete.MIDDLE);
             this.myText.setSize(_arg1).setColor(0x363636).setBold(true);
             this.myText.setStringBuilder(new LineBuilder().setParams(TextKey.PLAYERMENU_TRADE));
-            w_ = (((_arg2)!=0) ? _arg2 : (this.myText.width + 12));
+            w_ = (((_arg2) != 0) ? _arg2 : (this.myText.width + 12));
             this.h_ = (this.myText.height + 8);
             this.myText.x = (w_ / 2);
             this.myText.y = (this.h_ / 2);
@@ -69,7 +67,9 @@
             var _local1:GraphicsSolidFill = new GraphicsSolidFill(0xBFBFBF, 1);
             this.barGraphicsData_ = new <IGraphicsData>[_local1, path_, GraphicsUtil.END_FILL];
             var _local2:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-            var _local3:GraphicsStroke = new GraphicsStroke(2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local2);
+            var _local3:GraphicsStroke = new GraphicsStroke(
+                    2, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, _local2
+            );
             this.outlineGraphicsData_ = new <IGraphicsData>[_local3, path_, GraphicsUtil.END_STROKE];
         }
 
@@ -98,7 +98,7 @@
             if (_arg1 == mouseEnabled)
             {
                 return;
-            };
+            }
             mouseEnabled = _arg1;
             mouseChildren = _arg1;
             graphicsData_[0] = ((_arg1) ? enabledFill_ : disabledFill_);
@@ -179,8 +179,8 @@
                 {
                     this.state_ = NORMAL_STATE;
                     this.setEnabled(true);
-                };
-            };
+                }
+            }
             switch (this.state_)
             {
                 case COUNTDOWN_STATE:
@@ -193,12 +193,10 @@
                 case WAITING_STATE:
                     this.statusBar_.visible = false;
                     break;
-            };
+            }
             graphics.clear();
             graphics.drawGraphicsData(graphicsData_);
         }
-
-
     }
 }
 

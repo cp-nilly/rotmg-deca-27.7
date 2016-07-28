@@ -1,22 +1,23 @@
 ﻿package kabam.rotmg.application.model
 {
-    import flash.system.Security;
     import flash.net.LocalConnection;
+    import flash.system.Security;
 
-    public class DomainModel 
+    public class DomainModel
     {
-
         private const LOCALHOST:String = "localhost";
-        private const PRODUCTION_WHITELIST:Array = ["www.realmofthemadgod.com", "realmofthemadgodhrd.appspot.com", "realmofthemadgod.appspot.com"];
-        private const TESTING_WHITELIST:Array = ["testing.realmofthemadgod.com", "rotmgtesting.appspot.com", "rotmghrdtesting.appspot.com"];
+        private const PRODUCTION_WHITELIST:Array = [
+            "www.realmofthemadgod.com", "realmofthemadgodhrd.appspot.com", "realmofthemadgod.appspot.com"
+        ];
+        private const TESTING_WHITELIST:Array = [
+            "testing.realmofthemadgod.com", "rotmgtesting.appspot.com", "rotmghrdtesting.appspot.com"
+        ];
         private const TESTING2_WHITELIST:Array = ["realmtesting2.appspot.com"];
         private const TRANSLATION_WHITELIST:Array = ["xlate.kabam.com"];
         private const WHITELIST:Array = PRODUCTION_WHITELIST.concat(TESTING_WHITELIST).concat(TRANSLATION_WHITELIST).concat(TESTING2_WHITELIST);
-
         [Inject]
         public var client:PlatformModel;
         private var localDomain:String;
-
 
         public function applyDomainSecurity():void
         {
@@ -24,7 +25,7 @@
             for each (_local1 in this.WHITELIST)
             {
                 Security.allowDomain(_local1);
-            };
+            }
         }
 
         public function isLocalDomainValid():Boolean
@@ -46,7 +47,7 @@
             for each (_local3 in this.WHITELIST)
             {
                 _local2 = ((_local2) || ((_local1 == _local3)));
-            };
+            }
             return (_local2);
         }
 
@@ -54,8 +55,6 @@
         {
             return ((this.localDomain = ((this.localDomain) || (new LocalConnection().domain))));
         }
-
-
     }
 }
 

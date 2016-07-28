@@ -2,11 +2,9 @@
 {
     import flash.display.BitmapData;
     import flash.geom.Matrix;
-    import __AS3__.vec.Vector;
 
-    public class TextureMatrix 
+    public class TextureMatrix
     {
-
         public var texture_:BitmapData = null;
         public var tToS_:Matrix;
         private var uvMatrix_:Matrix = null;
@@ -56,7 +54,7 @@
             {
                 this.uvMatrix_ = null;
                 return;
-            };
+            }
             var _local2:int = (_arg1.length - 3);
             var _local3:Number = (_arg1[0] * this.texture_.width);
             var _local4:Number = (_arg1[1] * this.texture_.height);
@@ -71,8 +69,6 @@
             this.uvMatrix_ = new Matrix(_local9, _local10, _local11, _local12, _local3, _local4);
             this.uvMatrix_.invert();
         }
-
-
     }
 }
 

@@ -1,14 +1,14 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import org.osflash.signals.Signal;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
-    public class DeprecatedTextButtonStatic extends TextButtonBase 
-    {
+    import org.osflash.signals.Signal;
 
+    public class DeprecatedTextButtonStatic extends TextButtonBase
+    {
         public const textChanged:Signal = new Signal();
 
-        public function DeprecatedTextButtonStatic(_arg1:int, _arg2:String, _arg3:int=0)
+        public function DeprecatedTextButtonStatic(_arg1:int, _arg2:String, _arg3:int = 0)
         {
             super(_arg3);
             addText(_arg1);
@@ -21,8 +21,6 @@
             initText();
             this.textChanged.dispatch();
         }
-
-
     }
 }
 

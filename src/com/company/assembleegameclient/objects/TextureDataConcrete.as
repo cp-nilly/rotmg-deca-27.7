@@ -1,24 +1,22 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import flash.display.BitmapData;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import com.company.assembleegameclient.util.MaskedImage;
     import com.company.assembleegameclient.appengine.RemoteTexture;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.objects.particles.EffectProperties;
-    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.AnimatedChar;
+    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.AssetLoader;
+    import com.company.assembleegameclient.util.MaskedImage;
+    import com.company.util.AssetLibrary;
+
+    import flash.display.BitmapData;
     import flash.utils.Dictionary;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.appengine.*;
 
-    public class TextureDataConcrete extends TextureData 
+    import kabam.rotmg.application.api.ApplicationSetup;
+    import kabam.rotmg.core.StaticInjectorContext;
+
+    public class TextureDataConcrete extends TextureData
     {
-
         public static var remoteTexturesUsed:Boolean = false;
-
         private var isUsingLocalTextures:Boolean;
 
         public function TextureDataConcrete(_arg1:XML)
@@ -51,30 +49,30 @@
                         else
                         {
                             this.parse(_arg1);
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             for each (_local2 in _arg1.AltTexture)
             {
                 this.parse(_local2);
-            };
+            }
             if (_arg1.hasOwnProperty("Mask"))
             {
                 this.parse(XML(_arg1.Mask));
-            };
+            }
             if (_arg1.hasOwnProperty("Effect"))
             {
                 this.parse(XML(_arg1.Effect));
-            };
+            }
         }
 
-        override public function getTexture(_arg1:int=0):BitmapData
+        override public function getTexture(_arg1:int = 0):BitmapData
         {
             if (randomTextureData_ == null)
             {
                 return (texture_);
-            };
+            }
             var _local2:TextureData = randomTextureData_[(_arg1 % randomTextureData_.length)];
             return (_local2.getTexture(_arg1));
         }
@@ -84,7 +82,7 @@
             if (altTextures_ == null)
             {
                 return (null);
-            };
+            }
             return (altTextures_[_arg1]);
         }
 
@@ -125,8 +123,8 @@
                         if (!AssetLoader.currentXmlIsTesting)
                         {
                             remoteTexturesUsed = true;
-                        };
-                    };
+                        }
+                    }
                     remoteTextureDir_ = ((_arg1.hasOwnProperty("Right")) ? AnimatedChar.RIGHT : AnimatedChar.DOWN);
                     return;
                 case "RandomTexture":
@@ -134,33 +132,40 @@
                     for each (_local4 in _arg1.children())
                     {
                         randomTextureData_.push(new TextureDataConcrete(_local4));
-                    };
+                    }
                     return;
                 case "AltTexture":
                     if (altTextures_ == null)
                     {
                         altTextures_ = new Dictionary();
-                    };
+                    }
                     altTextures_[int(_arg1.@id)] = new TextureDataConcrete(_arg1);
                     return;
-            };
+            }
         }
 
         private function onRemoteTexture(_arg1:BitmapData):void
         {
             if (_arg1.width > 16)
             {
-                AnimatedChars.add("remoteTexture", _arg1, null, (_arg1.width / 7), _arg1.height, _arg1.width, _arg1.height, remoteTextureDir_);
+                AnimatedChars.add(
+                        "remoteTexture",
+                        _arg1,
+                        null,
+                        (_arg1.width / 7),
+                        _arg1.height,
+                        _arg1.width,
+                        _arg1.height,
+                        remoteTextureDir_
+                );
                 animatedChar_ = AnimatedChars.getAnimatedChar("remoteTexture", 0);
                 texture_ = animatedChar_.imageFromAngle(0, AnimatedChar.STAND, 0).image_;
             }
             else
             {
                 texture_ = _arg1;
-            };
+            }
         }
-
-
     }
 }
 

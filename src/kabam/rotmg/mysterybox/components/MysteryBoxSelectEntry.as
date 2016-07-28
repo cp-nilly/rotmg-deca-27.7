@@ -1,36 +1,35 @@
 ﻿package kabam.rotmg.mysterybox.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.util.components.LegacyBuyButton;
     import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
+
     import flash.display.DisplayObject;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.events.MouseEvent;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.util.components.UIAssetsHelper;
-    import flash.utils.getTimer;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Point;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
-    import flash.filters.ColorMatrixFilter;
-    import flash.geom.Point;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import flash.utils.getTimer;
+
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+    import kabam.rotmg.util.components.UIAssetsHelper;
 
-    public class MysteryBoxSelectEntry extends Sprite 
+    public class MysteryBoxSelectEntry extends Sprite
     {
-
         public static var redBarEmbed:Class = MysteryBoxSelectEntry_redBarEmbed;
-
         private const buyButton:LegacyBuyButton = new LegacyBuyButton("", 16, 0, Currency.INVALID);
         private const newString:String = "MysteryBoxSelectEntry.newString";
         private const onSaleString:String = "MysteryBoxSelectEntry.onSaleString";
         private const saleEndString:String = "MysteryBoxSelectEntry.saleEndString";
-
         public var mbi:MysteryBoxInfo;
         private var leftNavSprite:Sprite;
         private var rightNavSprite:Sprite;
@@ -70,7 +69,8 @@
             else
             {
                 this.buyButton.setPrice(this.mbi.priceAmount, this.mbi.priceCurrency);
-            };
+            }
+            ;
             this.buyButton.x = (MysteryBoxSelectModal.modalWidth - 120);
             this.buyButton.y = 16;
             this.buyButton._width = 70;
@@ -85,7 +85,8 @@
             else
             {
                 this.addIconImageChild();
-            };
+            }
+            ;
             if (this.infoImage == null)
             {
                 this.mbi.infoImageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, this.onInfoLoadComplete);
@@ -93,7 +94,8 @@
             else
             {
                 this.addInfoImageChild();
-            };
+            }
+            ;
             this.mbi.quantity = this.quantity_.toString();
             this.leftNavSprite = UIAssetsHelper.createLeftNevigatorIcon(UIAssetsHelper.LEFT_NEVIGATOR, 3);
             this.leftNavSprite.x = ((this.buyButton.x + this.buyButton.width) + 45);
@@ -136,8 +138,10 @@
                         if (this.quantity_ < 10)
                         {
                             this.quantity_ = (this.quantity_ + 5);
-                        };
-                    };
+                        }
+                        ;
+                    }
+                    ;
                     break;
                 case this.leftNavSprite:
                     if (this.quantity_ == 10)
@@ -149,10 +153,13 @@
                         if (this.quantity_ > 1)
                         {
                             this.quantity_ = (this.quantity_ - 4);
-                        };
-                    };
+                        }
+                        ;
+                    }
+                    ;
                     break;
-            };
+            }
+            ;
             this.mbi.quantity = this.quantity_.toString();
             if (this.mbi.isOnSale())
             {
@@ -161,7 +168,8 @@
             else
             {
                 this.buyButton.setPrice((this.mbi.priceAmount * this.quantity_), this.mbi.priceCurrency);
-            };
+            }
+            ;
         }
 
         private function addNewText():void
@@ -170,7 +178,8 @@
             {
                 this.newText = this.getText(this.newString, 74, 0).setColor(0xFFDE00);
                 addChild(this.newText);
-            };
+            }
+            ;
         }
 
         private function onEnterFrame(_arg1:Event):void
@@ -180,12 +189,14 @@
             {
                 this.newText.scaleX = _local2;
                 this.newText.scaleY = _local2;
-            };
+            }
+            ;
             if (this.sale)
             {
                 this.sale.scaleX = _local2;
                 this.sale.scaleY = _local2;
-            };
+            }
+            ;
         }
 
         private function addSaleText():void
@@ -194,13 +205,22 @@
             var _local2:TextFieldDisplayConcrete;
             if (this.mbi.isOnSale())
             {
-                this.sale = this.getText(this.onSaleString, int(((320 * MysteryBoxSelectModal.modalWidth) / 415)), 0).setColor(0xFF00);
+                this.sale = this.getText(
+                        this.onSaleString,
+                        int(((320 * MysteryBoxSelectModal.modalWidth) / 415)),
+                        0
+                ).setColor(0xFF00);
                 addChild(this.sale);
                 _local1 = this.mbi.getSaleTimeLeftStringBuilder();
-                _local2 = this.getText("", (int(((250 * MysteryBoxSelectModal.modalWidth) / 415)) - 32), 46).setColor(0xFF0000);
+                _local2 = this.getText(
+                        "",
+                        (int(((250 * MysteryBoxSelectModal.modalWidth) / 415)) - 32),
+                        46
+                ).setColor(0xFF0000);
                 _local2.setStringBuilder(_local1);
                 addChild(_local2);
-            };
+            }
+            ;
         }
 
         private function onImageLoadComplete(_arg1:Event):void
@@ -217,7 +237,13 @@
             this.addInfoImageChild();
         }
 
-        public function getText(_arg1:String, _arg2:int, _arg3:int, _arg4:int=12, _arg5:Boolean=false):TextFieldDisplayConcrete
+        public function getText(
+                _arg1:String,
+                _arg2:int,
+                _arg3:int,
+                _arg4:int = 12,
+                _arg5:Boolean = false
+        ):TextFieldDisplayConcrete
         {
             var _local6:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(_arg4).setColor(0xFFFFFF).setTextWidth((MysteryBoxSelectModal.modalWidth - 185));
             _local6.setBold(true);
@@ -228,7 +254,8 @@
             else
             {
                 _local6.setStringBuilder(new LineBuilder().setParams(_arg1));
-            };
+            }
+            ;
             _local6.setWordWrap(true);
             _local6.setMultiLine(true);
             _local6.setAutoSize(TextFieldAutoSize.LEFT);
@@ -244,7 +271,8 @@
             if (this.iconImage == null)
             {
                 return;
-            };
+            }
+            ;
             this.iconImage.width = 48;
             this.iconImage.height = 48;
             this.iconImage.x = 14;
@@ -259,11 +287,17 @@
             if (this.infoImage == null)
             {
                 return;
-            };
+            }
+            ;
             var _local1:int = 8;
             this.infoImage.width = (291 - _local1);
             this.infoImage.height = ((598 - (_local1 * 2)) - 2);
-            var _local2:Point = this.globalToLocal(new Point(((MysteryBoxSelectModal.getRightBorderX() + 1) + 14), (2 + _local1)));
+            var _local2:Point = this.globalToLocal(
+                    new Point(
+                            ((MysteryBoxSelectModal.getRightBorderX() + 1) + 14),
+                            (2 + _local1)
+                    )
+            );
             this.infoImage.x = _local2.x;
             this.infoImage.y = _local2.y;
             if (((this.hoverState) && (!(this.descriptionShowing))))
@@ -271,14 +305,40 @@
                 this.descriptionShowing = true;
                 addChild(this.infoImage);
                 this.infoImageBorder = new PopupWindowBackground();
-                this.infoImageBorder.draw(this.infoImage.width, (this.infoImage.height + 2), PopupWindowBackground.TYPE_TRANSPARENT_WITHOUT_HEADER);
+                this.infoImageBorder.draw(
+                        this.infoImage.width,
+                        (this.infoImage.height + 2),
+                        PopupWindowBackground.TYPE_TRANSPARENT_WITHOUT_HEADER
+                );
                 this.infoImageBorder.x = this.infoImage.x;
                 this.infoImage.y--;
                 addChild(this.infoImageBorder);
-                _local3 = [3.0742, -1.8282, -0.246, 0, 50, -0.9258, 2.1718, -0.246, 0, 50, -0.9258, -1.8282, 3.754, 0, 50, 0, 0, 0, 1, 0];
+                _local3 = [
+                    3.0742,
+                    -1.8282,
+                    -0.246,
+                    0,
+                    50,
+                    -0.9258,
+                    2.1718,
+                    -0.246,
+                    0,
+                    50,
+                    -0.9258,
+                    -1.8282,
+                    3.754,
+                    0,
+                    50,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ];
                 _local4 = new ColorMatrixFilter(_local3);
                 this.redbar.filters = [_local4];
-            };
+            }
+            ;
         }
 
         private function removeInfoImageChild():void
@@ -289,7 +349,8 @@
                 removeChild(this.infoImage);
                 this.descriptionShowing = false;
                 this.redbar.filters = [];
-            };
+            }
+            ;
         }
 
         private function onBoxBuy(_arg1:MouseEvent):void
@@ -302,10 +363,9 @@
                 _local2.parentSelectModal = MysteryBoxSelectModal(parent.parent);
                 _local4 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
                 _local4.dispatch(_local2);
-            };
+            }
+            ;
         }
-
-
     }
 }
 

@@ -1,28 +1,28 @@
 ﻿package kabam.lib.net.impl
 {
-    import org.osflash.signals.Signal;
-    import flash.utils.ByteArray;
-    import kabam.lib.net.api.MessageProvider;
-    import flash.net.Socket;
-    import flash.utils.Timer;
     import com.hurlant.crypto.symmetric.ICipher;
+
     import flash.events.Event;
-    import flash.events.ProgressEvent;
     import flash.events.IOErrorEvent;
+    import flash.events.ProgressEvent;
     import flash.events.SecurityErrorEvent;
     import flash.events.TimerEvent;
+    import flash.net.Socket;
+    import flash.utils.ByteArray;
+    import flash.utils.Timer;
 
-    public class SocketServer 
+    import kabam.lib.net.api.MessageProvider;
+
+    import org.osflash.signals.Signal;
+
+    public class SocketServer
     {
-
         public static const MESSAGE_LENGTH_SIZE_IN_BYTES:int = 4;
-
         public const connected:Signal = new Signal();
         public const closed:Signal = new Signal();
         public const error:Signal = new Signal(String);
         private const unsentPlaceholder:Message = new Message(0);
         private const data:ByteArray = new ByteArray();
-
         [Inject]
         public var messages:MessageProvider;
         [Inject]
@@ -70,7 +70,7 @@
             else
             {
                 this.socket.connect(_arg1, _arg2);
-            };
+            }
         }
 
         private function addListeners():void
@@ -131,13 +131,13 @@
                 {
                     this.outgoingCipher.encrypt(this.data);
                     this.data.position = 0;
-                };
+                }
                 this.socket.writeInt((this.data.bytesAvailable + 5));
                 this.socket.writeByte(_local2.id);
                 this.socket.writeBytes(this.data);
                 _local2.consume();
                 _local2 = _local2.next;
-            };
+            }
             this.socket.flush();
             this.unsentPlaceholder.next = null;
             this.unsentPlaceholder.prev = null;
@@ -169,7 +169,7 @@
             this.closed.dispatch();
         }
 
-        private function onSocketData(_:ProgressEvent=null):void
+        private function onSocketData(_:ProgressEvent = null):void
         {
             var messageId:uint;
             var message:Message;
@@ -177,56 +177,65 @@
             var errorMessage:String;
             while (true)
             {
-                if ((((this.socket == null)) || (!(this.socket.connected)))) break;
+                if ((((this.socket == null)) || (!(this.socket.connected))))
+                {
+                    break;
+                }
                 if (this.messageLen == -1)
                 {
-                    if (this.socket.bytesAvailable < 4) break;
+                    if (this.socket.bytesAvailable < 4)
+                    {
+                        break;
+                    }
                     try
                     {
                         this.messageLen = this.socket.readInt();
                     }
-                    catch(e:Error)
+                    catch (e:Error)
                     {
                         errorMessage = parseString("Socket-Server Data Error: {0}: {1}", [e.name, e.message]);
                         error.dispatch(errorMessage);
                         messageLen = -1;
                         return;
-                    };
-                };
-                if (this.socket.bytesAvailable < (this.messageLen - MESSAGE_LENGTH_SIZE_IN_BYTES)) break;
+                    }
+                }
+                if (this.socket.bytesAvailable < (this.messageLen - MESSAGE_LENGTH_SIZE_IN_BYTES))
+                {
+                    break;
+                }
                 messageId = this.socket.readUnsignedByte();
                 message = this.messages.require(messageId);
                 data = new ByteArray();
                 if ((this.messageLen - 5) > 0)
                 {
                     this.socket.readBytes(data, 0, (this.messageLen - 5));
-                };
+                }
                 data.position = 0;
                 if (this.incomingCipher != null)
                 {
                     this.incomingCipher.decrypt(data);
                     data.position = 0;
-                };
+                }
                 this.messageLen = -1;
                 if (message == null)
                 {
                     this.logErrorAndClose("Socket-Server Protocol Error: Unknown message");
                     return;
-                };
+                }
                 try
                 {
                     message.parseFromInput(data);
                 }
-                catch(error:Error)
+                catch (error:Error)
                 {
                     logErrorAndClose("Socket-Server Protocol Error: {0}", [error.toString()]);
                     return;
-                };
+                }
                 message.consume();
-            };
+            }
         }
 
-        private function logErrorAndClose(_arg1:String, _arg2:Array=null):void
+        private function logErrorAndClose(_arg1:String, _arg2:Array = null):void
         {
             this.error.dispatch(this.parseString(_arg1, _arg2));
             this.disconnect();
@@ -240,7 +249,7 @@
             {
                 _arg1 = _arg1.replace((("{" + _local4) + "}"), _arg2[_local4]);
                 _local4++;
-            };
+            }
             return (_arg1);
         }
 
@@ -248,8 +257,6 @@
         {
             return (this.socket.connected);
         }
-
-
     }
 }
 

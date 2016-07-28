@@ -1,14 +1,15 @@
 ﻿package kabam.rotmg.pets.view.dialogs.evolving
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.PetIconFactory;
-	import robotlegs.bender.framework.api.IInjector;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
+
     import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.view.components.PetIconFactory;
 
-    public class EvolvedPet extends Sprite 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class EvolvedPet extends Sprite
     {
-
         [Inject]
         public var petIconFactory:PetIconFactory;
         [Inject]
@@ -17,7 +18,6 @@
         public var bigSpinner:Spinner;
         public var petIcon:DisplayObject;
         private var petVO:PetVO;
-
 
         public function setPet(_arg1:PetVO):void
         {
@@ -58,8 +58,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

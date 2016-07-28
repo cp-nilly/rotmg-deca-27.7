@@ -1,16 +1,17 @@
 ﻿package kabam.rotmg.arena.component
 {
-    import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import kabam.rotmg.text.view.StaticTextDisplay;
     import com.company.assembleegameclient.ui.GuildText;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
+    import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
+    import flash.display.Bitmap;
+
     import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
-    public class AbridgedPlayerTooltip extends ToolTip 
+    public class AbridgedPlayerTooltip extends ToolTip
     {
-
         public function AbridgedPlayerTooltip(_arg1:ArenaLeaderboardEntry)
         {
             var _local3:StaticTextDisplay;
@@ -33,7 +34,7 @@
                 _local5.x = 40;
                 _local5.y = 20;
                 addChild(_local5);
-            };
+            }
             super(0x363636, 0.5, 0xFFFFFF, 1);
             var _local4:EquippedGrid = new EquippedGrid(null, _arg1.slotTypes, null);
             _local4.x = 5;
@@ -41,7 +42,6 @@
             _local4.setItems(_arg1.equipment);
             addChild(_local4);
         }
-
     }
 }
 

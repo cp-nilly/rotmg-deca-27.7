@@ -1,22 +1,22 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import kabam.rotmg.tooltips.TooltipAble;
-    import kabam.rotmg.tooltips.HoverTooltipDelegate;
-    import com.company.assembleegameclient.objects.Player;
-    import flash.events.Event;
     import com.company.assembleegameclient.objects.GameObject;
-    import flash.events.MouseEvent;
+    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.ui.tooltip.PlayerToolTip;
     import com.company.util.MoreColorUtil;
+
+    import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.geom.ColorTransform;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
+
     import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.tooltips.HoverTooltipDelegate;
+    import kabam.rotmg.tooltips.TooltipAble;
 
-    public class PlayerGameObjectListItem extends GameObjectListItem implements TooltipAble 
+    public class PlayerGameObjectListItem extends GameObjectListItem implements TooltipAble
     {
-
         public const hoverTooltipDelegate:HoverTooltipDelegate = new HoverTooltipDelegate();
-
         private var enabled:Boolean = true;
         private var starred:Boolean = false;
 
@@ -27,7 +27,7 @@
             if (_local4)
             {
                 this.starred = _local4.starred_;
-            };
+            }
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         }
@@ -59,18 +59,18 @@
                 if (!this.enabled)
                 {
                     this.hoverTooltipDelegate.getShowToolTip().dispatch(this.hoverTooltipDelegate.tooltip);
-                };
-            };
+                }
+            }
         }
 
-        override public function draw(_arg1:GameObject, _arg2:ColorTransform=null):void
+        override public function draw(_arg1:GameObject, _arg2:ColorTransform = null):void
         {
             var _local3:Player = (_arg1 as Player);
             if (((_local3) && (!((this.starred == _local3.starred_)))))
             {
                 transform.colorTransform = ((_arg2) || (MoreColorUtil.identity));
                 this.starred = _local3.starred_;
-            };
+            }
             super.draw(_arg1, _arg2);
         }
 
@@ -93,8 +93,6 @@
         {
             return (this.hoverTooltipDelegate.getHideToolTips());
         }
-
-
     }
 }
 

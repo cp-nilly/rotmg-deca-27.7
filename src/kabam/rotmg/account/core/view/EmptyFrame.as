@@ -1,24 +1,24 @@
 ﻿package kabam.rotmg.account.core.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
     import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
-    public class EmptyFrame extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class EmptyFrame extends Sprite
     {
-
         public static const TEXT_MARGIN:int = 20;
-
         public var register:Signal;
         public var cancel:Signal;
         protected var modalWidth:Number;
@@ -29,7 +29,7 @@
         protected var title:TextFieldDisplayConcrete;
         protected var desc:TextFieldDisplayConcrete;
 
-        public function EmptyFrame(_arg1:int=288, _arg2:int=150, _arg3:String="")
+        public function EmptyFrame(_arg1:int = 288, _arg2:int = 150, _arg3:String = "")
         {
             this.modalWidth = _arg1;
             this.modalHeight = _arg2;
@@ -38,18 +38,18 @@
             if (_arg3 != "")
             {
                 this.setTitle(_arg3, true);
-            };
+            }
             if (this.background == null)
             {
                 this.backgroundContainer = new Sprite();
                 this.background = this.makeModalBackground();
                 this.backgroundContainer.addChild(this.background);
                 addChild(this.backgroundContainer);
-            };
+            }
             if (_arg3 != "")
             {
                 this.setTitle(_arg3, true);
-            };
+            }
         }
 
         private function onRemovedFromStage(_arg1:Event):void
@@ -58,7 +58,7 @@
             if (this.closeButton != null)
             {
                 this.closeButton.removeEventListener(MouseEvent.CLICK, this.onCloseClick);
-            };
+            }
         }
 
         public function setWidth(_arg1:Number):void
@@ -80,7 +80,7 @@
             if (((!((this.title == null))) && (!((this.title.parent == null)))))
             {
                 removeChild(this.title);
-            };
+            }
             if (_arg1 != null)
             {
                 this.title = this.getText(_arg1, TEXT_MARGIN, 5, _arg2);
@@ -89,7 +89,7 @@
             else
             {
                 this.title = null;
-            };
+            }
         }
 
         public function setDesc(_arg1:String, _arg2:Boolean):void
@@ -99,10 +99,10 @@
                 if (((!((this.desc == null))) && (!((this.desc.parent == null)))))
                 {
                     removeChild(this.desc);
-                };
+                }
                 this.desc = this.getText(_arg1, TEXT_MARGIN, 50, _arg2);
                 addChild(this.desc);
-            };
+            }
         }
 
         public function setCloseButton(_arg1:Boolean):void
@@ -120,8 +120,8 @@
                 {
                     removeChild(this.closeButton);
                     this.closeButton = null;
-                };
-            };
+                }
+            }
         }
 
         protected function getText(_arg1:String, _arg2:int, _arg3:int, _arg4:Boolean):TextFieldDisplayConcrete
@@ -136,7 +136,7 @@
             else
             {
                 _local5.setStringBuilder(new LineBuilder().setParams(_arg1));
-            };
+            }
             _local5.setWordWrap(true);
             _local5.setMultiLine(true);
             _local5.setAutoSize(TextFieldAutoSize.CENTER);
@@ -156,7 +156,7 @@
             if (this.title != null)
             {
                 _local1.divide(PopupWindowBackground.HORIZONTAL_DIVISION, 30);
-            };
+            }
             return (_local1);
         }
 
@@ -176,8 +176,6 @@
         public function onCloseClick(_arg1:MouseEvent):void
         {
         }
-
-
     }
 }
 

@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public interface IUpgradePetRequestVO 
+    public interface IUpgradePetRequestVO
     {
-
     }
 }
 

@@ -1,24 +1,25 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import org.osflash.signals.Signal;
-    import flash.display.DisplayObject;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.ui.UIUtils;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.packages.model.PackageInfo;
     import com.company.assembleegameclient.util.TimeUtil;
-    import kabam.rotmg.text.model.TextKey;
+
+    import flash.display.DisplayObject;
     import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
-    public class PackageButton extends BasePackageButton 
+    import kabam.rotmg.packages.model.PackageInfo;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.UIUtils;
+
+    import org.osflash.signals.Signal;
+
+    public class PackageButton extends BasePackageButton
     {
-
         private const SHOW_DURATION:String = "showDuration";
         private const SHOW_QUANTITY:String = "showQuantity";
-
         public var clicked:Signal;
         private var _state:String = "showDuration";
         private var _icon:DisplayObject;
@@ -45,7 +46,6 @@
             return (_local1);
         }
 
-
         public function init():void
         {
             addChild(UIUtils.makeStaticHUDBackground());
@@ -59,7 +59,7 @@
             if (this._state == _arg1)
             {
                 return;
-            };
+            }
             if (_arg1 == this.SHOW_DURATION)
             {
                 removeChild(this.quantityText);
@@ -75,8 +75,8 @@
                 else
                 {
                     throw (new Error(("PackageButton.setState: Unexpected state " + _arg1)));
-                };
-            };
+                }
+            }
             this._state = _arg1;
         }
 
@@ -89,7 +89,7 @@
             else
             {
                 this.setState(this.SHOW_QUANTITY);
-            };
+            }
             this.quantityText.textChanged.addOnce(this.layout);
             this.quantityStringBuilder.setString(_arg1.toString());
             this.quantityText.setStringBuilder(this.quantityStringBuilder);
@@ -106,9 +106,9 @@
             else
             {
                 _local3 = TextKey.PACKAGE_BUTTON_DAY;
-            };
+            }
             this.durationText.textChanged.addOnce(this.layout);
-            this.durationStringBuilder.setParams(_local3, {"number":_local2});
+            this.durationStringBuilder.setParams(_local3, {"number": _local2});
             this.durationText.setStringBuilder(this.durationStringBuilder);
         }
 
@@ -133,8 +133,6 @@
         {
             this.clicked.dispatch();
         }
-
-
     }
 }
 

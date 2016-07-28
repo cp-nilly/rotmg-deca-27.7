@@ -1,25 +1,26 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Shape;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.servers.api.Server;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import flash.events.Event;
     import com.company.googleanalytics.GA;
-    import kabam.rotmg.ui.view.components.MenuOptionsBar;
-    import kabam.rotmg.ui.view.ButtonFactory;
+
     import flash.display.Graphics;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.filters.DropShadowFilter;
 
-    public class ServersScreen extends Sprite 
-    {
+    import kabam.rotmg.servers.api.Server;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.ButtonFactory;
+    import kabam.rotmg.ui.view.components.MenuOptionsBar;
+    import kabam.rotmg.ui.view.components.ScreenBase;
 
+    import org.osflash.signals.Signal;
+
+    public class ServersScreen extends Sprite
+    {
         private var selectServerText_:TextFieldDisplayConcrete;
         private var lines_:Shape;
         private var content_:Sprite;
@@ -120,8 +121,6 @@
         {
             this.gotoTitle.dispatch();
         }
-
-
     }
 }
 

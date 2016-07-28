@@ -1,23 +1,22 @@
 ﻿package kabam.rotmg.text.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import flash.text.TextField;
-    import kabam.rotmg.language.model.StringMap;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import kabam.rotmg.text.model.FontInfo;
-    import flash.text.TextLineMetrics;
     import flash.text.TextFormat;
+    import flash.text.TextLineMetrics;
 
-    public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay 
+    import kabam.rotmg.language.model.StringMap;
+    import kabam.rotmg.text.model.FontInfo;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
     {
-
         public static const MIDDLE:String = "middle";
         public static const BOTTOM:String = "bottom";
         private static const GUTTER:int = 2;
-
         public const textChanged:Signal = new Signal();
-
         public var textField:TextField;
         private var stringMap:StringMap;
         private var stringBuilder:StringBuilder;
@@ -39,12 +38,10 @@
         private var indent:int = 0;
         private var leading:int = 0;
 
-
         private static function getOnlyTextHeight(_arg1:TextLineMetrics):Number
         {
             return ((_arg1.height - _arg1.leading));
         }
-
 
         public function setIndent(_arg1:int):TextFieldDisplayConcrete
         {
@@ -207,7 +204,7 @@
             if (this.textField)
             {
                 this.setProperties();
-            };
+            }
         }
 
         private function setProperties():void
@@ -221,11 +218,11 @@
             if (this.textWidth != 0)
             {
                 this.textField.width = this.textWidth;
-            };
+            }
             if (this.textHeight != 0)
             {
                 this.textField.height = this.textHeight;
-            };
+            }
             this.textField.selectable = false;
             this.textField.textColor = this.color;
             this.textField.autoSize = this.autoSize;
@@ -254,7 +251,7 @@
             {
                 _arg1.text = this.textField.text;
                 removeChild(this.textField);
-            };
+            }
         }
 
         private function setTextIfAble():void
@@ -268,7 +265,7 @@
                 this.alignVertically();
                 this.invalidateTextField();
                 this.textChanged.dispatch();
-            };
+            }
         }
 
         private function invalidateTextField():void
@@ -285,7 +282,7 @@
             else
             {
                 this.textField.text = _arg1;
-            };
+            }
         }
 
         private function alignVertically():void
@@ -301,8 +298,8 @@
                 {
                     _local1 = this.textField.getLineMetrics(0);
                     this.textField.y = -(getOnlyTextHeight(_local1));
-                };
-            };
+                }
+            }
         }
 
         private function setYToMiddle():void
@@ -324,7 +321,7 @@
             return (this.font.getVerticalSpace(Number(_arg1.size)));
         }
 
-        public function setTextFormat(_arg1:TextFormat, _arg2:int=-1, _arg3:int=-1):void
+        public function setTextFormat(_arg1:TextFormat, _arg2:int = -1, _arg3:int = -1):void
         {
             this.textField.defaultTextFormat = _arg1;
             this.textField.setTextFormat(_arg1, _arg2, _arg3);
@@ -370,12 +367,10 @@
             return (!((this.font == null)));
         }
 
-        public function getTextFormat(_arg1:int=-1, _arg2:int=-1):TextFormat
+        public function getTextFormat(_arg1:int = -1, _arg2:int = -1):TextFormat
         {
             return (this.textField.getTextFormat(_arg1, _arg2));
         }
-
-
     }
 }
 

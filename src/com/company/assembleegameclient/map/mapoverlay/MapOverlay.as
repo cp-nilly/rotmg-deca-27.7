@@ -1,13 +1,14 @@
 ﻿package com.company.assembleegameclient.map.mapoverlay
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.game.view.components.QueuedStatusTextList;
-    import kabam.rotmg.game.view.components.QueuedStatusText;
     import com.company.assembleegameclient.map.Camera;
 
-    public class MapOverlay extends Sprite 
-    {
+    import flash.display.Sprite;
 
+    import kabam.rotmg.game.view.components.QueuedStatusText;
+    import kabam.rotmg.game.view.components.QueuedStatusTextList;
+
+    public class MapOverlay extends Sprite
+    {
         private const speechBalloons:Object = {};
         private const queuedText:Object = {};
 
@@ -24,7 +25,7 @@
             if (((_local3) && (contains(_local3))))
             {
                 removeChild(_local3);
-            };
+            }
             this.speechBalloons[_local2] = _arg1;
             addChild(_arg1);
         }
@@ -62,11 +63,9 @@
                 else
                 {
                     _local4.dispose();
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

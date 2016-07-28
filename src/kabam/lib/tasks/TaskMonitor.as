@@ -1,11 +1,7 @@
 ﻿package kabam.lib.tasks
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-
-    public class TaskMonitor 
+    public class TaskMonitor
     {
-
         private var tasks:Vector.<Task>;
 
         public function TaskMonitor()
@@ -24,12 +20,10 @@
             return (!((this.tasks.indexOf(_arg1) == -1)));
         }
 
-        private function onTaskFinished(_arg1:Task, _arg2:Boolean, _arg3:String=""):void
+        private function onTaskFinished(_arg1:Task, _arg2:Boolean, _arg3:String = ""):void
         {
             this.tasks.splice(this.tasks.indexOf(_arg1), 1);
         }
-
-
     }
 }
 

@@ -1,15 +1,12 @@
 ﻿package com.company.assembleegameclient.ui.dialogs
 {
-    import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
     import flash.events.Event;
-    import __AS3__.vec.*;
 
-    public class CloseDialogComponent 
+    import org.osflash.signals.Signal;
+
+    public class CloseDialogComponent
     {
-
         private const closeSignal:Signal = new Signal();
-
         private var dialog:DialogCloser;
         private var types:Vector.<String>;
 
@@ -32,7 +29,7 @@
             for each (_local2 in this.types)
             {
                 this.dialog.removeEventListener(_local2, this.onButtonType);
-            };
+            }
             this.dialog.getCloseSignal().dispatch();
         }
 
@@ -40,8 +37,6 @@
         {
             return (this.closeSignal);
         }
-
-
     }
 }
 

@@ -1,21 +1,21 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.pets.data.PetSlotsState;
-    import kabam.rotmg.pets.controller.UpgradePetSignal;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.pets.view.dialogs.PetPicker;
-    import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
-    import kabam.rotmg.pets.data.FusePetRequestVO;
-    import kabam.rotmg.messaging.impl.PetUpgradeRequest;
     import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
 
-    public class FusePetMediator extends Mediator 
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.messaging.impl.PetUpgradeRequest;
+    import kabam.rotmg.pets.controller.UpgradePetSignal;
+    import kabam.rotmg.pets.data.FusePetRequestVO;
+    import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.view.dialogs.PetPicker;
+    import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FusePetMediator extends Mediator
     {
-
         private const ERROR_DIALOG_STRING:String = "Pets.fuseError";
-
         [Inject]
         public var view:FusePetView;
         [Inject]
@@ -26,7 +26,6 @@
         public var upgradePet:UpgradePetSignal;
         [Inject]
         public var injector:IInjector;
-
 
         override public function initialize():void
         {
@@ -58,14 +57,18 @@
             var _local2:FusePetRequestVO;
             if (this.petSlotsState.isAcceptableFuseState())
             {
-                _local2 = new FusePetRequestVO(this.petSlotsState.leftSlotPetVO.getID(), this.petSlotsState.rightSlotPetVO.getID(), PetUpgradeRequest.FAME_PAYMENT_TYPE);
+                _local2 = new FusePetRequestVO(
+                        this.petSlotsState.leftSlotPetVO.getID(),
+                        this.petSlotsState.rightSlotPetVO.getID(),
+                        PetUpgradeRequest.FAME_PAYMENT_TYPE
+                );
                 this.onClosed();
                 this.upgradePet.dispatch(_local2);
             }
             else
             {
                 this.openDialog.dispatch(new ErrorDialog(this.ERROR_DIALOG_STRING));
-            };
+            }
         }
 
         private function onGoldPurchase(_arg1:int):void
@@ -73,22 +76,24 @@
             var _local2:FusePetRequestVO;
             if (this.petSlotsState.isAcceptableFuseState())
             {
-                _local2 = new FusePetRequestVO(this.petSlotsState.leftSlotPetVO.getID(), this.petSlotsState.rightSlotPetVO.getID(), PetUpgradeRequest.GOLD_PAYMENT_TYPE);
+                _local2 = new FusePetRequestVO(
+                        this.petSlotsState.leftSlotPetVO.getID(),
+                        this.petSlotsState.rightSlotPetVO.getID(),
+                        PetUpgradeRequest.GOLD_PAYMENT_TYPE
+                );
                 this.onClosed();
                 this.upgradePet.dispatch(_local2);
             }
             else
             {
                 this.openDialog.dispatch(new ErrorDialog(this.ERROR_DIALOG_STRING));
-            };
+            }
         }
 
         private function onClosed():void
         {
             this.petSlotsState.clear();
         }
-
-
     }
 }
 

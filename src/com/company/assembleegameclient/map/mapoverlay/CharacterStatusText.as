@@ -1,21 +1,21 @@
 ﻿package com.company.assembleegameclient.map.mapoverlay
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.objects.GameObject;
-    import flash.geom.Point;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.filters.GlowFilter;
     import com.company.assembleegameclient.map.Camera;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import com.company.assembleegameclient.objects.GameObject;
+
     import flash.display.Bitmap;
     import flash.display.BitmapData;
+    import flash.display.Sprite;
+    import flash.filters.GlowFilter;
     import flash.geom.Matrix;
+    import flash.geom.Point;
 
-    public class CharacterStatusText extends Sprite implements IMapOverlayElement 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+
+    public class CharacterStatusText extends Sprite implements IMapOverlayElement
     {
-
         public const MAX_DRIFT:int = 40;
-
         public var go_:GameObject;
         public var offset_:Point;
         public var color_:uint;
@@ -24,7 +24,7 @@
         private var startTime_:int = 0;
         private var textDisplay:TextFieldDisplayConcrete;
 
-        public function CharacterStatusText(_arg1:GameObject, _arg2:uint, _arg3:int, _arg4:int=0)
+        public function CharacterStatusText(_arg1:GameObject, _arg2:uint, _arg3:int, _arg4:int = 0)
         {
             this.go_ = _arg1;
             this.offset_ = new Point(0, (((-(_arg1.texture_.height) * (_arg1.size_ / 100)) * 5) - 20));
@@ -42,26 +42,28 @@
             if (this.startTime_ == 0)
             {
                 this.startTime_ = (_arg2 + this.offsetTime_);
-            };
+            }
             if (_arg2 < this.startTime_)
             {
                 visible = false;
                 return (true);
-            };
+            }
             var _local3:int = (_arg2 - this.startTime_);
             if ((((_local3 > this.lifetime_)) || (((!((this.go_ == null))) && ((this.go_.map_ == null))))))
             {
                 return (false);
-            };
+            }
             if ((((this.go_ == null)) || (!(this.go_.drawn_))))
             {
                 visible = false;
                 return (true);
-            };
+            }
             visible = true;
-            x = ((((this.go_)!=null) ? this.go_.posS_[0] : 0) + (((this.offset_)!=null) ? this.offset_.x : 0));
+            x = ((((this.go_) != null) ? this.go_.posS_[0] : 0) + (((this.offset_) != null) ? this.offset_.x : 0));
             var _local4:Number = ((_local3 / this.lifetime_) * this.MAX_DRIFT);
-            y = (((((this.go_)!=null) ? this.go_.posS_[1] : 0) + (((this.offset_)!=null) ? this.offset_.y : 0)) - _local4);
+            y = (((((this.go_) != null) ? this.go_.posS_[1] : 0) + (((this.offset_) != null)
+                    ? this.offset_.y
+                    : 0)) - _local4);
             return (true);
         }
 
@@ -93,8 +95,6 @@
             removeChild(this.textDisplay);
             this.textDisplay = null;
         }
-
-
     }
 }
 

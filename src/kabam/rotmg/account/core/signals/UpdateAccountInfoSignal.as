@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class UpdateAccountInfoSignal extends Signal 
+    public class UpdateAccountInfoSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,22 +1,22 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.rotmg.graphics.StarGraphic;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.ui.LineBreakDesign;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.util.FameUtil;
+    import com.company.rotmg.graphics.StarGraphic;
+
     import flash.filters.DropShadowFilter;
-    import kabam.rotmg.ui.view.SignalWaiter;
     import flash.geom.ColorTransform;
     import flash.geom.Rectangle;
-    import com.company.assembleegameclient.util.FameUtil;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
 
-    public class RankToolTip extends ToolTip 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class RankToolTip extends ToolTip
     {
-
         private static const PADDING_LEFT:int = 6;
-
         private var earnedText_:TextFieldDisplayConcrete;
         private var star_:StarGraphic;
         private var howToText_:TextFieldDisplayConcrete;
@@ -28,7 +28,11 @@
             super(0x363636, 1, 0xFFFFFF, 1);
             this.earnedText_ = new TextFieldDisplayConcrete().setSize(13).setColor(0xB3B3B3).setBold(true);
             this.earnedText_.setVerticalAlign(TextFieldDisplayConcrete.BOTTOM);
-            this.earnedText_.setStringBuilder(new LineBuilder().setParams(TextKey.RANK_TOOL_TIP_EARNED, {"numStars":_arg1}));
+            this.earnedText_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.RANK_TOOL_TIP_EARNED, {"numStars": _arg1}
+                    )
+            );
             this.earnedText_.filters = [new DropShadowFilter(0, 0, 0)];
             this.earnedText_.x = PADDING_LEFT;
             addChild(this.earnedText_);
@@ -62,13 +66,17 @@
             var _local4:int;
             while (_local4 < FameUtil.COLORS.length)
             {
-                _local2 = new LegendLine((_local4 * ObjectLibrary.playerChars_.length), (((_local4 + 1) * ObjectLibrary.playerChars_.length) - 1), FameUtil.COLORS[_local4]);
+                _local2 = new LegendLine(
+                        (_local4 * ObjectLibrary.playerChars_.length),
+                        (((_local4 + 1) * ObjectLibrary.playerChars_.length) - 1),
+                        FameUtil.COLORS[_local4]
+                );
                 _local2.x = PADDING_LEFT;
                 _local2.y = _local3;
                 addChild(_local2);
                 _local3 = (_local3 + _local2.height);
                 _local4++;
-            };
+            }
             _local2 = new LegendLine(FameUtil.maxStars(), FameUtil.maxStars(), new ColorTransform());
             _local2.x = PADDING_LEFT;
             _local2.y = _local3;
@@ -81,24 +89,27 @@
             this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
             super.draw();
         }
-
-
     }
 }
 
-import flash.display.Sprite;
 import com.company.rotmg.graphics.StarGraphic;
-import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-import flash.geom.ColorTransform;
-import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-import flash.filters.DropShadowFilter;
 
-class LegendLine extends Sprite 
+import flash.display.Sprite;
+import flash.filters.DropShadowFilter;
+import flash.geom.ColorTransform;
+
+import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+class LegendLine extends Sprite
 {
 
-    /*private*/ var coloredStar_:StarGraphic;
-    /*private*/ var rangeText_:TextFieldDisplayConcrete;
-    /*private*/ var star_:StarGraphic;
+    /*private*/
+    var coloredStar_:StarGraphic;
+    /*private*/
+    var rangeText_:TextFieldDisplayConcrete;
+    /*private*/
+    var star_:StarGraphic;
 
     public function LegendLine(_arg1:int, _arg2:int, _arg3:ColorTransform)
     {
@@ -118,7 +129,11 @@ class LegendLine extends Sprite
     {
         this.rangeText_ = new TextFieldDisplayConcrete().setSize(13).setColor(0xB3B3B3);
         this.rangeText_.setVerticalAlign(TextFieldDisplayConcrete.BOTTOM);
-        this.rangeText_.setStringBuilder(new StaticStringBuilder((": " + (((_arg1 == _arg2)) ? _arg1.toString() : ((_arg1 + " - ") + _arg2)))));
+        this.rangeText_.setStringBuilder(
+                new StaticStringBuilder(
+                        (": " + (((_arg1 == _arg2)) ? _arg1.toString() : ((_arg1 + " - ") + _arg2)))
+                )
+        );
         this.rangeText_.setBold(true);
         filters = [new DropShadowFilter(0, 0, 0)];
         this.rangeText_.x = this.coloredStar_.width;
@@ -135,12 +150,11 @@ class LegendLine extends Sprite
         addChild(this.coloredStar_);
     }
 
-    /*private*/ function positionGreyStar():void
+    /*private*/
+    function positionGreyStar():void
     {
         this.star_.x = (this.rangeText_.getBounds(this).right + 2);
         this.star_.y = 4;
     }
-
-
 }
 

@@ -1,12 +1,8 @@
 ﻿package kabam.rotmg.legends.model
 {
-    import __AS3__.vec.Vector;
-
-    public class LegendsModel 
+    public class LegendsModel
     {
-
         private const map:Object = {};
-
         private var timespan:Timespan;
 
         public function LegendsModel()
@@ -47,7 +43,7 @@
             {
                 this.dispose(this.map[_local1]);
                 delete this.map[_local1];
-            };
+            }
         }
 
         private function dispose(_arg1:Vector.<Legend>):void
@@ -56,7 +52,7 @@
             for each (_local2 in _arg1)
             {
                 ((_local2.character) && (this.removeLegendCharacter(_local2)));
-            };
+            }
         }
 
         private function removeLegendCharacter(_arg1:Legend):void
@@ -64,8 +60,6 @@
             _arg1.character.dispose();
             _arg1.character = null;
         }
-
-
     }
 }
 

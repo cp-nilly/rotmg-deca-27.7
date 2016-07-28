@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.ui.tooltip.slotcomparisons
 {
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.tooltip.TooltipHelper;
+
     import kabam.rotmg.constants.*;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class ScepterComparison extends SlotComparison 
+    public class ScepterComparison extends SlotComparison
     {
-
-
         override protected function compareSlots(itemXML:XML, curItemXML:XML):void
         {
             var result:XMLList;
@@ -34,28 +33,28 @@
                 textColor = getTextColor((damage - otherDamage));
                 targets = int(result[0].@maxTargets);
                 otherTargets = int(otherResult[0].@maxTargets);
-                innerLineBuilder = new LineBuilder().setParams(TextKey.DAMAGE_TO_TARGETS, {
-                    "damage":damage.toString(),
-                    "targets":targets.toString()
-                }).setPrefix(TooltipHelper.getOpenTag(getTextColor((damage - otherDamage)))).setPostfix(TooltipHelper.getCloseTag());
-                comparisonStringBuilder.pushParams(TextKey.LIGHTNING, {"data":innerLineBuilder});
+                innerLineBuilder = new LineBuilder().setParams(
+                        TextKey.DAMAGE_TO_TARGETS, {
+                            "damage": damage.toString(), "targets": targets.toString()
+                        }
+                ).setPrefix(TooltipHelper.getOpenTag(getTextColor((damage - otherDamage)))).setPostfix(TooltipHelper.getCloseTag());
+                comparisonStringBuilder.pushParams(TextKey.LIGHTNING, {"data": innerLineBuilder});
                 processedTags[result[0].toXMLString()] = true;
-            };
+            }
             if (String(itemXML.Activate.@condEffect))
             {
                 condition = itemXML.Activate.@condEffect;
                 duration = itemXML.Activate.@condDuration;
                 compositeStr = ((((" " + condition) + " for ") + duration) + " secs\n");
                 htmlStr = ("Shot Effect:\n" + wrapInColoredFont(compositeStr, NO_DIFF_COLOR));
-                comparisonStringBuilder.pushParams(TextKey.SHOT_EFFECT, {"effect":""});
-                comparisonStringBuilder.pushParams(TextKey.EFFECT_FOR_DURATION, {
-                    "effect":condition,
-                    "duration":duration.toString()
-                }, TooltipHelper.getOpenTag(NO_DIFF_COLOR), TooltipHelper.getCloseTag());
-            };
+                comparisonStringBuilder.pushParams(TextKey.SHOT_EFFECT, {"effect": ""});
+                comparisonStringBuilder.pushParams(
+                        TextKey.EFFECT_FOR_DURATION, {
+                            "effect": condition, "duration": duration.toString()
+                        }, TooltipHelper.getOpenTag(NO_DIFF_COLOR), TooltipHelper.getCloseTag()
+                );
+            }
         }
-
-
     }
 }
 

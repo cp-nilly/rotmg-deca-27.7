@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.messaging.impl
 {
-    import kabam.rotmg.pets.data.PetsModel;
     import com.company.assembleegameclient.game.AGameSprite;
+    import com.company.assembleegameclient.objects.Pet;
+    import com.company.assembleegameclient.util.ConditionEffect;
+
     import kabam.rotmg.messaging.impl.data.StatData;
     import kabam.rotmg.pets.data.AbilityVO;
     import kabam.rotmg.pets.data.PetVO;
-    import com.company.assembleegameclient.objects.Pet;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.util.ConditionEffect;
+    import kabam.rotmg.pets.data.PetsModel;
 
-    public class PetUpdater 
+    public class PetUpdater
     {
-
         [Inject]
         public var petsModel:PetsModel;
         [Inject]
         public var gameSprite:AGameSprite;
-
 
         public function updatePetVOs(_arg1:Pet, _arg2:Vector.<StatData>):void
         {
@@ -27,14 +25,16 @@
             if (_local3 == null)
             {
                 return;
-            };
+            }
+            ;
             for each (_local4 in _arg2)
             {
                 _local6 = _local4.statValue_;
                 if (_local4.statType_ == StatData.TEXTURE_STAT)
                 {
                     _local3.setSkin(_local6);
-                };
+                }
+                ;
                 switch (_local4.statType_)
                 {
                     case StatData.PET_INSTANCEID_STAT:
@@ -90,12 +90,15 @@
                         _local5 = _local3.abilityList[2];
                         _local5.type = _local6;
                         break;
-                };
+                }
+                ;
                 if (_local5)
                 {
                     _local5.updated.dispatch(_local5);
-                };
-            };
+                }
+                ;
+            }
+            ;
         }
 
         private function createPetVO(_arg1:Pet, _arg2:Vector.<StatData>):PetVO
@@ -107,10 +110,14 @@
                 if (_local3.statType_ == StatData.PET_INSTANCEID_STAT)
                 {
                     _local4 = this.petsModel.getCachedVOOnly(_local3.statValue_);
-                    _arg1.vo = ((_local4) ? _local4 : ((this.gameSprite.map.isPetYard) ? this.petsModel.getPetVO(_local3.statValue_) : new PetVO(_local3.statValue_)));
+                    _arg1.vo = ((_local4) ? _local4 : ((this.gameSprite.map.isPetYard)
+                            ? this.petsModel.getPetVO(_local3.statValue_)
+                            : new PetVO(_local3.statValue_)));
                     return (_arg1.vo);
-                };
-            };
+                }
+                ;
+            }
+            ;
             return (null);
         }
 
@@ -124,19 +131,21 @@
                 if (_local3.statType_ == StatData.TEXTURE_STAT)
                 {
                     _arg1.setSkin(_local4);
-                };
+                }
+                ;
                 if (_local3.statType_ == StatData.SIZE_STAT)
                 {
                     _arg1.size_ = _local4;
-                };
+                }
+                ;
                 if (_local3.statType_ == StatData.CONDITION_STAT)
                 {
                     _arg1.condition_[ConditionEffect.CE_FIRST_BATCH] = _local4;
-                };
-            };
+                }
+                ;
+            }
+            ;
         }
-
-
     }
 }
 

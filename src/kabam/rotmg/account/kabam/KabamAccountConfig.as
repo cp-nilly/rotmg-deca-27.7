@@ -1,38 +1,37 @@
 ﻿package kabam.rotmg.account.kabam
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import kabam.rotmg.account.kabam.model.KabamParameters;
-    import kabam.rotmg.account.kabam.model.LoaderInfoKabamParameters;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.model.MoneyConfig;
-    import kabam.rotmg.account.kabam.model.KabamMoneyConfig;
+    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.core.services.MakePaymentTask;
+    import kabam.rotmg.account.core.services.PurchaseGoldTask;
     import kabam.rotmg.account.core.signals.CharListDataSignal;
     import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
     import kabam.rotmg.account.kabam.commands.KabamOpenAccountInfoCommand;
-    import kabam.rotmg.account.kabam.view.KabamAccountDetailDialog;
-    import kabam.rotmg.account.kabam.view.KabamAccountDetailMediator;
+    import kabam.rotmg.account.kabam.model.KabamMoneyConfig;
+    import kabam.rotmg.account.kabam.model.KabamParameters;
+    import kabam.rotmg.account.kabam.model.LoaderInfoKabamParameters;
+    import kabam.rotmg.account.kabam.services.KabamLoadAccountTask;
     import kabam.rotmg.account.kabam.view.AccountLoadErrorDialog;
     import kabam.rotmg.account.kabam.view.AccountLoadErrorMediator;
-    import kabam.rotmg.account.core.services.MakePaymentTask;
+    import kabam.rotmg.account.kabam.view.KabamAccountDetailDialog;
+    import kabam.rotmg.account.kabam.view.KabamAccountDetailMediator;
     import kabam.rotmg.account.web.services.WebMakePaymentTask;
-    import kabam.rotmg.account.core.services.LoadAccountTask;
-    import kabam.rotmg.account.kabam.services.KabamLoadAccountTask;
-    import kabam.rotmg.account.core.services.PurchaseGoldTask;
     import kabam.rotmg.account.web.services.WebPurchaseGoldTask;
 
-    public class KabamAccountConfig implements IConfig 
-    {
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
 
+    public class KabamAccountConfig implements IConfig
+    {
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var commandMap:ISignalCommandMap;
-
 
         public function configure():void
         {
@@ -67,8 +66,6 @@
             this.injector.map(LoadAccountTask).toType(KabamLoadAccountTask);
             this.injector.map(PurchaseGoldTask).toType(WebPurchaseGoldTask);
         }
-
-
     }
 }
 

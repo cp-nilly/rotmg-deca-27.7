@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class PlayerText extends OutgoingMessage 
+    public class PlayerText extends OutgoingMessage
     {
-
         public var text_:String;
 
         public function PlayerText(_arg1:uint, _arg2:Function)
@@ -22,8 +21,6 @@
         {
             return (formatToString("PLAYERTEXT", "text_"));
         }
-
-
     }
 }
 

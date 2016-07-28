@@ -1,17 +1,18 @@
 ﻿package kabam.rotmg.arena.component
 {
-    import flash.display.Sprite;
     import flash.display.Shape;
-    import kabam.rotmg.util.graphics.GraphicsHelper;
-    import kabam.rotmg.util.graphics.BevelRect;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import flash.display.Sprite;
     import flash.text.TextFieldAutoSize;
+
     import flashx.textLayout.formats.VerticalAlign;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.graphics.BevelRect;
+    import kabam.rotmg.util.graphics.GraphicsHelper;
 
-    public class HostQuerySpeechBubble extends Sprite 
+    public class HostQuerySpeechBubble extends Sprite
     {
-
         private const WIDTH:int = 174;
         private const HEIGHT:int = 225;
         private const BEVEL:int = 4;
@@ -48,12 +49,12 @@
 
         private function makeText(_arg1:String):TextFieldDisplayConcrete
         {
-            var _local2:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(this.PADDING, this.PADDING).setTextWidth((this.WIDTH - (2 * this.PADDING))).setTextHeight((this.HEIGHT - (2 * this.PADDING)));
+            var _local2:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setLeading(3).setAutoSize(TextFieldAutoSize.LEFT).setVerticalAlign(VerticalAlign.TOP).setMultiLine(true).setWordWrap(true).setPosition(
+                    this.PADDING, this.PADDING
+            ).setTextWidth((this.WIDTH - (2 * this.PADDING))).setTextHeight((this.HEIGHT - (2 * this.PADDING)));
             _local2.setStringBuilder(new LineBuilder().setParams(_arg1));
             return (_local2);
         }
-
-
     }
 }
 

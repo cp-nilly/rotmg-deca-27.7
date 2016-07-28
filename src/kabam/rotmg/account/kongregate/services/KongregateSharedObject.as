@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.account.kongregate.services
 {
-    import flash.net.SharedObject;
     import com.company.assembleegameclient.util.GUID;
 
-    public class KongregateSharedObject 
+    import flash.net.SharedObject;
+
+    public class KongregateSharedObject
     {
-
         private var guid:String;
-
 
         public function getGuestGUID():String
         {
@@ -24,11 +23,11 @@
                 if (_local2.data.hasOwnProperty("GuestGUID"))
                 {
                     _local1 = _local2.data["GuestGUID"];
-                };
+                }
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
             if (_local1 == null)
             {
                 _local1 = GUID.create();
@@ -38,14 +37,12 @@
                     _local2.data["GuestGUID"] = _local1;
                     _local2.flush();
                 }
-                catch(error:Error)
+                catch (error:Error)
                 {
-                };
-            };
+                }
+            }
             return (_local1);
         }
-
-
     }
 }
 

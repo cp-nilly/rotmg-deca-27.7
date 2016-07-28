@@ -2,9 +2,8 @@
 {
     import flash.geom.Point;
 
-    public class AOEEffect extends ParticleEffect 
+    public class AOEEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var novaRadius_:Number;
         public var color_:int;
@@ -30,11 +29,14 @@
             while (_local6 < _local5)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local5);
-                _local8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local7))));
+                _local8 = new Point(
+                        (this.start_.x + (this.novaRadius_ * Math.cos(_local7))),
+                        (this.start_.y + (this.novaRadius_ * Math.sin(_local7)))
+                );
                 _local9 = new SparkerParticle(_local3, this.color_, _local4, this.start_, _local8);
                 map_.addObj(_local9, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
 
@@ -52,15 +54,16 @@
             while (_local6 < _local5)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local5);
-                _local8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local7))));
+                _local8 = new Point(
+                        (this.start_.x + (this.novaRadius_ * Math.cos(_local7))),
+                        (this.start_.y + (this.novaRadius_ * Math.sin(_local7)))
+                );
                 _local9 = new SparkerParticle(_local3, this.color_, _local4, this.start_, _local8);
                 map_.addObj(_local9, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

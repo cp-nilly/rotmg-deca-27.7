@@ -1,12 +1,9 @@
 ﻿package kabam.rotmg.language.model
 {
-    import __AS3__.vec.Vector;
     import kabam.rotmg.text.model.DebugTextInfo;
-    import __AS3__.vec.*;
 
-    public class DebugStringMap implements StringMap 
+    public class DebugStringMap implements StringMap
     {
-
         [Inject]
         public var delegate:StringMap;
         [Inject]
@@ -29,7 +26,7 @@
             if (((!((_arg1 == ""))) && (this.isInvalid(_arg1))))
             {
                 return (_arg1);
-            };
+            }
             return (this.delegate.getValue(_arg1));
         }
 
@@ -72,8 +69,6 @@
         {
             return (this.delegate.getLanguageFamily(_arg1));
         }
-
-
     }
 }
 

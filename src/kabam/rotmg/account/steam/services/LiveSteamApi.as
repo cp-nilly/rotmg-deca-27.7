@@ -1,28 +1,28 @@
 ﻿package kabam.rotmg.account.steam.services
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.account.steam.SteamApi;
-    import org.osflash.signals.Signal;
-    import robotlegs.bender.framework.api.ILogger;
     import flash.display.Loader;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.net.URLRequest;
+
+    import kabam.rotmg.account.steam.SteamApi;
+
     import org.osflash.signals.OnceSignal;
+    import org.osflash.signals.Signal;
 
-    public class LiveSteamApi extends Sprite implements SteamApi 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class LiveSteamApi extends Sprite implements SteamApi
     {
-
         private const _loaded:Signal = new Signal();
         private const _sessionReceived:Signal = new Signal(Boolean);
         private const _paymentAuthorized:Signal = new Signal(uint, String, Boolean);
-
         [Inject]
         public var logger:ILogger;
         private var loader:Loader;
         private var api;
         private var steamID:String;
         private var sessionTicket:String;
-
 
         public function load(_arg1:String):void
         {
@@ -100,8 +100,6 @@
         {
             return (this.api.getPersonaName());
         }
-
-
     }
 }
 

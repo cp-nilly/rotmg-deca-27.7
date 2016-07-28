@@ -2,11 +2,9 @@
 {
     import kabam.lib.net.api.MessageHandlerProxy;
 
-    public class MethodHandlerProxy implements MessageHandlerProxy 
+    public class MethodHandlerProxy implements MessageHandlerProxy
     {
-
         private var method:Function;
-
 
         public function setMethod(_arg1:Function):MethodHandlerProxy
         {
@@ -18,8 +16,6 @@
         {
             return (this.method);
         }
-
-
     }
 }
 

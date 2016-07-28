@@ -1,9 +1,5 @@
 ﻿package kabam.rotmg.minimap
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.rotmg.minimap.control.MiniMapZoomSignal;
     import kabam.rotmg.minimap.control.SetMiniMapMapSignal;
     import kabam.rotmg.minimap.control.UpdateGameObjectTileSignal;
@@ -11,16 +7,19 @@
     import kabam.rotmg.minimap.view.MiniMap;
     import kabam.rotmg.minimap.view.MiniMapMediator;
 
-    public class MiniMapConfig implements IConfig 
-    {
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
 
+    public class MiniMapConfig implements IConfig
+    {
         [Inject]
         public var context:IContext;
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
-
 
         public function configure():void
         {
@@ -30,8 +29,6 @@
             this.injector.map(UpdateGroundTileSignal).asSingleton();
             this.mediatorMap.map(MiniMap).toMediator(MiniMapMediator);
         }
-
-
     }
 }
 

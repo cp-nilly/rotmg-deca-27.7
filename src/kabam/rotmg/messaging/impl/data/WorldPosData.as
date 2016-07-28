@@ -4,12 +4,10 @@
     import flash.utils.IDataInput;
     import flash.utils.IDataOutput;
 
-    public class WorldPosData 
+    public class WorldPosData
     {
-
         public var x_:Number;
         public var y_:Number;
-
 
         public function toPoint():Point
         {
@@ -32,8 +30,6 @@
         {
             return (((("x_: " + this.x_) + " y_: ") + this.y_));
         }
-
-
     }
 }
 

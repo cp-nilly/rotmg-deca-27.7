@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Load extends OutgoingMessage 
+    public class Load extends OutgoingMessage
     {
-
         public var charId_:int;
         public var isFromArena_:Boolean;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("LOAD", "charId_", "isFromArena_"));
         }
-
-
     }
 }
 

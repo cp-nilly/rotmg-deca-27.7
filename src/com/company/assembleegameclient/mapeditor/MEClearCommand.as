@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.editor.Command;
 
-    public class MEClearCommand extends Command 
+    public class MEClearCommand extends Command
     {
-
         private var map_:MEMap;
         private var x_:int;
         private var y_:int;
@@ -27,8 +26,6 @@
         {
             this.map_.setTile(this.x_, this.y_, this.oldTile_);
         }
-
-
     }
 }
 

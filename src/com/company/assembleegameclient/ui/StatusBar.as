@@ -1,20 +1,21 @@
 ﻿package com.company.assembleegameclient.ui
 {
+    import com.company.assembleegameclient.parameters.Parameters;
+
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import flash.events.Event;
 
-    public class StatusBar extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class StatusBar extends Sprite
     {
-
         public static var barTextSignal:Signal = new Signal(Boolean);
-
         public var w_:int;
         public var h_:int;
         public var color_:uint;
@@ -41,7 +42,7 @@
         private var direction:int = -1;
         private var speed:Number = 0.1;
 
-        public function StatusBar(_arg1:int, _arg2:int, _arg3:uint, _arg4:uint, _arg5:String=null)
+        public function StatusBar(_arg1:int, _arg2:int, _arg3:uint, _arg4:uint, _arg5:String = null)
         {
             this.colorSprite = new Sprite();
             super();
@@ -60,7 +61,7 @@
                 this.centerVertically(this.labelText_);
                 this.labelText_.filters = [new DropShadowFilter(0, 0, 0)];
                 addChild(this.labelText_);
-            };
+            }
             this.valueText_ = new TextFieldDisplayConcrete().setSize(14).setColor(0xFFFFFF);
             this.valueText_.setBold(true);
             this.valueText_.filters = [new DropShadowFilter(0, 0, 0)];
@@ -87,7 +88,7 @@
             {
                 addEventListener(MouseEvent.ROLL_OVER, this.onMouseOver);
                 addEventListener(MouseEvent.ROLL_OUT, this.onMouseOut);
-            };
+            }
             barTextSignal.add(this.setBarText);
         }
 
@@ -107,16 +108,16 @@
             dispatchEvent(new Event("MULTIPLIER_OUT"));
         }
 
-        public function draw(_arg1:int, _arg2:int, _arg3:int, _arg4:int=-1):void
+        public function draw(_arg1:int, _arg2:int, _arg3:int, _arg4:int = -1):void
         {
             if (_arg2 > 0)
             {
                 _arg1 = Math.min(_arg2, Math.max(0, _arg1));
-            };
+            }
             if ((((((((_arg1 == this.val_)) && ((_arg2 == this.max_)))) && ((_arg3 == this.boost_)))) && ((_arg4 == this.maxMax_))))
             {
                 return;
-            };
+            }
             this.val_ = _arg1;
             this.max_ = _arg2;
             this.boost_ = _arg3;
@@ -124,7 +125,7 @@
             this.internalDraw();
         }
 
-        public function setLabelText(_arg1:String, _arg2:Object=null):void
+        public function setLabelText(_arg1:String, _arg2:Object = null):void
         {
             this.labelTextStringBuilder_.setParams(_arg1, _arg2);
             this.labelText_.setStringBuilder(this.labelTextStringBuilder_);
@@ -136,7 +137,7 @@
             if (this.boostText_ != null)
             {
                 this.boostText_.setColor(this.textColor_);
-            };
+            }
             this.valueText_.setColor(this.textColor_);
         }
 
@@ -152,7 +153,7 @@
             {
                 addEventListener(MouseEvent.ROLL_OVER, this.onMouseOver);
                 addEventListener(MouseEvent.ROLL_OUT, this.onMouseOut);
-            };
+            }
             this.internalDraw();
         }
 
@@ -170,12 +171,12 @@
                 if (this.boost_ > 0)
                 {
                     _local1 = 6206769;
-                };
-            };
+                }
+            }
             if (this.textColor_ != _local1)
             {
                 this.setTextColor(_local1);
-            };
+            }
             graphics.beginFill(this.backColor_);
             graphics.drawRect(0, 0, this.w_, this.h_);
             graphics.endFill();
@@ -183,7 +184,7 @@
             {
                 this.colorSprite.graphics.beginFill(this.pulseBackColor);
                 this.colorSprite.graphics.drawRect(0, 0, this.w_, this.h_);
-            };
+            }
             this.colorSprite.graphics.beginFill(this.color_);
             if (this.max_ > 0)
             {
@@ -192,20 +193,20 @@
             else
             {
                 this.colorSprite.graphics.drawRect(0, 0, this.w_, this.h_);
-            };
+            }
             this.colorSprite.graphics.endFill();
             if (contains(this.valueText_))
             {
                 removeChild(this.valueText_);
-            };
+            }
             if (contains(this.boostText_))
             {
                 removeChild(this.boostText_);
-            };
+            }
             if (((Parameters.data_.toggleBarText) || (((this.mouseOver_) && ((this.h_ > 4))))))
             {
                 this.drawWithMouseOver();
-            };
+            }
         }
 
         public function drawWithMouseOver():void
@@ -217,22 +218,26 @@
             else
             {
                 this.valueText_.setStringBuilder(this.valueTextStringBuilder_.setString(("" + this.val_)));
-            };
+            }
             if (!contains(this.valueText_))
             {
                 this.valueText_.mouseEnabled = false;
                 this.valueText_.mouseChildren = false;
                 addChild(this.valueText_);
-            };
+            }
             if (this.boost_ != 0)
             {
-                this.boostText_.setStringBuilder(this.valueTextStringBuilder_.setString((((" (" + (((this.boost_ > 0)) ? "+" : "")) + this.boost_.toString()) + ")")));
+                this.boostText_.setStringBuilder(
+                        this.valueTextStringBuilder_.setString(
+                                (((" (" + (((this.boost_ > 0)) ? "+" : "")) + this.boost_.toString()) + ")")
+                        )
+                );
                 if (!contains(this.boostText_))
                 {
                     this.boostText_.mouseEnabled = false;
                     this.boostText_.mouseChildren = false;
                     addChild(this.boostText_);
-                };
+                }
                 this.valueText_.x = ((this.w_ / 2) - ((this.valueText_.width + this.boostText_.width) / 2));
                 this.boostText_.x = (this.valueText_.x + this.valueText_.width);
             }
@@ -242,8 +247,8 @@
                 if (contains(this.boostText_))
                 {
                     removeChild(this.boostText_);
-                };
-            };
+                }
+            }
         }
 
         public function showMultiplierText():void
@@ -259,7 +264,7 @@
             if (this.multiplierIcon.parent)
             {
                 removeChild(this.multiplierIcon);
-            };
+            }
         }
 
         public function startPulse(_arg1:Number, _arg2:Number, _arg3:Number):void
@@ -288,9 +293,9 @@
                         this.colorSprite.alpha = 1;
                         this.internalDraw();
                         removeEventListener(Event.ENTER_FRAME, this.onPulse);
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.colorSprite.alpha = (this.colorSprite.alpha + (this.speed * this.direction));
         }
 
@@ -305,8 +310,6 @@
             this.mouseOver_ = false;
             this.internalDraw();
         }
-
-
     }
 }
 

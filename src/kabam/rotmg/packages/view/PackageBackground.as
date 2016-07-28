@@ -1,15 +1,12 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
 
-    public class PackageBackground extends Sprite 
+    public class PackageBackground extends Sprite
     {
-
         private static const Background:Class = PackageBackground_Background;
-
         private const asset:DisplayObject = makeBackground();
-
 
         private function makeBackground():DisplayObject
         {
@@ -17,8 +14,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

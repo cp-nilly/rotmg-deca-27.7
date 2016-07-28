@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.errors
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
+    import kabam.rotmg.application.api.ApplicationSetup;
+    import kabam.rotmg.errors.control.ErrorSignal;
+    import kabam.rotmg.errors.control.LogErrorCommand;
+    import kabam.rotmg.errors.control.ReportErrorToAppEngineCommand;
+    import kabam.rotmg.errors.view.ErrorMediator;
+
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import kabam.rotmg.errors.view.ErrorMediator;
-    import kabam.rotmg.errors.control.ErrorSignal;
-    import kabam.rotmg.errors.control.ReportErrorToAppEngineCommand;
-    import kabam.rotmg.errors.control.LogErrorCommand;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
 
-    public class ErrorConfig implements IConfig 
+    public class ErrorConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
@@ -21,7 +21,6 @@
         public var commandMap:ISignalCommandMap;
         [Inject]
         public var setup:ApplicationSetup;
-
 
         public function configure():void
         {
@@ -38,10 +37,8 @@
             else
             {
                 this.commandMap.map(ErrorSignal).toCommand(LogErrorCommand);
-            };
+            }
         }
-
-
     }
 }
 

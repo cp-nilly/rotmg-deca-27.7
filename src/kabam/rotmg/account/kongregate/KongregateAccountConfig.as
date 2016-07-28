@@ -1,54 +1,53 @@
 ﻿package kabam.rotmg.account.kongregate
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.account.kongregate.services.KongregateSharedObject;
     import kabam.rotmg.account.core.model.MoneyConfig;
-    import kabam.rotmg.account.kongregate.model.KongregateMoneyConfig;
+    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.core.services.LoginTask;
+    import kabam.rotmg.account.core.services.MakePaymentTask;
+    import kabam.rotmg.account.core.services.PurchaseGoldTask;
+    import kabam.rotmg.account.core.services.RegisterAccountTask;
+    import kabam.rotmg.account.core.services.RelayLoginTask;
     import kabam.rotmg.account.core.signals.CharListDataSignal;
     import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
-    import kabam.rotmg.account.kongregate.commands.KongregateOpenAccountInfoCommand;
     import kabam.rotmg.account.core.signals.RegisterAccountSignal;
-    import kabam.rotmg.account.kongregate.commands.KongregateRegisterAccountCommand;
-    import kabam.rotmg.account.kongregate.signals.RelayApiLoginSignal;
-    import kabam.rotmg.account.kongregate.commands.KongregateRelayApiLoginCommand;
-    import kabam.rotmg.account.kongregate.signals.KongregateAlreadyRegisteredSignal;
-    import kabam.rotmg.account.kongregate.commands.KongregateHandleAlreadyRegisteredCommand;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoView;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoMediator;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailDialog;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailMediator;
     import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
-    import kabam.rotmg.account.kongregate.view.KongregateRegisterWebAccountMediator;
-    import kabam.rotmg.account.kongregate.view.KongregateApi;
-    import kabam.rotmg.account.kongregate.view.LiveKongregateApi;
-    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.kongregate.commands.KongregateHandleAlreadyRegisteredCommand;
+    import kabam.rotmg.account.kongregate.commands.KongregateOpenAccountInfoCommand;
+    import kabam.rotmg.account.kongregate.commands.KongregateRegisterAccountCommand;
+    import kabam.rotmg.account.kongregate.commands.KongregateRelayApiLoginCommand;
+    import kabam.rotmg.account.kongregate.model.KongregateMoneyConfig;
     import kabam.rotmg.account.kongregate.services.KongregateLoadAccountTask;
     import kabam.rotmg.account.kongregate.services.KongregateLoadApiTask;
-    import kabam.rotmg.account.core.services.LoginTask;
     import kabam.rotmg.account.kongregate.services.KongregateLoginTask;
-    import kabam.rotmg.account.core.services.RelayLoginTask;
-    import kabam.rotmg.account.kongregate.services.KongregateRelayAPILoginTask;
-    import kabam.rotmg.account.core.services.MakePaymentTask;
     import kabam.rotmg.account.kongregate.services.KongregateMakePaymentTask;
-    import kabam.rotmg.account.core.services.PurchaseGoldTask;
     import kabam.rotmg.account.kongregate.services.KongregatePurchaseGoldTask;
-    import kabam.rotmg.account.core.services.RegisterAccountTask;
     import kabam.rotmg.account.kongregate.services.KongregateRegisterAccountTask;
+    import kabam.rotmg.account.kongregate.services.KongregateRelayAPILoginTask;
+    import kabam.rotmg.account.kongregate.services.KongregateSharedObject;
+    import kabam.rotmg.account.kongregate.signals.KongregateAlreadyRegisteredSignal;
+    import kabam.rotmg.account.kongregate.signals.RelayApiLoginSignal;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailDialog;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailMediator;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoMediator;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountInfoView;
+    import kabam.rotmg.account.kongregate.view.KongregateApi;
+    import kabam.rotmg.account.kongregate.view.KongregateRegisterWebAccountMediator;
+    import kabam.rotmg.account.kongregate.view.LiveKongregateApi;
 
-    public class KongregateAccountConfig implements IConfig 
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class KongregateAccountConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var commandMap:ISignalCommandMap;
-
 
         public function configure():void
         {
@@ -92,8 +91,6 @@
             this.injector.map(PurchaseGoldTask).toType(KongregatePurchaseGoldTask);
             this.injector.map(RegisterAccountTask).toType(KongregateRegisterAccountTask);
         }
-
-
     }
 }
 

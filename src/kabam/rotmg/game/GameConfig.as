@@ -1,80 +1,81 @@
 ﻿package kabam.rotmg.game
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import kabam.rotmg.game.signals.UpdateGiftStatusDisplaySignal;
-    import kabam.rotmg.game.signals.SetWorldInteractionSignal;
-    import kabam.rotmg.game.signals.SetTextBoxVisibilitySignal;
-    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
-    import kabam.rotmg.game.model.ChatFilter;
+    import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.game.GiftStatusModel;
-    import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.game.signals.ExitGameSignal;
-    import com.company.assembleegameclient.map.QueueStatusTextSignal;
-    import kabam.lib.net.impl.SocketServerModel;
-    import com.company.assembleegameclient.ui.panels.PortalPanel;
-    import kabam.rotmg.game.view.PortalPanelMediator;
-    import com.company.assembleegameclient.ui.panels.PartyPanel;
-    import com.company.assembleegameclient.ui.panels.mediators.PartyPanelMediator;
-    import com.company.assembleegameclient.ui.panels.InteractPanel;
-    import com.company.assembleegameclient.ui.panels.mediators.InteractPanelMediator;
-    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
-    import com.company.assembleegameclient.ui.panels.mediators.ItemGridMediator;
-    import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
-    import com.company.assembleegameclient.ui.panels.mediators.InventoryGridMediator;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileSprite;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileSpriteMediator;
-    import com.company.assembleegameclient.ui.TradeSlot;
-    import com.company.assembleegameclient.ui.TradeSlotMediator;
-    import com.company.assembleegameclient.map.mapoverlay.MapOverlay;
-    import kabam.rotmg.game.view.MapOverlayMediator;
     import com.company.assembleegameclient.map.Map;
     import com.company.assembleegameclient.map.MapMediator;
-    import kabam.rotmg.game.view.components.StatView;
-    import kabam.rotmg.game.view.components.StatMediator;
-    import kabam.rotmg.game.view.components.StatsView;
-    import kabam.rotmg.game.view.components.StatsMediator;
-    import kabam.rotmg.game.view.components.TabStripView;
-    import kabam.rotmg.game.view.components.TabStripMediator;
-    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
-    import kabam.rotmg.game.commands.ParsePotionDataCommand;
-    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
-    import kabam.rotmg.game.commands.GiftStatusUpdateCommand;
-    import kabam.rotmg.game.signals.UseBuyPotionSignal;
-    import kabam.rotmg.game.commands.UseBuyPotionCommand;
-    import kabam.rotmg.game.signals.GameClosedSignal;
-    import kabam.rotmg.game.commands.TransitionFromGameToMenuCommand;
-    import kabam.rotmg.game.signals.PlayGameSignal;
-    import kabam.rotmg.game.commands.PlayGameCommand;
-    import kabam.rotmg.game.focus.GameFocusConfig;
-    import kabam.rotmg.game.model.GameModel;
+    import com.company.assembleegameclient.map.QueueStatusTextSignal;
+    import com.company.assembleegameclient.map.mapoverlay.MapOverlay;
+    import com.company.assembleegameclient.ui.TradeSlot;
+    import com.company.assembleegameclient.ui.TradeSlotMediator;
+    import com.company.assembleegameclient.ui.panels.InteractPanel;
+    import com.company.assembleegameclient.ui.panels.PartyPanel;
+    import com.company.assembleegameclient.ui.panels.PortalPanel;
+    import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
+    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileSprite;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.ItemTileSpriteMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.InteractPanelMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.InventoryGridMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.ItemGridMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.PartyPanelMediator;
+
+    import kabam.lib.net.impl.SocketServerModel;
+    import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.chat.ChatConfig;
-    import kabam.rotmg.game.model.TextPanelData;
-    import kabam.rotmg.game.signals.TextPanelMessageUpdateSignal;
+    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
+    import kabam.rotmg.game.commands.GiftStatusUpdateCommand;
+    import kabam.rotmg.game.commands.ParsePotionDataCommand;
+    import kabam.rotmg.game.commands.PlayGameCommand;
     import kabam.rotmg.game.commands.TextPanelMessageUpdateCommand;
-    import kabam.rotmg.game.view.TextPanel;
-    import kabam.rotmg.game.view.TextPanelMediator;
-    import kabam.rotmg.game.view.GiftStatusDisplay;
-    import kabam.rotmg.game.view.GiftStatusDisplayMediator;
-    import com.company.assembleegameclient.game.GameSprite;
-    import kabam.rotmg.game.view.GameSpriteMediator;
+    import kabam.rotmg.game.commands.TransitionFromGameToMenuCommand;
+    import kabam.rotmg.game.commands.UseBuyPotionCommand;
+    import kabam.rotmg.game.focus.GameFocusConfig;
+    import kabam.rotmg.game.logging.LoopMonitor;
+    import kabam.rotmg.game.logging.NullLoopMonitor;
+    import kabam.rotmg.game.logging.RollingMeanLoopMonitor;
+    import kabam.rotmg.game.model.ChatFilter;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.game.model.TextPanelData;
+    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
+    import kabam.rotmg.game.signals.ExitGameSignal;
+    import kabam.rotmg.game.signals.GameClosedSignal;
+    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
+    import kabam.rotmg.game.signals.PlayGameSignal;
+    import kabam.rotmg.game.signals.SetTextBoxVisibilitySignal;
+    import kabam.rotmg.game.signals.SetWorldInteractionSignal;
+    import kabam.rotmg.game.signals.TextPanelMessageUpdateSignal;
+    import kabam.rotmg.game.signals.UpdateGiftStatusDisplaySignal;
+    import kabam.rotmg.game.signals.UseBuyPotionSignal;
     import kabam.rotmg.game.view.CreditDisplay;
     import kabam.rotmg.game.view.CreditDisplayMediator;
+    import kabam.rotmg.game.view.GameSpriteMediator;
+    import kabam.rotmg.game.view.GiftStatusDisplay;
+    import kabam.rotmg.game.view.GiftStatusDisplayMediator;
+    import kabam.rotmg.game.view.MapOverlayMediator;
     import kabam.rotmg.game.view.MoneyChangerPanel;
     import kabam.rotmg.game.view.MoneyChangerPanelMediator;
+    import kabam.rotmg.game.view.PortalPanelMediator;
     import kabam.rotmg.game.view.SellableObjectPanel;
     import kabam.rotmg.game.view.SellableObjectPanelMediator;
-    import kabam.rotmg.game.logging.LoopMonitor;
-    import kabam.rotmg.game.logging.RollingMeanLoopMonitor;
-    import kabam.rotmg.game.logging.NullLoopMonitor;
+    import kabam.rotmg.game.view.TextPanel;
+    import kabam.rotmg.game.view.TextPanelMediator;
+    import kabam.rotmg.game.view.components.StatMediator;
+    import kabam.rotmg.game.view.components.StatView;
+    import kabam.rotmg.game.view.components.StatsMediator;
+    import kabam.rotmg.game.view.components.StatsView;
+    import kabam.rotmg.game.view.components.TabStripMediator;
+    import kabam.rotmg.game.view.components.TabStripView;
+    import kabam.rotmg.ui.model.TabStripModel;
 
-    public class GameConfig implements IConfig 
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class GameConfig implements IConfig
     {
-
         [Inject]
         public var context:IContext;
         [Inject]
@@ -85,7 +86,6 @@
         public var commandMap:ISignalCommandMap;
         [Inject]
         public var setup:ApplicationSetup;
-
 
         private function generalGameConfiguration():void
         {
@@ -154,10 +154,8 @@
             else
             {
                 this.injector.map(LoopMonitor).toType(NullLoopMonitor);
-            };
+            }
         }
-
-
     }
 }
 

@@ -1,22 +1,19 @@
 ﻿package com.company.assembleegameclient.ui.panels.itemgrids
 {
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.EquipmentTile;
     import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.EquipmentTile;
     import com.company.util.ArrayIterator;
-    import kabam.lib.util.VectorAS3Util;
     import com.company.util.IIterator;
-    import __AS3__.vec.*;
 
-    public class EquippedGrid extends ItemGrid 
+    import kabam.lib.util.VectorAS3Util;
+
+    public class EquippedGrid extends ItemGrid
     {
-
         public static const NUM_SLOTS:uint = 4;
-
         private var tiles:Vector.<EquipmentTile>;
 
-        public function EquippedGrid(_arg1:GameObject, _arg2:Vector.<int>, _arg3:Player, _arg4:int=0)
+        public function EquippedGrid(_arg1:GameObject, _arg2:Vector.<int>, _arg3:Player, _arg4:int = 0)
         {
             var _local6:EquipmentTile;
             super(_arg1, _arg3, _arg4);
@@ -29,7 +26,7 @@
                 _local6.setType(_arg2[_local5]);
                 this.tiles[_local5] = _local6;
                 _local5++;
-            };
+            }
         }
 
         public function createInteractiveItemTileIterator():IIterator
@@ -37,7 +34,7 @@
             return (new ArrayIterator(VectorAS3Util.toArray(this.tiles)));
         }
 
-        override public function setItems(_arg1:Vector.<int>, _arg2:int=0):void
+        override public function setItems(_arg1:Vector.<int>, _arg2:int = 0):void
         {
             var _local3:int;
             var _local4:int;
@@ -54,14 +51,12 @@
                     else
                     {
                         this.tiles[_local4].setItem(-1);
-                    };
+                    }
                     this.tiles[_local4].updateDim(curPlayer);
                     _local4++;
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

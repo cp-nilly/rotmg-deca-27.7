@@ -1,14 +1,10 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
     import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class LevelUpEffect extends ParticleEffect 
+    public class LevelUpEffect extends ParticleEffect
     {
-
         private static const LIFETIME:int = 2000;
-
         public var go_:GameObject;
         public var parts1_:Vector.<LevelUpParticle>;
         public var parts2_:Vector.<LevelUpParticle>;
@@ -29,7 +25,7 @@
                 _local4 = new LevelUpParticle(_arg2, 100);
                 this.parts2_.push(_local4);
                 _local5++;
-            };
+            }
         }
 
         override public function update(_arg1:int, _arg2:int):Boolean
@@ -38,19 +34,19 @@
             {
                 this.endEffect();
                 return (false);
-            };
+            }
             x_ = this.go_.x_;
             y_ = this.go_.y_;
             if (this.startTime_ < 0)
             {
                 this.startTime_ = _arg1;
-            };
+            }
             var _local3:Number = ((_arg1 - this.startTime_) / LIFETIME);
             if (_local3 >= 1)
             {
                 this.endEffect();
                 return (false);
-            };
+            }
             this.updateSwirl(this.parts1_, 1, 0, _local3);
             this.updateSwirl(this.parts2_, 1, Math.PI, _local3);
             return (true);
@@ -62,11 +58,11 @@
             for each (_local1 in this.parts1_)
             {
                 _local1.alive_ = false;
-            };
+            }
             for each (_local1 in this.parts2_)
             {
                 _local1.alive_ = false;
-            };
+            }
         }
 
         public function updateSwirl(_arg1:Vector.<LevelUpParticle>, _arg2:Number, _arg3:Number, _arg4:Number):void
@@ -99,22 +95,19 @@
                         else
                         {
                             _local6.moveTo(_local8, _local9);
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 _local5++;
-            };
+            }
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
 
-class LevelUpParticle extends Particle 
+class LevelUpParticle extends Particle
 {
-
     public var alive_:Boolean = true;
 
     public function LevelUpParticle(_arg1:uint, _arg2:int)
@@ -126,7 +119,5 @@ class LevelUpParticle extends Particle
     {
         return (this.alive_);
     }
-
-
 }
 

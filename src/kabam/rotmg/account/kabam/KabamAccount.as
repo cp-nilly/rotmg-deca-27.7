@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.account.kabam
 {
-    import kabam.rotmg.account.core.Account;
-    import kabam.lib.json.JsonParser;
     import flash.external.ExternalInterface;
 
-    public class KabamAccount implements Account 
-    {
+    import kabam.lib.json.JsonParser;
+    import kabam.rotmg.account.core.Account;
 
+    public class KabamAccount implements Account
+    {
         public static const NETWORK_NAME:String = "kabam.com";
         private static const PLAY_PLATFORM_NAME:String = "kabam.com";
-
         private var entryTag:String;
         private var userId:String = "";
         private var password:String = null;
@@ -30,11 +29,11 @@
                 if (_local1 != null)
                 {
                     this.entryTag = _local1;
-                };
+                }
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         public function updateUser(_arg1:String, _arg2:String):void
@@ -51,9 +50,7 @@
         public function getCredentials():Object
         {
             return ({
-                "guid":this.getUserId(),
-                "secret":this.getSecret(),
-                "signedRequest":this.signedRequest
+                "guid": this.getUserId(), "secret": this.getSecret(), "signedRequest": this.signedRequest
             });
         }
 
@@ -67,7 +64,7 @@
             if ((((this.userSession == null)) || ((this.userSession["kabam_naid"] == null))))
             {
                 return ("");
-            };
+            }
             return (this.userSession["kabam_naid"]);
         }
 
@@ -81,13 +78,13 @@
             if ((((((this.userSession == null)) || ((this.userSession["user"] == null)))) || ((this.userSession["user"]["email"] == null))))
             {
                 return ("");
-            };
+            }
             var _local1:String = this.userSession["user"]["email"];
             var _local2:Array = _local1.split("@", 2);
             if (_local2.length != 2)
             {
                 return ("");
-            };
+            }
             return (_local2[0]);
         }
 
@@ -158,8 +155,6 @@
         {
             return (this.gameNetworkUserId());
         }
-
-
     }
 }
 

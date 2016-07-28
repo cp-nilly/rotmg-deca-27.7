@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class ObjectData 
+    public class ObjectData
     {
-
         public var objectType_:int;
         public var status_:ObjectStatusData;
 
@@ -24,8 +23,6 @@
         {
             return (((("objectType_: " + this.objectType_) + " status_: ") + this.status_));
         }
-
-
     }
 }
 

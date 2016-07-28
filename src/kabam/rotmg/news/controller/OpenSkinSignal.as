@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class OpenSkinSignal extends Signal 
+    public class OpenSkinSignal extends Signal
     {
-
         public function OpenSkinSignal()
         {
             super(String);
         }
-
     }
 }
 

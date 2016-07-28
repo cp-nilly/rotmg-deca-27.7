@@ -1,14 +1,13 @@
 ﻿package com.company.assembleegameclient.ui.tooltip.slotcomparisons
 {
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.tooltip.TooltipHelper;
 
-    public class PoisonComparison extends SlotComparison 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class PoisonComparison extends SlotComparison
     {
-
-
         override protected function compareSlots(itemXML:XML, curItemXML:XML):void
         {
             var activate:XMLList;
@@ -35,17 +34,15 @@
                 otherDuration = Number(otherActivate[0].@duration);
                 avg = (((0.33 * damage) + (0.33 * radius)) + (0.33 * duration));
                 otherAvg = (((0.33 * otherDamage) + (0.33 * otherRadius)) + (0.33 * otherDuration));
-                dataLineBuilder = new LineBuilder().setParams(TextKey.POISON_GRENADE_DATA, {
-                    "damage":damage.toString(),
-                    "duration":duration.toString(),
-                    "radius":radius.toString()
-                }).setPrefix(TooltipHelper.getOpenTag(getTextColor((avg - otherAvg)))).setPostfix(TooltipHelper.getCloseTag());
-                comparisonStringBuilder.pushParams(TextKey.POISON_GRENADE, {"data":dataLineBuilder});
+                dataLineBuilder = new LineBuilder().setParams(
+                        TextKey.POISON_GRENADE_DATA, {
+                            "damage": damage.toString(), "duration": duration.toString(), "radius": radius.toString()
+                        }
+                ).setPrefix(TooltipHelper.getOpenTag(getTextColor((avg - otherAvg)))).setPostfix(TooltipHelper.getCloseTag());
+                comparisonStringBuilder.pushParams(TextKey.POISON_GRENADE, {"data": dataLineBuilder});
                 processedTags[activate[0].toXMLString()] = true;
-            };
+            }
         }
-
-
     }
 }
 

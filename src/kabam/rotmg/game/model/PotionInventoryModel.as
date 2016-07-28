@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.game.model
 {
     import flash.utils.Dictionary;
-    import org.osflash.signals.Signal;
+
     import kabam.rotmg.ui.model.PotionModel;
 
-    public class PotionInventoryModel 
-    {
+    import org.osflash.signals.Signal;
 
+    public class PotionInventoryModel
+    {
         public static const HEALTH_POTION_ID:int = 2594;
         public static const HEALTH_POTION_SLOT:int = 254;
         public static const MAGIC_POTION_ID:int = 2595;
         public static const MAGIC_POTION_SLOT:int = 0xFF;
-
         public var potionModels:Dictionary;
         public var updatePosition:Signal;
 
@@ -29,10 +29,9 @@
                     return (HEALTH_POTION_SLOT);
                 case MAGIC_POTION_ID:
                     return (MAGIC_POTION_SLOT);
-            };
+            }
             return (-1);
         }
-
 
         public function initializePotionModels(_arg1:XML):void
         {
@@ -45,7 +44,7 @@
             for each (_local6 in _arg1.PotionPurchaseCosts.cost)
             {
                 _local5.push(_local6);
-            };
+            }
             _local7 = new PotionModel();
             _local7.purchaseCooldownMillis = _local2;
             _local7.priceCooldownMillis = _local3;
@@ -74,8 +73,8 @@
                 if (this.potionModels[_local2].objectId == _arg1)
                 {
                     return (this.potionModels[_local2]);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -83,8 +82,6 @@
         {
             this.updatePosition.dispatch(_arg1);
         }
-
-
     }
 }
 

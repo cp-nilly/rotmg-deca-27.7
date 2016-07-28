@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public class PetYardEnum 
+    public class PetYardEnum
     {
-
-        public static const PET_YARD_ONE:PetYardEnum = new (PetYardEnum)("Yard Upgrader 1", 1, PetRarityEnum.COMMON);
-        public static const PET_YARD_TWO:PetYardEnum = new (PetYardEnum)("Yard Upgrader 2", 2, PetRarityEnum.UNCOMMON);
-        public static const PET_YARD_THREE:PetYardEnum = new (PetYardEnum)("Yard Upgrader 3", 3, PetRarityEnum.RARE);
-        public static const PET_YARD_FOUR:PetYardEnum = new (PetYardEnum)("Yard Upgrader 4", 4, PetRarityEnum.LEGENDARY);
-        public static const PET_YARD_FIVE:PetYardEnum = new (PetYardEnum)("Yard Upgrader 5", 5, PetRarityEnum.DIVINE);
+        public static const PET_YARD_ONE:PetYardEnum = new PetYardEnum("Yard Upgrader 1", 1, PetRarityEnum.COMMON);
+        public static const PET_YARD_TWO:PetYardEnum = new PetYardEnum("Yard Upgrader 2", 2, PetRarityEnum.UNCOMMON);
+        public static const PET_YARD_THREE:PetYardEnum = new PetYardEnum("Yard Upgrader 3", 3, PetRarityEnum.RARE);
+        public static const PET_YARD_FOUR:PetYardEnum = new PetYardEnum(
+                "Yard Upgrader 4", 4, PetRarityEnum.LEGENDARY
+        );
+        public static const PET_YARD_FIVE:PetYardEnum = new PetYardEnum("Yard Upgrader 5", 5, PetRarityEnum.DIVINE);
         public static const MAX_ORDINAL:int = 5;
-
         public var value:String;
         public var ordinal:int;
         public var rarity:PetRarityEnum;
@@ -35,8 +35,8 @@
                 if (_arg1 == _local3.value)
                 {
                     _local2 = _local3;
-                };
-            };
+                }
+            }
             return (_local2);
         }
 
@@ -49,12 +49,10 @@
                 if (_arg1 == _local3.ordinal)
                 {
                     _local2 = _local3;
-                };
-            };
+                }
+            }
             return (_local2);
         }
-
-
     }
 }
 

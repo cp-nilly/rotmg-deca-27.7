@@ -1,10 +1,7 @@
 ﻿package com.company.assembleegameclient.account.ui.components
 {
-    import __AS3__.vec.Vector;
-
-    public class SelectionGroup 
+    public class SelectionGroup
     {
-
         private var selectables:Vector.<Selectable>;
         private var selected:Selectable;
 
@@ -22,8 +19,8 @@
                 {
                     this.replaceSelected(_local2);
                     return;
-                };
-            };
+                }
+            }
         }
 
         public function getSelected():Selectable
@@ -36,12 +33,10 @@
             if (this.selected != null)
             {
                 this.selected.setSelected(false);
-            };
+            }
             this.selected = _arg1;
             this.selected.setSelected(true);
         }
-
-
     }
 }
 

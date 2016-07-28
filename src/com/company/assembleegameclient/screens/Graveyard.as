@@ -1,14 +1,13 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.appengine.SavedNewsItem;
+
+    import flash.display.Sprite;
+
     import kabam.rotmg.core.model.PlayerModel;
-    import __AS3__.vec.*;
 
-    public class Graveyard extends Sprite 
+    public class Graveyard extends Sprite
     {
-
         private var lines_:Vector.<GraveyardLine>;
         private var hasCharacters_:Boolean = false;
 
@@ -21,10 +20,19 @@
             {
                 if (_local2.isCharDeath())
                 {
-                    this.addLine(new GraveyardLine(_local2.getIcon(), _local2.title_, _local2.tagline_, _local2.link_, _local2.date_, _arg1.getAccountId()));
+                    this.addLine(
+                            new GraveyardLine(
+                                    _local2.getIcon(),
+                                    _local2.title_,
+                                    _local2.tagline_,
+                                    _local2.link_,
+                                    _local2.date_,
+                                    _arg1.getAccountId()
+                            )
+                    );
                     this.hasCharacters_ = true;
-                };
-            };
+                }
+            }
         }
 
         public function hasCharacters():Boolean
@@ -38,8 +46,6 @@
             this.lines_.push(_arg1);
             addChild(_arg1);
         }
-
-
     }
 }
 

@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.outgoing
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import flash.utils.IDataOutput;
 
-    public class PlayerShoot extends OutgoingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
 
+    public class PlayerShoot extends OutgoingMessage
+    {
         public var time_:int;
         public var bulletId_:uint;
         public var containerType_:int;
@@ -31,8 +31,6 @@
         {
             return (formatToString("PLAYERSHOOT", "time_", "bulletId_", "containerType_", "startingPos_", "angle_"));
         }
-
-
     }
 }
 

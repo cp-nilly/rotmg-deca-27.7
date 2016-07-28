@@ -1,26 +1,21 @@
 ﻿package kabam.rotmg.assets.model
 {
-    import flash.display.Sprite;
     import flash.display.Bitmap;
-    import __AS3__.vec.Vector;
     import flash.display.BitmapData;
-    import flash.utils.Timer;
+    import flash.display.Sprite;
     import flash.events.TimerEvent;
-    import __AS3__.vec.*;
+    import flash.utils.Timer;
 
-    public class Animation extends Sprite 
+    public class Animation extends Sprite
     {
-
         private const DEFAULT_SPEED:int = 200;
         private const bitmap:Bitmap = makeBitmap();
         private const frames:Vector.<BitmapData> = new <BitmapData>[];
         private const timer:Timer = makeTimer();
-
         private var started:Boolean;
         private var index:int;
         private var count:uint;
         private var disposed:Boolean;
-
 
         private function makeBitmap():Bitmap
         {
@@ -46,7 +41,7 @@
             this.timer.delay = _arg1;
         }
 
-        public function setFrames(... _args):void
+        public function setFrames(..._args):void
         {
             var _local2:BitmapData;
             this.frames.length = 0;
@@ -54,7 +49,7 @@
             for each (_local2 in _args)
             {
                 this.count = this.frames.push(_local2);
-            };
+            }
             if (this.started)
             {
                 this.start();
@@ -62,7 +57,7 @@
             else
             {
                 this.iterate();
-            };
+            }
         }
 
         public function addFrame(_arg1:BitmapData):void
@@ -77,7 +72,7 @@
             {
                 this.timer.start();
                 this.iterate();
-            };
+            }
             this.started = true;
         }
 
@@ -87,7 +82,7 @@
             this.started = false;
         }
 
-        private function iterate(_arg1:TimerEvent=null):void
+        private function iterate(_arg1:TimerEvent = null):void
         {
             this.index = (++this.index % this.count);
             this.bitmap.bitmapData = this.frames[this.index];
@@ -104,7 +99,7 @@
             for each (_local1 in this.frames)
             {
                 _local1.dispose();
-            };
+            }
         }
 
         public function isStarted():Boolean
@@ -116,8 +111,6 @@
         {
             return (this.disposed);
         }
-
-
     }
 }
 

@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ArenaDeathSignal extends Signal 
+    public class ArenaDeathSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,15 +1,16 @@
 ﻿package kabam.rotmg.account.web.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
+
     import flash.events.MouseEvent;
+
+    import org.osflash.signals.Signal;
     import org.osflash.signals.natives.NativeMappedSignal;
 
-    public class WebForgotPasswordDialog extends Frame 
+    public class WebForgotPasswordDialog extends Frame
     {
-
         public var cancel:Signal;
         public var submit:Signal;
         public var register:Signal;
@@ -18,7 +19,12 @@
 
         public function WebForgotPasswordDialog()
         {
-            super("WebForgotPasswordDialog.title", "WebForgotPasswordDialog.leftButton", "WebForgotPasswordDialog.rightButton", "/forgotPassword");
+            super(
+                    "WebForgotPasswordDialog.title",
+                    "WebForgotPasswordDialog.leftButton",
+                    "WebForgotPasswordDialog.rightButton",
+                    "/forgotPassword"
+            );
             this.emailInput = new TextInputField("WebForgotPasswordDialog.email", false);
             addTextInputField(this.emailInput);
             this.registerText = new DeprecatedClickableText(12, false, "WebForgotPasswordDialog.register");
@@ -35,7 +41,7 @@
             {
                 disable();
                 this.submit.dispatch(this.emailInput.text());
-            };
+            }
         }
 
         private function isEmailValid():Boolean
@@ -44,7 +50,7 @@
             if (!_local1)
             {
                 this.emailInput.setError("Not a valid email address");
-            };
+            }
             return (_local1);
         }
 
@@ -52,8 +58,6 @@
         {
             this.emailInput.setError(_arg1);
         }
-
-
     }
 }
 

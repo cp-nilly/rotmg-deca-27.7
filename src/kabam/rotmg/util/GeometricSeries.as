@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.util
 {
-    public class GeometricSeries 
+    public class GeometricSeries
     {
-
         private var a:Number;
         private var r:Number;
 
@@ -21,8 +20,6 @@
         {
             return ((this.a * Math.pow(this.r, _arg1)));
         }
-
-
     }
 }
 

@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.util.RandomUtil;
 
-    public class SparkerParticle extends Particle 
-    {
+    import flash.geom.Point;
 
+    public class SparkerParticle extends Particle
+    {
         public var lifetime_:int;
         public var timeLeft_:int;
         public var initialSize_:int;
@@ -36,15 +36,17 @@
             if (this.timeLeft_ <= 0)
             {
                 return (false);
-            };
+            }
             this.pathX_ = (this.pathX_ + (this.dx_ * _arg2));
             this.pathY_ = (this.pathY_ + (this.dy_ * _arg2));
             moveTo(this.pathX_, this.pathY_);
-            map_.addObj(new SparkParticle((100 * (z_ + 1)), color_, 600, z_, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)), this.pathX_, this.pathY_);
+            map_.addObj(
+                    new SparkParticle(
+                            (100 * (z_ + 1)), color_, 600, z_, RandomUtil.plusMinus(1), RandomUtil.plusMinus(1)
+                    ), this.pathX_, this.pathY_
+            );
             return (true);
         }
-
-
     }
 }
 

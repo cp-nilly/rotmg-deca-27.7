@@ -1,12 +1,13 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import org.osflash.signals.Signal;
-    import flash.utils.Dictionary;
     import com.adobe.utils.DictionaryUtil;
 
-    public class SignalWaiter 
-    {
+    import flash.utils.Dictionary;
 
+    import org.osflash.signals.Signal;
+
+    public class SignalWaiter
+    {
         public var complete:Signal;
         private var texts:Dictionary;
 
@@ -24,13 +25,13 @@
             return (this);
         }
 
-        public function pushArgs(... _args):SignalWaiter
+        public function pushArgs(..._args):SignalWaiter
         {
             var _local2:Signal;
             for each (_local2 in _args)
             {
                 this.push(_local2);
-            };
+            }
             return (this);
         }
 
@@ -50,15 +51,13 @@
             if (this.isEmpty())
             {
                 this.complete.dispatch();
-            };
+            }
         }
 
         public function isEmpty():Boolean
         {
             return ((DictionaryUtil.getKeys(this.texts).length == 0));
         }
-
-
     }
 }
 

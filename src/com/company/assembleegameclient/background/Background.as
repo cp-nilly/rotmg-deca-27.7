@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.background
 {
-    import flash.display.Sprite;
     import com.company.assembleegameclient.map.Camera;
 
-    public class Background extends Sprite 
-    {
+    import flash.display.Sprite;
 
+    public class Background extends Sprite
+    {
         public static const NO_BACKGROUND:int = 0;
         public static const STAR_BACKGROUND:int = 1;
         public static const NEXUS_BACKGROUND:int = 2;
@@ -26,16 +26,13 @@
                     return (new StarBackground());
                 case NEXUS_BACKGROUND:
                     return (new NexusBackground());
-            };
+            }
             return (null);
         }
-
 
         public function draw(_arg1:Camera, _arg2:int):void
         {
         }
-
-
     }
 }
 

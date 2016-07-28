@@ -1,34 +1,33 @@
 ﻿package kabam.rotmg.account.core.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.util.offer.Offers;
-    import kabam.rotmg.account.core.model.MoneyConfig;
     import com.company.assembleegameclient.account.ui.Frame;
-    import com.company.assembleegameclient.account.ui.PaymentMethodRadioButtons;
     import com.company.assembleegameclient.account.ui.OfferRadioButtons;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import com.company.assembleegameclient.util.offer.Offer;
-    import flash.events.MouseEvent;
-    import __AS3__.vec.Vector;
+    import com.company.assembleegameclient.account.ui.PaymentMethodRadioButtons;
     import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.DeprecatedClickableText;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.PaymentMethod;
+    import com.company.assembleegameclient.util.offer.Offer;
+    import com.company.assembleegameclient.util.offer.Offers;
+
     import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
     import flash.text.TextFieldAutoSize;
-    import __AS3__.vec.*;
 
-    public class MoneyFrame extends Sprite 
+    import kabam.rotmg.account.core.model.MoneyConfig;
+    import kabam.rotmg.text.model.TextKey;
+
+    import org.osflash.signals.Signal;
+
+    public class MoneyFrame extends Sprite
     {
-
         private static const TITLE:String = TextKey.MONEY_FRAME_TITLE;//"MoneyFrame.title"
         private static const TRACKING:String = "/money";
         private static const PAYMENT_SUBTITLE:String = TextKey.MONEY_FRAME_PAYMENT;//"MoneyFrame.payment"
         private static const GOLD_SUBTITLE:String = TextKey.MONEY_FRAME_GOLD;//"MoneyFrame.gold"
         private static const BUY_NOW:String = TextKey.MONEY_FRAME_BUY;//"MoneyFrame.buy"
         private static const WIDTH:int = 550;
-
         public var buyNow:Signal;
         public var cancel:Signal;
         private var offers:Offers;
@@ -82,7 +81,7 @@
             for each (_local2 in PaymentMethod.PAYMENT_METHODS)
             {
                 _local1.push(_local2.label_);
-            };
+            }
             return (_local1);
         }
 
@@ -122,7 +121,7 @@
                 this.cancelButton.y = (((600 / 2) + (this.frame.h_ / 2)) - 52);
                 this.cancelButton.setAutoSize(TextFieldAutoSize.RIGHT);
                 addChild(this.cancelButton);
-            };
+            }
         }
 
         protected function onBuyNowClick(_arg1:MouseEvent):void
@@ -153,8 +152,6 @@
             stage.focus = stage;
             this.cancel.dispatch();
         }
-
-
     }
 }
 

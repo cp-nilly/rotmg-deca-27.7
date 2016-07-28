@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class PetFeedResultSignal extends Signal 
+    public class PetFeedResultSignal extends Signal
     {
-
-
     }
 }
 

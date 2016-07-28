@@ -1,64 +1,66 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import __AS3__.vec.Vector;
-    import flash.geom.Point;
-    import flash.geom.Matrix;
-    import com.company.assembleegameclient.util.AnimatedChar;
-    import com.company.assembleegameclient.objects.particles.HealingEffect;
-    import kabam.rotmg.game.signals.AddTextLineSignal;
-    import kabam.rotmg.assets.services.CharacterFactory;
-    import com.company.util.IntPoint;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import flash.utils.Dictionary;
-    import com.company.util.ConversionUtil;
-    import flash.utils.getTimer;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.chat.model.ChatMessage;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.game.view.components.QueuedStatusText;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import com.company.assembleegameclient.objects.particles.LevelUpEffect;
-    import com.company.assembleegameclient.map.mapoverlay.CharacterStatusText;
-    import com.company.util.PointUtil;
+    import com.company.assembleegameclient.map.Camera;
     import com.company.assembleegameclient.map.Square;
-    import flash.geom.Vector3D;
+    import com.company.assembleegameclient.map.mapoverlay.CharacterStatusText;
+    import com.company.assembleegameclient.objects.particles.HealingEffect;
+    import com.company.assembleegameclient.objects.particles.LevelUpEffect;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
+    import com.company.assembleegameclient.tutorial.Tutorial;
+    import com.company.assembleegameclient.tutorial.doneAction;
+    import com.company.assembleegameclient.util.AnimatedChar;
     import com.company.assembleegameclient.util.ConditionEffect;
+    import com.company.assembleegameclient.util.FameUtil;
+    import com.company.assembleegameclient.util.FreeList;
+    import com.company.assembleegameclient.util.MaskedImage;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
+    import com.company.util.CachingColorTransformer;
+    import com.company.util.ConversionUtil;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.IntPoint;
+    import com.company.util.MoreColorUtil;
+    import com.company.util.PointUtil;
+    import com.company.util.Trig;
+
+    import flash.display.BitmapData;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+    import flash.geom.Point;
+    import flash.geom.Vector3D;
+    import flash.utils.Dictionary;
+    import flash.utils.getTimer;
+
+    import kabam.rotmg.assets.services.CharacterFactory;
+    import kabam.rotmg.chat.model.ChatMessage;
+    import kabam.rotmg.constants.ActivationType;
+    import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.constants.UseType;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.game.model.PotionInventoryModel;
+    import kabam.rotmg.game.signals.AddTextLineSignal;
+    import kabam.rotmg.game.view.components.QueuedStatusText;
+    import kabam.rotmg.stage3D.GraphicsFillExtra;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.BitmapTextFactory;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import kabam.rotmg.text.view.BitmapTextFactory;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.util.FameUtil;
-    import com.company.util.GraphicsUtil;
-    import com.company.util.MoreColorUtil;
-    import kabam.rotmg.stage3D.GraphicsFillExtra;
-    import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import com.company.assembleegameclient.util.MaskedImage;
-    import flash.geom.ColorTransform;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import com.company.util.CachingColorTransformer;
-    import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
-    import kabam.rotmg.constants.ActivationType;
-    import kabam.rotmg.constants.UseType;
-    import com.company.assembleegameclient.tutorial.doneAction;
-    import com.company.assembleegameclient.tutorial.Tutorial;
-    import com.company.util.Trig;
-    import com.company.assembleegameclient.util.FreeList;
-    import kabam.rotmg.constants.GeneralConstants;
     import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.game.model.PotionInventoryModel;
-    import __AS3__.vec.*;
 
-    public class Player extends Character 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class Player extends Character
     {
-
         public static const MS_BETWEEN_TELEPORT:int = 10000;
         private static const MOVE_THRESHOLD:Number = 0.4;
-        private static const NEARBY:Vector.<Point> = new <Point>[new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(1, 1)];
+        private static const NEARBY:Vector.<Point> = new <Point>[
+            new Point(0, 0), new Point(1, 0), new Point(0, 1), new Point(1, 1)
+        ];
         private static const RANK_OFFSET_MATRIX:Matrix = new Matrix(1, 0, 0, 1, 2, 2);
         private static const NAME_OFFSET_MATRIX:Matrix = new Matrix(1, 0, 0, 1, 20, 1);
         private static const MIN_MOVE_SPEED:Number = 0.004;
@@ -67,10 +69,8 @@
         private static const MAX_ATTACK_FREQ:Number = 0.008;
         private static const MIN_ATTACK_MULT:Number = 0.5;
         private static const MAX_ATTACK_MULT:Number = 2;
-
         public static var isAdmin:Boolean = false;
         private static var newP:Point = new Point();
-
         public var xpTimer:int;
         public var skinId:int;
         public var skin:AnimatedChar;
@@ -163,7 +163,7 @@
         {
             var _local3:int = int(_arg2.ObjectType);
             var _local4:XML = ObjectLibrary.xmlLibrary_[_local3];
-            var _local5:Player = new (Player)(_local4);
+            var _local5:Player = new Player(_local4);
             _local5.name_ = _arg1;
             _local5.level_ = int(_arg2.Level);
             _local5.exp_ = int(_arg2.Exp);
@@ -183,14 +183,13 @@
             return (_local5);
         }
 
-
         public function setRelativeMovement(_arg1:Number, _arg2:Number, _arg3:Number):void
         {
             var _local4:Number;
             if (this.relMoveVec_ == null)
             {
                 this.relMoveVec_ = new Point();
-            };
+            }
             this.rotate_ = _arg1;
             this.relMoveVec_.x = _arg2;
             this.relMoveVec_.y = _arg3;
@@ -200,7 +199,7 @@
                 this.relMoveVec_.x = -(this.relMoveVec_.y);
                 this.relMoveVec_.y = -(_local4);
                 this.rotate_ = -(this.rotate_);
-            };
+            }
         }
 
         public function setCredits(_arg1:int):void
@@ -228,8 +227,8 @@
                     if (((!((_local4 == null))) && (!((_local4 == this)))))
                     {
                         _local4.setGuildName(_local4.guildName_);
-                    };
-                };
+                    }
+                }
             }
             else
             {
@@ -238,8 +237,8 @@
                 {
                     this.isFellowGuild_ = _local5;
                     nameBitmapData_ = null;
-                };
-            };
+                }
+            }
         }
 
         public function isTeleportEligible(_arg1:Player):Boolean
@@ -259,41 +258,53 @@
             {
                 this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_NOTELEPORTWHILEPAUSED));
                 return (false);
-            };
+            }
             var _local2:int = this.msUtilTeleport();
             if (_local2 > 0)
             {
-                this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_COOLDOWN, {"seconds":int(((_local2 / 1000) + 1))}));
+                this.addTextLine.dispatch(
+                        this.makeErrorMessage(
+                                TextKey.PLAYER_TELEPORT_COOLDOWN, {"seconds": int(((_local2 / 1000) + 1))}
+                        )
+                );
                 return (false);
-            };
+            }
             if (!this.isTeleportEligible(_arg1))
             {
                 if (_arg1.isInvisible())
                 {
-                    this.addTextLine.dispatch(this.makeErrorMessage(TextKey.TELEPORT_INVISIBLE_PLAYER, {"player":_arg1.name_}));
+                    this.addTextLine.dispatch(
+                            this.makeErrorMessage(
+                                    TextKey.TELEPORT_INVISIBLE_PLAYER, {"player": _arg1.name_}
+                            )
+                    );
                 }
                 else
                 {
-                    this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_TO_PLAYER, {"player":_arg1.name_}));
-                };
+                    this.addTextLine.dispatch(
+                            this.makeErrorMessage(
+                                    TextKey.PLAYER_TELEPORT_TO_PLAYER, {"player": _arg1.name_}
+                            )
+                    );
+                }
                 return (false);
-            };
+            }
             map_.gs_.gsc_.teleport(_arg1.objectId_);
             this.nextTeleportAt_ = (getTimer() + MS_BETWEEN_TELEPORT);
             return (true);
         }
 
-        private function makeErrorMessage(_arg1:String, _arg2:Object=null):ChatMessage
+        private function makeErrorMessage(_arg1:String, _arg2:Object = null):ChatMessage
         {
             return (ChatMessage.make(Parameters.ERROR_CHAT_NAME, _arg1, -1, -1, "", false, _arg2));
         }
 
-        public function levelUpEffect(_arg1:String, _arg2:Boolean=true):void
+        public function levelUpEffect(_arg1:String, _arg2:Boolean = true):void
         {
             if (_arg2)
             {
                 this.levelUpParticleEffect();
-            };
+            }
             var _local3:QueuedStatusText = new QueuedStatusText(this, new LineBuilder().setParams(_arg1), 0xFF00, 2000);
             map_.mapOverlay_.addQueuedText(_local3);
         }
@@ -309,10 +320,10 @@
             else
             {
                 this.levelUpEffect(TextKey.PLAYER_LEVELUP);
-            };
+            }
         }
 
-        public function levelUpParticleEffect(_arg1:uint=0xFF00FF00):void
+        public function levelUpParticleEffect(_arg1:uint = 0xFF00FF00):void
         {
             map_.addObj(new LevelUpEffect(this, _arg1, 20), x_, y_);
         }
@@ -322,9 +333,9 @@
             if (level_ == 20)
             {
                 return;
-            };
+            }
             var _local2:CharacterStatusText = new CharacterStatusText(this, 0xFF00, 1000);
-            _local2.setStringBuilder(new LineBuilder().setParams(TextKey.PLAYER_EXP, {"exp":_arg1}));
+            _local2.setStringBuilder(new LineBuilder().setParams(TextKey.PLAYER_EXP, {"exp": _arg1}));
             map_.mapOverlay_.addStatusText(_local2);
         }
 
@@ -332,8 +343,8 @@
         {
             var _local3:Point;
             var _local4:Merchant;
-            var _local1:int = ((((x_ - int(x_)))>0.5) ? 1 : -1);
-            var _local2:int = ((((y_ - int(y_)))>0.5) ? 1 : -1);
+            var _local1:int = ((((x_ - int(x_))) > 0.5) ? 1 : -1);
+            var _local2:int = ((((y_ - int(y_))) > 0.5) ? 1 : -1);
             for each (_local3 in NEARBY)
             {
                 this.ip_.x_ = (x_ + (_local1 * _local3.x));
@@ -342,8 +353,8 @@
                 if (_local4 != null)
                 {
                     return ((((PointUtil.distanceSquaredXY(_local4.x_, _local4.y_, x_, y_) < 1)) ? _local4 : null));
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -359,7 +370,7 @@
             if (map_.gs_.evalIsNotInCombatMapArea())
             {
                 this.nearestMerchant_ = this.getNearbyMerchant();
-            };
+            }
             return (_local3);
         }
 
@@ -370,14 +381,14 @@
                 _arg3.x = x_;
                 _arg3.y = y_;
                 return;
-            };
+            }
             var _local4:Number = (_arg1 - x_);
             var _local5:Number = (_arg2 - y_);
             if ((((((((_local4 < MOVE_THRESHOLD)) && ((_local4 > -(MOVE_THRESHOLD))))) && ((_local5 < MOVE_THRESHOLD)))) && ((_local5 > -(MOVE_THRESHOLD)))))
             {
                 this.modifyStep(_arg1, _arg2, _arg3);
                 return;
-            };
+            }
             var _local6:Number = (MOVE_THRESHOLD / Math.max(Math.abs(_local4), Math.abs(_local5)));
             var _local7:Number = 0;
             _arg3.x = x_;
@@ -389,10 +400,10 @@
                 {
                     _local6 = (1 - _local7);
                     _local8 = true;
-                };
+                }
                 this.modifyStep((_arg3.x + (_local4 * _local6)), (_arg3.y + (_local5 * _local6)), _arg3);
                 _local7 = (_local7 + _local6);
-            };
+            }
         }
 
         public function modifyStep(_arg1:Number, _arg2:Number, _arg3:Point):void
@@ -406,23 +417,23 @@
                 _arg3.x = _arg1;
                 _arg3.y = _arg2;
                 return;
-            };
+            }
             if (_local4)
             {
-                _local6 = (((_arg1)>x_) ? (int((_arg1 * 2)) / 2) : (int((x_ * 2)) / 2));
+                _local6 = (((_arg1) > x_) ? (int((_arg1 * 2)) / 2) : (int((x_ * 2)) / 2));
                 if (int(_local6) > int(x_))
                 {
                     _local6 = (_local6 - 0.01);
-                };
-            };
+                }
+            }
             if (_local5)
             {
-                _local7 = (((_arg2)>y_) ? (int((_arg2 * 2)) / 2) : (int((y_ * 2)) / 2));
+                _local7 = (((_arg2) > y_) ? (int((_arg2 * 2)) / 2) : (int((y_ * 2)) / 2));
                 if (int(_local7) > int(y_))
                 {
                     _local7 = (_local7 - 0.01);
-                };
-            };
+                }
+            }
             if (!_local4)
             {
                 _arg3.x = _arg1;
@@ -430,9 +441,9 @@
                 if (((!((square_ == null))) && (!((square_.props_.slideAmount_ == 0)))))
                 {
                     this.resetMoveVector(false);
-                };
+                }
                 return;
-            };
+            }
             if (!_local5)
             {
                 _arg3.x = _local6;
@@ -440,11 +451,11 @@
                 if (((!((square_ == null))) && (!((square_.props_.slideAmount_ == 0)))))
                 {
                     this.resetMoveVector(true);
-                };
+                }
                 return;
-            };
-            var _local8:Number = (((_arg1)>x_) ? (_arg1 - _local6) : (_local6 - _arg1));
-            var _local9:Number = (((_arg2)>y_) ? (_arg2 - _local7) : (_local7 - _arg2));
+            }
+            var _local8:Number = (((_arg1) > x_) ? (_arg1 - _local6) : (_local6 - _arg1));
+            var _local9:Number = (((_arg2) > y_) ? (_arg2 - _local7) : (_local7 - _arg2));
             if (_local8 > _local9)
             {
                 if (this.isValidPosition(_arg1, _local7))
@@ -452,13 +463,13 @@
                     _arg3.x = _arg1;
                     _arg3.y = _local7;
                     return;
-                };
+                }
                 if (this.isValidPosition(_local6, _arg2))
                 {
                     _arg3.x = _local6;
                     _arg3.y = _arg2;
                     return;
-                };
+                }
             }
             else
             {
@@ -467,14 +478,14 @@
                     _arg3.x = _local6;
                     _arg3.y = _arg2;
                     return;
-                };
+                }
                 if (this.isValidPosition(_arg1, _local7))
                 {
                     _arg3.x = _arg1;
                     _arg3.y = _local7;
                     return;
-                };
-            };
+                }
+            }
             _arg3.x = _local6;
             _arg3.y = _local7;
         }
@@ -489,7 +500,7 @@
             else
             {
                 moveVec_.x = (moveVec_.x * -1);
-            };
+            }
         }
 
         public function isValidPosition(_arg1:Number, _arg2:Number):Boolean
@@ -498,7 +509,7 @@
             if (((!((square_ == _local3))) && ((((_local3 == null)) || (!(_local3.isWalkable()))))))
             {
                 return (false);
-            };
+            }
             var _local4:Number = (_arg1 - int(_arg1));
             var _local5:Number = (_arg2 - int(_arg2));
             if (_local4 < 0.5)
@@ -506,13 +517,13 @@
                 if (this.isFullOccupy((_arg1 - 1), _arg2))
                 {
                     return (false);
-                };
+                }
                 if (_local5 < 0.5)
                 {
                     if (((this.isFullOccupy(_arg1, (_arg2 - 1))) || (this.isFullOccupy((_arg1 - 1), (_arg2 - 1)))))
                     {
                         return (false);
-                    };
+                    }
                 }
                 else
                 {
@@ -521,9 +532,9 @@
                         if (((this.isFullOccupy(_arg1, (_arg2 + 1))) || (this.isFullOccupy((_arg1 - 1), (_arg2 + 1)))))
                         {
                             return (false);
-                        };
-                    };
-                };
+                        }
+                    }
+                }
             }
             else
             {
@@ -532,24 +543,26 @@
                     if (this.isFullOccupy((_arg1 + 1), _arg2))
                     {
                         return (false);
-                    };
+                    }
                     if (_local5 < 0.5)
                     {
                         if (((this.isFullOccupy(_arg1, (_arg2 - 1))) || (this.isFullOccupy((_arg1 + 1), (_arg2 - 1)))))
                         {
                             return (false);
-                        };
+                        }
                     }
                     else
                     {
                         if (_local5 > 0.5)
                         {
-                            if (((this.isFullOccupy(_arg1, (_arg2 + 1))) || (this.isFullOccupy((_arg1 + 1), (_arg2 + 1)))))
+                            if (((this.isFullOccupy(_arg1, (_arg2 + 1))) || (this.isFullOccupy(
+                                            (_arg1 + 1), (_arg2 + 1)
+                                    ))))
                             {
                                 return (false);
-                            };
-                        };
-                    };
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -558,7 +571,7 @@
                         if (this.isFullOccupy(_arg1, (_arg2 - 1)))
                         {
                             return (false);
-                        };
+                        }
                     }
                     else
                     {
@@ -567,11 +580,11 @@
                             if (this.isFullOccupy(_arg1, (_arg2 + 1)))
                             {
                                 return (false);
-                            };
-                        };
-                    };
-                };
-            };
+                            }
+                        }
+                    }
+                }
+            }
             return (true);
         }
 
@@ -596,31 +609,31 @@
                 if (this.tierBoost < 0)
                 {
                     this.tierBoost = 0;
-                };
-            };
+                }
+            }
             if (((this.dropBoost) && (!(isPaused()))))
             {
                 this.dropBoost = (this.dropBoost - _arg2);
                 if (this.dropBoost < 0)
                 {
                     this.dropBoost = 0;
-                };
-            };
+                }
+            }
             if (((this.xpTimer) && (!(isPaused()))))
             {
                 this.xpTimer = (this.xpTimer - _arg2);
                 if (this.xpTimer < 0)
                 {
                     this.xpTimer = 0;
-                };
-            };
+                }
+            }
             if (((isHealing()) && (!(isPaused()))))
             {
                 if (this.healingEffect_ == null)
                 {
                     this.healingEffect_ = new HealingEffect(this);
                     map_.addObj(this.healingEffect_, x_, y_);
-                };
+                }
             }
             else
             {
@@ -628,12 +641,12 @@
                 {
                     map_.removeObj(this.healingEffect_.objectId_);
                     this.healingEffect_ = null;
-                };
-            };
+                }
+            }
             if ((((map_.player_ == this)) && (isPaused())))
             {
                 return (true);
-            };
+            }
             if (this.relMoveVec_ != null)
             {
                 _local3 = Parameters.data_.cameraAngle;
@@ -641,7 +654,7 @@
                 {
                     _local3 = (_local3 + ((_arg2 * Parameters.PLAYER_ROTATE_SPEED) * this.rotate_));
                     Parameters.data_.cameraAngle = _local3;
-                };
+                }
                 if (((!((this.relMoveVec_.x == 0))) || (!((this.relMoveVec_.y == 0)))))
                 {
                     _local4 = this.getMoveSpeed();
@@ -658,13 +671,13 @@
                         if (moveVec_.length < _local7)
                         {
                             moveVec_ = moveVec_.add(_local6);
-                        };
+                        }
                     }
                     else
                     {
                         moveVec_.x = (_local4 * Math.cos((_local3 + _local5)));
                         moveVec_.y = (_local4 * Math.sin((_local3 + _local5)));
-                    };
+                    }
                 }
                 else
                 {
@@ -676,13 +689,13 @@
                     {
                         moveVec_.x = 0;
                         moveVec_.y = 0;
-                    };
-                };
+                    }
+                }
                 if (((!((square_ == null))) && (square_.props_.push_)))
                 {
                     moveVec_.x = (moveVec_.x - (square_.props_.animate_.dx_ / 1000));
                     moveVec_.y = (moveVec_.y - (square_.props_.animate_.dy_ / 1000));
-                };
+                }
                 this.walkTo((x_ + (_arg2 * moveVec_.x)), (y_ + (_arg2 * moveVec_.y)));
             }
             else
@@ -690,8 +703,8 @@
                 if (!super.update(_arg1, _arg2))
                 {
                     return (false);
-                };
-            };
+                }
+            }
             if ((((((((((map_.player_ == this)) && ((square_.props_.maxDamage_ > 0)))) && (((square_.lastDamage_ + 500) < _arg1)))) && (!(isInvincible())))) && ((((square_.obj_ == null)) || (!(square_.obj_.props_.protectFromGroundDamage_))))))
             {
                 _local8 = map_.gs_.gsc_.getNextDamage(square_.props_.minDamage_, square_.props_.maxDamage_);
@@ -700,7 +713,7 @@
                 damage(-1, _local8, _local9, (hp_ <= _local8), null);
                 map_.gs_.gsc_.groundDamage(_arg1, x_, y_);
                 square_.lastDamage_ = _arg1;
-            };
+            }
             return (true);
         }
 
@@ -709,7 +722,7 @@
             if (map_ == null)
             {
                 return;
-            };
+            }
             var _local1:Square = map_.getSquare(x_, y_);
             if (_local1.props_.sinking_)
             {
@@ -720,7 +733,7 @@
             {
                 sinkLevel_ = 0;
                 this.moveMultiplier_ = _local1.props_.speed_;
-            };
+            }
         }
 
         override protected function makeNameBitmapData():BitmapData
@@ -737,11 +750,11 @@
             if (this.isFellowGuild_)
             {
                 return (Parameters.FELLOW_GUILD_COLOR);
-            };
+            }
             if (this.nameChosen_)
             {
                 return (Parameters.NAME_CHOSEN_COLOR);
-            };
+            }
             return (0xFFFFFF);
         }
 
@@ -755,22 +768,33 @@
                 this.breathBackPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
                 this.breathFill_ = new GraphicsSolidFill(2542335);
                 this.breathPath_ = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector.<Number>());
-            };
+            }
             if (this.breath_ <= Parameters.BREATH_THRESH)
             {
                 _local7 = ((Parameters.BREATH_THRESH - this.breath_) / Parameters.BREATH_THRESH);
-                this.breathBackFill_.color = MoreColorUtil.lerpColor(0x545454, 0xFF0000, (Math.abs(Math.sin((_arg2 / 300))) * _local7));
+                this.breathBackFill_.color = MoreColorUtil.lerpColor(
+                        0x545454, 0xFF0000, (Math.abs(Math.sin((_arg2 / 300))) * _local7)
+                );
             }
             else
             {
                 this.breathBackFill_.color = 0x545454;
-            };
+            }
             var _local3:int = 20;
             var _local4:int = 8;
             var _local5:int = 6;
             var _local6:Vector.<Number> = (this.breathBackPath_.data as Vector.<Number>);
             _local6.length = 0;
-            _local6.push((posS_[0] - _local3), (posS_[1] + _local4), (posS_[0] + _local3), (posS_[1] + _local4), (posS_[0] + _local3), ((posS_[1] + _local4) + _local5), (posS_[0] - _local3), ((posS_[1] + _local4) + _local5));
+            _local6.push(
+                    (posS_[0] - _local3),
+                    (posS_[1] + _local4),
+                    (posS_[0] + _local3),
+                    (posS_[1] + _local4),
+                    (posS_[0] + _local3),
+                    ((posS_[1] + _local4) + _local5),
+                    (posS_[0] - _local3),
+                    ((posS_[1] + _local4) + _local5)
+            );
             _arg1.push(this.breathBackFill_);
             _arg1.push(this.breathBackPath_);
             _arg1.push(GraphicsUtil.END_FILL);
@@ -780,11 +804,20 @@
                 this.breathPath_.data.length = 0;
                 _local6 = (this.breathPath_.data as Vector.<Number>);
                 _local6.length = 0;
-                _local6.push((posS_[0] - _local3), (posS_[1] + _local4), ((posS_[0] - _local3) + _local8), (posS_[1] + _local4), ((posS_[0] - _local3) + _local8), ((posS_[1] + _local4) + _local5), (posS_[0] - _local3), ((posS_[1] + _local4) + _local5));
+                _local6.push(
+                        (posS_[0] - _local3),
+                        (posS_[1] + _local4),
+                        ((posS_[0] - _local3) + _local8),
+                        (posS_[1] + _local4),
+                        ((posS_[0] - _local3) + _local8),
+                        ((posS_[1] + _local4) + _local5),
+                        (posS_[0] - _local3),
+                        ((posS_[1] + _local4) + _local5)
+                );
                 _arg1.push(this.breathFill_);
                 _arg1.push(this.breathPath_);
                 _arg1.push(GraphicsUtil.END_FILL);
-            };
+            }
             GraphicsFillExtra.setSoftwareDrawSolid(this.breathFill_, true);
             GraphicsFillExtra.setSoftwareDrawSolid(this.breathBackFill_, true);
         }
@@ -797,15 +830,15 @@
                 if (!Parameters.screenShotMode_)
                 {
                     drawName(_arg1, _arg2);
-                };
+                }
             }
             else
             {
                 if (this.breath_ >= 0)
                 {
                     this.drawBreathBar(_arg1, _arg3);
-                };
-            };
+                }
+            }
         }
 
         private function getMoveSpeed():Number
@@ -813,12 +846,12 @@
             if (isSlowed())
             {
                 return ((MIN_MOVE_SPEED * this.moveMultiplier_));
-            };
+            }
             var _local1:Number = (MIN_MOVE_SPEED + ((this.speed_ / 75) * (MAX_MOVE_SPEED - MIN_MOVE_SPEED)));
             if (((isSpeedy()) || (isNinjaSpeedy())))
             {
                 _local1 = (_local1 * 1.5);
-            };
+            }
             return ((_local1 * this.moveMultiplier_));
         }
 
@@ -827,12 +860,12 @@
             if (isDazed())
             {
                 return (MIN_ATTACK_FREQ);
-            };
+            }
             var _local1:Number = (MIN_ATTACK_FREQ + ((this.dexterity_ / 75) * (MAX_ATTACK_FREQ - MIN_ATTACK_FREQ)));
             if (isBerserk())
             {
                 _local1 = (_local1 * 1.5);
-            };
+            }
             return (_local1);
         }
 
@@ -841,12 +874,12 @@
             if (isWeak())
             {
                 return (MIN_ATTACK_MULT);
-            };
+            }
             var _local1:Number = (MIN_ATTACK_MULT + ((this.attack_ / 75) * (MAX_ATTACK_MULT - MIN_ATTACK_MULT)));
             if (isDamaging())
             {
                 _local1 = (_local1 * 1.5);
-            };
+            }
             return (_local1);
         }
 
@@ -895,11 +928,11 @@
                     if (((!((moveVec_.y == 0))) || (!((moveVec_.x == 0)))))
                     {
                         facing_ = Math.atan2(moveVec_.y, moveVec_.x);
-                    };
+                    }
                     _local3 = ((_arg2 % _local10) / _local10);
                     _local4 = AnimatedChar.WALK;
-                };
-            };
+                }
+            }
             if (this.isHexed())
             {
                 ((this.isDefaultAnimatedChar) && (this.setToRandomAnimatedCharacter()));
@@ -909,8 +942,8 @@
                 if (!this.isDefaultAnimatedChar)
                 {
                     this.makeSkinTexture();
-                };
-            };
+                }
+            }
             if (_arg1.isHallucinating_)
             {
                 _local5 = new MaskedImage(getHallucinatingTexture(), null);
@@ -918,7 +951,7 @@
             else
             {
                 _local5 = animatedChar_.imageFromFacing(facing_, _arg1, _local4, _local3);
-            };
+            }
             var _local6:int = tex1Id_;
             var _local7:int = tex2Id_;
             var _local8:BitmapData;
@@ -932,14 +965,14 @@
                 else
                 {
                     _local8 = _local11[_local5];
-                };
+                }
                 _local6 = this.nearestMerchant_.getTex1Id(tex1Id_);
                 _local7 = this.nearestMerchant_.getTex2Id(tex2Id_);
             }
             else
             {
                 _local8 = texturingCache_[_local5];
-            };
+            }
             if (_local8 == null)
             {
                 _local8 = TextureRedrawer.resize(_local5.image_, _local5.mask_, size_, false, _local6, _local7);
@@ -950,21 +983,23 @@
                 else
                 {
                     texturingCache_[_local5] = _local8;
-                };
-            };
+                }
+            }
             if (hp_ < (maxHP_ * 0.2))
             {
                 _local12 = (int((Math.abs(Math.sin((_arg2 / 200))) * 10)) / 10);
                 _local13 = 128;
-                _local14 = new ColorTransform(1, 1, 1, 1, (_local12 * _local13), (-(_local12) * _local13), (-(_local12) * _local13));
+                _local14 = new ColorTransform(
+                        1, 1, 1, 1, (_local12 * _local13), (-(_local12) * _local13), (-(_local12) * _local13)
+                );
                 _local8 = CachingColorTransformer.transformBitmapData(_local8, _local14);
-            };
+            }
             var _local9:BitmapData = texturingCache_[_local8];
             if (_local9 == null)
             {
                 _local9 = GlowRedrawer.outlineGlow(_local8, (((this.legendaryRank_ == -1)) ? 0 : 0xFF0000));
                 texturingCache_[_local8] = _local9;
-            };
+            }
             if (((((isPaused()) || (isStasis()))) || (isPetrified())))
             {
                 _local9 = CachingColorTransformer.filterBitmapData(_local9, PAUSED_FILTER);
@@ -974,8 +1009,8 @@
                 if (isInvisible())
                 {
                     _local9 = CachingColorTransformer.alphaBitmapData(_local9, 0.4);
-                };
-            };
+                }
+            }
             return (_local9);
         }
 
@@ -989,7 +1024,7 @@
                 _local2 = ((4 / _local1.image_.width) * 100);
                 portrait_ = TextureRedrawer.resize(_local1.image_, _local1.mask_, _local2, true, tex1Id_, tex2Id_);
                 portrait_ = GlowRedrawer.outlineGlow(portrait_, 0);
-            };
+            }
             return (portrait_);
         }
 
@@ -1003,23 +1038,23 @@
             if ((((map_ == null)) || (isPaused())))
             {
                 return (false);
-            };
+            }
             var _local4:int = equipment_[1];
             if (_local4 == -1)
             {
                 return (false);
-            };
+            }
             var _local5:XML = ObjectLibrary.xmlLibrary_[_local4];
             if ((((_local5 == null)) || (!(_local5.hasOwnProperty("Usable")))))
             {
                 return (false);
-            };
+            }
             var _local6:Point = map_.pSTopW(_arg1, _arg2);
             if (_local6 == null)
             {
                 SoundEffectLibrary.play("error");
                 return (false);
-            };
+            }
             for each (_local7 in _local5.Activate)
             {
                 if (_local7.toString() == ActivationType.TELEPORT)
@@ -1028,9 +1063,9 @@
                     {
                         SoundEffectLibrary.play("error");
                         return (false);
-                    };
-                };
-            };
+                    }
+                }
+            }
             _local8 = getTimer();
             if (_arg3 == UseType.START_USE)
             {
@@ -1038,25 +1073,25 @@
                 {
                     SoundEffectLibrary.play("error");
                     return (false);
-                };
+                }
                 _local10 = int(_local5.MpCost);
                 if (_local10 > this.mp_)
                 {
                     SoundEffectLibrary.play("no_mana");
                     return (false);
-                };
+                }
                 _local11 = 500;
                 if (_local5.hasOwnProperty("Cooldown"))
                 {
                     _local11 = (Number(_local5.Cooldown) * 1000);
-                };
+                }
                 this.nextAltAttack_ = (_local8 + _local11);
                 map_.gs_.gsc_.useItem(_local8, objectId_, 1, _local4, _local6.x, _local6.y, _arg3);
                 if (_local5.Activate == ActivationType.SHOOT)
                 {
                     _local9 = Math.atan2(_arg2, _arg1);
                     this.doShoot(_local8, _local4, _local5, (Parameters.data_.cameraAngle + _local9), false);
-                };
+                }
             }
             else
             {
@@ -1068,9 +1103,9 @@
                     {
                         _local9 = Math.atan2(_arg2, _arg1);
                         this.doShoot(_local8, _local4, _local5, (Parameters.data_.cameraAngle + _local9), false);
-                    };
-                };
-            };
+                    }
+                }
+            }
             return (true);
         }
 
@@ -1085,7 +1120,7 @@
             if ((((_local3 == null)) || (!(_local3.hasOwnProperty("RateOfFire")))))
             {
                 return;
-            };
+            }
             var _local4:Number = Number(_local3.RateOfFire);
             this.attackPeriod_ = ((1 / this.attackFrequency()) * (1 / _local4));
             super.setAttack(_arg1, _arg2);
@@ -1096,13 +1131,17 @@
             if ((((((((map_ == null)) || (isStunned()))) || (isPaused()))) || (isPetrified())))
             {
                 return;
-            };
+            }
             var _local2:int = equipment_[0];
             if (_local2 == -1)
             {
-                this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED));
+                this.addTextLine.dispatch(
+                        ChatMessage.make(
+                                Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED
+                        )
+                );
                 return;
-            };
+            }
             var _local3:XML = ObjectLibrary.xmlLibrary_[_local2];
             var _local4:int = getTimer();
             var _local5:Number = Number(_local3.RateOfFire);
@@ -1110,7 +1149,7 @@
             if (_local4 < (attackStart_ + this.attackPeriod_))
             {
                 return;
-            };
+            }
             doneAction(map_.gs_, Tutorial.ATTACK_ACTION);
             attackAngle_ = _arg1;
             attackStart_ = _local4;
@@ -1137,12 +1176,21 @@
                 _local12 = (FreeList.newObject(Projectile) as Projectile);
                 if (((_arg5) && (!((this.projectileIdSetOverrideNew == "")))))
                 {
-                    _local12.reset(_arg2, 0, objectId_, _local11, _local9, _arg1, this.projectileIdSetOverrideNew, this.projectileIdSetOverrideOld);
+                    _local12.reset(
+                            _arg2,
+                            0,
+                            objectId_,
+                            _local11,
+                            _local9,
+                            _arg1,
+                            this.projectileIdSetOverrideNew,
+                            this.projectileIdSetOverrideOld
+                    );
                 }
                 else
                 {
                     _local12.reset(_arg2, 0, objectId_, _local11, _local9, _arg1);
-                };
+                }
                 _local13 = int(_local12.projProps_.minDamage_);
                 _local14 = int(_local12.projProps_.maxDamage_);
                 _local15 = ((_arg5) ? this.attackMultiplier() : 1);
@@ -1150,17 +1198,17 @@
                 if (_arg1 > (map_.gs_.moveRecords_.lastClearTime_ + 600))
                 {
                     _local16 = 0;
-                };
+                }
                 _local12.setDamage(_local16);
                 if ((((_local10 == 0)) && (!((_local12.sound_ == null)))))
                 {
                     SoundEffectLibrary.play(_local12.sound_, 0.75, false);
-                };
+                }
                 map_.addObj(_local12, (x_ + (Math.cos(_arg4) * 0.3)), (y_ + (Math.sin(_arg4) * 0.3)));
                 map_.gs_.gsc_.playerShoot(_arg1, _local12);
                 _local9 = (_local9 + _local7);
                 _local10++;
-            };
+            }
         }
 
         public function isHexed():Boolean
@@ -1177,30 +1225,34 @@
                 if (equipment_[_local2] <= 0)
                 {
                     return (false);
-                };
+                }
                 _local2++;
-            };
+            }
             return (true);
         }
 
         public function nextAvailableInventorySlot():int
         {
-            var _local1:int = ((this.hasBackpack_) ? equipment_.length : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
+            var _local1:int = ((this.hasBackpack_)
+                    ? equipment_.length
+                    : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
             var _local2:uint = 4;
             while (_local2 < _local1)
             {
                 if (equipment_[_local2] <= 0)
                 {
                     return (_local2);
-                };
+                }
                 _local2++;
-            };
+            }
             return (-1);
         }
 
         public function numberOfAvailableSlots():int
         {
-            var _local1:int = ((this.hasBackpack_) ? equipment_.length : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
+            var _local1:int = ((this.hasBackpack_)
+                    ? equipment_.length
+                    : (equipment_.length - GeneralConstants.NUM_INVENTORY_SLOTS));
             var _local2:int;
             var _local3:uint = 4;
             while (_local3 < _local1)
@@ -1208,9 +1260,9 @@
                 if (equipment_[_local3] <= 0)
                 {
                     _local2++;
-                };
+                }
                 _local3++;
-            };
+            }
             return (_local2);
         }
 
@@ -1221,7 +1273,7 @@
             if (!this.hasBackpack_)
             {
                 return (-1);
-            };
+            }
             if (_arg1 == TabStripModel.BACKPACK)
             {
                 _local2 = GeneralConstants.NUM_EQUIPMENT_SLOTS;
@@ -1231,16 +1283,16 @@
             {
                 _local2 = (GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS);
                 _local3 = equipment_.length;
-            };
+            }
             var _local4:uint = _local2;
             while (_local4 < _local3)
             {
                 if (equipment_[_local4] <= 0)
                 {
                     return (_local4);
-                };
+                }
                 _local4++;
-            };
+            }
             return (-1);
         }
 
@@ -1252,7 +1304,7 @@
                     return (this.healthPotionCount_);
                 case PotionInventoryModel.MAGIC_POTION_ID:
                     return (this.magicPotionCount_);
-            };
+            }
             return (0);
         }
 
@@ -1265,8 +1317,6 @@
         {
             return (tex2Id_);
         }
-
-
     }
 }
 

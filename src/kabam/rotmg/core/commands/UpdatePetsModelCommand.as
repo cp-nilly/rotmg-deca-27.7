@@ -1,30 +1,30 @@
 ﻿package kabam.rotmg.core.commands
 {
-    import robotlegs.bender.bundles.mvcs.Command;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.data.PetYardEnum;
     import com.company.assembleegameclient.objects.ObjectLibrary;
+
     import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.data.PetYardEnum;
+    import kabam.rotmg.pets.data.PetsModel;
 
-    public class UpdatePetsModelCommand extends Command 
+    import robotlegs.bender.bundles.mvcs.Command;
+
+    public class UpdatePetsModelCommand extends Command
     {
-
         [Inject]
         public var model:PetsModel;
         [Inject]
         public var data:XML;
-
 
         override public function execute():void
         {
             if (this.data.Account.hasOwnProperty("PetYardType"))
             {
                 this.model.setPetYardType(this.parseYardFromXML());
-            };
+            }
             if (this.data.hasOwnProperty("Pet"))
             {
                 this.model.setActivePet(this.parsePetFromXML());
-            };
+            }
         }
 
         private function parseYardFromXML():int
@@ -41,8 +41,6 @@
             _local2.apply(_local1[0]);
             return (_local2);
         }
-
-
     }
 }
 

@@ -1,29 +1,27 @@
 ﻿package com.company.assembleegameclient.appengine
 {
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.dialogs.TOSPopup;
+
     import flash.events.Event;
-    import kabam.rotmg.servers.api.LatLong;
-    import __AS3__.vec.Vector;
+
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import com.company.assembleegameclient.ui.dialogs.TOSPopup;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import __AS3__.vec.*;
-    import kabam.rotmg.account.core.*;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.servers.api.LatLong;
 
-    public class SavedCharactersList extends Event 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class SavedCharactersList extends Event
     {
-
         public static const SAVED_CHARS_LIST:String = "SAVED_CHARS_LIST";
         public static const AVAILABLE:String = "available";
         public static const UNAVAILABLE:String = "unavailable";
         public static const UNRESTRICTED:String = "unrestricted";
         private static const DEFAULT_LATLONG:LatLong = new LatLong(37.4436, -122.412);
         private static const DEFAULT_SALESFORCE:String = "unavailable";
-
         private var origData_:String;
         private var charsXML_:XML;
         public var accountId_:String;
@@ -81,12 +79,12 @@
                 _local5.reportIntStat("BestFame", this.bestOverallFame());
                 _local5.reportIntStat("NumStars", this.numStars_);
                 _local5.verify(_local2.hasOwnProperty("VerifiedEmail"));
-            };
+            }
             this.classAvailability = new Object();
             for each (_local4 in this.charsXML_.ClassAvailabilityList.ClassAvailability)
             {
                 this.classAvailability[_local4.@id.toString()] = _local4.toString();
-            };
+            }
         }
 
         public function getCharById(_arg1:int):SavedCharacter
@@ -97,8 +95,8 @@
                 if (_local2.charId() == _arg1)
                 {
                     return (_local2);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -128,7 +126,7 @@
                 _local2 = _arg1.BeginnerPackageTimeLeft;
                 _local3 = this.getBeginnerModel();
                 _local3.setBeginnersOfferSecondsLeft(_local2);
-            };
+            }
         }
 
         private function getBeginnerModel():BeginnersPackageModel
@@ -145,7 +143,7 @@
                 _local2 = XML(_arg1.Guild);
                 this.guildName_ = _local2.Name;
                 this.guildRank_ = int(_local2.Rank);
-            };
+            }
         }
 
         private function parseCharacterData():void
@@ -157,7 +155,7 @@
             {
                 this.savedChars_.push(new SavedCharacter(_local1, this.name_));
                 this.numChars_++;
-            };
+            }
             this.savedChars_.sort(SavedCharacter.compare);
         }
 
@@ -173,7 +171,7 @@
                 _local4 = new CharacterStats(_local2);
                 this.numStars_ = (this.numStars_ + _local4.numStars());
                 this.charStats_[_local3] = _local4;
-            };
+            }
         }
 
         private function parseNewsData():void
@@ -182,8 +180,12 @@
             var _local1:XML = XML(this.charsXML_.News);
             for each (_local2 in _local1.Item)
             {
-                this.news_.push(new SavedNewsItem(_local2.Icon, _local2.Title, _local2.TagLine, _local2.Link, int(_local2.Date)));
-            };
+                this.news_.push(
+                        new SavedNewsItem(
+                                _local2.Icon, _local2.Title, _local2.TagLine, _local2.Link, int(_local2.Date)
+                        )
+                );
+            }
         }
 
         private function parseGeoPositioningData():void
@@ -195,7 +197,7 @@
             else
             {
                 this.myPos_ = DEFAULT_LATLONG;
-            };
+            }
         }
 
         private function parseSalesForceData():void
@@ -203,7 +205,7 @@
             if (((this.charsXML_.hasOwnProperty("SalesForce")) && (this.charsXML_.hasOwnProperty("SalesForce"))))
             {
                 this.salesForceData_ = String(this.charsXML_.SalesForce);
-            };
+            }
         }
 
         private function parseTOSPopup():void
@@ -211,7 +213,7 @@
             if (this.charsXML_.hasOwnProperty("TOSPopup"))
             {
                 StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new TOSPopup());
-            };
+            }
         }
 
         public function bestLevel(_arg1:int):int
@@ -229,8 +231,8 @@
                 if (_local2.bestLevel() > _local1)
                 {
                     _local1 = _local2.bestLevel();
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -249,8 +251,8 @@
                 if (_local2.bestFame() > _local1)
                 {
                     _local1 = _local2.bestFame();
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -265,8 +267,8 @@
                 if (this.bestLevel(_local4) < int(_local3.@level))
                 {
                     return (false);
-                };
-            };
+                }
+            }
             return (true);
         }
 
@@ -309,17 +311,17 @@
                             {
                                 _local7 = false;
                                 break;
-                            };
+                            }
                             _local8 = true;
-                        };
-                    };
+                        }
+                    }
                     if (((_local7) && (_local8)))
                     {
                         _local3.push(_local6);
-                    };
-                };
+                    }
+                }
                 _local4++;
-            };
+            }
             return (_local3);
         }
 
@@ -340,7 +342,7 @@
             {
                 this.account = _local1.getInstance(Account);
                 ((this.account) && (this.updateAccount()));
-            };
+            }
         }
 
         private function updateAccount():void
@@ -357,13 +359,11 @@
                 {
                     this.account.reportIntStat((_local3.@id + "Unlocked"), 1);
                     _local1++;
-                };
+                }
                 _local2++;
-            };
+            }
             this.account.reportIntStat("ClassesUnlocked", _local1);
         }
-
-
     }
 }
 

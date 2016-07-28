@@ -1,27 +1,28 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import flash.filters.GlowFilter;
-    import flash.filters.BitmapFilterQuality;
-    import flash.utils.Dictionary;
-    import flash.display.BitmapData;
-    import flash.utils.ByteArray;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
+    import com.company.util.AssetLibrary;
+    import com.company.util.PointUtil;
+
+    import flash.display.BitmapData;
+    import flash.display.Shader;
+    import flash.filters.BitmapFilterQuality;
+    import flash.filters.GlowFilter;
+    import flash.filters.ShaderFilter;
+    import flash.geom.ColorTransform;
     import flash.geom.Matrix;
     import flash.geom.Rectangle;
-    import com.company.util.PointUtil;
-    import flash.geom.ColorTransform;
-    import com.company.util.AssetLibrary;
-    import flash.display.Shader;
-    import flash.filters.ShaderFilter;
+    import flash.utils.ByteArray;
+    import flash.utils.Dictionary;
 
-    public class TextureRedrawer 
+    public class TextureRedrawer
     {
-
         public static const magic:int = 12;
         public static const minSize:int = (2 * magic);//24
         private static const BORDER:int = 4;
-        public static const OUTLINE_FILTER:GlowFilter = new GlowFilter(0, 0.8, 1.4, 1.4, 0xFF, BitmapFilterQuality.LOW, false, false);
-
+        public static const OUTLINE_FILTER:GlowFilter = new GlowFilter(
+                0, 0.8, 1.4, 1.4, 0xFF, BitmapFilterQuality.LOW, false, false
+        );
         private static var cache_:Dictionary = new Dictionary();
         private static var faceCache_:Dictionary = new Dictionary();
         private static var redrawCaches:Dictionary = new Dictionary();
@@ -31,20 +32,21 @@
         private static var colorTexture1:BitmapData = new BitmapDataSpy(1, 1, false);
         private static var colorTexture2:BitmapData = new BitmapDataSpy(1, 1, false);
 
-
-        public static function redraw(_arg1:BitmapData, _arg2:int, _arg3:Boolean, _arg4:uint, _arg5:Boolean=true, _arg6:Number=5):BitmapData
+        public static function redraw(
+                _arg1:BitmapData, _arg2:int, _arg3:Boolean, _arg4:uint, _arg5:Boolean = true, _arg6:Number = 5
+        ):BitmapData
         {
             var _local7:String = getHash(_arg2, _arg3, _arg4, _arg6);
             if (((_arg5) && (isCached(_arg1, _local7))))
             {
                 return (redrawCaches[_arg1][_local7]);
-            };
+            }
             var _local8:BitmapData = resize(_arg1, null, _arg2, _arg3, 0, 0, _arg6);
             _local8 = GlowRedrawer.outlineGlow(_local8, _arg4, 1.4, _arg5);
             if (_arg5)
             {
                 cache(_arg1, _local7, _local8);
-            };
+            }
             return (_local8);
         }
 
@@ -58,7 +60,7 @@
             if (!(_arg1 in redrawCaches))
             {
                 redrawCaches[_arg1] = {};
-            };
+            }
             redrawCaches[_arg1][_arg2] = _arg3;
         }
 
@@ -69,24 +71,28 @@
                 if ((_arg2 in redrawCaches[_arg1]))
                 {
                     return (true);
-                };
-            };
+                }
+            }
             return (false);
         }
 
-        public static function resize(_arg1:BitmapData, _arg2:BitmapData, _arg3:int, _arg4:Boolean, _arg5:int, _arg6:int, _arg7:Number=5):BitmapData
+        public static function resize(
+                _arg1:BitmapData, _arg2:BitmapData, _arg3:int, _arg4:Boolean, _arg5:int, _arg6:int, _arg7:Number = 5
+        ):BitmapData
         {
             if (((!((_arg2 == null))) && (((!((_arg5 == 0))) || (!((_arg6 == 0)))))))
             {
                 _arg1 = retexture(_arg1, _arg2, _arg5, _arg6);
                 _arg3 = (_arg3 / 5);
-            };
+            }
             var _local8:int = ((_arg7 * (_arg3 / 100)) * _arg1.width);
             var _local9:int = ((_arg7 * (_arg3 / 100)) * _arg1.height);
             var _local10:Matrix = new Matrix();
             _local10.scale((_local8 / _arg1.width), (_local9 / _arg1.height));
             _local10.translate(magic, magic);
-            var _local11:BitmapData = new BitmapDataSpy((_local8 + minSize), ((_local9 + ((_arg4) ? magic : 1)) + magic), true, 0);
+            var _local11:BitmapData = new BitmapDataSpy(
+                    (_local8 + minSize), ((_local9 + ((_arg4) ? magic : 1)) + magic), true, 0
+            );
             _local11.draw(_arg1, _local10);
             return (_local11);
         }
@@ -98,12 +104,12 @@
             {
                 _local3 = new Dictionary();
                 cache_[_arg2] = _local3;
-            };
+            }
             var _local4:BitmapData = _local3[_arg1];
             if (_local4 != null)
             {
                 return (_local4);
-            };
+            }
             _local4 = new BitmapDataSpy(((_arg2 + 4) + 4), ((_arg2 + 4) + 4), true, 0);
             _local4.fillRect(new Rectangle(4, 4, _arg2, _arg2), (0xFF000000 | _arg1));
             _local4.applyFilter(_local4, _local4.rect, PointUtil.ORIGIN, OUTLINE_FILTER);
@@ -121,16 +127,16 @@
                 for each (_local1 in _local2)
                 {
                     _local1.dispose();
-                };
-            };
+                }
+            }
             cache_ = new Dictionary();
             for each (_local3 in faceCache_)
             {
                 for each (_local1 in _local3)
                 {
                     _local1.dispose();
-                };
-            };
+                }
+            }
             faceCache_ = new Dictionary();
         }
 
@@ -139,18 +145,18 @@
             if (_arg2 == 1)
             {
                 return (_arg1);
-            };
+            }
             var _local3:Dictionary = faceCache_[_arg2];
             if (_local3 == null)
             {
                 _local3 = new Dictionary();
                 faceCache_[_arg2] = _local3;
-            };
+            }
             var _local4:BitmapData = _local3[_arg1];
             if (_local4 != null)
             {
                 return (_local4);
-            };
+            }
             _local4 = _arg1.clone();
             _local4.colorTransform(_local4.rect, new ColorTransform(_arg2, _arg2, _arg2));
             _local3[_arg1] = _local4;
@@ -188,7 +194,7 @@
                     break;
                 default:
                     _local3 = _arg2;
-            };
+            }
             return (_local3);
         }
 
@@ -218,8 +224,6 @@
             _local1.translate(BORDER, BORDER);
             return (_local1);
         }
-
-
     }
 }
 

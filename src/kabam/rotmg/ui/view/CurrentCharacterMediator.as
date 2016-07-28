@@ -1,30 +1,31 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.assembleegameclient.appengine.SavedCharacter;
+    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
-    import kabam.rotmg.core.model.PlayerModel;
+    import com.company.assembleegameclient.screens.NewCharacterScreen;
+    import com.company.util.MoreDateUtil;
+
+    import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.core.service.TrackingData;
     import kabam.rotmg.core.signals.SetScreenSignal;
-    import kabam.rotmg.game.signals.PlayGameSignal;
-    import kabam.rotmg.ui.signals.ChooseNameSignal;
-    import kabam.rotmg.ui.signals.NameChangedSignal;
+    import kabam.rotmg.core.signals.TrackEventSignal;
     import kabam.rotmg.core.signals.TrackPageViewSignal;
-    import kabam.rotmg.packages.control.InitPackagesSignal;
+    import kabam.rotmg.game.model.GameInitData;
+    import kabam.rotmg.game.signals.PlayGameSignal;
     import kabam.rotmg.packages.control.BeginnersPackageAvailableSignal;
+    import kabam.rotmg.packages.control.InitPackagesSignal;
     import kabam.rotmg.packages.control.PackageAvailableSignal;
     import kabam.rotmg.promotions.model.BeginnersPackageModel;
-    import kabam.rotmg.core.service.TrackingData;
-    import com.company.util.MoreDateUtil;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.screens.NewCharacterScreen;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.classes.model.CharacterClass;
-    import kabam.rotmg.game.model.GameInitData;
+    import kabam.rotmg.ui.signals.ChooseNameSignal;
+    import kabam.rotmg.ui.signals.NameChangedSignal;
 
-    public class CurrentCharacterMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class CurrentCharacterMediator extends Mediator
     {
-
         [Inject]
         public var view:CharacterSelectionAndNewsScreen;
         [Inject]
@@ -51,7 +52,6 @@
         public var packageAvailable:PackageAvailableSignal;
         [Inject]
         public var beginnerModel:BeginnersPackageModel;
-
 
         override public function initialize():void
         {
@@ -107,7 +107,7 @@
                 this.track.dispatch(_local2);
                 Parameters.data_.lastDailyAnalytics = _local1;
                 Parameters.save();
-            };
+            }
         }
 
         private function onNewCharacter():void
@@ -144,8 +144,6 @@
             _local4.isNewGame = true;
             this.playGame.dispatch(_local4);
         }
-
-
     }
 }
 

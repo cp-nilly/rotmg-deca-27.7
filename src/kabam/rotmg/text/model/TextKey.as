@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.text.model
 {
-    public class TextKey 
+    public class TextKey
     {
-
         public static const LOADING_TEXT:String = "Loading.text";
         public static const EMPTY_LEGENDS_LIST:String = "Legends.EmptyList";
         public static const CREDITS_DEVELOPED:String = "Credits.developed";
@@ -690,7 +689,6 @@
         public static const VERIFY_WEB_ACCOUNT_DIALOG_TITLE:String = "VerifyWebAccountDialog.title";
         public static const VERIFY_WEB_ACCOUNT_DIALOG_BUTTON:String = "VerifyWebAccountDialog.button";
 
-
         public static function wrapForTokenResolution(_arg1:String):String
         {
             return ((("{" + _arg1) + "}"));
@@ -701,8 +699,6 @@
             var _local2:Boolean = ((((!((_arg1 == null))) && ((_arg1.charAt(0) == "{")))) && ((_arg1.charAt((_arg1.length - 1)) == "}")));
             return (((_local2) ? _arg1.substr(1, (_arg1.length - 2)) : _arg1));
         }
-
-
     }
 }
 

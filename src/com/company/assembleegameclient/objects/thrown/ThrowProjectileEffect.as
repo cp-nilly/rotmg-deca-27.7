@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.objects.thrown
 {
     import com.company.assembleegameclient.objects.particles.ParticleEffect;
+
     import flash.geom.Point;
 
-    public class ThrowProjectileEffect extends ParticleEffect 
+    public class ThrowProjectileEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var end_:Point;
         public var id_:uint;
@@ -26,8 +26,6 @@
             map_.addObj(_local4, x_, y_);
             return (false);
         }
-
-
     }
 }
 

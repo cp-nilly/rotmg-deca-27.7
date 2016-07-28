@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class RequestPlayerCreditsSignal extends Signal 
+    public class RequestPlayerCreditsSignal extends Signal
     {
-
-
     }
 }
 

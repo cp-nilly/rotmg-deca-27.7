@@ -1,19 +1,18 @@
 ﻿package com.company.assembleegameclient.ui.panels.itemgrids.itemtiles
 {
-    import flash.utils.Timer;
-    import flash.geom.Point;
-    import flash.events.TimerEvent;
     import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
+
     import flash.display.DisplayObject;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+    import flash.geom.Point;
+    import flash.utils.Timer;
 
-    public class InteractiveItemTile extends ItemTile 
+    public class InteractiveItemTile extends ItemTile
     {
-
         private static const DOUBLE_CLICK_PAUSE:uint = 250;
         private static const DRAG_DIST:int = 3;
-
         private var doubleClickTimer:Timer;
         private var dragStart:Point;
         private var pendingSecondClick:Boolean;
@@ -42,7 +41,7 @@
                 removeEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
                 removeEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
                 removeEventListener(MouseEvent.MOUSE_OUT, this.onMouseOut);
-            };
+            }
         }
 
         public function getDropTarget():DisplayObject
@@ -68,7 +67,7 @@
             if (this.isDragging)
             {
                 return;
-            };
+            }
             if (_arg1.shiftKey)
             {
                 this.setPendingDoubleClick(false);
@@ -91,9 +90,9 @@
                     {
                         this.setPendingDoubleClick(false);
                         dispatchEvent(new ItemTileEvent(ItemTileEvent.ITEM_DOUBLE_CLICK, this));
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onMouseDown(_arg1:MouseEvent):void
@@ -112,7 +111,7 @@
             else
             {
                 this.doubleClickTimer.stop();
-            };
+            }
         }
 
         private function beginDragCheck(_arg1:MouseEvent):void
@@ -140,7 +139,7 @@
                 this.cancelDragCheck(null);
                 this.setPendingDoubleClick(false);
                 this.beginDrag(_arg1);
-            };
+            }
         }
 
         private function onDoubleClickTimerComplete(_arg1:TimerEvent):void
@@ -176,10 +175,8 @@
             if (this.isDragging)
             {
                 itemSprite.stopDrag();
-            };
+            }
         }
-
-
     }
 }
 

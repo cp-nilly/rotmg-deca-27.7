@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.account.web.services
 {
     import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.services.RegisterAccountTask;
     import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.model.PlayerModel;
     import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.model.PlayerModel;
 
-    public class WebRegisterAccountTask extends BaseTask implements RegisterAccountTask 
+    public class WebRegisterAccountTask extends BaseTask implements RegisterAccountTask
     {
-
         [Inject]
         public var data:AccountData;
         [Inject]
@@ -18,7 +17,6 @@
         public var model:PlayerModel;
         [Inject]
         public var client:AppEngineClient;
-
 
         override protected function startTask():void
         {
@@ -48,8 +46,6 @@
             this.model.setIsAgeVerified(true);
             this.account.updateUser(this.data.username, this.data.password);
         }
-
-
     }
 }
 

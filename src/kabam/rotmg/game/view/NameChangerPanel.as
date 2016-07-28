@@ -1,28 +1,30 @@
 ﻿package kabam.rotmg.game.view
 {
-    import com.company.assembleegameclient.ui.panels.Panel;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.objects.Player;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.GameSprite;
-    import flash.events.KeyboardEvent;
-    import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.text.model.TextKey;
+    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.ui.RankText;
+    import com.company.assembleegameclient.ui.panels.Panel;
+    import com.company.assembleegameclient.util.Currency;
+
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFormatAlign;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
 
-    public class NameChangerPanel extends Panel 
+    import org.osflash.signals.Signal;
+
+    public class NameChangerPanel extends Panel
     {
-
         public var chooseName:Signal;
         public var buy_:Boolean;
         private var title_:TextFieldDisplayConcrete;
@@ -52,9 +54,9 @@
                     else
                     {
                         this.handleNoName();
-                    };
-                };
-            };
+                    }
+                }
+            }
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         }
 
@@ -63,7 +65,7 @@
             if (this.button_)
             {
                 stage.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
-            };
+            }
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         }
 
@@ -87,7 +89,9 @@
             this.title_.setStringBuilder(this.makeNameText(_arg1));
             this.title_.y = 0;
             addChild(this.title_);
-            var _local2:LegacyBuyButton = new LegacyBuyButton(TextKey.NAME_CHANGER_CHANGE, 16, Parameters.NAME_CHANGE_PRICE, Currency.GOLD);
+            var _local2:LegacyBuyButton = new LegacyBuyButton(
+                    TextKey.NAME_CHANGER_CHANGE, 16, Parameters.NAME_CHANGE_PRICE, Currency.GOLD
+            );
             _local2.readyForPlacement.addOnce(this.positionButton);
             this.button_ = _local2;
             addChild(this.button_);
@@ -151,7 +155,7 @@
 
         private function makeNameText(_arg1:String):StringBuilder
         {
-            return (new LineBuilder().setParams(TextKey.NAME_CHANGER_NAME_IS, {"name":_arg1}));
+            return (new LineBuilder().setParams(TextKey.NAME_CHANGER_NAME_IS, {"name": _arg1}));
         }
 
         private function onKeyDown(_arg1:KeyboardEvent):void
@@ -159,7 +163,7 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 this.performAction();
-            };
+            }
         }
 
         private function onButtonClick(_arg1:MouseEvent):void
@@ -177,8 +181,6 @@
             this.title_.setStringBuilder(this.makeNameText(_arg1));
             this.title_.y = 0;
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class SquareHit extends OutgoingMessage 
+    public class SquareHit extends OutgoingMessage
     {
-
         public var time_:int;
         public var bulletId_:uint;
         public var objectId_:int;
@@ -25,8 +24,6 @@
         {
             return (formatToString("SQUAREHIT", "time_", "bulletId_", "objectId_"));
         }
-
-
     }
 }
 

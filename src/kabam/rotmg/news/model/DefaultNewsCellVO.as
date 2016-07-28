@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.news.model
 {
-    public class DefaultNewsCellVO extends NewsCellVO 
+    public class DefaultNewsCellVO extends NewsCellVO
     {
-
         public function DefaultNewsCellVO(_arg1:int)
         {
             imageURL = "";
@@ -15,7 +14,6 @@
             priority = 999999;
             slot = _arg1;
         }
-
     }
 }
 

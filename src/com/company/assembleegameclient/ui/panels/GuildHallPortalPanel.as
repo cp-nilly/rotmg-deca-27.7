@@ -1,26 +1,26 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import com.company.assembleegameclient.util.StageProxy;
-    import com.company.assembleegameclient.objects.GuildHallPortal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import com.company.assembleegameclient.objects.Player;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.AGameSprite;
-    import flash.events.KeyboardEvent;
+    import com.company.assembleegameclient.objects.GuildHallPortal;
+    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.util.StageProxy;
 
-    public class GuildHallPortalPanel extends Panel 
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class GuildHallPortalPanel extends Panel
     {
-
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var stageProxy:StageProxy;
         private var owner_:GuildHallPortal;
         private var nameText_:TextFieldDisplayConcrete;
@@ -36,7 +36,7 @@
             if ((((gs_.map == null)) || ((gs_.map.player_ == null))))
             {
                 return;
-            };
+            }
             _local3 = gs_.map.player_;
             this.nameText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xFFFFFF).setTextWidth(WIDTH).setWordWrap(true).setMultiLine(true).setAutoSize(TextFieldAutoSize.CENTER).setBold(true).setHTML(true);
             this.nameText_.setStringBuilder(new LineBuilder().setParams(TextKey.GUILD_HALL_PORTAL_TITLE).setPrefix('<p align="center">').setPostfix("</p>"));
@@ -58,7 +58,7 @@
                 this.noGuildText_.filters = [new DropShadowFilter(0, 0, 0)];
                 this.waiter.push(this.noGuildText_.textChanged);
                 addChild(this.noGuildText_);
-            };
+            }
             this.waiter.complete.addOnce(this.alignUI);
         }
 
@@ -67,12 +67,12 @@
             if (this.noGuildText_)
             {
                 this.noGuildText_.y = ((HEIGHT - this.noGuildText_.height) - 12);
-            };
+            }
             if (this.enterButton_)
             {
                 this.enterButton_.x = ((WIDTH / 2) - (this.enterButton_.width / 2));
                 this.enterButton_.y = ((HEIGHT - this.enterButton_.height) - 4);
-            };
+            }
         }
 
         private function onAdded(_arg1:Event):void
@@ -96,15 +96,13 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 this.enterPortal();
-            };
+            }
         }
 
         private function enterPortal():void
         {
             gs_.gsc_.usePortal(this.owner_.objectId_);
         }
-
-
     }
 }
 

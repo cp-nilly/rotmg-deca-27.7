@@ -1,21 +1,20 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
-    import flash.display.Sprite;
     import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.geom.Point;
-    import flash.events.MouseEvent;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Point;
+    import flash.text.TextFieldAutoSize;
 
-    public class VolumeSliderBar extends Sprite 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    public class VolumeSliderBar extends Sprite
     {
-
         private const MIN:Number = 0;
         private const MAX:Number = 1;
-
         private var bar:Shape;
         private var _label:TextFieldDisplayConcrete;
         private var _currentVolume:Number;
@@ -23,7 +22,7 @@
         private var _mousePoint:Point;
         private var _localPoint:Point;
 
-        public function VolumeSliderBar(_arg1:Number, _arg2:Number=0xFFFFFF)
+        public function VolumeSliderBar(_arg1:Number, _arg2:Number = 0xFFFFFF)
         {
             this._mousePoint = new Point(0, 0);
             this._localPoint = new Point(0, 0);
@@ -59,12 +58,12 @@
 
         public function set currentVolume(_arg1:Number):void
         {
-            _arg1 = (((_arg1)>this.MAX) ? this.MAX : (((_arg1)<this.MIN) ? this.MIN : _arg1));
+            _arg1 = (((_arg1) > this.MAX) ? this.MAX : (((_arg1) < this.MIN) ? this.MIN : _arg1));
             this._currentVolume = _arg1;
             this.draw();
         }
 
-        private function draw(_arg1:uint=0x9B9B9B):void
+        private function draw(_arg1:uint = 0x9B9B9B):void
         {
             var _local2:* = (this._currentVolume * 100);
             var _local3:Number = (_local2 * -0.2);
@@ -93,7 +92,8 @@
             {
                 stage.addEventListener(MouseEvent.MOUSE_MOVE, this.onMouseMove);
                 stage.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
-            };
+            }
+            ;
         }
 
         private function onMouseUp(_arg1:MouseEvent):void
@@ -102,7 +102,8 @@
             if (stage)
             {
                 stage.removeEventListener(MouseEvent.MOUSE_MOVE, this.onMouseMove);
-            };
+            }
+            ;
         }
 
         private function onMouseMove(_arg1:MouseEvent):void
@@ -110,14 +111,13 @@
             if (!this._isMouseDown)
             {
                 return;
-            };
+            }
+            ;
             this._mousePoint.x = _arg1.currentTarget.mouseX;
             this._localPoint = this.globalToLocal(this._mousePoint);
             this.currentVolume = (this._localPoint.x / 100);
             dispatchEvent(new Event(Event.CHANGE, true));
         }
-
-
     }
 }
 

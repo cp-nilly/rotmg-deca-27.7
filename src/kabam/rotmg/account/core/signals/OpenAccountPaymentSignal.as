@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class OpenAccountPaymentSignal extends Signal 
+    public class OpenAccountPaymentSignal extends Signal
     {
-
-
     }
 }
 

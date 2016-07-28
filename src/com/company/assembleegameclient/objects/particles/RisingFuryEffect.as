@@ -1,13 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
-    import flash.utils.Timer;
+
     import flash.events.TimerEvent;
+    import flash.geom.Point;
+    import flash.utils.Timer;
 
-    public class RisingFuryEffect extends ParticleEffect 
+    public class RisingFuryEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var go:GameObject;
         private var startX:Number;
@@ -44,7 +44,7 @@
             {
                 this.timer.stop();
                 this.particleField.destroy();
-            };
+            }
         }
 
         private function onChargingComplete(_arg1:TimerEvent):void
@@ -71,8 +71,6 @@
             map_.addObj(this.particleField, this.go.x_, this.go.y_);
             return (false);
         }
-
-
     }
 }
 

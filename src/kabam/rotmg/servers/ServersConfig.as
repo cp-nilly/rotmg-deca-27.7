@@ -1,27 +1,26 @@
 ﻿package kabam.rotmg.servers
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
+    import kabam.rotmg.account.core.signals.CharListDataSignal;
     import kabam.rotmg.build.api.BuildData;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.build.api.BuildEnvironment;
     import kabam.rotmg.servers.api.ServerModel;
-    import kabam.rotmg.servers.model.LocalhostServerModel;
+    import kabam.rotmg.servers.control.ParseServerDataCommand;
     import kabam.rotmg.servers.model.FixedIPServerModel;
     import kabam.rotmg.servers.model.LiveServerModel;
-    import kabam.rotmg.account.core.signals.CharListDataSignal;
-    import kabam.rotmg.servers.control.ParseServerDataCommand;
+    import kabam.rotmg.servers.model.LocalhostServerModel;
 
-    public class ServersConfig implements IConfig 
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class ServersConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var data:BuildData;
         [Inject]
         public var commandMap:ISignalCommandMap;
-
 
         public function configure():void
         {
@@ -37,7 +36,7 @@
                     return;
                 default:
                     this.configureLiveServers();
-            };
+            }
         }
 
         private function configureLocalhost():void
@@ -60,8 +59,6 @@
             this.injector.map(ServerModel).toSingleton(LiveServerModel);
             this.commandMap.map(CharListDataSignal).toCommand(ParseServerDataCommand);
         }
-
-
     }
 }
 

@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.arena.view
 {
     import flash.display.Sprite;
+    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.text.model.TextKey;
     import kabam.rotmg.text.view.StaticTextDisplay;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.model.TextKey;
 
-    public class ArenaWaveCounter extends Sprite 
+    public class ArenaWaveCounter extends Sprite
     {
-
         private const waveText:StaticTextDisplay = makeWaveText();
         private const waveStringBuilder:LineBuilder = new LineBuilder();
-
 
         private function makeWaveText():StaticTextDisplay
         {
@@ -24,10 +23,12 @@
 
         public function setWaveNumber(_arg1:int):void
         {
-            this.waveText.setStringBuilder(this.waveStringBuilder.setParams(TextKey.ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER, {"waveNumber":_arg1}));
+            this.waveText.setStringBuilder(
+                    this.waveStringBuilder.setParams(
+                            TextKey.ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER, {"waveNumber": _arg1}
+                    )
+            );
         }
-
-
     }
 }
 

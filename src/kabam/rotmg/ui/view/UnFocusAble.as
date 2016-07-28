@@ -2,9 +2,8 @@
 {
     import flash.events.IEventDispatcher;
 
-    public interface UnFocusAble extends IEventDispatcher 
+    public interface UnFocusAble extends IEventDispatcher
     {
-
     }
 }
 

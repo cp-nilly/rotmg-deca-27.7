@@ -1,28 +1,27 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import flash.geom.Matrix;
-    import flash.display.BitmapData;
-    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
-    import kabam.rotmg.language.model.StringMap;
-    import flash.geom.ColorTransform;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import com.company.util.IntPoint;
-    import com.company.assembleegameclient.map.Map;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.game.model.AddSpeechBalloonVO;
-    import com.gskinner.motion.GTween;
-    import com.gskinner.motion.easing.Sine;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.ui.tooltip.EquipmentToolTip;
     import com.company.assembleegameclient.constants.InventoryOwnerTypes;
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.map.Map;
+    import com.company.assembleegameclient.ui.tooltip.EquipmentToolTip;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
     import com.company.ui.BaseSimpleText;
-    import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import com.company.util.IntPoint;
+    import com.gskinner.motion.GTween;
+    import com.gskinner.motion.easing.Sine;
 
-    public class Merchant extends SellableObject implements IInteractiveObject 
+    import flash.display.BitmapData;
+    import flash.geom.ColorTransform;
+    import flash.geom.Matrix;
+
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.game.model.AddSpeechBalloonVO;
+    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
+    import kabam.rotmg.language.model.StringMap;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class Merchant extends SellableObject implements IInteractiveObject
     {
-
         private static const NONE_MESSAGE:int = 0;
         private static const NEW_MESSAGE:int = 1;
         private static const MINS_LEFT_MESSAGE:int = 2;
@@ -35,7 +34,6 @@
             _local1.translate(10, 5);
             return (_local1);
         }();
-
         public var merchandiseType_:int = -1;
         public var count_:int = -1;
         public var minsLeft_:int = -1;
@@ -75,7 +73,7 @@
             if (!super.addTo(_arg1, _arg2, _arg3))
             {
                 return (false);
-            };
+            }
             _arg1.merchLookup_[new IntPoint(x_, y_)] = this;
             return (true);
         }
@@ -86,7 +84,7 @@
             if (map_.merchLookup_[_local1] == this)
             {
                 map_.merchLookup_[_local1] = null;
-            };
+            }
             super.removeFromMap();
         }
 
@@ -117,30 +115,34 @@
                         }
                         else
                         {
-                            _local2 = new LineBuilder().setParams("Merchant.goingInNMinutes", {"minutes":this.minsLeft_});
-                        };
-                    };
+                            _local2 = new LineBuilder().setParams(
+                                    "Merchant.goingInNMinutes", {"minutes": this.minsLeft_}
+                            );
+                        }
+                    }
                     _local3 = 5973542;
                     _local4 = 16549442;
                     _local5 = 16549442;
                     break;
                 case ITEMS_LEFT_MESSAGE:
-                    _local2 = new LineBuilder().setParams("Merchant.limitedStock", {"count":this.count_});
+                    _local2 = new LineBuilder().setParams("Merchant.limitedStock", {"count": this.count_});
                     _local3 = 5973542;
                     _local4 = 16549442;
                     _local5 = 16549442;
                     break;
                 case DISCOUNT_MESSAGE:
-                    _local2 = new LineBuilder().setParams("Merchant.discount", {"discount":this.discount_});
+                    _local2 = new LineBuilder().setParams("Merchant.discount", {"discount": this.discount_});
                     _local3 = 6324275;
                     _local4 = 16777103;
                     _local5 = 16777103;
                     break;
                 default:
                     return (null);
-            };
+            }
             _local2.setStringMap(this.stringMap);
-            return (new AddSpeechBalloonVO(this, _local2.getString(), "", false, false, _local3, 1, _local4, 1, _local5, 6, true, false));
+            return (new AddSpeechBalloonVO(
+                    this, _local2.getString(), "", false, false, _local3, 1, _local4, 1, _local5, 6, true, false
+            ));
         }
 
         override public function update(_arg1:int, _arg2:int):Boolean
@@ -151,17 +153,17 @@
             {
                 if (this.minsLeft_ == 2147483647)
                 {
-                    _local5 = new GTween(this, (0.5 * T), {"size_":150}, {"ease":Sine.easeOut});
-                    _local5.nextTween = new GTween(this, (0.5 * T), {"size_":100}, {"ease":Sine.easeIn});
+                    _local5 = new GTween(this, (0.5 * T), {"size_": 150}, {"ease": Sine.easeOut});
+                    _local5.nextTween = new GTween(this, (0.5 * T), {"size_": 100}, {"ease": Sine.easeIn});
                     _local5.nextTween.paused = true;
-                };
+                }
                 this.firstUpdate_ = false;
-            };
+            }
             this.untilNextMessage_ = (this.untilNextMessage_ - _arg2);
             if (this.untilNextMessage_ > 0)
             {
                 return (true);
-            };
+            }
             this.untilNextMessage_ = 5000;
             var _local3:Vector.<int> = new Vector.<int>();
             if (this.minsLeft_ == 2147483647)
@@ -173,20 +175,20 @@
                 if ((((this.minsLeft_ >= 0)) && ((this.minsLeft_ <= 5))))
                 {
                     _local3.push(MINS_LEFT_MESSAGE);
-                };
-            };
+                }
+            }
             if ((((this.count_ >= 1)) && ((this.count_ <= 2))))
             {
                 _local3.push(ITEMS_LEFT_MESSAGE);
-            };
+            }
             if (this.discount_ > 0)
             {
                 _local3.push(DISCOUNT_MESSAGE);
-            };
+            }
             if (_local3.length == 0)
             {
                 return (true);
-            };
+            }
             this.messageIndex_ = (++this.messageIndex_ % _local3.length);
             var _local4:int = _local3[this.messageIndex_];
             this.addSpeechBalloon.dispatch(this.getSpeechBalloon(_local4));
@@ -226,7 +228,7 @@
                 _local3.text = String(_local2.Doses);
                 _local3.updateMetrics();
                 _local1.draw(_local3, DOSE_MATRIX);
-            };
+            }
             return (_local1);
         }
 
@@ -236,11 +238,11 @@
             if (_local2 == null)
             {
                 return (_arg1);
-            };
+            }
             if ((((_local2.Activate == "Dye")) && (_local2.hasOwnProperty("Tex1"))))
             {
                 return (int(_local2.Tex1));
-            };
+            }
             return (_arg1);
         }
 
@@ -250,11 +252,11 @@
             if (_local2 == null)
             {
                 return (_arg1);
-            };
+            }
             if ((((_local2.Activate == "Dye")) && (_local2.hasOwnProperty("Tex2"))))
             {
                 return (int(_local2.Tex2));
-            };
+            }
             return (_arg1);
         }
 
@@ -263,13 +265,15 @@
             if ((((this.alpha_ == 1)) && ((size_ == 100))))
             {
                 return (this.merchandiseTexture_);
-            };
-            var _local3:BitmapData = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType_, size_, false, false);
+            }
+            var _local3:BitmapData = ObjectLibrary.getRedrawnTextureFromType(
+                    this.merchandiseType_, size_, false, false
+            );
             if (this.alpha_ != 1)
             {
                 this.ct_.alphaMultiplier = this.alpha_;
                 _local3.colorTransform(_local3.rect, this.ct_);
-            };
+            }
             return (_local3);
         }
 
@@ -278,8 +282,6 @@
             this.merchandiseType_ = _arg1;
             this.merchandiseTexture_ = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType_, 100, false);
         }
-
-
     }
 }
 

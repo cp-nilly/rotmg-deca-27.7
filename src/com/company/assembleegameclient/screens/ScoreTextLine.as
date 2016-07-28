@@ -1,29 +1,29 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.tooltips.TooltipAble;
     import com.company.assembleegameclient.ui.tooltip.TextToolTip;
-    import kabam.rotmg.tooltips.HoverTooltipDelegate;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+
     import flash.display.DisplayObject;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.HideTooltipsSignal;
-    import flash.utils.getTimer;
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+    import flash.utils.getTimer;
+
+    import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import kabam.rotmg.tooltips.HoverTooltipDelegate;
+    import kabam.rotmg.tooltips.TooltipAble;
 
-    public class ScoreTextLine extends Sprite implements TooltipAble 
+    public class ScoreTextLine extends Sprite implements TooltipAble
     {
-
         public static var textTooltip_:TextToolTip = new TextToolTip(0x363636, 0x9B9B9B, null, "", 150);
-
         public var hoverTooltipDelegate:HoverTooltipDelegate;
         public var description:String;
         public var level:int;
@@ -35,7 +35,18 @@
         private var numberText_:TextFieldDisplayConcrete;
         private var unitIcon_:DisplayObject;
 
-        public function ScoreTextLine(_arg1:int, _arg2:uint, _arg3:uint, _arg4:String, _arg5:String, _arg6:int, _arg7:int, _arg8:String, _arg9:String, _arg10:DisplayObject):void
+        public function ScoreTextLine(
+                _arg1:int,
+                _arg2:uint,
+                _arg3:uint,
+                _arg4:String,
+                _arg5:String,
+                _arg6:int,
+                _arg7:int,
+                _arg8:String,
+                _arg9:String,
+                _arg10:DisplayObject
+        ):void
         {
             this.hoverTooltipDelegate = new HoverTooltipDelegate();
             super();
@@ -60,18 +71,18 @@
                 this.numberText_.x = 450;
                 this.numberText_.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
                 addChild(this.numberText_);
-            };
+            }
             if (_arg10 != null)
             {
                 this.unitIcon_ = _arg10;
                 this.nameText_.textChanged.addOnce(this.onTextChanged);
                 addChild(this.unitIcon_);
-            };
+            }
             this.hoverTooltipDelegate.setDisplayObject(this);
             if (_arg5)
             {
                 this.hoverTooltipDelegate.tooltip = textTooltip_;
-            };
+            }
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         }
@@ -87,7 +98,7 @@
             {
                 this.unitIcon_.x = 450;
                 this.unitIcon_.y = (((this.nameText_.height / 2) - (this.unitIcon_.height / 2)) + 2);
-            };
+            }
         }
 
         public function setShowToolTipSignal(_arg1:ShowTooltipSignal):void
@@ -120,7 +131,7 @@
             if (this.startTime_ == 0)
             {
                 this.startTime_ = getTimer();
-            };
+            }
             addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
             addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
         }
@@ -143,12 +154,12 @@
                 {
                     this.unitIcon_.x = ((this.numberText_.x + this.numberText_.width) - 4);
                     this.unitIcon_.y = (((this.numberText_.height / 2) - (this.unitIcon_.height / 2)) + 2);
-                };
-            };
+                }
+            }
             if (_local2 == 1)
             {
                 removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         public function onMouseOver(_arg1:Event):void
@@ -157,7 +168,7 @@
             {
                 textTooltip_.setText(this.makeDescription());
                 stage.addChild(textTooltip_);
-            };
+            }
         }
 
         private function makeDescription():StringBuilder
@@ -167,14 +178,12 @@
             _local1.pushParams(this.description);
             if (this.level > 1)
             {
-                _local1.pushParams(TextKey.BLANK, {"data":" ("});
-                _local1.pushParams("FameBonus.LevelRequirement", {"level":this.level});
-                _local1.pushParams(TextKey.BLANK, {"data":")"});
-            };
+                _local1.pushParams(TextKey.BLANK, {"data": " ("});
+                _local1.pushParams("FameBonus.LevelRequirement", {"level": this.level});
+                _local1.pushParams(TextKey.BLANK, {"data": ")"});
+            }
             return (_local1);
         }
-
-
     }
 }
 

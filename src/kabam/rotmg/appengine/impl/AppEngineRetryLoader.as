@@ -1,23 +1,23 @@
 ﻿package kabam.rotmg.appengine.impl
 {
-    import kabam.rotmg.appengine.api.RetryLoader;
-    import org.osflash.signals.OnceSignal;
-    import flash.net.URLRequest;
-    import flash.net.URLLoader;
-    import flash.net.URLLoaderDataFormat;
-    import flash.net.URLRequestMethod;
-    import flash.net.URLVariables;
-    import flash.utils.getTimer;
+    import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.events.SecurityErrorEvent;
-    import flash.events.Event;
+    import flash.net.URLLoader;
+    import flash.net.URLLoaderDataFormat;
+    import flash.net.URLRequest;
+    import flash.net.URLRequestMethod;
+    import flash.net.URLVariables;
     import flash.utils.ByteArray;
+    import flash.utils.getTimer;
 
-    public class AppEngineRetryLoader implements RetryLoader 
+    import kabam.rotmg.appengine.api.RetryLoader;
+
+    import org.osflash.signals.OnceSignal;
+
+    public class AppEngineRetryLoader implements RetryLoader
     {
-
         private const _complete:OnceSignal = new OnceSignal(Boolean);
-
         private var maxRetries:int;
         private var dataFormat:String;
         private var url:String;
@@ -87,7 +87,7 @@
             for (_local2 in this.params)
             {
                 _local1[_local2] = this.params[_local2];
-            };
+            }
             return (_local1);
         }
 
@@ -108,7 +108,7 @@
             if (_local2.length == 0)
             {
                 _local2 = "Unable to contact server";
-            };
+            }
             this.retryOrReportError(_local2);
         }
 
@@ -127,7 +127,7 @@
             else
             {
                 this.cleanUpAndComplete(false, _arg1);
-            };
+            }
         }
 
         private function onComplete(_arg1:Event):void
@@ -140,7 +140,7 @@
             else
             {
                 this.cleanUpAndComplete(true, ByteArray(this.urlLoader.data));
-            };
+            }
         }
 
         private function handleTextResponse(_arg1:String):void
@@ -158,8 +158,8 @@
                 else
                 {
                     this.cleanUpAndComplete(true, _arg1);
-                };
-            };
+                }
+            }
         }
 
         private function cleanUpAndComplete(_arg1:Boolean, _arg2:*):void
@@ -167,7 +167,7 @@
             if (((!(_arg1)) && ((_arg2 is String))))
             {
                 _arg2 = this.parseXML(_arg2);
-            };
+            }
             this.cancelPendingRequest();
             this._complete.dispatch(_arg1, _arg2);
         }
@@ -187,7 +187,7 @@
                 this.urlLoader.removeEventListener(Event.COMPLETE, this.onComplete);
                 this.closeLoader();
                 this.urlLoader = null;
-            };
+            }
         }
 
         private function closeLoader():void
@@ -196,12 +196,10 @@
             {
                 this.urlLoader.close();
             }
-            catch(e:Error)
+            catch (e:Error)
             {
-            };
+            }
         }
-
-
     }
 }
 

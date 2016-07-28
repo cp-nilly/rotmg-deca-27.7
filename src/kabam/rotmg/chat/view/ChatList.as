@@ -1,18 +1,15 @@
 ﻿package kabam.rotmg.chat.view
 {
     import flash.display.Sprite;
-    import flash.utils.Timer;
-    import __AS3__.vec.Vector;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
     import kabam.rotmg.chat.model.ChatModel;
-    import __AS3__.vec.*;
 
-    public class ChatList extends Sprite 
+    public class ChatList extends Sprite
     {
-
         private const timer:Timer = new Timer(1000);
         private const itemsToRemove:Vector.<ChatListItem> = new Vector.<ChatListItem>();
-
         private var listItems:Vector.<ChatListItem>;
         private var visibleItems:Vector.<ChatListItem>;
         private var visibleItemCount:int;
@@ -21,7 +18,7 @@
         private var ignoreTimeOuts:Boolean = false;
         private var maxLength:int;
 
-        public function ChatList(_arg1:int=7, _arg2:uint=150)
+        public function ChatList(_arg1:int = 7, _arg2:uint = 150)
         {
             mouseEnabled = true;
             mouseChildren = true;
@@ -48,8 +45,8 @@
                 else
                 {
                     break;
-                };
-            };
+                }
+            }
             while (this.itemsToRemove.length > 0)
             {
                 this.onItemTimedOut(this.itemsToRemove.pop());
@@ -61,9 +58,9 @@
                         this.addNewItem(_local3);
                         this.isCurrent = (this.index == this.listItems.length);
                         this.positionItems();
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         public function setup(_arg1:ChatModel):void
@@ -82,13 +79,13 @@
                 if (((!(this.isCurrent)) && ((this.index < this.visibleItemCount))))
                 {
                     this.pageDown();
-                };
-            };
+                }
+            }
             this.listItems.push(_arg1);
             if (this.isCurrent)
             {
                 this.displayNewItem(_arg1);
-            };
+            }
         }
 
         private function onItemTimedOut(_arg1:ChatListItem):void
@@ -99,7 +96,7 @@
                 removeChild(_arg1);
                 this.visibleItems.splice(_local2, 1);
                 this.isCurrent = (this.index == this.listItems.length);
-            };
+            }
         }
 
         private function displayNewItem(_arg1:ChatListItem):void
@@ -119,7 +116,7 @@
             else
             {
                 this.showAvailable();
-            };
+            }
             this.ignoreTimeOuts = true;
         }
 
@@ -135,9 +132,9 @@
                 if (this.visibleItems.indexOf(_local4) == -1)
                 {
                     this.addOldItem(_local4);
-                };
+                }
                 _local3--;
-            };
+            }
             this.positionItems();
         }
 
@@ -148,7 +145,7 @@
                 this.ignoreTimeOuts = false;
                 this.scrollToCurrent();
                 this.onCheckTimeout(null);
-            };
+            }
             if (!this.isCurrent)
             {
                 this.scrollItemsDown();
@@ -158,8 +155,8 @@
                 if (this.ignoreTimeOuts)
                 {
                     this.ignoreTimeOuts = false;
-                };
-            };
+                }
+            }
         }
 
         public function scrollToCurrent():void
@@ -167,7 +164,7 @@
             while (!(this.isCurrent))
             {
                 this.scrollItemsDown();
-            };
+            }
         }
 
         public function pageUp():void
@@ -190,10 +187,10 @@
                     else
                     {
                         return;
-                    };
+                    }
                     _local1++;
-                };
-            };
+                }
+            }
         }
 
         public function pageDown():void
@@ -209,9 +206,9 @@
                 {
                     this.ignoreTimeOuts = false;
                     return;
-                };
+                }
                 _local1++;
-            };
+            }
         }
 
         private function addNewItem(_arg1:ChatListItem):void
@@ -225,7 +222,7 @@
             if (this.visibleItems.length > this.visibleItemCount)
             {
                 removeChild(this.visibleItems.shift());
-            };
+            }
         }
 
         private function canScrollUp():Boolean
@@ -247,7 +244,7 @@
             if (this.index < 0)
             {
                 this.index = 0;
-            };
+            }
             var _local1:ChatListItem = this.listItems[this.index];
             this.index++;
             this.addNewItem(_local1);
@@ -267,7 +264,7 @@
             if (this.visibleItems.length > this.visibleItemCount)
             {
                 removeChild(this.visibleItems.pop());
-            };
+            }
         }
 
         private function positionItems():void
@@ -280,10 +277,8 @@
                 _local3 = this.visibleItems[_local2];
                 _local3.y = _local1;
                 _local1 = (_local1 - _local3.height);
-            };
+            }
         }
-
-
     }
 }
 

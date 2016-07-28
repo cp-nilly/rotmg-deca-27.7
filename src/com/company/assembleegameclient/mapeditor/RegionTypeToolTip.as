@@ -2,13 +2,12 @@
 {
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
     import com.company.ui.BaseSimpleText;
+
     import flash.filters.DropShadowFilter;
 
-    public class RegionTypeToolTip extends ToolTip 
+    public class RegionTypeToolTip extends ToolTip
     {
-
         private static const MAX_WIDTH:int = 180;
-
         private var titleText_:BaseSimpleText;
 
         public function RegionTypeToolTip(_arg1:XML)
@@ -24,7 +23,6 @@
             this.titleText_.y = 0;
             addChild(this.titleText_);
         }
-
     }
 }
 

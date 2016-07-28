@@ -1,22 +1,23 @@
 ﻿package kabam.rotmg.pets.view.components.slot
 {
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.view.components.PetIconFactory;
-    import flash.filters.ColorMatrixFilter;
     import com.company.util.MoreColorUtil;
+
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.pets.view.components.PetIcon;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.pets.data.PetFamilyKeys;
+    import flash.filters.ColorMatrixFilter;
     import flash.geom.ColorTransform;
 
-    public class PetFeedFuseSlot extends FeedFuseSlot 
+    import kabam.rotmg.pets.data.PetFamilyKeys;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.view.components.PetIcon;
+    import kabam.rotmg.pets.view.components.PetIconFactory;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class PetFeedFuseSlot extends FeedFuseSlot
     {
-
         public const openPetPicker:Signal = new Signal();
-
         public var showFamily:Boolean = false;
         public var processing:Boolean = false;
         private var petIconFactory:PetIconFactory;
@@ -36,7 +37,7 @@
             if (((!(icon)) || (contains(icon))))
             {
                 setTitle(TextKey.PETORFOODSLOT_FUSE_PET_TITLE, {});
-            };
+            }
         }
 
         private function onOpenPetPicker(_arg1:MouseEvent):void
@@ -44,7 +45,7 @@
             if (!this.processing)
             {
                 this.openPetPicker.dispatch();
-            };
+            }
         }
 
         public function setPetIcon(_arg1:PetVO):void
@@ -59,12 +60,12 @@
             if (_arg1)
             {
                 this.setPetIcon(_arg1);
-                setTitle(TextKey.BLANK, {"data":_arg1.getName()});
+                setTitle(TextKey.BLANK, {"data": _arg1.getName()});
                 _local2 = new AppendingLineBuilder();
                 _local2.pushParams(_arg1.getRarity());
                 ((this.showFamily) && (_local2.pushParams(PetFamilyKeys.getTranslationKey(_arg1.getFamily()))));
-                setSubtitle(TextKey.BLANK, {"data":_local2});
-            };
+                setSubtitle(TextKey.BLANK, {"data": _local2});
+            }
         }
 
         public function setProcessing(_arg1:Boolean):void
@@ -76,10 +77,8 @@
                 icon.filters = ((_arg1) ? [this.grayscaleMatrix] : []);
                 _local2 = ((_arg1) ? MoreColorUtil.darkCT : new ColorTransform());
                 icon.transform.colorTransform = _local2;
-            };
+            }
         }
-
-
     }
 }
 

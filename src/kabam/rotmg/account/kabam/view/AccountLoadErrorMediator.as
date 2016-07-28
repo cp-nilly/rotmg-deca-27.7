@@ -1,20 +1,18 @@
 ﻿package kabam.rotmg.account.kabam.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import flash.net.navigateToURL;
-    import flash.net.URLRequest;
     import flash.external.ExternalInterface;
+    import flash.net.URLRequest;
+    import flash.net.navigateToURL;
 
-    public class AccountLoadErrorMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class AccountLoadErrorMediator extends Mediator
     {
-
         private static const GET_KABAM_PAGE_JS:String = "rotmg.KabamDotComLib.getKabamGamePage";
         private static const KABAM_DOT_COM:String = "https://www.kabam.com";
         private static const TOP:String = "_top";
-
         [Inject]
         public var view:AccountLoadErrorDialog;
-
 
         override public function initialize():void
         {
@@ -36,15 +34,13 @@
                 if (((_local2) && (_local2.length)))
                 {
                     _local1 = _local2;
-                };
+                }
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
             return (_local1);
         }
-
-
     }
 }
 

@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.dialogs.view
 {
-    import flash.display.Sprite;
-    import flash.display.DisplayObjectContainer;
     import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
     import flash.display.Graphics;
+    import flash.display.Sprite;
     import flash.events.Event;
 
-    public class DialogsView extends Sprite 
+    public class DialogsView extends Sprite
     {
-
         private var background:Sprite;
         private var container:DisplayObjectContainer;
         private var current:Sprite;
@@ -22,7 +21,7 @@
             this.background.mouseEnabled = true;
         }
 
-        public function showBackground(_arg1:int=0x151515):void
+        public function showBackground(_arg1:int = 0x151515):void
         {
             var _local2:Graphics = this.background.graphics;
             _local2.clear();
@@ -78,7 +77,7 @@
             {
                 this.background.visible = false;
                 this.current = null;
-            };
+            }
         }
 
         private function removeCurrentDialog():void
@@ -88,10 +87,8 @@
                 this.current.removeEventListener(Event.REMOVED, this.onRemoved);
                 this.container.removeChild(this.current);
                 this.background.visible = false;
-            };
+            }
         }
-
-
     }
 }
 

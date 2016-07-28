@@ -1,16 +1,12 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import flash.utils.Dictionary;
-    import __AS3__.vec.Vector;
     import flash.display.BitmapData;
-    import __AS3__.vec.*;
+    import flash.utils.Dictionary;
 
-    public class BloodComposition 
+    public class BloodComposition
     {
-
         private static var idDict_:Dictionary = new Dictionary();
         private static var imageDict_:Dictionary = new Dictionary();
-
 
         public static function getBloodComposition(_arg1:int, _arg2:BitmapData, _arg3:Number, _arg4:uint):Vector.<uint>
         {
@@ -18,7 +14,7 @@
             if (_local5 != null)
             {
                 return (_local5);
-            };
+            }
             _local5 = new Vector.<uint>();
             var _local6:Vector.<uint> = getColors(_arg2);
             var _local7:int;
@@ -31,9 +27,9 @@
                 else
                 {
                     _local5.push(_local6[int((_local6.length * Math.random()))]);
-                };
+                }
                 _local7++;
-            };
+            }
             return (_local5);
         }
 
@@ -44,7 +40,7 @@
             {
                 _local2 = buildColors(_arg1);
                 imageDict_[_arg1] = _local2;
-            };
+            }
             return (_local2);
         }
 
@@ -63,15 +59,13 @@
                     if ((_local5 & 0xFF000000) != 0)
                     {
                         _local2.push(_local5);
-                    };
+                    }
                     _local4++;
-                };
+                }
                 _local3++;
-            };
+            }
             return (_local2);
         }
-
-
     }
 }
 

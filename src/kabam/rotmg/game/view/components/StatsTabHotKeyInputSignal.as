@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class StatsTabHotKeyInputSignal extends Signal 
+    public class StatsTabHotKeyInputSignal extends Signal
     {
-
-
     }
 }
 

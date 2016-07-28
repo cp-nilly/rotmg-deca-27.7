@@ -1,15 +1,16 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.sound.SoundEffectLibrary;
 
-    public class ClickableTextBase extends Sprite 
-    {
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class ClickableTextBase extends Sprite
+    {
         public var text_:TextFieldDisplayConcrete;
         public var defaultColor_:uint = 0xFFFFFF;
 
@@ -74,8 +75,6 @@
         {
             SoundEffectLibrary.play("button_click");
         }
-
-
     }
 }
 

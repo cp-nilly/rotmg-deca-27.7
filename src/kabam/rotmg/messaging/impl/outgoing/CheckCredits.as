@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class CheckCredits extends OutgoingMessage 
+    public class CheckCredits extends OutgoingMessage
     {
-
         public function CheckCredits(_arg1:uint, _arg2:Function)
         {
             super(_arg1, _arg2);
@@ -18,8 +17,6 @@
         {
             return (formatToString("CHECKCREDITS"));
         }
-
-
     }
 }
 

@@ -1,10 +1,8 @@
 ﻿package kabam.lib.net.api
 {
-    public interface MessageHandlerProxy 
+    public interface MessageHandlerProxy
     {
-
         function getMethod():Function;
-
     }
 }
 

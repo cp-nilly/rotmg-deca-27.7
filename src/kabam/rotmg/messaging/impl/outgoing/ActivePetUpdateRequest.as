@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class ActivePetUpdateRequest extends OutgoingMessage 
+    public class ActivePetUpdateRequest extends OutgoingMessage
     {
-
         public var commandtype:uint;
         public var instanceid:uint;
 
@@ -18,8 +17,6 @@
             _arg1.writeByte(this.commandtype);
             _arg1.writeInt(this.instanceid);
         }
-
-
     }
 }
 

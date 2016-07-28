@@ -1,31 +1,27 @@
 ﻿package com.company.assembleegameclient.map.partyoverlay
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.ui.menu.Menu;
-    import flash.display.DisplayObjectContainer;
+    import com.company.assembleegameclient.map.Camera;
     import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import flash.display.Shape;
+    import com.company.assembleegameclient.ui.menu.Menu;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import flash.geom.Point;
-    import flash.events.MouseEvent;
-    import flash.filters.DropShadowFilter;
-    import flash.geom.Rectangle;
     import com.company.util.RectangleUtil;
     import com.company.util.Trig;
-    import com.company.assembleegameclient.map.Camera;
+
+    import flash.display.DisplayObjectContainer;
     import flash.display.Graphics;
-    import __AS3__.vec.*;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Point;
+    import flash.geom.Rectangle;
 
-    public class GameObjectArrow extends Sprite 
+    public class GameObjectArrow extends Sprite
     {
-
         public static const SMALL_SIZE:int = 8;
         public static const BIG_SIZE:int = 11;
         public static const DIST:int = 3;
-
         private static var menu_:Menu = null;
-
         public var menuLayer:DisplayObjectContainer;
         public var lineColor_:uint;
         public var fillColor_:uint;
@@ -62,11 +58,10 @@
                 if (menu_.parent != null)
                 {
                     menu_.parent.removeChild(menu_);
-                };
+                }
                 menu_ = null;
-            };
+            }
         }
-
 
         protected function onMouseOver(_arg1:MouseEvent):void
         {
@@ -93,7 +88,7 @@
             {
                 addChild(this.tooltip_);
                 this.positionTooltip(this.tooltip_);
-            };
+            }
         }
 
         protected function removeTooltip():void
@@ -103,9 +98,9 @@
                 if (this.tooltip_.parent != null)
                 {
                     this.tooltip_.parent.removeChild(this.tooltip_);
-                };
+                }
                 this.tooltip_ = null;
-            };
+            }
         }
 
         protected function setMenu(_arg1:Menu):void
@@ -120,12 +115,12 @@
             if (this.go_ != _arg1)
             {
                 this.go_ = _arg1;
-            };
+            }
             this.extraGOs_.length = 0;
             if (this.go_ == null)
             {
                 visible = false;
-            };
+            }
         }
 
         public function addGameObject(_arg1:GameObject):void
@@ -142,7 +137,7 @@
             {
                 visible = false;
                 return;
-            };
+            }
             this.go_.computeSortVal(_arg2);
             _local3 = _arg2.clipRect_;
             _local4 = this.go_.posS_[0];
@@ -152,7 +147,7 @@
                 this.go_ = null;
                 visible = false;
                 return;
-            };
+            }
             x = this.tempPoint.x;
             y = this.tempPoint.y;
             var _local6:Number = Trig.boundTo180((270 - (Trig.toDegrees * Math.atan2(_local4, _local5))));
@@ -161,11 +156,11 @@
                 if (_local6 > 45)
                 {
                     _local6 = 45;
-                };
+                }
                 if (_local6 < -45)
                 {
                     _local6 = -45;
-                };
+                }
             }
             else
             {
@@ -176,27 +171,27 @@
                         if (_local6 < 135)
                         {
                             _local6 = 135;
-                        };
+                        }
                     }
                     else
                     {
                         if (_local6 > -135)
                         {
                             _local6 = -135;
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
             if (this.tempPoint.y < (_local3.top + 5))
             {
                 if (_local6 < 45)
                 {
                     _local6 = 45;
-                };
+                }
                 if (_local6 > 135)
                 {
                     _local6 = 135;
-                };
+                }
             }
             else
             {
@@ -205,18 +200,18 @@
                     if (_local6 > -45)
                     {
                         _local6 = -45;
-                    };
+                    }
                     if (_local6 < -135)
                     {
                         _local6 = -135;
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.arrow_.rotation = _local6;
             if (this.tooltip_ != null)
             {
                 this.positionTooltip(this.tooltip_);
-            };
+            }
             visible = true;
         }
 
@@ -258,9 +253,9 @@
                         _arg1.x = (_local4 - _local6);
                         _local9 = (_local5 - (_local7 * Math.tan((_local2 * Trig.toRadians))));
                         _arg1.y = (((_local5 + _local9) / 2) - (_local7 / 2));
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function drawArrow():void
@@ -277,8 +272,6 @@
             _local1.endFill();
             _local1.lineStyle();
         }
-
-
     }
 }
 

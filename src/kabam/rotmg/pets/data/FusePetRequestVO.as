@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.pets.data
 {
-    public class FusePetRequestVO implements IUpgradePetRequestVO 
+    public class FusePetRequestVO implements IUpgradePetRequestVO
     {
-
         public var petInstanceIdOne:int;
         public var petInstanceIdTwo:int;
         public var paymentTransType:int;
@@ -13,7 +12,6 @@
             this.petInstanceIdTwo = _arg2;
             this.paymentTransType = _arg3;
         }
-
     }
 }
 

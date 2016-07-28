@@ -1,19 +1,17 @@
 ﻿package kabam.rotmg.friends.service
 {
     import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
 
-    public class FriendDataRequestTask extends BaseTask 
+    public class FriendDataRequestTask extends BaseTask
     {
-
         [Inject]
         public var client:AppEngineClient;
         [Inject]
         public var account:Account;
         public var requestURL:String;
         public var xml:XML;
-
 
         override protected function startTask():void
         {
@@ -32,10 +30,8 @@
             else
             {
                 completeTask(false, _arg2);
-            };
+            }
         }
-
-
     }
 }
 

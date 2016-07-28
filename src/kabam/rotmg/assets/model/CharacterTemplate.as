@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.assets.model
 {
-    public class CharacterTemplate 
+    public class CharacterTemplate
     {
-
         public var file:String;
         public var index:int;
 
@@ -11,7 +10,6 @@
             this.file = _arg1;
             this.index = _arg2;
         }
-
     }
 }
 

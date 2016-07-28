@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Buy extends OutgoingMessage 
+    public class Buy extends OutgoingMessage
     {
-
         public var objectId_:int;
         public var quantity_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("BUY", "objectId_", "quantity_"));
         }
-
-
     }
 }
 

@@ -1,24 +1,26 @@
 ﻿package kabam.rotmg.account.core.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import flash.events.MouseEvent;
     import com.company.util.EmailValidator;
-    import kabam.rotmg.appengine.api.AppEngineClient;
     import com.company.util.MoreObjectUtil;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
 
-    public class ConfirmEmailModal extends Frame 
-    {
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
+    import org.osflash.signals.Signal;
+
+    public class ConfirmEmailModal extends Frame
+    {
         public var register:Signal;
         public var cancel:Signal;
         private var emailInput:TextInputField;
@@ -29,7 +31,11 @@
         public function ConfirmEmailModal()
         {
             this.register = new Signal(AccountData);
-            super(TextKey.VERIFY_WEB_ACCOUNT_DIALOG_TITLE, TextKey.REGISTER_WEB_ACCOUNT_DIALOG_LEFTBUTTON, TextKey.VERIFY_WEB_ACCOUNT_DIALOG_BUTTON);
+            super(
+                    TextKey.VERIFY_WEB_ACCOUNT_DIALOG_TITLE,
+                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_LEFTBUTTON,
+                    TextKey.VERIFY_WEB_ACCOUNT_DIALOG_BUTTON
+            );
             this.positionAndStuff();
             removeChild(leftButton_);
             this.account = StaticInjectorContext.getInjector().getInstance(Account);
@@ -55,7 +61,7 @@
             {
                 this.emailInput.inputText_.setText("");
                 this.isKabam = true;
-            };
+            }
             addTextInputField(this.emailInput);
             this.closeButton = new DialogCloseButton();
             this.closeButton.y = -2;
@@ -81,7 +87,7 @@
             if (((parent) && (parent.contains(this))))
             {
                 parent.removeChild(this);
-            };
+            }
         }
 
         private function onVerify(_arg1:MouseEvent):void
@@ -92,11 +98,11 @@
             {
                 _local2 = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
                 _local2.complete.addOnce(this.onComplete);
-                _local3 = {"newGuid":this.emailInput.text()};
+                _local3 = {"newGuid": this.emailInput.text()};
                 MoreObjectUtil.addToObject(_local3, this.account.getCredentials());
                 _local2.sendRequest("account/changeEmail", _local3);
                 rightButton_.removeEventListener(MouseEvent.CLICK, this.onVerify);
-            };
+            }
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -108,7 +114,7 @@
             else
             {
                 this.onError(_arg2);
-            };
+            }
             rightButton_.addEventListener(MouseEvent.CLICK, this.onVerify);
         }
 
@@ -118,7 +124,7 @@
             if (!this.isKabam)
             {
                 _local1.updateUser(this.emailInput.text(), _local1.getPassword());
-            };
+            }
             removeChild(titleText_);
             titleText_ = new TextFieldDisplayConcrete().setSize(12).setColor(0xB3B3B3);
             titleText_.setStringBuilder(new LineBuilder().setParams("WebAccountDetailDialog.sent"));
@@ -147,7 +153,7 @@
             if (!_local1)
             {
                 this.emailInput.setError(TextKey.INVALID_EMAIL_ADDRESS);
-            };
+            }
             return (_local1);
         }
 
@@ -156,8 +162,6 @@
             this.x = ((WebMain.STAGE.stageWidth / 2) - (this.w_ / 2));
             this.y = ((WebMain.STAGE.stageHeight / 2) - (this.h_ / 2));
         }
-
-
     }
 }
 

@@ -1,14 +1,12 @@
 ﻿package kabam.rotmg.messaging.impl.outgoing
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.messaging.impl.data.MoveRecord;
     import flash.utils.IDataOutput;
-    import __AS3__.vec.*;
 
-    public class Move extends OutgoingMessage 
+    import kabam.rotmg.messaging.impl.data.MoveRecord;
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
+
+    public class Move extends OutgoingMessage
     {
-
         public var tickId_:int;
         public var time_:int;
         public var newPosition_:WorldPosData;
@@ -32,15 +30,13 @@
             {
                 this.records_[_local2].writeToOutput(_arg1);
                 _local2++;
-            };
+            }
         }
 
         override public function toString():String
         {
             return (formatToString("MOVE", "tickId_", "time_", "newPosition_", "records_"));
         }
-
-
     }
 }
 

@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.controller.UpgradePetSignal;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.pets.data.YardUpgraderVO;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.pets.controller.UpgradePetSignal;
     import kabam.rotmg.pets.data.PetRarityEnum;
+    import kabam.rotmg.pets.data.PetsModel;
     import kabam.rotmg.pets.data.UpgradePetYardRequestVO;
+    import kabam.rotmg.pets.data.YardUpgraderVO;
 
-    public class YardUpgraderMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class YardUpgraderMediator extends Mediator
     {
-
         [Inject]
         public var view:YardUpgraderView;
         [Inject]
@@ -26,12 +26,13 @@
         [Inject]
         public var closeDialog:CloseDialogsSignal;
 
-
         override public function initialize():void
         {
             var _local1:YardUpgraderVO = new YardUpgraderVO();
             var _local2:int = this.petModel.getPetYardRarity();
-            var _local3:int = (((_local2 < PetRarityEnum.DIVINE.ordinal)) ? PetRarityEnum.selectByOrdinal((_local2 + 1)).ordinal : PetRarityEnum.DIVINE.ordinal);
+            var _local3:int = (((_local2 < PetRarityEnum.DIVINE.ordinal))
+                    ? PetRarityEnum.selectByOrdinal((_local2 + 1)).ordinal
+                    : PetRarityEnum.DIVINE.ordinal);
             _local1.currentRarityLevel = PetRarityEnum.selectByOrdinal(_local2).value;
             _local1.nextRarityLevel = PetRarityEnum.selectByOrdinal(_local3).value;
             _local1.famePrice = this.petModel.getPetYardUpgradeFamePrice();
@@ -58,8 +59,6 @@
             this.closeDialog.dispatch();
             this.upgradePet.dispatch(_local3);
         }
-
-
     }
 }
 

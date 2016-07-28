@@ -1,12 +1,11 @@
 ﻿package kabam.rotmg.packages.services
 {
-    import org.osflash.signals.Signal;
     import kabam.rotmg.packages.model.PackageInfo;
-    import kabam.rotmg.packages.model.*;
 
-    public class PackageModel 
+    import org.osflash.signals.Signal;
+
+    public class PackageModel
     {
-
         public var numSpammed:int = 0;
         public var dataChanged:Signal;
         private var models:Object;
@@ -41,7 +40,7 @@
             {
                 _local2.dataChanged.add(this.onDataChanged);
                 this.models[_local2.packageID] = _local2;
-            };
+            }
             this.initialized = true;
             this.dataChanged.dispatch();
         }
@@ -66,8 +65,8 @@
                 if ((((_local1 == null)) || ((_local2.priority < _local1.priority))))
                 {
                     _local1 = _local2;
-                };
-            };
+                }
+            }
             return (_local2);
         }
 
@@ -82,11 +81,9 @@
             for each (_local1 in this.models)
             {
                 return (true);
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

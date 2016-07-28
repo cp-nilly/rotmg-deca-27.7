@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class RefreshScreenAfterLoginSignal extends Signal 
+    public class RefreshScreenAfterLoginSignal extends Signal
     {
-
-
     }
 }
 

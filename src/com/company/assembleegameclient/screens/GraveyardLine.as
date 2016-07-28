@@ -1,23 +1,23 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import flash.display.Bitmap;
     import com.company.ui.BaseSimpleText;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
+
+    import flash.display.Bitmap;
     import flash.display.BitmapData;
-    import flash.net.navigateToURL;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
     import flash.net.URLRequest;
+    import flash.net.navigateToURL;
 
-    public class GraveyardLine extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class GraveyardLine extends Sprite
     {
-
         public static const WIDTH:int = 415;
         public static const HEIGHT:int = 52;
         public static const COLOR:uint = 0xB3B3B3;
         public static const OVER_COLOR:uint = 0xFFC800;
-
         public var viewCharacterFame:Signal;
         public var icon_:Bitmap;
         public var titleText_:BaseSimpleText;
@@ -26,7 +26,9 @@
         public var link:String;
         public var accountId:String;
 
-        public function GraveyardLine(_arg1:BitmapData, _arg2:String, _arg3:String, _arg4:String, _arg5:int, _arg6:String)
+        public function GraveyardLine(
+                _arg1:BitmapData, _arg2:String, _arg3:String, _arg4:String, _arg5:int, _arg6:String
+        )
         {
             this.viewCharacterFame = new Signal(int);
             super();
@@ -90,7 +92,7 @@
                 case "https":
                 default:
                     navigateToURL(new URLRequest(this.link), "_blank");
-            };
+            }
         }
 
         private function getTimeDiff(_arg1:int):String
@@ -100,23 +102,21 @@
             if (_local3 <= 0)
             {
                 return ("now");
-            };
+            }
             if (_local3 < 60)
             {
                 return ((_local3 + " secs"));
-            };
+            }
             if (_local3 < (60 * 60))
             {
                 return ((int((_local3 / 60)) + " mins"));
-            };
+            }
             if (_local3 < ((60 * 60) * 24))
             {
                 return ((int((_local3 / (60 * 60))) + " hours"));
-            };
+            }
             return ((int((_local3 / ((60 * 60) * 24))) + " days"));
         }
-
-
     }
 }
 

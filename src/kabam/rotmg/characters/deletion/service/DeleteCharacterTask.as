@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.characters.deletion.service
 {
-    import kabam.lib.tasks.BaseTask;
     import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.appengine.api.AppEngineClient;
+
+    import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.characters.model.CharacterModel;
 
-    public class DeleteCharacterTask extends BaseTask 
+    public class DeleteCharacterTask extends BaseTask
     {
-
         [Inject]
         public var character:SavedCharacter;
         [Inject]
@@ -17,7 +17,6 @@
         public var account:Account;
         [Inject]
         public var model:CharacterModel;
-
 
         override protected function startTask():void
         {
@@ -44,8 +43,6 @@
         {
             this.model.deleteCharacter(this.character.charId());
         }
-
-
     }
 }
 

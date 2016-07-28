@@ -2,9 +2,8 @@
 {
     import kabam.lib.tasks.Task;
 
-    public interface LoginTask extends Task 
+    public interface LoginTask extends Task
     {
-
     }
 }
 

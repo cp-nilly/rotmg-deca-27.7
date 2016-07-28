@@ -1,12 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
+
+    import flash.geom.Point;
+
     import kabam.rotmg.messaging.impl.data.WorldPosData;
 
-    public class CollapseEffect extends ParticleEffect 
+    public class CollapseEffect extends ParticleEffect
     {
-
         public var center_:Point;
         public var edgePoint_:Point;
         public var color_:int;
@@ -33,11 +34,14 @@
             while (_local7 < _local6)
             {
                 _local8 = (((_local7 * 2) * Math.PI) / _local6);
-                _local9 = new Point((this.center_.x + (_local3 * Math.cos(_local8))), (this.center_.y + (_local3 * Math.sin(_local8))));
+                _local9 = new Point(
+                        (this.center_.x + (_local3 * Math.cos(_local8))),
+                        (this.center_.y + (_local3 * Math.sin(_local8)))
+                );
                 _local10 = new SparkerParticle(_local4, this.color_, _local5, _local9, this.center_);
                 map_.addObj(_local10, x_, y_);
                 _local7++;
-            };
+            }
             return (false);
         }
 
@@ -56,15 +60,16 @@
             while (_local7 < _local6)
             {
                 _local8 = (((_local7 * 2) * Math.PI) / _local6);
-                _local9 = new Point((this.center_.x + (_local3 * Math.cos(_local8))), (this.center_.y + (_local3 * Math.sin(_local8))));
+                _local9 = new Point(
+                        (this.center_.x + (_local3 * Math.cos(_local8))),
+                        (this.center_.y + (_local3 * Math.sin(_local8)))
+                );
                 _local10 = new SparkerParticle(_local4, this.color_, _local5, _local9, this.center_);
                 map_.addObj(_local10, x_, y_);
                 _local7++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

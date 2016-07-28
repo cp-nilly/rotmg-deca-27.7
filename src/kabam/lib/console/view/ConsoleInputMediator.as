@@ -1,22 +1,20 @@
 ﻿package kabam.lib.console.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.lib.console.model.Console;
     import kabam.lib.console.signals.ConsoleLogSignal;
 
-    public final class ConsoleInputMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public final class ConsoleInputMediator extends Mediator
+    {
         private static const ERROR_PATTERN:String = '[0xFF3333:error - "${value}" not found]';
         private static const ACTION_PATTERN:String = "[0xFFEE00:${value}]";
-
         [Inject]
         public var view:ConsoleInputView;
         [Inject]
         public var console:Console;
         [Inject]
         public var log:ConsoleLogSignal;
-
 
         override public function initialize():void
         {
@@ -48,7 +46,7 @@
             else
             {
                 this.logError(_arg1);
-            };
+            }
         }
 
         private function logAction(_arg1:String):void
@@ -73,8 +71,6 @@
         {
             this.view.text = this.console.getNextAction();
         }
-
-
     }
 }
 

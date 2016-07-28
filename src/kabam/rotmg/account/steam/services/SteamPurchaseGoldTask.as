@@ -1,21 +1,23 @@
 ﻿package kabam.rotmg.account.steam.services
 {
-    import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.PurchaseGoldTask;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.account.steam.SteamApi;
-    import com.company.assembleegameclient.util.offer.Offer;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.external.command.RequestPlayerCreditsSignal;
-    import flash.utils.setTimeout;
     import com.company.assembleegameclient.ui.dialogs.DebugDialog;
+    import com.company.assembleegameclient.util.offer.Offer;
 
-    public class SteamPurchaseGoldTask extends BaseTask implements PurchaseGoldTask 
+    import flash.utils.setTimeout;
+
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.services.PurchaseGoldTask;
+    import kabam.rotmg.account.steam.SteamApi;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.external.command.RequestPlayerCreditsSignal;
+
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class SteamPurchaseGoldTask extends BaseTask implements PurchaseGoldTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -37,17 +39,17 @@
         [Inject]
         public var requestPlayerCredits:RequestPlayerCreditsSignal;
 
-
         override protected function startTask():void
         {
             this.logger.debug("SteamPurchaseGoldTask startTask");
             this.steam.paymentAuthorized.addOnce(this.onPaymentAuthorized);
             this.first.setMaxRetries(2);
             this.first.complete.addOnce(this.onComplete);
-            this.first.sendRequest("/steamworks/purchaseOffer", {
-                "steamid":this.steam.getSteamId(),
-                "data":this.offer.data_
-            });
+            this.first.sendRequest(
+                    "/steamworks/purchaseOffer", {
+                        "steamid": this.steam.getSteamId(), "data": this.offer.data_
+                    }
+            );
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -59,16 +61,18 @@
             else
             {
                 this.reportError(_arg2);
-            };
+            }
         }
 
         private function onPurchaseOfferComplete():void
         {
             this.logger.debug("SteamPurchaseGoldTask purchaseOffer confirmed by AppEngine");
-            setTimeout(function ():void
-            {
-                moneyFrameEnableCancelSignal.dispatch();
-            }, 1100);
+            setTimeout(
+                    function ():void
+                    {
+                        moneyFrameEnableCancelSignal.dispatch();
+                    }, 1100
+            );
         }
 
         private function onPaymentAuthorized(_arg1:uint, _arg2:String, _arg3:Boolean):void
@@ -78,23 +82,23 @@
                 this.logger.debug("SteamPurchaseGoldTask payment canceled by user");
                 completeTask(true);
                 this.second.setMaxRetries(2);
-                this.second.sendRequest("/steamworks/finalizePurchase", {
-                    "appid":_arg1,
-                    "orderid":_arg2,
-                    "authorized":0
-                });
+                this.second.sendRequest(
+                        "/steamworks/finalizePurchase", {
+                            "appid": _arg1, "orderid": _arg2, "authorized": 0
+                        }
+                );
             }
             else
             {
                 this.logger.debug("SteamPurchaseGoldTask payment authorized by Steam");
                 this.second.setMaxRetries(2);
                 this.second.complete.addOnce(this.onAuthorized);
-                this.second.sendRequest("/steamworks/finalizePurchase", {
-                    "appid":_arg1,
-                    "orderid":_arg2,
-                    "authorized":((_arg3) ? 1 : 0)
-                });
-            };
+                this.second.sendRequest(
+                        "/steamworks/finalizePurchase", {
+                            "appid": _arg1, "orderid": _arg2, "authorized": ((_arg3) ? 1 : 0)
+                        }
+                );
+            }
         }
 
         private function onAuthorized(_arg1:Boolean, _arg2:*):void
@@ -106,7 +110,7 @@
             else
             {
                 this.reportError(_arg2);
-            };
+            }
         }
 
         private function onPurchaseFinalizeComplete():void
@@ -123,8 +127,6 @@
             this.openDialog.dispatch(new DebugDialog(_local2));
             completeTask(false);
         }
-
-
     }
 }
 

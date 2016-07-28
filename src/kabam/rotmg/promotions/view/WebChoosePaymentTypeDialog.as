@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.promotions.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.lib.ui.GroupMappedSignal;
-    import flash.events.MouseEvent;
-    import org.osflash.signals.natives.NativeMappedSignal;
     import com.company.assembleegameclient.util.PaymentMethod;
+
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+
+    import kabam.lib.ui.GroupMappedSignal;
     import kabam.rotmg.promotions.view.components.TransparentButton;
 
-    public class WebChoosePaymentTypeDialog extends Sprite 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebChoosePaymentTypeDialog extends Sprite
     {
-
         public static var hifiBeginnerOfferMoneyFrameEmbed:Class = WebChoosePaymentTypeDialog_hifiBeginnerOfferMoneyFrameEmbed;
-
         public var close:Signal;
         public var select:GroupMappedSignal;
         public var paypal:Sprite;
@@ -61,8 +62,6 @@
             addChild(_local5);
             return (_local5);
         }
-
-
     }
 }
 

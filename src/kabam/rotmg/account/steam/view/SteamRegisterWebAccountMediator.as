@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.account.steam.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
     import kabam.rotmg.account.core.signals.RegisterAccountSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
     import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
-    public class SteamRegisterWebAccountMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class SteamRegisterWebAccountMediator extends Mediator
     {
-
         [Inject]
         public var view:RegisterWebAccountDialog;
         [Inject]
         public var register:RegisterAccountSignal;
         [Inject]
         public var closeDialogsSignal:CloseDialogsSignal;
-
 
         override public function initialize():void
         {
@@ -37,8 +36,6 @@
         {
             this.closeDialogsSignal.dispatch();
         }
-
-
     }
 }
 

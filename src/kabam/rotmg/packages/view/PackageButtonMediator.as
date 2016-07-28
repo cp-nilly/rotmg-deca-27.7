@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.packages.services.GetPackagesTask;
-    import kabam.rotmg.packages.services.PackageModel;
     import kabam.rotmg.packages.control.OpenPackageSignal;
     import kabam.rotmg.packages.model.PackageInfo;
+    import kabam.rotmg.packages.services.GetPackagesTask;
+    import kabam.rotmg.packages.services.PackageModel;
 
-    public class PackageButtonMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class PackageButtonMediator extends Mediator
     {
-
         [Inject]
         public var getPackageTask:GetPackagesTask;
         [Inject]
@@ -19,7 +19,6 @@
         public var openPackageSignal:OpenPackageSignal;
         private var packageInfo:PackageInfo;
         private var dataSet:Boolean;
-
 
         override public function initialize():void
         {
@@ -34,7 +33,7 @@
             {
                 this.view.visible = false;
                 this.getPackageTask.start();
-            };
+            }
         }
 
         override public function destroy():void
@@ -45,7 +44,7 @@
                 this.packageInfo.quantityChanged.remove(this.onUpdateQuantity);
                 this.packageInfo.durationChanged.remove(this.onUpdateDuration);
                 this.packageInfo.dataChanged.remove(this.onDataChanged);
-            };
+            }
         }
 
         private function onUpdateDuration(_arg1:int):void
@@ -62,7 +61,7 @@
             else
             {
                 this.view.setQuantity(_arg1);
-            };
+            }
         }
 
         private function onDataChanged():void
@@ -85,8 +84,6 @@
         {
             this.openPackageSignal.dispatch(this.packageModel.getPriorityPackage().packageID);
         }
-
-
     }
 }
 

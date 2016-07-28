@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class OpenPackageSignal extends Signal 
+    public class OpenPackageSignal extends Signal
     {
-
         public function OpenPackageSignal()
         {
             super(int);
         }
-
     }
 }
 

@@ -1,42 +1,41 @@
 ﻿package kabam.rotmg.account.steam
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.model.MoneyConfig;
-    import kabam.rotmg.account.steam.model.SteamMoneyConfig;
+    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.core.services.MakePaymentTask;
+    import kabam.rotmg.account.core.services.PurchaseGoldTask;
+    import kabam.rotmg.account.core.services.RegisterAccountTask;
     import kabam.rotmg.account.core.signals.CharListDataSignal;
     import kabam.rotmg.account.core.signals.OpenAccountInfoSignal;
-    import kabam.rotmg.account.steam.commands.SteamOpenAccountInfoCommand;
     import kabam.rotmg.account.core.signals.RegisterAccountSignal;
-    import kabam.rotmg.account.steam.commands.SteamRegisterAccountCommand;
-    import kabam.rotmg.account.steam.view.SteamAccountDetailDialog;
-    import kabam.rotmg.account.steam.view.SteamAccountDetailMediator;
     import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
-    import kabam.rotmg.account.steam.view.SteamRegisterWebAccountMediator;
+    import kabam.rotmg.account.steam.commands.SteamOpenAccountInfoCommand;
+    import kabam.rotmg.account.steam.commands.SteamRegisterAccountCommand;
+    import kabam.rotmg.account.steam.model.SteamMoneyConfig;
     import kabam.rotmg.account.steam.services.LiveSteamApi;
-    import kabam.rotmg.account.core.services.LoadAccountTask;
     import kabam.rotmg.account.steam.services.SteamLoadAccountTask;
     import kabam.rotmg.account.steam.services.SteamLoadApiTask;
-    import kabam.rotmg.account.core.services.MakePaymentTask;
     import kabam.rotmg.account.steam.services.SteamMakePaymentTask;
-    import kabam.rotmg.account.core.services.PurchaseGoldTask;
     import kabam.rotmg.account.steam.services.SteamPurchaseGoldTask;
-    import kabam.rotmg.account.core.services.RegisterAccountTask;
     import kabam.rotmg.account.steam.services.SteamRegisterAccountTask;
+    import kabam.rotmg.account.steam.view.SteamAccountDetailDialog;
+    import kabam.rotmg.account.steam.view.SteamAccountDetailMediator;
+    import kabam.rotmg.account.steam.view.SteamRegisterWebAccountMediator;
 
-    public class SteamAccountConfig implements IConfig 
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class SteamAccountConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var commandMap:ISignalCommandMap;
-
 
         public function configure():void
         {
@@ -74,8 +73,6 @@
             this.injector.map(PurchaseGoldTask).toType(SteamPurchaseGoldTask);
             this.injector.map(RegisterAccountTask).toType(SteamRegisterAccountTask);
         }
-
-
     }
 }
 

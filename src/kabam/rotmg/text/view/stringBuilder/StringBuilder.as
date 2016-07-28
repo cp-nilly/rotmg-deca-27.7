@@ -2,12 +2,11 @@
 {
     import kabam.rotmg.language.model.StringMap;
 
-    public interface StringBuilder 
+    public interface StringBuilder
     {
-
         function setStringMap(_arg1:StringMap):void;
-        function getString():String;
 
+        function getString():String;
     }
 }
 

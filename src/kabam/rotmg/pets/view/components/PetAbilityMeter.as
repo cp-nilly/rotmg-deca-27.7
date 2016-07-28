@@ -1,30 +1,36 @@
 ﻿package kabam.rotmg.pets.view.components
 {
     import flash.display.Sprite;
-    import kabam.rotmg.tooltips.TooltipAble;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.tooltips.HoverTooltipDelegate;
     import flash.events.Event;
-    import kabam.rotmg.pets.util.PetsAbilityLevelHelper;
-    import kabam.rotmg.pets.data.AbilityVO;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import flash.filters.DropShadowFilter;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
+
     import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.pets.data.AbilityVO;
+    import kabam.rotmg.pets.util.PetsAbilityLevelHelper;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.tooltips.HoverTooltipDelegate;
+    import kabam.rotmg.tooltips.TooltipAble;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PetAbilityMeter extends Sprite implements TooltipAble 
+    import org.osflash.signals.Signal;
+
+    public class PetAbilityMeter extends Sprite implements TooltipAble
     {
-
         public const animating:Signal = new Signal(PetAbilityMeter, Boolean);
-        private const labelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 14, true, true);
-        private const levelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 14, true, true);
-        private const abilityBar:AnimatedAbilityBar = new AnimatedAbilityBar(PetsConstants.PET_ABILITY_BAR_WIDTH, PetsConstants.PET_ABILITY_BAR_HEIGHT);
-
+        private const labelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xB3B3B3, 14, true, true
+        );
+        private const levelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xB3B3B3, 14, true, true
+        );
+        private const abilityBar:AnimatedAbilityBar = new AnimatedAbilityBar(
+                PetsConstants.PET_ABILITY_BAR_WIDTH, PetsConstants.PET_ABILITY_BAR_HEIGHT
+        );
         private var unlocked:Boolean = true;
         private var pointsShown:int = 0;
         private var levelShown:int = 0;
@@ -69,7 +75,7 @@
                 _local3 = PetsAbilityLevelHelper.getAbilityPointsforLevel(_arg1.level);
                 _local2 = (((_arg1.level >= this.max)) ? _local3 : _local2);
                 this.setAbilityBar(_local2, _local3);
-            };
+            }
             _arg1.updated.add(this.updateData);
         }
 
@@ -92,8 +98,8 @@
                 else
                 {
                     this.setAbilityBar(this.pointsLeftToAdd, _local2);
-                };
-            };
+                }
+            }
         }
 
         private function onChainedFill():void
@@ -123,9 +129,9 @@
                     {
                         this.abilityBar.reset();
                         this.setAbilityBar(this.pointsLeftToAdd, _local2);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         public function setAbilityLabel(_arg1:String):void
@@ -133,11 +139,15 @@
             this.levelTextfield.setStringBuilder(new LineBuilder().setParams(_arg1));
         }
 
-        public function setLevelLabel(_arg1:int, _arg2:Boolean=false):void
+        public function setLevelLabel(_arg1:int, _arg2:Boolean = false):void
         {
-            var _local3:String = (((_arg1 >= this.max)) ? TextKey.PET_ABILITY_LEVEL_MAX : TextKey.ABILITY_BAR_LEVEL_LABEL);
-            this.labelTextfield.setColor(((_arg2) ? 1572859 : (((_arg1 >= this.max)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
-            this.labelTextfield.setStringBuilder(new LineBuilder().setParams(_local3, {"level":_arg1.toString()}));
+            var _local3:String = (((_arg1 >= this.max))
+                    ? TextKey.PET_ABILITY_LEVEL_MAX
+                    : TextKey.ABILITY_BAR_LEVEL_LABEL);
+            this.labelTextfield.setColor(
+                    ((_arg2) ? 1572859 : (((_arg1 >= this.max)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3))
+            );
+            this.labelTextfield.setStringBuilder(new LineBuilder().setParams(_local3, {"level": _arg1.toString()}));
             this.labelTextfield.textChanged.addOnce(this.positionLabelText);
         }
 
@@ -159,7 +169,7 @@
                 this.levelTextfield.setColor(_local2);
                 this.levelTextfield.filters = _local3;
                 this.labelTextfield.visible = _arg1;
-            };
+            }
         }
 
         private function addChildren():void
@@ -191,12 +201,20 @@
 
         private function onAnimatingBar(_arg1:Boolean):void
         {
-            this.labelTextfield.setColor(((_arg1) ? 1572859 : (((this.levelShown >= this.max)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
-            this.levelTextfield.setColor(((_arg1) ? 1572859 : (((this.levelShown >= 100)) ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT : 0xB3B3B3)));
+            this.labelTextfield.setColor(
+                    ((_arg1) ? 1572859 : (((this.levelShown >= this.max))
+                            ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT
+                            : 0xB3B3B3))
+            );
+            this.levelTextfield.setColor(
+                    ((_arg1) ? 1572859 : (((this.levelShown >= 100))
+                            ? PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT
+                            : 0xB3B3B3))
+            );
             if (((!(_arg1)) && ((this.levelShown >= 100))))
             {
                 this.abilityBar.setBarColor(PetsConstants.COLOR_GREEN_TEXT_HIGHLIGHT);
-            };
+            }
             this.animating.dispatch(this, _arg1);
         }
 
@@ -219,8 +237,6 @@
         {
             return (this.tooltipDelegate.getHideToolTips());
         }
-
-
     }
 }
 

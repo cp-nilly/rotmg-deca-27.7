@@ -1,32 +1,31 @@
 ﻿package kabam.rotmg.mysterybox.components
 {
+    import flash.display.DisplayObject;
     import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.mysterybox.services.MysteryBoxModel;
     import flash.events.Event;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormatAlign;
+
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
+    import kabam.rotmg.mysterybox.services.MysteryBoxModel;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
     import kabam.rotmg.pets.view.components.PopupWindowBackground;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.text.TextFieldAutoSize;
-    import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.mysterybox.model.MysteryBoxInfo;
-    import flash.display.DisplayObject;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
 
-    public class MysteryBoxSelectModal extends Sprite 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class MysteryBoxSelectModal extends Sprite
     {
-
         public static const TEXT_MARGIN:int = 20;
-
         public static var modalWidth:int;
         public static var modalHeight:int;
         public static var aMysteryBoxHeight:int;
         public static var open:Boolean;
         public static var backgroundImageEmbed:Class = MysteryBoxSelectModal_backgroundImageEmbed;
-
         private var closeButton:DialogCloseButton;
         private var box_:Sprite;
         private var mysteryData:Object;
@@ -61,7 +60,6 @@
             return (_local3);
         }
 
-
         public function getText(_arg1:String, _arg2:int, _arg3:int):TextFieldDisplayConcrete
         {
             var _local4:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth((modalWidth - (TEXT_MARGIN * 2)));
@@ -92,7 +90,7 @@
             for each (_local1 in this.mysteryData)
             {
                 modalHeight = (modalHeight + aMysteryBoxHeight);
-            };
+            }
             _local2 = new backgroundImageEmbed();
             _local2.width = (modalWidth + 1);
             _local2.height = (modalHeight - 25);
@@ -108,22 +106,23 @@
             _local5 = 0;
             for each (_local1 in this.mysteryData)
             {
-                if (_local5 == 6) break;
+                if (_local5 == 6)
+                {
+                    break;
+                }
                 _local6 = new MysteryBoxSelectEntry(_local1);
                 _local6.x = (x + _local3);
                 _local6.y = (y + _local4);
                 _local4 = (_local4 + aMysteryBoxHeight);
                 this.box_.addChild(_local6);
                 _local5++;
-            };
+            }
         }
 
         private function onRemovedFromStage(_arg1:Event):void
         {
             open = false;
         }
-
-
     }
 }
 

@@ -1,16 +1,20 @@
 ﻿package kabam.rotmg.pets.view
 {
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+
     import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class StatusBox extends Sprite 
+    public class StatusBox extends Sprite
     {
-
-        private const labelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 16, true);
-        private const valueTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 16, true);
+        private const labelTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xFFFFFF, 16, true
+        );
+        private const valueTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xFFFFFF, 16, true
+        );
         private const WIDTH:uint = 238;
         private const HEIGHT:uint = 30;
         private const PADDING:uint = 10;
@@ -57,8 +61,6 @@
             this.valueTextfield.x = ((this.WIDTH - this.PADDING) - this.valueTextfield.width);
             this.valueTextfield.y = this.POS_Y;
         }
-
-
     }
 }
 

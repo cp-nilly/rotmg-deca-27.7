@@ -1,27 +1,23 @@
 ﻿package com.company.assembleegameclient.map
 {
-    import flash.geom.Vector3D;
-    import flash.geom.Rectangle;
-    import flash.geom.PerspectiveProjection;
-    import flash.geom.Matrix3D;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.util.RandomUtil;
-    import __AS3__.vec.*;
 
-    public class Camera 
+    import flash.geom.Matrix3D;
+    import flash.geom.PerspectiveProjection;
+    import flash.geom.Rectangle;
+    import flash.geom.Vector3D;
+
+    public class Camera
     {
-
         public static const lN_:Vector3D = new Vector3D(0, 0, 1);
         public static const CENTER_SCREEN_RECT:Rectangle = new Rectangle(-300, -325, 600, 600);
         public static const OFFSET_SCREEN_RECT:Rectangle = new Rectangle(-300, -450, 600, 600);
         private static const SCREENSHOT_SCREEN_RECT:Rectangle = new Rectangle(-400, -325, 800, 600);
         private static const SLIM_SCREENSHOT_SCREEN_RECT:Rectangle = new Rectangle(-400, -275, 800, 500);
-
         private const MAX_JITTER:Number = 0.5;
         private const JITTER_BUILDUP_MS:int = 10000;
-
         public var x_:Number;
         public var y_:Number;
         public var z_:Number;
@@ -76,8 +72,8 @@
                 else
                 {
                     _local3 = SLIM_SCREENSHOT_SCREEN_RECT;
-                };
-            };
+                }
+            }
             var _local4:Number = Parameters.data_.cameraAngle;
             this.configure(_arg1.x_, _arg1.y_, 12, _local4, _local3);
             this.isHallucinating_ = _arg2;
@@ -97,8 +93,8 @@
                 if (this.jitter_ > this.MAX_JITTER)
                 {
                     this.jitter_ = this.MAX_JITTER;
-                };
-            };
+                }
+            }
         }
 
         public function configure(_arg1:Number, _arg2:Number, _arg3:Number, _arg4:Number, _arg5:Rectangle):void
@@ -107,7 +103,7 @@
             {
                 _arg1 = (_arg1 + RandomUtil.plusMinus(this.jitter_));
                 _arg2 = (_arg2 + RandomUtil.plusMinus(this.jitter_));
-            };
+            }
             this.x_ = _arg1;
             this.y_ = _arg2;
             this.z_ = _arg3;
@@ -148,8 +144,6 @@
             this.maxDist_ = (Math.sqrt(((_local6 * _local6) + (_local7 * _local7))) + 1);
             this.maxDistSq_ = (this.maxDist_ * this.maxDist_);
         }
-
-
     }
 }
 

@@ -3,9 +3,8 @@
     import flash.utils.ByteArray;
     import flash.utils.IDataOutput;
 
-    public class Hello extends OutgoingMessage 
+    public class Hello extends OutgoingMessage
     {
-
         public var buildVersion_:String;
         public var gameId_:int = 0;
         public var guid_:String;
@@ -56,8 +55,6 @@
         {
             return (formatToString("HELLO", "buildVersion_", "gameId_", "guid_", "password_", "secret_"));
         }
-
-
     }
 }
 

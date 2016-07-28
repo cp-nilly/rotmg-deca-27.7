@@ -2,9 +2,8 @@
 {
     import flash.display.Sprite;
 
-    public final class ConsoleView extends Sprite 
+    public final class ConsoleView extends Sprite
     {
-
         public var output:ConsoleOutputView;
         public var input:ConsoleInputView;
 
@@ -20,10 +19,8 @@
             if (((_arg1) && (stage)))
             {
                 stage.focus = this.input;
-            };
+            }
         }
-
-
     }
 }
 

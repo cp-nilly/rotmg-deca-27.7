@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.game.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.game.model.GameModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
     import com.company.assembleegameclient.objects.SellableObject;
+    import com.company.assembleegameclient.util.Currency;
+
+    import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
 
-    public class SellableObjectPanelMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class SellableObjectPanelMediator extends Mediator
     {
-
         public static const TEXT:String = "SellableObjectPanelMediator.text";
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -22,7 +22,6 @@
         public var view:SellableObjectPanel;
         [Inject]
         public var openDialog:OpenDialogSignal;
-
 
         override public function initialize():void
         {
@@ -46,20 +45,18 @@
                 else
                 {
                     this.view.gs_.gsc_.buy(_arg1.objectId_, _arg1.getQuantity());
-                };
+                }
             }
             else
             {
                 this.openDialog.dispatch(this.makeRegisterDialog(_arg1));
-            };
+            }
         }
 
         private function makeRegisterDialog(_arg1:SellableObject):RegisterPromptDialog
         {
-            return (new RegisterPromptDialog(TEXT, {"type":Currency.typeToName(_arg1.currency_)}));
+            return (new RegisterPromptDialog(TEXT, {"type": Currency.typeToName(_arg1.currency_)}));
         }
-
-
     }
 }
 

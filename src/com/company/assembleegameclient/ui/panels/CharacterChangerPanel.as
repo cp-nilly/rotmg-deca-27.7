@@ -1,15 +1,16 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.GameSprite;
-    import flash.events.MouseEvent;
-    import flash.events.KeyboardEvent;
     import com.company.assembleegameclient.parameters.Parameters;
 
-    public class CharacterChangerPanel extends ButtonPanel 
-    {
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.text.model.TextKey;
+
+    public class CharacterChangerPanel extends ButtonPanel
+    {
         public function CharacterChangerPanel(_arg1:GameSprite)
         {
             super(_arg1, TextKey.CHARACTER_CHANGER_TITLE, TextKey.CHARACTER_CHANGER_BUTTON);
@@ -37,10 +38,8 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 gs_.closed.dispatch();
-            };
+            }
         }
-
-
     }
 }
 

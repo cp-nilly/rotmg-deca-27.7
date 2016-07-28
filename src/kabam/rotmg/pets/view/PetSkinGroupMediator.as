@@ -1,22 +1,21 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetFormModel;
     import kabam.rotmg.pets.controller.reskin.UpdateSelectedPetForm;
-    import kabam.rotmg.pets.data.PetSkinGroupVO;
+    import kabam.rotmg.pets.data.PetFormModel;
     import kabam.rotmg.pets.data.PetRarityEnum;
+    import kabam.rotmg.pets.data.PetSkinGroupVO;
     import kabam.rotmg.pets.data.PetVO;
 
-    public class PetSkinGroupMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class PetSkinGroupMediator extends Mediator
+    {
         [Inject]
         public var view:PetSkinGroup;
         [Inject]
         public var petFormModel:PetFormModel;
         [Inject]
         public var updateSelectedPetForm:UpdateSelectedPetForm;
-
 
         override public function initialize():void
         {
@@ -46,8 +45,6 @@
             var _local4:int = _local3.ordinal;
             return ((_arg1.ordinal > _local4));
         }
-
-
     }
 }
 

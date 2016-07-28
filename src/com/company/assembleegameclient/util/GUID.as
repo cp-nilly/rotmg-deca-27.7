@@ -2,11 +2,9 @@
 {
     import flash.system.Capabilities;
 
-    public class GUID 
+    public class GUID
     {
-
         private static var counter:Number = 0;
-
 
         public static function create():String
         {
@@ -61,23 +59,29 @@
                     }
                     else
                     {
-                        _local3[_local15] = rol((((_local3[(_local15 - 3)] ^ _local3[(_local15 - 8)]) ^ _local3[(_local15 - 14)]) ^ _local3[(_local15 - 16)]), 1);
-                    };
-                    _local16 = safe_add(safe_add(rol(_local4, 5), sha1_ft(_local15, _local5, _local6, _local7)), safe_add(safe_add(_local8, _local3[_local15]), sha1_kt(_local15)));
+                        _local3[_local15] = rol(
+                                (((_local3[(_local15 - 3)] ^ _local3[(_local15 - 8)]) ^ _local3[(_local15 - 14)]) ^ _local3[(_local15 - 16)]),
+                                1
+                        );
+                    }
+                    _local16 = safe_add(
+                            safe_add(rol(_local4, 5), sha1_ft(_local15, _local5, _local6, _local7)),
+                            safe_add(safe_add(_local8, _local3[_local15]), sha1_kt(_local15))
+                    );
                     _local8 = _local7;
                     _local7 = _local6;
                     _local6 = rol(_local5, 30);
                     _local5 = _local4;
                     _local4 = _local16;
                     _local15++;
-                };
+                }
                 _local4 = safe_add(_local4, _local10);
                 _local5 = safe_add(_local5, _local11);
                 _local6 = safe_add(_local6, _local12);
                 _local7 = safe_add(_local7, _local13);
                 _local8 = safe_add(_local8, _local14);
                 _local9 = (_local9 + 16);
-            };
+            }
             return (new Array(_local4, _local5, _local6, _local7, _local8));
         }
 
@@ -86,21 +90,23 @@
             if (_arg1 < 20)
             {
                 return (((_arg2 & _arg3) | (~(_arg2) & _arg4)));
-            };
+            }
             if (_arg1 < 40)
             {
                 return (((_arg2 ^ _arg3) ^ _arg4));
-            };
+            }
             if (_arg1 < 60)
             {
                 return ((((_arg2 & _arg3) | (_arg2 & _arg4)) | (_arg3 & _arg4)));
-            };
+            }
             return (((_arg2 ^ _arg3) ^ _arg4));
         }
 
         private static function sha1_kt(_arg1:Number):Number
         {
-            return ((((_arg1)<20) ? 1518500249 : (((_arg1)<40) ? 1859775393 : (((_arg1)<60) ? -1894007588 : -899497514))));
+            return ((((_arg1) < 20) ? 1518500249 : (((_arg1) < 40) ? 1859775393 : (((_arg1) < 60)
+                    ? -1894007588
+                    : -899497514))));
         }
 
         private static function safe_add(_arg1:Number, _arg2:Number):Number
@@ -124,7 +130,7 @@
             {
                 _local2[(_local4 >> 5)] = (_local2[(_local4 >> 5)] | ((_arg1.charCodeAt((_local4 / 8)) & _local3) << (24 - (_local4 % 32))));
                 _local4 = (_local4 + 8);
-            };
+            }
             return (_local2);
         }
 
@@ -137,11 +143,9 @@
             {
                 _local2 = (_local2 + (_local3.charAt(((_arg1[(_local4 >> 2)] >> (((3 - (_local4 % 4)) * 8) + 4)) & 15)) + _local3.charAt(((_arg1[(_local4 >> 2)] >> ((3 - (_local4 % 4)) * 8)) & 15))));
                 _local4++;
-            };
+            }
             return (_local2);
         }
-
-
     }
 }
 

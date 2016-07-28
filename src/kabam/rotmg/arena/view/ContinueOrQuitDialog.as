@@ -1,21 +1,23 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.util.components.DialogBackground;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.editor.view.StaticTextButton;
-    import kabam.rotmg.util.components.LegacyBuyButton;
     import com.company.assembleegameclient.util.Currency;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import flash.filters.DropShadowFilter;
 
-    public class ContinueOrQuitDialog extends Sprite 
-    {
+    import kabam.rotmg.editor.view.StaticTextButton;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.util.components.DialogBackground;
+    import kabam.rotmg.util.components.LegacyBuyButton;
 
+    import org.osflash.signals.Signal;
+
+    public class ContinueOrQuitDialog extends Sprite
+    {
         public const quit:Signal = new Signal();
         public const buyContinue:Signal = new Signal(int, int);
         private const WIDTH:int = 350;
@@ -27,7 +29,6 @@
         private const continueButton:LegacyBuyButton = makeContinueButton();
         private const restartSubtitle:StaticTextDisplay = makeSubtitle();
         private const processingText:StaticTextDisplay = makeSubtitle();
-
         private var cost:int;
 
         public function ContinueOrQuitDialog(_arg1:int, _arg2:Boolean)
@@ -43,7 +44,11 @@
             this.quitButton.addEventListener(MouseEvent.CLICK, this.onQuit);
             this.continueButton.addEventListener(MouseEvent.CLICK, this.onBuyContinue);
             this.quitSubtitle.setStringBuilder(new LineBuilder().setParams(TextKey.CONTINUE_OR_QUIT_QUIT_SUBTITLE));
-            this.restartSubtitle.setStringBuilder(new LineBuilder().setParams(TextKey.CONTINUE_OR_QUIT_CONTINUE_SUBTITLE, {"waveNumber":_arg1.toString()}));
+            this.restartSubtitle.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.CONTINUE_OR_QUIT_CONTINUE_SUBTITLE, {"waveNumber": _arg1.toString()}
+                    )
+            );
             this.processingText.setStringBuilder(new StaticStringBuilder("Processing"));
             this.processingText.visible = false;
             this.align();
@@ -152,8 +157,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

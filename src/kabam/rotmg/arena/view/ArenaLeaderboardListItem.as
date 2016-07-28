@@ -1,30 +1,29 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import flash.display.Bitmap;
-    import kabam.rotmg.arena.component.AbridgedPlayerTooltip;
-    import kabam.rotmg.pets.view.components.PetTooltip;
-    import kabam.rotmg.pets.view.components.PetIconFactory;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import flash.text.TextFieldAutoSize;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.pets.data.PetVO;
     import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class ArenaLeaderboardListItem extends Sprite 
+    import kabam.rotmg.arena.component.AbridgedPlayerTooltip;
+    import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.view.components.PetIconFactory;
+    import kabam.rotmg.pets.view.components.PetTooltip;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class ArenaLeaderboardListItem extends Sprite
     {
-
         private static const HEIGHT:int = 60;
-
         public const showTooltip:Signal = new Signal(Sprite);
         public const hideTooltip:Signal = new Signal();
-
         private var playerIconContainer:Sprite;
         private var petIconContainer:Sprite;
         private var playerIcon:Bitmap;
@@ -101,7 +100,7 @@
             if (this.playerTooltip)
             {
                 this.showTooltip.dispatch(this.playerTooltip);
-            };
+            }
         }
 
         private function onPetIconOut(_arg1:MouseEvent):void
@@ -114,7 +113,7 @@
             if (this.playerTooltip)
             {
                 this.showTooltip.dispatch(this.petTooltip);
-            };
+            }
         }
 
         private function onMouseOut(_arg1:MouseEvent):void
@@ -122,7 +121,7 @@
             if (this.isActive)
             {
                 this.background.alpha = 0;
-            };
+            }
         }
 
         private function onMouseOver(_arg1:MouseEvent):void
@@ -130,7 +129,7 @@
             if (this.isActive)
             {
                 this.background.alpha = 1;
-            };
+            }
         }
 
         public function apply(_arg1:ArenaLeaderboardEntry, _arg2:Boolean):void
@@ -148,15 +147,15 @@
                 else
                 {
                     this.rankNumber.visible = false;
-                };
+                }
                 if (this.petBitmap)
                 {
                     this.destroyPetIcon();
-                };
+                }
                 if (_arg1.pet)
                 {
                     this.initPetIcon(_arg1);
-                };
+                }
                 this.rank = _arg1.rank;
                 this.isPersonalRecord = _arg1.isPersonalRecord;
                 this.setColor();
@@ -164,13 +163,18 @@
             else
             {
                 this.clear();
-            };
+            }
             this.align();
         }
 
         private function initArenaData(_arg1:ArenaLeaderboardEntry):void
         {
-            this.waveNumber.setStringBuilder(this.waveNumberStringBuilder.setParams(TextKey.ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER, {"waveNumber":(_arg1.currentWave - 1).toString()}));
+            this.waveNumber.setStringBuilder(
+                    this.waveNumberStringBuilder.setParams(
+                            TextKey.ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER,
+                            {"waveNumber": (_arg1.currentWave - 1).toString()}
+                    )
+            );
             this.runTime.setStringBuilder(this.runTimeStringBuilder.setString(this.formatTime(Math.floor(_arg1.runtime))));
         }
 
@@ -214,8 +218,8 @@
                 if (this.rank == 1)
                 {
                     _local1 = 16777103;
-                };
-            };
+                }
+            }
             this.playerName.setColor(_local1);
             this.waveNumber.setColor(_local1);
             this.runTime.setColor(_local1);
@@ -232,7 +236,7 @@
             if (this.petBitmap)
             {
                 this.destroyPetIcon();
-            };
+            }
             this.petBitmap = null;
             this.petIconBackground.visible = false;
             this.rank = 0;
@@ -288,7 +292,7 @@
                 this.petBitmap.y = ((HEIGHT / 2) - (this.petBitmap.height / 2));
                 this.petIconBackground.x = 175;
                 this.petIconBackground.y = ((HEIGHT / 2) - (this.petIconBackground.height / 2));
-            };
+            }
             this.playerName.x = 230;
             this.playerName.y = ((HEIGHT / 2) - (this.playerName.height / 2));
             this.waveNumber.x = 485;
@@ -296,8 +300,6 @@
             this.runTime.x = 635;
             this.runTime.y = ((HEIGHT / 2) - (this.runTime.height / 2));
         }
-
-
     }
 }
 

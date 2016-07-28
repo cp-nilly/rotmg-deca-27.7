@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class UpdateSelectedPetForm extends Signal 
+    public class UpdateSelectedPetForm extends Signal
     {
-
-
     }
 }
 

@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.promotions.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.rotmg.promotions.model.BeginnersPackageModel;
     import kabam.rotmg.promotions.signals.ShowBeginnersPackageSignal;
 
-    public class BeginnersPackageButtonMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class BeginnersPackageButtonMediator extends Mediator
+    {
         [Inject]
         public var view:BeginnersPackageButton;
         [Inject]
         public var model:BeginnersPackageModel;
         [Inject]
         public var showBeginnersPackage:ShowBeginnersPackageSignal;
-
 
         override public function initialize():void
         {
@@ -37,8 +36,6 @@
         {
             this.view.destroy();
         }
-
-
     }
 }
 

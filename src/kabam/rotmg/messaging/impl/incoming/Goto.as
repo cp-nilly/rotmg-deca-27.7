@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import flash.utils.IDataInput;
 
-    public class Goto extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
 
+    public class Goto extends IncomingMessage
+    {
         public var objectId_:int;
         public var pos_:WorldPosData;
 
@@ -25,8 +25,6 @@
         {
             return (formatToString("GOTO", "objectId_", "pos_"));
         }
-
-
     }
 }
 

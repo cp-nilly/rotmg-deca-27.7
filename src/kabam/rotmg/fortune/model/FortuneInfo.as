@@ -1,20 +1,17 @@
 ﻿package kabam.rotmg.fortune.model
 {
     import flash.display.DisplayObject;
-    import kabam.display.Loader.LoaderProxy;
-    import __AS3__.vec.Vector;
-    import kabam.display.Loader.LoaderProxyConcrete;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.net.URLRequest;
     import flash.utils.Dictionary;
-    import __AS3__.vec.*;
 
-    public class FortuneInfo 
+    import kabam.display.Loader.LoaderProxy;
+    import kabam.display.Loader.LoaderProxyConcrete;
+
+    public class FortuneInfo
     {
-
         public static var chestImageEmbed:Class = FortuneInfo_chestImageEmbed;
-
         public var _id:String;
         public var _title:String;
         private var _description:String;
@@ -240,11 +237,11 @@
                     {
                         _local2[int(_local6)] = true;
                         this._rollsWithContentsUnique.push(int(_local6));
-                    };
+                    }
                     _local4.push(int(_local6));
-                };
+                }
                 this._rollsWithContents.push(_local4);
-            };
+            }
         }
 
         public function get infoImage():DisplayObject
@@ -276,8 +273,6 @@
         {
             this._infoImageLoader = _arg1;
         }
-
-
     }
 }
 

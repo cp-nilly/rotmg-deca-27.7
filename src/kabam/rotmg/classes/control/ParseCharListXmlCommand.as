@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.classes.control
 {
-    import kabam.rotmg.classes.model.ClassesModel;
-    import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.CharacterSkin;
     import kabam.rotmg.classes.model.CharacterSkinState;
+    import kabam.rotmg.classes.model.ClassesModel;
 
-    public class ParseCharListXmlCommand 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class ParseCharListXmlCommand
     {
-
         [Inject]
         public var data:XML;
         [Inject]
         public var model:ClassesModel;
         [Inject]
         public var logger:ILogger;
-
 
         public function execute():void
         {
@@ -33,7 +32,7 @@
             {
                 _local3 = this.model.getCharacterClass(_local2.@classType);
                 _local3.setMaxLevelAchieved(_local2.@maxLevel);
-            };
+            }
         }
 
         private function parseItemCosts():void
@@ -51,13 +50,13 @@
                     if (!Boolean(int(_local2.@purchasable)))
                     {
                         _local3.setState(CharacterSkinState.UNLISTED);
-                    };
+                    }
                 }
                 else
                 {
                     this.logger.warn("Cannot set Character Skin cost: type {0} not found", [_local2.@type]);
-                };
-            };
+                }
+            }
         }
 
         private function parseOwnership():void
@@ -75,11 +74,9 @@
                 else
                 {
                     this.logger.warn("Cannot set Character Skin ownership: type {0} not found", [_local2]);
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

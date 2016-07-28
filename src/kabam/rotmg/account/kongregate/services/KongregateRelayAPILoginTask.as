@@ -1,18 +1,16 @@
 ﻿package kabam.rotmg.account.kongregate.services
 {
     import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.RelayLoginTask;
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.services.RelayLoginTask;
+    import kabam.rotmg.account.kongregate.signals.KongregateAlreadyRegisteredSignal;
     import kabam.rotmg.account.kongregate.view.KongregateApi;
     import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.account.kongregate.signals.KongregateAlreadyRegisteredSignal;
     import kabam.rotmg.appengine.api.AppEngineClient;
 
-    public class KongregateRelayAPILoginTask extends BaseTask implements RelayLoginTask 
+    public class KongregateRelayAPILoginTask extends BaseTask implements RelayLoginTask
     {
-
         public static const ALREADY_REGISTERED:String = "Kongregate account already registered";
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -23,7 +21,6 @@
         public var alreadyRegistered:KongregateAlreadyRegisteredSignal;
         [Inject]
         public var client:AppEngineClient;
-
 
         override protected function startTask():void
         {
@@ -50,8 +47,8 @@
                 if (_arg2 == ALREADY_REGISTERED)
                 {
                     this.alreadyRegistered.dispatch(this.data);
-                };
-            };
+                }
+            }
             completeTask(_arg1, _arg2);
         }
 
@@ -61,8 +58,6 @@
             this.account.updateUser(_local2.GUID, _local2.Secret);
             this.account.setPlatformToken(_local2.PlatformToken);
         }
-
-
     }
 }
 

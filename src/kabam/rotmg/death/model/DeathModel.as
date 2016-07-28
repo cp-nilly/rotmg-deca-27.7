@@ -2,12 +2,10 @@
 {
     import kabam.rotmg.messaging.impl.incoming.Death;
 
-    public class DeathModel 
+    public class DeathModel
     {
-
         private var isDeathFameViewPending:Boolean;
         private var lastDeath:Death;
-
 
         public function setLastDeath(_arg1:Death):void
         {
@@ -29,8 +27,6 @@
         {
             this.isDeathFameViewPending = false;
         }
-
-
     }
 }
 

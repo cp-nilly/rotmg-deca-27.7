@@ -1,30 +1,30 @@
 ﻿package kabam.rotmg.legends.view
 {
+    import com.company.assembleegameclient.ui.Slot;
+    import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
+    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.InteractiveItemTile;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.AssetLibrary;
+    import com.company.util.IIterator;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+
     import kabam.rotmg.legends.model.Legend;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Bitmap;
-    import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import com.company.assembleegameclient.ui.panels.itemgrids.itemtiles.InteractiveItemTile;
-    import com.company.util.IIterator;
-    import com.company.assembleegameclient.ui.Slot;
-    import com.company.util.AssetLibrary;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.events.MouseEvent;
 
-    public class LegendListItem extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class LegendListItem extends Sprite
     {
-
         private static const FONT_SIZE:int = 22;
         public static const WIDTH:int = 756;
         public static const HEIGHT:int = 56;
-
         public const selected:Signal = new Signal(Legend);
-
         private var legend:Legend;
         private var placeText:TextFieldDisplayConcrete;
         private var characterBitmap:Bitmap;
@@ -50,7 +50,7 @@
         private function makePlaceText():void
         {
             this.placeText = new TextFieldDisplayConcrete().setSize(FONT_SIZE).setColor(this.getTextColor());
-            var _local1:String = (((this.legend.place)==-1) ? "---" : (this.legend.place.toString() + "."));
+            var _local1:String = (((this.legend.place) == -1) ? "---" : (this.legend.place.toString() + "."));
             this.placeText.setBold(!((this.legend.place == -1)));
             this.placeText.setStringBuilder(new StaticStringBuilder(_local1));
             this.placeText.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8)];
@@ -87,7 +87,7 @@
             {
                 _local2 = InteractiveItemTile(_local1.next());
                 _local2.setInteractive(false);
-            };
+            }
             this.inventoryGrid.setItems(this.legend.equipment);
             this.inventoryGrid.x = 400;
             this.inventoryGrid.y = ((HEIGHT / 2) - (Slot.HEIGHT / 2));
@@ -130,8 +130,8 @@
                 else
                 {
                     _local1 = 0xFFFFFF;
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -166,8 +166,6 @@
             graphics.drawRect(0, 0, WIDTH, HEIGHT);
             graphics.endFill();
         }
-
-
     }
 }
 

@@ -1,12 +1,12 @@
 ﻿package kabam.rotmg.messaging.impl.outgoing.arena
 {
-    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
-    import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import flash.utils.IDataOutput;
 
-    public class QuestRedeem extends OutgoingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.SlotObjectData;
+    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
 
+    public class QuestRedeem extends OutgoingMessage
+    {
         public var slotObject:SlotObjectData;
 
         public function QuestRedeem(_arg1:uint, _arg2:Function)
@@ -19,8 +19,6 @@
         {
             this.slotObject.writeToOutput(_arg1);
         }
-
-
     }
 }
 

@@ -1,26 +1,28 @@
 ﻿package com.company.assembleegameclient.screens.charrects
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.assets.services.CharacterFactory;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import kabam.rotmg.classes.model.CharacterClass;
     import com.company.assembleegameclient.appengine.CharacterStats;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import __AS3__.vec.Vector;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.classes.model.CharacterSkin;
-    import flash.display.BitmapData;
+    import com.company.assembleegameclient.appengine.SavedCharacter;
+
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
 
-    public class CharacterRectList extends Sprite 
+    import kabam.rotmg.assets.services.CharacterFactory;
+    import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.model.PlayerModel;
+
+    import org.osflash.signals.Signal;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class CharacterRectList extends Sprite
     {
-
         private var classes:ClassesModel;
         private var model:PlayerModel;
         private var assetFactory:CharacterFactory;
@@ -55,7 +57,7 @@
                 _local9.y = _local3;
                 addChild(_local9);
                 _local3 = (_local3 + (CharacterRect.HEIGHT + 4));
-            };
+            }
             if (this.model.hasAvailableCharSlot())
             {
                 _local10 = 0;
@@ -67,8 +69,8 @@
                     addChild(_local11);
                     _local3 = (_local3 + (CharacterRect.HEIGHT + 4));
                     _local10++;
-                };
-            };
+                }
+            }
             _local6 = new BuyCharacterRect(this.model);
             _local6.addEventListener(MouseEvent.MOUSE_DOWN, this.onBuyCharSlot);
             _local6.y = _local3;
@@ -92,8 +94,6 @@
         {
             this.buyCharacterSlot.dispatch(this.model.getNextCharSlotPrice());
         }
-
-
     }
 }
 

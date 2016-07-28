@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class GuildResult extends IncomingMessage 
+    public class GuildResult extends IncomingMessage
     {
-
         public var success_:Boolean;
         public var lineBuilderJSON:String;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("CREATEGUILDRESULT", "success_", "lineBuilderJSON"));
         }
-
-
     }
 }
 

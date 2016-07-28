@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class CreateSuccess extends IncomingMessage 
+    public class CreateSuccess extends IncomingMessage
     {
-
         public var objectId_:int;
         public var charId_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("CREATE_SUCCESS", "objectId_", "charId_"));
         }
-
-
     }
 }
 

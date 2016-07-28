@@ -1,21 +1,19 @@
 ﻿package kabam.rotmg.arena.view
 {
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.utils.Timer;
     import flash.events.TimerEvent;
     import flash.filters.DropShadowFilter;
+    import flash.utils.Timer;
 
-    public class ArenaTimer extends Sprite 
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    public class ArenaTimer extends Sprite
     {
-
         private const timerText:StaticTextDisplay = makeTimerText();
         private const timerStringBuilder:StaticStringBuilder = new StaticStringBuilder();
         private const timer:Timer = new Timer(1000);
-
         private var secs:Number = 0;
-
 
         public function start():void
         {
@@ -50,8 +48,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

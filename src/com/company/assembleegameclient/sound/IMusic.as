@@ -1,10 +1,8 @@
 ﻿package com.company.assembleegameclient.sound
 {
-    public interface IMusic 
+    public interface IMusic
     {
-
         function load():void;
-
     }
 }
 

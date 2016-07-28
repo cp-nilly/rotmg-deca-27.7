@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.promotions.commands
 {
+    import kabam.lib.tasks.TaskMonitor;
     import kabam.rotmg.account.core.PaymentData;
     import kabam.rotmg.account.core.services.MakePaymentTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
     import kabam.rotmg.packages.control.InitPackagesSignal;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
 
-    public class MakeBeginnersPackagePaymentCommand 
+    public class MakeBeginnersPackagePaymentCommand
     {
-
         [Inject]
         public var data:PaymentData;
         [Inject]
@@ -20,7 +19,6 @@
         [Inject]
         public var init:InitPackagesSignal;
 
-
         public function execute():void
         {
             this.monitor.add(this.task);
@@ -28,8 +26,6 @@
             this.model.markAsPurchased();
             this.init.dispatch();
         }
-
-
     }
 }
 

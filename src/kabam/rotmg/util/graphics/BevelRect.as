@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.util.graphics
 {
-    public class BevelRect 
+    public class BevelRect
     {
-
         public var topLeftBevel:Boolean = true;
         public var topRightBevel:Boolean = true;
         public var bottomLeftBevel:Boolean = true;
@@ -17,7 +16,6 @@
             this.height = _arg2;
             this.bevel = _arg3;
         }
-
     }
 }
 

@@ -1,16 +1,12 @@
 ﻿package kabam.rotmg.classes.model
 {
     import org.osflash.signals.Signal;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class CharacterClass 
+    public class CharacterClass
     {
-
         public const selected:Signal = new Signal(CharacterClass);
         public const unlocks:Vector.<CharacterClassUnlock> = new <CharacterClassUnlock>[];
         public const skins:CharacterSkins = new CharacterSkins();
-
         public var id:int;
         public var name:String;
         public var description:String;
@@ -31,7 +27,6 @@
         private var maxLevelAchieved:int;
         private var isSelected:Boolean;
 
-
         public function getIsSelected():Boolean
         {
             return (this.isSelected);
@@ -43,7 +38,8 @@
             {
                 this.isSelected = _arg1;
                 ((this.isSelected) && (this.selected.dispatch(this)));
-            };
+            }
+            ;
         }
 
         public function getMaxLevelAchieved():int
@@ -56,8 +52,6 @@
             this.maxLevelAchieved = _arg1;
             this.skins.updateSkins(this.maxLevelAchieved);
         }
-
-
     }
 }
 

@@ -1,34 +1,34 @@
 ﻿package kabam.rotmg.characters.reskin.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.classes.view.CharacterSkinListView;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.util.components.DialogBackground;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.Signal;
-    import org.osflash.signals.natives.NativeMappedSignal;
+
+    import flash.display.CapsStyle;
+    import flash.display.DisplayObject;
+    import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
     import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import kabam.rotmg.classes.view.CharacterSkinListView;
     import kabam.rotmg.text.model.TextKey;
-    import __AS3__.vec.Vector;
-    import flash.display.DisplayObject;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
-    import flash.display.JointStyle;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.components.DialogBackground;
     import kabam.rotmg.util.graphics.ButtonLayoutHelper;
 
-    public class ReskinCharacterView extends Sprite 
-    {
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
 
+    public class ReskinCharacterView extends Sprite
+    {
         private static const MARGIN:int = 10;
         private static const DIALOG_WIDTH:int = (CharacterSkinListView.WIDTH + (MARGIN * 2));//462
         private static const BUTTON_WIDTH:int = 120;
         private static const BUTTON_FONT:int = 16;
         private static const BUTTONS_HEIGHT:int = 40;
         private static const TITLE_OFFSET:int = 27;
-
         private const layoutListener:SignalWaiter = makeLayoutWaiter();
         private const background:DialogBackground = makeBackground();
         private const title:TextFieldDisplayConcrete = makeTitle();
@@ -37,9 +37,7 @@
         private const select:DeprecatedTextButton = makeSelectButton();
         public const cancelled:Signal = new NativeMappedSignal(cancel, MouseEvent.CLICK);
         public const selected:Signal = new NativeMappedSignal(select, MouseEvent.CLICK);
-
         public var viewHeight:int;
-
 
         private function makeLayoutWaiter():SignalWaiter
         {
@@ -77,7 +75,9 @@
 
         private function makeCancelButton():DeprecatedTextButton
         {
-            var _local1:DeprecatedTextButton = new DeprecatedTextButton(BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_CANCEL, BUTTON_WIDTH);
+            var _local1:DeprecatedTextButton = new DeprecatedTextButton(
+                    BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_CANCEL, BUTTON_WIDTH
+            );
             addChild(_local1);
             this.layoutListener.push(_local1.textChanged);
             return (_local1);
@@ -85,7 +85,9 @@
 
         private function makeSelectButton():DeprecatedTextButton
         {
-            var _local1:DeprecatedTextButton = new DeprecatedTextButton(BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_SELECT, BUTTON_WIDTH);
+            var _local1:DeprecatedTextButton = new DeprecatedTextButton(
+                    BUTTON_FONT, TextKey.RESKINCHARACTERVIEW_SELECT, BUTTON_WIDTH
+            );
             addChild(_local1);
             this.layoutListener.push(_local1.textChanged);
             return (_local1);
@@ -108,7 +110,9 @@
         private function resizeBackground():void
         {
             this.background.draw(DIALOG_WIDTH, this.viewHeight);
-            this.background.graphics.lineStyle(2, 0x5B5B5B, 1, false, LineScaleMode.NONE, CapsStyle.NONE, JointStyle.BEVEL);
+            this.background.graphics.lineStyle(
+                    2, 0x5B5B5B, 1, false, LineScaleMode.NONE, CapsStyle.NONE, JointStyle.BEVEL
+            );
             this.background.graphics.moveTo(1, TITLE_OFFSET);
             this.background.graphics.lineTo((DIALOG_WIDTH - 1), TITLE_OFFSET);
         }
@@ -119,8 +123,6 @@
             _local1.layout(DIALOG_WIDTH, this.cancel, this.select);
             this.cancel.y = (this.select.y = (this.viewHeight - BUTTONS_HEIGHT));
         }
-
-
     }
 }
 

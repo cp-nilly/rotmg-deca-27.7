@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.pets.view.components.slot
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
     import flash.display.Bitmap;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.geom.ColorTransform;
 
-    public class FeedFuseSlot extends Sprite 
-    {
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
+    public class FeedFuseSlot extends Sprite
+    {
         protected var outerSlot:Shape;
         protected var innerSlot:Shape;
         protected var bg:Shape;
@@ -69,7 +69,7 @@
             this.bg.x = ((100 - _local2) * 0.5);
         }
 
-        public function highlight(_arg1:Boolean, _arg2:int=16777103, _arg3:Boolean=false):void
+        public function highlight(_arg1:Boolean, _arg2:int = 16777103, _arg3:Boolean = false):void
         {
             var _local5:ColorTransform;
             var _local4:ColorTransform = this.innerSlot.transform.colorTransform;
@@ -80,7 +80,7 @@
                 _local5 = this.outerSlot.transform.colorTransform;
                 _local5.color = ((_arg3) ? _arg2 : 0x545454);
                 this.outerSlot.transform.colorTransform = _local5;
-            };
+            }
         }
 
         protected function alignBitmapInBox():void
@@ -132,8 +132,6 @@
         {
             this.subtitleField.y = ((this.titleField.y + this.titleField.height) - 1);
         }
-
-
     }
 }
 

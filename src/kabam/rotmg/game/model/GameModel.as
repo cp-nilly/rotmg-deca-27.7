@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.game.model
 {
-    import com.company.assembleegameclient.objects.Player;
-    import flash.utils.Dictionary;
     import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.objects.Player;
 
-    public class GameModel 
+    import flash.utils.Dictionary;
+
+    public class GameModel
     {
-
         public var player:Player;
         public var gameObjects:Dictionary;
-
 
         public function getGameObject(_arg1:int):GameObject
         {
@@ -17,11 +16,9 @@
             if (((!(_local2)) && ((this.player.objectId_ == _arg1))))
             {
                 _local2 = this.player;
-            };
+            }
             return (_local2);
         }
-
-
     }
 }
 

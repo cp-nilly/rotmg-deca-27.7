@@ -1,18 +1,17 @@
 ﻿package kabam.rotmg.account.transfer.services
 {
     import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.MigrateAccountTask;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.account.core.services.MigrateAccountTask;
     import kabam.rotmg.account.transfer.model.TransferAccountData;
     import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.application.model.PlatformModel;
     import kabam.rotmg.application.model.PlatformType;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.model.PlayerModel;
 
-    public class TransferAccountTask extends BaseTask implements MigrateAccountTask 
+    public class TransferAccountTask extends BaseTask implements MigrateAccountTask
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -21,7 +20,6 @@
         public var transferData:TransferAccountData;
         [Inject]
         public var client:AppEngineClient;
-
 
         override protected function startTask():void
         {
@@ -58,10 +56,8 @@
                 _local3 = new XML(_arg1);
                 this.account.updateUser(_local3.GUID, _local3.Secret);
                 this.account.setPlatformToken(_local3.PlatformToken);
-            };
+            }
         }
-
-
     }
 }
 

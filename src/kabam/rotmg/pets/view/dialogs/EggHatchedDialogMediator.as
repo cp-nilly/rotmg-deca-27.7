@@ -1,27 +1,28 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import flash.display.Bitmap;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.AnimatedChar;
+    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.MaskedImage;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.display.BitmapData;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
 
-    public class EggHatchedDialogMediator extends Mediator 
-    {
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
 
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.pets.data.PetsModel;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class EggHatchedDialogMediator extends Mediator
+    {
         [Inject]
         public var view:EggHatchedDialog;
         [Inject]
         public var petsModel:PetsModel;
         [Inject]
         public var closeDialog:CloseDialogsSignal;
-
 
         override public function initialize():void
         {
@@ -47,8 +48,6 @@
             _local7 = GlowRedrawer.outlineGlow(_local7, 0, 6);
             return (new Bitmap(_local7));
         }
-
-
     }
 }
 

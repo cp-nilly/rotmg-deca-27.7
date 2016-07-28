@@ -1,11 +1,7 @@
 ﻿package com.company.assembleegameclient.tutorial
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-
-    public class Step 
+    public class Step
     {
-
         public var text_:String;
         public var action_:String;
         public var uiDrawBoxes_:Vector.<UIDrawBox>;
@@ -25,23 +21,21 @@
             for each (_local2 in _arg1.UIDrawBox)
             {
                 this.uiDrawBoxes_.push(new UIDrawBox(_local2));
-            };
+            }
             for each (_local3 in _arg1.UIDrawArrow)
             {
                 this.uiDrawArrows_.push(new UIDrawArrow(_local3));
-            };
+            }
             for each (_local4 in _arg1.Requirement)
             {
                 this.reqs_.push(new Requirement(_local4));
-            };
+            }
         }
 
         public function toString():String
         {
             return ((("[" + this.text_) + "]"));
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import kabam.lib.console.signals.ConsoleWatchSignal;
 
-    public class RollingMeanLoopMonitor implements LoopMonitor 
+    public class RollingMeanLoopMonitor implements LoopMonitor
     {
-
         [Inject]
         public var watch:ConsoleWatchSignal;
         private var watchMap:Object;
@@ -20,8 +19,6 @@
             _local3.logTime(_arg2);
             this.watch.dispatch(_local3);
         }
-
-
     }
 }
 

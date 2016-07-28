@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
     import flash.display.Bitmap;
-    import kabam.rotmg.pets.view.dialogs.CaretakerQueryDialog;
     import flash.display.BitmapData;
+    import flash.display.Sprite;
 
-    public class CaretakerQueryDialogCaretaker extends Sprite 
+    import kabam.rotmg.pets.view.dialogs.CaretakerQueryDialog;
+
+    public class CaretakerQueryDialogCaretaker extends Sprite
     {
-
         private const speechBubble:CaretakerQuerySpeechBubble = makeSpeechBubble();
         private const detailBubble:CaretakerQueryDetailBubble = makeDetailBubble();
         private const icon:Bitmap = makeCaretakerIcon();
-
 
         private function makeSpeechBubble():CaretakerQuerySpeechBubble
         {
@@ -61,8 +60,6 @@
         {
             this.icon.bitmapData = _arg1;
         }
-
-
     }
 }
 

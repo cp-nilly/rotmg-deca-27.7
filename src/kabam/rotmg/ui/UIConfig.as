@@ -1,125 +1,126 @@
 ﻿package kabam.rotmg.ui
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
+    import com.company.assembleegameclient.account.ui.ChooseNameFrame;
+    import com.company.assembleegameclient.account.ui.ChooseNameFrameMediator;
+    import com.company.assembleegameclient.account.ui.CreateGuildFrame;
+    import com.company.assembleegameclient.account.ui.NewChooseNameFrame;
+    import com.company.assembleegameclient.account.ui.NewChooseNameFrameMediator;
+    import com.company.assembleegameclient.account.ui.components.CreateGuildFrameMediator;
+    import com.company.assembleegameclient.map.partyoverlay.GameObjectArrow;
+    import com.company.assembleegameclient.mapeditor.MapEditor;
+    import com.company.assembleegameclient.objects.ImageFactory;
+    import com.company.assembleegameclient.screens.AccountScreen;
+    import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
+    import com.company.assembleegameclient.screens.CreditsScreen;
+    import com.company.assembleegameclient.screens.GraveyardLine;
+    import com.company.assembleegameclient.screens.LoadingScreen;
+    import com.company.assembleegameclient.screens.NewCharacterScreen;
+    import com.company.assembleegameclient.screens.ServersScreen;
+    import com.company.assembleegameclient.screens.charrects.CharacterRectList;
+    import com.company.assembleegameclient.screens.charrects.CurrentCharacterRect;
+    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
+    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
+    import com.company.assembleegameclient.ui.language.LanguageOptionOverlay;
+    import com.company.assembleegameclient.ui.language.LanguageOptionOverlayMediator;
+    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
+    import com.company.assembleegameclient.ui.panels.ArenaPortalPanel;
+    import com.company.assembleegameclient.ui.panels.GuildRegisterPanel;
+    import com.company.assembleegameclient.ui.panels.InteractPanel;
+    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
+    import com.company.assembleegameclient.ui.panels.mediators.ArenaPortalPanelMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.GuildRegisterPanelMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.InteractPanelMediator;
+    import com.company.assembleegameclient.ui.panels.mediators.ItemGridMediator;
+
+    import kabam.rotmg.account.core.services.GetCharListTask;
+    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.core.view.AccountInfoMediator;
+    import kabam.rotmg.account.core.view.AccountInfoView;
+    import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.account.core.view.RegisterPromptDialogMediator;
+    import kabam.rotmg.application.api.ApplicationSetup;
+    import kabam.rotmg.death.view.ResurrectionView;
+    import kabam.rotmg.death.view.ResurrectionViewMediator;
+    import kabam.rotmg.game.model.PotionInventoryModel;
+    import kabam.rotmg.game.view.NameChangerPanel;
+    import kabam.rotmg.game.view.NameChangerPanelMediator;
+    import kabam.rotmg.game.view.TextPanel;
+    import kabam.rotmg.game.view.TextPanelMediator;
+    import kabam.rotmg.game.view.components.StatsTabHotKeyInputSignal;
+    import kabam.rotmg.game.view.components.StatsUndockedSignal;
+    import kabam.rotmg.startup.control.StartupSequence;
+    import kabam.rotmg.ui.commands.ChooseNameCommand;
+    import kabam.rotmg.ui.commands.EnterGameCommand;
+    import kabam.rotmg.ui.commands.HUDInitCommand;
+    import kabam.rotmg.ui.commands.RefreshScreenAfterLoginCommand;
+    import kabam.rotmg.ui.commands.ShowHideKeyUICommand;
+    import kabam.rotmg.ui.commands.ShowLoadingUICommand;
+    import kabam.rotmg.ui.commands.ShowTitleUICommand;
+    import kabam.rotmg.ui.controller.GameObjectArrowMediator;
+    import kabam.rotmg.ui.controller.UnFocusAbleMediator;
+    import kabam.rotmg.ui.model.HUDModel;
+    import kabam.rotmg.ui.noservers.NoServersDialogFactory;
+    import kabam.rotmg.ui.noservers.ProductionNoServersDialogFactory;
+    import kabam.rotmg.ui.noservers.TestingNoServersDialogFactory;
+    import kabam.rotmg.ui.signals.ChooseNameSignal;
+    import kabam.rotmg.ui.signals.EnterGameSignal;
+    import kabam.rotmg.ui.signals.HUDModelInitialized;
+    import kabam.rotmg.ui.signals.HUDSetupStarted;
+    import kabam.rotmg.ui.signals.HideKeySignal;
+    import kabam.rotmg.ui.signals.NameChangedSignal;
+    import kabam.rotmg.ui.signals.RefreshScreenAfterLoginSignal;
+    import kabam.rotmg.ui.signals.ShowHideKeyUISignal;
+    import kabam.rotmg.ui.signals.ShowKeySignal;
+    import kabam.rotmg.ui.signals.ShowLoadingUISignal;
+    import kabam.rotmg.ui.signals.ShowTitleUISignal;
+    import kabam.rotmg.ui.signals.UpdateBackpackTabSignal;
+    import kabam.rotmg.ui.signals.UpdateHUDSignal;
+    import kabam.rotmg.ui.signals.UpdatePotionInventorySignal;
+    import kabam.rotmg.ui.view.AccountScreenMediator;
+    import kabam.rotmg.ui.view.AgeVerificationDialog;
+    import kabam.rotmg.ui.view.AgeVerificationMediator;
+    import kabam.rotmg.ui.view.CharacterDetailsMediator;
+    import kabam.rotmg.ui.view.CharacterDetailsView;
+    import kabam.rotmg.ui.view.CharacterRectListMediator;
+    import kabam.rotmg.ui.view.CharacterSlotNeedGoldDialog;
+    import kabam.rotmg.ui.view.CharacterSlotNeedGoldMediator;
+    import kabam.rotmg.ui.view.CharacterSlotRegisterDialog;
+    import kabam.rotmg.ui.view.CharacterSlotRegisterMediator;
+    import kabam.rotmg.ui.view.ChooseNameRegisterDialog;
+    import kabam.rotmg.ui.view.ChooseNameRegisterMediator;
+    import kabam.rotmg.ui.view.CreditsMediator;
+    import kabam.rotmg.ui.view.CurrentCharacterMediator;
+    import kabam.rotmg.ui.view.CurrentCharacterRectMediator;
+    import kabam.rotmg.ui.view.ErrorDialogMediator;
+    import kabam.rotmg.ui.view.HUDMediator;
+    import kabam.rotmg.ui.view.HUDView;
+    import kabam.rotmg.ui.view.KeysMediator;
+    import kabam.rotmg.ui.view.KeysView;
+    import kabam.rotmg.ui.view.LoadingMediator;
+    import kabam.rotmg.ui.view.MapEditorMediator;
+    import kabam.rotmg.ui.view.NewCharacterMediator;
+    import kabam.rotmg.ui.view.NewsLineMediator;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+    import kabam.rotmg.ui.view.NotEnoughGoldMediator;
+    import kabam.rotmg.ui.view.ServersMediator;
+    import kabam.rotmg.ui.view.StatMetersMediator;
+    import kabam.rotmg.ui.view.StatMetersView;
+    import kabam.rotmg.ui.view.StatsDockedSignal;
+    import kabam.rotmg.ui.view.TitleMediator;
+    import kabam.rotmg.ui.view.TitleView;
+    import kabam.rotmg.ui.view.UnFocusAble;
+    import kabam.rotmg.ui.view.components.PotionSlotMediator;
+    import kabam.rotmg.ui.view.components.PotionSlotView;
+
     import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import robotlegs.bender.extensions.viewProcessorMap.api.IViewProcessorMap;
     import robotlegs.bender.extensions.viewProcessorMap.utils.MediatorCreator;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import kabam.rotmg.startup.control.StartupSequence;
-    import kabam.rotmg.ui.signals.NameChangedSignal;
-    import kabam.rotmg.game.model.PotionInventoryModel;
-    import kabam.rotmg.ui.signals.UpdatePotionInventorySignal;
-    import kabam.rotmg.ui.signals.UpdateBackpackTabSignal;
-    import kabam.rotmg.game.view.components.StatsUndockedSignal;
-    import kabam.rotmg.ui.view.StatsDockedSignal;
-    import kabam.rotmg.game.view.components.StatsTabHotKeyInputSignal;
-    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
-    import com.company.assembleegameclient.objects.ImageFactory;
-    import kabam.rotmg.ui.signals.ShowLoadingUISignal;
-    import kabam.rotmg.ui.commands.ShowLoadingUICommand;
-    import kabam.rotmg.ui.signals.ShowTitleUISignal;
-    import kabam.rotmg.ui.commands.ShowTitleUICommand;
-    import kabam.rotmg.ui.signals.ChooseNameSignal;
-    import kabam.rotmg.ui.commands.ChooseNameCommand;
-    import kabam.rotmg.ui.signals.EnterGameSignal;
-    import kabam.rotmg.ui.commands.EnterGameCommand;
-    import com.company.assembleegameclient.screens.LoadingScreen;
-    import kabam.rotmg.ui.view.LoadingMediator;
-    import com.company.assembleegameclient.screens.ServersScreen;
-    import kabam.rotmg.ui.view.ServersMediator;
-    import com.company.assembleegameclient.screens.CreditsScreen;
-    import kabam.rotmg.ui.view.CreditsMediator;
-    import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
-    import kabam.rotmg.ui.view.CurrentCharacterMediator;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import kabam.rotmg.account.core.view.AccountInfoMediator;
-    import com.company.assembleegameclient.screens.AccountScreen;
-    import kabam.rotmg.ui.view.AccountScreenMediator;
-    import kabam.rotmg.ui.view.TitleView;
-    import kabam.rotmg.ui.view.TitleMediator;
-    import com.company.assembleegameclient.screens.NewCharacterScreen;
-    import kabam.rotmg.ui.view.NewCharacterMediator;
-    import com.company.assembleegameclient.mapeditor.MapEditor;
-    import kabam.rotmg.ui.view.MapEditorMediator;
-    import com.company.assembleegameclient.screens.charrects.CurrentCharacterRect;
-    import kabam.rotmg.ui.view.CurrentCharacterRectMediator;
-    import com.company.assembleegameclient.screens.charrects.CharacterRectList;
-    import kabam.rotmg.ui.view.CharacterRectListMediator;
-    import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
-    import kabam.rotmg.ui.view.ErrorDialogMediator;
-    import com.company.assembleegameclient.screens.GraveyardLine;
-    import kabam.rotmg.ui.view.NewsLineMediator;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
-    import kabam.rotmg.ui.view.NotEnoughGoldMediator;
-    import com.company.assembleegameclient.ui.panels.InteractPanel;
-    import com.company.assembleegameclient.ui.panels.mediators.InteractPanelMediator;
-    import kabam.rotmg.game.view.TextPanel;
-    import kabam.rotmg.game.view.TextPanelMediator;
-    import com.company.assembleegameclient.ui.panels.itemgrids.ItemGrid;
-    import com.company.assembleegameclient.ui.panels.mediators.ItemGridMediator;
-    import kabam.rotmg.ui.view.ChooseNameRegisterDialog;
-    import kabam.rotmg.ui.view.ChooseNameRegisterMediator;
-    import kabam.rotmg.ui.view.CharacterSlotRegisterDialog;
-    import kabam.rotmg.ui.view.CharacterSlotRegisterMediator;
-    import kabam.rotmg.account.core.view.RegisterPromptDialog;
-    import kabam.rotmg.account.core.view.RegisterPromptDialogMediator;
-    import kabam.rotmg.ui.view.CharacterSlotNeedGoldDialog;
-    import kabam.rotmg.ui.view.CharacterSlotNeedGoldMediator;
-    import kabam.rotmg.game.view.NameChangerPanel;
-    import kabam.rotmg.game.view.NameChangerPanelMediator;
-    import com.company.assembleegameclient.ui.panels.GuildRegisterPanel;
-    import com.company.assembleegameclient.ui.panels.mediators.GuildRegisterPanelMediator;
-    import com.company.assembleegameclient.account.ui.ChooseNameFrame;
-    import com.company.assembleegameclient.account.ui.ChooseNameFrameMediator;
-    import com.company.assembleegameclient.account.ui.CreateGuildFrame;
-    import com.company.assembleegameclient.account.ui.components.CreateGuildFrameMediator;
-    import com.company.assembleegameclient.account.ui.NewChooseNameFrame;
-    import com.company.assembleegameclient.account.ui.NewChooseNameFrameMediator;
-    import com.company.assembleegameclient.ui.menu.PlayerGroupMenu;
-    import kabam.rotmg.ui.view.AgeVerificationDialog;
-    import kabam.rotmg.ui.view.AgeVerificationMediator;
-    import com.company.assembleegameclient.ui.language.LanguageOptionOverlay;
-    import com.company.assembleegameclient.ui.language.LanguageOptionOverlayMediator;
-    import com.company.assembleegameclient.ui.panels.ArenaPortalPanel;
-    import com.company.assembleegameclient.ui.panels.mediators.ArenaPortalPanelMediator;
-    import kabam.rotmg.ui.view.StatMetersView;
-    import kabam.rotmg.ui.view.StatMetersMediator;
-    import kabam.rotmg.ui.view.HUDView;
-    import kabam.rotmg.ui.view.HUDMediator;
-    import kabam.rotmg.ui.view.components.PotionSlotView;
-    import kabam.rotmg.ui.view.components.PotionSlotMediator;
-    import kabam.rotmg.death.view.ResurrectionView;
-    import kabam.rotmg.death.view.ResurrectionViewMediator;
-    import com.company.assembleegameclient.map.partyoverlay.GameObjectArrow;
-    import kabam.rotmg.ui.controller.GameObjectArrowMediator;
-    import kabam.rotmg.ui.view.UnFocusAble;
-    import kabam.rotmg.ui.controller.UnFocusAbleMediator;
-    import kabam.rotmg.account.core.services.LoadAccountTask;
-    import kabam.rotmg.account.core.services.GetCharListTask;
-    import kabam.rotmg.ui.signals.ShowKeySignal;
-    import kabam.rotmg.ui.signals.HideKeySignal;
-    import kabam.rotmg.ui.signals.ShowHideKeyUISignal;
-    import kabam.rotmg.ui.commands.ShowHideKeyUICommand;
-    import kabam.rotmg.ui.signals.RefreshScreenAfterLoginSignal;
-    import kabam.rotmg.ui.commands.RefreshScreenAfterLoginCommand;
-    import kabam.rotmg.ui.view.KeysView;
-    import kabam.rotmg.ui.view.KeysMediator;
-    import kabam.rotmg.ui.noservers.NoServersDialogFactory;
-    import kabam.rotmg.ui.noservers.ProductionNoServersDialogFactory;
-    import kabam.rotmg.ui.noservers.TestingNoServersDialogFactory;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.ui.signals.UpdateHUDSignal;
-    import kabam.rotmg.ui.signals.HUDModelInitialized;
-    import kabam.rotmg.ui.signals.HUDSetupStarted;
-    import kabam.rotmg.ui.commands.HUDInitCommand;
-    import kabam.rotmg.ui.view.CharacterDetailsView;
-    import kabam.rotmg.ui.view.CharacterDetailsMediator;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
 
-    public class UIConfig implements IConfig 
+    public class UIConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
@@ -132,7 +133,6 @@
         public var setup:ApplicationSetup;
         [Inject]
         public var startup:StartupSequence;
-
 
         public function configure():void
         {
@@ -212,7 +212,7 @@
             else
             {
                 this.injector.map(NoServersDialogFactory).toSingleton(TestingNoServersDialogFactory);
-            };
+            }
         }
 
         private function setupCharacterWindow():void
@@ -223,8 +223,6 @@
             this.commandMap.map(HUDSetupStarted).toCommand(HUDInitCommand);
             this.mediatorMap.map(CharacterDetailsView).toMediator(CharacterDetailsMediator);
         }
-
-
     }
 }
 

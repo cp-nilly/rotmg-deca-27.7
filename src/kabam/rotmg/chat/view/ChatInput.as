@@ -1,21 +1,21 @@
 ﻿package kabam.rotmg.chat.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import flash.text.TextField;
-    import kabam.rotmg.chat.model.ChatModel;
-    import flash.events.KeyboardEvent;
-    import flash.text.TextFieldType;
-    import flash.filters.GlowFilter;
     import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.filters.GlowFilter;
+    import flash.text.TextField;
+    import flash.text.TextFieldType;
     import flash.ui.Keyboard;
 
-    public class ChatInput extends Sprite 
-    {
+    import kabam.rotmg.chat.model.ChatModel;
 
+    import org.osflash.signals.Signal;
+
+    public class ChatInput extends Sprite
+    {
         public const message:Signal = new Signal(String);
         public const close:Signal = new Signal();
-
         private var input:TextField;
         private var enteredText:Boolean;
 
@@ -39,7 +39,7 @@
             if (_arg1 != null)
             {
                 this.input.text = _arg1;
-            };
+            }
             var _local3:int = ((_arg1) ? _arg1.length : 0);
             this.input.setSelection(_local3, _local3);
             if (_arg2)
@@ -49,7 +49,7 @@
             else
             {
                 this.activateDisabled();
-            };
+            }
             visible = true;
         }
 
@@ -108,12 +108,10 @@
                 else
                 {
                     this.close.dispatch();
-                };
+                }
                 _arg1.stopImmediatePropagation();
-            };
+            }
         }
-
-
     }
 }
 

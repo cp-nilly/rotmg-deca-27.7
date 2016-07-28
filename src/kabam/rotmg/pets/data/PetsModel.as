@@ -1,16 +1,14 @@
 ﻿package kabam.rotmg.pets.data
 {
-    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
-    import kabam.rotmg.core.model.PlayerModel;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.appengine.SavedCharacter;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.map.AbstractMap;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
 
-    public class PetsModel 
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
+
+    public class PetsModel
     {
-
         [Inject]
         public var notifyActivePetUpdated:NotifyActivePetUpdated;
         [Inject]
@@ -34,7 +32,7 @@
             if (this.hash[_arg1] != null)
             {
                 return (this.hash[_arg1]);
-            };
+            }
             _local2 = new PetVO(_arg1);
             this.pets.push(_local2);
             this.hash[_arg1] = _local2;
@@ -63,7 +61,7 @@
             if (_local2)
             {
                 _local2.setPetVO(this.activePet);
-            };
+            }
             this.notifyActivePetUpdated.dispatch();
         }
 
@@ -78,7 +76,7 @@
             if (_local1)
             {
                 _local1.setPetVO(null);
-            };
+            }
             this.activePet = null;
             this.notifyActivePetUpdated.dispatch();
         }
@@ -89,7 +87,7 @@
             if (_local2 == -1)
             {
                 return (null);
-            };
+            }
             return (this.pets[_local2]);
         }
 
@@ -103,9 +101,9 @@
                 if (_local2.getID() == _arg1)
                 {
                     return (_local3);
-                };
+                }
                 _local3++;
-            };
+            }
             return (-1);
         }
 
@@ -156,8 +154,6 @@
             this.pets = new Vector.<PetVO>();
             this.removeActivePet();
         }
-
-
     }
 }
 

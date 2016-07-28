@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.screens.ServersScreen;
-    import kabam.rotmg.servers.api.ServerModel;
+
     import kabam.rotmg.core.signals.SetScreenSignal;
+    import kabam.rotmg.servers.api.ServerModel;
 
-    public class ServersMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ServersMediator extends Mediator
     {
-
         [Inject]
         public var view:ServersScreen;
         [Inject]
         public var servers:ServerModel;
         [Inject]
         public var setScreen:SetScreenSignal;
-
 
         override public function initialize():void
         {
@@ -31,8 +31,6 @@
         {
             this.setScreen.dispatch(new TitleView());
         }
-
-
     }
 }
 

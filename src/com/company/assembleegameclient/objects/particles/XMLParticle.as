@@ -1,23 +1,21 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.map.Square;
     import com.company.assembleegameclient.objects.BasicObject;
-    import flash.display.BitmapData;
     import com.company.assembleegameclient.objects.animation.Animations;
-    import flash.geom.Vector3D;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.BitmapData;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.geom.Matrix;
-    import com.company.util.GraphicsUtil;
-    import com.company.assembleegameclient.map.Square;
-    import com.company.assembleegameclient.util.TextureRedrawer;
     import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import flash.geom.Matrix;
+    import flash.geom.Vector3D;
 
-    public class XMLParticle extends BasicObject 
+    public class XMLParticle extends BasicObject
     {
-
         public var texture_:BitmapData = null;
         public var animations_:Animations = null;
         public var size_:int;
@@ -45,7 +43,7 @@
             if (_arg1.animationsData_ != null)
             {
                 this.animations_ = new Animations(_arg1.animationsData_);
-            };
+            }
             this.moveVec_ = new Vector3D();
             var _local2:Number = ((Math.PI * 2) * Math.random());
             this.moveVec_.x = ((Math.cos(_local2) * 0.1) * 5);
@@ -58,7 +56,7 @@
             if (_local3 == null)
             {
                 return (false);
-            };
+            }
             x_ = _arg1;
             y_ = _arg2;
             square_ = _local3;
@@ -72,7 +70,7 @@
             if (this.durationLeft_ <= 0)
             {
                 return (false);
-            };
+            }
             x_ = (x_ + (this.moveVec_.x * _local3));
             y_ = (y_ + (this.moveVec_.y * _local3));
             return (true);
@@ -88,13 +86,22 @@
                 if (_local7 != null)
                 {
                     _local4 = _local7;
-                };
-            };
+                }
+            }
             _local4 = TextureRedrawer.redraw(_local4, this.size_, true, 0);
             var _local5:int = _local4.width;
             var _local6:int = _local4.height;
             this.vS_.length = 0;
-            this.vS_.push((posS_[3] - (_local5 / 2)), (posS_[4] - _local6), (posS_[3] + (_local5 / 2)), (posS_[4] - _local6), (posS_[3] + (_local5 / 2)), posS_[4], (posS_[3] - (_local5 / 2)), posS_[4]);
+            this.vS_.push(
+                    (posS_[3] - (_local5 / 2)),
+                    (posS_[4] - _local6),
+                    (posS_[3] + (_local5 / 2)),
+                    (posS_[4] - _local6),
+                    (posS_[3] + (_local5 / 2)),
+                    posS_[4],
+                    (posS_[3] - (_local5 / 2)),
+                    posS_[4]
+            );
             this.path_.data = this.vS_;
             this.bitmapFill_.bitmapData = _local4;
             this.fillMatrix_.identity();
@@ -104,8 +111,6 @@
             _arg1.push(this.path_);
             _arg1.push(GraphicsUtil.END_FILL);
         }
-
-
     }
 }
 

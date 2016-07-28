@@ -1,11 +1,10 @@
 ﻿package kabam.rotmg.fame.model
 {
-    public interface FameVO 
+    public interface FameVO
     {
-
         function getAccountId():String;
-        function getCharacterId():int;
 
+        function getCharacterId():int;
     }
 }
 

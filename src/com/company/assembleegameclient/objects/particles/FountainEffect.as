@@ -3,9 +3,8 @@
     import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.util.FreeList;
 
-    public class FountainEffect extends ParticleEffect 
+    public class FountainEffect extends ParticleEffect
     {
-
         public var go_:GameObject;
         public var lastUpdate_:int = -1;
 
@@ -21,11 +20,11 @@
             if (this.go_.map_ == null)
             {
                 return (false);
-            };
+            }
             if (this.lastUpdate_ < 0)
             {
                 this.lastUpdate_ = Math.max(0, (_arg1 - 400));
-            };
+            }
             x_ = this.go_.x_;
             y_ = this.go_.y_;
             var _local3:int = (this.lastUpdate_ / 50);
@@ -36,26 +35,27 @@
                 _local5.restart(_local4, _arg1);
                 map_.addObj(_local5, x_, y_);
                 _local3++;
-            };
+            }
             this.lastUpdate_ = _arg1;
             return (true);
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
-import flash.geom.Vector3D;
 import com.company.assembleegameclient.util.FreeList;
 
-class FountainParticle extends Particle 
+import flash.geom.Vector3D;
+
+class FountainParticle extends Particle
 {
 
-    /*private*/ static const G:Number = -4.9;
-    /*private*/ static const VI:Number = 6.5;
-    /*private*/ static const ZI:Number = 0.75;
-
+    /*private*/
+    static const G:Number = -4.9;
+    /*private*/
+    static const VI:Number = 6.5;
+    /*private*/
+    static const ZI:Number = 0.75;
     public var startTime_:int;
     protected var moveVec_:Vector3D;
 
@@ -92,7 +92,5 @@ class FountainParticle extends Particle
         z_ = ((0.75 + (VI * _local3)) + (G * (_local3 * _local3)));
         return ((z_ > 0));
     }
-
-
 }
 

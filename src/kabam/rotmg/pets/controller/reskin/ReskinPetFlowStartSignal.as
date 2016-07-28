@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ReskinPetFlowStartSignal extends Signal 
+    public class ReskinPetFlowStartSignal extends Signal
     {
-
-
     }
 }
 

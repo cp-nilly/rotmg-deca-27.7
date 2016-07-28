@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.build.impl
 {
-    import kabam.rotmg.build.api.BuildData;
     import flash.display.LoaderInfo;
-    import kabam.rotmg.build.api.BuildEnvironment;
     import flash.net.LocalConnection;
     import flash.system.Capabilities;
 
-    public class CompileTimeBuildData implements BuildData 
-    {
+    import kabam.rotmg.build.api.BuildData;
+    import kabam.rotmg.build.api.BuildEnvironment;
 
+    public class CompileTimeBuildData implements BuildData
+    {
         private static const DESKTOP:String = "Desktop";
         private static const ROTMG:String = "www.realmofthemadgod.com";
         private static const ROTMG_APPSPOT:String = "realmofthemadgodhrd.appspot.com";
@@ -16,14 +16,12 @@
         private static const ROTMG_TESTING_MAP:String = "testing.realmofthemadgod.com";
         private static const ROTMG_TESTING2:String = "realmtesting2.appspot.com";
         private static const STEAM_PRODUCTION_CONFIG:String = "Production";
-
         [Inject]
         public var loaderInfo:LoaderInfo;
         [Inject]
         public var environments:BuildEnvironments;
         private var isParsed:Boolean = false;
         private var environment:BuildEnvironment;
-
 
         public function getEnvironmentString():String
         {
@@ -58,13 +56,13 @@
                     if (_local3.domain == ROTMG_TESTING2)
                     {
                         this.environment = BuildEnvironment.TESTING2;
-                    };
-                };
+                    }
+                }
             }
             else
             {
                 this.environment = this.environments.getEnvironment(_arg1);
-            };
+            }
         }
 
         private function conditionsRequireTesting(_arg1:String):Boolean
@@ -74,7 +72,9 @@
 
         private function isMarkedAsProductionRelease():Boolean
         {
-            return (((this.isDesktopPlayer()) ? this.isSteamProductionDeployment() : this.isHostedOnProductionServers()));
+            return (((this.isDesktopPlayer())
+                    ? this.isSteamProductionDeployment()
+                    : this.isHostedOnProductionServers()));
         }
 
         private function isDesktopPlayer():Boolean
@@ -93,8 +93,6 @@
             var _local1:LocalConnection = new LocalConnection();
             return ((((_local1.domain == ROTMG)) || ((_local1.domain == ROTMG_APPSPOT))));
         }
-
-
     }
 }
 

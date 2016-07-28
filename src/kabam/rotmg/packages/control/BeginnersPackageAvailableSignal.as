@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class BeginnersPackageAvailableSignal extends Signal 
+    public class BeginnersPackageAvailableSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,13 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
-    import flash.utils.Timer;
+
     import flash.events.TimerEvent;
+    import flash.geom.Point;
+    import flash.utils.Timer;
 
-    public class ShockeeEffect extends ParticleEffect 
+    public class ShockeeEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var go:GameObject;
         private var isShocked:Boolean;
@@ -30,8 +30,6 @@
             this.isShocked = !(this.isShocked);
             this.go.toggleShockEffect(this.isShocked);
         }
-
-
     }
 }
 

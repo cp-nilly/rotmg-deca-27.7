@@ -1,32 +1,29 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.LineBreakDesign;
-    import com.company.assembleegameclient.objects.Player;
-    import __AS3__.vec.Vector;
+    import com.company.assembleegameclient.constants.InventoryOwnerTypes;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.display.BitmapData;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.LineBreakDesign;
     import com.company.util.BitmapUtil;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import com.company.util.KeyCodes;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.filters.DropShadowFilter;
+
     import kabam.rotmg.constants.ActivationType;
     import kabam.rotmg.messaging.impl.data.StatData;
-    import com.company.assembleegameclient.constants.InventoryOwnerTypes;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.util.KeyCodes;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import __AS3__.vec.*;
-    import kabam.rotmg.constants.*;
 
-    public class EquipmentToolTip extends ToolTip 
+    public class EquipmentToolTip extends ToolTip
     {
-
         private static const MAX_WIDTH:int = 230;
-
         private var icon:Bitmap;
         public var titleText:TextFieldDisplayConcrete;
         private var tierText:TextFieldDisplayConcrete;
@@ -82,9 +79,9 @@
                     if (this.player.equipment_[_local5] != -1)
                     {
                         this.curItemXML = ObjectLibrary.xmlLibrary_[this.player.equipment_[_local5]];
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.addIcon();
             this.addTitle();
             this.addTierText();
@@ -117,7 +114,7 @@
                 this.powerText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
                 waiter.push(this.powerText.textChanged);
                 addChild(this.powerText);
-            };
+            }
         }
 
         private function addUniqueEffectsToList():void
@@ -140,15 +137,17 @@
                     if (_local3)
                     {
                         _local6.pushParams(_local3);
-                    };
+                    }
                     if (_local4)
                     {
-                        _local6.pushParams(_local4, {}, TooltipHelper.getOpenTag(16777103), TooltipHelper.getCloseTag());
-                    };
+                        _local6.pushParams(
+                                _local4, {}, TooltipHelper.getOpenTag(16777103), TooltipHelper.getCloseTag()
+                        );
+                    }
                     _local6.setDelimiter(_local5);
-                    this.uniqueEffects.push(new Effect(TextKey.BLANK, {"data":_local6}));
-                };
-            };
+                    this.uniqueEffects.push(new Effect(TextKey.BLANK, {"data": _local6}));
+                }
+            }
         }
 
         private function isEmptyEquipSlot():Boolean
@@ -163,11 +162,11 @@
             if ((((this.objectType == 4874)) || ((this.objectType == 4618))))
             {
                 _local2 = 8;
-            };
+            }
             if (_local1.hasOwnProperty("ScaleValue"))
             {
                 _local2 = _local1.ScaleValue;
-            };
+            }
             var _local3:BitmapData = ObjectLibrary.getRedrawnTextureFromType(this.objectType, 60, true, true, _local2);
             _local3 = BitmapUtil.cropToBitmapData(_local3, 4, 4, (_local3.width - 8), (_local3.height - 8));
             this.icon = new Bitmap(_local3);
@@ -185,7 +184,11 @@
                 this.tierText = new TextFieldDisplayConcrete().setSize(16).setColor(0xFFFFFF).setTextWidth(30).setBold(true);
                 if (_local4)
                 {
-                    this.tierText.setStringBuilder(new LineBuilder().setParams(TextKey.TIER_ABBR, {"tier":this.objectXML.Tier}));
+                    this.tierText.setStringBuilder(
+                            new LineBuilder().setParams(
+                                    TextKey.TIER_ABBR, {"tier": this.objectXML.Tier}
+                            )
+                    );
                 }
                 else
                 {
@@ -198,10 +201,10 @@
                     {
                         this.tierText.setColor(9055202);
                         this.tierText.setStringBuilder(new LineBuilder().setParams(TextKey.UNTIERED_ABBR));
-                    };
-                };
+                    }
+                }
                 addChild(this.tierText);
-            };
+            }
         }
 
         private function isPet():Boolean
@@ -233,8 +236,8 @@
                 for each (_local3 in _local1)
                 {
                     _local2.push(new Effect(_local3.attribute("name"), _local3.attribute("description")));
-                };
-            };
+                }
+            }
             return ("");
         }
 
@@ -252,8 +255,8 @@
                 {
                     addChild(this.line1);
                     addChild(this.effectsText);
-                };
-            };
+                }
+            }
         }
 
         private function getEffectsStringBuilder():AppendingLineBuilder
@@ -262,8 +265,8 @@
             this.appendEffects(this.uniqueEffects, _local1);
             if (this.comparisonResults.lineBuilder.hasLines())
             {
-                _local1.pushParams(TextKey.BLANK, {"data":this.comparisonResults.lineBuilder});
-            };
+                _local1.pushParams(TextKey.BLANK, {"data": this.comparisonResults.lineBuilder});
+            }
             this.appendEffects(this.effects, _local1);
             return (_local1);
         }
@@ -281,17 +284,17 @@
                 {
                     _local4 = (('<font color="#' + _local3.color_.toString(16)) + '">');
                     _local5 = "</font>";
-                };
+                }
                 _arg2.pushParams(_local3.name_, _local3.getValueReplacementsWithColor(), _local4, _local5);
-            };
+            }
         }
 
         private function addNumProjectilesTagsToEffectsList():void
         {
             if (((this.objectXML.hasOwnProperty("NumProjectiles")) && (!((this.comparisonResults.processedTags.hasOwnProperty(this.objectXML.NumProjectiles.toXMLString()) == true)))))
             {
-                this.effects.push(new Effect(TextKey.SHOTS, {"numShots":this.objectXML.NumProjectiles}));
-            };
+                this.effects.push(new Effect(TextKey.SHOTS, {"numShots": this.objectXML.NumProjectiles}));
+            }
         }
 
         private function addFameBonusTagToEffectsList():void
@@ -307,9 +310,13 @@
                 {
                     _local3 = int(this.curItemXML.FameBonus.text());
                     _local2 = TooltipHelper.getTextColor((_local1 - _local3));
-                };
-                this.effects.push(new Effect(TextKey.FAME_BONUS, {"percent":(this.objectXML.FameBonus + "%")}).setReplacementsColor(_local2));
-            };
+                }
+                this.effects.push(
+                        new Effect(
+                                TextKey.FAME_BONUS, {"percent": (this.objectXML.FameBonus + "%")}
+                        ).setReplacementsColor(_local2)
+                );
+            }
         }
 
         private function addMpCostTagToEffectsList():void
@@ -318,8 +325,8 @@
             {
                 if (!this.comparisonResults.processedTags[this.objectXML.MpEndCost[0].toXMLString()])
                 {
-                    this.effects.push(new Effect(TextKey.MP_COST, {"cost":this.objectXML.MpEndCost}));
-                };
+                    this.effects.push(new Effect(TextKey.MP_COST, {"cost": this.objectXML.MpEndCost}));
+                }
             }
             else
             {
@@ -327,18 +334,18 @@
                 {
                     if (!this.comparisonResults.processedTags[this.objectXML.MpCost[0].toXMLString()])
                     {
-                        this.effects.push(new Effect(TextKey.MP_COST, {"cost":this.objectXML.MpCost}));
-                    };
-                };
-            };
+                        this.effects.push(new Effect(TextKey.MP_COST, {"cost": this.objectXML.MpCost}));
+                    }
+                }
+            }
         }
 
         private function addDoseTagsToEffectsList():void
         {
             if (this.objectXML.hasOwnProperty("Doses"))
             {
-                this.effects.push(new Effect(TextKey.DOSES, {"dose":this.objectXML.Doses}));
-            };
+                this.effects.push(new Effect(TextKey.DOSES, {"dose": this.objectXML.Doses}));
+            }
         }
 
         private function addProjectileTagsToEffectsList():void
@@ -353,33 +360,46 @@
                 _local1 = XML(this.objectXML.Projectile);
                 _local2 = int(_local1.MinDamage);
                 _local3 = int(_local1.MaxDamage);
-                this.effects.push(new Effect(TextKey.DAMAGE, {"damage":(((_local2 == _local3)) ? _local2 : ((_local2 + " - ") + _local3)).toString()}));
+                this.effects.push(
+                        new Effect(
+                                TextKey.DAMAGE, {
+                                    "damage": (((_local2 == _local3))
+                                            ? _local2
+                                            : ((_local2 + " - ") + _local3)).toString()
+                                }
+                        )
+                );
                 _local4 = ((Number(_local1.Speed) * Number(_local1.LifetimeMS)) / 10000);
-                this.effects.push(new Effect(TextKey.RANGE, {"range":TooltipHelper.getFormattedRangeString(_local4)}));
+                this.effects.push(new Effect(TextKey.RANGE, {"range": TooltipHelper.getFormattedRangeString(_local4)}));
                 if (this.objectXML.Projectile.hasOwnProperty("MultiHit"))
                 {
                     this.effects.push(new Effect(TextKey.MULTIHIT, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
-                };
+                }
                 if (this.objectXML.Projectile.hasOwnProperty("PassesCover"))
                 {
                     this.effects.push(new Effect(TextKey.PASSES_COVER, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
-                };
+                }
                 if (this.objectXML.Projectile.hasOwnProperty("ArmorPiercing"))
                 {
                     this.effects.push(new Effect(TextKey.ARMOR_PIERCING, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
-                };
+                }
                 for each (_local5 in _local1.ConditionEffect)
                 {
                     if (this.comparisonResults.processedTags[_local5.toXMLString()] == null)
                     {
-                        this.effects.push(new Effect(TextKey.SHOT_EFFECT, {"effect":""}));
-                        this.effects.push(new Effect(TextKey.EFFECT_FOR_DURATION, {
-                            "effect":this.objectXML.Projectile.ConditionEffect,
-                            "duration":this.objectXML.Projectile.ConditionEffect.@duration
-                        }).setColor(TooltipHelper.NO_DIFF_COLOR));
-                    };
-                };
-            };
+                        this.effects.push(new Effect(TextKey.SHOT_EFFECT, {"effect": ""}));
+                        this.effects.push(
+                                new Effect(
+                                        TextKey.EFFECT_FOR_DURATION,
+                                        {
+                                            "effect": this.objectXML.Projectile.ConditionEffect,
+                                            "duration": this.objectXML.Projectile.ConditionEffect.@duration
+                                        }
+                                ).setColor(TooltipHelper.NO_DIFF_COLOR)
+                        );
+                    }
+                }
+            }
         }
 
         private function addActivateTagsToEffectsList():void
@@ -424,85 +444,208 @@
                     switch (_local6)
                     {
                         case ActivationType.COND_EFFECT_AURA:
-                            this.effects.push(new Effect(TextKey.PARTY_EFFECT, {"effect":new AppendingLineBuilder().pushParams(TextKey.WITHIN_SQRS, {"range":_local1.@range}, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
-                            this.effects.push(new Effect(TextKey.EFFECT_FOR_DURATION, {
-                                "effect":_local1.@effect,
-                                "duration":_local1.@duration
-                            }).setColor(TooltipHelper.NO_DIFF_COLOR));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.PARTY_EFFECT, {
+                                                "effect": new AppendingLineBuilder().pushParams(
+                                                        TextKey.WITHIN_SQRS,
+                                                        {"range": _local1.@range},
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.EFFECT_FOR_DURATION, {
+                                                "effect": _local1.@effect, "duration": _local1.@duration
+                                            }
+                                    ).setColor(TooltipHelper.NO_DIFF_COLOR)
+                            );
                             break;
                         case ActivationType.COND_EFFECT_SELF:
-                            this.effects.push(new Effect(TextKey.EFFECT_ON_SELF, {"effect":""}));
-                            this.effects.push(new Effect(TextKey.EFFECT_FOR_DURATION, {
-                                "effect":_local1.@effect,
-                                "duration":_local1.@duration
-                            }));
+                            this.effects.push(new Effect(TextKey.EFFECT_ON_SELF, {"effect": ""}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.EFFECT_FOR_DURATION, {
+                                                "effect": _local1.@effect, "duration": _local1.@duration
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.HEAL:
-                            this.effects.push(new Effect(TextKey.INCREMENT_STAT, {
-                                "statAmount":(("+" + _local1.@amount) + " "),
-                                "statName":new LineBuilder().setParams(TextKey.STATUS_BAR_HEALTH_POINTS)
-                            }));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.INCREMENT_STAT,
+                                            {
+                                                "statAmount": (("+" + _local1.@amount) + " "),
+                                                "statName": new LineBuilder().setParams(TextKey.STATUS_BAR_HEALTH_POINTS)
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.HEAL_NOVA:
-                            this.effects.push(new Effect(TextKey.PARTY_HEAL, {"effect":new AppendingLineBuilder().pushParams(TextKey.HP_WITHIN_SQRS, {
-                                    "amount":_local1.@amount,
-                                    "range":_local1.@range
-                                }, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.PARTY_HEAL, {
+                                                "effect": new AppendingLineBuilder().pushParams(
+                                                        TextKey.HP_WITHIN_SQRS,
+                                                        {
+                                                            "amount": _local1.@amount,
+                                                            "range": _local1.@range
+                                                        },
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.MAGIC:
-                            this.effects.push(new Effect(TextKey.INCREMENT_STAT, {
-                                "statAmount":(("+" + _local1.@amount) + " "),
-                                "statName":new LineBuilder().setParams(TextKey.STATUS_BAR_MANA_POINTS)
-                            }));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.INCREMENT_STAT,
+                                            {
+                                                "statAmount": (("+" + _local1.@amount) + " "),
+                                                "statName": new LineBuilder().setParams(TextKey.STATUS_BAR_MANA_POINTS)
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.MAGIC_NOVA:
-                            this.effects.push(new Effect(TextKey.FILL_PARTY_MAGIC, (((_local1.@amount + " MP at ") + _local1.@range) + " sqrs")));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.FILL_PARTY_MAGIC,
+                                            (((_local1.@amount + " MP at ") + _local1.@range) + " sqrs")
+                                    )
+                            );
                             break;
                         case ActivationType.TELEPORT:
-                            this.effects.push(new Effect(TextKey.BLANK, {"data":new LineBuilder().setParams(TextKey.TELEPORT_TO_TARGET)}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.BLANK,
+                                            {"data": new LineBuilder().setParams(TextKey.TELEPORT_TO_TARGET)}
+                                    )
+                            );
                             break;
                         case ActivationType.VAMPIRE_BLAST:
-                            this.effects.push(new Effect(TextKey.STEAL, {"effect":new AppendingLineBuilder().pushParams(TextKey.HP_WITHIN_SQRS, {
-                                    "amount":_local1.@totalDamage,
-                                    "range":_local1.@radius
-                                }, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.STEAL, {
+                                                "effect": new AppendingLineBuilder().pushParams(
+                                                        TextKey.HP_WITHIN_SQRS,
+                                                        {
+                                                            "amount": _local1.@totalDamage,
+                                                            "range": _local1.@radius
+                                                        },
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.TRAP:
-                            _local7 = ((_local1.hasOwnProperty("@condEffect")) ? _local1.@condEffect : new LineBuilder().setParams(TextKey.CONDITION_EFFECT_SLOWED));
+                            _local7 = ((_local1.hasOwnProperty("@condEffect"))
+                                    ? _local1.@condEffect
+                                    : new LineBuilder().setParams(TextKey.CONDITION_EFFECT_SLOWED));
                             _local8 = ((_local1.hasOwnProperty("@condDuration")) ? _local1.@condDuration : "5");
-                            this.effects.push(new Effect(TextKey.TRAP, {"data":new AppendingLineBuilder().pushParams(TextKey.HP_WITHIN_SQRS, {
-                                    "amount":_local1.@totalDamage,
-                                    "range":_local1.@radius
-                                }, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag()).pushParams(TextKey.EFFECT_FOR_DURATION, {
-                                    "effect":_local7,
-                                    "duration":_local8
-                                }, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.TRAP, {
+                                                "data": new AppendingLineBuilder().pushParams(
+                                                        TextKey.HP_WITHIN_SQRS,
+                                                        {
+                                                            "amount": _local1.@totalDamage,
+                                                            "range": _local1.@radius
+                                                        },
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                ).pushParams(
+                                                        TextKey.EFFECT_FOR_DURATION,
+                                                        {
+                                                            "effect": _local7,
+                                                            "duration": _local8
+                                                        },
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.STASIS_BLAST:
-                            this.effects.push(new Effect(TextKey.STASIS_GROUP, {"stasis":new AppendingLineBuilder().pushParams(TextKey.SEC_COUNT, {"duration":_local1.@duration}, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.STASIS_GROUP, {
+                                                "stasis": new AppendingLineBuilder().pushParams(
+                                                        TextKey.SEC_COUNT,
+                                                        {"duration": _local1.@duration},
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.DECOY:
-                            this.effects.push(new Effect(TextKey.DECOY, {"data":new AppendingLineBuilder().pushParams(TextKey.SEC_COUNT, {"duration":_local1.@duration}, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.DECOY, {
+                                                "data": new AppendingLineBuilder().pushParams(
+                                                        TextKey.SEC_COUNT,
+                                                        {"duration": _local1.@duration},
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.LIGHTNING:
-                            this.effects.push(new Effect(TextKey.LIGHTNING, {"data":new AppendingLineBuilder().pushParams(TextKey.DAMAGE_TO_TARGETS, {
-                                    "damage":_local1.@totalDamage,
-                                    "targets":_local1.@maxTargets
-                                }, TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR), TooltipHelper.getCloseTag())}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.LIGHTNING, {
+                                                "data": new AppendingLineBuilder().pushParams(
+                                                        TextKey.DAMAGE_TO_TARGETS,
+                                                        {
+                                                            "damage": _local1.@totalDamage,
+                                                            "targets": _local1.@maxTargets
+                                                        },
+                                                        TooltipHelper.getOpenTag(TooltipHelper.NO_DIFF_COLOR),
+                                                        TooltipHelper.getCloseTag()
+                                                )
+                                            }
+                                    )
+                            );
                             break;
                         case ActivationType.POISON_GRENADE:
-                            this.effects.push(new Effect(TextKey.POISON_GRENADE, {"data":""}));
-                            this.effects.push(new Effect(TextKey.POISON_GRENADE_DATA, {
-                                "damage":_local1.@totalDamage,
-                                "duration":_local1.@duration,
-                                "radius":_local1.@radius
-                            }).setColor(TooltipHelper.NO_DIFF_COLOR));
+                            this.effects.push(new Effect(TextKey.POISON_GRENADE, {"data": ""}));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.POISON_GRENADE_DATA,
+                                            {
+                                                "damage": _local1.@totalDamage,
+                                                "duration": _local1.@duration,
+                                                "radius": _local1.@radius
+                                            }
+                                    ).setColor(TooltipHelper.NO_DIFF_COLOR)
+                            );
                             break;
                         case ActivationType.REMOVE_NEG_COND:
-                            this.effects.push(new Effect(TextKey.REMOVES_NEGATIVE, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.REMOVES_NEGATIVE, {}
+                                    ).setColor(TooltipHelper.NO_DIFF_COLOR)
+                            );
                             break;
                         case ActivationType.REMOVE_NEG_COND_SELF:
-                            this.effects.push(new Effect(TextKey.REMOVES_NEGATIVE, {}).setColor(TooltipHelper.NO_DIFF_COLOR));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.REMOVES_NEGATIVE, {}
+                                    ).setColor(TooltipHelper.NO_DIFF_COLOR)
+                            );
                             break;
                         case ActivationType.GENERIC_ACTIVATE:
                             _local9 = 16777103;
@@ -525,24 +668,32 @@
                                         if (_local23 < 0)
                                         {
                                             _local9 = 0xFF0000;
-                                        };
-                                    };
-                                };
-                            };
+                                        }
+                                    }
+                                }
+                            }
                             _local11 = {
-                                "range":_local1.@range,
-                                "effect":_local1.@effect,
-                                "duration":_local1.@duration
+                                "range": _local1.@range, "effect": _local1.@effect, "duration": _local1.@duration
                             };
                             _local12 = "Within {range} sqrs {effect} for {duration} seconds";
                             if (_local1.@target != "enemy")
                             {
-                                this.effects.push(new Effect(TextKey.PARTY_EFFECT, {"effect":LineBuilder.returnStringReplace(_local12, _local11)}).setReplacementsColor(_local9));
+                                this.effects.push(
+                                        new Effect(
+                                                TextKey.PARTY_EFFECT,
+                                                {"effect": LineBuilder.returnStringReplace(_local12, _local11)}
+                                        ).setReplacementsColor(_local9)
+                                );
                             }
                             else
                             {
-                                this.effects.push(new Effect(TextKey.ENEMY_EFFECT, {"effect":LineBuilder.returnStringReplace(_local12, _local11)}).setReplacementsColor(_local9));
-                            };
+                                this.effects.push(
+                                        new Effect(
+                                                TextKey.ENEMY_EFFECT,
+                                                {"effect": LineBuilder.returnStringReplace(_local12, _local11)}
+                                        ).setReplacementsColor(_local9)
+                                );
+                            }
                             break;
                         case ActivationType.STAT_BOOST_AURA:
                             _local13 = 16777103;
@@ -567,20 +718,25 @@
                                         if (_local30 < 0)
                                         {
                                             _local13 = 0xFF0000;
-                                        };
-                                    };
-                                };
-                            };
+                                        }
+                                    }
+                                }
+                            }
                             _local3 = int(_local1.@stat);
                             _local15 = LineBuilder.getLocalizedString2(StatData.statToName(_local3));
                             _local16 = {
-                                "range":_local1.@range,
-                                "stat":_local15,
-                                "amount":_local1.@amount,
-                                "duration":_local1.@duration
+                                "range": _local1.@range,
+                                "stat": _local15,
+                                "amount": _local1.@amount,
+                                "duration": _local1.@duration
                             };
                             _local17 = "Within {range} sqrs increase {stat} by {amount} for {duration} seconds";
-                            this.effects.push(new Effect(TextKey.PARTY_EFFECT, {"effect":LineBuilder.returnStringReplace(_local17, _local16)}).setReplacementsColor(_local13));
+                            this.effects.push(
+                                    new Effect(
+                                            TextKey.PARTY_EFFECT,
+                                            {"effect": LineBuilder.returnStringReplace(_local17, _local16)}
+                                    ).setReplacementsColor(_local13)
+                            );
                             break;
                         case ActivationType.INCREMENT_STAT:
                             _local3 = int(_local1.@stat);
@@ -592,17 +748,17 @@
                                 _local18["statName"] = new LineBuilder().setParams(StatData.statToName(_local3));
                                 this.effects.push(new Effect(_local2, _local18).setColor(16777103));
                                 break;
-                            };
+                            }
                             _local2 = TextKey.BLANK;
                             _local31 = new AppendingLineBuilder().setDelimiter(" ");
-                            _local31.pushParams(TextKey.BLANK, {"data":new StaticStringBuilder(("+" + _local4))});
+                            _local31.pushParams(TextKey.BLANK, {"data": new StaticStringBuilder(("+" + _local4))});
                             _local31.pushParams(StatData.statToName(_local3));
                             _local18["data"] = _local31;
                             this.effects.push(new Effect(_local2, _local18));
                             break;
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function getEffectTag(xml:XML, effectValue:String):XML
@@ -615,8 +771,8 @@
                 if (tag.@effect == effectValue)
                 {
                     return (tag);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -630,8 +786,8 @@
                 if (tag.@stat == statValue)
                 {
                     return (tag);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -645,22 +801,26 @@
                 {
                     this.effects.push(new Effect(TextKey.ON_EQUIP, ""));
                     _local2 = false;
-                };
+                }
                 if (_local1.toString() == "IncrementStat")
                 {
-                    this.effects.push(new Effect(TextKey.INCREMENT_STAT, this.getComparedStatText(_local1)).setReplacementsColor(this.getComparedStatColor(_local1)));
-                };
-            };
+                    this.effects.push(
+                            new Effect(
+                                    TextKey.INCREMENT_STAT, this.getComparedStatText(_local1)
+                            ).setReplacementsColor(this.getComparedStatColor(_local1))
+                    );
+                }
+            }
         }
 
         private function getComparedStatText(_arg1:XML):Object
         {
             var _local2:int = int(_arg1.@stat);
             var _local3:int = int(_arg1.@amount);
-            var _local4:String = (((_local3)>-1) ? "+" : "");
+            var _local4:String = (((_local3) > -1) ? "+" : "");
             return ({
-                "statAmount":((_local4 + String(_local3)) + " "),
-                "statName":new LineBuilder().setParams(StatData.statToName(_local2))
+                "statAmount": ((_local4 + String(_local3)) + " "),
+                "statName": new LineBuilder().setParams(StatData.statToName(_local2))
             });
         }
 
@@ -675,17 +835,17 @@
             if (this.curItemXML != null)
             {
                 otherMatches = this.curItemXML.ActivateOnEquip.(@stat == stat);
-            };
+            }
             if (((!((otherMatches == null))) && ((otherMatches.length() == 1))))
             {
                 match = XML(otherMatches[0]);
                 otherAmount = int(match.@amount);
                 textColor = TooltipHelper.getTextColor((amount - otherAmount));
-            };
+            }
             if (amount < 0)
             {
                 textColor = 0xFF0000;
-            };
+            }
             return (textColor);
         }
 
@@ -701,8 +861,8 @@
                 else
                 {
                     this.restrictions.push(new Restriction(TextKey.DOUBLE_CLICK_TAKE, 0xB3B3B3, false));
-                };
-            };
+                }
+            }
         }
 
         private function addAbilityItemRestrictions():void
@@ -720,7 +880,7 @@
             else
             {
                 this.restrictions.push(new Restriction(TextKey.DOUBLE_CLICK_TAKE_SHIFT_CLICK_USE, 0xFFFFFF, false));
-            };
+            }
         }
 
         private function addReusableItemRestrictions():void
@@ -739,15 +899,19 @@
             if (((((this.objectXML.hasOwnProperty("VaultItem")) && (!((this.invType == -1))))) && (!((this.invType == ObjectLibrary.idToType_["Vault Chest"])))))
             {
                 this.restrictions.push(new Restriction(TextKey.STORE_IN_VAULT, 16549442, true));
-            };
+            }
             if (this.objectXML.hasOwnProperty("Soulbound"))
             {
                 this.restrictions.push(new Restriction(TextKey.ITEM_SOULBOUND, 0xB3B3B3, false));
-            };
+            }
             if (this.objectXML.hasOwnProperty("@setType"))
             {
-                this.restrictions.push(new Restriction(("This item is a part of " + this.objectXML.attribute("setName")), 0xFF9900, false));
-            };
+                this.restrictions.push(
+                        new Restriction(
+                                ("This item is a part of " + this.objectXML.attribute("setName")), 0xFF9900, false
+                        )
+                );
+            }
             if (this.playerCanUse)
             {
                 if (this.objectXML.hasOwnProperty("Usable"))
@@ -770,22 +934,22 @@
                         else
                         {
                             this.addEquipmentItemRestrictions();
-                        };
-                    };
-                };
+                        }
+                    }
+                }
             }
             else
             {
                 if (this.player != null)
                 {
                     this.restrictions.push(new Restriction(TextKey.NOT_USABLE_BY, 16549442, true));
-                };
-            };
+                }
+            }
             var _local1:Vector.<String> = ObjectLibrary.usableBy(this.objectType);
             if (_local1 != null)
             {
                 this.restrictions.push(new Restriction(TextKey.USABLE_BY, 0xB3B3B3, false));
-            };
+            }
             for each (_local2 in this.objectXML.EquipRequirement)
             {
                 _local3 = ObjectLibrary.playerMeetsRequirement(_local2, this.player);
@@ -793,9 +957,15 @@
                 {
                     _local4 = int(_local2.@stat);
                     _local5 = int(_local2.@value);
-                    this.restrictions.push(new Restriction(((("Requires " + StatData.statToName(_local4)) + " of ") + _local5), ((_local3) ? 0xB3B3B3 : 16549442), ((_local3) ? false : true)));
-                };
-            };
+                    this.restrictions.push(
+                            new Restriction(
+                                    ((("Requires " + StatData.statToName(_local4)) + " of ") + _local5),
+                                    ((_local3) ? 0xB3B3B3 : 16549442),
+                                    ((_local3) ? false : true)
+                            )
+                    );
+                }
+            }
         }
 
         private function makeLineTwo():void
@@ -813,7 +983,7 @@
                 this.restrictionsText.filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
                 waiter.push(this.restrictionsText.textChanged);
                 addChild(this.restrictionsText);
-            };
+            }
         }
 
         private function buildRestrictionsLineBuilder():StringBuilder
@@ -830,12 +1000,17 @@
                 _local4 = "</font>";
                 _local4 = _local4.concat(((_local2.bold_) ? "</b>" : ""));
                 _local5 = ((this.player) ? ObjectLibrary.typeToDisplayId_[this.player.objectType_] : "");
-                _local1.pushParams(_local2.text_, {
-                    "unUsableClass":_local5,
-                    "usableClasses":this.getUsableClasses(),
-                    "keyCode":KeyCodes.CharCodeStrings[Parameters.data_.useSpecial]
-                }, _local3, _local4);
-            };
+                _local1.pushParams(
+                        _local2.text_,
+                        {
+                            "unUsableClass": _local5,
+                            "usableClasses": this.getUsableClasses(),
+                            "keyCode": KeyCodes.CharCodeStrings[Parameters.data_.useSpecial]
+                        },
+                        _local3,
+                        _local4
+                );
+            }
             return (_local1);
         }
 
@@ -848,7 +1023,7 @@
             for each (_local3 in _local1)
             {
                 _local2.pushParams(_local3);
-            };
+            }
             return (_local2);
         }
 
@@ -869,7 +1044,7 @@
             {
                 this.tierText.y = ((this.icon.height / 2) - (this.tierText.height / 2));
                 this.tierText.x = (MAX_WIDTH - 30);
-            };
+            }
             this.descText.x = 4;
             this.descText.y = (this.icon.height + 2);
             if (contains(this.line1))
@@ -883,7 +1058,7 @@
             {
                 this.line1.y = (this.descText.y + this.descText.height);
                 this.effectsText.y = this.line1.y;
-            };
+            }
             this.line2.x = 8;
             this.line2.y = ((this.effectsText.y + this.effectsText.height) + 8);
             var _local1:uint = (this.line2.y + 8);
@@ -892,27 +1067,29 @@
                 this.restrictionsText.x = 4;
                 this.restrictionsText.y = _local1;
                 _local1 = (_local1 + this.restrictionsText.height);
-            };
+            }
             if (this.powerText)
             {
                 if (contains(this.powerText))
                 {
                     this.powerText.x = 4;
                     this.powerText.y = _local1;
-                };
-            };
+                }
+            }
         }
 
         private function buildCategorySpecificText():void
         {
             if (this.curItemXML != null)
             {
-                this.comparisonResults = this.slotTypeToTextBuilder.getComparisonResults(this.objectXML, this.curItemXML);
+                this.comparisonResults = this.slotTypeToTextBuilder.getComparisonResults(
+                        this.objectXML, this.curItemXML
+                );
             }
             else
             {
                 this.comparisonResults = new SlotComparisonResult();
-            };
+            }
         }
 
         private function handleWisMod():void
@@ -924,23 +1101,23 @@
             if (this.player == null)
             {
                 return;
-            };
+            }
             var _local1:Number = (this.player.wisdom_ + this.player.wisdomBoost_);
             if (_local1 < 30)
             {
                 return;
-            };
+            }
             var _local2:Vector.<XML> = new Vector.<XML>();
             if (this.curItemXML != null)
             {
                 this.curItemXML = this.curItemXML.copy();
                 _local2.push(this.curItemXML);
-            };
+            }
             if (this.objectXML != null)
             {
                 this.objectXML = this.objectXML.copy();
                 _local2.push(this.objectXML);
-            };
+            }
             for each (_local4 in _local2)
             {
                 for each (_local3 in _local4.Activate)
@@ -973,14 +1150,14 @@
                                     _local3.@duration = this.modifyWisModStat(_local3.@duration);
                                     _local3.@range = this.modifyWisModStat(_local3.@range);
                                     break;
-                            };
-                        };
-                    };
-                };
-            };
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        private function modifyWisModStat(_arg1:String, _arg2:Number=1):String
+        private function modifyWisModStat(_arg1:String, _arg2:Number = 1):String
         {
             var _local5:Number;
             var _local6:int;
@@ -994,7 +1171,7 @@
             else
             {
                 _local5 = Number(_arg1);
-                _local6 = (((_local5)<0) ? -1 : 1);
+                _local6 = (((_local5) < 0) ? -1 : 1);
                 _local7 = (((_local5 * _local4) / 150) + (_local5 * _local6));
                 _local7 = (Math.floor((_local7 * Math.pow(10, _arg2))) / Math.pow(10, _arg2));
                 if ((_local7 - (int(_local7) * _local6)) >= ((1 / Math.pow(10, _arg2)) * _local6))
@@ -1004,21 +1181,18 @@
                 else
                 {
                     _local3 = _local7.toFixed(0);
-                };
-            };
+                }
+            }
             return (_local3);
         }
-
-
     }
 }
 
-import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-class Effect 
+class Effect
 {
-
     public var name_:String;
     public var valueReplacements_:Object;
     public var replacementColor_:uint = 16777103;
@@ -1053,7 +1227,7 @@ class Effect
         {
             _local2 = (('</font><font color="#' + this.replacementColor_.toString(16)) + '">');
             _local3 = (('</font><font color="#' + this.color_.toString(16)) + '">');
-        };
+        }
         for (_local4 in this.valueReplacements_)
         {
             if ((this.valueReplacements_[_local4] is AppendingLineBuilder))
@@ -1071,17 +1245,14 @@ class Effect
                 else
                 {
                     _local1[_local4] = ((_local2 + this.valueReplacements_[_local4]) + _local3);
-                };
-            };
-        };
+                }
+            }
+        }
         return (_local1);
     }
-
-
 }
-class Restriction 
+class Restriction
 {
-
     public var text_:String;
     public var color_:uint;
     public var bold_:Boolean;
@@ -1092,6 +1263,5 @@ class Restriction
         this.color_ = _arg2;
         this.bold_ = _arg3;
     }
-
 }
 

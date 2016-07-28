@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.util.FameUtil;
 
-    public class CharacterStats 
+    public class CharacterStats
     {
-
         public var charStatsXML_:XML;
 
         public function CharacterStats(_arg1:XML)
@@ -26,8 +25,6 @@
         {
             return (FameUtil.numStars(int(this.charStatsXML_.BestFame)));
         }
-
-
     }
 }
 

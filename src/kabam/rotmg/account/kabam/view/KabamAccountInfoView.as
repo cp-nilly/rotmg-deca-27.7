@@ -1,18 +1,17 @@
 ﻿package kabam.rotmg.account.kabam.view
 {
     import flash.display.Sprite;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.text.TextFieldAutoSize;
     import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.account.core.view.AccountInfoView;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class KabamAccountInfoView extends Sprite implements AccountInfoView 
+    public class KabamAccountInfoView extends Sprite implements AccountInfoView
     {
-
         private static const FONT_SIZE:int = 18;
-
         private var accountText:TextFieldDisplayConcrete;
         private var userName:String = "";
         private var isRegistered:Boolean;
@@ -34,10 +33,12 @@
         {
             this.userName = _arg1;
             this.isRegistered = _arg2;
-            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.KABAMACCOUNTINFOVIEW_ACCOUNTINFO, {"userName":_arg1}));
+            this.accountText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.KABAMACCOUNTINFOVIEW_ACCOUNTINFO, {"userName": _arg1}
+                    )
+            );
         }
-
-
     }
 }
 

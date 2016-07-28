@@ -1,11 +1,10 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
 
-    public class ImageSprite extends Sprite 
+    public class ImageSprite extends Sprite
     {
-
         public var displayOb_:DisplayObject;
 
         public function ImageSprite(_arg1:DisplayObject, _arg2:Number, _arg3:Number)
@@ -35,8 +34,6 @@
         {
             return ((this.y + (this.height / 2)));
         }
-
-
     }
 }
 

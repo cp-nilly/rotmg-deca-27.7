@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.mysterybox.model
 {
+    import com.company.assembleegameclient.util.TimeUtil;
+
     import flash.display.DisplayObject;
-    import kabam.display.Loader.LoaderProxy;
-    import __AS3__.vec.Vector;
-    import kabam.display.Loader.LoaderProxyConcrete;
     import flash.events.Event;
     import flash.events.IOErrorEvent;
     import flash.net.URLRequest;
     import flash.utils.Dictionary;
-    import com.company.assembleegameclient.util.TimeUtil;
+
+    import kabam.display.Loader.LoaderProxy;
+    import kabam.display.Loader.LoaderProxyConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import __AS3__.vec.*;
 
-    public class MysteryBoxInfo 
+    public class MysteryBoxInfo
     {
-
         public static var chestImageEmbed:Class = MysteryBoxInfo_chestImageEmbed;
-
         public var _id:String;
         public var _title:String;
         private var _description:String;
@@ -275,11 +273,11 @@
                     {
                         _local2[int(_local6)] = true;
                         this._rollsWithContentsUnique.push(int(_local6));
-                    };
+                    }
                     _local4.push(int(_local6));
-                };
+                }
                 this._rollsWithContents.push(_local4);
-            };
+            }
         }
 
         public function isNew():Boolean
@@ -295,7 +293,7 @@
             {
                 _local1 = new Date();
                 return ((_local1.time < this._saleEnd.time));
-            };
+            }
             return (false);
         }
 
@@ -307,19 +305,28 @@
             var _local4:LineBuilder = new LineBuilder();
             if (_local3 > TimeUtil.DAY_IN_S)
             {
-                _local4.setParams("MysteryBoxInfo.saleEndStringDays", {"amount":String(Math.ceil(TimeUtil.secondsToDays(_local3)))});
+                _local4.setParams(
+                        "MysteryBoxInfo.saleEndStringDays",
+                        {"amount": String(Math.ceil(TimeUtil.secondsToDays(_local3)))}
+                );
             }
             else
             {
                 if (_local3 > TimeUtil.HOUR_IN_S)
                 {
-                    _local4.setParams("MysteryBoxInfo.saleEndStringHours", {"amount":String(Math.ceil(TimeUtil.secondsToHours(_local3)))});
+                    _local4.setParams(
+                            "MysteryBoxInfo.saleEndStringHours",
+                            {"amount": String(Math.ceil(TimeUtil.secondsToHours(_local3)))}
+                    );
                 }
                 else
                 {
-                    _local4.setParams("MysteryBoxInfo.saleEndStringMinutes", {"amount":String(Math.ceil(TimeUtil.secondsToMins(_local3)))});
-                };
-            };
+                    _local4.setParams(
+                            "MysteryBoxInfo.saleEndStringMinutes",
+                            {"amount": String(Math.ceil(TimeUtil.secondsToMins(_local3)))}
+                    );
+                }
+            }
             return (_local4);
         }
 
@@ -352,8 +359,6 @@
         {
             this._infoImageLoader = _arg1;
         }
-
-
     }
 }
 

@@ -1,21 +1,23 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.TemplateBuilder;
     import com.company.assembleegameclient.objects.GameObject;
-    import org.osflash.signals.Signal;
-    import flash.filters.DropShadowFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.geom.ColorTransform;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.util.MoreColorUtil;
 
-    public class GameObjectListItem extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.Sprite;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.ColorTransform;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.TemplateBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class GameObjectListItem extends Sprite
     {
-
         public var portrait:Bitmap;
         private var text:TextFieldDisplayConcrete;
         private var builder:TemplateBuilder;
@@ -28,7 +30,7 @@
         private var level:int;
         private var positionClassBelow:Boolean;
 
-        public function GameObjectListItem(_arg1:uint, _arg2:Boolean, _arg3:GameObject, _arg4:Boolean=false)
+        public function GameObjectListItem(_arg1:uint, _arg2:Boolean, _arg3:GameObject, _arg4:Boolean = false)
         {
             this.positionClassBelow = _arg4;
             this.isLongVersion = _arg2;
@@ -41,7 +43,7 @@
             if (!_arg2)
             {
                 this.text.setTextWidth(66).setTextHeight(20).setBold(true);
-            };
+            }
             this.text.x = 32;
             this.text.y = 6;
             this.text.filters = [new DropShadowFilter(0, 0, 0)];
@@ -50,7 +52,7 @@
             this.draw(_arg3);
         }
 
-        public function draw(_arg1:GameObject, _arg2:ColorTransform=null):void
+        public function draw(_arg1:GameObject, _arg2:ColorTransform = null):void
         {
             var _local3:Boolean;
             _local3 = this.isClear();
@@ -60,7 +62,7 @@
             {
                 this.redraw();
                 transform.colorTransform = ((_arg2) || (MoreColorUtil.identity));
-            };
+            }
         }
 
         public function clear():void
@@ -112,8 +114,8 @@
                 else
                 {
                     this.builder.setTemplate(ObjectLibrary.typeToDisplayId_[this.type]);
-                };
-            };
+                }
+            }
             return (this.builder);
         }
 
@@ -130,7 +132,7 @@
                 else
                 {
                     _local1 = "<b>{name}</b> ({type}{level})";
-                };
+                }
                 if ((((this.go.name_.length > 8)) && (!(this.positionClassBelow))))
                 {
                     _local2.name = (this.go.name_.slice(0, 6) + "...");
@@ -138,7 +140,7 @@
                 else
                 {
                     _local2.name = this.go.name_;
-                };
+                }
                 _local2.type = ObjectLibrary.typeToDisplayId_[this.type];
                 _local2.level = (((this.level < 1)) ? "" : (" " + this.level));
             }
@@ -146,7 +148,7 @@
             {
                 _local1 = "<b>{name}</b>";
                 _local2.name = ObjectLibrary.typeToDisplayId_[this.type];
-            };
+            }
             this.builder.setTemplate(_local1, _local2);
         }
 
@@ -161,19 +163,17 @@
             if (_local1 == null)
             {
                 return (this.color);
-            };
+            }
             if (_local1.isFellowGuild_)
             {
                 return (Parameters.FELLOW_GUILD_COLOR);
-            };
+            }
             if (_local1.nameChosen_)
             {
                 return (Parameters.NAME_CHOSEN_COLOR);
-            };
+            }
             return (this.color);
         }
-
-
     }
 }
 

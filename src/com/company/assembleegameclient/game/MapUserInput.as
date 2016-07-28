@@ -1,53 +1,54 @@
 ﻿package com.company.assembleegameclient.game
 {
-    import net.hires.debug.Stats;
-    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
-    import kabam.rotmg.game.signals.AddTextLineSignal;
-    import kabam.rotmg.game.signals.SetTextBoxVisibilitySignal;
-    import kabam.rotmg.game.view.components.StatsTabHotKeyInputSignal;
-    import kabam.rotmg.minimap.control.MiniMapZoomSignal;
-    import kabam.rotmg.game.signals.UseBuyPotionSignal;
-    import kabam.rotmg.game.model.PotionInventoryModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.ui.model.TabStripModel;
-    import kabam.rotmg.core.view.Layers;
-    import kabam.rotmg.game.signals.ExitGameSignal;
-    import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-    import flash.events.Event;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.application.api.ApplicationSetup;
-    import flash.events.MouseEvent;
-    import flash.display.Stage;
-    import flash.events.KeyboardEvent;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.objects.Player;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import kabam.rotmg.constants.UseType;
-    import com.company.assembleegameclient.tutorial.doneAction;
-    import com.company.assembleegameclient.tutorial.Tutorial;
-    import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.map.Square;
-    import com.company.util.KeyCodes;
-    import kabam.rotmg.game.model.UseBuyPotionVO;
-    import kabam.rotmg.friends.view.FriendListView;
+    import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.tutorial.Tutorial;
+    import com.company.assembleegameclient.tutorial.doneAction;
     import com.company.assembleegameclient.ui.options.Options;
-    import flash.system.Capabilities;
-    import flash.display.StageDisplayState;
     import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.KeyCodes;
+
+    import flash.display.Stage;
+    import flash.display.StageDisplayState;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.system.Capabilities;
+
+    import kabam.rotmg.application.api.ApplicationSetup;
     import kabam.rotmg.chat.model.ChatMessage;
     import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.constants.UseType;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.view.Layers;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.friends.view.FriendListView;
+    import kabam.rotmg.game.model.PotionInventoryModel;
+    import kabam.rotmg.game.model.UseBuyPotionVO;
+    import kabam.rotmg.game.signals.AddTextLineSignal;
+    import kabam.rotmg.game.signals.ExitGameSignal;
+    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
+    import kabam.rotmg.game.signals.SetTextBoxVisibilitySignal;
+    import kabam.rotmg.game.signals.UseBuyPotionSignal;
+    import kabam.rotmg.game.view.components.StatsTabHotKeyInputSignal;
     import kabam.rotmg.messaging.impl.GameServerConnection;
+    import kabam.rotmg.minimap.control.MiniMapZoomSignal;
+    import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
+    import kabam.rotmg.ui.model.TabStripModel;
 
-    public class MapUserInput 
+    import net.hires.debug.Stats;
+
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class MapUserInput
     {
-
         private static const MOUSE_DOWN_WAIT_PERIOD:uint = 175;
-
         private static var stats_:Stats = new Stats();
         private static var arrowWarning_:Boolean = false;
-
         public var gs_:GameSprite;
         private var moveLeft_:Boolean = false;
         private var moveRight_:Boolean = false;
@@ -113,7 +114,7 @@
                 this.gs_.map.removeEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
                 this.gs_.stage.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
                 this.gs_.stage.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
-            };
+            }
         }
 
         public function clearInput():void
@@ -135,7 +136,7 @@
             {
                 this.enablePlayerInput_ = _arg1;
                 this.clearInput();
-            };
+            }
         }
 
         private function onAddedToStage(_arg1:Event):void
@@ -155,7 +156,7 @@
             {
                 this.gs_.map.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
                 this.gs_.map.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
-            };
+            }
             _local2.addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
             _local2.addEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
         }
@@ -181,7 +182,7 @@
             {
                 this.gs_.map.removeEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
                 this.gs_.map.removeEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
-            };
+            }
             _local2.removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
             _local2.removeEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
         }
@@ -206,23 +207,23 @@
             if (_local2 == null)
             {
                 return;
-            };
+            }
             if (!this.enablePlayerInput_)
             {
                 return;
-            };
+            }
             if (_arg1.shiftKey)
             {
                 _local4 = _local2.equipment_[1];
                 if (_local4 == -1)
                 {
                     return;
-                };
+                }
                 _local5 = ObjectLibrary.xmlLibrary_[_local4];
                 if ((((_local5 == null)) || (_local5.hasOwnProperty("EndMpCost"))))
                 {
                     return;
-                };
+                }
                 if (_local2.isUnstable())
                 {
                     _local6 = ((Math.random() * 600) - 300);
@@ -232,20 +233,20 @@
                 {
                     _local6 = this.gs_.map.mouseX;
                     _local7 = this.gs_.map.mouseY;
-                };
+                }
                 if (Parameters.isGpuRender())
                 {
                     if ((((((_arg1.currentTarget == _arg1.target)) || ((_arg1.target == this.gs_.map)))) || ((_arg1.target == this.gs_))))
                     {
                         _local2.useAltWeapon(_local6, _local7, UseType.START_USE);
-                    };
+                    }
                 }
                 else
                 {
                     _local2.useAltWeapon(_local6, _local7, UseType.START_USE);
-                };
+                }
                 return;
-            };
+            }
             if (Parameters.isGpuRender())
             {
                 if ((((((((_arg1.currentTarget == _arg1.target)) || ((_arg1.target == this.gs_.map)))) || ((_arg1.target == this.gs_)))) || ((_arg1.currentTarget == this.gs_.chatBox_.list))))
@@ -255,12 +256,12 @@
                 else
                 {
                     return;
-                };
+                }
             }
             else
             {
                 _local3 = Math.atan2(this.gs_.map.mouseY, this.gs_.map.mouseX);
-            };
+            }
             doneAction(this.gs_, Tutorial.ATTACK_ACTION);
             if (_local2.isUnstable())
             {
@@ -269,7 +270,7 @@
             else
             {
                 _local2.attemptAttackAngle(_local3);
-            };
+            }
             this.mouseDown_ = true;
         }
 
@@ -280,7 +281,7 @@
             if (_local2 == null)
             {
                 return;
-            };
+            }
             _local2.isShooting = false;
         }
 
@@ -293,7 +294,7 @@
             else
             {
                 this.miniMapZoom.dispatch(MiniMapZoomSignal.OUT);
-            };
+            }
         }
 
         private function onEnterFrame(_arg1:Event):void
@@ -314,9 +315,9 @@
                     {
                         _local3 = Math.atan2(this.gs_.map.mouseY, this.gs_.map.mouseX);
                         _local2.attemptAttackAngle(_local3);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onKeyDown(_arg1:KeyboardEvent):void
@@ -348,8 +349,8 @@
                     if (_local2.focus != null)
                     {
                         return;
-                    };
-            };
+                    }
+            }
             var _local3:Player = this.gs_.map.player_;
             switch (_arg1.keyCode)
             {
@@ -370,12 +371,18 @@
                     this.moveRight_ = true;
                     break;
                 case Parameters.data_.rotateLeft:
-                    if (!Parameters.data_.allowRotation) break;
+                    if (!Parameters.data_.allowRotation)
+                    {
+                        break;
+                    }
                     doneAction(this.gs_, Tutorial.ROTATE_LEFT_ACTION);
                     this.rotateLeft_ = true;
                     break;
                 case Parameters.data_.rotateRight:
-                    if (!Parameters.data_.allowRotation) break;
+                    if (!Parameters.data_.allowRotation)
+                    {
+                        break;
+                    }
                     doneAction(this.gs_, Tutorial.ROTATE_RIGHT_ACTION);
                     this.rotateRight_ = true;
                     break;
@@ -385,7 +392,10 @@
                     break;
                 case Parameters.data_.useSpecial:
                     _local4 = this.gs_.map.player_;
-                    if (_local4 == null) break;
+                    if (_local4 == null)
+                    {
+                        break;
+                    }
                     if (!this.specialKeyDown_)
                     {
                         if (_local3.isUnstable())
@@ -397,13 +407,13 @@
                         {
                             _local5 = this.gs_.map.mouseX;
                             _local6 = this.gs_.map.mouseY;
-                        };
+                        }
                         _local7 = _local3.useAltWeapon(_local5, _local6, UseType.START_USE);
                         if (_local7)
                         {
                             this.specialKeyDown_ = true;
-                        };
-                    };
+                        }
+                    }
                     break;
                 case Parameters.data_.autofireToggle:
                     this.gs_.map.player_.isShooting = (this.autofire_ = !(this.autofire_));
@@ -438,8 +448,12 @@
                 case Parameters.data_.useHealthPotion:
                     if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.HEALTH_POTION_ID).available)
                     {
-                        this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.HEALTH_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-                    };
+                        this.useBuyPotionSignal.dispatch(
+                                new UseBuyPotionVO(
+                                        PotionInventoryModel.HEALTH_POTION_ID, UseBuyPotionVO.CONTEXTBUY
+                                )
+                        );
+                    }
                     break;
                 case Parameters.data_.GPURenderToggle:
                     Parameters.data_.GPURender = !(Parameters.data_.GPURender);
@@ -447,8 +461,12 @@
                 case Parameters.data_.useMagicPotion:
                     if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available)
                     {
-                        this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.MAGIC_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-                    };
+                        this.useBuyPotionSignal.dispatch(
+                                new UseBuyPotionVO(
+                                        PotionInventoryModel.MAGIC_POTION_ID, UseBuyPotionVO.CONTEXTBUY
+                                )
+                        );
+                    }
                     break;
                 case Parameters.data_.miniMapZoomOut:
                     this.miniMapZoom.dispatch(MiniMapZoomSignal.OUT);
@@ -475,7 +493,7 @@
                     else
                     {
                         this.closeDialogSignal.dispatch();
-                    };
+                    }
                     break;
                 case Parameters.data_.options:
                     this.clearInput();
@@ -490,15 +508,17 @@
                     {
                         Parameters.data_.fullscreenMode = !(Parameters.data_.fullscreenMode);
                         Parameters.save();
-                        _local2.displayState = ((Parameters.data_.fullscreenMode) ? "fullScreenInteractive" : StageDisplayState.NORMAL);
-                    };
+                        _local2.displayState = ((Parameters.data_.fullscreenMode)
+                                ? "fullScreenInteractive"
+                                : StageDisplayState.NORMAL);
+                    }
                     break;
                 case Parameters.data_.switchTabs:
                     this.statsTabHotKeyInputSignal.dispatch();
                     break;
                 case Parameters.data_.testOne:
                     break;
-            };
+            }
             if (Parameters.ALLOW_SCREENSHOT_MODE)
             {
                 switch (_arg1.keyCode)
@@ -513,8 +533,8 @@
                         this.gs_.map.mapOverlay_.visible = !(this.gs_.map.mapOverlay_.visible);
                         this.gs_.map.partyOverlay_.visible = !(this.gs_.map.partyOverlay_.visible);
                         break;
-                };
-            };
+                }
+            }
             if (this.areFKeysAvailable)
             {
                 switch (_arg1.keyCode)
@@ -522,7 +542,12 @@
                     case KeyCodes.F6:
                         TextureRedrawer.clearCache();
                         Parameters.projColorType_ = ((Parameters.projColorType_ + 1) % 7);
-                        this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, ("Projectile Color Type: " + Parameters.projColorType_)));
+                        this.addTextLine.dispatch(
+                                ChatMessage.make(
+                                        Parameters.ERROR_CHAT_NAME,
+                                        ("Projectile Color Type: " + Parameters.projColorType_)
+                                )
+                        );
                         break;
                     case KeyCodes.F7:
                         for each (_local8 in this.gs_.map.squares_)
@@ -530,10 +555,14 @@
                             if (_local8 != null)
                             {
                                 _local8.faces_.length = 0;
-                            };
-                        };
+                            }
+                        }
                         Parameters.blendType_ = ((Parameters.blendType_ + 1) % 2);
-                        this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, ("Blend type: " + Parameters.blendType_)));
+                        this.addTextLine.dispatch(
+                                ChatMessage.make(
+                                        Parameters.CLIENT_CHAT_NAME, ("Blend type: " + Parameters.blendType_)
+                                )
+                        );
                         break;
                     case KeyCodes.F8:
                         Parameters.data_.surveyDate = 0;
@@ -544,8 +573,8 @@
                     case KeyCodes.F9:
                         Parameters.drawProj_ = !(Parameters.drawProj_);
                         break;
-                };
-            };
+                }
+            }
             this.setPlayerMovement();
         }
 
@@ -586,11 +615,11 @@
                         {
                             _local2 = this.gs_.map.mouseX;
                             _local3 = this.gs_.map.mouseY;
-                        };
+                        }
                         this.gs_.map.player_.useAltWeapon(this.gs_.map.mouseX, this.gs_.map.mouseY, UseType.END_USE);
-                    };
+                    }
                     break;
-            };
+            }
             this.setPlayerMovement();
         }
 
@@ -601,13 +630,17 @@
             {
                 if (this.enablePlayerInput_)
                 {
-                    _local1.setRelativeMovement((((this.rotateRight_) ? 1 : 0) - ((this.rotateLeft_) ? 1 : 0)), (((this.moveRight_) ? 1 : 0) - ((this.moveLeft_) ? 1 : 0)), (((this.moveDown_) ? 1 : 0) - ((this.moveUp_) ? 1 : 0)));
+                    _local1.setRelativeMovement(
+                            (((this.rotateRight_) ? 1 : 0) - ((this.rotateLeft_) ? 1 : 0)),
+                            (((this.moveRight_) ? 1 : 0) - ((this.moveLeft_) ? 1 : 0)),
+                            (((this.moveDown_) ? 1 : 0) - ((this.moveUp_) ? 1 : 0))
+                    );
                 }
                 else
                 {
                     _local1.setRelativeMovement(0, 0, 0);
-                };
-            };
+                }
+            }
         }
 
         private function useItem(_arg1:int):void
@@ -615,7 +648,7 @@
             if (this.tabStripModel.currentSelection == TabStripModel.BACKPACK)
             {
                 _arg1 = (_arg1 + GeneralConstants.NUM_INVENTORY_SLOTS);
-            };
+            }
             GameServerConnection.instance.useItem_new(this.gs_.map.player_, _arg1);
         }
 
@@ -633,7 +666,7 @@
                 this.gs_.gsc_.enableJitterWatcher();
                 this.gs_.gsc_.jitterWatcher_.y = stats_.height;
                 this.gs_.addChild(this.gs_.gsc_.jitterWatcher_);
-            };
+            }
         }
 
         private function toggleScreenShotMode():void
@@ -648,10 +681,8 @@
             {
                 this.gs_.hudView.visible = true;
                 this.setTextBoxVisibility.dispatch(true);
-            };
+            }
         }
-
-
     }
 }
 

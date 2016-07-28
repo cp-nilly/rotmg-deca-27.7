@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ChooseNameSignal extends Signal 
+    public class ChooseNameSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,16 +1,15 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObjectContainer;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import flash.display.Sprite;
     import flash.text.TextFieldAutoSize;
 
-    public class FusionStrengthFactory 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class FusionStrengthFactory
     {
-
         private static const FONT_SIZE:int = 14;
-
 
         public static function makeRoundedBox():DisplayObjectContainer
         {
@@ -40,8 +39,6 @@
         {
             _arg1.setVerticalAlign(TextFieldDisplayConcrete.MIDDLE).setSize(FONT_SIZE).setBold(true);
         }
-
-
     }
 }
 

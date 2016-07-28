@@ -1,15 +1,10 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import com.company.assembleegameclient.mapeditor.Layer;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.util.MoreStringUtil;
-    import __AS3__.vec.*;
-    import com.company.assembleegameclient.mapeditor.*;
 
-    class ObjectChooser extends Chooser 
+    class ObjectChooser extends Chooser
     {
-
         public function ObjectChooser()
         {
             var _local1:String;
@@ -21,7 +16,7 @@
             for (_local1 in ObjectLibrary.idToType_)
             {
                 _local2.push(_local1);
-            };
+            }
             _local2.sort(MoreStringUtil.cmp);
             for each (_local1 in _local2)
             {
@@ -31,10 +26,9 @@
                 {
                     _local5 = new ObjectElement(_local4);
                     addElement(_local5);
-                };
-            };
+                }
+            }
         }
-
     }
 }
 

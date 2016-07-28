@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.characters.model
 {
-    import kabam.rotmg.core.model.PlayerModel;
     import com.company.assembleegameclient.appengine.SavedCharacter;
 
-    public class LegacyCharacterModel implements CharacterModel 
-    {
+    import kabam.rotmg.core.model.PlayerModel;
 
+    public class LegacyCharacterModel implements CharacterModel
+    {
         [Inject]
         public var wrapped:PlayerModel;
         private var selected:SavedCharacter;
-
 
         public function getCharacterCount():int
         {
@@ -27,7 +26,7 @@
             if (this.selected.charId() == _arg1)
             {
                 this.selected = null;
-            };
+            }
         }
 
         public function select(_arg1:SavedCharacter):void
@@ -39,8 +38,6 @@
         {
             return (this.selected);
         }
-
-
     }
 }
 

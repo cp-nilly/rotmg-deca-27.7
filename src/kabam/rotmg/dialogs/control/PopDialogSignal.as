@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class PopDialogSignal extends Signal 
+    public class PopDialogSignal extends Signal
     {
-
-
     }
 }
 

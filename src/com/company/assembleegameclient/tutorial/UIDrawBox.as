@@ -1,16 +1,15 @@
 ﻿package com.company.assembleegameclient.tutorial
 {
+    import com.company.util.ConversionUtil;
+
+    import flash.display.Graphics;
     import flash.geom.Point;
     import flash.geom.Rectangle;
-    import com.company.util.ConversionUtil;
-    import flash.display.Graphics;
 
-    public class UIDrawBox 
+    public class UIDrawBox
     {
-
         public const ANIMATION_MS:int = 500;
         public const ORIGIN:Point = new Point(250, 200);
-
         public var rect_:Rectangle;
         public var color_:uint;
 
@@ -37,12 +36,10 @@
             {
                 _local4 = (this.rect_.x + (_arg1 / 2));
                 _local5 = (this.rect_.y + (_arg1 / 2));
-            };
+            }
             _arg2.lineStyle(_arg1, this.color_);
             _arg2.drawRect(_local4, _local5, _local6, _local7);
         }
-
-
     }
 }
 

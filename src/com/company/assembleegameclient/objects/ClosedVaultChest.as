@@ -1,13 +1,14 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.ui.tooltip.TextToolTip;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
     import flash.display.BitmapData;
 
-    public class ClosedVaultChest extends SellableObject 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    public class ClosedVaultChest extends SellableObject
+    {
         public function ClosedVaultChest(_arg1:XML)
         {
             super(_arg1);
@@ -37,8 +38,6 @@
         {
             return (ObjectLibrary.getRedrawnTextureFromType(ObjectLibrary.idToType_["Vault Chest"], 80, true));
         }
-
-
     }
 }
 

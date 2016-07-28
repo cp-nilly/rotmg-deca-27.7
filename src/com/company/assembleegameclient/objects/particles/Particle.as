@@ -1,21 +1,19 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.map.Square;
     import com.company.assembleegameclient.objects.BasicObject;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.BitmapData;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.geom.Matrix;
-    import com.company.util.GraphicsUtil;
-    import com.company.assembleegameclient.map.Square;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.display.BitmapData;
     import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import flash.geom.Matrix;
 
-    public class Particle extends BasicObject 
+    public class Particle extends BasicObject
     {
-
         public var size_:int;
         public var color_:uint;
         protected var bitmapFill_:GraphicsBitmapFill;
@@ -43,7 +41,7 @@
             if (_local3 == null)
             {
                 return (false);
-            };
+            }
             x_ = _arg1;
             y_ = _arg2;
             square_ = _local3;
@@ -78,7 +76,16 @@
             var _local5:int = _local4.width;
             var _local6:int = _local4.height;
             this.vS_.length = 0;
-            this.vS_.push((posS_[3] - (_local5 / 2)), (posS_[4] - (_local6 / 2)), (posS_[3] + (_local5 / 2)), (posS_[4] - (_local6 / 2)), (posS_[3] + (_local5 / 2)), (posS_[4] + (_local6 / 2)), (posS_[3] - (_local5 / 2)), (posS_[4] + (_local6 / 2)));
+            this.vS_.push(
+                    (posS_[3] - (_local5 / 2)),
+                    (posS_[4] - (_local6 / 2)),
+                    (posS_[3] + (_local5 / 2)),
+                    (posS_[4] - (_local6 / 2)),
+                    (posS_[3] + (_local5 / 2)),
+                    (posS_[4] + (_local6 / 2)),
+                    (posS_[3] - (_local5 / 2)),
+                    (posS_[4] + (_local6 / 2))
+            );
             this.path_.data = this.vS_;
             this.bitmapFill_.bitmapData = _local4;
             this.fillMatrix_.identity();
@@ -88,8 +95,6 @@
             _arg1.push(this.path_);
             _arg1.push(GraphicsUtil.END_FILL);
         }
-
-
     }
 }
 

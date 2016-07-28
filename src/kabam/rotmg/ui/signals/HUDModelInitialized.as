@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class HUDModelInitialized extends Signal 
+    public class HUDModelInitialized extends Signal
     {
-
-
     }
 }
 

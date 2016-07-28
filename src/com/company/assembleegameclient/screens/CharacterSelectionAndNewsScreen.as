@@ -1,41 +1,41 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import flash.filters.DropShadowFilter;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.promotions.view.BeginnersPackageButton;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import kabam.rotmg.game.view.CreditDisplay;
-    import flash.display.Shape;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import kabam.rotmg.packages.view.PackageButton;
-    import kabam.rotmg.ui.view.components.MenuOptionsBar;
-    import kabam.rotmg.ui.view.ButtonFactory;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import kabam.rotmg.news.view.NewsView;
-    import flash.events.Event;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.MouseEvent;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.geom.Rectangle;
+
     import flash.display.DisplayObject;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Rectangle;
+    import flash.text.TextFieldAutoSize;
 
-    public class CharacterSelectionAndNewsScreen extends Sprite 
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.game.view.CreditDisplay;
+    import kabam.rotmg.news.view.NewsView;
+    import kabam.rotmg.packages.view.PackageButton;
+    import kabam.rotmg.promotions.view.BeginnersPackageButton;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.ButtonFactory;
+    import kabam.rotmg.ui.view.components.MenuOptionsBar;
+    import kabam.rotmg.ui.view.components.ScreenBase;
+
+    import org.osflash.signals.Signal;
+
+    public class CharacterSelectionAndNewsScreen extends Sprite
     {
-
         private static const NEWS_X:int = 475;
         private static const TAB_UNSELECTED:uint = 0xB3B3B3;
         private static const TAB_SELECTED:uint = 0xFFFFFF;
-
         private const SCROLLBAR_REQUIREMENT_HEIGHT:Number = 400;
         private const CHARACTER_LIST_Y_POS:int = 108;
         private const CHARACTER_LIST_X_POS:int = 18;
         private const DROP_SHADOW:DropShadowFilter = new DropShadowFilter(0, 0, 0, 1, 8, 8);
-
         public var close:Signal;
         public var showClasses:Signal;
         public var newCharacter:Signal;
@@ -82,7 +82,7 @@
             if (this.isInitialized)
             {
                 return;
-            };
+            }
             this.isInitialized = true;
             this.model = _arg1;
             this.createDisplayAssets(_arg1);
@@ -101,13 +101,13 @@
             {
                 this.openCharactersText.setColor(TAB_SELECTED);
                 this.createOpenGraveyardText();
-            };
+            }
             this.createCharacterListChar();
             this.makeMenuOptionsBar();
             if (!_arg1.isNameChosen())
             {
                 this.createChooseNameLink();
-            };
+            }
         }
 
         private function makeMenuOptionsBar():void
@@ -160,7 +160,7 @@
             if (this.characterListHeight > this.SCROLLBAR_REQUIREMENT_HEIGHT)
             {
                 this.createScrollbar();
-            };
+            }
             addChild(this.characterList);
         }
 
@@ -174,7 +174,7 @@
             if (this.characterListHeight > this.SCROLLBAR_REQUIREMENT_HEIGHT)
             {
                 this.createScrollbar();
-            };
+            }
             addChild(this.characterList);
         }
 
@@ -184,12 +184,12 @@
             {
                 removeChild(this.characterList);
                 this.characterList = null;
-            };
+            }
             if (this.scrollBar != null)
             {
                 removeChild(this.scrollBar);
                 this.scrollBar = null;
-            };
+            }
         }
 
         private function createOpenCharactersText():void
@@ -212,7 +212,7 @@
                 this.openCharactersText.setColor(TAB_SELECTED);
                 this.openGraveyardText.setColor(TAB_UNSELECTED);
                 this.createCharacterListChar();
-            };
+            }
         }
 
         private function createOpenGraveyardText():void
@@ -235,7 +235,7 @@
                 this.openCharactersText.setColor(TAB_UNSELECTED);
                 this.openGraveyardText.setColor(TAB_SELECTED);
                 this.createCharacterListGrave();
-            };
+            }
         }
 
         private function createCreditDisplay():void
@@ -249,7 +249,9 @@
 
         private function createChooseNameLink():void
         {
-            this.nameChooseLink_ = new DeprecatedClickableText(16, false, TextKey.CHARACTER_SELECTION_AND_NEWS_SCREEN_CHOOSE_NAME);
+            this.nameChooseLink_ = new DeprecatedClickableText(
+                    16, false, TextKey.CHARACTER_SELECTION_AND_NEWS_SCREEN_CHOOSE_NAME
+            );
             this.nameChooseLink_.y = 50;
             this.nameChooseLink_.setAutoSize(TextFieldAutoSize.CENTER);
             this.nameChooseLink_.x = (this.getReferenceRectangle().width / 2);
@@ -274,7 +276,7 @@
             if (stage)
             {
                 _local1 = new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
-            };
+            }
             return (_local1);
         }
 
@@ -301,7 +303,7 @@
             if (this.characterList != null)
             {
                 this.characterList.setPos((-(this.scrollBar.pos()) * (this.characterListHeight - 400)));
-            };
+            }
         }
 
         public function showBeginnersOfferButton():void
@@ -328,7 +330,7 @@
             if (((_arg1) && (contains(_arg1))))
             {
                 removeChild(_arg1);
-            };
+            }
         }
 
         private function onPlayClick():void
@@ -340,7 +342,7 @@
             else
             {
                 this.playGame.dispatch();
-            };
+            }
         }
 
         public function setName(_arg1:String):void
@@ -351,10 +353,8 @@
             {
                 removeChild(this.nameChooseLink_);
                 this.nameChooseLink_ = null;
-            };
+            }
         }
-
-
     }
 }
 

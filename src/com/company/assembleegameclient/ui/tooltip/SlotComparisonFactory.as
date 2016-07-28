@@ -1,26 +1,26 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.CloakComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.GeneralProjectileComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.GenericArmorComparison;
-    import kabam.rotmg.constants.ItemConstants;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.TomeComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.ShieldComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SpellComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SealComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.CloakComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.QuiverComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.HelmetComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.PoisonComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SkullComparison;
-    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.TrapComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.OrbComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.PoisonComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.PrismComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.QuiverComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.ScepterComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SealComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.ShieldComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SkullComparison;
     import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SlotComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.SpellComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.TomeComparison;
+    import com.company.assembleegameclient.ui.tooltip.slotcomparisons.TrapComparison;
 
-    public class SlotComparisonFactory 
+    import kabam.rotmg.constants.ItemConstants;
+
+    public class SlotComparisonFactory
     {
-
         private var hash:Object;
 
         public function SlotComparisonFactory()
@@ -63,11 +63,9 @@
                 _local4.compare(_arg1, _arg2);
                 _local5.lineBuilder = _local4.comparisonStringBuilder;
                 _local5.processedTags = _local4.processedTags;
-            };
+            }
             return (_local5);
         }
-
-
     }
 }
 

@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.pets.view.components
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.pets.view.components.slot.PetFeedFuseSlot;
-    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
+
     import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
+    import kabam.rotmg.pets.view.components.slot.PetFeedFuseSlot;
 
-    public class PetFeeder extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class PetFeeder extends Sprite
     {
-
         public const openPetPicker:Signal = new Signal();
         public const acceptableMatch:Signal = new Signal(Boolean, PetVO);
         public const petLoaded:Signal = new Signal(PetVO);
-
         private var leftSlot:PetFeedFuseSlot;
         private var arrow:FeedFuseArrow;
         private var rightSlot:FoodFeedFuseSlot;
@@ -47,7 +47,7 @@
             if (_arg1)
             {
                 this.petLoaded.dispatch(_arg1);
-            };
+            }
         }
 
         public function clearFood():void
@@ -97,7 +97,7 @@
                 this.rightSlot.highlight((this.state.rightSlotItemId == -1));
                 this.leftSlot.highlight((this.state.leftSlotPetVO == null));
                 this.arrow.highlight(false);
-            };
+            }
         }
 
         public function setProcessing(_arg1:Boolean):void
@@ -113,10 +113,8 @@
             else
             {
                 this.update();
-            };
+            }
         }
-
-
     }
 }
 

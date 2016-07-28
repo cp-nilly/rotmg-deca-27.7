@@ -1,22 +1,23 @@
 ﻿package com.company.assembleegameclient.appengine
 {
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.core.StaticInjectorContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
-    import kabam.rotmg.appengine.api.RetryLoader;
-    import flash.net.URLLoaderDataFormat;
-    import ion.utils.png.PNGDecoder;
     import flash.display.BitmapData;
+    import flash.net.URLLoaderDataFormat;
     import flash.utils.ByteArray;
 
-    public class RemoteTexture 
-    {
+    import ion.utils.png.PNGDecoder;
 
+    import kabam.rotmg.appengine.api.RetryLoader;
+    import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
+    import kabam.rotmg.core.StaticInjectorContext;
+
+    import robotlegs.bender.framework.api.IInjector;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class RemoteTexture
+    {
         private static const URL_PATTERN:String = "http://{DOMAIN}/picture/get";
         private static const ERROR_PATTERN:String = "Remote Texture Error: {ERROR} (id:{ID}, instance:{INSTANCE})";
         private static const START_TIME:int = int(new Date().getTime());
-
         public var id_:String;
         public var instance_:String;
         public var callback_:Function;
@@ -33,7 +34,9 @@
 
         public function run():void
         {
-            var _local1:String = (((this.instance_)=="testing") ? "rotmgtesting.appspot.com" : "realmofthemadgod.appspot.com");
+            var _local1:String = (((this.instance_) == "testing")
+                    ? "rotmgtesting.appspot.com"
+                    : "realmofthemadgod.appspot.com");
             var _local2:String = URL_PATTERN.replace("{DOMAIN}", _local1);
             var _local3:Object = {};
             _local3.id = this.id_;
@@ -53,7 +56,7 @@
             else
             {
                 this.reportError(_arg2);
-            };
+            }
         }
 
         public function makeTexture(_arg1:ByteArray):void
@@ -64,13 +67,13 @@
 
         public function reportError(_arg1:String):void
         {
-            _arg1 = ERROR_PATTERN.replace("{ERROR}", _arg1).replace("{ID}", this.id_).replace("{INSTANCE}", this.instance_);
+            _arg1 = ERROR_PATTERN.replace("{ERROR}", _arg1).replace("{ID}", this.id_).replace(
+                    "{INSTANCE}", this.instance_
+            );
             this.logger.warn("RemoteTexture.reportError: {0}", [_arg1]);
             var _local2:BitmapData = new BitmapDataSpy(1, 1);
             this.callback_(_local2);
         }
-
-
     }
 }
 

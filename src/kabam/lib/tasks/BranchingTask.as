@@ -1,13 +1,12 @@
 ﻿package kabam.lib.tasks
 {
-    public class BranchingTask extends BaseTask 
+    public class BranchingTask extends BaseTask
     {
-
         private var task:Task;
         private var success:Task;
         private var failure:Task;
 
-        public function BranchingTask(_arg1:Task, _arg2:Task=null, _arg3:Task=null)
+        public function BranchingTask(_arg1:Task, _arg2:Task = null, _arg3:Task = null)
         {
             this.task = _arg1;
             this.success = _arg2;
@@ -30,7 +29,7 @@
             this.task.start();
         }
 
-        private function onTaskFinished(_arg1:Task, _arg2:Boolean, _arg3:String=""):void
+        private function onTaskFinished(_arg1:Task, _arg2:Boolean, _arg3:String = ""):void
         {
             if (_arg2)
             {
@@ -39,7 +38,7 @@
             else
             {
                 this.handleBranchTask(this.failure);
-            };
+            }
         }
 
         private function handleBranchTask(_arg1:Task):void
@@ -52,15 +51,13 @@
             else
             {
                 completeTask(true);
-            };
+            }
         }
 
-        private function onBranchComplete(_arg1:Task, _arg2:Boolean, _arg3:String=""):void
+        private function onBranchComplete(_arg1:Task, _arg2:Boolean, _arg3:String = ""):void
         {
             completeTask(_arg2, _arg3);
         }
-
-
     }
 }
 

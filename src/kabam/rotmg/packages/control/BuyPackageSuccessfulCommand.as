@@ -4,12 +4,10 @@
     import kabam.rotmg.packages.view.PackageInfoDialog;
     import kabam.rotmg.text.model.TextKey;
 
-    public class BuyPackageSuccessfulCommand 
+    public class BuyPackageSuccessfulCommand
     {
-
         [Inject]
         public var openDialog:OpenDialogSignal;
-
 
         public function execute():void
         {
@@ -18,10 +16,10 @@
 
         private function makeDialog():PackageInfoDialog
         {
-            return (new PackageInfoDialog().setTitle(TextKey.PACKAGE_PURCHASED_TITLE).setBody(TextKey.PACKAGE_PURCHASED_MESSAGE, TextKey.PACKAGE_PURCHASED_BODY));
+            return (new PackageInfoDialog().setTitle(TextKey.PACKAGE_PURCHASED_TITLE).setBody(
+                    TextKey.PACKAGE_PURCHASED_MESSAGE, TextKey.PACKAGE_PURCHASED_BODY
+            ));
         }
-
-
     }
 }
 

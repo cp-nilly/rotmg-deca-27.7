@@ -1,22 +1,22 @@
 ﻿package kabam.rotmg.account.web.services
 {
-    import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.LoadAccountTask;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.account.web.model.AccountData;
-    import flash.net.SharedObject;
     import com.company.assembleegameclient.util.GUID;
 
-    public class WebLoadAccountTask extends BaseTask implements LoadAccountTask 
-    {
+    import flash.net.SharedObject;
 
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.services.LoadAccountTask;
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+
+    public class WebLoadAccountTask extends BaseTask implements LoadAccountTask
+    {
         [Inject]
         public var account:Account;
         [Inject]
         public var client:AppEngineClient;
         private var data:AccountData;
-
 
         override protected function startTask():void
         {
@@ -28,7 +28,7 @@
             else
             {
                 this.setGuestPasswordAndComplete();
-            };
+            }
         }
 
         private function getAccountData():void
@@ -41,11 +41,11 @@
                 ((rotmg.data["GUID"]) && ((this.data.username = rotmg.data["GUID"])));
                 ((rotmg.data["Password"]) && ((this.data.password = rotmg.data["Password"])));
             }
-            catch(error:Error)
+            catch (error:Error)
             {
                 data.username = null;
                 data.password = null;
-            };
+            }
         }
 
         private function setAccountDataThenComplete():void
@@ -60,8 +60,6 @@
             this.account.updateUser(GUID.create(), null);
             completeTask(true);
         }
-
-
     }
 }
 

@@ -1,27 +1,28 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import flash.utils.Timer;
     import com.company.assembleegameclient.objects.Player;
-    import flash.events.TimerEvent;
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.util.AssetLibrary;
+
+    import flash.display.Bitmap;
     import flash.display.BitmapData;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+    import flash.display.Sprite;
+    import flash.events.TimerEvent;
     import flash.filters.DropShadowFilter;
-    import kabam.rotmg.ui.view.SignalWaiter;
+    import flash.utils.Timer;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class BoostPanel extends Sprite 
+    import org.osflash.signals.Signal;
+
+    public class BoostPanel extends Sprite
     {
-
         public const resized:Signal = new Signal();
         private const SPACE:uint = 40;
-
         private var timer:Timer;
         private var player:Player;
         private var tierBoostTimer:BoostTimer;
@@ -61,15 +62,17 @@
                 {
                     this.destroyBoostTimers();
                     this.createBoostTimers();
-                };
-            };
+                }
+            }
         }
 
         private function createHeader():void
         {
             var _local2:Bitmap;
             var _local3:TextFieldDisplayConcrete;
-            var _local1:BitmapData = TextureRedrawer.redraw(AssetLibrary.getImageFromSet("lofiInterfaceBig", 22), 20, true, 0);
+            var _local1:BitmapData = TextureRedrawer.redraw(
+                    AssetLibrary.getImageFromSet("lofiInterfaceBig", 22), 20, true, 0
+            );
             _local2 = new Bitmap(_local1);
             _local2.x = -3;
             _local2.y = -1;
@@ -107,16 +110,18 @@
             else
             {
                 _local1.complete.addOnce(this.createBackground);
-            };
+            }
         }
 
         private function addTierBoostIfAble(_arg1:SignalWaiter):void
         {
             if (this.player.tierBoost)
             {
-                this.tierBoostTimer = this.returnBoostTimer(new LineBuilder().setParams(TextKey.BOOSTPANEL_TIERLEVELINCREASED), this.player.tierBoost);
+                this.tierBoostTimer = this.returnBoostTimer(
+                        new LineBuilder().setParams(TextKey.BOOSTPANEL_TIERLEVELINCREASED), this.player.tierBoost
+                );
                 this.addTimer(_arg1, this.tierBoostTimer);
-            };
+            }
         }
 
         private function addDropTimerIfAble(_arg1:SignalWaiter):void
@@ -125,9 +130,13 @@
             if (this.player.dropBoost)
             {
                 _local2 = "1.5x";
-                this.dropBoostTimer = this.returnBoostTimer(new LineBuilder().setParams(TextKey.BOOSTPANEL_DROPRATE, {"rate":_local2}), this.player.dropBoost);
+                this.dropBoostTimer = this.returnBoostTimer(
+                        new LineBuilder().setParams(
+                                TextKey.BOOSTPANEL_DROPRATE, {"rate": _local2}
+                        ), this.player.dropBoost
+                );
                 this.addTimer(_arg1, this.dropBoostTimer);
-            };
+            }
         }
 
         private function addTimer(_arg1:SignalWaiter, _arg2:BoostTimer):void
@@ -144,11 +153,11 @@
             if (((this.tierBoostTimer) && (this.tierBoostTimer.parent)))
             {
                 removeChild(this.tierBoostTimer);
-            };
+            }
             if (((this.dropBoostTimer) && (this.dropBoostTimer.parent)))
             {
                 removeChild(this.dropBoostTimer);
-            };
+            }
             this.tierBoostTimer = null;
             this.dropBoostTimer = null;
         }
@@ -160,8 +169,6 @@
             _local3.setTime(_arg2);
             return (_local3);
         }
-
-
     }
 }
 

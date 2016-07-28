@@ -1,21 +1,23 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import flash.display.Sprite;
-    import flash.display.DisplayObject;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.Signal;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
+
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import flash.events.MouseEvent;
     import flash.text.TextFormatAlign;
+
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.util.graphics.ButtonLayoutHelper;
 
-    public class PackageInfoDialog extends Sprite 
-    {
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
 
+    public class PackageInfoDialog extends Sprite
+    {
         private static const TITLE_Y:int = 8;
         private static const BUTTON_WIDTH:int = 120;
         private static const BUTTON_FONT:int = 16;
@@ -24,7 +26,6 @@
         private static const BUTTON_Y:int = 368;
         private static const MESSAGE_TITLE_Y:int = 164;
         private static const MESSAGE_BODY_Y:int = 210;
-
         private const background:DisplayObject = makeBackground();
         private const title:TextFieldDisplayConcrete = makeTitle();
         private const messageTitle:TextFieldDisplayConcrete = makeMessageTitle();
@@ -107,8 +108,6 @@
         {
             new ButtonLayoutHelper().layout(DIALOG_WIDTH, this.close);
         }
-
-
     }
 }
 

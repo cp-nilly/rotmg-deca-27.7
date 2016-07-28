@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class EnemyHit extends OutgoingMessage 
+    public class EnemyHit extends OutgoingMessage
     {
-
         public var time_:int;
         public var bulletId_:uint;
         public var targetId_:int;
@@ -27,8 +26,6 @@
         {
             return (formatToString("ENEMYHIT", "time_", "bulletId_", "targetId_", "kill_"));
         }
-
-
     }
 }
 

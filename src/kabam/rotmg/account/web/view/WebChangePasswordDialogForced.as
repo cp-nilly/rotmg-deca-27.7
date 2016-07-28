@@ -1,15 +1,17 @@
 ﻿package kabam.rotmg.account.web.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
-    import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.natives.NativeMappedSignal;
+
     import flash.events.MouseEvent;
 
-    public class WebChangePasswordDialogForced extends Frame 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebChangePasswordDialogForced extends Frame
+    {
         public var cancel:Signal;
         public var change:Signal;
         public var password_:TextInputField;
@@ -34,7 +36,7 @@
             if (!_local1)
             {
                 this.password_.setError(TextKey.WEB_CHANGE_PASSWORD_INCORRECT);
-            };
+            }
             return (_local1);
         }
 
@@ -57,10 +59,10 @@
                     {
                         this.newPassword_.setError(TextKey.LINK_WEB_ACCOUNT_SHORT);
                         _local1 = false;
-                    };
+                    }
                     _local3++;
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -70,7 +72,7 @@
             if (!_local1)
             {
                 this.retypeNewPassword_.setError(TextKey.PASSWORD_DOES_NOT_MATCH);
-            };
+            }
             return (_local1);
         }
 
@@ -85,8 +87,6 @@
             this.retypeNewPassword_.clearError();
             this.newPassword_.clearError();
         }
-
-
     }
 }
 

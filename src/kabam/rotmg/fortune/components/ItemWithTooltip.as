@@ -1,23 +1,25 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.tooltips.TooltipAble;
-    import kabam.rotmg.tooltips.HoverTooltipDelegate;
-    import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import org.osflash.signals.Signal;
-    import flash.display.Bitmap;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.ui.tooltip.EquipmentToolTip;
     import com.company.assembleegameclient.constants.InventoryOwnerTypes;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.ui.tooltip.EquipmentToolTip;
+    import com.company.assembleegameclient.ui.tooltip.ToolTip;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
+
     import kabam.rotmg.core.signals.HideTooltipsSignal;
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.tooltips.HoverTooltipDelegate;
+    import kabam.rotmg.tooltips.TooltipAble;
 
-    public class ItemWithTooltip extends Sprite implements TooltipAble 
+    import org.osflash.signals.Signal;
+
+    public class ItemWithTooltip extends Sprite implements TooltipAble
     {
-
         private var itemId:int;
         public var hoverTooltipDelegate:HoverTooltipDelegate;
         private var tooltip:ToolTip;
@@ -25,7 +27,7 @@
         public var onMouseOut:Signal;
         public var itemBitmap:Bitmap;
 
-        public function ItemWithTooltip(_arg1:int, _arg2:int=100, _arg3:Boolean=false)
+        public function ItemWithTooltip(_arg1:int, _arg2:int = 100, _arg3:Boolean = false)
         {
             this.hoverTooltipDelegate = new HoverTooltipDelegate();
             this.onMouseOver = new Signal();
@@ -45,7 +47,7 @@
                 addEventListener(Event.REMOVED_FROM_STAGE, this.onDestruct);
                 addEventListener(MouseEvent.ROLL_OVER, this.onRollOver);
                 addEventListener(MouseEvent.ROLL_OUT, this.onRollOut);
-            };
+            }
         }
 
         public function disableTooltip():void
@@ -116,8 +118,6 @@
         {
             return ((this.y + (this.height / 2)));
         }
-
-
     }
 }
 

@@ -1,14 +1,12 @@
 ﻿package kabam.lib.ui.impl
 {
-    import kabam.lib.ui.api.Layout;
     import flash.display.DisplayObject;
-    import __AS3__.vec.Vector;
 
-    public class VerticalLayout implements Layout 
+    import kabam.lib.ui.api.Layout;
+
+    public class VerticalLayout implements Layout
     {
-
         private var padding:int = 0;
-
 
         public function getPadding():int
         {
@@ -20,7 +18,7 @@
             this.padding = _arg1;
         }
 
-        public function layout(_arg1:Vector.<DisplayObject>, _arg2:int=0):void
+        public function layout(_arg1:Vector.<DisplayObject>, _arg2:int = 0):void
         {
             var _local6:DisplayObject;
             var _local3:int = _arg2;
@@ -32,10 +30,8 @@
                 _local6.y = _local3;
                 _local3 = (_local3 + (_local6.height + this.padding));
                 _local5++;
-            };
+            }
         }
-
-
     }
 }
 

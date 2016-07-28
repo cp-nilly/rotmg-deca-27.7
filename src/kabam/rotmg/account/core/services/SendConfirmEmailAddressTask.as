@@ -2,9 +2,8 @@
 {
     import kabam.lib.tasks.Task;
 
-    public interface SendConfirmEmailAddressTask extends Task 
+    public interface SendConfirmEmailAddressTask extends Task
     {
-
     }
 }
 

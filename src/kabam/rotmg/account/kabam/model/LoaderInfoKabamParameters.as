@@ -1,13 +1,14 @@
 ﻿package kabam.rotmg.account.kabam.model
 {
     import flash.display.LoaderInfo;
-    import kabam.lib.json.JsonParser;
+
     import kabam.lib.json.Base64Decoder;
+    import kabam.lib.json.JsonParser;
+
     import robotlegs.bender.framework.api.ILogger;
 
-    public class LoaderInfoKabamParameters implements KabamParameters 
+    public class LoaderInfoKabamParameters implements KabamParameters
     {
-
         [Inject]
         public var info:LoaderInfo;
         [Inject]
@@ -16,7 +17,6 @@
         public var decoder:Base64Decoder;
         [Inject]
         public var logger:ILogger;
-
 
         public function getSignedRequest():String
         {
@@ -36,15 +36,15 @@
                 if (requestDetails.length != 2)
                 {
                     throw (new Error("Invalid signed request"));
-                };
+                }
                 payload = this.base64UrlDecode(requestDetails[1]);
                 userSession = this.json.parse(payload);
             }
-            catch(error:Error)
+            catch (error:Error)
             {
                 logger.info(((("Failed to get user session: " + error.toString()) + ", signed request: ") + signedRequest));
                 userSession = null;
-            };
+            }
             return (userSession);
         }
 
@@ -56,12 +56,10 @@
             while (_local4--)
             {
                 _arg1 = (_arg1 + "=");
-            };
+            }
             _arg1 = _arg1.replace(_local2, "+").replace(_local3, "/");
             return (this.decoder.decode(_arg1));
         }
-
-
     }
 }
 

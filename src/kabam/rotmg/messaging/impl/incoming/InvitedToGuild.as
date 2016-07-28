@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class InvitedToGuild extends IncomingMessage 
+    public class InvitedToGuild extends IncomingMessage
     {
-
         public var name_:String;
         public var guildName_:String;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("INVITEDTOGUILD", "name_", "guildName_"));
         }
-
-
     }
 }
 

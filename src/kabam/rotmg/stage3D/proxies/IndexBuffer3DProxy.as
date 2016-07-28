@@ -1,11 +1,9 @@
 ﻿package kabam.rotmg.stage3D.proxies
 {
     import flash.display3D.IndexBuffer3D;
-    import __AS3__.vec.Vector;
 
-    public class IndexBuffer3DProxy 
+    public class IndexBuffer3DProxy
     {
-
         private var indexBuffer:IndexBuffer3D;
 
         public function IndexBuffer3DProxy(_arg1:IndexBuffer3D)
@@ -22,8 +20,6 @@
         {
             return (this.indexBuffer);
         }
-
-
     }
 }
 

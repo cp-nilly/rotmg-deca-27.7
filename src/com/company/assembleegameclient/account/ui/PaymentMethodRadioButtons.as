@@ -1,22 +1,20 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.account.ui.components.SelectionGroup;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.account.ui.components.Selectable;
-    import flash.events.Event;
+    import com.company.assembleegameclient.account.ui.components.SelectionGroup;
+
     import flash.display.DisplayObject;
-    import kabam.lib.ui.impl.HorizontalLayout;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+
     import kabam.lib.ui.api.Layout;
-    import __AS3__.vec.*;
+    import kabam.lib.ui.impl.HorizontalLayout;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PaymentMethodRadioButtons extends Sprite 
+    public class PaymentMethodRadioButtons extends Sprite
     {
-
         private const waiter:SignalWaiter = new SignalWaiter();
-
         private var labels:Vector.<String>;
         private var boxes:Vector.<PaymentMethodRadioButton>;
         private var group:SelectionGroup;
@@ -49,7 +47,7 @@
             {
                 this.boxes[_local2] = this.makeRadioButton(this.labels[_local2]);
                 _local2++;
-            };
+            }
         }
 
         private function makeRadioButton(_arg1:String):PaymentMethodRadioButton
@@ -84,7 +82,7 @@
             {
                 _local2[_local3] = this.boxes[_local3];
                 _local3++;
-            };
+            }
             return (_local2);
         }
 
@@ -104,11 +102,9 @@
             {
                 _local2[_local3] = this.boxes[_local3];
                 _local3++;
-            };
+            }
             return (_local2);
         }
-
-
     }
 }
 

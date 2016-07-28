@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.servers.api.Server;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.*;
 
-    public class ServerBoxes extends Sprite 
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.servers.api.Server;
+
+    public class ServerBoxes extends Sprite
     {
-
         private var boxes_:Vector.<ServerBox>;
 
         public function ServerBoxes(_arg1:Vector.<Server>)
@@ -32,14 +31,14 @@
                 if (_local4.name == Parameters.data_.preferredServer)
                 {
                     this.setSelected(_local2);
-                };
+                }
                 _local2.x = ((_local3 % 2) * (ServerBox.WIDTH + 4));
                 _local2.y = (int((_local3 / 2)) * (ServerBox.HEIGHT + 4));
                 _local2.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
                 addChild(_local2);
                 this.boxes_.push(_local2);
                 _local3++;
-            };
+            }
         }
 
         private function onMouseDown(_arg1:MouseEvent):void
@@ -48,7 +47,7 @@
             if (_local2 == null)
             {
                 return;
-            };
+            }
             this.setSelected(_local2);
             Parameters.data_.preferredServer = _local2.value_;
             Parameters.save();
@@ -60,11 +59,9 @@
             for each (_local2 in this.boxes_)
             {
                 _local2.setSelected(false);
-            };
+            }
             _arg1.setSelected(true);
         }
-
-
     }
 }
 

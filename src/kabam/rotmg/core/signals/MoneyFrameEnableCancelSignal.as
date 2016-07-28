@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class MoneyFrameEnableCancelSignal extends Signal 
+    public class MoneyFrameEnableCancelSignal extends Signal
     {
-
-
     }
 }
 

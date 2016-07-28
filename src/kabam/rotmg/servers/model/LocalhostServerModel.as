@@ -1,14 +1,12 @@
 ﻿package kabam.rotmg.servers.model
 {
-    import kabam.rotmg.servers.api.ServerModel;
-    import kabam.rotmg.servers.api.Server;
     import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class LocalhostServerModel implements ServerModel 
+    import kabam.rotmg.servers.api.Server;
+    import kabam.rotmg.servers.api.ServerModel;
+
+    public class LocalhostServerModel implements ServerModel
     {
-
         private var localhost:Server;
 
         public function LocalhostServerModel()
@@ -34,8 +32,6 @@
         public function setServers(_arg1:Vector.<Server>):void
         {
         }
-
-
     }
 }
 

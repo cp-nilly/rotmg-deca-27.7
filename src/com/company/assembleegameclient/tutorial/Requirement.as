@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.objects.ObjectLibrary;
 
-    public class Requirement 
+    public class Requirement
     {
-
         public var type_:String;
         public var slot_:int = -1;
         public var objectType_:int = -1;
@@ -18,16 +17,15 @@
             if (((!((_local2 == null))) && (!((_local2 == "")))))
             {
                 this.objectType_ = ObjectLibrary.idToType_[_local2];
-            };
+            }
             this.objectName_ = String(_arg1.@objectName).replace("tutorial_script", "tutorial");
             if (this.objectName_ == null)
             {
                 this.objectName_ = "";
-            };
+            }
             this.slot_ = int(_arg1.@slot);
             this.radius_ = Number(_arg1.@radius);
         }
-
     }
 }
 

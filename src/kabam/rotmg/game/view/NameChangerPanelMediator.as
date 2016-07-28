@@ -1,16 +1,17 @@
 ﻿package kabam.rotmg.game.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.ui.signals.NameChangedSignal;
     import com.company.assembleegameclient.account.ui.ChooseNameFrame;
+
+    import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.core.view.RegisterPromptDialog;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.ui.signals.NameChangedSignal;
 
-    public class NameChangerPanelMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class NameChangerPanelMediator extends Mediator
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -19,7 +20,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var nameChanged:NameChangedSignal;
-
 
         override public function initialize():void
         {
@@ -42,15 +42,13 @@
             else
             {
                 this.openDialog.dispatch(new RegisterPromptDialog(TextKey.NAME_CHANGER_PANEL_MEDIATOR_TEXT));
-            };
+            }
         }
 
         private function onNameChanged(_arg1:String):void
         {
             this.view.updateName(_arg1);
         }
-
-
     }
 }
 

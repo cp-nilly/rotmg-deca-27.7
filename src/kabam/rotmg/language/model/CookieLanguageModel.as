@@ -2,14 +2,10 @@
 {
     import flash.net.SharedObject;
     import flash.utils.Dictionary;
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
 
-    public class CookieLanguageModel implements LanguageModel 
+    public class CookieLanguageModel implements LanguageModel
     {
-
         public static const DEFAULT_LOCALE:String = "en";
-
         private var cookie:SharedObject;
         private var language:String;
         private var availableLanguages:Dictionary;
@@ -22,9 +18,9 @@
             {
                 this.cookie = SharedObject.getLocal("RotMG", "/");
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         public function getLanguage():String
@@ -45,9 +41,9 @@
                 this.cookie.data.locale = _arg1;
                 this.cookie.flush();
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         public function getLanguageFamily():String
@@ -62,7 +58,7 @@
             for (_local2 in this.availableLanguages)
             {
                 _local1.push(_local2);
-            };
+            }
             return (_local1);
         }
 
@@ -80,8 +76,8 @@
                 if (this.availableLanguages[_local3] == _arg1)
                 {
                     _local2 = _local3;
-                };
-            };
+                }
+            }
             return (_local2);
         }
 
@@ -97,8 +93,6 @@
             _local1["Languages.Russian"] = "ru";
             return (_local1);
         }
-
-
     }
 }
 

@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class SendConfirmEmailSignal extends Signal 
+    public class SendConfirmEmailSignal extends Signal
     {
-
-
     }
 }
 

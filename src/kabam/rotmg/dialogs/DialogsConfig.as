@@ -1,29 +1,28 @@
 ﻿package kabam.rotmg.dialogs
 {
-    import robotlegs.bender.framework.api.IConfig;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
     import kabam.lib.console.signals.RegisterConsoleActionSignal;
     import kabam.lib.console.vo.ConsoleAction;
-    import kabam.rotmg.dialogs.control.ShowDialogBackgroundSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.dialogs.control.PushDialogSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.dialogs.control.PopDialogSignal;
-    import kabam.rotmg.dialogs.view.DialogsView;
+    import kabam.rotmg.dialogs.control.PushDialogSignal;
+    import kabam.rotmg.dialogs.control.ShowDialogBackgroundSignal;
     import kabam.rotmg.dialogs.view.DialogsMediator;
+    import kabam.rotmg.dialogs.view.DialogsView;
 
-    public class DialogsConfig implements IConfig 
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class DialogsConfig implements IConfig
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var register:RegisterConsoleActionSignal;
-
 
         public function configure():void
         {
@@ -40,8 +39,6 @@
             _local1.description = "closes all open dialogs";
             this.register.dispatch(_local1, this.injector.getInstance(CloseDialogsSignal));
         }
-
-
     }
 }
 

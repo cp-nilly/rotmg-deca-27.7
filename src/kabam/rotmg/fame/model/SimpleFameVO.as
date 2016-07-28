@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.fame.model
 {
-    public class SimpleFameVO implements FameVO 
+    public class SimpleFameVO implements FameVO
     {
-
         private var accountId:String;
         private var characterId:int;
 
@@ -21,8 +20,6 @@
         {
             return (this.characterId);
         }
-
-
     }
 }
 

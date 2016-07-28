@@ -1,15 +1,14 @@
 ﻿package com.company.assembleegameclient.editor
 {
-    import flash.display.Sprite;
     import com.company.ui.BaseSimpleText;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
 
-    public class CommandMenuItem extends Sprite 
+    public class CommandMenuItem extends Sprite
     {
-
         private static const WIDTH:int = 80;
         private static const HEIGHT:int = 25;
-
         public var callback_:Function;
         public var command_:int;
         private var over_:Boolean = false;
@@ -75,8 +74,8 @@
                     graphics.drawRect(0, 0, WIDTH, HEIGHT);
                     graphics.endFill();
                     graphics.lineStyle();
-                };
-            };
+                }
+            }
         }
 
         private function onMouseOver(_arg1:MouseEvent):void
@@ -108,8 +107,6 @@
         {
             this.callback_(this);
         }
-
-
     }
 }
 

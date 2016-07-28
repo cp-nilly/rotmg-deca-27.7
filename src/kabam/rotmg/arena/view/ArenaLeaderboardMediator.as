@@ -1,16 +1,16 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.arena.control.ReloadLeaderboard;
+    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
     import kabam.rotmg.arena.model.ArenaLeaderboardModel;
     import kabam.rotmg.arena.service.GetArenaLeaderboardTask;
-    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
-    public class ArenaLeaderboardMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class ArenaLeaderboardMediator extends Mediator
     {
-
         [Inject]
         public var injector:IInjector;
         [Inject]
@@ -21,7 +21,6 @@
         public var reloadLeaderboard:ReloadLeaderboard;
         [Inject]
         public var arenaLeaderboardModel:ArenaLeaderboardModel;
-
 
         override public function initialize():void
         {
@@ -55,15 +54,13 @@
                 _local2 = this.injector.getInstance(GetArenaLeaderboardTask);
                 _local2.filter = _arg1;
                 _local2.start();
-            };
+            }
         }
 
         private function requestComplete():void
         {
             this.view.reloadList();
         }
-
-
     }
 }
 

@@ -1,13 +1,13 @@
 ﻿package kabam.rotmg.core.view
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObjectContainer;
-    import kabam.rotmg.tooltips.view.TooltipsView;
+    import flash.display.Sprite;
+
     import kabam.rotmg.dialogs.view.DialogsView;
+    import kabam.rotmg.tooltips.view.TooltipsView;
 
-    public class Layers extends Sprite 
+    public class Layers extends Sprite
     {
-
         private var menu:ScreensView;
         public var overlay:DisplayObjectContainer;
         private var tooltips:TooltipsView;
@@ -29,7 +29,6 @@
             addChild((this.api = new Sprite()));
             addChild((this.console = new Sprite()));
         }
-
     }
 }
 

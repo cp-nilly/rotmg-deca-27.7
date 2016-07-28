@@ -1,22 +1,24 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import kabam.rotmg.text.model.TextKey;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.core.StaticInjectorContext;
+    import com.company.assembleegameclient.util.offer.Offer;
+
+    import flash.net.URLVariables;
+
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.application.api.ApplicationSetup;
-    import flash.net.URLVariables;
-    import com.company.assembleegameclient.util.offer.Offer;
-    import __AS3__.vec.*;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.text.model.TextKey;
 
-    public class PaymentMethod 
+    public class PaymentMethod
     {
-
-        public static const GO_METHOD:PaymentMethod = new (PaymentMethod)(TextKey.PAYMENTS_GOOGLE_CHECKOUT, "co", "");
-        public static const PAYPAL_METHOD:PaymentMethod = new (PaymentMethod)(TextKey.PAYMENTS_PAYPAL, "ps", "P3");
-        public static const CREDITS_METHOD:PaymentMethod = new (PaymentMethod)(TextKey.PAYMENTS_CREDIT_CARDS, "ps", "CH");
-        public static const PAYMENT_METHODS:Vector.<PaymentMethod> = new <PaymentMethod>[GO_METHOD, PAYPAL_METHOD, CREDITS_METHOD];
-
+        public static const GO_METHOD:PaymentMethod = new PaymentMethod(TextKey.PAYMENTS_GOOGLE_CHECKOUT, "co", "");
+        public static const PAYPAL_METHOD:PaymentMethod = new PaymentMethod(TextKey.PAYMENTS_PAYPAL, "ps", "P3");
+        public static const CREDITS_METHOD:PaymentMethod = new PaymentMethod(
+                TextKey.PAYMENTS_CREDIT_CARDS, "ps", "CH"
+        );
+        public static const PAYMENT_METHODS:Vector.<PaymentMethod> = new <PaymentMethod>[
+            GO_METHOD, PAYPAL_METHOD, CREDITS_METHOD
+        ];
         public var label_:String;
         public var provider_:String;
         public var paymentid_:String;
@@ -36,11 +38,10 @@
                 if (_local2.label_ == _arg1)
                 {
                     return (_local2);
-                };
-            };
+                }
+            }
             return (null);
         }
-
 
         public function getURL(_arg1:String, _arg2:String, _arg3:Offer):String
         {
@@ -61,11 +62,9 @@
                     _local6["price"] = _arg3.price_.toString();
                     _local6["paymentid"] = this.paymentid_;
                     break;
-            };
+            }
             return (((_local5.getAppEngineUrl(true) + "/credits/add?") + _local6.toString()));
         }
-
-
     }
 }
 

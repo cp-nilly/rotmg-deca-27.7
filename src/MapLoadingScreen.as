@@ -1,9 +1,9 @@
-package 
+package
 {
     import flash.display.*;
-    
-    [Embed(source="MapLoadingScreen.swf", symbol = "MapLoadingScreen")]
-    public dynamic class MapLoadingScreen extends flash.display.MovieClip
+
+    [Embed(source="MapLoadingScreen.swf", symbol="MapLoadingScreen")]
+    public dynamic class MapLoadingScreen extends MovieClip
     {
         public function MapLoadingScreen()
         {
@@ -11,10 +11,8 @@ package
             return;
         }
 
-        public var difficulty_indicators:flash.display.MovieClip;
-
-        public var mapNameContainer:flash.display.MovieClip;
-
-        public var bgGroup:flash.display.MovieClip;
+        public var difficulty_indicators:MovieClip;
+        public var mapNameContainer:MovieClip;
+        public var bgGroup:MovieClip;
     }
 }

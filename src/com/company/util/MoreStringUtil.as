@@ -2,10 +2,8 @@
 {
     import flash.utils.ByteArray;
 
-    public class MoreStringUtil 
+    public class MoreStringUtil
     {
-
-
         public static function hexStringToByteArray(_arg1:String):ByteArray
         {
             var _local2:ByteArray = new ByteArray();
@@ -14,7 +12,7 @@
             {
                 _local2.writeByte(parseInt(_arg1.substr(_local3, 2), 16));
                 _local3 = (_local3 + 2);
-            };
+            }
             return (_local2);
         }
 
@@ -22,8 +20,6 @@
         {
             return (_arg1.localeCompare(_arg2));
         }
-
-
     }
 }
 

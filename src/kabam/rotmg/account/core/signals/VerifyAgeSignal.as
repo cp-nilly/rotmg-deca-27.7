@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class VerifyAgeSignal extends Signal 
+    public class VerifyAgeSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,21 +1,19 @@
 ﻿package kabam.rotmg.news.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.rotmg.news.controller.NewsDataUpdatedSignal;
-    import kabam.rotmg.news.model.NewsModel;
-    import __AS3__.vec.Vector;
     import kabam.rotmg.news.model.NewsCellVO;
+    import kabam.rotmg.news.model.NewsModel;
 
-    public class NewsMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class NewsMediator extends Mediator
     {
-
         [Inject]
         public var view:NewsView;
         [Inject]
         public var update:NewsDataUpdatedSignal;
         [Inject]
         public var model:NewsModel;
-
 
         override public function initialize():void
         {
@@ -32,8 +30,6 @@
         {
             this.view.update(_arg1);
         }
-
-
     }
 }
 

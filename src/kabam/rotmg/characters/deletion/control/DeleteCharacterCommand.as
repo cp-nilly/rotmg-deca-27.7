@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.characters.deletion.control
 {
-    import kabam.rotmg.characters.deletion.service.DeleteCharacterTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.SetScreenSignal;
-    import kabam.lib.tasks.TaskSequence;
-    import kabam.lib.tasks.DispatchSignalTask;
-    import kabam.rotmg.characters.deletion.view.DeletingCharacterView;
-    import kabam.lib.tasks.BranchingTask;
     import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
+
+    import kabam.lib.tasks.BranchingTask;
+    import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.Task;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.characters.deletion.service.DeleteCharacterTask;
+    import kabam.rotmg.characters.deletion.view.DeletingCharacterView;
+    import kabam.rotmg.core.signals.SetScreenSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class DeleteCharacterCommand 
+    public class DeleteCharacterCommand
     {
-
         [Inject]
         public var task:DeleteCharacterTask;
         [Inject]
@@ -25,7 +25,6 @@
         public var closeDialogs:CloseDialogsSignal;
         [Inject]
         public var setScreen:SetScreenSignal;
-
 
         public function execute():void
         {
@@ -48,8 +47,6 @@
         {
             return (new DispatchSignalTask(this.openDialog, "Unable to delete character"));
         }
-
-
     }
 }
 

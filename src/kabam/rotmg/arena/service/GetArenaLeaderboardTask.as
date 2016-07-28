@@ -1,19 +1,17 @@
 ﻿package kabam.rotmg.arena.service
 {
+    import com.company.util.MoreObjectUtil;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.arena.control.ReloadLeaderboard;
-    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
-    import __AS3__.vec.Vector;
     import kabam.rotmg.arena.model.ArenaLeaderboardEntry;
-    import com.company.util.MoreObjectUtil;
+    import kabam.rotmg.arena.model.ArenaLeaderboardFilter;
 
-    public class GetArenaLeaderboardTask extends BaseTask 
+    public class GetArenaLeaderboardTask extends BaseTask
     {
-
         private static const REQUEST:String = "arena/getRecords";
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -23,7 +21,6 @@
         [Inject]
         public var reloadLeaderboard:ReloadLeaderboard;
         public var filter:ArenaLeaderboardFilter;
-
 
         override protected function startTask():void
         {
@@ -46,12 +43,10 @@
 
         private function makeRequestObject():Object
         {
-            var _local1:Object = {"type":this.filter.getKey()};
+            var _local1:Object = {"type": this.filter.getKey()};
             MoreObjectUtil.addToObject(_local1, this.account.getCredentials());
             return (_local1);
         }
-
-
     }
 }
 

@@ -1,19 +1,17 @@
 ﻿package com.company.assembleegameclient.engine3d
 {
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.stage3D.Object3D.Model3D_stage3d;
-    import flash.utils.ByteArray;
-    import flash.display3D.Context3D;
     import com.company.util.ConversionUtil;
+
+    import flash.display3D.Context3D;
+    import flash.utils.ByteArray;
+
+    import kabam.rotmg.stage3D.Object3D.Model3D_stage3d;
     import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
-    import __AS3__.vec.*;
 
-    public class Model3D 
+    public class Model3D
     {
-
         private static var modelLib_:Object = new Object();
         private static var models:Object = new Object();
-
         public var vL_:Vector.<Number>;
         public var uvts_:Vector.<Number>;
         public var faces_:Vector.<ModelFace3D>;
@@ -39,7 +37,7 @@
             for each (_local2 in models)
             {
                 _local2.CreatBuffer(_arg1);
-            };
+            }
         }
 
         public static function parseFromOBJ(_arg1:String, _arg2:String):void
@@ -80,21 +78,21 @@
                                     if (_local15.length != 3)
                                     {
                                         return;
-                                    };
+                                    }
                                     _local4.push(_local15);
                                     break;
                                 case "vt":
                                     if (_local15.length != 2)
                                     {
                                         return;
-                                    };
+                                    }
                                     _local5.push(_local15);
                                     break;
                                 case "f":
                                     if (_local15.length < 3)
                                     {
                                         return;
-                                    };
+                                    }
                                     _local8.push(_local15);
                                     _local10.push(_local9);
                                     for each (_local17 in _local15)
@@ -103,22 +101,22 @@
                                         {
                                             _local7[_local17] = _local6.length;
                                             _local6.push(_local17);
-                                        };
-                                    };
+                                        }
+                                    }
                                     break;
                                 case "usemtl":
                                     if (_local15.length != 1)
                                     {
                                         return;
-                                    };
+                                    }
                                     _local9 = _local15[0];
                                     break;
-                            };
-                        };
-                    };
-                };
-            };
-            _local12 = new (Model3D)();
+                            }
+                        }
+                    }
+                }
+            }
+            _local12 = new Model3D();
             for each (_local13 in _local6)
             {
                 _local18 = _local13.split("/");
@@ -131,8 +129,8 @@
                 else
                 {
                     _local12.uvts_.push(0, 0, 0);
-                };
-            };
+                }
+            }
             _local14 = 0;
             while (_local14 < _local8.length)
             {
@@ -144,10 +142,14 @@
                 {
                     _local21.push(_local7[_local19[_local22]]);
                     _local22++;
-                };
-                _local12.faces_.push(new ModelFace3D(_local12, _local21, (((_local20 == null)) || (!((_local20.substr(0, 5) == "Solid"))))));
+                }
+                _local12.faces_.push(
+                        new ModelFace3D(
+                                _local12, _local21, (((_local20 == null)) || (!((_local20.substr(0, 5) == "Solid"))))
+                        )
+                );
                 _local14++;
-            };
+            }
             _local12.orderFaces();
             modelLib_[_arg1] = _local12;
         }
@@ -163,7 +165,7 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (new Object3D(_local2));
         }
 
@@ -173,10 +175,9 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (new Object3DStage3D(_local2));
         }
-
 
         public function toString():String
         {
@@ -190,8 +191,6 @@
         {
             this.faces_.sort(ModelFace3D.compare);
         }
-
-
     }
 }
 

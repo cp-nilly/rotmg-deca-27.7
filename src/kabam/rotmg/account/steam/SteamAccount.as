@@ -1,20 +1,18 @@
 ﻿package kabam.rotmg.account.steam
 {
-    import kabam.rotmg.account.core.Account;
     import com.company.util.EmailValidator;
 
-    public class SteamAccount implements Account 
+    import kabam.rotmg.account.core.Account;
+
+    public class SteamAccount implements Account
     {
-
         public static const NETWORK_NAME:String = "steam";
-
         [Inject]
         public var api:SteamApi;
         private var userId:String = "";
         private var password:String = null;
         private var isVerifiedEmail:Boolean;
         private var platformToken:String;
-
 
         public function updateUser(_arg1:String, _arg2:String):void
         {
@@ -124,8 +122,6 @@
         {
             throw (new Error("No current support for new Kabam offer wall on Steam."));
         }
-
-
     }
 }
 

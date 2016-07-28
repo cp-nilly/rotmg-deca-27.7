@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class MoveRecord 
+    public class MoveRecord
     {
-
         public var time_:int;
         public var x_:Number;
         public var y_:Number;
@@ -27,8 +26,6 @@
         {
             return (((((("time_: " + this.time_) + " x_: ") + this.x_) + " y_: ") + this.y_));
         }
-
-
     }
 }
 

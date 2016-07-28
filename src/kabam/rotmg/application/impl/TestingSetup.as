@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.application.impl
 {
-    import kabam.rotmg.application.api.ApplicationSetup;
     import com.company.assembleegameclient.parameters.Parameters;
 
-    public class TestingSetup implements ApplicationSetup 
-    {
+    import kabam.rotmg.application.api.ApplicationSetup;
 
+    public class TestingSetup implements ApplicationSetup
+    {
         private const SERVER:String = "rotmgtesting.appspot.com";
         private const UNENCRYPTED:String = ("http://" + SERVER);
         private const ENCRYPTED:String = ("https://" + SERVER);
         private const ANALYTICS:String = "UA-11236645-6";
         private const BUILD_LABEL:String = "<font color='#FF0000'>TESTING</font> #{VERSION}";
 
-
-        public function getAppEngineUrl(_arg1:Boolean=false):String
+        public function getAppEngineUrl(_arg1:Boolean = false):String
         {
             return (((_arg1) ? this.UNENCRYPTED : this.ENCRYPTED));
         }
@@ -63,8 +62,6 @@
         {
             return (false);
         }
-
-
     }
 }
 

@@ -1,29 +1,27 @@
 ﻿package kabam.rotmg.appengine
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.framework.api.IContext;
-    import kabam.rotmg.application.api.ApplicationSetup;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.appengine.api.RetryLoader;
-    import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
-    import kabam.rotmg.appengine.impl.AppEngineRequestStats;
-    import kabam.rotmg.appengine.impl.SimpleAppEngineClient;
     import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.appengine.api.RetryLoader;
+    import kabam.rotmg.appengine.impl.AppEngineRequestStats;
+    import kabam.rotmg.appengine.impl.AppEngineRetryLoader;
+    import kabam.rotmg.appengine.impl.SimpleAppEngineClient;
     import kabam.rotmg.appengine.impl.StatsRecorderAppEngineClient;
     import kabam.rotmg.appengine.impl.TrackingAppEngineClient;
+    import kabam.rotmg.application.api.ApplicationSetup;
 
-    public class AppEngineConfig implements IConfig 
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class AppEngineConfig implements IConfig
     {
-
         private const TRACK_APP_ENGINE_CALLS:Boolean = true;
-
         [Inject]
         public var context:IContext;
         [Inject]
         public var setup:ApplicationSetup;
         [Inject]
         public var injector:IInjector;
-
 
         public function configure():void
         {
@@ -41,8 +39,8 @@
                 else
                 {
                     this.configureForSimplicity();
-                };
-            };
+                }
+            }
         }
 
         private function configureCoreDependencies():void
@@ -67,8 +65,6 @@
         {
             this.injector.map(AppEngineClient).toType(SimpleAppEngineClient);
         }
-
-
     }
 }
 

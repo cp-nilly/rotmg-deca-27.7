@@ -1,8 +1,7 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    public class EffectProperties 
+    public class EffectProperties
     {
-
         public var id:String;
         public var particle:String;
         public var cooldown:Number;
@@ -46,7 +45,6 @@
             this.bitmapFile = _arg1.@bitmapFile;
             this.bitmapIndex = _arg1.@bitmapIndex;
         }
-
     }
 }
 

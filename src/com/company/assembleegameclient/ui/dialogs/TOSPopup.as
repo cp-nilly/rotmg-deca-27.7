@@ -1,40 +1,38 @@
 ﻿package com.company.assembleegameclient.ui.dialogs
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.StageProxy;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.text.model.TextKey;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import flash.display.Graphics;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.appengine.api.AppEngineClient;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import __AS3__.vec.*;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class TOSPopup extends Sprite 
+    public class TOSPopup extends Sprite
     {
-
         public static const LEFT_BUTTON:String = "dialogLeftButton";
         public static const GREY:int = 0xB3B3B3;
         public static const WIDTH:int = 210;
-
         public var box_:Sprite;
         public var rect_:Shape;
         public var textText_:TextFieldDisplayConcrete;
@@ -48,13 +46,16 @@
         public var dialogWidth:int;
         private var textMargin:int = 15;
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         protected var buttonAccept:DeprecatedTextButton;
         protected var uiWaiter:SignalWaiter;
-
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function TOSPopup()
         {
@@ -104,12 +105,11 @@
             this.textText2_.setMultiLine(true).setWordWrap(true).setAutoSize(TextFieldAutoSize.CENTER);
             var _local1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
             var _local2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
-            var _local3:LineBuilder = new LineBuilder().setParams("Legal.tos2", {
-                "tou":_local1,
-                "_tou":"</a></font>",
-                "policy":_local2,
-                "_policy":"</a></font>"
-            });
+            var _local3:LineBuilder = new LineBuilder().setParams(
+                    "Legal.tos2", {
+                        "tou": _local1, "_tou": "</a></font>", "policy": _local2, "_policy": "</a></font>"
+                    }
+            );
             this.textText2_.setStringBuilder(_local3);
             this.textText2_.setHTML(true);
             this.textText2_.mouseEnabled = true;
@@ -156,7 +156,7 @@
             if (this.box_.contains(this.rect_))
             {
                 this.box_.removeChild(this.rect_);
-            };
+            }
             this.removeButtonsIfAlreadyAdded();
             this.addButtonsAndLayout();
             this.drawBackground();
@@ -167,7 +167,11 @@
         private function drawBackground():void
         {
             GraphicsUtil.clearPath(this.path_);
-            GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [1, 1, 1, 1], this.path_);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [
+                        1, 1, 1, 1
+                    ], this.path_
+            );
             var _local1:Graphics = this.rect_.graphics;
             _local1.clear();
             _local1.drawGraphicsData(this.graphicsData_);
@@ -197,7 +201,7 @@
             if (((this.buttonAccept) && (this.box_.contains(this.buttonAccept))))
             {
                 this.box_.removeChild(this.buttonAccept);
-            };
+            }
         }
 
         protected function onLeftButtonClick(_arg1:MouseEvent):void
@@ -210,8 +214,6 @@
             var _local5:CloseDialogsSignal = StaticInjectorContext.getInjector().getInstance(CloseDialogsSignal);
             _local5.dispatch();
         }
-
-
     }
 }
 

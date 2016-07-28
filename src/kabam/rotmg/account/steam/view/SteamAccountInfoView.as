@@ -1,18 +1,17 @@
 ﻿package kabam.rotmg.account.steam.view
 {
     import flash.display.Sprite;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import kabam.rotmg.account.core.view.AccountInfoView;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class SteamAccountInfoView extends Sprite implements AccountInfoView 
+    public class SteamAccountInfoView extends Sprite implements AccountInfoView
     {
-
         private static const FONT_SIZE:int = 18;
-
         private var accountText:TextFieldDisplayConcrete;
         private var userName:String = "";
         private var isRegistered:Boolean;
@@ -34,10 +33,8 @@
         {
             this.userName = _arg1;
             this.isRegistered = _arg2;
-            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.LOGGED_IN_TEXT, {"userName":_arg1}));
+            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.LOGGED_IN_TEXT, {"userName": _arg1}));
         }
-
-
     }
 }
 

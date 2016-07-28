@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.pets.data
 {
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.objects.ObjectLibrary;
 
-    public class AbilityVO 
+    import org.osflash.signals.Signal;
+
+    public class AbilityVO
     {
-
         public const updated:Signal = new Signal(AbilityVO);
-
         private var _type:uint;
         private var _staticData:XML;
         public var level:int;
@@ -15,7 +14,6 @@
         public var name:String;
         public var description:String;
         private var unlocked:Boolean;
-
 
         public function set type(_arg1:uint):void
         {
@@ -34,8 +32,6 @@
         {
             return (this.unlocked);
         }
-
-
     }
 }
 

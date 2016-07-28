@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class RelayApiLoginSignal extends Signal 
+    public class RelayApiLoginSignal extends Signal
     {
-
-
     }
 }
 

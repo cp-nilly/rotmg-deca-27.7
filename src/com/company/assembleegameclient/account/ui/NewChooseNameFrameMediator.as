@@ -1,17 +1,18 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.ui.signals.NameChangedSignal;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.core.model.PlayerModel;
     import com.company.util.MoreObjectUtil;
 
-    public class NewChooseNameFrameMediator extends Mediator 
-    {
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.ui.signals.NameChangedSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class NewChooseNameFrameMediator extends Mediator
+    {
         [Inject]
         public var view:NewChooseNameFrame;
         [Inject]
@@ -27,7 +28,6 @@
         [Inject]
         public var playerModel:PlayerModel;
         private var name:String;
-
 
         override public function initialize():void
         {
@@ -51,12 +51,12 @@
             else
             {
                 this.sendNameToServer();
-            };
+            }
         }
 
         private function sendNameToServer():void
         {
-            var _local1:Object = {"name":this.name};
+            var _local1:Object = {"name": this.name};
             MoreObjectUtil.addToObject(_local1, this.account.getCredentials());
             this.client.complete.addOnce(this.onComplete);
             this.client.sendRequest("/account/setName", _local1);
@@ -72,7 +72,7 @@
             else
             {
                 this.onNameChoseError(_arg2);
-            };
+            }
         }
 
         private function onNameChoseDone():void
@@ -80,7 +80,7 @@
             if (this.playerModel != null)
             {
                 this.playerModel.setName(this.name);
-            };
+            }
             this.nameChanged.dispatch(this.name);
             this.closeDialogs.dispatch();
         }
@@ -95,8 +95,6 @@
         {
             this.closeDialogs.dispatch();
         }
-
-
     }
 }
 

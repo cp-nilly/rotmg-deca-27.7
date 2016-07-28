@@ -2,11 +2,9 @@
 {
     import flash.geom.Vector3D;
 
-    public class Lighting3D 
+    public class Lighting3D
     {
-
         public static const LIGHT_VECTOR:Vector3D = createLightVector();
-
 
         public static function shadeValue(_arg1:Vector3D, _arg2:Number):Number
         {
@@ -20,8 +18,6 @@
             _local1.normalize();
             return (_local1);
         }
-
-
     }
 }
 

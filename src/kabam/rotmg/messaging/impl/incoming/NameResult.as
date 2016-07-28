@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class NameResult extends IncomingMessage 
+    public class NameResult extends IncomingMessage
     {
-
         public var success_:Boolean;
         public var errorText_:String;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("NAMERESULT", "success_", "errorText_"));
         }
-
-
     }
 }
 

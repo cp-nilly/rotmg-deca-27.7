@@ -1,28 +1,29 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import kabam.rotmg.assets.services.CharacterFactory;
-    import kabam.rotmg.classes.model.ClassesModel;
+    import com.company.assembleegameclient.appengine.CharacterStats;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.ui.GameObjectListItem;
-    import com.company.assembleegameclient.ui.StatusBar;
     import com.company.assembleegameclient.ui.LineBreakDesign;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.ui.StatusBar;
     import com.company.assembleegameclient.ui.panels.itemgrids.EquippedGrid;
     import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
-    import com.company.assembleegameclient.appengine.CharacterStats;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import kabam.rotmg.classes.model.CharacterClass;
-    import kabam.rotmg.classes.model.CharacterSkin;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.constants.GeneralConstants;
     import com.company.assembleegameclient.util.FameUtil;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import flash.filters.DropShadowFilter;
 
-    public class MyPlayerToolTip extends ToolTip 
-    {
+    import kabam.rotmg.assets.services.CharacterFactory;
+    import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
+    public class MyPlayerToolTip extends ToolTip
+    {
         private var factory:CharacterFactory;
         private var classes:ClassesModel;
         public var player_:Player;
@@ -87,16 +88,19 @@
             if (_local5 > 0)
             {
                 this.makeNextClassQuestText(_local5, _local2);
-            };
+            }
         }
 
         public function makeNextClassQuestText(_arg1:int, _arg2:XML):void
         {
             this.nextClassQuest_ = new TextFieldDisplayConcrete().setSize(13).setColor(16549442).setTextWidth(174);
-            this.nextClassQuest_.setStringBuilder(new LineBuilder().setParams(TextKey.MY_PLAYER_TOOL_TIP_NEXT_CLASS_QUEST, {
-                "nextStarFame":_arg1,
-                "character":_arg2.DisplayId
-            }));
+            this.nextClassQuest_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.MY_PLAYER_TOOL_TIP_NEXT_CLASS_QUEST, {
+                                "nextStarFame": _arg1, "character": _arg2.DisplayId
+                            }
+                    )
+            );
             this.nextClassQuest_.filters = [new DropShadowFilter(0, 0, 0)];
             addChild(this.nextClassQuest_);
             waiter.push(this.nextClassQuest_.textChanged);
@@ -106,13 +110,15 @@
         {
             this.bestLevel_ = new TextFieldDisplayConcrete().setSize(14).setColor(6206769);
             var _local1:int = (((this.charStats == null)) ? 0 : this.charStats.numStars());
-            var _local2:String = (((this.charStats)!=null) ? this.charStats.bestLevel() : 0).toString();
-            var _local3:String = (((this.charStats)!=null) ? this.charStats.bestFame() : 0).toString();
-            this.bestLevel_.setStringBuilder(new LineBuilder().setParams(TextKey.BESTLEVEL__STATS, {
-                "numStars":_local1,
-                "bestLevel":_local2,
-                "fame":_local3
-            }));
+            var _local2:String = (((this.charStats) != null) ? this.charStats.bestLevel() : 0).toString();
+            var _local3:String = (((this.charStats) != null) ? this.charStats.bestFame() : 0).toString();
+            this.bestLevel_.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.BESTLEVEL__STATS, {
+                                "numStars": _local1, "bestLevel": _local2, "fame": _local3
+                            }
+                    )
+            );
             this.bestLevel_.filters = [new DropShadowFilter(0, 0, 0)];
             addChild(this.bestLevel_);
             waiter.push(this.bestLevel_.textChanged);
@@ -124,7 +130,7 @@
             {
                 this.nextClassQuest_.x = 8;
                 this.nextClassQuest_.y = (this.bestLevel_.getBounds(this).bottom - 2);
-            };
+            }
         }
 
         override public function draw():void
@@ -134,8 +140,6 @@
             this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
             super.draw();
         }
-
-
     }
 }
 

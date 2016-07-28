@@ -1,24 +1,25 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import org.osflash.signals.ISlot;
-    import kabam.rotmg.pets.data.AbilityVO;
-    import org.osflash.signals.natives.NativeSignal;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+
+    import kabam.rotmg.pets.data.AbilityVO;
     import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PetAbilityDisplay extends Sprite 
+    import org.osflash.signals.ISlot;
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PetAbilityDisplay extends Sprite
     {
-
         public const addToolTip:Signal = new Signal(ToolTip);
-
         public var valueTextField:TextFieldDisplayConcrete;
         private var rollOver:ISlot;
         private var labelTextField:TextFieldDisplayConcrete;
@@ -67,7 +68,7 @@
             if (this.vo.getUnlocked())
             {
                 this.makeValueTextField();
-            };
+            }
         }
 
         private function makeValueTextField():void
@@ -83,8 +84,12 @@
         {
             if (this.valueTextField)
             {
-                this.valueTextField.setStringBuilder(new LineBuilder().setParams(this.getLevelKey(this.vo), {"level":this.vo.level}));
-            };
+                this.valueTextField.setStringBuilder(
+                        new LineBuilder().setParams(
+                                this.getLevelKey(this.vo), {"level": this.vo.level}
+                        )
+                );
+            }
         }
 
         private function makeLabelTextfield():void
@@ -97,7 +102,9 @@
 
         private function getLevelKey(_arg1:AbilityVO):String
         {
-            return ((((_arg1.level < PetsConstants.MAX_LEVEL)) ? TextKey.PET_ABILITY_LEVEL : TextKey.PET_ABILITY_LEVEL_MAX));
+            return ((((_arg1.level < PetsConstants.MAX_LEVEL))
+                    ? TextKey.PET_ABILITY_LEVEL
+                    : TextKey.PET_ABILITY_LEVEL_MAX));
         }
 
         private function waitForTextChanged():void
@@ -111,8 +118,6 @@
         {
             this.valueTextField.x = (this.spacing - this.valueTextField.width);
         }
-
-
     }
 }
 

@@ -1,24 +1,25 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.screens.TitleMenuOption;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class WebAccountInfoView extends Sprite implements AccountInfoView 
+    import kabam.rotmg.account.core.view.AccountInfoView;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebAccountInfoView extends Sprite implements AccountInfoView
     {
-
         private static const FONT_SIZE:int = 18;
-
         private var _login:Signal;
         private var _register:Signal;
         private var userName:String = "";
@@ -109,7 +110,7 @@
             else
             {
                 this.showUIForGuestAccount();
-            };
+            }
         }
 
         private function removeUIElements():void
@@ -117,24 +118,38 @@
             while (numChildren)
             {
                 removeChildAt(0);
-            };
+            }
         }
 
         private function showUIForRegisteredAccount():void
         {
-            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.LOGGED_IN_TEXT, {"userName":this.userName}));
+            this.accountText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.LOGGED_IN_TEXT, {"userName": this.userName}
+                    )
+            );
             this.loginButton.setTextKey(TextKey.LOG_OUT);
             this.addAndAlignHorizontally(this.accountText, this.loginButton);
         }
 
         private function showUIForGuestAccount():void
         {
-            this.accountText.setStringBuilder(new LineBuilder().setParams(TextKey.GUEST_ACCOUNT, {"userName":this.userName}));
+            this.accountText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.GUEST_ACCOUNT, {"userName": this.userName}
+                    )
+            );
             this.loginButton.setTextKey(TextKey.LOG_IN);
-            this.addAndAlignHorizontally(this.accountText, this.makeDividerText(), this.registerButton, this.makeDividerText(), this.loginButton);
+            this.addAndAlignHorizontally(
+                    this.accountText,
+                    this.makeDividerText(),
+                    this.registerButton,
+                    this.makeDividerText(),
+                    this.loginButton
+            );
         }
 
-        private function addAndAlignHorizontally(... _args):void
+        private function addAndAlignHorizontally(..._args):void
         {
             var _local2:DisplayObject;
             var _local3:int;
@@ -143,7 +158,7 @@
             for each (_local2 in _args)
             {
                 addChild(_local2);
-            };
+            }
             _local3 = 0;
             _local4 = _args.length;
             while (_local4--)
@@ -151,10 +166,8 @@
                 _local5 = _args[_local4];
                 _local5.x = _local3;
                 _local3 = (_local3 - _local5.width);
-            };
+            }
         }
-
-
     }
 }
 

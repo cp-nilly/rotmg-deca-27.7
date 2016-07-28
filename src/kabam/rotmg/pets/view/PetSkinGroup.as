@@ -1,28 +1,26 @@
 ﻿package kabam.rotmg.pets.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.data.PetSkinGroupVO;
-    import kabam.rotmg.pets.view.components.slot.FeedFuseSlot;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.pets.view.components.PetIcon;
-    import kabam.rotmg.pets.view.dialogs.PetItem;
-    import org.osflash.signals.natives.NativeSignal;
     import flash.events.MouseEvent;
+
+    import kabam.rotmg.pets.data.PetSkinGroupVO;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.PetIcon;
     import kabam.rotmg.pets.view.components.PetIconFactory;
-    import __AS3__.vec.*;
+    import kabam.rotmg.pets.view.components.slot.FeedFuseSlot;
+    import kabam.rotmg.pets.view.dialogs.PetItem;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class PetSkinGroup extends Sprite 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PetSkinGroup extends Sprite
     {
-
         private const SPACING:uint = 55;
         public const initComplete:Signal = new Signal();
-
         private var rarityTextField:TextFieldDisplayConcrete;
         private var upperContainer:Sprite;
         private var lowerContainer:Sprite;
@@ -96,16 +94,16 @@
                 else
                 {
                     this.addToLower(_local5);
-                };
+                }
                 this.slots.push(_local5);
                 if (this.disabled)
                 {
                     _local4.disable();
                     _local5.mouseChildren = false;
                     _local5.mouseEnabled = false;
-                };
+                }
                 _local1++;
-            };
+            }
         }
 
         private function createPetIcon(_arg1:PetVO, _arg2:int):PetIcon
@@ -146,10 +144,8 @@
                 _local3 = PetItem(_local2.getIcon()).getPetVO().getSkinID();
                 _local2.highlight((_local3 == _arg1));
                 _local4++;
-            };
+            }
         }
-
-
     }
 }
 

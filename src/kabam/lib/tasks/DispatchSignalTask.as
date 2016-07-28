@@ -2,13 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class DispatchSignalTask extends BaseTask 
+    public class DispatchSignalTask extends BaseTask
     {
-
         private var signal:Signal;
         private var params:Array;
 
-        public function DispatchSignalTask(_arg1:Signal, ... _args)
+        public function DispatchSignalTask(_arg1:Signal, ..._args)
         {
             this.signal = _arg1;
             this.params = _args;
@@ -19,8 +18,6 @@
             this.signal.dispatch.apply(null, this.params);
             completeTask(true);
         }
-
-
     }
 }
 

@@ -1,17 +1,17 @@
 ﻿package kabam.lib.ui
 {
-    import org.osflash.signals.Signal;
-    import flash.utils.Dictionary;
-    import flash.events.IEventDispatcher;
     import flash.events.Event;
+    import flash.events.IEventDispatcher;
+    import flash.utils.Dictionary;
 
-    public class GroupMappedSignal extends Signal 
+    import org.osflash.signals.Signal;
+
+    public class GroupMappedSignal extends Signal
     {
-
         private var eventType:String;
         private var mappedTargets:Dictionary;
 
-        public function GroupMappedSignal(_arg1:String, ... _args)
+        public function GroupMappedSignal(_arg1:String, ..._args)
         {
             this.eventType = _arg1;
             this.mappedTargets = new Dictionary(true);
@@ -28,8 +28,6 @@
         {
             dispatch(this.mappedTargets[_arg1.target]);
         }
-
-
     }
 }
 

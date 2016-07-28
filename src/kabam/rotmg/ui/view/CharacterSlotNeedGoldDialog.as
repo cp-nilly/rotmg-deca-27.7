@@ -1,22 +1,21 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
-    import kabam.rotmg.text.model.TextKey;
+
+    import flash.display.Sprite;
     import flash.events.Event;
 
-    public class CharacterSlotNeedGoldDialog extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+
+    import org.osflash.signals.Signal;
+
+    public class CharacterSlotNeedGoldDialog extends Sprite
     {
-
         private static const ANALYTICS_PAGE:String = "/charSlotNeedGold";
-
         public const buyGold:Signal = new Signal();
         public const cancel:Signal = new Signal();
-
         private var dialog:Dialog;
         private var price:int;
-
 
         public function setPrice(_arg1:int):void
         {
@@ -29,8 +28,10 @@
 
         private function makeDialog():void
         {
-            this.dialog = new Dialog(TextKey.NOT_ENOUGH_GOLD, "", TextKey.FRAME_CANCEL, TextKey.BUY_GOLD, ANALYTICS_PAGE);
-            this.dialog.setTextParams(TextKey.CHARACTERSLOTNEEDGOLDDIALOG_PRICE, {"price":this.price});
+            this.dialog = new Dialog(
+                    TextKey.NOT_ENOUGH_GOLD, "", TextKey.FRAME_CANCEL, TextKey.BUY_GOLD, ANALYTICS_PAGE
+            );
+            this.dialog.setTextParams(TextKey.CHARACTERSLOTNEEDGOLDDIALOG_PRICE, {"price": this.price});
             addChild(this.dialog);
         }
 
@@ -43,8 +44,6 @@
         {
             this.buyGold.dispatch();
         }
-
-
     }
 }
 

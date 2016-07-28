@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class ReskinUnlock extends IncomingMessage 
+    public class ReskinUnlock extends IncomingMessage
     {
-
         public var skinID:int;
 
         public function ReskinUnlock(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("RESKIN", "skinID"));
         }
-
-
     }
 }
 

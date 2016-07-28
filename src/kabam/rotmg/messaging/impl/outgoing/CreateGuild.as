@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class CreateGuild extends OutgoingMessage 
+    public class CreateGuild extends OutgoingMessage
     {
-
         public var name_:String;
 
         public function CreateGuild(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("CREATEGUILD", "name_"));
         }
-
-
     }
 }
 

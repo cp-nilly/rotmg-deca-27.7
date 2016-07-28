@@ -3,14 +3,12 @@
     import kabam.lib.console.signals.RegisterConsoleActionSignal;
     import kabam.lib.console.vo.ConsoleAction;
 
-    public class AddReskinConsoleActionCommand 
+    public class AddReskinConsoleActionCommand
     {
-
         [Inject]
         public var register:RegisterConsoleActionSignal;
         [Inject]
         public var openReskinDialogSignal:OpenReskinDialogSignal;
-
 
         public function execute():void
         {
@@ -20,8 +18,6 @@
             _local1.description = "opens the reskin UI";
             this.register.dispatch(_local1, this.openReskinDialogSignal);
         }
-
-
     }
 }
 

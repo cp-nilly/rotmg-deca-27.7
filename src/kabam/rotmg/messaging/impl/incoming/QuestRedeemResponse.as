@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class QuestRedeemResponse extends IncomingMessage 
+    public class QuestRedeemResponse extends IncomingMessage
     {
-
         public var ok:Boolean;
         public var message:String;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("QUESTREDEEMRESPONSE", "ok", "message"));
         }
-
-
     }
 }
 

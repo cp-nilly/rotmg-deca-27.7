@@ -1,35 +1,36 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import com.company.assembleegameclient.objects.Portal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import flash.text.TextFormatAlign;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.GameSprite;
-    import flash.events.MouseEvent;
-    import flash.events.KeyboardEvent;
-    import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import com.company.googleanalytics.GA;
-    import com.company.assembleegameclient.tutorial.doneAction;
-    import com.company.assembleegameclient.tutorial.Tutorial;
+    import com.company.assembleegameclient.objects.Portal;
     import com.company.assembleegameclient.objects.PortalNameParser;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.tutorial.Tutorial;
+    import com.company.assembleegameclient.tutorial.doneAction;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.googleanalytics.GA;
+
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormatAlign;
+
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class PortalPanel extends Panel 
+    import org.osflash.signals.Signal;
+
+    public class PortalPanel extends Panel
     {
-
         private const LOCKED:String = "Locked ";
         private const TEXT_PATTERN:RegExp = /\{"text":"(.+)"}/;
         public const exitGameSignal:Signal = new Signal();
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var owner_:Portal;
         private var nameText_:TextFieldDisplayConcrete;
         private var enterButton_:DeprecatedTextButton;
@@ -47,7 +48,9 @@
             addChild(this.enterButton_);
             this.waiter.push(this.enterButton_.textChanged);
             this.fullText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xFF0000).setHTML(true).setBold(true).setAutoSize(TextFieldAutoSize.CENTER);
-            var _local3:String = ((this.owner_.lockedPortal_) ? TextKey.PORTAL_PANEL_LOCKED : TextKey.PORTAL_PANEL_FULL);
+            var _local3:String = ((this.owner_.lockedPortal_)
+                    ? TextKey.PORTAL_PANEL_LOCKED
+                    : TextKey.PORTAL_PANEL_FULL);
             this.fullText_.setStringBuilder(new LineBuilder().setParams(_local3).setPrefix('<p align="center">').setPostfix("</p>"));
             this.fullText_.filters = [new DropShadowFilter(0, 0, 0)];
             this.fullText_.textChanged.addOnce(this.alignUI);
@@ -86,7 +89,7 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((stage.focus == null))))
             {
                 this.enterPortal();
-            };
+            }
         }
 
         private function enterPortal():void
@@ -99,7 +102,7 @@
             else
             {
                 GA.global().trackEvent("enterPortal", this.owner_.getName());
-            };
+            }
             doneAction(gs_, Tutorial.ENTER_PORTAL_ACTION);
             gs_.gsc_.usePortal(this.owner_.objectId_);
             this.exitGameSignal.dispatch();
@@ -119,8 +122,8 @@
                 {
                     removeChild(this.enterButton_);
                     addChild(this.fullText_);
-                };
-            };
+                }
+            }
         }
 
         private function updateNameText():void
@@ -138,7 +141,7 @@
             if (((this.owner_.lockedPortal_) && ((_local1.indexOf(this.LOCKED) == 0))))
             {
                 return (_local1.substr(this.LOCKED.length));
-            };
+            }
             return (this.parseJson(_local1));
         }
 
@@ -147,8 +150,6 @@
             var _local2:Array = _arg1.match(this.TEXT_PATTERN);
             return (((_local2) ? _local2[1] : _arg1));
         }
-
-
     }
 }
 

@@ -1,11 +1,10 @@
 ﻿package com.company.util
 {
-    public class Random 
+    public class Random
     {
-
         public var seed:uint;
 
-        public function Random(_arg1:uint=1)
+        public function Random(_arg1:uint = 1)
         {
             this.seed = _arg1;
         }
@@ -14,7 +13,6 @@
         {
             return (Math.round(((Math.random() * (uint.MAX_VALUE - 1)) + 1)));
         }
-
 
         public function nextInt():uint
         {
@@ -26,7 +24,7 @@
             return ((this.gen() / 2147483647));
         }
 
-        public function nextNormal(_arg1:Number=0, _arg2:Number=1):Number
+        public function nextNormal(_arg1:Number = 0, _arg2:Number = 1):Number
         {
             var _local3:Number = (this.gen() / 2147483647);
             var _local4:Number = (this.gen() / 2147483647);
@@ -36,7 +34,7 @@
 
         public function nextIntRange(_arg1:uint, _arg2:uint):uint
         {
-            return ((((_arg1)==_arg2) ? _arg1 : (_arg1 + (this.gen() % (_arg2 - _arg1)))));
+            return ((((_arg1) == _arg2) ? _arg1 : (_arg1 + (this.gen() % (_arg2 - _arg1)))));
         }
 
         public function nextDoubleRange(_arg1:Number, _arg2:Number):Number
@@ -55,11 +53,9 @@
             if (_local2 > 2147483647)
             {
                 _local2 = (_local2 - 2147483647);
-            };
+            }
             return ((this.seed = _local2));
         }
-
-
     }
 }
 

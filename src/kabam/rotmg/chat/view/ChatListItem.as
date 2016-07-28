@@ -1,20 +1,19 @@
 ﻿package kabam.rotmg.chat.view
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.DisplayObject;
-    import flash.utils.getTimer;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.ui.model.HUDModel;
     import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.core.StaticInjectorContext;
+
+    import flash.display.DisplayObject;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
     import flash.geom.Rectangle;
+    import flash.utils.getTimer;
 
-    public class ChatListItem extends Sprite 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.ui.model.HUDModel;
+
+    public class ChatListItem extends Sprite
     {
-
         private static const CHAT_ITEM_TIMEOUT:uint = 20000;
-
         private var itemWidth:int;
         private var list:Vector.<DisplayObject>;
         private var count:uint;
@@ -26,7 +25,16 @@
         public var fromGuild:Boolean = false;
         public var isTrade:Boolean = false;
 
-        public function ChatListItem(_arg1:Vector.<DisplayObject>, _arg2:int, _arg3:int, _arg4:Boolean, _arg5:int, _arg6:String, _arg7:Boolean, _arg8:Boolean)
+        public function ChatListItem(
+                _arg1:Vector.<DisplayObject>,
+                _arg2:int,
+                _arg3:int,
+                _arg4:Boolean,
+                _arg5:int,
+                _arg6:String,
+                _arg7:Boolean,
+                _arg8:Boolean
+        )
         {
             mouseEnabled = true;
             this.itemWidth = _arg2;
@@ -67,13 +75,13 @@
                         if (((((((this.isTrade) && (!((this.playerName == null))))) && (!((this.playerName == ""))))) && (!((hmod.gameSprite.map.player_.name_ == this.playerName)))))
                         {
                             hmod.gameSprite.addChatPlayerMenu(null, e.stageX, e.stageY, this.playerName, false, true);
-                        };
-                    };
-                };
+                        }
+                    }
+                }
             }
-            catch(e:Error)
+            catch (e:Error)
             {
-            };
+            }
         }
 
         public function isTimedOut():Boolean
@@ -104,11 +112,11 @@
                     {
                         this.list[_local5].y = (this.list[_local5].y - this.layoutHeight);
                         _local5++;
-                    };
-                };
+                    }
+                }
                 _local1 = (_local1 + _local4.width);
                 _local2++;
-            };
+            }
         }
 
         private function addItems():void
@@ -117,10 +125,8 @@
             for each (_local1 in this.list)
             {
                 addChild(_local1);
-            };
+            }
         }
-
-
     }
 }
 

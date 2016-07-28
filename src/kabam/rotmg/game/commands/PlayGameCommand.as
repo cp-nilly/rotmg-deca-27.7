@@ -1,24 +1,24 @@
 ﻿package kabam.rotmg.game.commands
 {
+    import com.company.assembleegameclient.appengine.SavedCharacter;
+    import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.parameters.Parameters;
+
+    import flash.utils.ByteArray;
+
+    import kabam.lib.net.impl.SocketServerModel;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.rotmg.account.core.services.GetCharListTask;
+    import kabam.rotmg.core.model.PlayerModel;
     import kabam.rotmg.core.signals.SetScreenSignal;
     import kabam.rotmg.game.model.GameInitData;
-    import kabam.rotmg.core.model.PlayerModel;
     import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.servers.api.ServerModel;
-    import kabam.rotmg.account.core.services.GetCharListTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.lib.net.impl.SocketServerModel;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import com.company.assembleegameclient.parameters.Parameters;
     import kabam.rotmg.servers.api.Server;
-    import flash.utils.ByteArray;
-    import com.company.assembleegameclient.game.GameSprite;
+    import kabam.rotmg.servers.api.ServerModel;
 
-    public class PlayGameCommand 
+    public class PlayGameCommand
     {
-
         public static const RECONNECT_DELAY:int = 2000;
-
         [Inject]
         public var setScreen:SetScreenSignal;
         [Inject]
@@ -36,13 +36,12 @@
         [Inject]
         public var socketServerModel:SocketServerModel;
 
-
         public function execute():void
         {
             if (!this.data.isNewGame)
             {
                 this.socketServerModel.connectDelayMS = PlayGameCommand.RECONNECT_DELAY;
-            };
+            }
             this.recordCharacterUseInSharedObject();
             this.makeGameView();
             this.updatePet();
@@ -60,9 +59,9 @@
                 if (((((this.model.currentCharId) && (this.petsModel.getActivePet()))) && (!(this.data.isNewGame))))
                 {
                     return;
-                };
+                }
                 this.petsModel.setActivePet(null);
-            };
+            }
         }
 
         private function recordCharacterUseInSharedObject():void
@@ -80,7 +79,19 @@
             var _local5:int = ((this.data.isNewGame) ? -1 : this.data.keyTime);
             var _local6:ByteArray = this.data.key;
             this.model.currentCharId = _local4;
-            this.setScreen.dispatch(new GameSprite(_local1, _local2, _local3, _local4, _local5, _local6, this.model, null, this.data.isFromArena));
+            this.setScreen.dispatch(
+                    new GameSprite(
+                            _local1,
+                            _local2,
+                            _local3,
+                            _local4,
+                            _local5,
+                            _local6,
+                            this.model,
+                            null,
+                            this.data.isFromArena
+                    )
+            );
         }
 
         private function getInitialGameId():int
@@ -99,12 +110,10 @@
                 else
                 {
                     _local1 = Parameters.NEXUS_GAMEID;
-                };
-            };
+                }
+            }
             return (_local1);
         }
-
-
     }
 }
 

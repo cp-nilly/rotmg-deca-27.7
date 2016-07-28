@@ -1,19 +1,20 @@
 ﻿package kabam.rotmg.account.web.commands
 {
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.signals.InvalidateDataSignal;
-    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.core.model.ScreenModel;
-    import kabam.rotmg.packages.services.GetPackagesTask;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.fame.view.FameView;
     import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
+
     import flash.display.Sprite;
 
-    public class WebLogoutCommand 
-    {
+    import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.core.model.ScreenModel;
+    import kabam.rotmg.core.signals.InvalidateDataSignal;
+    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
+    import kabam.rotmg.fame.view.FameView;
+    import kabam.rotmg.packages.services.GetPackagesTask;
+    import kabam.rotmg.pets.data.PetsModel;
 
+    public class WebLogoutCommand
+    {
         [Inject]
         public var account:Account;
         [Inject]
@@ -26,7 +27,6 @@
         public var getPackageTask:GetPackagesTask;
         [Inject]
         public var petsModel:PetsModel;
-
 
         public function execute():void
         {
@@ -47,11 +47,9 @@
             if (this.screenModel.getCurrentScreenType() == FameView)
             {
                 return (new CharacterSelectionAndNewsScreen());
-            };
+            }
             return (new (((this.screenModel.getCurrentScreenType()) || (CharacterSelectionAndNewsScreen)))());
         }
-
-
     }
 }
 

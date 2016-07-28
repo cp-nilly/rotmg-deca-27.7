@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.constants
 {
-    public class ItemConstants 
+    public class ItemConstants
     {
-
         public static const NO_ITEM:int = -1;
         public static const ALL_TYPE:int = 0;
         public static const SWORD_TYPE:int = 1;
@@ -31,7 +30,6 @@
         public static const KATANA_TYPE:int = 24;
         public static const SHURIKEN_TYPE:int = 25;
         public static const EGG_TYPE:int = 26;
-
 
         public static function itemTypeToName(_arg1:int):String
         {
@@ -91,11 +89,9 @@
                     return ("EquipmentType.Shuriken");
                 case EGG_TYPE:
                     return ("EquipmentType.Any");
-            };
+            }
             return ("EquipmentType.InvalidType");
         }
-
-
     }
 }
 

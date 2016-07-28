@@ -1,24 +1,24 @@
 ﻿package kabam.rotmg.account.transfer.commands
 {
-    import kabam.rotmg.account.core.services.MigrateAccountTask;
-    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.account.transfer.model.TransferAccountData;
-    import kabam.lib.tasks.BranchingTask;
-    import kabam.lib.tasks.TaskSequence;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.application.model.PlatformModel;
-    import kabam.lib.tasks.DispatchSignalTask;
     import com.company.assembleegameclient.ui.dialogs.DebugDialog;
     import com.company.util.HTMLUtil;
+
+    import kabam.lib.tasks.BranchingTask;
+    import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.Task;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.account.core.services.MigrateAccountTask;
+    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
+    import kabam.rotmg.account.transfer.model.TransferAccountData;
+    import kabam.rotmg.application.model.PlatformModel;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class TransferAccountCommand 
+    public class TransferAccountCommand
     {
-
         [Inject]
         public var task:MigrateAccountTask;
         [Inject]
@@ -36,7 +36,6 @@
         [Inject]
         public var data:TransferAccountData;
 
-
         public function execute():void
         {
             var _local1:BranchingTask = new BranchingTask(this.task, this.makeSuccess(), this.makeFailure());
@@ -49,7 +48,15 @@
             var _local1:TaskSequence = new TaskSequence();
             var _local2:PlatformModel = StaticInjectorContext.getInjector().getInstance(PlatformModel);
             _local1.add(new DispatchSignalTask(this.updateAccount));
-            _local1.add(new DispatchSignalTask(this.openDialog, new DebugDialog((this.data.newEmail + " please check your inbox."), "Email Verification Sent!", HTMLUtil.refreshPageNoParams)));
+            _local1.add(
+                    new DispatchSignalTask(
+                            this.openDialog, new DebugDialog(
+                                    (this.data.newEmail + " please check your inbox."),
+                                    "Email Verification Sent!",
+                                    HTMLUtil.refreshPageNoParams
+                            )
+                    )
+            );
             return (_local1);
         }
 
@@ -57,8 +64,6 @@
         {
             return (new DispatchSignalTask(this.loginError, this.task));
         }
-
-
     }
 }
 

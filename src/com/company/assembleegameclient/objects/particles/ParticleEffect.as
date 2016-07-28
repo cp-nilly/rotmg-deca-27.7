@@ -1,13 +1,12 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import com.company.assembleegameclient.objects.GameObject;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
     import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.objects.GameObject;
 
-    public class ParticleEffect extends GameObject 
+    import flash.display.IGraphicsData;
+
+    public class ParticleEffect extends GameObject
     {
-
         public var reducedDrawEnabled:Boolean;
 
         public function ParticleEffect()
@@ -36,17 +35,16 @@
                     return (new XMLEffect(_arg2, _arg1));
                 case "CustomParticles":
                     return (ParticleGenerator.attachParticleGenerator(_arg1, _arg2));
-            };
+            }
             return (null);
         }
-
 
         override public function update(_arg1:int, _arg2:int):Boolean
         {
             if (this.reducedDrawEnabled)
             {
                 return (this.runEasyRendering(_arg1, _arg2));
-            };
+            }
             return (this.runNormalRendering(_arg1, _arg2));
         }
 
@@ -63,8 +61,6 @@
         override public function draw(_arg1:Vector.<IGraphicsData>, _arg2:Camera, _arg3:int):void
         {
         }
-
-
     }
 }
 

@@ -2,14 +2,12 @@
 {
     import robotlegs.bender.bundles.mvcs.Mediator;
 
-    public class KongregateAccountInfoMediator extends Mediator 
+    public class KongregateAccountInfoMediator extends Mediator
     {
-
         [Inject]
         public var view:KongregateAccountInfoView;
         [Inject]
         public var api:KongregateApi;
-
 
         override public function initialize():void
         {
@@ -25,8 +23,6 @@
         {
             this.api.showRegistrationDialog();
         }
-
-
     }
 }
 

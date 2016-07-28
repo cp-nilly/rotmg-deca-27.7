@@ -1,12 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
+
+    import flash.geom.Point;
+
     import kabam.rotmg.messaging.impl.data.WorldPosData;
 
-    public class FlowEffect extends ParticleEffect 
+    public class FlowEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var go_:GameObject;
         public var color_:int;
@@ -25,7 +26,7 @@
             if (FlowParticle.total_ > 200)
             {
                 return (false);
-            };
+            }
             x_ = this.start_.x;
             y_ = this.start_.y;
             var _local3:int = 5;
@@ -36,7 +37,7 @@
                 _local6 = new FlowParticle(0.5, _local5, this.color_, this.start_, this.go_);
                 map_.addObj(_local6, x_, y_);
                 _local4++;
-            };
+            }
             return (false);
         }
 
@@ -47,7 +48,7 @@
             if (FlowParticle.total_ > 200)
             {
                 return (false);
-            };
+            }
             x_ = this.start_.x;
             y_ = this.start_.y;
             var _local3:int = 3;
@@ -58,23 +59,20 @@
                 _local6 = new FlowParticle(0.5, _local5, this.color_, this.start_, this.go_);
                 map_.addObj(_local6, x_, y_);
                 _local4++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 
-import com.company.assembleegameclient.objects.particles.Particle;
-import flash.geom.Point;
 import com.company.assembleegameclient.objects.GameObject;
+import com.company.assembleegameclient.objects.particles.Particle;
 
-class FlowParticle extends Particle 
+import flash.geom.Point;
+
+class FlowParticle extends Particle
 {
-
     public static var total_:int = 0;
-
     public var start_:Point;
     public var go_:GameObject;
     public var maxDist_:Number;
@@ -102,14 +100,14 @@ class FlowParticle extends Particle
         {
             total_--;
             return (false);
-        };
+        }
         this.flowSpeed_ = (this.flowSpeed_ + ((_local3 * _arg2) / 1000));
         this.maxDist_ = (this.maxDist_ - ((this.flowSpeed_ * _arg2) / 1000));
         var _local7:Number = (_local6 - ((this.flowSpeed_ * _arg2) / 1000));
         if (_local7 > this.maxDist_)
         {
             _local7 = this.maxDist_;
-        };
+        }
         var _local8:Number = (this.go_.x_ - x_);
         var _local9:Number = (this.go_.y_ - y_);
         _local8 = (_local8 * (_local7 / _local6));
@@ -117,12 +115,9 @@ class FlowParticle extends Particle
         moveTo((this.go_.x_ - _local8), (this.go_.y_ - _local9));
         return (true);
     }
-
-
 }
-class FlowParticle2 extends Particle 
+class FlowParticle2 extends Particle
 {
-
     public var start_:Point;
     public var go_:GameObject;
     public var accel_:Number;
@@ -147,7 +142,7 @@ class FlowParticle2 extends Particle
         if (_local5 < 0.5)
         {
             return (false);
-        };
+        }
         var _local6:Number = Math.atan2((this.go_.y_ - y_), (this.go_.x_ - x_));
         this.dx_ = (this.dx_ + (((this.accel_ * Math.cos(_local6)) * _arg2) / 1000));
         this.dy_ = (this.dy_ + (((this.accel_ * Math.sin(_local6)) * _arg2) / 1000));
@@ -156,7 +151,5 @@ class FlowParticle2 extends Particle
         moveTo(_local7, _local8);
         return (true);
     }
-
-
 }
 

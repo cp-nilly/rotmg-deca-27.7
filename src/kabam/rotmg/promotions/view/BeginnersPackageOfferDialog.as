@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.promotions.view
 {
     import flash.display.Sprite;
-    import org.osflash.signals.Signal;
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.promotions.view.components.TransparentButton;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
     import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.promotions.view.components.TransparentButton;
 
-    public class BeginnersPackageOfferDialog extends Sprite 
+    public class BeginnersPackageOfferDialog extends Sprite
     {
-
         public static const LANGUAGE_KEY_SINGULAR:String = "BeginnersPackageOfferDialog.dayLeft";
         public static const LANGUAGE_KEY_PLURAL:String = "BeginnersPackageOfferDialog.daysLeft";
-
         public static var hifiBeginnerOfferEmbed:Class = BeginnersPackageOfferDialog_hifiBeginnerOfferEmbed;
-
         public var close:Signal;
         public var buy:Signal;
         private var timeText:TextFieldDisplayConcrete;
@@ -31,7 +30,7 @@
         public function setTimeRemaining(_arg1:int):void
         {
             var _local2:String = (((_arg1 > 1)) ? LANGUAGE_KEY_PLURAL : LANGUAGE_KEY_SINGULAR);
-            this.timeText.setStringBuilder(new LineBuilder().setParams(_local2, {"days":_arg1}));
+            this.timeText.setStringBuilder(new LineBuilder().setParams(_local2, {"days": _arg1}));
         }
 
         public function centerOnScreen():void
@@ -72,8 +71,6 @@
             addChild(_local5);
             return (_local5);
         }
-
-
     }
 }
 

@@ -4,9 +4,8 @@
     import flash.utils.ByteArray;
     import flash.utils.IDataInput;
 
-    public class Pic extends IncomingMessage 
+    public class Pic extends IncomingMessage
     {
-
         public var bitmapData_:BitmapData = null;
 
         public function Pic(_arg1:uint, _arg2:Function)
@@ -28,8 +27,6 @@
         {
             return (formatToString("PIC", "bitmapData_"));
         }
-
-
     }
 }
 

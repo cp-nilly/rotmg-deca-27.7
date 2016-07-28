@@ -1,19 +1,21 @@
 ﻿package kabam.rotmg.account.core.view
 {
-    import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.account.ui.TextInputField;
     import com.company.assembleegameclient.account.ui.CheckBoxField;
-    import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.MouseEvent;
+    import com.company.assembleegameclient.account.ui.Frame;
+    import com.company.assembleegameclient.account.ui.TextInputField;
     import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import com.company.util.EmailValidator;
 
-    public class RegisterWebAccountDialog extends Frame 
-    {
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class RegisterWebAccountDialog extends Frame
+    {
         public var register:Signal;
         public var cancel:Signal;
         private var emailInput:TextInputField;
@@ -25,7 +27,12 @@
         {
             this.register = new Signal(AccountData);
             this.cancel = new Signal();
-            super(TextKey.REGISTER_WEB_ACCOUNT_DIALOG_TITLE, TextKey.REGISTER_WEB_ACCOUNT_DIALOG_LEFTBUTTON, TextKey.REGISTER_WEB_ACCOUNT_DIALOG_RIGHTBUTTON, "/kongregateRegisterAccount");
+            super(
+                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_TITLE,
+                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_LEFTBUTTON,
+                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_RIGHTBUTTON,
+                    "/kongregateRegisterAccount"
+            );
             this.createAssets();
             this.enableForTabBehavior();
             this.addEventListeners();
@@ -48,10 +55,13 @@
             this.checkbox = new CheckBoxField("", false);
             var _local1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
             var _local2 = "</a></font>.";
-            this.checkbox.setTextStringBuilder(new LineBuilder().setParams(TextKey.REGISTER_WEB_CHECKBOX, {
-                "link":_local1,
-                "_link":_local2
-            }));
+            this.checkbox.setTextStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.REGISTER_WEB_CHECKBOX, {
+                                "link": _local1, "_link": _local2
+                            }
+                    )
+            );
             addCheckBox(this.checkbox);
         }
 
@@ -85,7 +95,7 @@
                 _local2.username = this.emailInput.text();
                 _local2.password = this.passwordInput.text();
                 this.register.dispatch(_local2);
-            };
+            }
         }
 
         private function isCheckboxChecked():Boolean
@@ -94,7 +104,7 @@
             if (!_local1)
             {
                 this.checkbox.setError(TextKey.REGISTER_WEB_ACCOUNT_CHECK_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -104,7 +114,7 @@
             if (!_local1)
             {
                 this.emailInput.setError(TextKey.INVALID_EMAIL_ADDRESS);
-            };
+            }
             return (_local1);
         }
 
@@ -114,7 +124,7 @@
             if (!_local1)
             {
                 this.passwordInput.setError(TextKey.REGISTER_WEB_SHORT_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -124,7 +134,7 @@
             if (!_local1)
             {
                 this.retypePasswordInput.setError(TextKey.REGISTER_WEB_MATCH_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -132,8 +142,6 @@
         {
             this.emailInput.setError(_arg1);
         }
-
-
     }
 }
 

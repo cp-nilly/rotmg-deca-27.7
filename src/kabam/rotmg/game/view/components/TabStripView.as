@@ -1,31 +1,30 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
     import com.company.assembleegameclient.objects.ImageFactory;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.ui.icons.IconButton;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import flash.display.Bitmap;
+    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
     import com.company.ui.BaseSimpleText;
-    import __AS3__.vec.*;
+    import com.company.util.GraphicsUtil;
 
-    public class TabStripView extends Sprite 
+    import flash.display.Bitmap;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+
+    import kabam.rotmg.text.model.TextKey;
+
+    import org.osflash.signals.Signal;
+
+    public class TabStripView extends Sprite
     {
-
         public const tabSelected:Signal = new Signal(String);
         public const WIDTH:Number = 186;
         public const HEIGHT:Number = 153;
         private const tabSprite:Sprite = new Sprite();
         private const background:Sprite = new Sprite();
         private const containerSprite:Sprite = new Sprite();
-
         public var iconButtonFactory:IconButtonFactory;
         public var imageFactory:ImageFactory;
         private var _width:Number;
@@ -35,7 +34,7 @@
         public var currentTabIndex:int;
         public var friendsBtn:IconButton;
 
-        public function TabStripView(_arg1:Number=186, _arg2:Number=153)
+        public function TabStripView(_arg1:Number = 186, _arg2:Number = 153)
         {
             this.tabs = new Vector.<TabView>();
             this.contents = new Vector.<Sprite>();
@@ -51,7 +50,9 @@
 
         public function initFriendList(_arg1:ImageFactory, _arg2:IconButtonFactory, _arg3:Function):void
         {
-            this.friendsBtn = _arg2.create(_arg1.getImageFromSet("lofiInterfaceBig", 13), "", TextKey.OPTIONS_FRIEND, "");
+            this.friendsBtn = _arg2.create(
+                    _arg1.getImageFromSet("lofiInterfaceBig", 13), "", TextKey.OPTIONS_FRIEND, ""
+            );
             this.friendsBtn.x = 160;
             this.friendsBtn.y = 6;
             this.friendsBtn.addEventListener(MouseEvent.CLICK, _arg3);
@@ -80,8 +81,8 @@
                     _arg1.setSelected(true);
                     this.showContent(_arg1.index);
                     this.tabSelected.dispatch(this.contents[_arg1.index].name);
-                };
-            };
+                }
+            }
         }
 
         public function drawBackground():void
@@ -89,7 +90,11 @@
             var _local1:GraphicsSolidFill = new GraphicsSolidFill(TabConstants.BACKGROUND_COLOR, 1);
             var _local2:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
             var _local3:Vector.<IGraphicsData> = new <IGraphicsData>[_local1, _local2, GraphicsUtil.END_FILL];
-            GraphicsUtil.drawCutEdgeRect(0, 0, this._width, (this._height - TabConstants.TAB_TOP_OFFSET), 6, [1, 1, 1, 1], _local2);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this._width, (this._height - TabConstants.TAB_TOP_OFFSET), 6, [
+                        1, 1, 1, 1
+                    ], _local2
+            );
             this.background.graphics.drawGraphicsData(_local3);
             this.background.y = TabConstants.TAB_TOP_OFFSET;
             addChild(this.background);
@@ -106,7 +111,7 @@
                 this.tabSprite.removeChild(this.tabs[_local1]);
                 this.containerSprite.removeChild(this.contents[_local1]);
                 _local1++;
-            };
+            }
             this.tabs = new Vector.<TabView>();
             this.contents = new Vector.<Sprite>();
         }
@@ -124,8 +129,8 @@
                 if ((_arg1 is BaseSimpleText))
                 {
                     _local4 = this.addTextTab(_local3, (_arg1 as BaseSimpleText));
-                };
-            };
+                }
+            }
             this.tabs.push(_local4);
             this.tabSprite.addChild(_local4);
             this.contents.push(_arg2);
@@ -139,7 +144,7 @@
                 _local4.setSelected(true);
                 this.showContent(0);
                 this.tabSelected.dispatch(_arg2.name);
-            };
+            }
         }
 
         public function removeTab():void
@@ -176,10 +181,8 @@
                 _local2.visible = false;
                 _local3.visible = true;
                 this.currentTabIndex = _arg1;
-            };
+            }
         }
-
-
     }
 }
 

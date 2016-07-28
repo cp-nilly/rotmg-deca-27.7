@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class NotifyActivePetUpdated extends Signal 
+    public class NotifyActivePetUpdated extends Signal
     {
-
-
     }
 }
 

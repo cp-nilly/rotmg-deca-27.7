@@ -1,20 +1,20 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import flash.display.Shape;
     import com.gskinner.motion.GTween;
+
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.geom.ColorTransform;
 
-    public class AnimatedAbilityBar extends Sprite 
-    {
+    import org.osflash.signals.Signal;
 
+    public class AnimatedAbilityBar extends Sprite
+    {
         public const animating:Signal = new Signal(Boolean);
         public const filledUp:Signal = new Signal();
         private const NORMAL_BAR_COLOR:uint = 0xB3B3B3;
         private const FILLING_BAR_COLOR:uint = 1572859;
         private const BACKGROUND_BAR_COLOR:uint = 0x565656;
-
         private var animatedBar:Shape;
         private var backgroundBar:Shape;
         private var maxPoints:int = 0;
@@ -51,10 +51,10 @@
                 this.reset();
                 this.filledUp.dispatch();
                 return;
-            };
+            }
             var _local1:Number = this.maxWidth;
             this.setBarColor(this.FILLING_BAR_COLOR);
-            var _local2:GTween = new GTween(this.animatedBar, 1, {"width":_local1});
+            var _local2:GTween = new GTween(this.animatedBar, 1, {"width": _local1});
             _local2.onComplete = this.filled;
         }
 
@@ -85,7 +85,7 @@
                 _local2 = this.getBarWidth();
                 this.animatedBar.graphics.beginFill(this.NORMAL_BAR_COLOR, 1);
                 this.animatedBar.graphics.drawRect(0, 0, _local2, this.barHeight);
-            };
+            }
             this.currentPoints = _arg1;
             this.adjustFilledBar();
         }
@@ -98,9 +98,9 @@
             {
                 this.animating.dispatch(true);
                 this.setBarColor(this.FILLING_BAR_COLOR);
-                _local2 = new GTween(this.animatedBar, 2, {"width":_local1});
+                _local2 = new GTween(this.animatedBar, 2, {"width": _local1});
                 _local2.onComplete = this.handleTweenComplete;
-            };
+            }
         }
 
         private function getBarWidth():int
@@ -114,8 +114,6 @@
             this.setBarColor(this.NORMAL_BAR_COLOR);
             this.animating.dispatch(false);
         }
-
-
     }
 }
 

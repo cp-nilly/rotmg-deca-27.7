@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.ui
 {
     import flash.events.MouseEvent;
+
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class TextButtonBase extends BackgroundFilledText 
+    public class TextButtonBase extends BackgroundFilledText
     {
-
         public function TextButtonBase(_arg1:int)
         {
             super(_arg1);
@@ -29,7 +29,7 @@
             if (_arg1 == mouseEnabled)
             {
                 return;
-            };
+            }
             mouseEnabled = _arg1;
             graphicsData_[0] = ((_arg1) ? enabledFill_ : disabledFill_);
             this.draw();
@@ -52,8 +52,6 @@
             graphics.clear();
             graphics.drawGraphicsData(graphicsData_);
         }
-
-
     }
 }
 

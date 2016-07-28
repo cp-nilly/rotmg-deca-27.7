@@ -1,18 +1,20 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import com.company.assembleegameclient.ui.RankText;
     import com.company.assembleegameclient.ui.GuildText;
-    import kabam.rotmg.account.core.view.AccountInfoView;
-    import flash.display.Shape;
-    import flash.display.DisplayObject;
-    import flash.events.MouseEvent;
+    import com.company.assembleegameclient.ui.RankText;
     import com.company.assembleegameclient.ui.tooltip.RankToolTip;
 
-    public class AccountScreen extends Sprite 
-    {
+    import flash.display.DisplayObject;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.account.core.view.AccountInfoView;
+
+    import org.osflash.signals.Signal;
+
+    public class AccountScreen extends Sprite
+    {
         public var tooltip:Signal;
         private var rankLayer:Sprite;
         private var guildLayer:Sprite;
@@ -60,7 +62,7 @@
             while (this.guildLayer.numChildren > 0)
             {
                 this.guildLayer.removeChildAt(0);
-            };
+            }
             this.guildLayer.addChild(this.guildText);
         }
 
@@ -81,7 +83,7 @@
             while (this.rankLayer.numChildren > 0)
             {
                 this.rankLayer.removeChildAt(0);
-            };
+            }
             this.rankLayer.addChild(this.rankText);
         }
 
@@ -95,7 +97,7 @@
             while (this.accountInfoLayer.numChildren > 0)
             {
                 this.accountInfoLayer.removeChildAt(0);
-            };
+            }
             this.accountInfoLayer.addChild(_local2);
         }
 
@@ -108,8 +110,6 @@
         {
             this.tooltip.dispatch(null);
         }
-
-
     }
 }
 

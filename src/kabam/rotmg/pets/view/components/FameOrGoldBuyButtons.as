@@ -1,30 +1,30 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import org.osflash.signals.Signal;
-    import org.osflash.signals.IOnceSignal;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.events.MouseEvent;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
     import flash.filters.DropShadowFilter;
 
-    public class FameOrGoldBuyButtons extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+
+    import org.osflash.signals.IOnceSignal;
+    import org.osflash.signals.Signal;
+
+    public class FameOrGoldBuyButtons extends Sprite
     {
-
         private static const grayfilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
         public const positioned:Signal = new Signal();
         public const goldButtonClicked:Signal = new Signal(int);
         public const fameButtonClicked:Signal = new Signal(int);
         public const clicked:IOnceSignal = new Signal();
         private const spacing:int = 7;
-
         public var goldButton:LegacyBuyButton;
         public var fameButton:LegacyBuyButton;
         private var prefix:TextFieldDisplayConcrete;
@@ -53,7 +53,7 @@
                 this.disabled = _arg1;
                 this.goldButton.setEnabled(!(this.disabled));
                 this.fameButton.setEnabled(!(this.disabled));
-            };
+            }
         }
 
         public function isDisabled():Boolean
@@ -90,7 +90,7 @@
             if (contains(this.goldButton))
             {
                 this.goldButton.x = (this.prefix.width + this.spacing);
-            };
+            }
             if (contains(this.fameButton))
             {
                 if (contains(this.goldButton))
@@ -103,8 +103,8 @@
                 else
                 {
                     this.fameButton.x = (this.prefix.width + this.spacing);
-                };
-            };
+                }
+            }
             this.positioned.dispatch();
         }
 
@@ -135,7 +135,7 @@
             {
                 this.fameButtonClicked.dispatch(this.fameButton.price);
                 this.clicked.dispatch();
-            };
+            }
             this.setDisabled(true);
         }
 
@@ -145,7 +145,7 @@
             {
                 this.goldButtonClicked.dispatch(this.goldButton.price);
                 this.clicked.dispatch();
-            };
+            }
             this.setDisabled(true);
         }
 
@@ -156,8 +156,6 @@
             _local1.y = 3;
             return (_local1);
         }
-
-
     }
 }
 

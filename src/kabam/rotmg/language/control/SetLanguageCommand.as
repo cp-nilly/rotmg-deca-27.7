@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.language.control
 {
-    import kabam.rotmg.language.model.LanguageModel;
-    import kabam.rotmg.ui.signals.ShowLoadingUISignal;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.language.service.GetLanguageService;
     import kabam.lib.console.signals.HideConsoleSignal;
+    import kabam.lib.tasks.DispatchSignalTask;
     import kabam.lib.tasks.TaskMonitor;
     import kabam.lib.tasks.TaskSequence;
-    import kabam.lib.tasks.DispatchSignalTask;
+    import kabam.rotmg.language.model.LanguageModel;
+    import kabam.rotmg.language.service.GetLanguageService;
+    import kabam.rotmg.ui.signals.ShowLoadingUISignal;
 
-    public class SetLanguageCommand 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class SetLanguageCommand
     {
-
         [Inject]
         public var language:String;
         [Inject]
@@ -29,7 +29,6 @@
         [Inject]
         public var monitor:TaskMonitor;
 
-
         public function execute():void
         {
             this.model.setLanguage(this.language);
@@ -41,8 +40,6 @@
             this.monitor.add(_local1);
             _local1.start();
         }
-
-
     }
 }
 

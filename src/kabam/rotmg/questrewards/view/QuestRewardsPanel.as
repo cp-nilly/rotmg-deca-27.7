@@ -1,24 +1,23 @@
 ﻿package kabam.rotmg.questrewards.view
 {
-    import com.company.assembleegameclient.ui.panels.Panel;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import flash.display.Bitmap;
-    import com.company.assembleegameclient.ui.DeprecatedTextButtonStatic;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.ui.DeprecatedTextButtonStatic;
+    import com.company.assembleegameclient.ui.panels.Panel;
+
+    import flash.display.Bitmap;
+
     import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
     import kabam.rotmg.messaging.impl.incoming.QuestFetchResponse;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.model.HUDModel;
 
-    public class QuestRewardsPanel extends Panel 
+    public class QuestRewardsPanel extends Panel
     {
-
         private static var questDataExists:Boolean = false;
-
         private const titleText:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 18, true);
-
         private var icon:Bitmap;
         private var title:String = "The Tinkerer";
         private var feedPetText:String = "See Offers";
@@ -45,7 +44,7 @@
             else
             {
                 this.addCheckBackLaterButton();
-            };
+            }
         }
 
         public static function checkQuests():void
@@ -56,7 +55,7 @@
             {
                 _local2.add(onCheckQuestsComplete);
                 _local1.gameSprite.gsc_.questFetch();
-            };
+            }
         }
 
         public static function onCheckQuestsComplete(_arg1:QuestFetchResponse):void
@@ -69,7 +68,7 @@
             else
             {
                 questDataExists = false;
-            };
+            }
         }
 
         public static function hasQuests():Boolean
@@ -77,10 +76,9 @@
             if (((questDataExists) || (((!((QuestRewardsMediator.questsCompletedDayUTC == -1))) && ((QuestRewardsMediator.questsCompletedDayUTC == new Date().dayUTC))))))
             {
                 return (true);
-            };
+            }
             return (false);
         }
-
 
         public function addSeeOffersButton():void
         {
@@ -105,8 +103,6 @@
             this.feedButton.x = ((WIDTH / 2) - (this.feedButton.width / 2));
             this.feedButton.y = ((HEIGHT - this.feedButton.height) - 4);
         }
-
-
     }
 }
 

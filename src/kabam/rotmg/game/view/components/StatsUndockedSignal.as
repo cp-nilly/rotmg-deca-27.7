@@ -2,14 +2,12 @@
 {
     import org.osflash.signals.Signal;
 
-    public class StatsUndockedSignal extends Signal 
+    public class StatsUndockedSignal extends Signal
     {
-
         public function StatsUndockedSignal()
         {
             super(StatsView);
         }
-
     }
 }
 

@@ -1,11 +1,7 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-
-    public class METile 
+    public class METile
     {
-
         public var types_:Vector.<int>;
         public var objName_:String = null;
 
@@ -31,13 +27,11 @@
                 if (this.types_[_local1] != -1)
                 {
                     return (false);
-                };
+                }
                 _local1++;
-            };
+            }
             return (true);
         }
-
-
     }
 }
 

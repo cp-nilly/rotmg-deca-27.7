@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
-    import flash.geom.Point;
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class RingEffect extends ParticleEffect 
-    {
+    import flash.geom.Point;
 
+    public class RingEffect extends ParticleEffect
+    {
         public var start_:Point;
         public var novaRadius_:Number;
         public var color_:int;
@@ -32,12 +32,18 @@
             while (_local6 < _local4)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local4);
-                _local8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local7))));
-                _local9 = new Point((this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local7))), (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local7))));
+                _local8 = new Point(
+                        (this.start_.x + (this.novaRadius_ * Math.cos(_local7))),
+                        (this.start_.y + (this.novaRadius_ * Math.sin(_local7)))
+                );
+                _local9 = new Point(
+                        (this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local7))),
+                        (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local7)))
+                );
                 _local10 = new SparkerParticle(_local3, this.color_, _local5, _local9, _local8);
                 map_.addObj(_local10, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
 
@@ -56,16 +62,20 @@
             while (_local6 < _local4)
             {
                 _local7 = (((_local6 * 2) * Math.PI) / _local4);
-                _local8 = new Point((this.start_.x + (this.novaRadius_ * Math.cos(_local7))), (this.start_.y + (this.novaRadius_ * Math.sin(_local7))));
-                _local9 = new Point((this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local7))), (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local7))));
+                _local8 = new Point(
+                        (this.start_.x + (this.novaRadius_ * Math.cos(_local7))),
+                        (this.start_.y + (this.novaRadius_ * Math.sin(_local7)))
+                );
+                _local9 = new Point(
+                        (this.start_.x + ((this.novaRadius_ * 0.9) * Math.cos(_local7))),
+                        (this.start_.y + ((this.novaRadius_ * 0.9) * Math.sin(_local7)))
+                );
                 _local10 = new SparkerParticle(_local3, this.color_, _local5, _local9, _local8);
                 map_.addObj(_local10, x_, y_);
                 _local6++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

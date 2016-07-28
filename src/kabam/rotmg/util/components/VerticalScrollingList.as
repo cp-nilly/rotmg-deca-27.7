@@ -1,22 +1,20 @@
 ﻿package kabam.rotmg.util.components
 {
-    import flash.display.Sprite;
-    import kabam.lib.ui.api.List;
-    import org.osflash.signals.Signal;
-    import kabam.lib.ui.impl.VerticalLayout;
-    import kabam.lib.ui.impl.LayoutList;
-    import kabam.lib.ui.api.Size;
     import flash.display.DisplayObject;
-    import __AS3__.vec.Vector;
+    import flash.display.Sprite;
 
-    public class VerticalScrollingList extends Sprite implements List 
+    import kabam.lib.ui.api.List;
+    import kabam.lib.ui.api.Size;
+    import kabam.lib.ui.impl.LayoutList;
+    import kabam.lib.ui.impl.VerticalLayout;
+
+    import org.osflash.signals.Signal;
+
+    public class VerticalScrollingList extends Sprite implements List
     {
-
         public static const SCROLLBAR_PADDING:int = 2;
         public static const SCROLLBAR_GUTTER:int = (VerticalScrollbar.WIDTH + SCROLLBAR_PADDING);
-
         public const scrollStateChanged:Signal = new Signal(Boolean);
-
         private var layout:VerticalLayout;
         private var list:LayoutList;
         private var scrollbar:VerticalScrollbar;
@@ -47,7 +45,7 @@
             if (this.isScrollbarVisible())
             {
                 _arg1 = new Size((_arg1.width - SCROLLBAR_GUTTER), _arg1.height);
-            };
+            }
             this.list.setSize(_arg1);
             this.refreshScrollbar();
         }
@@ -149,8 +147,6 @@
             var _local2:int = (this.list.getSizeOfItems().height - this.list.getSize().height);
             this.list.setOffset((_local2 * _arg1));
         }
-
-
     }
 }
 

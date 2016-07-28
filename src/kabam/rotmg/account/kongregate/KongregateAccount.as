@@ -3,18 +3,15 @@
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.kongregate.view.KongregateApi;
 
-    public class KongregateAccount implements Account 
+    public class KongregateAccount implements Account
     {
-
         public static const NETWORK_NAME:String = "kongregate";
-
         [Inject]
         public var api:KongregateApi;
         private var userId:String = "";
         private var password:String;
         private var isVerifiedEmail:Boolean;
         private var platformToken:String;
-
 
         public function updateUser(_arg1:String, _arg2:String):void
         {
@@ -45,8 +42,7 @@
         public function getCredentials():Object
         {
             return ({
-                "guid":this.getUserId(),
-                "secret":this.getSecret()
+                "guid": this.getUserId(), "secret": this.getSecret()
             });
         }
 
@@ -118,8 +114,6 @@
         {
             throw (new Error("No current support for new Kabam offer wall on Kongregate."));
         }
-
-
     }
 }
 

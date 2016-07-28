@@ -1,38 +1,38 @@
 ﻿package kabam.lib.console
 {
-    import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import kabam.lib.console.model.Console;
-    import kabam.lib.console.signals.ConsoleLogSignal;
-    import kabam.lib.console.signals.ConsoleWatchSignal;
-    import kabam.lib.console.signals.ConsoleUnwatchSignal;
-    import kabam.lib.console.signals.RemoveConsoleSignal;
-    import kabam.lib.console.signals.RegisterConsoleActionSignal;
-    import kabam.lib.console.controller.RegisterConsoleActionCommand;
-    import kabam.lib.console.signals.ListActionsSignal;
-    import kabam.lib.console.controller.ListActionsCommand;
-    import kabam.lib.console.signals.AddDefaultConsoleActionsSignal;
     import kabam.lib.console.controller.AddDefaultConsoleActionsCommand;
-    import kabam.lib.console.signals.ClearConsoleSignal;
-    import kabam.lib.console.signals.CopyConsoleTextSignal;
-    import kabam.lib.console.signals.ToggleConsoleSignal;
-    import kabam.lib.console.signals.ShowConsoleSignal;
-    import kabam.lib.console.signals.HideConsoleSignal;
-    import kabam.lib.console.view.ConsoleInputView;
-    import kabam.lib.console.view.ConsoleInputMediator;
-    import kabam.lib.console.view.ConsoleOutputView;
-    import kabam.lib.console.view.ConsoleOutputMediator;
-    import kabam.lib.console.view.ConsoleView;
-    import kabam.lib.console.view.ConsoleMediator;
-    import kabam.lib.console.view.ConsoleKeyMediator;
+    import kabam.lib.console.controller.ListActionsCommand;
+    import kabam.lib.console.controller.RegisterConsoleActionCommand;
+    import kabam.lib.console.model.Console;
     import kabam.lib.console.services.ConsoleLogTarget;
+    import kabam.lib.console.signals.AddDefaultConsoleActionsSignal;
+    import kabam.lib.console.signals.ClearConsoleSignal;
+    import kabam.lib.console.signals.ConsoleLogSignal;
+    import kabam.lib.console.signals.ConsoleUnwatchSignal;
+    import kabam.lib.console.signals.ConsoleWatchSignal;
+    import kabam.lib.console.signals.CopyConsoleTextSignal;
+    import kabam.lib.console.signals.HideConsoleSignal;
+    import kabam.lib.console.signals.ListActionsSignal;
+    import kabam.lib.console.signals.RegisterConsoleActionSignal;
+    import kabam.lib.console.signals.RemoveConsoleSignal;
+    import kabam.lib.console.signals.ShowConsoleSignal;
+    import kabam.lib.console.signals.ToggleConsoleSignal;
+    import kabam.lib.console.view.ConsoleInputMediator;
+    import kabam.lib.console.view.ConsoleInputView;
+    import kabam.lib.console.view.ConsoleKeyMediator;
+    import kabam.lib.console.view.ConsoleMediator;
+    import kabam.lib.console.view.ConsoleOutputMediator;
+    import kabam.lib.console.view.ConsoleOutputView;
+    import kabam.lib.console.view.ConsoleView;
     import kabam.rotmg.core.view.Layers;
 
-    public class ConsoleConfig 
-    {
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
 
+    public class ConsoleConfig
+    {
         [Inject]
         public var context:IContext;
         [Inject]
@@ -41,7 +41,6 @@
         public var mediatorMap:IMediatorMap;
         [Inject]
         public var commandMap:ISignalCommandMap;
-
 
         [PostConstruct]
         public function setup():void
@@ -93,8 +92,6 @@
             var _local1:Layers = this.context.injector.getInstance(Layers);
             _local1.console.addChild(new ConsoleView());
         }
-
-
     }
 }
 

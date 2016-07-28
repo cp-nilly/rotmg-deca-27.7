@@ -1,34 +1,35 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.text.model.TextKey;
-    import com.company.assembleegameclient.util.Currency;
-    import org.osflash.signals.natives.NativeSignal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.objects.SellableObject;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldConcreteBuilder;
-    import kabam.rotmg.fortune.components.ItemWithTooltip;
+    import com.company.assembleegameclient.util.Currency;
+
+    import flash.display.Sprite;
     import flash.events.Event;
-    import kabam.rotmg.util.components.UIAssetsHelper;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
     import flash.events.MouseEvent;
 
-    public class ConfirmBuyModal extends Sprite 
-    {
+    import kabam.rotmg.fortune.components.ItemWithTooltip;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldConcreteBuilder;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+    import kabam.rotmg.util.components.UIAssetsHelper;
 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class ConfirmBuyModal extends Sprite
+    {
         public static const WIDTH:int = 280;
         public static const HEIGHT:int = 240;
         public static const TEXT_MARGIN:int = 20;
-
         public static var free:Boolean = true;
-
-        private const closeButton:DialogCloseButton = kabam.rotmg.pets.util.PetsViewAssetFactory.returnCloseButton(ConfirmBuyModal.WIDTH);
-        private const buyButton:LegacyBuyButton = new LegacyBuyButton(TextKey.SELLABLEOBJECTPANEL_BUY, 16, 0, Currency.INVALID);
-
+        private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(ConfirmBuyModal.WIDTH);
+        private const buyButton:LegacyBuyButton = new LegacyBuyButton(
+                TextKey.SELLABLEOBJECTPANEL_BUY, 16, 0, Currency.INVALID
+        );
         private var buyButtonClicked:NativeSignal;
         private var quantityInputText:TextFieldDisplayConcrete;
         private var leftNavSprite:Sprite;
@@ -68,7 +69,7 @@
             if (this.owner_.getSellableType() != -1)
             {
                 _local8 = new ItemWithTooltip(this.owner_.getSellableType(), 64);
-            };
+            }
             _local8.x = (((WIDTH * 1) / 2) - (_local8.width / 2));
             _local8.y = 100;
             addChild(_local8);
@@ -95,11 +96,10 @@
             return (_local3);
         }
 
-
         private function refreshNavDisable()
         {
-            this.leftNavSprite.alpha = (((this.quantity_)==1) ? 0.5 : 1);
-            this.rightNavSprite.alpha = (((this.quantity_)==this.availableInventoryNumber) ? 0.5 : 1);
+            this.leftNavSprite.alpha = (((this.quantity_) == 1) ? 0.5 : 1);
+            this.rightNavSprite.alpha = (((this.quantity_) == this.availableInventoryNumber) ? 0.5 : 1);
         }
 
         private function positionAndStuff():void
@@ -169,22 +169,20 @@
                     if (this.quantity_ < this.availableInventoryNumber)
                     {
                         this.quantity_ = (this.quantity_ + 1);
-                    };
+                    }
                     break;
                 case this.leftNavSprite:
                     if (this.quantity_ > 1)
                     {
                         this.quantity_ = (this.quantity_ - 1);
-                    };
+                    }
                     break;
-            };
+            }
             this.refreshNavDisable();
             var _local2:int = (this.owner_.price_ * this.quantity_);
             this.buyButton.setPrice(_local2, this.owner_.currency_);
             this.quantityInputText.setText(this.quantity_.toString());
         }
-
-
     }
 }
 

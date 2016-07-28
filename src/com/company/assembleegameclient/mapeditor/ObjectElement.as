@@ -1,16 +1,13 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import com.company.assembleegameclient.mapeditor.Element;
-    import flash.display.Bitmap;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.mapeditor.ObjectTypeToolTip;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
-    import com.company.assembleegameclient.mapeditor.*;
 
-    class ObjectElement extends Element 
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+
+    class ObjectElement extends Element
     {
-
         public var objXML_:XML;
 
         public function ObjectElement(_arg1:XML)
@@ -31,8 +28,6 @@
         {
             return (new ObjectTypeToolTip(this.objXML_));
         }
-
-
     }
 }
 

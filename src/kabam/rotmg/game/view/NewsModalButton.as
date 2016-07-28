@@ -1,29 +1,28 @@
 ﻿package kabam.rotmg.game.view
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import flash.display.BitmapData;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.util.AssetLibrary;
-    import kabam.rotmg.ui.UIUtils;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
     import flash.geom.Rectangle;
-    import flash.events.MouseEvent;
+
     import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.news.view.NewsModal;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.UIUtils;
 
-    public class NewsModalButton extends Sprite 
+    public class NewsModalButton extends Sprite
     {
-
         public static const IMAGE_NAME:String = "lofiObj2";
         public static const IMAGE_ID:int = 345;
-
         public static var showsHasUpdate:Boolean = false;
-
         private var bitmap:Bitmap;
         private var background:Sprite;
         private var background2:Sprite;
@@ -70,11 +69,9 @@
             {
                 showsHasUpdate = false;
                 addChild(this.background2);
-            };
+            }
             addChild(this.bitmap);
         }
-
-
     }
 }
 

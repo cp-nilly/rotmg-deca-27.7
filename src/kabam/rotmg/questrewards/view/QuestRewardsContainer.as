@@ -3,9 +3,8 @@
     import flash.display.Sprite;
     import flash.events.Event;
 
-    public class QuestRewardsContainer extends Sprite 
+    public class QuestRewardsContainer extends Sprite
     {
-
         public static var modalIsOpen:Boolean = false;
 
         public function QuestRewardsContainer():void
@@ -19,8 +18,6 @@
         {
             modalIsOpen = false;
         }
-
-
     }
 }
 

@@ -1,12 +1,12 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import flash.geom.ColorTransform;
     import flash.display.BitmapData;
+    import flash.geom.ColorTransform;
+
     import kabam.rotmg.stage3D.GraphicsFillExtra;
 
-    public class FlashDescription 
+    public class FlashDescription
     {
-
         public var startTime_:int;
         public var color_:uint;
         public var periodMS_:int;
@@ -31,7 +31,16 @@
             var _local3:int = ((_arg2 - this.startTime_) % this.periodMS_);
             var _local4:Number = Math.sin(((_local3 / this.periodMS_) * Math.PI));
             var _local5:Number = (_local4 * 0.5);
-            var _local6:ColorTransform = new ColorTransform((1 - _local5), (1 - _local5), (1 - _local5), 1, (_local5 * this.targetR), (_local5 * this.targetG), (_local5 * this.targetB), 0);
+            var _local6:ColorTransform = new ColorTransform(
+                    (1 - _local5),
+                    (1 - _local5),
+                    (1 - _local5),
+                    1,
+                    (_local5 * this.targetR),
+                    (_local5 * this.targetG),
+                    (_local5 * this.targetB),
+                    0
+            );
             var _local7:BitmapData = _arg1.clone();
             _local7.colorTransform(_local7.rect, _local6);
             return (_local7);
@@ -42,7 +51,16 @@
             var _local3:int = ((_arg2 - this.startTime_) % this.periodMS_);
             var _local4:Number = Math.sin(((_local3 / this.periodMS_) * Math.PI));
             var _local5:Number = (_local4 * 0.5);
-            var _local6:ColorTransform = new ColorTransform((1 - _local5), (1 - _local5), (1 - _local5), 1, (_local5 * this.targetR), (_local5 * this.targetG), (_local5 * this.targetB), 0);
+            var _local6:ColorTransform = new ColorTransform(
+                    (1 - _local5),
+                    (1 - _local5),
+                    (1 - _local5),
+                    1,
+                    (_local5 * this.targetR),
+                    (_local5 * this.targetG),
+                    (_local5 * this.targetB),
+                    0
+            );
             GraphicsFillExtra.setColorTransform(_arg1, _local6);
         }
 
@@ -50,8 +68,6 @@
         {
             return ((_arg1 > (this.startTime_ + (this.periodMS_ * this.repeats_))));
         }
-
-
     }
 }
 

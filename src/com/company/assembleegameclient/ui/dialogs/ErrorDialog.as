@@ -1,37 +1,36 @@
 ﻿package com.company.assembleegameclient.ui.dialogs
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import org.osflash.signals.Signal;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.StageProxy;
+    import com.company.googleanalytics.GA;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import com.company.googleanalytics.GA;
-    import flash.display.Graphics;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import __AS3__.vec.*;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class ErrorDialog extends Sprite 
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class ErrorDialog extends Sprite
     {
-
         public static const GREY:int = 0xB3B3B3;
         protected static const WIDTH:int = 300;
-
         public var ok:Signal;
         public var box_:Sprite = new Sprite();
         public var rect_:Shape = new Shape();
@@ -44,12 +43,15 @@
         public var offsetY:Number = 0;
         public var stageProxy:StageProxy;
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         protected var uiWaiter:SignalWaiter = new SignalWaiter();
-
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
         public function ErrorDialog(_arg1:String)
         {
@@ -104,7 +106,7 @@
                 this.titleText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 1)];
                 this.titleText_.setStringBuilder(new StaticStringBuilder(_arg1));
                 this.addTextFieldDisplay(this.titleText_);
-            };
+            }
         }
 
         private function makeNonNullButtons(_arg1:String, _arg2:String):void
@@ -113,12 +115,12 @@
             {
                 this.button1_ = new DeprecatedTextButton(16, _arg1, 120);
                 this.button1_.addEventListener(MouseEvent.CLICK, this.onButton1Click);
-            };
+            }
             if (_arg2 != null)
             {
                 this.button2_ = new DeprecatedTextButton(16, _arg2, 120);
                 this.button2_.addEventListener(MouseEvent.CLICK, this.onButton2Click);
-            };
+            }
         }
 
         private function onComplete():void
@@ -134,7 +136,7 @@
             if (this.analyticsPageName_ != null)
             {
                 this.tryAnalytics();
-            };
+            }
         }
 
         private function tryAnalytics():void
@@ -143,9 +145,9 @@
             {
                 GA.global().trackPageview(this.analyticsPageName_);
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         private function draw():void
@@ -164,7 +166,7 @@
             if (this.box_.contains(this.rect_))
             {
                 this.box_.removeChild(this.rect_);
-            };
+            }
             this.removeButtonsIfAlreadyAdded();
             this.addButtonsAndLayout();
             this.drawBackground();
@@ -204,8 +206,8 @@
                     this.box_.addChild(this.button2_);
                     this.button2_.x = (((3 * WIDTH) / 4) - (this.button2_.width / 2));
                     this.button2_.y = _local1;
-                };
-            };
+                }
+            }
         }
 
         private function removeButtonsIfAlreadyAdded():void
@@ -213,11 +215,11 @@
             if (((this.button1_) && (this.box_.contains(this.button1_))))
             {
                 this.box_.removeChild(this.button1_);
-            };
+            }
             if (((this.button2_) && (this.box_.contains(this.button2_))))
             {
                 this.box_.removeChild(this.button2_);
-            };
+            }
         }
 
         private function drawTitleAndText():void
@@ -230,7 +232,7 @@
             else
             {
                 this.textText_.y = 4;
-            };
+            }
         }
 
         private function onButton1Click(_arg1:MouseEvent):void
@@ -247,8 +249,6 @@
         {
             this.rect_.alpha = (((_arg1 > 1)) ? 1 : (((_arg1 < 0)) ? 0 : _arg1));
         }
-
-
     }
 }
 

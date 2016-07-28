@@ -1,26 +1,26 @@
 ﻿package kabam.display.LoaderInfo
 {
-    import flash.events.EventDispatcher;
     import flash.display.LoaderInfo;
     import flash.events.Event;
+    import flash.events.EventDispatcher;
 
-    public class LoaderInfoProxyConcrete extends EventDispatcher implements LoaderInfoProxy 
+    public class LoaderInfoProxyConcrete extends EventDispatcher implements LoaderInfoProxy
     {
-
         private var _loaderInfo:LoaderInfo;
-
 
         override public function toString():String
         {
             return (this._loaderInfo.toString());
         }
 
-        override public function addEventListener(_arg1:String, _arg2:Function, _arg3:Boolean=false, _arg4:int=0, _arg5:Boolean=false):void
+        override public function addEventListener(
+                _arg1:String, _arg2:Function, _arg3:Boolean = false, _arg4:int = 0, _arg5:Boolean = false
+        ):void
         {
             this._loaderInfo.addEventListener(_arg1, _arg2, _arg3, _arg4, _arg5);
         }
 
-        override public function removeEventListener(_arg1:String, _arg2:Function, _arg3:Boolean=false):void
+        override public function removeEventListener(_arg1:String, _arg2:Function, _arg3:Boolean = false):void
         {
             this._loaderInfo.removeEventListener(_arg1, _arg2, _arg3);
         }
@@ -44,8 +44,6 @@
         {
             this._loaderInfo = _arg1;
         }
-
-
     }
 }
 

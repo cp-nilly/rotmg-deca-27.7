@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class CloseDialogsSignal extends Signal 
+    public class CloseDialogsSignal extends Signal
     {
-
-
     }
 }
 

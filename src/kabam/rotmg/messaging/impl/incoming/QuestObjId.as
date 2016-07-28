@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class QuestObjId extends IncomingMessage 
+    public class QuestObjId extends IncomingMessage
     {
-
         public var objectId_:int;
 
         public function QuestObjId(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("QUESTOBJID", "objectId_"));
         }
-
-
     }
 }
 

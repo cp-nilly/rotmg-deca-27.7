@@ -1,17 +1,15 @@
 ﻿package com.company.assembleegameclient.map.partyoverlay
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.map.Map;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.objects.Party;
-    import flash.events.Event;
-    import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import com.company.assembleegameclient.map.Map;
+    import com.company.assembleegameclient.objects.Party;
+    import com.company.assembleegameclient.objects.Player;
 
-    public class PartyOverlay extends Sprite 
+    import flash.display.Sprite;
+    import flash.events.Event;
+
+    public class PartyOverlay extends Sprite
     {
-
         public var map_:Map;
         public var partyMemberArrows_:Vector.<PlayerArrow> = null;
         public var questArrow_:QuestArrow;
@@ -29,7 +27,7 @@
                 this.partyMemberArrows_[_local2] = _local3;
                 addChild(_local3);
                 _local2++;
-            };
+            }
             this.questArrow_ = new QuestArrow(this.map_);
             addChild(this.questArrow_);
             addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
@@ -51,7 +49,7 @@
             if (this.map_.player_ == null)
             {
                 return;
-            };
+            }
             var _local3:Party = this.map_.party_;
             var _local4:Player = this.map_.player_;
             var _local5:int;
@@ -85,25 +83,23 @@
                                     if (!_local9.mouseOver_)
                                     {
                                         _local9.addGameObject(_local7);
-                                    };
+                                    }
                                     _local6.setGameObject(null);
                                     break;
-                                };
+                                }
                                 _local8++;
-                            };
+                            }
                             _local6.draw(_arg2, _arg1);
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 _local5++;
-            };
+            }
             if (!this.questArrow_.mouseOver_)
             {
                 this.questArrow_.draw(_arg2, _arg1);
-            };
+            }
         }
-
-
     }
 }
 

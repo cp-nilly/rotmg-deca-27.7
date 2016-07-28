@@ -1,8 +1,7 @@
 ﻿package kabam.lib.net.impl
 {
-    public class MessagePool 
+    public class MessagePool
     {
-
         public var type:Class;
         public var callback:Function;
         public var id:int;
@@ -27,7 +26,7 @@
                 ((this.tail) && ((this.tail.next = _local2)));
                 _local2.prev = this.tail;
                 this.tail = _local2;
-            };
+            }
             return (this);
         }
 
@@ -45,7 +44,7 @@
                 _local1 = new this.type(this.id, this.callback);
                 _local1.pool = this;
                 this.count++;
-            };
+            }
             return (_local1);
         }
 
@@ -65,8 +64,6 @@
         {
             this.tail = null;
         }
-
-
     }
 }
 

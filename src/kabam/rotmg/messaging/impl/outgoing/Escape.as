@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Escape extends OutgoingMessage 
+    public class Escape extends OutgoingMessage
     {
-
         public function Escape(_arg1:uint, _arg2:Function)
         {
             super(_arg1, _arg2);
@@ -18,8 +17,6 @@
         {
             return (formatToString("ESCAPE"));
         }
-
-
     }
 }
 

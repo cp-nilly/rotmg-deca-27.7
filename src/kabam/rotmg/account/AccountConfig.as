@@ -1,40 +1,42 @@
 ﻿package kabam.rotmg.account
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import robotlegs.bender.extensions.contextView.ContextView;
-	import robotlegs.bender.framework.api.IInjector;
-    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
-    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-    import robotlegs.bender.framework.api.IContext;
-    import flash.display.LoaderInfo;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
-    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
-    import kabam.rotmg.account.core.services.VerifyAgeTask;
-    import kabam.rotmg.account.core.services.GetCharListTask;
-    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
-    import kabam.rotmg.account.core.model.OfferModel;
-    import kabam.rotmg.account.core.view.MoneyFrame;
     import com.company.assembleegameclient.account.ui.MoneyFrameMediator;
-    import kabam.rotmg.ui.signals.BuyCharacterSlotSignal;
+
+    import flash.display.LoaderInfo;
+
     import kabam.rotmg.account.core.BuyCharacterSlotCommand;
-    import kabam.rotmg.account.core.control.IsAccountRegisteredToBuyGoldGuard;
-    import kabam.rotmg.account.core.signals.PurchaseGoldSignal;
     import kabam.rotmg.account.core.commands.PurchaseGoldCommand;
-    import kabam.rotmg.account.core.signals.VerifyAgeSignal;
     import kabam.rotmg.account.core.commands.VerifyAgeCommand;
+    import kabam.rotmg.account.core.control.IsAccountRegisteredToBuyGoldGuard;
+    import kabam.rotmg.account.core.model.JSInitializedModel;
+    import kabam.rotmg.account.core.model.OfferModel;
+    import kabam.rotmg.account.core.services.BuyCharacterSlotTask;
+    import kabam.rotmg.account.core.services.GetCharListTask;
+    import kabam.rotmg.account.core.services.GetOffersTask;
+    import kabam.rotmg.account.core.services.VerifyAgeTask;
+    import kabam.rotmg.account.core.signals.PurchaseGoldSignal;
+    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
+    import kabam.rotmg.account.core.signals.VerifyAgeSignal;
+    import kabam.rotmg.account.core.view.MoneyFrame;
+    import kabam.rotmg.account.kabam.KabamAccountConfig;
     import kabam.rotmg.account.kongregate.KongregateAccountConfig;
     import kabam.rotmg.account.steam.SteamAccountConfig;
-    import kabam.rotmg.account.kabam.KabamAccountConfig;
-    import kabam.rotmg.account.web.WebAccountConfig;
     import kabam.rotmg.account.transfer.TransferAccountConfig;
-    import kabam.rotmg.account.core.model.JSInitializedModel;
-    import kabam.rotmg.account.core.services.GetOffersTask;
-    import kabam.rotmg.account.core.services.BuyCharacterSlotTask;
+    import kabam.rotmg.account.web.WebAccountConfig;
+    import kabam.rotmg.core.signals.MoneyFrameEnableCancelSignal;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.ui.signals.BuyCharacterSlotSignal;
 
-    public class AccountConfig implements IConfig 
+    import robotlegs.bender.extensions.contextView.ContextView;
+    import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+    import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IContext;
+    import robotlegs.bender.framework.api.IInjector;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class AccountConfig implements IConfig
     {
-
         [Inject]
         public var root:ContextView;
         [Inject]
@@ -49,7 +51,6 @@
         public var info:LoaderInfo;
         [Inject]
         public var logger:ILogger;
-
 
         public function configure():void
         {
@@ -96,9 +97,9 @@
                     else
                     {
                         this.context.configure(WebAccountConfig);
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.context.configure(TransferAccountConfig);
         }
 
@@ -123,8 +124,6 @@
             this.logger.info("isSteam {0}", [this.isSteam()]);
             this.logger.info("isKabam {0}", [this.isKabam()]);
         }
-
-
     }
 }
 

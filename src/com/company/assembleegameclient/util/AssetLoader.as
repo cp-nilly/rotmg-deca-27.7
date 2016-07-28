@@ -1,26 +1,26 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import com.company.assembleegameclient.sound.IMusic;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.ui.options.Options;
-    import com.company.assembleegameclient.sound.SFX;
-    import com.company.util.AssetLibrary;
-    import kabam.rotmg.assets.EmbeddedAssets;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import flash.utils.ByteArray;
     import com.company.assembleegameclient.engine3d.Model3D;
-    import com.company.assembleegameclient.objects.particles.ParticleLibrary;
-    import kabam.rotmg.assets.EmbeddedData;
     import com.company.assembleegameclient.map.GroundLibrary;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.map.RegionLibrary;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.objects.particles.ParticleLibrary;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.sound.IMusic;
+    import com.company.assembleegameclient.sound.SFX;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
+    import com.company.assembleegameclient.ui.options.Options;
+    import com.company.util.AssetLibrary;
+
+    import flash.utils.ByteArray;
     import flash.utils.getQualifiedClassName;
 
-    public class AssetLoader 
+    import kabam.rotmg.assets.EmbeddedAssets;
+    import kabam.rotmg.assets.EmbeddedData;
+
+    public class AssetLoader
     {
-
         public static var currentXmlIsTesting:Boolean = false;
-
         public var music:IMusic;
 
         public function AssetLoader()
@@ -59,7 +59,9 @@
             AssetLibrary.addImageSet("lofiEnvironment3", new EmbeddedAssets.lofiEnvironment3Embed_().bitmapData, 8, 8);
             AssetLibrary.addImageSet("lofiInterface", new EmbeddedAssets.lofiInterfaceEmbed_().bitmapData, 8, 8);
             AssetLibrary.addImageSet("redLootBag", new EmbeddedAssets.redLootBagEmbed_().bitmapData, 8, 8);
-            AssetLibrary.addImageSet("lofiInterfaceBig", new EmbeddedAssets.lofiInterfaceBigEmbed_().bitmapData, 16, 16);
+            AssetLibrary.addImageSet(
+                    "lofiInterfaceBig", new EmbeddedAssets.lofiInterfaceBigEmbed_().bitmapData, 16, 16
+            );
             AssetLibrary.addImageSet("lofiInterface2", new EmbeddedAssets.lofiInterface2Embed_().bitmapData, 8, 8);
             AssetLibrary.addImageSet("lofiObj", new EmbeddedAssets.lofiObjEmbed_().bitmapData, 8, 8);
             AssetLibrary.addImageSet("lofiObj2", new EmbeddedAssets.lofiObj2Embed_().bitmapData, 8, 8);
@@ -70,7 +72,9 @@
             AssetLibrary.addImageSet("lofiObjBig", new EmbeddedAssets.lofiObjBigEmbed_().bitmapData, 16, 16);
             AssetLibrary.addImageSet("lofiObj40x40", new EmbeddedAssets.lofiObj40x40Embed_().bitmapData, 40, 40);
             AssetLibrary.addImageSet("lofiProjs", new EmbeddedAssets.lofiProjsEmbed_().bitmapData, 8, 8);
-            AssetLibrary.addImageSet("lofiParticlesShocker", new EmbeddedAssets.lofiParticlesShockerEmbed_().bitmapData, 16, 16);
+            AssetLibrary.addImageSet(
+                    "lofiParticlesShocker", new EmbeddedAssets.lofiParticlesShockerEmbed_().bitmapData, 16, 16
+            );
             AssetLibrary.addImageSet("lofiProjsBig", new EmbeddedAssets.lofiProjsBigEmbed_().bitmapData, 16, 16);
             AssetLibrary.addImageSet("lofiParts", new EmbeddedAssets.lofiPartsEmbed_().bitmapData, 8, 8);
             AssetLibrary.addImageSet("stars", new EmbeddedAssets.starsEmbed_().bitmapData, 5, 5);
@@ -92,34 +96,286 @@
 
         private function addAnimatedCharacters():void
         {
-            AnimatedChars.add("chars8x8rBeach", new EmbeddedAssets.chars8x8rBeachEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8dBeach", new EmbeddedAssets.chars8x8dBeachEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.DOWN);
-            AnimatedChars.add("chars8x8rLow1", new EmbeddedAssets.chars8x8rLow1Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rLow2", new EmbeddedAssets.chars8x8rLow2Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rMid", new EmbeddedAssets.chars8x8rMidEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rMid2", new EmbeddedAssets.chars8x8rMid2Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rHigh", new EmbeddedAssets.chars8x8rHighEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rHero1", new EmbeddedAssets.chars8x8rHero1Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rHero2", new EmbeddedAssets.chars8x8rHero2Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8dHero1", new EmbeddedAssets.chars8x8dHero1Embed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x16dMountains1", new EmbeddedAssets.chars16x16dMountains1Embed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x16dMountains2", new EmbeddedAssets.chars16x16dMountains2Embed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.DOWN);
-            AnimatedChars.add("chars8x8dEncounters", new EmbeddedAssets.chars8x8dEncountersEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.DOWN);
-            AnimatedChars.add("chars8x8rEncounters", new EmbeddedAssets.chars8x8rEncountersEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars16x8dEncounters", new EmbeddedAssets.chars16x8dEncountersEmbed_().bitmapData, null, 16, 8, 112, 8, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x8rEncounters", new EmbeddedAssets.chars16x8rEncountersEmbed_().bitmapData, null, 16, 8, 112, 8, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x16dEncounters", new EmbeddedAssets.chars16x16dEncountersEmbed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x16dEncounters2", new EmbeddedAssets.chars16x16dEncounters2Embed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.DOWN);
-            AnimatedChars.add("chars16x16rEncounters", new EmbeddedAssets.chars16x16rEncountersEmbed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-            AnimatedChars.add("d3Chars8x8rEmbed", new EmbeddedAssets.d3Chars8x8rEmbed_().bitmapData, null, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("d3Chars16x16rEmbed", new EmbeddedAssets.d3Chars16x16rEmbed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-            AnimatedChars.add("players", new EmbeddedAssets.playersEmbed_().bitmapData, new EmbeddedAssets.playersMaskEmbed_().bitmapData, 8, 8, 56, 24, AnimatedChar.RIGHT);
-            AnimatedChars.add("playerskins", new EmbeddedAssets.playersSkinsEmbed_().bitmapData, new EmbeddedAssets.playersSkinsMaskEmbed_().bitmapData, 8, 8, 56, 24, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rPets1", new EmbeddedAssets.chars8x8rPets1Embed_().bitmapData, new EmbeddedAssets.chars8x8rPets1MaskEmbed_().bitmapData, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("chars8x8rPets2", new EmbeddedAssets.chars8x8rPets2Embed_().bitmapData, new EmbeddedAssets.chars8x8rPets1MaskEmbed_().bitmapData, 8, 8, 56, 8, AnimatedChar.RIGHT);
-            AnimatedChars.add("petsDivine", new EmbeddedAssets.petsDivineEmbed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-            AnimatedChars.add("playerskins16", new EmbeddedAssets.playersSkins16Embed_().bitmapData, new EmbeddedAssets.playersSkins16MaskEmbed_().bitmapData, 16, 16, 112, 48, AnimatedChar.RIGHT);
-            AnimatedChars.add("d1chars16x16r", new EmbeddedAssets.d1Chars16x16rEmbed_().bitmapData, null, 16, 16, 112, 16, AnimatedChar.RIGHT);
+            AnimatedChars.add(
+                    "chars8x8rBeach",
+                    new EmbeddedAssets.chars8x8rBeachEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8dBeach",
+                    new EmbeddedAssets.chars8x8dBeachEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars8x8rLow1",
+                    new EmbeddedAssets.chars8x8rLow1Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rLow2",
+                    new EmbeddedAssets.chars8x8rLow2Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rMid",
+                    new EmbeddedAssets.chars8x8rMidEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rMid2",
+                    new EmbeddedAssets.chars8x8rMid2Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rHigh",
+                    new EmbeddedAssets.chars8x8rHighEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rHero1",
+                    new EmbeddedAssets.chars8x8rHero1Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rHero2",
+                    new EmbeddedAssets.chars8x8rHero2Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8dHero1",
+                    new EmbeddedAssets.chars8x8dHero1Embed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x16dMountains1",
+                    new EmbeddedAssets.chars16x16dMountains1Embed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x16dMountains2",
+                    new EmbeddedAssets.chars16x16dMountains2Embed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars8x8dEncounters",
+                    new EmbeddedAssets.chars8x8dEncountersEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars8x8rEncounters",
+                    new EmbeddedAssets.chars8x8rEncountersEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars16x8dEncounters",
+                    new EmbeddedAssets.chars16x8dEncountersEmbed_().bitmapData,
+                    null,
+                    16,
+                    8,
+                    112,
+                    8,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x8rEncounters",
+                    new EmbeddedAssets.chars16x8rEncountersEmbed_().bitmapData,
+                    null,
+                    16,
+                    8,
+                    112,
+                    8,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x16dEncounters",
+                    new EmbeddedAssets.chars16x16dEncountersEmbed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x16dEncounters2",
+                    new EmbeddedAssets.chars16x16dEncounters2Embed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.DOWN
+            );
+            AnimatedChars.add(
+                    "chars16x16rEncounters",
+                    new EmbeddedAssets.chars16x16rEncountersEmbed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "d3Chars8x8rEmbed",
+                    new EmbeddedAssets.d3Chars8x8rEmbed_().bitmapData,
+                    null,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "d3Chars16x16rEmbed",
+                    new EmbeddedAssets.d3Chars16x16rEmbed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "players",
+                    new EmbeddedAssets.playersEmbed_().bitmapData,
+                    new EmbeddedAssets.playersMaskEmbed_().bitmapData,
+                    8,
+                    8,
+                    56,
+                    24,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "playerskins",
+                    new EmbeddedAssets.playersSkinsEmbed_().bitmapData,
+                    new EmbeddedAssets.playersSkinsMaskEmbed_().bitmapData,
+                    8,
+                    8,
+                    56,
+                    24,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rPets1",
+                    new EmbeddedAssets.chars8x8rPets1Embed_().bitmapData,
+                    new EmbeddedAssets.chars8x8rPets1MaskEmbed_().bitmapData,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "chars8x8rPets2",
+                    new EmbeddedAssets.chars8x8rPets2Embed_().bitmapData,
+                    new EmbeddedAssets.chars8x8rPets1MaskEmbed_().bitmapData,
+                    8,
+                    8,
+                    56,
+                    8,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "petsDivine",
+                    new EmbeddedAssets.petsDivineEmbed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "playerskins16",
+                    new EmbeddedAssets.playersSkins16Embed_().bitmapData,
+                    new EmbeddedAssets.playersSkins16MaskEmbed_().bitmapData,
+                    16,
+                    16,
+                    112,
+                    48,
+                    AnimatedChar.RIGHT
+            );
+            AnimatedChars.add(
+                    "d1chars16x16r",
+                    new EmbeddedAssets.d1Chars16x16rEmbed_().bitmapData,
+                    null,
+                    16,
+                    16,
+                    112,
+                    16,
+                    AnimatedChar.RIGHT
+            );
         }
 
         private function addSoundEffects():void
@@ -147,7 +403,7 @@
                 _local3 = _local2.readUTFBytes(_local2.length);
                 Model3D.parse3DOBJ(_local1, _local2);
                 Model3D.parseFromOBJ(_local1, _local3);
-            };
+            }
         }
 
         private function parseParticleEffects():void
@@ -162,7 +418,7 @@
             for each (_local1 in EmbeddedData.groundFiles)
             {
                 GroundLibrary.parseFromXML(XML(_local1));
-            };
+            }
         }
 
         private function parseObjectFiles():void
@@ -172,7 +428,7 @@
             {
                 currentXmlIsTesting = this.checkIsTestingXML(_local1);
                 ObjectLibrary.parseFromXML(XML(_local1));
-            };
+            }
             currentXmlIsTesting = false;
         }
 
@@ -182,15 +438,13 @@
             for each (_local1 in EmbeddedData.regionFiles)
             {
                 RegionLibrary.parseFromXML(XML(_local1));
-            };
+            }
         }
 
         private function checkIsTestingXML(_arg1:*):Boolean
         {
             return (!((getQualifiedClassName(_arg1).indexOf("TestingCXML", 33) == -1)));
         }
-
-
     }
 }
 

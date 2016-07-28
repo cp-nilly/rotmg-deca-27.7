@@ -1,34 +1,33 @@
 ﻿package kabam.rotmg.legends.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.legends.model.Timespan;
-    import kabam.rotmg.legends.model.Legend;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.screens.TitleMenuOption;
     import com.company.assembleegameclient.ui.Scrollbar;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import flash.filters.DropShadowFilter;
-    import flash.display.Shape;
-    import flash.display.Graphics;
     import com.company.rotmg.graphics.ScreenGraphic;
-    import flash.events.MouseEvent;
+
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import __AS3__.vec.*;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
 
-    public class LegendsView extends Sprite 
+    import kabam.rotmg.legends.model.Legend;
+    import kabam.rotmg.legends.model.Timespan;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.components.ScreenBase;
+
+    import org.osflash.signals.Signal;
+
+    public class LegendsView extends Sprite
     {
-
         public const timespanChanged:Signal = new Signal(Timespan);
         public const showDetail:Signal = new Signal(Legend);
         public const close:Signal = new Signal();
         private const items:Vector.<LegendListItem> = new <LegendListItem>[];
         private const tabs:Object = {};
-
         private var title:TextFieldDisplayConcrete;
         private var loadingBanner:TextFieldDisplayConcrete;
         private var noLegendsBanner:TextFieldDisplayConcrete;
@@ -145,7 +144,7 @@
             {
                 this.makeTab(_local1[_local3], _local3);
                 _local3++;
-            };
+            }
         }
 
         private function makeTab(_arg1:Timespan, _arg2:int):LegendsTab
@@ -164,7 +163,7 @@
             if (this.selectedTab != _arg1)
             {
                 this.updateTabAndSelectTimespan(_arg1);
-            };
+            }
         }
 
         private function updateTabAndSelectTimespan(_arg1:LegendsTab):void
@@ -209,7 +208,7 @@
             for each (_local1 in this.items)
             {
                 _local1.selected.remove(this.onItemSelected);
-            };
+            }
             this.items.length = 0;
             this.mainContainer.removeChild(this.listContainer);
             this.listContainer = null;
@@ -236,7 +235,7 @@
             {
                 this.items[_local1] = this.makeItemFromLegend(_local1);
                 _local1++;
-            };
+            }
         }
 
         private function makeItemFromLegend(_arg1:int):LegendListItem
@@ -263,7 +262,7 @@
             {
                 this.scrollBar.removeEventListener(Event.CHANGE, this.onScrollBarChange);
                 this.scrollBar.visible = false;
-            };
+            }
         }
 
         private function positionScrollbarToDisplayFocussedLegend():void
@@ -276,7 +275,7 @@
                 _local2 = this.legends.indexOf(_local1);
                 _local3 = ((_local2 + 0.5) * LegendListItem.HEIGHT);
                 this.scrollBar.setPos(((_local3 - 200) / (this.listContainer.height - 400)));
-            };
+            }
         }
 
         private function getLegendFocus():Legend
@@ -289,8 +288,8 @@
                 {
                     _local1 = _local2;
                     break;
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -313,8 +312,6 @@
         {
             this.loadingBanner.visible = false;
         }
-
-
     }
 }
 

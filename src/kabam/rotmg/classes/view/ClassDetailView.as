@@ -1,27 +1,25 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import flash.display.Bitmap;
-    import kabam.rotmg.util.components.StarsView;
-    import kabam.rotmg.assets.model.Animation;
+    import flash.display.Sprite;
     import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
+
+    import kabam.rotmg.assets.model.Animation;
     import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.components.StarsView;
 
-    public class ClassDetailView extends Sprite 
+    public class ClassDetailView extends Sprite
     {
-
         private static const RIGHT_JUSTIFICATION_STATS:int = 205;
         private static const WIDTH:int = 344;
         private static const TEXT_WIDTH:int = 188;
-
         private const waiter:SignalWaiter = new SignalWaiter();
-
         private var classNameText:TextFieldDisplayConcrete;
         private var classDescriptionText:TextFieldDisplayConcrete;
         private var questCompletionText:TextFieldDisplayConcrete;
@@ -106,15 +104,18 @@
             this.showNextGoal = !((_arg2 == -1));
             if (this.showNextGoal)
             {
-                this.nextGoalDetailText.setStringBuilder(new LineBuilder().setParams(TextKey.CLASS_NEXT_GOAL_DETAIL, {
-                    "goal":String(_arg2),
-                    "quest":_arg1
-                }));
+                this.nextGoalDetailText.setStringBuilder(
+                        new LineBuilder().setParams(
+                                TextKey.CLASS_NEXT_GOAL_DETAIL, {
+                                    "goal": String(_arg2), "quest": _arg1
+                                }
+                        )
+                );
                 this.nextGoalDetailText.y = (this.nextGoalText.y + this.nextGoalText.height);
                 this.nextGoalDetailText.x = ((WIDTH / 2) - (this.nextGoalDetailText.width / 2));
                 this.waiter.push(this.nextGoalDetailText.textChanged);
                 this.waiter.push(this.nextGoalText.textChanged);
-            };
+            }
         }
 
         public function setWalkingAnimation(_arg1:Animation):void
@@ -164,8 +165,6 @@
             this.nextGoalDetailText.x = ((WIDTH / 2) - (this.nextGoalDetailText.width / 2));
             this.nextGoalDetailText.visible = this.showNextGoal;
         }
-
-
     }
 }
 

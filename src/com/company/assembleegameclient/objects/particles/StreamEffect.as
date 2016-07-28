@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.objects.particles
 {
     import flash.geom.Point;
+
     import kabam.rotmg.messaging.impl.data.WorldPosData;
 
-    public class StreamEffect extends ParticleEffect 
+    public class StreamEffect extends ParticleEffect
     {
-
         public var start_:Point;
         public var end_:Point;
         public var color_:int;
@@ -28,24 +28,30 @@
             while (_local4 < _local3)
             {
                 _local5 = ((3 + int((Math.random() * 5))) * 20);
-                _local6 = new StreamParticle(1.85, _local5, this.color_, (1500 + (Math.random() * 3000)), (0.1 + (Math.random() * 0.1)), this.start_, this.end_);
+                _local6 = new StreamParticle(
+                        1.85,
+                        _local5,
+                        this.color_,
+                        (1500 + (Math.random() * 3000)),
+                        (0.1 + (Math.random() * 0.1)),
+                        this.start_,
+                        this.end_
+                );
                 map_.addObj(_local6, x_, y_);
                 _local4++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 
 import com.company.assembleegameclient.objects.particles.Particle;
-import flash.geom.Vector3D;
+
 import flash.geom.Point;
+import flash.geom.Vector3D;
 
-class StreamParticle extends Particle 
+class StreamParticle extends Particle
 {
-
     public var timeLeft_:int;
     protected var moveVec_:Vector3D;
     public var start_:Point;
@@ -58,7 +64,9 @@ class StreamParticle extends Particle
     public var yDeflect_:Number;
     public var period_:Number;
 
-    public function StreamParticle(_arg1:Number, _arg2:int, _arg3:int, _arg4:int, _arg5:Number, _arg6:Point, _arg7:Point)
+    public function StreamParticle(
+            _arg1:Number, _arg2:int, _arg3:int, _arg4:int, _arg5:Number, _arg6:Point, _arg7:Point
+    )
     {
         this.moveVec_ = new Vector3D();
         super(_arg3, _arg1, _arg2);
@@ -83,14 +91,12 @@ class StreamParticle extends Particle
         if (this.timeLeft_ <= 0)
         {
             return (false);
-        };
+        }
         this.pathX_ = (this.pathX_ + (this.dx_ * _arg2));
         this.pathY_ = (this.pathY_ + (this.dy_ * _arg2));
         var _local3:Number = Math.sin(((this.timeLeft_ / 1000) / this.period_));
         moveTo((this.pathX_ + (this.xDeflect_ * _local3)), (this.pathY_ + (this.yDeflect_ * _local3)));
         return (true);
     }
-
-
 }
 

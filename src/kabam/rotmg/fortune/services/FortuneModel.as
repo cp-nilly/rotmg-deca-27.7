@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.fortune.services
 {
     import kabam.rotmg.fortune.model.FortuneInfo;
+
     import org.osflash.signals.Signal;
 
-    public class FortuneModel 
+    public class FortuneModel
     {
-
         public static var HAS_FORTUNES:Boolean = false;
-
         private var fortune:FortuneInfo;
         private var initialized:Boolean = false;
         private var _isNew:Boolean = false;
@@ -51,8 +50,6 @@
         {
             this._isNew = _arg1;
         }
-
-
     }
 }
 

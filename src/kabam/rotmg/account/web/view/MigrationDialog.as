@@ -1,21 +1,22 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import kabam.rotmg.account.core.view.EmptyFrame;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.util.components.SimpleButton;
-    import flash.utils.Timer;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import org.osflash.signals.natives.NativeMappedSignal;
     import flash.events.MouseEvent;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.EmptyFrame;
+    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.appengine.impl.SimpleAppEngineClient;
+    import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.util.components.SimpleButton;
 
-    public class MigrationDialog extends EmptyFrame 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class MigrationDialog extends EmptyFrame
     {
-
         public var done:Signal;
         private var okButton:Signal;
         private var account:Account;
@@ -35,7 +36,10 @@
             this.timerProgressCheck = new Timer(2000, 0);
             super(500, 220, "Maintenance Needed");
             this.isClosed = false;
-            setDesc((("Press OK to begin maintenance on \n\n" + _arg1.getUserName()) + "\n\nor cancel to login with a different account"), true);
+            setDesc(
+                    (("Press OK to begin maintenance on \n\n" + _arg1.getUserName()) + "\n\nor cancel to login with a different account"),
+                    true
+            );
             this.makeAndAddLeftButton("Cancel");
             this.makeAndAddRightButton("OK");
             this.account = _arg1;
@@ -59,7 +63,7 @@
                 _local1 = this.account.getCredentials();
                 this.client.complete.addOnce(this.onMigrateStartComplete);
                 this.client.sendRequest("/migrate/doMigration", _local1);
-            };
+            }
         }
 
         private function startPercentLoop():void
@@ -68,7 +72,7 @@
             if (this.progressCheckClient == null)
             {
                 this.progressCheckClient = StaticInjectorContext.getInjector().getInstance(SimpleAppEngineClient);
-            };
+            }
             this.timerProgressCheck.start();
             this.updatePercent(0);
         }
@@ -98,7 +102,7 @@
                 if (this.isClosed == true)
                 {
                     return;
-                };
+                }
                 _local3 = new XML(_arg2);
                 if (_local3.hasOwnProperty("Percent"))
                 {
@@ -111,15 +115,15 @@
                             this.stopPercentLoop();
                             this.updatePercent(_local5);
                             this.done.dispatch();
-                        };
+                        }
                     }
                     else
                     {
                         if (_local5 != this.lastPercent)
                         {
                             this.updatePercent(_local5);
-                        };
-                    };
+                        }
+                    }
                 }
                 else
                 {
@@ -130,10 +134,10 @@
                         {
                             this.stopPercentLoop();
                             this.reset();
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
         }
 
         private function updatePercent(_arg1:Number):void
@@ -150,7 +154,7 @@
             if (this.isClosed)
             {
                 return;
-            };
+            }
             if (_arg1)
             {
                 _local3 = new XML(_arg2);
@@ -174,21 +178,24 @@
                         {
                             this.stopPercentLoop();
                             this.reset();
-                        };
-                    };
-                };
+                        }
+                    }
+                }
             }
             else
             {
                 this.stopPercentLoop();
                 this.reset();
-            };
+            }
         }
 
         private function reset():void
         {
             setTitle("Error, please try again. Maintenance needed", true);
-            setDesc((("Press OK to begin maintenance on \n\n" + this.account.getUserName()) + "\n\nor cancel to login with a different account"), true);
+            setDesc(
+                    (("Press OK to begin maintenance on \n\n" + this.account.getUserName()) + "\n\nor cancel to login with a different account"),
+                    true
+            );
             this.removeProgressBar();
             this.okButton.addOnce(this.okButton_doMigrate);
             this.rightButton_.setEnabled(true);
@@ -213,7 +220,7 @@
             if (((!((this.progBar == null))) && (!((this.progBar.parent == null)))))
             {
                 removeChild(this.progBar);
-            };
+            }
         }
 
         private function removeMigrateCallback():void
@@ -237,7 +244,7 @@
                 addChild(this.leftButton_);
                 this.leftButton_.x = (((modalWidth / 2) - 100) - this.leftButton_.width);
                 this.leftButton_.y = (modalHeight - 50);
-            };
+            }
         }
 
         private function makeAndAddRightButton(_arg1:String):void
@@ -251,10 +258,8 @@
                 addChild(this.rightButton_);
                 this.rightButton_.x = ((modalWidth / 2) + 100);
                 this.rightButton_.y = (modalHeight - 50);
-            };
+            }
         }
-
-
     }
 }
 

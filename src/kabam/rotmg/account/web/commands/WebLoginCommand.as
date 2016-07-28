@@ -1,27 +1,28 @@
 ﻿package kabam.rotmg.account.web.commands
 {
-    import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.account.core.services.LoginTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
-    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import kabam.rotmg.core.signals.InvalidateDataSignal;
-    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.core.model.ScreenModel;
-    import kabam.rotmg.packages.services.GetPackagesTask;
-    import kabam.lib.tasks.DispatchSignalTask;
-    import kabam.lib.tasks.BranchingTask;
-    import kabam.lib.tasks.TaskSequence;
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.screens.CharacterSelectionAndNewsScreen;
+
     import flash.display.Sprite;
+
+    import kabam.lib.tasks.BranchingTask;
+    import kabam.lib.tasks.DispatchSignalTask;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.account.core.services.LoginTask;
+    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.core.model.ScreenModel;
     import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.InvalidateDataSignal;
+    import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.packages.services.GetPackagesTask;
 
-    public class WebLoginCommand 
+    public class WebLoginCommand
     {
-
         [Inject]
         public var data:AccountData;
         [Inject]
@@ -46,11 +47,12 @@
         public var getPackageTask:GetPackagesTask;
         private var setScreenTask:DispatchSignalTask;
 
-
         public function execute():void
         {
             this.setScreenTask = new DispatchSignalTask(this.setScreenWithValidData, this.getTargetScreen());
-            var _local1:BranchingTask = new BranchingTask(this.loginTask, this.makeSuccessTask(), this.makeFailureTask());
+            var _local1:BranchingTask = new BranchingTask(
+                    this.loginTask, this.makeSuccessTask(), this.makeFailureTask()
+            );
             this.monitor.add(_local1);
             _local1.start();
         }
@@ -81,8 +83,8 @@
             if ((((_local1 == null)) || ((_local1 == GameSprite))))
             {
                 _local1 = CharacterSelectionAndNewsScreen;
-            };
-            return (new (_local1)());
+            }
+            return (new _local1());
         }
 
         private function getTrackingData():TrackingData
@@ -92,8 +94,6 @@
             _local1.action = "signedIn";
             return (_local1);
         }
-
-
     }
 }
 

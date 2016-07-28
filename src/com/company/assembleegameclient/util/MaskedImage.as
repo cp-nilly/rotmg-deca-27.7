@@ -1,11 +1,11 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import flash.display.BitmapData;
     import com.company.util.BitmapUtil;
 
-    public class MaskedImage 
-    {
+    import flash.display.BitmapData;
 
+    public class MaskedImage
+    {
         public var image_:BitmapData;
         public var mask_:BitmapData;
 
@@ -25,7 +25,7 @@
             return (this.image_.height);
         }
 
-        public function mirror(_arg1:int=0):MaskedImage
+        public function mirror(_arg1:int = 0):MaskedImage
         {
             var _local2:BitmapData = BitmapUtil.mirror(this.image_, _arg1);
             var _local3:BitmapData = (((this.mask_ == null)) ? null : BitmapUtil.mirror(this.mask_, _arg1));
@@ -36,8 +36,6 @@
         {
             return (BitmapUtil.amountTransparent(this.image_));
         }
-
-
     }
 }
 

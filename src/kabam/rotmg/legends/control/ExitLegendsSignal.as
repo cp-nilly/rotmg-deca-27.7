@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ExitLegendsSignal extends Signal 
+    public class ExitLegendsSignal extends Signal
     {
-
-
     }
 }
 

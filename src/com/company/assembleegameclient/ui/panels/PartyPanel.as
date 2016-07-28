@@ -1,23 +1,21 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import flash.display.DisplayObjectContainer;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.ui.PlayerGameObjectListItem;
-    import com.company.assembleegameclient.ui.menu.PlayerMenu;
-    import com.company.assembleegameclient.objects.Party;
-    import flash.events.Event;
     import com.company.assembleegameclient.game.GameSprite;
-    import flash.events.MouseEvent;
+    import com.company.assembleegameclient.objects.Party;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.ui.GameObjectListItem;
+    import com.company.assembleegameclient.ui.PlayerGameObjectListItem;
+    import com.company.assembleegameclient.ui.menu.PlayerMenu;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.DisplayObjectContainer;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.geom.ColorTransform;
     import flash.utils.getTimer;
-    import com.company.util.MoreColorUtil;
-    import __AS3__.vec.*;
 
-    public class PartyPanel extends Panel 
+    public class PartyPanel extends Panel
     {
-
         public var menuLayer:DisplayObjectContainer;
         public var memberPanels:Vector.<PlayerGameObjectListItem>;
         public var mouseOver_:Boolean;
@@ -54,7 +52,7 @@
                 _local2.addEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
                 _local2.addEventListener(MouseEvent.MOUSE_OUT, this.onMouseOut);
                 _local2.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
-            };
+            }
         }
 
         private function onRemovedFromStage(_arg1:Event):void
@@ -66,7 +64,7 @@
                 _local2.removeEventListener(MouseEvent.MOUSE_OVER, this.onMouseOver);
                 _local2.removeEventListener(MouseEvent.MOUSE_OUT, this.onMouseOut);
                 _local2.removeEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
-            };
+            }
         }
 
         private function onMouseOver(_arg1:MouseEvent):void
@@ -74,13 +72,13 @@
             if (((!((this.menu == null))) && (!((this.menu.parent == null)))))
             {
                 return;
-            };
+            }
             var _local2:PlayerGameObjectListItem = (_arg1.currentTarget as PlayerGameObjectListItem);
             var _local3:Player = (_local2.go as Player);
             if ((((_local3 == null)) || ((_local3.texture_ == null))))
             {
                 return;
-            };
+            }
             this.mouseOver_ = true;
         }
 
@@ -110,8 +108,8 @@
                 if (_local3)
                 {
                     _local3.setEnabled(true);
-                };
-            };
+                }
+            }
             _arg1.currentTarget.removeEventListener(Event.REMOVED_FROM_STAGE, this.onMenuRemoved);
         }
 
@@ -121,7 +119,7 @@
             {
                 this.menu.remove();
                 this.menu = null;
-            };
+            }
         }
 
         override public function draw():void
@@ -137,9 +135,9 @@
                 for each (_local4 in this.memberPanels)
                 {
                     _local4.clear();
-                };
+                }
                 return;
-            };
+            }
             var _local2:int;
             var _local3:int;
             while (_local3 < Party.NUM_MEMBERS)
@@ -151,11 +149,11 @@
                 else
                 {
                     _local5 = _local1.members_[_local3];
-                };
+                }
                 if (((!((_local5 == null))) && ((_local5.map_ == null))))
                 {
                     _local5 = null;
-                };
+                }
                 _local6 = null;
                 if (_local5 != null)
                 {
@@ -164,11 +162,13 @@
                         if (_local2 == 0)
                         {
                             _local2 = getTimer();
-                        };
+                        }
                         _local7 = (int((Math.abs(Math.sin((_local2 / 200))) * 10)) / 10);
                         _local8 = 128;
-                        _local6 = new ColorTransform(1, 1, 1, 1, (_local7 * _local8), (-(_local7) * _local8), (-(_local7) * _local8));
-                    };
+                        _local6 = new ColorTransform(
+                                1, 1, 1, 1, (_local7 * _local8), (-(_local7) * _local8), (-(_local7) * _local8)
+                        );
+                    }
                     if (!_local5.starred_)
                     {
                         if (_local6 != null)
@@ -178,15 +178,13 @@
                         else
                         {
                             _local6 = MoreColorUtil.darkCT;
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 this.memberPanels[_local3].draw(_local5, _local6);
                 _local3++;
-            };
+            }
         }
-
-
     }
 }
 

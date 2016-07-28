@@ -1,19 +1,20 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import com.company.assembleegameclient.objects.ObjectLibrary;
+
     import flash.display.BitmapData;
     import flash.events.Event;
 
-    public class HostQueryDialogMediator extends Mediator 
-    {
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class HostQueryDialogMediator extends Mediator
+    {
         [Inject]
         public var view:HostQueryDialog;
         [Inject]
         public var closeDialogs:CloseDialogsSignal;
-
 
         override public function initialize():void
         {
@@ -30,8 +31,6 @@
         {
             this.closeDialogs.dispatch();
         }
-
-
     }
 }
 

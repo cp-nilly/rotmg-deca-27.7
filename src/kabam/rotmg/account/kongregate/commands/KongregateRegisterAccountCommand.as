@@ -1,20 +1,19 @@
 ﻿package kabam.rotmg.account.kongregate.commands
 {
-    import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.account.core.services.RegisterAccountTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
     import kabam.lib.tasks.BranchingTask;
-    import kabam.lib.tasks.TaskSequence;
     import kabam.lib.tasks.DispatchSignalTask;
-    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailDialog;
     import kabam.lib.tasks.Task;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.account.core.services.RegisterAccountTask;
+    import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
+    import kabam.rotmg.account.kongregate.view.KongregateAccountDetailDialog;
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class KongregateRegisterAccountCommand 
+    public class KongregateRegisterAccountCommand
     {
-
         [Inject]
         public var data:AccountData;
         [Inject]
@@ -27,7 +26,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var taskError:TaskErrorSignal;
-
 
         public function execute():void
         {
@@ -48,8 +46,6 @@
         {
             return (new DispatchSignalTask(this.taskError, this.task));
         }
-
-
     }
 }
 

@@ -1,17 +1,19 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.ui.model.HUDModel;
-    import kabam.rotmg.ui.signals.UpdateHUDSignal;
-    import kabam.rotmg.game.view.components.StatsUndockedSignal;
-    import flash.display.Sprite;
-    import kabam.rotmg.game.view.components.StatsView;
-    import flash.events.MouseEvent;
     import com.company.assembleegameclient.objects.Player;
 
-    public class HUDMediator extends Mediator 
-    {
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.game.view.components.StatsUndockedSignal;
+    import kabam.rotmg.game.view.components.StatsView;
+    import kabam.rotmg.ui.model.HUDModel;
+    import kabam.rotmg.ui.signals.UpdateHUDSignal;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class HUDMediator extends Mediator
+    {
         [Inject]
         public var view:HUDView;
         [Inject]
@@ -23,7 +25,6 @@
         [Inject]
         public var statsDocked:StatsDockedSignal;
         private var stats:Sprite;
-
 
         override public function initialize():void
         {
@@ -54,7 +55,7 @@
             if (_local2.hitTestObject(this.view.tabStrip))
             {
                 this.dockStats(_local2);
-            };
+            }
         }
 
         private function dockStats(_arg1:Sprite):void
@@ -87,7 +88,7 @@
             if (((this.stats) && (this.stats.hasEventListener(MouseEvent.MOUSE_DOWN))))
             {
                 this.stats.removeEventListener(MouseEvent.MOUSE_DOWN, this.onStatsMouseDown);
-            };
+            }
         }
 
         private function onUpdateHUD(_arg1:Player):void
@@ -99,8 +100,6 @@
         {
             this.view.setPlayerDependentAssets(this.hudModel.gameSprite);
         }
-
-
     }
 }
 

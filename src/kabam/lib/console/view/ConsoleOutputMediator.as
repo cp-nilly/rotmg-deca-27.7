@@ -1,17 +1,18 @@
 ﻿package kabam.lib.console.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.lib.console.signals.ConsoleLogSignal;
-    import kabam.lib.console.signals.ConsoleWatchSignal;
-    import kabam.lib.console.signals.ConsoleUnwatchSignal;
-    import kabam.lib.console.signals.ClearConsoleSignal;
-    import kabam.lib.console.signals.CopyConsoleTextSignal;
-    import kabam.lib.console.model.Watch;
     import flash.system.System;
 
-    public final class ConsoleOutputMediator extends Mediator 
-    {
+    import kabam.lib.console.model.Watch;
+    import kabam.lib.console.signals.ClearConsoleSignal;
+    import kabam.lib.console.signals.ConsoleLogSignal;
+    import kabam.lib.console.signals.ConsoleUnwatchSignal;
+    import kabam.lib.console.signals.ConsoleWatchSignal;
+    import kabam.lib.console.signals.CopyConsoleTextSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public final class ConsoleOutputMediator extends Mediator
+    {
         [Inject]
         public var log:ConsoleLogSignal;
         [Inject]
@@ -24,7 +25,6 @@
         public var copy:CopyConsoleTextSignal;
         [Inject]
         public var view:ConsoleOutputView;
-
 
         override public function initialize():void
         {
@@ -68,8 +68,6 @@
         {
             System.setClipboard(this.view.getText());
         }
-
-
     }
 }
 

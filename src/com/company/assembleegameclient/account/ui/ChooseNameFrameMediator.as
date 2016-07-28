@@ -1,17 +1,18 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import kabam.rotmg.ui.signals.NameChangedSignal;
     import com.company.assembleegameclient.game.AGameSprite;
     import com.company.assembleegameclient.game.events.NameResultEvent;
-    import kabam.rotmg.core.service.TrackingData;
     import com.company.assembleegameclient.parameters.Parameters;
 
-    public class ChooseNameFrameMediator extends Mediator 
-    {
+    import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.ui.signals.NameChangedSignal;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ChooseNameFrameMediator extends Mediator
+    {
         [Inject]
         public var view:ChooseNameFrame;
         [Inject]
@@ -22,7 +23,6 @@
         public var nameChanged:NameChangedSignal;
         private var gameSprite:AGameSprite;
         private var name:String;
-
 
         override public function initialize():void
         {
@@ -56,7 +56,7 @@
             else
             {
                 this.handleFailedNameChange(_arg1.m_.errorText_);
-            };
+            }
         }
 
         private function handleSuccessfulNameChange():void
@@ -64,7 +64,7 @@
             if (this.view.isPurchase)
             {
                 this.trackPurchase();
-            };
+            }
             this.gameSprite.model.setName(this.name);
             this.gameSprite.map.player_.name_ = this.name;
             this.closeDialogs.dispatch();
@@ -91,8 +91,6 @@
         {
             this.closeDialogs.dispatch();
         }
-
-
     }
 }
 

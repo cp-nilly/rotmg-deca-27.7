@@ -2,12 +2,11 @@
 {
     import kabam.lib.tasks.Task;
 
-    public interface StartupDelegate 
+    public interface StartupDelegate
     {
-
         function getPriority():int;
-        function make():Task;
 
+        function make():Task;
     }
 }
 

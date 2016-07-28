@@ -2,11 +2,9 @@
 {
     import flash.events.IEventDispatcher;
 
-    public interface AccountInfoView extends IEventDispatcher 
+    public interface AccountInfoView extends IEventDispatcher
     {
-
         function setInfo(_arg1:String, _arg2:Boolean):void;
-
     }
 }
 

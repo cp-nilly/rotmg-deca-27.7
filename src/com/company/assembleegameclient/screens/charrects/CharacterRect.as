@@ -1,20 +1,20 @@
 ﻿package com.company.assembleegameclient.screens.charrects
 {
-    import flash.display.Sprite;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
     import com.company.rotmg.graphics.StarGraphic;
+
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
     import flash.geom.ColorTransform;
 
-    public class CharacterRect extends Sprite 
-    {
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
 
+    public class CharacterRect extends Sprite
+    {
         public static const WIDTH:int = 419;
         public static const HEIGHT:int = 59;
-
         public var color:uint;
         public var overColor:uint;
         private var box:Shape;
@@ -34,7 +34,6 @@
         {
             return ([new DropShadowFilter(0, 0, 0, 1, 8, 8)]);
         }
-
 
         public function init():void
         {
@@ -117,8 +116,6 @@
             this.taglineText.y = CharacterRectConstants.TAGLINE_TEXT_POS_Y;
             this.selectContainer.addChild(this.taglineText);
         }
-
-
     }
 }
 

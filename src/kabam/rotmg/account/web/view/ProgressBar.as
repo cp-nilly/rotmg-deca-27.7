@@ -2,11 +2,9 @@
 {
     import flash.display.Sprite;
 
-    public class ProgressBar extends Sprite 
+    public class ProgressBar extends Sprite
     {
-
         private static const BEVEL:int = 4;
-
         private var _w:Number = 100;
         private var _h:Number = 10;
         private var backbar:Sprite;
@@ -37,8 +35,6 @@
             _arg1.graphics.endFill();
             return (_arg1);
         }
-
-
     }
 }
 

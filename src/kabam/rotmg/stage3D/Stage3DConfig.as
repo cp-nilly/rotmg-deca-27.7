@@ -1,36 +1,36 @@
 ﻿package kabam.rotmg.stage3D
 {
-    import robotlegs.bender.framework.api.IConfig;
-    import com.company.assembleegameclient.util.StageProxy;
-	import robotlegs.bender.framework.api.IInjector;
-    import com.company.assembleegameclient.util.Stage3DProxy;
-    import flash.events.ErrorEvent;
+    import com.company.assembleegameclient.engine3d.Model3D;
     import com.company.assembleegameclient.parameters.Parameters;
-    import flash.events.Event;
-    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
-    import kabam.rotmg.stage3D.graphic3D.IndexBufferFactory;
-    import kabam.rotmg.stage3D.graphic3D.VertexBufferFactory;
-    import kabam.rotmg.stage3D.proxies.Context3DProxy;
+    import com.company.assembleegameclient.util.Stage3DProxy;
+    import com.company.assembleegameclient.util.StageProxy;
+
     import flash.display3D.Context3DBlendFactor;
     import flash.display3D.Context3DCompareMode;
+    import flash.events.ErrorEvent;
+    import flash.events.Event;
+
     import kabam.rotmg.stage3D.graphic3D.Graphic3DHelper;
-    import com.company.assembleegameclient.engine3d.Model3D;
+    import kabam.rotmg.stage3D.graphic3D.IndexBufferFactory;
+    import kabam.rotmg.stage3D.graphic3D.TextureFactory;
+    import kabam.rotmg.stage3D.graphic3D.VertexBufferFactory;
+    import kabam.rotmg.stage3D.proxies.Context3DProxy;
 
-    public class Stage3DConfig implements IConfig 
+    import robotlegs.bender.framework.api.IConfig;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class Stage3DConfig implements IConfig
     {
-
         public static const WIDTH:int = 600;
         public static const HALF_WIDTH:int = (WIDTH / 2);//300
         public static const HEIGHT:int = 600;
         public static const HALF_HEIGHT:int = (HEIGHT / 2);//300
-
         [Inject]
         public var stageProxy:StageProxy;
         [Inject]
         public var injector:IInjector;
         public var renderer:Renderer;
         private var stage3D:Stage3DProxy;
-
 
         public function configure():void
         {
@@ -56,7 +56,7 @@
             if (_local2.GetContext3D().driverInfo.toLowerCase().indexOf("software") != -1)
             {
                 Parameters.clearGpuRender();
-            };
+            }
             _local2.configureBackBuffer(WIDTH, HEIGHT, 2, true);
             _local2.setBlendFactors(Context3DBlendFactor.SOURCE_ALPHA, Context3DBlendFactor.ONE_MINUS_SOURCE_ALPHA);
             _local2.setDepthTest(false, Context3DCompareMode.LESS_EQUAL);
@@ -66,8 +66,6 @@
             this.renderer.init(_local2.GetContext3D());
             Model3D.Create3dBuffer(_local2.GetContext3D());
         }
-
-
     }
 }
 

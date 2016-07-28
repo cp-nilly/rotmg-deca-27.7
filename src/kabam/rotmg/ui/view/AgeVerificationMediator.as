@@ -1,19 +1,18 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import kabam.rotmg.account.core.signals.VerifyAgeSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
-    public class AgeVerificationMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class AgeVerificationMediator extends Mediator
+    {
         [Inject]
         public var view:AgeVerificationDialog;
         [Inject]
         public var verifyAge:VerifyAgeSignal;
         [Inject]
         public var closeDialogs:CloseDialogsSignal;
-
 
         override public function initialize():void
         {
@@ -34,7 +33,7 @@
             else
             {
                 this.handleRejected();
-            };
+            }
         }
 
         private function handleAccepted():void
@@ -47,8 +46,6 @@
         {
             this.closeDialogs.dispatch();
         }
-
-
     }
 }
 

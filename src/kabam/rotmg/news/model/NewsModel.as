@@ -1,19 +1,16 @@
 ﻿package kabam.rotmg.news.model
 {
-    import kabam.rotmg.news.controller.NewsDataUpdatedSignal;
-    import kabam.rotmg.news.controller.NewsButtonRefreshSignal;
-    import kabam.rotmg.account.core.Account;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.news.view.NewsModalPage;
     import com.company.assembleegameclient.parameters.Parameters;
-    import __AS3__.vec.*;
 
-    public class NewsModel 
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.news.controller.NewsButtonRefreshSignal;
+    import kabam.rotmg.news.controller.NewsDataUpdatedSignal;
+    import kabam.rotmg.news.view.NewsModalPage;
+
+    public class NewsModel
     {
-
         private static const COUNT:int = 3;
         public static const MODAL_PAGE_COUNT:int = 4;
-
         [Inject]
         public var update:NewsDataUpdatedSignal;
         [Inject]
@@ -24,7 +21,6 @@
         public var modalPages:Vector.<NewsModalPage>;
         public var modalPageData:Vector.<NewsCellVO>;
 
-
         public function initNews():void
         {
             this.news = new Vector.<NewsCellVO>(COUNT, true);
@@ -33,7 +29,7 @@
             {
                 this.news[_local1] = new DefaultNewsCellVO(_local1);
                 _local1++;
-            };
+            }
         }
 
         public function updateNews(_arg1:Vector.<NewsCellVO>):void
@@ -59,9 +55,9 @@
                     {
                         Parameters.data_[("newsTimestamp" + _local5)] = _local3.endDate;
                         Parameters.data_[("hasNewsUpdate" + _local5)] = true;
-                    };
-                };
-            };
+                    }
+                }
+            }
             this.sortByPriority(_local2);
             this.update.dispatch(this.news);
             this.updateNoParams.dispatch();
@@ -80,9 +76,9 @@
                 if (this.modalPageData[_local1] == null)
                 {
                     return (false);
-                };
+                }
                 _local1++;
-            };
+            }
             return (true);
         }
 
@@ -94,8 +90,8 @@
                 if (((this.isNewsTimely(_local2)) && (this.isValidForPlatform(_local2))))
                 {
                     this.prioritize(_local2);
-                };
-            };
+                }
+            }
         }
 
         private function prioritize(_arg1:NewsCellVO):void
@@ -104,13 +100,13 @@
             if (this.news[_local2])
             {
                 _arg1 = this.comparePriority(this.news[_local2], _arg1);
-            };
+            }
             this.news[_local2] = _arg1;
         }
 
         private function comparePriority(_arg1:NewsCellVO, _arg2:NewsCellVO):NewsCellVO
         {
-            return ((((_arg1.priority)<_arg2.priority) ? _arg1 : _arg2));
+            return ((((_arg1.priority) < _arg2.priority) ? _arg1 : _arg2));
         }
 
         private function isNewsTimely(_arg1:NewsCellVO):Boolean
@@ -124,14 +120,17 @@
             if (!this.hasValidModalNews())
             {
                 return;
-            };
+            }
             this.modalPages = new Vector.<NewsModalPage>(MODAL_PAGE_COUNT, true);
             var _local1:int;
             while (_local1 < MODAL_PAGE_COUNT)
             {
-                this.modalPages[_local1] = new NewsModalPage((this.modalPageData[_local1] as NewsCellVO).headline, (this.modalPageData[_local1] as NewsCellVO).linkDetail);
+                this.modalPages[_local1] = new NewsModalPage(
+                        (this.modalPageData[_local1] as NewsCellVO).headline,
+                        (this.modalPageData[_local1] as NewsCellVO).linkDetail
+                );
                 _local1++;
-            };
+            }
         }
 
         public function getModalPage(_arg1:int):NewsModalPage
@@ -139,7 +138,7 @@
             if (((((((!((this.modalPages == null))) && ((_arg1 > 0)))) && ((_arg1 <= this.modalPages.length)))) && (!((this.modalPages[(_arg1 - 1)] == null)))))
             {
                 return (this.modalPages[(_arg1 - 1)]);
-            };
+            }
             return (new NewsModalPage("No new information", "Please check back later."));
         }
 
@@ -148,8 +147,6 @@
             var _local2:String = this.account.gameNetwork();
             return (!((_arg1.networks.indexOf(_local2) == -1)));
         }
-
-
     }
 }
 

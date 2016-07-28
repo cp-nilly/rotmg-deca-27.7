@@ -1,19 +1,21 @@
 ﻿package kabam.rotmg.account.kongregate.view
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.ui.DeprecatedClickableText;
     import com.company.assembleegameclient.account.ui.Frame;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import com.company.assembleegameclient.ui.DeprecatedClickableText;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
-    public class KongregateAccountDetailDialog extends Sprite 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class KongregateAccountDetailDialog extends Sprite
     {
-
         public var done:Signal;
         public var register:Signal;
         public var link:Signal;
@@ -32,7 +34,12 @@
         public function setInfo(_arg1:String, _arg2:String, _arg3:Boolean):void
         {
             var _local4:Frame;
-            _local4 = new Frame(TextKey.KONGREGATEACCOUNTDETAILDIALOG_TITLE, "", TextKey.KONGREGATEACCOUNTDETAILDIALOG_RIGHTBUTTON, "/kongregateCurrentLogin");
+            _local4 = new Frame(
+                    TextKey.KONGREGATEACCOUNTDETAILDIALOG_TITLE,
+                    "",
+                    TextKey.KONGREGATEACCOUNTDETAILDIALOG_RIGHTBUTTON,
+                    "/kongregateCurrentLogin"
+            );
             addChild(_local4);
             this.loginText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);
             this.loginText_.setBold(true);
@@ -68,7 +75,7 @@
             {
                 this.register_ = new DeprecatedClickableText(12, false, TextKey.KONGREGATEACCOUNTDETAILDIALOG_REGISTER);
                 this.register_.addEventListener(MouseEvent.CLICK, this.onRegister);
-            };
+            }
             _local4.rightButton_.addEventListener(MouseEvent.CLICK, this.onContinue);
         }
 
@@ -81,8 +88,6 @@
         {
             this.register.dispatch();
         }
-
-
     }
 }
 

@@ -1,27 +1,25 @@
 ﻿package kabam.rotmg.questrewards.components
 {
-    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
-    import flash.text.TextField;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import __AS3__.vec.Vector;
-    import flash.display.Shape;
     import flash.display.Bitmap;
+    import flash.display.Shape;
     import flash.display.Sprite;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
     import flash.events.Event;
-    import kabam.rotmg.fortune.components.TimerCallback;
-    import kabam.rotmg.text.model.FontModel;
-    import flash.text.TextFormat;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.core.StaticInjectorContext;
+    import flash.events.MouseEvent;
     import flash.geom.ColorTransform;
+    import flash.text.TextField;
+    import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
     import flash.utils.getTimer;
-    import __AS3__.vec.*;
 
-    public class ModalItemSlot extends FoodFeedFuseSlot 
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.fortune.components.TimerCallback;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.slot.FoodFeedFuseSlot;
+    import kabam.rotmg.text.model.FontModel;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+
+    public class ModalItemSlot extends FoodFeedFuseSlot
     {
-
         public var interactable:Boolean = false;
         private var usageText:TextField;
         private var actionButton:LegacyBuyButton = null;
@@ -36,7 +34,7 @@
         private var dir:Number = 0.018;
         private var hovering:Boolean = false;
 
-        public function ModalItemSlot(_arg1:Boolean=false, _arg2:Boolean=false)
+        public function ModalItemSlot(_arg1:Boolean = false, _arg2:Boolean = false)
         {
             var _local3:Shape;
             var _local4:int;
@@ -46,21 +44,23 @@
             {
                 this.interactable = _arg1;
                 addEventListener(MouseEvent.ROLL_OVER, this.onMouseOverGoalSlot);
-            };
+            }
             highlight(true, 16689154, true);
             if (_arg2)
             {
                 _local4 = 0;
                 while (_local4 < 3)
                 {
-                    _local3 = PetsViewAssetFactory.returnPetSlotShape((56 + (_local4 * 10)), 0x545454, (-5 + (-5 * _local4)), false, true, 4);
+                    _local3 = PetsViewAssetFactory.returnPetSlotShape(
+                            (56 + (_local4 * 10)), 0x545454, (-5 + (-5 * _local4)), false, true, 4
+                    );
                     addChild(_local3);
                     this.animatedOutlines.push(_local3);
                     _local4++;
-                };
+                }
                 this.animationStartIndex = (this.animatedOutlines.length - 1);
                 addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         override public function updateTitle():void
@@ -73,30 +73,30 @@
                 {
                     this.actionButton.setOutLineColor(196098);
                     this.actionButton.draw();
-                };
+                }
                 if (((!((this.embeddedSprite_ == null))) && (!((this.embeddedSprite_.parent == null)))))
                 {
                     this.embeddedSpriteCopy_.visible = false;
                     this.embeddedSpriteCopy_.alpha = 0;
                     this.embeddedSprite_.alpha = 1;
-                };
+                }
             }
             else
             {
                 if (this.animatedOutlines.length > 0)
                 {
                     addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-                };
+                }
                 if (((!((this.embeddedSprite_ == null))) && (!((this.embeddedSprite_.parent == null)))))
                 {
                     this.embeddedSpriteCopy_.visible = true;
-                };
+                }
                 if (this.actionButton)
                 {
                     this.actionButton.setOutLineColor(0x545454);
                     this.actionButton.draw();
-                };
-            };
+                }
+            }
         }
 
         public function makeRedTemporarily():void
@@ -115,7 +115,7 @@
                 this.marking.textColor = 0xFF00;
                 addChild(this.marking);
                 this.marking.y = Math.round((((height / 2) - (this.marking.textHeight / 2)) / 7));
-            };
+            }
         }
 
         public function setQuestionMark():void
@@ -127,7 +127,7 @@
                 this.marking.textColor = 0xFF0000;
                 addChild(this.marking);
                 this.marking.y = Math.round((((height / 2) - (this.marking.textHeight / 2)) / 7));
-            };
+            }
         }
 
         public function removeMarking():void
@@ -135,7 +135,7 @@
             if (((!((this.marking == null))) && (!((this.marking.parent == null)))))
             {
                 removeChild(this.marking);
-            };
+            }
         }
 
         private function buildTextField():TextField
@@ -162,10 +162,10 @@
                 if (((!((this.usageText == null))) && ((this.usageText.parent == null))))
                 {
                     addChild(this.usageText);
-                };
+                }
                 removeEventListener(MouseEvent.ROLL_OVER, this.onMouseOverGoalSlot);
                 addEventListener(MouseEvent.ROLL_OUT, this.onMouseOutsideGoalSlot);
-            };
+            }
         }
 
         private function onMouseOutsideGoalSlot(_arg1:Event):void
@@ -176,7 +176,7 @@
                 new TimerCallback(0.5, this.removeIfStillOutside);
                 addEventListener(MouseEvent.ROLL_OVER, this.onMouseOverGoalSlot);
                 removeEventListener(MouseEvent.ROLL_OUT, this.onMouseOutsideGoalSlot);
-            };
+            }
         }
 
         private function removeIfStillOutside():void
@@ -184,7 +184,7 @@
             if ((((((this.hovering == false)) && (!((this.usageText == null))))) && (!((this.usageText.parent == null)))))
             {
                 removeChild(this.usageText);
-            };
+            }
         }
 
         public function setUsageText(_arg1:String, _arg2:int, _arg3:int):void
@@ -220,18 +220,18 @@
                     _local3.alphaMultiplier = (1 - (_local4 * 0.3));
                     this.animatedOutlines[_local4].transform.colorTransform = _local3;
                     _local4++;
-                };
+                }
                 _local5 = (this.animationStartIndex - (this.curOutline * this.animationDir));
                 _local3 = this.animatedOutlines[_local5].transform.colorTransform;
                 _local3.color = 196098;
                 this.animatedOutlines[_local5].transform.colorTransform = _local3;
-            };
+            }
             if (this.embeddedImage_)
             {
                 if ((((this.embeddedSprite_.alpha == 1)) || ((this.embeddedSprite_.alpha == 0))))
                 {
                     this.dir = (this.dir * -1);
-                };
+                }
                 this.embeddedSprite_.alpha = (this.embeddedSprite_.alpha + this.dir);
                 this.embeddedSpriteCopy_.alpha = (this.embeddedSpriteCopy_.alpha - this.dir);
                 if (this.embeddedSprite_.alpha >= 1)
@@ -245,9 +245,9 @@
                     {
                         this.embeddedSprite_.alpha = 0;
                         this.embeddedSpriteCopy_.alpha = 1;
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         public function highLightAll(_arg1:int):void
@@ -261,7 +261,7 @@
                 _local3.alphaMultiplier = (1 - (_local2 * 0.3));
                 this.animatedOutlines[_local2].transform.colorTransform = _local3;
                 _local2--;
-            };
+            }
         }
 
         public function playOutLineAnimation(_arg1:int):void
@@ -276,8 +276,8 @@
                 if (_arg1 == 1)
                 {
                     this.animationStartIndex = (this.animatedOutlines.length - 1);
-                };
-            };
+                }
+            }
             addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
         }
 
@@ -304,15 +304,13 @@
             {
                 removeChild(itemSprite);
                 addChild(itemSprite);
-            };
+            }
             this.embeddedSprite_.filters = [grayscaleMatrix];
             var _local3:ColorTransform = new ColorTransform();
             _local3.color = 0x292929;
             this.embeddedSprite_.transform.colorTransform = _local3;
             this.embeddedSpriteCopy_.alpha = 0;
         }
-
-
     }
 }
 

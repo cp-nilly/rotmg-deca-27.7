@@ -1,13 +1,11 @@
 ﻿package com.company.assembleegameclient.util
 {
-    import __AS3__.vec.Vector;
     import com.company.util.ImageSet;
+
     import flash.display.BitmapData;
-    import __AS3__.vec.*;
 
-    public class MaskedImageSet 
+    public class MaskedImageSet
     {
-
         public var images_:Vector.<MaskedImage>;
 
         public function MaskedImageSet()
@@ -25,21 +23,23 @@
             {
                 _local6 = new ImageSet();
                 _local6.addFromBitmapData(_arg2, _arg3, _arg4);
-            };
+            }
             var _local7:int;
             while (_local7 < _local5.images_.length)
             {
-                this.images_.push(new MaskedImage(_local5.images_[_local7], (((_local6 == null)) ? null : _local6.images_[_local7])));
+                this.images_.push(
+                        new MaskedImage(
+                                _local5.images_[_local7], (((_local6 == null)) ? null : _local6.images_[_local7])
+                        )
+                );
                 _local7++;
-            };
+            }
         }
 
         public function addFromMaskedImage(_arg1:MaskedImage, _arg2:int, _arg3:int):void
         {
             this.addFromBitmapData(_arg1.image_, _arg1.mask_, _arg2, _arg3);
         }
-
-
     }
 }
 

@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.promotions.commands
 {
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.promotions.model.BeginnersPackageModel;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.promotions.service.GetDaysRemainingTask;
-    import kabam.rotmg.account.core.services.GetOffersTask;
-    import kabam.lib.tasks.TaskMonitor;
     import kabam.lib.tasks.BranchingTask;
-    import kabam.lib.tasks.TaskSequence;
     import kabam.lib.tasks.DispatchSignalTask;
-    import kabam.rotmg.promotions.view.BeginnersPackageOfferDialog;
     import kabam.lib.tasks.Task;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.lib.tasks.TaskSequence;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.services.GetOffersTask;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.promotions.model.BeginnersPackageModel;
+    import kabam.rotmg.promotions.service.GetDaysRemainingTask;
     import kabam.rotmg.promotions.view.AlreadyPurchasedBeginnersPackageDialog;
+    import kabam.rotmg.promotions.view.BeginnersPackageOfferDialog;
 
-    public class ShowBeginnersPackageCommand 
+    public class ShowBeginnersPackageCommand
     {
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -29,10 +28,11 @@
         [Inject]
         public var monitor:TaskMonitor;
 
-
         public function execute():void
         {
-            var _local1:BranchingTask = new BranchingTask(this.getDaysRemaining, this.makeSuccessTask(), this.makeFailureTask());
+            var _local1:BranchingTask = new BranchingTask(
+                    this.getDaysRemaining, this.makeSuccessTask(), this.makeFailureTask()
+            );
             this.monitor.add(_local1);
             _local1.start();
         }
@@ -51,8 +51,6 @@
             _local1.add(new DispatchSignalTask(this.openDialog, new AlreadyPurchasedBeginnersPackageDialog()));
             return (_local1);
         }
-
-
     }
 }
 

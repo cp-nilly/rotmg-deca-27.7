@@ -1,17 +1,18 @@
 ﻿package kabam.rotmg.core.service
 {
+    import com.company.assembleegameclient.appengine.SavedCharactersList;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.util.MoreObjectUtil;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.model.PlayerModel;
+
     import robotlegs.bender.framework.api.ILogger;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.util.MoreObjectUtil;
-    import com.company.assembleegameclient.appengine.SavedCharactersList;
 
-    public class PurchaseCharacterClassTask extends BaseTask 
+    public class PurchaseCharacterClassTask extends BaseTask
     {
-
         [Inject]
         public var classType:int;
         [Inject]
@@ -22,7 +23,6 @@
         public var playerModel:PlayerModel;
         [Inject]
         public var logger:ILogger;
-
 
         override protected function startTask():void
         {
@@ -55,8 +55,6 @@
             this.playerModel.setClassAvailability(this.classType, SavedCharactersList.UNRESTRICTED);
             completeTask(true);
         }
-
-
     }
 }
 

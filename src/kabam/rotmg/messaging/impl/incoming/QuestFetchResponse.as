@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class QuestFetchResponse extends IncomingMessage 
+    public class QuestFetchResponse extends IncomingMessage
     {
-
         public var tier:int;
         public var goal:String;
         public var description:String;
@@ -27,8 +26,6 @@
         {
             return (formatToString("QUESTFETCHRESPONSE", "tier", "goal", "description", "image"));
         }
-
-
     }
 }
 

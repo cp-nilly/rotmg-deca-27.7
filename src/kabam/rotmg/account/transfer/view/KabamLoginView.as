@@ -1,23 +1,25 @@
 ﻿package kabam.rotmg.account.transfer.view
 {
     import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.TextInputField;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import kabam.rotmg.text.model.TextKey;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.account.transfer.model.TransferAccountData;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.filters.DropShadowFilter;
-    import flash.events.KeyboardEvent;
-    import flash.events.Event;
     import com.company.util.KeyCodes;
 
-    public class KabamLoginView extends Frame 
-    {
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
 
+    import kabam.rotmg.account.transfer.model.TransferAccountData;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class KabamLoginView extends Frame
+    {
         public var cancel:Signal;
         public var signIn:Signal;
         public var forgot:Signal;
@@ -28,7 +30,12 @@
 
         public function KabamLoginView()
         {
-            super("Kabam.com account transfer", TextKey.WEB_LOGIN_DIALOG_LEFT, TextKey.WEB_LOGIN_DIALOG_RIGHT, "/signIn");
+            super(
+                    "Kabam.com account transfer",
+                    TextKey.WEB_LOGIN_DIALOG_LEFT,
+                    TextKey.WEB_LOGIN_DIALOG_RIGHT,
+                    "/signIn"
+            );
             this.makeUI();
             this.forgot = new NativeMappedSignal(this.forgotText, MouseEvent.CLICK);
             this.cancel = new NativeMappedSignal(leftButton_, MouseEvent.CLICK);
@@ -67,7 +74,7 @@
             if (_arg1.keyCode == KeyCodes.ENTER)
             {
                 this.onSignInSub();
-            };
+            }
         }
 
         private function onCancel(_arg1:MouseEvent):void
@@ -89,7 +96,7 @@
                 _local1.currentEmail = this.email.text();
                 _local1.currentPassword = this.password.text();
                 this.signIn.dispatch(_local1);
-            };
+            }
         }
 
         private function isPasswordValid():Boolean
@@ -98,7 +105,7 @@
             if (!_local1)
             {
                 this.password.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -108,7 +115,7 @@
             if (!_local1)
             {
                 this.email.setError(TextKey.WEBLOGINDIALOG_EMAIL_ERROR);
-            };
+            }
             return (_local1);
         }
 
@@ -121,8 +128,6 @@
         {
             this.email.inputText_.text = _arg1;
         }
-
-
     }
 }
 

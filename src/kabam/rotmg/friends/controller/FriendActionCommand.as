@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.friends.controller
 {
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.friends.model.FriendRequestVO;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.friends.model.FriendConstant;
     import com.company.assembleegameclient.ui.dialogs.ErrorDialog;
 
-    public class FriendActionCommand 
-    {
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.appengine.api.AppEngineClient;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.friends.model.FriendConstant;
+    import kabam.rotmg.friends.model.FriendRequestVO;
 
+    public class FriendActionCommand
+    {
         [Inject]
         public var client:AppEngineClient;
         [Inject]
@@ -18,7 +18,6 @@
         public var vo:FriendRequestVO;
         [Inject]
         public var openDialog:OpenDialogSignal;
-
 
         public function execute():void
         {
@@ -40,11 +39,9 @@
                 if (!_arg1)
                 {
                     this.openDialog.dispatch(new ErrorDialog(_arg2));
-                };
-            };
+                }
+            }
         }
-
-
     }
 }
 

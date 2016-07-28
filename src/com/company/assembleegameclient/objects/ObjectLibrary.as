@@ -1,22 +1,21 @@
 ﻿package com.company.assembleegameclient.objects
 {
-    import flash.utils.Dictionary;
-    import __AS3__.vec.Vector;
     import com.company.assembleegameclient.objects.animation.AnimationsData;
-    import flash.utils.getDefinitionByName;
-    import flash.display.BitmapData;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.assembleegameclient.util.redrawers.GlowRedrawer;
-    import kabam.rotmg.constants.ItemConstants;
-    import kabam.rotmg.constants.GeneralConstants;
+    import com.company.util.AssetLibrary;
     import com.company.util.ConversionUtil;
+
+    import flash.display.BitmapData;
+    import flash.utils.Dictionary;
+    import flash.utils.getDefinitionByName;
+
+    import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.constants.ItemConstants;
     import kabam.rotmg.messaging.impl.data.StatData;
-    import __AS3__.vec.*;
 
-    public class ObjectLibrary 
+    public class ObjectLibrary
     {
-
         public static const IMAGE_SET_NAME:String = "lofiObj3";
         public static const IMAGE_ID:int = 0xFF;
         public static const propsLibrary_:Dictionary = new Dictionary();
@@ -30,48 +29,46 @@
         public static const skinSetXMLDataLibrary_:Dictionary = new Dictionary();
         public static const defaultProps_:ObjectProperties = new ObjectProperties(null);
         public static const TYPE_MAP:Object = {
-            "ArenaGuard":ArenaGuard,
-            "ArenaPortal":ArenaPortal,
-            "CaveWall":CaveWall,
-            "Character":Character,
-            "CharacterChanger":CharacterChanger,
-            "ClosedGiftChest":ClosedGiftChest,
-            "ClosedVaultChest":ClosedVaultChest,
-            "ConnectedWall":ConnectedWall,
-            "Container":Container,
-            "DoubleWall":DoubleWall,
-            "FortuneGround":FortuneGround,
-            "FortuneTeller":FortuneTeller,
-            "GameObject":GameObject,
-            "GuildBoard":GuildBoard,
-            "GuildChronicle":GuildChronicle,
-            "GuildHallPortal":GuildHallPortal,
-            "GuildMerchant":GuildMerchant,
-            "GuildRegister":GuildRegister,
-            "Merchant":Merchant,
-            "MoneyChanger":MoneyChanger,
-            "MysteryBoxGround":MysteryBoxGround,
-            "NameChanger":NameChanger,
-            "ReskinVendor":ReskinVendor,
-            "OneWayContainer":OneWayContainer,
-            "Player":Player,
-            "Portal":Portal,
-            "Projectile":Projectile,
-            "QuestRewards":QuestRewards,
-            "Sign":Sign,
-            "SpiderWeb":SpiderWeb,
-            "Stalagmite":Stalagmite,
-            "Wall":Wall,
-            "Pet":Pet,
-            "PetUpgrader":PetUpgrader,
-            "YardUpgrader":YardUpgrader
+            "ArenaGuard": ArenaGuard,
+            "ArenaPortal": ArenaPortal,
+            "CaveWall": CaveWall,
+            "Character": Character,
+            "CharacterChanger": CharacterChanger,
+            "ClosedGiftChest": ClosedGiftChest,
+            "ClosedVaultChest": ClosedVaultChest,
+            "ConnectedWall": ConnectedWall,
+            "Container": Container,
+            "DoubleWall": DoubleWall,
+            "FortuneGround": FortuneGround,
+            "FortuneTeller": FortuneTeller,
+            "GameObject": GameObject,
+            "GuildBoard": GuildBoard,
+            "GuildChronicle": GuildChronicle,
+            "GuildHallPortal": GuildHallPortal,
+            "GuildMerchant": GuildMerchant,
+            "GuildRegister": GuildRegister,
+            "Merchant": Merchant,
+            "MoneyChanger": MoneyChanger,
+            "MysteryBoxGround": MysteryBoxGround,
+            "NameChanger": NameChanger,
+            "ReskinVendor": ReskinVendor,
+            "OneWayContainer": OneWayContainer,
+            "Player": Player,
+            "Portal": Portal,
+            "Projectile": Projectile,
+            "QuestRewards": QuestRewards,
+            "Sign": Sign,
+            "SpiderWeb": SpiderWeb,
+            "Stalagmite": Stalagmite,
+            "Wall": Wall,
+            "Pet": Pet,
+            "PetUpgrader": PetUpgrader,
+            "YardUpgrader": YardUpgrader
         };
-
         public static var textureDataFactory:TextureDataFactory = new TextureDataFactory();
         public static var playerChars_:Vector.<XML> = new Vector.<XML>();
         public static var hexTransforms_:Vector.<XML> = new Vector.<XML>();
         public static var playerClassAbbr_:Dictionary = new Dictionary();
-
 
         public static function parseFromXML(_arg1:XML):void
         {
@@ -88,14 +85,14 @@
                 if (_local2.hasOwnProperty("DisplayId"))
                 {
                     _local4 = _local2.DisplayId;
-                };
+                }
                 if (_local2.hasOwnProperty("Group"))
                 {
                     if (_local2.Group == "Hexable")
                     {
                         hexTransforms_.push(_local2);
-                    };
-                };
+                    }
+                }
                 _local5 = int(_local2.@type);
                 if (((_local2.hasOwnProperty("PetBehavior")) || (_local2.hasOwnProperty("PetAbility"))))
                 {
@@ -118,25 +115,25 @@
                             {
                                 playerChars_[_local7] = _local2;
                                 _local6 = true;
-                            };
+                            }
                             _local7++;
-                        };
+                        }
                         if (!_local6)
                         {
                             playerChars_.push(_local2);
-                        };
-                    };
+                        }
+                    }
                     typeToTextureData_[_local5] = textureDataFactory.create(_local2);
                     if (_local2.hasOwnProperty("Top"))
                     {
                         typeToTopTextureData_[_local5] = textureDataFactory.create(XML(_local2.Top));
-                    };
+                    }
                     if (_local2.hasOwnProperty("Animation"))
                     {
                         typeToAnimationsData_[_local5] = new AnimationsData(_local2);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         public static function getIdFromType(_arg1:int):String
@@ -145,7 +142,7 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (String(_local2.@id));
         }
 
@@ -166,7 +163,7 @@
             var _local2:XML = xmlLibrary_[_arg1];
             var _local3:String = _local2.Class;
             var _local4:Class = ((TYPE_MAP[_local3]) || (makeClass(_local3)));
-            return (new (_local4)(_local2));
+            return (new _local4(_local2));
         }
 
         private static function makeClass(_arg1:String):Class
@@ -181,7 +178,7 @@
             if (_local2 == null)
             {
                 return (null);
-            };
+            }
             return (_local2.getTexture());
         }
 
@@ -192,11 +189,13 @@
             if (_local3)
             {
                 return (_local3);
-            };
+            }
             return (AssetLibrary.getImageFromSet(IMAGE_SET_NAME, IMAGE_ID));
         }
 
-        public static function getRedrawnTextureFromType(_arg1:int, _arg2:int, _arg3:Boolean, _arg4:Boolean=true, _arg5:Number=5):BitmapData
+        public static function getRedrawnTextureFromType(
+                _arg1:int, _arg2:int, _arg3:Boolean, _arg4:Boolean = true, _arg5:Number = 5
+        ):BitmapData
         {
             var _local6:BitmapData = getBitmapData(_arg1);
             var _local7:TextureData = typeToTextureData_[_arg1];
@@ -204,7 +203,7 @@
             if (_local8 == null)
             {
                 return (TextureRedrawer.redraw(_local6, _arg2, _arg3, 0, _arg4, _arg5));
-            };
+            }
             var _local9:XML = xmlLibrary_[_arg1];
             var _local10:int = ((_local9.hasOwnProperty("Tex1")) ? int(_local9.Tex1) : 0);
             var _local11:int = ((_local9.hasOwnProperty("Tex2")) ? int(_local9.Tex2) : 0);
@@ -219,7 +218,7 @@
             if (!_local2.hasOwnProperty("Size"))
             {
                 return (100);
-            };
+            }
             return (int(_local2.Size));
         }
 
@@ -229,7 +228,7 @@
             if (!_local2.hasOwnProperty("SlotType"))
             {
                 return (-1);
-            };
+            }
             return (int(_local2.SlotType));
         }
 
@@ -238,7 +237,7 @@
             if (_arg1 == ItemConstants.NO_ITEM)
             {
                 return (false);
-            };
+            }
             var _local3:XML = xmlLibrary_[_arg1];
             var _local4:int = int(_local3.SlotType.toString());
             var _local5:uint;
@@ -247,9 +246,9 @@
                 if (_arg2.slotTypes_[_local5] == _local4)
                 {
                     return (true);
-                };
+                }
                 _local5++;
-            };
+            }
             return (false);
         }
 
@@ -268,10 +267,10 @@
                     if (_arg2.slotTypes_[_local5] == _local4)
                     {
                         return (_local5);
-                    };
+                    }
                     _local5++;
-                };
-            };
+                }
+            }
             return (-1);
         }
 
@@ -280,26 +279,26 @@
             if (_arg2 == null)
             {
                 return (true);
-            };
+            }
             var _local3:XML = xmlLibrary_[_arg1];
             if ((((_local3 == null)) || (!(_local3.hasOwnProperty("SlotType")))))
             {
                 return (false);
-            };
+            }
             var _local4:int = _local3.SlotType;
             if ((((_local4 == ItemConstants.POTION_TYPE)) || ((_local4 == ItemConstants.EGG_TYPE))))
             {
                 return (true);
-            };
+            }
             var _local5:int;
             while (_local5 < _arg2.slotTypes_.length)
             {
                 if (_arg2.slotTypes_[_local5] == _local4)
                 {
                     return (true);
-                };
+                }
                 _local5++;
-            };
+            }
             return (false);
         }
 
@@ -318,12 +317,12 @@
             if ((((_local2 == null)) || (!(_local2.hasOwnProperty("SlotType")))))
             {
                 return (null);
-            };
+            }
             var _local3:int = _local2.SlotType;
             if ((((((_local3 == ItemConstants.POTION_TYPE)) || ((_local3 == ItemConstants.RING_TYPE)))) || ((_local3 == ItemConstants.EGG_TYPE))))
             {
                 return (null);
-            };
+            }
             var _local4:Vector.<String> = new Vector.<String>();
             for each (_local5 in playerChars_)
             {
@@ -335,10 +334,10 @@
                     {
                         _local4.push(typeToDisplayId_[int(_local5.@type)]);
                         break;
-                    };
+                    }
                     _local7++;
-                };
-            };
+                }
+            }
             return (_local4);
         }
 
@@ -348,15 +347,15 @@
             if (_arg2 == null)
             {
                 return (true);
-            };
+            }
             var _local3:XML = xmlLibrary_[_arg1];
             for each (_local4 in _local3.EquipRequirement)
             {
                 if (!playerMeetsRequirement(_local4, _arg2))
                 {
                     return (false);
-                };
-            };
+                }
+            }
             return (true);
         }
 
@@ -386,8 +385,8 @@
                         return ((_arg2.wisdom_ >= _local3));
                     case StatData.DEXTERITY_STAT:
                         return ((_arg2.dexterity_ >= _local3));
-                };
-            };
+                }
+            }
             return (false);
         }
 
@@ -395,8 +394,6 @@
         {
             return (petXMLDataLibrary_[_arg1]);
         }
-
-
     }
 }
 

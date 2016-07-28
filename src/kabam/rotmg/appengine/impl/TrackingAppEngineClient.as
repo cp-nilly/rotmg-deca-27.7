@@ -1,21 +1,21 @@
 ﻿package kabam.rotmg.appengine.impl
 {
-    import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.core.signals.TrackEventSignal;
-    import org.osflash.signals.OnceSignal;
     import flash.utils.getTimer;
+
+    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.TrackEventSignal;
 
-    public class TrackingAppEngineClient implements AppEngineClient 
+    import org.osflash.signals.OnceSignal;
+
+    public class TrackingAppEngineClient implements AppEngineClient
     {
-
         [Inject]
         public var track:TrackEventSignal;
         [Inject]
         public var wrapped:SimpleAppEngineClient;
         private var target:String;
         private var time:int;
-
 
         public function get complete():OnceSignal
         {
@@ -58,8 +58,6 @@
         {
             return (false);
         }
-
-
     }
 }
 

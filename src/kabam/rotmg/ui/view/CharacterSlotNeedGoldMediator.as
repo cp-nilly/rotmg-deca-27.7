@@ -1,13 +1,13 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.account.core.signals.OpenMoneyWindowSignal;
     import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
 
-    public class CharacterSlotNeedGoldMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class CharacterSlotNeedGoldMediator extends Mediator
     {
-
         [Inject]
         public var view:CharacterSlotNeedGoldDialog;
         [Inject]
@@ -16,7 +16,6 @@
         public var openMoneyWindow:OpenMoneyWindowSignal;
         [Inject]
         public var model:PlayerModel;
-
 
         override public function initialize():void
         {
@@ -40,8 +39,6 @@
         {
             this.openMoneyWindow.dispatch();
         }
-
-
     }
 }
 

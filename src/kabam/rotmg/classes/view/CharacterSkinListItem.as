@@ -1,40 +1,41 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import flash.display.Sprite;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.util.components.RadioButton;
-    import flash.display.Bitmap;
-    import org.osflash.signals.Signal;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.classes.model.CharacterSkin;
-    import kabam.rotmg.classes.model.CharacterSkinState;
-    import kabam.rotmg.util.components.api.BuyButton;
-    import flash.filters.DropShadowFilter;
-    import flash.display.BitmapData;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import com.company.assembleegameclient.util.Currency;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Graphics;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.ColorTransform;
     import flash.text.TextFieldAutoSize;
     import flash.text.TextFormatAlign;
+
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.CharacterSkinState;
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.geom.ColorTransform;
-    import flash.display.Graphics;
+    import kabam.rotmg.util.components.RadioButton;
+    import kabam.rotmg.util.components.api.BuyButton;
 
-    public class CharacterSkinListItem extends Sprite 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class CharacterSkinListItem extends Sprite
     {
-
         public static const WIDTH:int = 420;
         public static const PADDING:int = 16;
         public static const HEIGHT:int = 60;
         private static const HIGHLIGHTED_COLOR:uint = 0x7B7B7B;
         private static const AVAILABLE_COLOR:uint = 0x5A5A5A;
         private static const LOCKED_COLOR:uint = 0x282828;
-
         private const grayscaleMatrix:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
         private const background:Shape = makeBackground();
         private const skinContainer:Sprite = makeSkinContainer();
@@ -48,7 +49,6 @@
         public const over:Signal = new Signal();
         public const out:Signal = new Signal();
         public const selected:Signal = selectionButton.changed;
-
         private var model:CharacterSkin;
         private var state:CharacterSkinState;
         private var isSelected:Boolean = false;
@@ -218,7 +218,9 @@
         private function setLimitedBannerVisibility():void
         {
             this.limitedBanner.visible = ((((((this.model) && (this.model.limited))) && (!((this.state == CharacterSkinState.OWNED))))) && (!((this.state == CharacterSkinState.PURCHASING))));
-            this.limitedBanner.x = ((((((this.state == CharacterSkinState.LOCKED)) || (!(this.buyButton)))) ? (this.lock.x - 5) : ((this.buyButtonContainer.x + this.buyButton.x) - 15)) - this.limitedBanner.width);
+            this.limitedBanner.x = ((((((this.state == CharacterSkinState.LOCKED)) || (!(this.buyButton))))
+                    ? (this.lock.x - 5)
+                    : ((this.buyButtonContainer.x + this.buyButton.x) - 15)) - this.limitedBanner.width);
         }
 
         private function setButtonVisibilities():void
@@ -242,7 +244,7 @@
             else
             {
                 this.removeEventListeners();
-            };
+            }
         }
 
         private function setCost():void
@@ -278,9 +280,13 @@
             }
             else
             {
-                this.lockText.setStringBuilder((((this.state)==CharacterSkinState.PURCHASING) ? new LineBuilder().setParams(TextKey.PURCHASING_SKIN) : this.makeUnlockTextStringBuilder()));
+                this.lockText.setStringBuilder(
+                        (((this.state) == CharacterSkinState.PURCHASING)
+                                ? new LineBuilder().setParams(TextKey.PURCHASING_SKIN)
+                                : this.makeUnlockTextStringBuilder())
+                );
                 this.lockText.y = (HEIGHT / 2);
-            };
+            }
             this.lockText.x = ((WIDTH - this.lockText.width) - 15);
             this.lock.x = ((this.lockText.x - this.lock.width) - 5);
         }
@@ -289,7 +295,7 @@
         {
             var _local1:LineBuilder = new LineBuilder();
             var _local2:String = ((this.model) ? this.model.unlockLevel.toString() : "");
-            return (_local1.setParams(TextKey.UNLOCK_LEVEL_SKIN, {"level":_local2}));
+            return (_local1.setParams(TextKey.UNLOCK_LEVEL_SKIN, {"level": _local2}));
         }
 
         private function addEventListeners():void
@@ -333,17 +339,17 @@
             if (this.state.isDisabled())
             {
                 return (LOCKED_COLOR);
-            };
+            }
             if (((this.isSelected) || (this.isOver)))
             {
                 return (HIGHLIGHTED_COLOR);
-            };
+            }
             return (AVAILABLE_COLOR);
         }
 
         private function updateGrayFilter():void
         {
-            filters = (((this.state)==CharacterSkinState.PURCHASING) ? [this.grayscaleMatrix] : []);
+            filters = (((this.state) == CharacterSkinState.PURCHASING) ? [this.grayscaleMatrix] : []);
         }
 
         public function setWidth(_arg1:int):void
@@ -363,8 +369,6 @@
             _arg1.drawRect(0, 0, _arg2, HEIGHT);
             _arg1.endFill();
         }
-
-
     }
 }
 

@@ -1,18 +1,20 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.tooltip.TextToolTip;
-    import org.osflash.signals.natives.NativeSignal;
+
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import flash.events.MouseEvent;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
 
-    public class StatView extends Sprite 
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class StatView extends Sprite
     {
-
         public var fullName_:String;
         public var description_:String;
         public var nameText_:TextFieldDisplayConcrete;
@@ -56,7 +58,7 @@
             if (!stage.contains(this.toolTip_))
             {
                 stage.addChild(this.toolTip_);
-            };
+            }
         }
 
         public function removeTooltip():void
@@ -64,7 +66,7 @@
             if (this.toolTip_.parent != null)
             {
                 this.toolTip_.parent.removeChild(this.toolTip_);
-            };
+            }
         }
 
         public function draw(_arg1:int, _arg2:int, _arg3:int):void
@@ -73,7 +75,7 @@
             if ((((_arg1 == this.val_)) && ((_arg2 == this.boost_))))
             {
                 return;
-            };
+            }
             this.val_ = _arg1;
             this.boost_ = _arg2;
             if ((_arg1 - _arg2) >= _arg3)
@@ -95,24 +97,22 @@
                     else
                     {
                         _local4 = 0xB3B3B3;
-                    };
-                };
-            };
+                    }
+                }
+            }
             if (this.valColor_ != _local4)
             {
                 this.valColor_ = _local4;
                 this.valText_.setColor(this.valColor_);
-            };
+            }
             var _local5:String = this.val_.toString();
             if (this.boost_ != 0)
             {
                 _local5 = (_local5 + (((" (" + (((this.boost_ > 0)) ? "+" : "")) + this.boost_.toString()) + ")"));
-            };
+            }
             this.valText_.setStringBuilder(new StaticStringBuilder(_local5));
             this.valText_.x = this.nameText_.getBounds(this).right;
         }
-
-
     }
 }
 

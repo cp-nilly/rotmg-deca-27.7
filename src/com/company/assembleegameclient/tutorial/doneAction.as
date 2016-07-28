@@ -7,9 +7,8 @@
         if (_arg1.tutorial_ == null)
         {
             return;
-        };
+        }
         _arg1.tutorial_.doneAction(_arg2);
     }
-
 }
 

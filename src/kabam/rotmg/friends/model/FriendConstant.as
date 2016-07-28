@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.friends.model
 {
-    public class FriendConstant 
+    public class FriendConstant
     {
-
         public static const FRIEMD_MAX_CAP:int = 100;
         public static const FRIEND_LIST:String = "/getList";
         public static const INVITE_LIST:String = "/getRequests";
@@ -17,13 +16,10 @@
         public static const WHISPER:String = "Whisper";
         public static const JUMP:String = "JumpServer";
 
-
         public static function getURL(_arg1:String):String
         {
             return (("/friends" + _arg1));
         }
-
-
     }
 }
 

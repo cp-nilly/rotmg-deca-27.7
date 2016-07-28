@@ -1,14 +1,14 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.core.signals.SendPasswordReminderSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
     import kabam.lib.tasks.Task;
+    import kabam.rotmg.account.core.signals.SendPasswordReminderSignal;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class WebForgotPasswordMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class WebForgotPasswordMediator extends Mediator
     {
-
         [Inject]
         public var view:WebForgotPasswordDialog;
         [Inject]
@@ -17,7 +17,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var failedToSend:TaskErrorSignal;
-
 
         override public function initialize():void
         {
@@ -65,8 +64,6 @@
             this.view.showError(_arg1.error);
             this.view.enable();
         }
-
-
     }
 }
 

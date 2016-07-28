@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming.arena
 {
-    import kabam.rotmg.messaging.impl.incoming.IncomingMessage;
     import flash.utils.IDataInput;
 
-    public class ArenaDeath extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.incoming.IncomingMessage;
 
+    public class ArenaDeath extends IncomingMessage
+    {
         public var cost:int;
 
         public function ArenaDeath(_arg1:uint, _arg2:Function)
@@ -22,8 +22,6 @@
         {
             return (formatToString("ARENADEATH", "cost"));
         }
-
-
     }
 }
 

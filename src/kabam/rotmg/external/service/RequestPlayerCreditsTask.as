@@ -1,19 +1,19 @@
 ﻿package kabam.rotmg.external.service
 {
+    import com.company.util.MoreObjectUtil;
+
+    import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
     import kabam.lib.tasks.BaseTask;
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.appengine.api.AppEngineClient;
-    import kabam.rotmg.game.model.GameModel;
     import kabam.rotmg.core.model.PlayerModel;
-    import flash.utils.Timer;
-    import flash.events.TimerEvent;
-    import com.company.util.MoreObjectUtil;
+    import kabam.rotmg.game.model.GameModel;
 
-    public class RequestPlayerCreditsTask extends BaseTask 
+    public class RequestPlayerCreditsTask extends BaseTask
     {
-
         private static const REQUEST:String = "account/getCredits";
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -51,7 +51,7 @@
                 this.makeRequest();
                 this.retryCount++;
                 this.timer.stop();
-            };
+            }
         }
 
         private function makeRequest():void
@@ -70,7 +70,7 @@
                 if (((!((_local4 == ""))) && (!((_local4.search("Error") == -1)))))
                 {
                     this.setCredits(int(_local4));
-                };
+                }
             }
             else
             {
@@ -79,8 +79,8 @@
                     this.timer.addEventListener(TimerEvent.TIMER, this.handleTimer);
                     this.timer.start();
                     _local3 = true;
-                };
-            };
+                }
+            }
             ((!(_local3)) && (completeTask(_arg1, _arg2)));
         }
 
@@ -97,9 +97,9 @@
                     if (((!((this.playerModel == null))) && (!((this.playerModel.getCredits() == _arg1)))))
                     {
                         this.playerModel.setCredits(_arg1);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function makeRequestObject():Object
@@ -108,8 +108,6 @@
             MoreObjectUtil.addToObject(_local1, this.account.getCredentials());
             return (_local1);
         }
-
-
     }
 }
 

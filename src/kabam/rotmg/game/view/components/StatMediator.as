@@ -1,14 +1,13 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import flash.events.MouseEvent;
 
-    public class StatMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class StatMediator extends Mediator
+    {
         [Inject]
         public var view:StatView;
-
 
         override public function initialize():void
         {
@@ -32,8 +31,6 @@
         {
             this.view.removeTooltip();
         }
-
-
     }
 }
 

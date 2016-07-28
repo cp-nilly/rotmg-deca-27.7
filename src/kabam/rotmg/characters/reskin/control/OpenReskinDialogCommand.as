@@ -1,18 +1,17 @@
 ﻿package kabam.rotmg.characters.reskin.control
 {
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.lib.console.signals.HideConsoleSignal;
-    import kabam.rotmg.core.model.PlayerModel;
-    import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.classes.view.CharacterSkinListItemFactory;
-    import kabam.rotmg.characters.reskin.view.ReskinCharacterView;
-    import kabam.rotmg.classes.model.CharacterSkins;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
 
-    public class OpenReskinDialogCommand 
-    {
+    import kabam.lib.console.signals.HideConsoleSignal;
+    import kabam.rotmg.characters.reskin.view.ReskinCharacterView;
+    import kabam.rotmg.classes.model.CharacterSkins;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.classes.view.CharacterSkinListItemFactory;
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
+    public class OpenReskinDialogCommand
+    {
         [Inject]
         public var openDialog:OpenDialogSignal;
         [Inject]
@@ -23,7 +22,6 @@
         public var model:ClassesModel;
         [Inject]
         public var factory:CharacterSkinListItemFactory;
-
 
         public function execute():void
         {
@@ -50,8 +48,6 @@
         {
             return (this.model.getSelected().skins);
         }
-
-
     }
 }
 

@@ -1,13 +1,13 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetsModel;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.data.PetsModel;
 
-    public class PetFeederMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class PetFeederMediator extends Mediator
     {
-
         [Inject]
         public var view:PetFeeder;
         [Inject]
@@ -17,13 +17,12 @@
         [Inject]
         public var petSlotsState:PetSlotsState;
 
-
         override public function initialize():void
         {
             if (!this.petSlotsState.leftSlotPetVO)
             {
                 this.petSlotsState.leftSlotPetVO = this.petsModel.getActivePet();
-            };
+            }
             this.view.initialize(this.petSlotsState);
             this.view.openPetPicker.addOnce(this.openPetPicker);
         }
@@ -32,8 +31,6 @@
         {
             this.petSlotsState.selected = PetSlotsState.LEFT;
         }
-
-
     }
 }
 

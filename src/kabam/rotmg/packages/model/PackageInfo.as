@@ -1,13 +1,12 @@
 ﻿package kabam.rotmg.packages.model
 {
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.util.TimeUtil;
 
-    public class PackageInfo 
+    import org.osflash.signals.Signal;
+
+    public class PackageInfo
     {
-
         public static const INFINITE:int = -1;
-
         private var _initialized:Boolean = false;
         public var dataChanged:Signal;
         public var packageIDChanged:Signal;
@@ -42,7 +41,9 @@
             super();
         }
 
-        public function setData(_arg1:int, _arg2:Date, _arg3:String, _arg4:int, _arg5:int, _arg6:int, _arg7:int, _arg8:String, _arg9:int):void
+        public function setData(
+                _arg1:int, _arg2:Date, _arg3:String, _arg4:int, _arg5:int, _arg6:int, _arg7:int, _arg8:String, _arg9:int
+        ):void
         {
             this._packageID = _arg1;
             this._endDate = _arg2;
@@ -170,7 +171,7 @@
             if (this.max == INFINITE)
             {
                 return (true);
-            };
+            }
             return ((this._numPurchased < this._max));
         }
 
@@ -178,8 +179,6 @@
         {
             return ((((("[Package name=" + this._name) + ", packageId=") + this._packageID) + "]"));
         }
-
-
     }
 }
 

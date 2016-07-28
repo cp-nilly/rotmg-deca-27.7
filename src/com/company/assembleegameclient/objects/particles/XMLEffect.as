@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class XMLEffect extends ParticleEffect 
+    public class XMLEffect extends ParticleEffect
     {
-
         private var go_:GameObject;
         private var partProps_:ParticleProperties;
         private var cooldown_:Number;
@@ -23,19 +22,17 @@
             if (this.go_.map_ == null)
             {
                 return (false);
-            };
+            }
             var _local3:Number = (_arg2 / 1000);
             this.cooldownLeft_ = (this.cooldownLeft_ - _local3);
             if (this.cooldownLeft_ >= 0)
             {
                 return (true);
-            };
+            }
             this.cooldownLeft_ = this.cooldown_;
             map_.addObj(new XMLParticle(this.partProps_), this.go_.x_, this.go_.y_);
             return (true);
         }
-
-
     }
 }
 

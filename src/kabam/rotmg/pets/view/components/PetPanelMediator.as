@@ -1,24 +1,26 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.view.petPanel.PetPanel;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.controller.ShowPetTooltip;
-    import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.pets.controller.DeactivatePet;
-    import kabam.rotmg.pets.controller.ActivatePet;
-    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-	import robotlegs.bender.framework.api.IInjector;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.pets.view.petPanel.ConfirmReleaseDialog;
-    import kabam.rotmg.pets.util.PetsConstants;
     import com.company.assembleegameclient.ui.tooltip.ToolTip;
 
-    public class PetPanelMediator extends Mediator 
-    {
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.core.signals.ShowTooltipSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.pets.controller.ActivatePet;
+    import kabam.rotmg.pets.controller.DeactivatePet;
+    import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
+    import kabam.rotmg.pets.controller.ShowPetTooltip;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.view.petPanel.ConfirmReleaseDialog;
+    import kabam.rotmg.pets.view.petPanel.PetPanel;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class PetPanelMediator extends Mediator
+    {
         [Inject]
         public var view:PetPanel;
         [Inject]
@@ -37,7 +39,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var injector:IInjector;
-
 
         override public function initialize():void
         {
@@ -71,7 +72,7 @@
             if (this.isPanelPetSameAsActivePet())
             {
                 return (PetsConstants.FOLLOWING);
-            };
+            }
             return (PetsConstants.INTERACTING);
         }
 
@@ -84,7 +85,7 @@
             else
             {
                 this.activatePet.dispatch(this.view.petVO.getID());
-            };
+            }
         }
 
         private function onAddToolTip(_arg1:ToolTip):void
@@ -94,10 +95,10 @@
 
         private function isPanelPetSameAsActivePet():Boolean
         {
-            return (((this.petModel.getActivePet()) ? (this.petModel.getActivePet().getID() == this.view.petVO.getID()) : false));
+            return (((this.petModel.getActivePet())
+                    ? (this.petModel.getActivePet().getID() == this.view.petVO.getID())
+                    : false));
         }
-
-
     }
 }
 

@@ -1,22 +1,22 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.pets.data.PetSlotsState;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.messaging.impl.PetUpgradeRequest;
+    import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import kabam.rotmg.pets.controller.PetFeedResultSignal;
     import kabam.rotmg.pets.controller.UpgradePetSignal;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.pets.data.PetVO;
-    import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
-    import kabam.rotmg.pets.view.dialogs.PetPicker;
-    import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import kabam.rotmg.pets.data.FeedPetRequestVO;
-    import kabam.rotmg.messaging.impl.PetUpgradeRequest;
+    import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.pets.view.dialogs.PetPicker;
+    import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
 
-    public class FeedPetMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class FeedPetMediator extends Mediator
     {
-
         [Inject]
         public var view:FeedPetView;
         [Inject]
@@ -32,14 +32,17 @@
         [Inject]
         public var injector:IInjector;
 
-
         override public function initialize():void
         {
             this.view.init();
             this.injector = this.injector.createChild();
             this.injector.map(PetPicker).asSingleton();
-            var _local1:PetVO = ((this.petSlotsState.leftSlotPetVO) ? this.petSlotsState.leftSlotPetVO : this.petsModel.getActivePet());
-            this.view.setAbilityMeterLabels(((_local1) ? _local1.abilityList : null), ((_local1) ? _local1.getMaxAbilityPower() : 0));
+            var _local1:PetVO = ((this.petSlotsState.leftSlotPetVO)
+                    ? this.petSlotsState.leftSlotPetVO
+                    : this.petsModel.getActivePet());
+            this.view.setAbilityMeterLabels(
+                    ((_local1) ? _local1.abilityList : null), ((_local1) ? _local1.getMaxAbilityPower() : 0)
+            );
             this.view.openPetPicker.add(this.onOpenPetPicker);
             this.view.closed.add(this.onClosed);
             this.view.goldPurchase.add(this.onGoldPurchase);
@@ -78,7 +81,9 @@
             _local2.objectId_ = this.petSlotsState.rightSlotOwnerId;
             _local2.objectType_ = this.petSlotsState.rightSlotItemId;
             _local2.slotId_ = this.petSlotsState.rightSlotId;
-            var _local3:FeedPetRequestVO = new FeedPetRequestVO(this.petSlotsState.leftSlotPetVO.getID(), _local2, PetUpgradeRequest.GOLD_PAYMENT_TYPE);
+            var _local3:FeedPetRequestVO = new FeedPetRequestVO(
+                    this.petSlotsState.leftSlotPetVO.getID(), _local2, PetUpgradeRequest.GOLD_PAYMENT_TYPE
+            );
             this.upgradePet.dispatch(_local3);
         }
 
@@ -88,11 +93,11 @@
             _local2.objectId_ = this.petSlotsState.rightSlotOwnerId;
             _local2.objectType_ = this.petSlotsState.rightSlotItemId;
             _local2.slotId_ = this.petSlotsState.rightSlotId;
-            var _local3:FeedPetRequestVO = new FeedPetRequestVO(this.petSlotsState.leftSlotPetVO.getID(), _local2, PetUpgradeRequest.FAME_PAYMENT_TYPE);
+            var _local3:FeedPetRequestVO = new FeedPetRequestVO(
+                    this.petSlotsState.leftSlotPetVO.getID(), _local2, PetUpgradeRequest.FAME_PAYMENT_TYPE
+            );
             this.upgradePet.dispatch(_local3);
         }
-
-
     }
 }
 

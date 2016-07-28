@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.account.kongregate.services
 {
     import kabam.lib.tasks.BaseTask;
-    import kabam.rotmg.account.core.services.RegisterAccountTask;
-    import kabam.rotmg.account.web.model.AccountData;
-    import kabam.rotmg.account.kongregate.view.KongregateApi;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.signals.TrackEventSignal;
+    import kabam.rotmg.account.core.services.RegisterAccountTask;
+    import kabam.rotmg.account.kongregate.view.KongregateApi;
+    import kabam.rotmg.account.web.model.AccountData;
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.core.service.TrackingData;
+    import kabam.rotmg.core.signals.TrackEventSignal;
 
-    public class KongregateRegisterAccountTask extends BaseTask implements RegisterAccountTask 
+    public class KongregateRegisterAccountTask extends BaseTask implements RegisterAccountTask
     {
-
         [Inject]
         public var data:AccountData;
         [Inject]
@@ -22,7 +21,6 @@
         public var track:TrackEventSignal;
         [Inject]
         public var client:AppEngineClient;
-
 
         override protected function startTask():void
         {
@@ -66,8 +64,6 @@
             this.account.updateUser(_local2.GUID, _local2.Secret);
             this.account.setPlatformToken(_local2.PlatformToken);
         }
-
-
     }
 }
 

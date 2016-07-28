@@ -1,25 +1,26 @@
 ﻿package kabam.rotmg.pets.view.components.slot
 {
-    import org.osflash.signals.Signal;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.events.MouseEvent;
-    import flash.geom.ColorTransform;
-    import flash.events.Event;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.constants.ItemConstants;
     import com.company.assembleegameclient.util.DisplayHierarchy;
+    import com.company.util.MoreColorUtil;
+
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.geom.ColorTransform;
+
+    import kabam.rotmg.constants.ItemConstants;
     import kabam.rotmg.pets.view.FeedPetView;
     import kabam.rotmg.pets.view.FusePetView;
     import kabam.rotmg.questrewards.components.ModalItemSlot;
+    import kabam.rotmg.text.model.TextKey;
 
-    public class FoodFeedFuseSlot extends FeedFuseSlot 
+    import org.osflash.signals.Signal;
+
+    public class FoodFeedFuseSlot extends FeedFuseSlot
     {
-
         public const foodLoaded:Signal = new Signal(int);
         public const foodUnloaded:Signal = new Signal();
-
         public var processing:Boolean = false;
         private var cancelCallback:Function;
         protected var grayscaleMatrix:ColorMatrixFilter;
@@ -42,7 +43,7 @@
                 itemSprite.filters = ((_arg1) ? [this.grayscaleMatrix] : []);
                 _local2 = ((_arg1) ? MoreColorUtil.darkCT : new ColorTransform());
                 itemSprite.transform.colorTransform = _local2;
-            };
+            }
         }
 
         override protected function onRemovedFromStage(_arg1:Event):void
@@ -63,7 +64,7 @@
                 alignBitmapInBox();
                 this.updateTitle();
                 this.cancelCallback = _arg4;
-            };
+            }
         }
 
         public function setItemPart2(_arg1:int):void
@@ -80,13 +81,13 @@
                 setTitle(TextKey.PETORFOODSLOT_ITEM_POWER, {});
                 _local1 = ObjectLibrary.getXMLfromId(ObjectLibrary.getIdFromType(itemId));
                 _local2 = ((_local1.hasOwnProperty("feedPower")) ? _local1.feedPower : "0");
-                setSubtitle(TextKey.BLANK, {"data":_local2});
+                setSubtitle(TextKey.BLANK, {"data": _local2});
             }
             else
             {
                 setTitle(TextKey.PETORFOODSLOT_PLACE_ITEM, {});
-                setSubtitle(TextKey.BLANK, {"data":""});
-            };
+                setSubtitle(TextKey.BLANK, {"data": ""});
+            }
         }
 
         public function setCancelCallback(_arg1:Function):void
@@ -129,8 +130,8 @@
                 {
                     removeChild(itemSprite);
                     stage.addChild(itemSprite);
-                };
-            };
+                }
+            }
         }
 
         private function endDrag(_arg1:MouseEvent):void
@@ -140,7 +141,9 @@
             stage.removeChild(itemSprite);
             addChild(itemSprite);
             alignBitmapInBox();
-            var _local2:* = DisplayHierarchy.getParentWithTypeArray(itemSprite.dropTarget, FeedPetView, FusePetView, ModalItemSlot);
+            var _local2:* = DisplayHierarchy.getParentWithTypeArray(
+                    itemSprite.dropTarget, FeedPetView, FusePetView, ModalItemSlot
+            );
             if (((((!((_local2 is FeedPetView))) && (!((_local2 is FusePetView))))) && (!((((_local2 is ModalItemSlot)) && (((_local2 as ModalItemSlot).interactable == true)))))))
             {
                 this.empty = true;
@@ -149,10 +152,8 @@
                 this.clearAndCallCancel();
                 this.foodUnloaded.dispatch();
                 this.updateTitle();
-            };
+            }
         }
-
-
     }
 }
 

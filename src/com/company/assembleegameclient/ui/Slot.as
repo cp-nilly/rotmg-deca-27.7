@@ -1,26 +1,25 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import flash.geom.Matrix;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.Bitmap;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import flash.geom.Point;
-    import kabam.rotmg.text.view.BitmapTextFactory;
-    import flash.display.BitmapData;
     import com.company.util.AssetLibrary;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.filters.ColorMatrixFilter;
+    import flash.geom.Matrix;
+    import flash.geom.Point;
+
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.text.view.BitmapTextFactory;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import __AS3__.vec.*;
 
-    public class Slot extends Sprite 
+    public class Slot extends Sprite
     {
-
         public static const IDENTITY_MATRIX:Matrix = new Matrix();
         public static const ALL_TYPE:int = 0;
         public static const SWORD_TYPE:int = 1;
@@ -51,7 +50,6 @@
         public static const HEIGHT:int = 40;
         public static const BORDER:int = 4;
         private static const greyColorFilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.singleColorFilterMatrix(0x363636));
-
         public var type_:int;
         public var hotkey_:int;
         public var cuts_:Array;
@@ -126,10 +124,9 @@
                     return ("Scepter");
                 case SHURIKEN_TYPE:
                     return ("Shuriken");
-            };
+            }
             return ("Invalid Type!");
         }
-
 
         protected function offsets(_arg1:int, _arg2:int, _arg3:Boolean):Point
         {
@@ -137,13 +134,13 @@
             switch (_arg2)
             {
                 case RING_TYPE:
-                    _local4.x = (((_arg1)==2878) ? 0 : -2);
+                    _local4.x = (((_arg1) == 2878) ? 0 : -2);
                     _local4.y = ((_arg3) ? -2 : 0);
                     break;
                 case SPELL_TYPE:
                     _local4.y = -2;
                     break;
-            };
+            }
             return (_local4);
         }
 
@@ -228,7 +225,7 @@
                 case SCEPTER_TYPE:
                     _local1 = AssetLibrary.getImageFromSet("lofiObj6", 192);
                     break;
-            };
+            }
             if (this.backgroundImage_ == null)
             {
                 if (_local1 != null)
@@ -247,17 +244,22 @@
                     if (this.hotkey_ > 0)
                     {
                         _local5 = StaticInjectorContext.getInjector().getInstance(BitmapTextFactory);
-                        _local1 = _local5.make(new StaticStringBuilder(String(this.hotkey_)), 26, 0x363636, true, IDENTITY_MATRIX, false);
+                        _local1 = _local5.make(
+                                new StaticStringBuilder(String(this.hotkey_)),
+                                26,
+                                0x363636,
+                                true,
+                                IDENTITY_MATRIX,
+                                false
+                        );
                         this.backgroundImage_ = new Bitmap(_local1);
                         this.backgroundImage_.x = ((WIDTH / 2) - (_local1.width / 2));
                         this.backgroundImage_.y = ((HEIGHT / 2) - 18);
                         addChild(this.backgroundImage_);
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
-
-
     }
 }
 

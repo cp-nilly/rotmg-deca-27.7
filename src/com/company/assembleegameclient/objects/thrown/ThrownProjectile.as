@@ -1,13 +1,13 @@
 ﻿package com.company.assembleegameclient.objects.thrown
 {
-    import flash.geom.Point;
-    import flash.display.BitmapData;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.util.TextureRedrawer;
 
-    public class ThrownProjectile extends BitmapParticle 
-    {
+    import flash.display.BitmapData;
+    import flash.geom.Point;
 
+    public class ThrownProjectile extends BitmapParticle
+    {
         public var lifetime_:int;
         public var timeLeft_:int;
         public var start_:Point;
@@ -40,7 +40,7 @@
             if (this.timeLeft_ <= 0)
             {
                 return (false);
-            };
+            }
             z_ = (Math.sin(((this.timeLeft_ / this.lifetime_) * Math.PI)) * 2);
             setSize(z_);
             this.pathX_ = (this.pathX_ + (this.dx_ * _arg2));
@@ -48,8 +48,6 @@
             moveTo(this.pathX_, this.pathY_);
             return (true);
         }
-
-
     }
 }
 

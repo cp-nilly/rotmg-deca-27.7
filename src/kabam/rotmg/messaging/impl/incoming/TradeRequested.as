@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class TradeRequested extends IncomingMessage 
+    public class TradeRequested extends IncomingMessage
     {
-
         public var name_:String;
 
         public function TradeRequested(_arg1:uint, _arg2:Function)
@@ -21,8 +20,6 @@
         {
             return (formatToString("TRADEREQUESTED", "name_"));
         }
-
-
     }
 }
 

@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.language.model
 {
-    public class StringMapConcrete implements StringMap 
+    public class StringMapConcrete implements StringMap
     {
-
         private var valueMap:Object;
         private var languageFamilyMap:Object;
 
@@ -39,8 +38,6 @@
         {
             return (this.languageFamilyMap[_arg1]);
         }
-
-
     }
 }
 

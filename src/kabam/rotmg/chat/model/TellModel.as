@@ -1,11 +1,7 @@
 ﻿package kabam.rotmg.chat.model
 {
-    import __AS3__.vec.Vector;
-    import __AS3__.vec.*;
-
-    public class TellModel 
+    public class TellModel
     {
-
         private var pastRecipients:Vector.<String>;
         private var index:int = 0;
 
@@ -21,7 +17,7 @@
             if (_local2 != -1)
             {
                 this.pastRecipients.splice(_local2, 1);
-            };
+            }
             this.pastRecipients.unshift(_arg1);
         }
 
@@ -31,7 +27,7 @@
             {
                 this.index = ((this.index + 1) % this.pastRecipients.length);
                 return (this.pastRecipients[this.index]);
-            };
+            }
             return ("");
         }
 
@@ -45,8 +41,6 @@
             this.pastRecipients = new Vector.<String>();
             this.index = 0;
         }
-
-
     }
 }
 

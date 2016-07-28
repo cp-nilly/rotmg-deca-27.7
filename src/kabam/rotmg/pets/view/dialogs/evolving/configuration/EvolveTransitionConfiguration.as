@@ -1,12 +1,10 @@
 ﻿package kabam.rotmg.pets.view.dialogs.evolving.configuration
 {
-    import flash.display.Sprite;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
 
-    public class EvolveTransitionConfiguration 
+    public class EvolveTransitionConfiguration
     {
-
-
         public static function makeBackground():DisplayObject
         {
             var _local1:Sprite = new Sprite();
@@ -15,8 +13,6 @@
             _local1.graphics.endFill();
             return (_local1);
         }
-
-
     }
 }
 

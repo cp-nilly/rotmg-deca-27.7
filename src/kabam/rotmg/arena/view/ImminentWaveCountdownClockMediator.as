@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.core.view.Layers;
+    import flash.events.TimerEvent;
+    import flash.utils.Timer;
+
     import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import kabam.rotmg.core.view.Layers;
+    import kabam.rotmg.game.signals.GameClosedSignal;
     import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
     import kabam.rotmg.maploading.signals.ShowLoadingViewSignal;
-    import kabam.rotmg.game.signals.GameClosedSignal;
-    import flash.utils.Timer;
-    import flash.events.TimerEvent;
     import kabam.rotmg.maploading.view.MapLoadingView;
 
-    public class ImminentWaveCountdownClockMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class ImminentWaveCountdownClockMediator extends Mediator
+    {
         [Inject]
         public var view:ImminentWaveCountdownClock;
         [Inject]
@@ -48,7 +49,7 @@
             else
             {
                 this.view.show();
-            };
+            }
         }
 
         private function removeView(_arg1:MapLoadingView = null):void
@@ -79,10 +80,8 @@
             if (this.layers.mouseDisabledTop.contains(this.view))
             {
                 this.layers.mouseDisabledTop.removeChild(this.view);
-            };
+            }
         }
-
-
     }
 }
 

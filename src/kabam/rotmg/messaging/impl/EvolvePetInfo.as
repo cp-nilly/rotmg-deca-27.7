@@ -2,13 +2,10 @@
 {
     import kabam.rotmg.pets.data.PetVO;
 
-    public class EvolvePetInfo 
+    public class EvolvePetInfo
     {
-
         public var initialPet:PetVO;
         public var finalPet:PetVO;
-
-
     }
 }
 

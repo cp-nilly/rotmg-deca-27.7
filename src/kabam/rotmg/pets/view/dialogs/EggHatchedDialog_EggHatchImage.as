@@ -1,9 +1,9 @@
-package kabam.rotmg.pets.view.dialogs 
+package kabam.rotmg.pets.view.dialogs
 {
     import mx.core.*;
-    
+
     [Embed(source="EggHatchedDialog_EggHatchImage.jpg")]
-    public class EggHatchedDialog_EggHatchImage extends mx.core.BitmapAsset
+    public class EggHatchedDialog_EggHatchImage extends BitmapAsset
     {
         public function EggHatchedDialog_EggHatchImage()
         {

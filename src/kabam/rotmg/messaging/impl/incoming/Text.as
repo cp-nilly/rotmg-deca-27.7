@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class Text extends IncomingMessage 
+    public class Text extends IncomingMessage
     {
-
         public var name_:String;
         public var objectId_:int;
         public var numStars_:int;
@@ -34,10 +33,10 @@
 
         override public function toString():String
         {
-            return (formatToString("TEXT", "name_", "objectId_", "numStars_", "bubbleTime_", "recipient_", "text_", "cleanText_"));
+            return (formatToString(
+                    "TEXT", "name_", "objectId_", "numStars_", "bubbleTime_", "recipient_", "text_", "cleanText_"
+            ));
         }
-
-
     }
 }
 

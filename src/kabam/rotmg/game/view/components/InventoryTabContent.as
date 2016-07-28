@@ -1,14 +1,15 @@
 ﻿package kabam.rotmg.game.view.components
 {
-    import flash.display.Sprite;
-    import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
-    import kabam.rotmg.ui.view.PotionInventoryView;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.panels.itemgrids.InventoryGrid;
+
+    import flash.display.Sprite;
+
     import kabam.rotmg.ui.model.TabStripModel;
+    import kabam.rotmg.ui.view.PotionInventoryView;
 
-    public class InventoryTabContent extends Sprite 
+    public class InventoryTabContent extends Sprite
     {
-
         private var storageContent:Sprite;
         private var storage:InventoryGrid;
         private var potionsInventory:PotionInventoryView;
@@ -42,8 +43,6 @@
             this.storageContent.y = 7;
             this.potionsInventory.y = (this.storage.height + 4);
         }
-
-
     }
 }
 

@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Create extends OutgoingMessage 
+    public class Create extends OutgoingMessage
     {
-
         public var classType:int;
         public var skinType:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("CREATE", "classType"));
         }
-
-
     }
 }
 

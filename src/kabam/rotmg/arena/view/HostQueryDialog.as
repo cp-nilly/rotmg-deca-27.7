@@ -1,30 +1,31 @@
 ﻿package kabam.rotmg.arena.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import flash.display.DisplayObjectContainer;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.arena.component.ArenaQueryDialogHost;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import org.osflash.signals.natives.NativeSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.util.graphics.ButtonLayoutHelper;
-    import kabam.rotmg.arena.util.ArenaViewAssetFactory;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.text.TextFieldAutoSize;
+
     import flash.display.BitmapData;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.Sprite;
+    import flash.events.MouseEvent;
+    import flash.text.TextFieldAutoSize;
 
-    public class HostQueryDialog extends Sprite 
+    import kabam.rotmg.arena.component.ArenaQueryDialogHost;
+    import kabam.rotmg.arena.util.ArenaViewAssetFactory;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.util.graphics.ButtonLayoutHelper;
+
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class HostQueryDialog extends Sprite
     {
-
         public static const WIDTH:int = 274;
         public static const HEIGHT:int = 338;
         public static const TITLE:String = "ArenaQueryPanel.title";
         public static const CLOSE:String = "Close.text";
         public static const QUERY:String = "ArenaQueryDialog.info";
         public static const BACK:String = "Screens.back";
-
         private const layoutWaiter:SignalWaiter = makeDeferredLayout();
         private const container:DisplayObjectContainer = makeContainer();
         private const background:PopupWindowBackground = makeBackground();
@@ -32,7 +33,6 @@
         private const title:TextFieldDisplayConcrete = makeTitle();
         private const backButton:DeprecatedTextButton = makeBackButton();
         public const backClick:NativeSignal = new NativeSignal(backButton, MouseEvent.CLICK);
-
 
         private function makeDeferredLayout():SignalWaiter
         {
@@ -112,8 +112,6 @@
         {
             this.host.setHostIcon(_arg1);
         }
-
-
     }
 }
 

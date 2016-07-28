@@ -1,25 +1,26 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import org.osflash.signals.Signal;
+    import com.company.assembleegameclient.game.AGameSprite;
     import com.company.assembleegameclient.objects.ArenaPortal;
-    import flash.display.Sprite;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.util.components.LegacyBuyButton;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import com.company.assembleegameclient.objects.Player;
     import com.company.assembleegameclient.util.Currency;
+
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import flash.text.TextFieldAutoSize;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
     import flash.filters.DropShadowFilter;
-    import com.company.assembleegameclient.game.AGameSprite;
+    import flash.text.TextFieldAutoSize;
 
-    public class ArenaPortalPanel extends Panel 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.util.components.LegacyBuyButton;
+
+    import org.osflash.signals.Signal;
+
+    public class ArenaPortalPanel extends Panel
     {
-
         public const purchase:Signal = new Signal(int);
-
         private var owner_:ArenaPortal;
         private var openContainer:Sprite;
         private var nameText_:StaticTextDisplay;
@@ -40,7 +41,7 @@
             if ((((gs_.map == null)) || ((gs_.map.player_ == null))))
             {
                 return;
-            };
+            }
             var _local3:Player = gs_.map.player_;
             this.nameText_ = this.makeTitle();
             this.openContainer.addChild(this.nameText_);
@@ -55,7 +56,7 @@
             else
             {
                 this.fameButton.addEventListener(MouseEvent.CLICK, this.onFameClick);
-            };
+            }
             this.openContainer.addChild(this.fameButton);
             this.fameButton.readyForPlacement.addOnce(this.alignUI);
             this.closedText = new StaticTextDisplay();
@@ -102,8 +103,6 @@
             _local1.y = 6;
             return (_local1);
         }
-
-
     }
 }
 

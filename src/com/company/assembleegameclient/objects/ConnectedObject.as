@@ -1,19 +1,18 @@
 ﻿package com.company.assembleegameclient.objects
 {
+    import com.company.assembleegameclient.engine3d.Object3D;
+    import com.company.assembleegameclient.engine3d.ObjectFace3D;
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.map.Square;
+
+    import flash.display.BitmapData;
+    import flash.display.IGraphicsData;
+    import flash.geom.Utils3D;
     import flash.geom.Vector3D;
     import flash.utils.Dictionary;
-    import com.company.assembleegameclient.engine3d.ObjectFace3D;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.map.Square;
-    import flash.geom.Utils3D;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import com.company.assembleegameclient.engine3d.Object3D;
 
-    public class ConnectedObject extends GameObject 
+    public class ConnectedObject extends GameObject
     {
-
         protected static const DOT_TYPE:int = 0;
         protected static const SHORT_LINE_TYPE:int = 1;
         protected static const L_TYPE:int = 2;
@@ -29,9 +28,7 @@
         protected static const N6:Vector3D = new Vector3D(-1, 1, 0);
         protected static const N7:Vector3D = new Vector3D(-1, 0, 0);
         protected static const N8:Vector3D = new Vector3D(0, 0, 1);
-
         private static var dict_:Dictionary = null;
-
         protected var rotation_:int = 0;
 
         public function ConnectedObject(_arg1:XML)
@@ -56,7 +53,7 @@
             if (dict_ == null)
             {
                 init();
-            };
+            }
             var _local2 = (_arg1 & 252645135);
             return (dict_[_local2]);
         }
@@ -72,11 +69,10 @@
                     dict_[_arg1] = new ConnectedResults(_arg2, _local3);
                     _local4 = (_arg1 & 0xFF);
                     _arg1 = ((_arg1 >> 8) | (_local4 << 24));
-                };
+                }
                 _local3++;
-            };
+            }
         }
-
 
         override public function draw(_arg1:Vector.<IGraphicsData>, _arg2:Camera, _arg3:int):void
         {
@@ -88,7 +84,7 @@
             if (obj3D_ == null)
             {
                 this.rebuild3D();
-            };
+            }
             Utils3D.projectVectors(_arg2.wToS_, obj3D_.vW_, obj3D_.vS_, obj3D_.uvts_);
             for each (_local4 in obj3D_.faces_)
             {
@@ -101,10 +97,10 @@
                     if ((((_local8 == null)) || ((_local8.texture_ == null))))
                     {
                         _local7 = null;
-                    };
-                };
+                    }
+                }
                 _local4.draw(_arg1, 0, _local7);
-            };
+            }
         }
 
         public function rebuild3D():void
@@ -115,7 +111,7 @@
             {
                 obj3D_ = null;
                 return;
-            };
+            }
             this.rotation_ = _local1.rotation_;
             switch (_local1.type_)
             {
@@ -140,7 +136,7 @@
                 default:
                     obj3D_ = null;
                     return;
-            };
+            }
             obj3D_.setPosition(x_, y_, 0, (this.rotation_ * 90));
         }
 
@@ -167,14 +163,10 @@
         protected function buildCross():void
         {
         }
-
-
     }
 }
-
-class ConnectedResults 
+class ConnectedResults
 {
-
     public var type_:int;
     public var rotation_:int;
 
@@ -183,6 +175,5 @@ class ConnectedResults
         this.type_ = _arg1;
         this.rotation_ = _arg2;
     }
-
 }
 

@@ -1,15 +1,13 @@
 ﻿package kabam.rotmg.pets.view.dialogs
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.util.components.VerticalScrollingList;
-    import kabam.lib.ui.api.Size;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
-    import __AS3__.vec.*;
+    import flash.display.Sprite;
 
-    public class GridList extends Sprite 
+    import kabam.lib.ui.api.Size;
+    import kabam.rotmg.util.components.VerticalScrollingList;
+
+    public class GridList extends Sprite
     {
-
         public var list:VerticalScrollingList;
         private var size:Size;
         private var row:Sprite;
@@ -46,12 +44,12 @@
             for each (_local2 in _arg1)
             {
                 this.addItem(_local2);
-            };
+            }
             this.list.setItems(this.rows);
             if (!_arg1.length)
             {
                 return;
-            };
+            }
             var _local3:DisplayObject = _arg1[0];
             this.maxItemsPerRow = (this.maxRowWidth() / _local3.width);
         }
@@ -98,7 +96,7 @@
             else
             {
                 this.positionRightOfPrevious(_arg1);
-            };
+            }
             this.lastItemRight = (_arg1.x + _arg1.width);
             this.lastItemRight = (this.lastItemRight + this.padding);
         }
@@ -130,7 +128,7 @@
             if (this.items.length)
             {
                 return (this.items[0]);
-            };
+            }
             return (null);
         }
 
@@ -141,7 +139,7 @@
             {
                 _local1 = this.grid[0];
                 return (_local1[(this.maxItemsPerRow - 1)]);
-            };
+            }
             return (null);
         }
 
@@ -152,7 +150,7 @@
             {
                 _local1 = this.grid[(this.grid.length - 1)];
                 return (_local1[0]);
-            };
+            }
             return (null);
         }
 
@@ -163,11 +161,9 @@
             {
                 _local1 = this.grid[(this.grid.length - 1)];
                 return (_local1[(this.maxItemsPerRow - 1)]);
-            };
+            }
             return (null);
         }
-
-
     }
 }
 

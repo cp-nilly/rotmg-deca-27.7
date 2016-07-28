@@ -1,21 +1,19 @@
 ﻿package kabam.rotmg.account.kongregate.commands
 {
-    import kabam.rotmg.account.core.services.LoginTask;
-    import kabam.lib.tasks.TaskMonitor;
-    import kabam.rotmg.ui.signals.RefreshScreenAfterLoginSignal;
     import kabam.lib.tasks.BranchingTask;
     import kabam.lib.tasks.DispatchSignalTask;
+    import kabam.lib.tasks.TaskMonitor;
+    import kabam.rotmg.account.core.services.LoginTask;
+    import kabam.rotmg.ui.signals.RefreshScreenAfterLoginSignal;
 
-    public class KongregateHandleAlreadyRegisteredCommand 
+    public class KongregateHandleAlreadyRegisteredCommand
     {
-
         [Inject]
         public var login:LoginTask;
         [Inject]
         public var monitor:TaskMonitor;
         [Inject]
         public var refresh:RefreshScreenAfterLoginSignal;
-
 
         public function execute():void
         {
@@ -24,8 +22,6 @@
             this.monitor.add(_local1);
             _local1.start();
         }
-
-
     }
 }
 

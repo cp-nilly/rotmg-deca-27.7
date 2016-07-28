@@ -1,21 +1,19 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.Signal;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
 
-    public class DialogCloseButton extends Sprite 
-    {
+    import org.osflash.signals.Signal;
 
+    public class DialogCloseButton extends Sprite
+    {
         public static var CloseButtonAsset:Class = DialogCloseButton_CloseButtonAsset;
         public static var CloseButtonLargeAsset:Class = DialogCloseButton_CloseButtonLargeAsset;
-
         public const clicked:Signal = new Signal();
-
         public var disabled:Boolean = false;
 
-        public function DialogCloseButton(_arg1:Number=-1)
+        public function DialogCloseButton(_arg1:Number = -1)
         {
             var _local2:DisplayObject;
             super();
@@ -29,7 +27,7 @@
                 addChild(new CloseButtonLargeAsset());
                 scaleX = (scaleX * _arg1);
                 scaleY = (scaleY * _arg1);
-            };
+            }
             buttonMode = true;
             addEventListener(MouseEvent.CLICK, this.onClicked);
         }
@@ -44,7 +42,7 @@
             else
             {
                 addEventListener(MouseEvent.CLICK, this.onClicked);
-            };
+            }
         }
 
         public function disableLegacyCloseBehavior():void
@@ -59,10 +57,8 @@
             {
                 this.clicked.dispatch();
                 removeEventListener(MouseEvent.CLICK, this.onClicked);
-            };
+            }
         }
-
-
     }
 }
 

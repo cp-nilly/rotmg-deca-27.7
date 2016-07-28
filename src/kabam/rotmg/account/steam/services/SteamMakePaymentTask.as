@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.account.steam.services
 {
+    import com.company.assembleegameclient.ui.dialogs.DebugDialog;
+    import com.company.assembleegameclient.util.offer.Offer;
+
     import kabam.lib.tasks.BaseTask;
+    import kabam.rotmg.account.core.PaymentData;
     import kabam.rotmg.account.core.services.MakePaymentTask;
     import kabam.rotmg.account.steam.SteamApi;
-    import kabam.rotmg.account.core.PaymentData;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import robotlegs.bender.framework.api.ILogger;
     import kabam.rotmg.appengine.api.AppEngineClient;
-    import com.company.assembleegameclient.util.offer.Offer;
-    import com.company.assembleegameclient.ui.dialogs.DebugDialog;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class SteamMakePaymentTask extends BaseTask implements MakePaymentTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class SteamMakePaymentTask extends BaseTask implements MakePaymentTask
     {
-
         [Inject]
         public var steam:SteamApi;
         [Inject]
@@ -27,17 +28,17 @@
         public var second:AppEngineClient;
         private var offer:Offer;
 
-
         override protected function startTask():void
         {
             this.logger.debug("start task");
             this.offer = this.payment.offer;
             this.client.setMaxRetries(2);
             this.client.complete.addOnce(this.onComplete);
-            this.client.sendRequest("/steamworks/purchaseOffer", {
-                "steamid":this.steam.getSteamId(),
-                "data":this.offer.data_
-            });
+            this.client.sendRequest(
+                    "/steamworks/purchaseOffer", {
+                        "steamid": this.steam.getSteamId(), "data": this.offer.data_
+                    }
+            );
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -49,7 +50,7 @@
             else
             {
                 this.onPurchaseOfferError(_arg2);
-            };
+            }
         }
 
         private function onPurchaseOfferComplete():void
@@ -63,11 +64,11 @@
             this.logger.debug("payment authorized {0},{1},{2}", [_arg1, _arg2, _arg3]);
             this.second.setMaxRetries(2);
             this.client.complete.addOnce(this.onAuthorized);
-            this.second.sendRequest("/steamworks/finalizePurchase", {
-                "appid":_arg1,
-                "orderid":_arg2,
-                "authorized":((_arg3) ? 1 : 0)
-            });
+            this.second.sendRequest(
+                    "/steamworks/finalizePurchase", {
+                        "appid": _arg1, "orderid": _arg2, "authorized": ((_arg3) ? 1 : 0)
+                    }
+            );
         }
 
         private function onAuthorized(_arg1:Boolean, _arg2:*):void
@@ -79,7 +80,7 @@
             else
             {
                 this.onPurchaseFinalizeError(_arg2);
-            };
+            }
         }
 
         private function onPurchaseFinalizeComplete():void
@@ -101,8 +102,6 @@
             this.openDialog.dispatch(new DebugDialog(("Error: " + _arg1)));
             completeTask(false);
         }
-
-
     }
 }
 

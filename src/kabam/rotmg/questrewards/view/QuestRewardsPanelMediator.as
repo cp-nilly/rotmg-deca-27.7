@@ -1,22 +1,23 @@
 ﻿package kabam.rotmg.questrewards.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import flash.events.MouseEvent;
-    import flash.events.KeyboardEvent;
     import com.company.assembleegameclient.parameters.Parameters;
 
-    public class QuestRewardsPanelMediator extends Mediator 
-    {
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
 
+    import kabam.rotmg.dialogs.control.OpenDialogNoModalSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class QuestRewardsPanelMediator extends Mediator
+    {
         [Inject]
         public var view:QuestRewardsPanel;
         [Inject]
         public var openNoModalDialog:OpenDialogNoModalSignal;
         [Inject]
         public var openDialog:OpenDialogSignal;
-
 
         override public function initialize():void
         {
@@ -31,8 +32,10 @@
                 else
                 {
                     QuestRewardsView.closed.add(this.enableInteract);
-                };
-            };
+                }
+                ;
+            }
+            ;
         }
 
         override public function destroy():void
@@ -51,7 +54,8 @@
                 this.view.feedButton.removeEventListener(MouseEvent.CLICK, this.onButtonLeftClick);
                 WebMain.STAGE.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
                 QuestRewardsView.closed.add(this.enableInteract);
-            };
+            }
+            ;
         }
 
         private function enableInteract():void
@@ -66,10 +70,9 @@
             if ((((_arg1.keyCode == Parameters.data_.interact)) && ((WebMain.STAGE.focus == null))))
             {
                 this.onButtonLeftClick(null);
-            };
+            }
+            ;
         }
-
-
     }
 }
 

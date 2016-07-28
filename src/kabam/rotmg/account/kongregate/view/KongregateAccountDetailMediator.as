@@ -1,15 +1,16 @@
 ﻿package kabam.rotmg.account.kongregate.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.util.EmailValidator;
+
     import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import com.company.util.EmailValidator;
-    import kabam.rotmg.account.core.view.RegisterWebAccountDialog;
 
-    public class KongregateAccountDetailMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class KongregateAccountDetailMediator extends Mediator
     {
-
         [Inject]
         public var view:KongregateAccountDetailDialog;
         [Inject]
@@ -20,7 +21,6 @@
         public var openDialog:OpenDialogSignal;
         [Inject]
         public var api:KongregateApi;
-
 
         override public function initialize():void
         {
@@ -58,8 +58,6 @@
         private function onLink():void
         {
         }
-
-
     }
 }
 

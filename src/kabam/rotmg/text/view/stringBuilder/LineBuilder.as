@@ -1,27 +1,25 @@
 ﻿package kabam.rotmg.text.view.stringBuilder
 {
-    import kabam.rotmg.language.model.StringMap;
     import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.language.model.StringMap;
 
-    public class LineBuilder implements StringBuilder 
+    public class LineBuilder implements StringBuilder
     {
-
         public var key:String;
         public var tokens:Object;
         private var postfix:String = "";
         private var prefix:String = "";
         private var map:StringMap;
 
-
         public static function fromJSON(_arg1:String):LineBuilder
         {
             var _local2:Object = JSON.parse(_arg1);
-            return (new (LineBuilder)().setParams(_local2.key, _local2.tokens));
+            return (new LineBuilder().setParams(_local2.key, _local2.tokens));
         }
 
-        public static function getLocalizedStringFromKey(_arg1:String, _arg2:Object=null):String
+        public static function getLocalizedStringFromKey(_arg1:String, _arg2:Object = null):String
         {
-            var _local3:LineBuilder = new (LineBuilder)();
+            var _local3:LineBuilder = new LineBuilder();
             _local3.setParams(_arg1, _arg2);
             var _local4:StringMap = StaticInjectorContext.getInjector().getInstance(StringMap);
             _local3.setStringMap(_local4);
@@ -38,11 +36,13 @@
                 _local3 = StaticInjectorContext.getInjector().getInstance(StringMap);
                 _local2.setStringMap(_local3);
                 return (_local2.getString());
-            };
+            }
             return (_arg1);
         }
 
-        public static function returnStringReplace(_arg1:String, _arg2:Object=null, _arg3:String="", _arg4:String=""):String
+        public static function returnStringReplace(
+                _arg1:String, _arg2:Object = null, _arg3:String = "", _arg4:String = ""
+        ):String
         {
             var _local6:String;
             var _local7:String;
@@ -55,15 +55,15 @@
                 while (_local5.indexOf(_local8) != -1)
                 {
                     _local5 = _local5.replace(_local8, _local7);
-                };
-            };
+                }
+            }
             _local5 = _local5.replace(/\\n/g, "\n");
             return (((_arg3 + _local5) + _arg4));
         }
 
-        public static function getLocalizedString2(_arg1:String, _arg2:Object=null):String
+        public static function getLocalizedString2(_arg1:String, _arg2:Object = null):String
         {
-            var _local3:LineBuilder = new (LineBuilder)();
+            var _local3:LineBuilder = new LineBuilder();
             _local3.setParams(_arg1, _arg2);
             var _local4:StringMap = StaticInjectorContext.getInjector().getInstance(StringMap);
             _local3.setStringMap(_local4);
@@ -76,16 +76,16 @@
             return (((_local2) ? _arg1.substr(1, (_arg1.length - 2)) : _arg1));
         }
 
-
         public function toJson():String
         {
-            return (JSON.stringify({
-                "key":this.key,
-                "tokens":this.tokens
-            }));
+            return (JSON.stringify(
+                    {
+                        "key": this.key, "tokens": this.tokens
+                    }
+            ));
         }
 
-        public function setParams(_arg1:String, _arg2:Object=null):LineBuilder
+        public function setParams(_arg1:String, _arg2:Object = null):LineBuilder
         {
             this.key = ((_arg1) || (""));
             this.tokens = _arg2;
@@ -122,18 +122,16 @@
                 if ((((_local4.charAt(0) == "{")) && ((_local4.charAt((_local4.length - 1)) == "}"))))
                 {
                     _local4 = this.map.getValue(_local4.substr(1, (_local4.length - 2)));
-                };
+                }
                 _local5 = (("{" + _local3) + "}");
                 while (_local2.indexOf(_local5) != -1)
                 {
                     _local2 = _local2.replace(_local5, _local4);
-                };
-            };
+                }
+            }
             _local2 = _local2.replace(/\\n/g, "\n");
             return (((this.prefix + _local2) + this.postfix));
         }
-
-
     }
 }
 

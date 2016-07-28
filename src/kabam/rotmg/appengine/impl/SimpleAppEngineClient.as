@@ -1,14 +1,15 @@
 ﻿package kabam.rotmg.appengine.impl
 {
+    import flash.net.URLLoaderDataFormat;
+
     import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.appengine.api.RetryLoader;
     import kabam.rotmg.application.api.ApplicationSetup;
-    import flash.net.URLLoaderDataFormat;
+
     import org.osflash.signals.OnceSignal;
 
-    public class SimpleAppEngineClient implements AppEngineClient 
+    public class SimpleAppEngineClient implements AppEngineClient
     {
-
         [Inject]
         public var loader:RetryLoader;
         [Inject]
@@ -54,7 +55,7 @@
             if (_arg1.charAt(0) != "/")
             {
                 _arg1 = ("/" + _arg1);
-            };
+            }
             return ((this.setup.getAppEngineUrl() + _arg1));
         }
 
@@ -62,8 +63,6 @@
         {
             return (this.loader.isInProgress());
         }
-
-
     }
 }
 

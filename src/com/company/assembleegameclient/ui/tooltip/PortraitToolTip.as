@@ -1,13 +1,13 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
+    import com.company.assembleegameclient.objects.GameObject;
+    import com.company.util.BitmapUtil;
+
     import flash.display.Bitmap;
     import flash.display.BitmapData;
-    import com.company.util.BitmapUtil;
-    import com.company.assembleegameclient.objects.GameObject;
 
-    public class PortraitToolTip extends ToolTip 
+    public class PortraitToolTip extends ToolTip
     {
-
         private var portrait_:Bitmap;
 
         public function PortraitToolTip(_arg1:GameObject)
@@ -22,7 +22,6 @@
             addChild(this.portrait_);
             filters = [];
         }
-
     }
 }
 

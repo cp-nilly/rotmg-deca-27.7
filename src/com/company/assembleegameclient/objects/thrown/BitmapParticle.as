@@ -1,20 +1,18 @@
 ﻿package com.company.assembleegameclient.objects.thrown
 {
+    import com.company.assembleegameclient.map.Camera;
+    import com.company.assembleegameclient.map.Square;
     import com.company.assembleegameclient.objects.BasicObject;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.BitmapData;
     import flash.display.GraphicsBitmapFill;
     import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.geom.Matrix;
-    import flash.display.BitmapData;
-    import com.company.util.GraphicsUtil;
-    import com.company.assembleegameclient.map.Square;
     import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
+    import flash.geom.Matrix;
 
-    public class BitmapParticle extends BasicObject 
+    public class BitmapParticle extends BasicObject
     {
-
         protected var bitmapFill_:GraphicsBitmapFill;
         protected var path_:GraphicsPath;
         protected var vS_:Vector.<Number>;
@@ -44,7 +42,7 @@
             if (!_local3)
             {
                 return (false);
-            };
+            }
             x_ = _arg1;
             y_ = _arg2;
             square_ = _local3;
@@ -73,9 +71,18 @@
                 if (((!(w)) || (!(h))))
                 {
                     return;
-                };
+                }
                 this.vS_.length = 0;
-                this.vS_.push((posS_[3] - (w / 2)), (posS_[4] - (h / 2)), (posS_[3] + (w / 2)), (posS_[4] - (h / 2)), (posS_[3] + (w / 2)), (posS_[4] + (h / 2)), (posS_[3] - (w / 2)), (posS_[4] + (h / 2)));
+                this.vS_.push(
+                        (posS_[3] - (w / 2)),
+                        (posS_[4] - (h / 2)),
+                        (posS_[3] + (w / 2)),
+                        (posS_[4] - (h / 2)),
+                        (posS_[3] + (w / 2)),
+                        (posS_[4] + (h / 2)),
+                        (posS_[3] - (w / 2)),
+                        (posS_[4] + (h / 2))
+                );
                 this.path_.data = this.vS_;
                 this.bitmapFill_.bitmapData = texture;
                 this.fillMatrix_.identity();
@@ -84,11 +91,11 @@
                     if (this._rotationDelta)
                     {
                         this._rotation = (this._rotation + this._rotationDelta);
-                    };
+                    }
                     this.fillMatrix_.translate((-(w) / 2), (-(h) / 2));
                     this.fillMatrix_.rotate(this._rotation);
                     this.fillMatrix_.translate((w / 2), (h / 2));
-                };
+                }
                 this.fillMatrix_.translate(this.vS_[0], this.vS_[1]);
                 this.bitmapFill_.matrix = this.fillMatrix_;
                 graphicsData.push(this.bitmapFill_);
@@ -96,13 +103,11 @@
                 graphicsData.push(this.path_);
                 graphicsData.push(GraphicsUtil.END_FILL);
             }
-            catch(error:Error)
+            catch (error:Error)
             {
                 return;
-            };
+            }
         }
-
-
     }
 }
 

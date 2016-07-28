@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class UpdatePotionInventorySignal extends Signal 
+    public class UpdatePotionInventorySignal extends Signal
     {
-
-
     }
 }
 

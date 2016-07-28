@@ -1,227 +1,221 @@
 ﻿package kabam.rotmg.messaging.impl
 {
-    import kabam.lib.net.api.MessageProvider;
-    import com.company.assembleegameclient.objects.Player;
-    import com.company.util.Random;
-    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
-    import kabam.rotmg.messaging.impl.incoming.Death;
-    import flash.utils.Timer;
-    import kabam.rotmg.game.signals.AddTextLineSignal;
-    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
-    import kabam.rotmg.minimap.control.UpdateGroundTileSignal;
-    import kabam.rotmg.minimap.control.UpdateGameObjectTileSignal;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.death.control.HandleDeathSignal;
-    import kabam.rotmg.death.control.ZombifySignal;
-    import kabam.rotmg.game.focus.control.SetGameFocusSignal;
-    import kabam.rotmg.ui.signals.UpdateBackpackTabSignal;
-    import kabam.rotmg.pets.controller.PetFeedResultSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.arena.control.ArenaDeathSignal;
-    import kabam.rotmg.arena.control.ImminentArenaWaveSignal;
-    import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
-    import kabam.rotmg.questrewards.controller.QuestRedeemCompleteSignal;
-    import kabam.rotmg.arena.model.CurrentArenaRunModel;
-    import kabam.rotmg.classes.model.ClassesModel;
-	import robotlegs.bender.framework.api.IInjector;
-    import kabam.rotmg.game.model.GameModel;
-    import kabam.rotmg.pets.controller.UpdateActivePet;
-    import kabam.rotmg.pets.data.PetsModel;
-    import kabam.rotmg.friends.model.FriendModel;
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.rotmg.maploading.signals.ChangeMapSignal;
-    import kabam.lib.net.impl.SocketServer;
     import com.company.assembleegameclient.game.AGameSprite;
-    import kabam.rotmg.servers.api.Server;
-    import flash.utils.ByteArray;
-    import kabam.rotmg.chat.model.ChatMessage;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.lib.net.api.MessageMap;
-    import kabam.rotmg.messaging.impl.outgoing.Create;
-    import kabam.rotmg.messaging.impl.outgoing.PlayerShoot;
-    import kabam.rotmg.messaging.impl.outgoing.Move;
-    import kabam.rotmg.messaging.impl.outgoing.PlayerText;
-    import kabam.lib.net.impl.Message;
-    import kabam.rotmg.messaging.impl.outgoing.InvSwap;
-    import kabam.rotmg.messaging.impl.outgoing.UseItem;
-    import kabam.rotmg.messaging.impl.outgoing.Hello;
-    import kabam.rotmg.messaging.impl.outgoing.InvDrop;
-    import kabam.rotmg.messaging.impl.outgoing.Pong;
-    import kabam.rotmg.messaging.impl.outgoing.Load;
-    import kabam.rotmg.messaging.impl.outgoing.SetCondition;
-    import kabam.rotmg.messaging.impl.outgoing.Teleport;
-    import kabam.rotmg.messaging.impl.outgoing.UsePortal;
-    import kabam.rotmg.messaging.impl.outgoing.Buy;
-    import kabam.rotmg.messaging.impl.outgoing.PlayerHit;
-    import kabam.rotmg.messaging.impl.outgoing.EnemyHit;
-    import kabam.rotmg.messaging.impl.outgoing.AoeAck;
-    import kabam.rotmg.messaging.impl.outgoing.ShootAck;
-    import kabam.rotmg.messaging.impl.outgoing.OtherHit;
-    import kabam.rotmg.messaging.impl.outgoing.SquareHit;
-    import kabam.rotmg.messaging.impl.outgoing.GotoAck;
-    import kabam.rotmg.messaging.impl.outgoing.GroundDamage;
-    import kabam.rotmg.messaging.impl.outgoing.ChooseName;
-    import kabam.rotmg.messaging.impl.outgoing.CreateGuild;
-    import kabam.rotmg.messaging.impl.outgoing.GuildRemove;
-    import kabam.rotmg.messaging.impl.outgoing.GuildInvite;
-    import kabam.rotmg.messaging.impl.outgoing.RequestTrade;
-    import kabam.rotmg.messaging.impl.outgoing.ChangeTrade;
-    import kabam.rotmg.messaging.impl.outgoing.AcceptTrade;
-    import kabam.rotmg.messaging.impl.outgoing.CancelTrade;
-    import kabam.rotmg.messaging.impl.outgoing.CheckCredits;
-    import kabam.rotmg.messaging.impl.outgoing.Escape;
-    import kabam.rotmg.messaging.impl.outgoing.JoinGuild;
-    import kabam.rotmg.messaging.impl.outgoing.ChangeGuildRank;
-    import kabam.rotmg.messaging.impl.outgoing.EditAccountList;
-    import kabam.rotmg.messaging.impl.outgoing.ActivePetUpdateRequest;
-    import kabam.rotmg.messaging.impl.outgoing.arena.EnterArena;
-    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
-    import kabam.rotmg.messaging.impl.outgoing.arena.QuestRedeem;
-    import kabam.rotmg.messaging.impl.incoming.Failure;
-    import kabam.rotmg.messaging.impl.incoming.CreateSuccess;
-    import kabam.rotmg.messaging.impl.incoming.ServerPlayerShoot;
-    import kabam.rotmg.messaging.impl.incoming.Damage;
-    import kabam.rotmg.messaging.impl.incoming.Update;
-    import kabam.rotmg.messaging.impl.incoming.Notification;
-    import kabam.rotmg.messaging.impl.incoming.GlobalNotification;
-    import kabam.rotmg.messaging.impl.incoming.NewTick;
-    import kabam.rotmg.messaging.impl.incoming.ShowEffect;
-    import kabam.rotmg.messaging.impl.incoming.Goto;
-    import kabam.rotmg.messaging.impl.incoming.InvResult;
-    import kabam.rotmg.messaging.impl.incoming.Reconnect;
-    import kabam.rotmg.messaging.impl.incoming.Ping;
-    import kabam.rotmg.messaging.impl.incoming.MapInfo;
-    import kabam.rotmg.messaging.impl.incoming.Pic;
-    import kabam.rotmg.messaging.impl.incoming.BuyResult;
-    import kabam.rotmg.messaging.impl.incoming.Aoe;
-    import kabam.rotmg.messaging.impl.incoming.AccountList;
-    import kabam.rotmg.messaging.impl.incoming.QuestObjId;
-    import kabam.rotmg.messaging.impl.incoming.NameResult;
-    import kabam.rotmg.messaging.impl.incoming.GuildResult;
-    import kabam.rotmg.messaging.impl.incoming.AllyShoot;
-    import kabam.rotmg.messaging.impl.incoming.EnemyShoot;
-    import kabam.rotmg.messaging.impl.incoming.TradeRequested;
-    import kabam.rotmg.messaging.impl.incoming.TradeStart;
-    import kabam.rotmg.messaging.impl.incoming.TradeChanged;
-    import kabam.rotmg.messaging.impl.incoming.TradeDone;
-    import kabam.rotmg.messaging.impl.incoming.TradeAccepted;
-    import kabam.rotmg.messaging.impl.incoming.ClientStat;
-    import kabam.rotmg.messaging.impl.incoming.File;
-    import kabam.rotmg.messaging.impl.incoming.InvitedToGuild;
-    import kabam.rotmg.messaging.impl.incoming.PlaySound;
-    import kabam.rotmg.messaging.impl.incoming.NewAbilityMessage;
-    import kabam.rotmg.messaging.impl.incoming.EvolvedPetMessage;
-    import kabam.rotmg.messaging.impl.incoming.pets.DeletePetMessage;
-    import kabam.rotmg.messaging.impl.incoming.pets.HatchPetMessage;
-    import kabam.rotmg.messaging.impl.incoming.arena.ImminentArenaWave;
-    import kabam.rotmg.messaging.impl.incoming.arena.ArenaDeath;
-    import kabam.rotmg.messaging.impl.incoming.VerifyEmail;
-    import kabam.rotmg.messaging.impl.incoming.ReskinUnlock;
-    import kabam.rotmg.messaging.impl.incoming.PasswordPrompt;
-    import kabam.rotmg.messaging.impl.incoming.QuestFetchResponse;
-    import kabam.rotmg.messaging.impl.incoming.QuestRedeemResponse;
-    import kabam.rotmg.pets.controller.HatchPetSignal;
-    import kabam.rotmg.pets.controller.DeletePetSignal;
-    import kabam.rotmg.pets.controller.NewAbilitySignal;
-    import kabam.rotmg.pets.controller.UpdatePetYardSignal;
-    import kabam.rotmg.messaging.impl.incoming.EvolvedMessageHandler;
-    import com.hurlant.crypto.symmetric.ICipher;
-    import com.hurlant.crypto.Crypto;
-    import com.company.util.MoreStringUtil;
-    import kabam.rotmg.classes.model.CharacterClass;
-    import kabam.rotmg.arena.view.BattleSummaryDialog;
-    import com.company.assembleegameclient.objects.Projectile;
-    import com.company.assembleegameclient.sound.SoundEffectLibrary;
-    import com.company.assembleegameclient.objects.GameObject;
-    import kabam.rotmg.constants.ItemConstants;
-    import kabam.rotmg.game.model.PotionInventoryModel;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
-    import flash.utils.getTimer;
-    import kabam.rotmg.ui.signals.ShowHideKeyUISignal;
-    import com.company.assembleegameclient.objects.SellableObject;
-    import com.company.assembleegameclient.util.Currency;
-    import __AS3__.vec.Vector;
-    import com.hurlant.util.der.PEM;
-    import com.hurlant.crypto.rsa.RSAKey;
-    import com.hurlant.util.Base64;
-    import kabam.rotmg.account.core.Account;
+    import com.company.assembleegameclient.game.events.GuildResultEvent;
+    import com.company.assembleegameclient.game.events.NameResultEvent;
+    import com.company.assembleegameclient.game.events.ReconnectEvent;
     import com.company.assembleegameclient.map.AbstractMap;
-    import com.company.assembleegameclient.util.FreeList;
-    import kabam.rotmg.classes.model.CharacterSkin;
-    import kabam.rotmg.classes.model.CharacterSkinState;
-    import com.company.assembleegameclient.ui.panels.TradeRequestPanel;
-    import kabam.rotmg.messaging.impl.data.ObjectStatusData;
-    import kabam.rotmg.ui.model.UpdateGameObjectTileVO;
-    import kabam.rotmg.messaging.impl.data.ObjectData;
-    import kabam.rotmg.messaging.impl.data.GroundTileData;
-    import kabam.rotmg.minimap.model.UpdateGroundTileVO;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import com.company.assembleegameclient.map.GroundLibrary;
     import com.company.assembleegameclient.map.mapoverlay.CharacterStatusText;
-    import kabam.rotmg.game.view.components.QueuedStatusText;
-    import kabam.rotmg.ui.signals.ShowKeySignal;
-    import kabam.rotmg.ui.model.Key;
-    import com.company.assembleegameclient.objects.particles.ParticleEffect;
-    import flash.geom.Point;
-    import com.company.assembleegameclient.objects.particles.HealEffect;
-    import com.company.assembleegameclient.objects.particles.TeleportEffect;
-    import com.company.assembleegameclient.objects.particles.StreamEffect;
-    import com.company.assembleegameclient.objects.particles.ThrowEffect;
-    import com.company.assembleegameclient.objects.particles.NovaEffect;
-    import com.company.assembleegameclient.objects.particles.PoisonEffect;
-    import com.company.assembleegameclient.objects.particles.LineEffect;
+    import com.company.assembleegameclient.objects.Container;
+    import com.company.assembleegameclient.objects.FlashDescription;
+    import com.company.assembleegameclient.objects.GameObject;
+    import com.company.assembleegameclient.objects.Merchant;
+    import com.company.assembleegameclient.objects.NameChanger;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.objects.ObjectProperties;
+    import com.company.assembleegameclient.objects.Pet;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.objects.Portal;
+    import com.company.assembleegameclient.objects.Projectile;
+    import com.company.assembleegameclient.objects.ProjectileProperties;
+    import com.company.assembleegameclient.objects.SellableObject;
+    import com.company.assembleegameclient.objects.particles.AOEEffect;
     import com.company.assembleegameclient.objects.particles.BurstEffect;
-    import com.company.assembleegameclient.objects.particles.FlowEffect;
-    import com.company.assembleegameclient.objects.particles.RingEffect;
-    import com.company.assembleegameclient.objects.particles.LightningEffect;
     import com.company.assembleegameclient.objects.particles.CollapseEffect;
     import com.company.assembleegameclient.objects.particles.ConeBlastEffect;
-    import com.company.assembleegameclient.objects.FlashDescription;
-    import com.company.assembleegameclient.objects.thrown.ThrowProjectileEffect;
-    import com.company.assembleegameclient.objects.particles.ShockerEffect;
-    import com.company.assembleegameclient.objects.particles.ShockeeEffect;
+    import com.company.assembleegameclient.objects.particles.FlowEffect;
+    import com.company.assembleegameclient.objects.particles.HealEffect;
+    import com.company.assembleegameclient.objects.particles.LightningEffect;
+    import com.company.assembleegameclient.objects.particles.LineEffect;
+    import com.company.assembleegameclient.objects.particles.NovaEffect;
+    import com.company.assembleegameclient.objects.particles.ParticleEffect;
+    import com.company.assembleegameclient.objects.particles.PoisonEffect;
+    import com.company.assembleegameclient.objects.particles.RingEffect;
     import com.company.assembleegameclient.objects.particles.RisingFuryEffect;
-    import kabam.rotmg.messaging.impl.data.StatData;
-    import com.company.assembleegameclient.objects.Merchant;
-    import com.company.assembleegameclient.objects.Pet;
-    import com.company.assembleegameclient.util.ConditionEffect;
-    import com.company.assembleegameclient.objects.Portal;
-    import com.company.assembleegameclient.objects.Container;
-    import com.company.assembleegameclient.objects.NameChanger;
-    import kabam.rotmg.constants.GeneralConstants;
-    import kabam.rotmg.messaging.impl.outgoing.Reskin;
-    import com.company.assembleegameclient.objects.ObjectProperties;
-    import com.company.assembleegameclient.objects.ProjectileProperties;
-    import com.company.assembleegameclient.game.events.ReconnectEvent;
-    import com.company.assembleegameclient.map.GroundLibrary;
+    import com.company.assembleegameclient.objects.particles.ShockeeEffect;
+    import com.company.assembleegameclient.objects.particles.ShockerEffect;
+    import com.company.assembleegameclient.objects.particles.StreamEffect;
+    import com.company.assembleegameclient.objects.particles.TeleportEffect;
+    import com.company.assembleegameclient.objects.particles.ThrowEffect;
+    import com.company.assembleegameclient.objects.thrown.ThrowProjectileEffect;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.sound.SoundEffectLibrary;
     import com.company.assembleegameclient.ui.PicView;
-    import flash.display.BitmapData;
-    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
-    import com.company.assembleegameclient.ui.dialogs.NotEnoughFameDialog;
-    import com.company.assembleegameclient.objects.particles.AOEEffect;
-    import com.company.assembleegameclient.game.events.NameResultEvent;
-    import com.company.assembleegameclient.game.events.GuildResultEvent;
-    import flash.net.FileReference;
-    import com.company.assembleegameclient.ui.panels.GuildInvitePanel;
-    import kabam.rotmg.arena.view.ContinueOrQuitDialog;
-    import kabam.rotmg.ui.view.TitleView;
-    import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
-    import flash.events.TimerEvent;
     import com.company.assembleegameclient.ui.dialogs.Dialog;
+    import com.company.assembleegameclient.ui.dialogs.NotEnoughFameDialog;
+    import com.company.assembleegameclient.ui.panels.GuildInvitePanel;
+    import com.company.assembleegameclient.ui.panels.TradeRequestPanel;
+    import com.company.assembleegameclient.util.ConditionEffect;
+    import com.company.assembleegameclient.util.Currency;
+    import com.company.assembleegameclient.util.FreeList;
+    import com.company.util.MoreStringUtil;
+    import com.company.util.Random;
+    import com.hurlant.crypto.Crypto;
+    import com.hurlant.crypto.rsa.RSAKey;
+    import com.hurlant.crypto.symmetric.ICipher;
+    import com.hurlant.util.Base64;
+    import com.hurlant.util.der.PEM;
+
+    import flash.display.BitmapData;
     import flash.events.Event;
-    import __AS3__.vec.*;
-    import kabam.rotmg.messaging.impl.incoming.*;
-    import com.company.assembleegameclient.objects.*;
-    import kabam.rotmg.messaging.impl.data.*;
-    import com.company.assembleegameclient.objects.particles.*;
-    import kabam.rotmg.messaging.impl.outgoing.*;
+    import flash.events.TimerEvent;
+    import flash.geom.Point;
+    import flash.net.FileReference;
+    import flash.utils.ByteArray;
+    import flash.utils.Timer;
+    import flash.utils.getTimer;
 
-    public class GameServerConnectionConcrete extends GameServerConnection 
+    import kabam.lib.net.api.MessageMap;
+    import kabam.lib.net.api.MessageProvider;
+    import kabam.lib.net.impl.Message;
+    import kabam.lib.net.impl.SocketServer;
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.arena.control.ArenaDeathSignal;
+    import kabam.rotmg.arena.control.ImminentArenaWaveSignal;
+    import kabam.rotmg.arena.model.CurrentArenaRunModel;
+    import kabam.rotmg.arena.view.BattleSummaryDialog;
+    import kabam.rotmg.arena.view.ContinueOrQuitDialog;
+    import kabam.rotmg.chat.model.ChatMessage;
+    import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.CharacterSkin;
+    import kabam.rotmg.classes.model.CharacterSkinState;
+    import kabam.rotmg.classes.model.ClassesModel;
+    import kabam.rotmg.constants.GeneralConstants;
+    import kabam.rotmg.constants.ItemConstants;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.death.control.HandleDeathSignal;
+    import kabam.rotmg.death.control.ZombifySignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
+    import kabam.rotmg.friends.model.FriendModel;
+    import kabam.rotmg.game.focus.control.SetGameFocusSignal;
+    import kabam.rotmg.game.model.GameModel;
+    import kabam.rotmg.game.model.PotionInventoryModel;
+    import kabam.rotmg.game.signals.AddSpeechBalloonSignal;
+    import kabam.rotmg.game.signals.AddTextLineSignal;
+    import kabam.rotmg.game.signals.GiftStatusUpdateSignal;
+    import kabam.rotmg.game.view.components.QueuedStatusText;
+    import kabam.rotmg.maploading.signals.ChangeMapSignal;
+    import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
+    import kabam.rotmg.messaging.impl.data.GroundTileData;
+    import kabam.rotmg.messaging.impl.data.ObjectData;
+    import kabam.rotmg.messaging.impl.data.ObjectStatusData;
+    import kabam.rotmg.messaging.impl.data.StatData;
+    import kabam.rotmg.messaging.impl.incoming.AccountList;
+    import kabam.rotmg.messaging.impl.incoming.AllyShoot;
+    import kabam.rotmg.messaging.impl.incoming.Aoe;
+    import kabam.rotmg.messaging.impl.incoming.BuyResult;
+    import kabam.rotmg.messaging.impl.incoming.ClientStat;
+    import kabam.rotmg.messaging.impl.incoming.CreateSuccess;
+    import kabam.rotmg.messaging.impl.incoming.Damage;
+    import kabam.rotmg.messaging.impl.incoming.Death;
+    import kabam.rotmg.messaging.impl.incoming.EnemyShoot;
+    import kabam.rotmg.messaging.impl.incoming.EvolvedMessageHandler;
+    import kabam.rotmg.messaging.impl.incoming.EvolvedPetMessage;
+    import kabam.rotmg.messaging.impl.incoming.Failure;
+    import kabam.rotmg.messaging.impl.incoming.File;
+    import kabam.rotmg.messaging.impl.incoming.GlobalNotification;
+    import kabam.rotmg.messaging.impl.incoming.Goto;
+    import kabam.rotmg.messaging.impl.incoming.GuildResult;
+    import kabam.rotmg.messaging.impl.incoming.InvResult;
+    import kabam.rotmg.messaging.impl.incoming.InvitedToGuild;
+    import kabam.rotmg.messaging.impl.incoming.MapInfo;
+    import kabam.rotmg.messaging.impl.incoming.NameResult;
+    import kabam.rotmg.messaging.impl.incoming.NewAbilityMessage;
+    import kabam.rotmg.messaging.impl.incoming.NewTick;
+    import kabam.rotmg.messaging.impl.incoming.Notification;
+    import kabam.rotmg.messaging.impl.incoming.PasswordPrompt;
+    import kabam.rotmg.messaging.impl.incoming.Pic;
+    import kabam.rotmg.messaging.impl.incoming.Ping;
+    import kabam.rotmg.messaging.impl.incoming.PlaySound;
+    import kabam.rotmg.messaging.impl.incoming.QuestFetchResponse;
+    import kabam.rotmg.messaging.impl.incoming.QuestObjId;
+    import kabam.rotmg.messaging.impl.incoming.QuestRedeemResponse;
+    import kabam.rotmg.messaging.impl.incoming.Reconnect;
+    import kabam.rotmg.messaging.impl.incoming.ReskinUnlock;
+    import kabam.rotmg.messaging.impl.incoming.ServerPlayerShoot;
+    import kabam.rotmg.messaging.impl.incoming.ShowEffect;
+    import kabam.rotmg.messaging.impl.incoming.TradeAccepted;
+    import kabam.rotmg.messaging.impl.incoming.TradeChanged;
+    import kabam.rotmg.messaging.impl.incoming.TradeDone;
+    import kabam.rotmg.messaging.impl.incoming.TradeRequested;
+    import kabam.rotmg.messaging.impl.incoming.TradeStart;
+    import kabam.rotmg.messaging.impl.incoming.Update;
+    import kabam.rotmg.messaging.impl.incoming.VerifyEmail;
+    import kabam.rotmg.messaging.impl.incoming.arena.ArenaDeath;
+    import kabam.rotmg.messaging.impl.incoming.arena.ImminentArenaWave;
+    import kabam.rotmg.messaging.impl.incoming.pets.DeletePetMessage;
+    import kabam.rotmg.messaging.impl.incoming.pets.HatchPetMessage;
+    import kabam.rotmg.messaging.impl.outgoing.AcceptTrade;
+    import kabam.rotmg.messaging.impl.outgoing.ActivePetUpdateRequest;
+    import kabam.rotmg.messaging.impl.outgoing.AoeAck;
+    import kabam.rotmg.messaging.impl.outgoing.Buy;
+    import kabam.rotmg.messaging.impl.outgoing.CancelTrade;
+    import kabam.rotmg.messaging.impl.outgoing.ChangeGuildRank;
+    import kabam.rotmg.messaging.impl.outgoing.ChangeTrade;
+    import kabam.rotmg.messaging.impl.outgoing.CheckCredits;
+    import kabam.rotmg.messaging.impl.outgoing.ChooseName;
+    import kabam.rotmg.messaging.impl.outgoing.Create;
+    import kabam.rotmg.messaging.impl.outgoing.CreateGuild;
+    import kabam.rotmg.messaging.impl.outgoing.EditAccountList;
+    import kabam.rotmg.messaging.impl.outgoing.EnemyHit;
+    import kabam.rotmg.messaging.impl.outgoing.Escape;
+    import kabam.rotmg.messaging.impl.outgoing.GotoAck;
+    import kabam.rotmg.messaging.impl.outgoing.GroundDamage;
+    import kabam.rotmg.messaging.impl.outgoing.GuildInvite;
+    import kabam.rotmg.messaging.impl.outgoing.GuildRemove;
+    import kabam.rotmg.messaging.impl.outgoing.Hello;
+    import kabam.rotmg.messaging.impl.outgoing.InvDrop;
+    import kabam.rotmg.messaging.impl.outgoing.InvSwap;
+    import kabam.rotmg.messaging.impl.outgoing.JoinGuild;
+    import kabam.rotmg.messaging.impl.outgoing.Load;
+    import kabam.rotmg.messaging.impl.outgoing.Move;
+    import kabam.rotmg.messaging.impl.outgoing.OtherHit;
+    import kabam.rotmg.messaging.impl.outgoing.OutgoingMessage;
+    import kabam.rotmg.messaging.impl.outgoing.PlayerHit;
+    import kabam.rotmg.messaging.impl.outgoing.PlayerShoot;
+    import kabam.rotmg.messaging.impl.outgoing.PlayerText;
+    import kabam.rotmg.messaging.impl.outgoing.Pong;
+    import kabam.rotmg.messaging.impl.outgoing.RequestTrade;
+    import kabam.rotmg.messaging.impl.outgoing.Reskin;
+    import kabam.rotmg.messaging.impl.outgoing.SetCondition;
+    import kabam.rotmg.messaging.impl.outgoing.ShootAck;
+    import kabam.rotmg.messaging.impl.outgoing.SquareHit;
+    import kabam.rotmg.messaging.impl.outgoing.Teleport;
+    import kabam.rotmg.messaging.impl.outgoing.UseItem;
+    import kabam.rotmg.messaging.impl.outgoing.UsePortal;
+    import kabam.rotmg.messaging.impl.outgoing.arena.EnterArena;
+    import kabam.rotmg.messaging.impl.outgoing.arena.QuestRedeem;
+    import kabam.rotmg.minimap.control.UpdateGameObjectTileSignal;
+    import kabam.rotmg.minimap.control.UpdateGroundTileSignal;
+    import kabam.rotmg.minimap.model.UpdateGroundTileVO;
+    import kabam.rotmg.pets.controller.DeletePetSignal;
+    import kabam.rotmg.pets.controller.HatchPetSignal;
+    import kabam.rotmg.pets.controller.NewAbilitySignal;
+    import kabam.rotmg.pets.controller.PetFeedResultSignal;
+    import kabam.rotmg.pets.controller.UpdateActivePet;
+    import kabam.rotmg.pets.controller.UpdatePetYardSignal;
+    import kabam.rotmg.pets.data.PetsModel;
+    import kabam.rotmg.questrewards.controller.QuestFetchCompleteSignal;
+    import kabam.rotmg.questrewards.controller.QuestRedeemCompleteSignal;
+    import kabam.rotmg.servers.api.Server;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.ui.model.Key;
+    import kabam.rotmg.ui.model.UpdateGameObjectTileVO;
+    import kabam.rotmg.ui.signals.ShowHideKeyUISignal;
+    import kabam.rotmg.ui.signals.ShowKeySignal;
+    import kabam.rotmg.ui.signals.UpdateBackpackTabSignal;
+    import kabam.rotmg.ui.view.NotEnoughGoldDialog;
+    import kabam.rotmg.ui.view.TitleView;
+
+    import robotlegs.bender.framework.api.IInjector;
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class GameServerConnectionConcrete extends GameServerConnection
     {
-
         private static const TO_MILLISECONDS:int = 1000;
-
         private var petUpdater:PetUpdater;
         private var messages:MessageProvider;
         private var playerId_:int = -1;
@@ -256,7 +250,17 @@
         private var petsModel:PetsModel;
         private var friendModel:FriendModel;
 
-        public function GameServerConnectionConcrete(_arg1:AGameSprite, _arg2:Server, _arg3:int, _arg4:Boolean, _arg5:int, _arg6:int, _arg7:ByteArray, _arg8:String, _arg9:Boolean)
+        public function GameServerConnectionConcrete(
+                _arg1:AGameSprite,
+                _arg2:Server,
+                _arg3:int,
+                _arg4:Boolean,
+                _arg5:int,
+                _arg6:int,
+                _arg7:ByteArray,
+                _arg8:String,
+                _arg9:Boolean
+        )
         {
             this.injector = StaticInjectorContext.getInjector();
             this.giftChestUpdateSignal = this.injector.getInstance(GiftStatusUpdateSignal);
@@ -304,7 +308,6 @@
             return ((((((((((((((((_arg1 == 2591)) || ((_arg1 == 2592)))) || ((_arg1 == 2593)))) || ((_arg1 == 2612)))) || ((_arg1 == 2613)))) || ((_arg1 == 2636)))) || ((_arg1 == 2793)))) || ((_arg1 == 2794))));
         }
 
-
         private function getPetUpdater():void
         {
             this.injector.map(AGameSprite).toValue(gs_);
@@ -333,7 +336,7 @@
             var _local1:ChatMessage = new ChatMessage();
             _local1.name = Parameters.CLIENT_CHAT_NAME;
             _local1.text = TextKey.CHAT_CONNECTING_TO;
-            _local1.tokens = {"serverName":server_.name};
+            _local1.tokens = {"serverName": server_.name};
             this.addTextLine.dispatch(_local1);
             serverConnection.connect(server_.address, server_.port);
         }
@@ -474,7 +477,11 @@
             this.updateActivePet.dispatch(_arg1.instanceID);
             var _local2:String = (((_arg1.instanceID > 0)) ? this.petsModel.getPet(_arg1.instanceID).getName() : "");
             var _local3:String = (((_arg1.instanceID < 0)) ? TextKey.PET_NOT_FOLLOWING : TextKey.PET_FOLLOWING);
-            this.addTextLine.dispatch(ChatMessage.make(Parameters.SERVER_CHAT_NAME, _local3, -1, -1, "", false, {"petName":_local2}));
+            this.addTextLine.dispatch(
+                    ChatMessage.make(
+                            Parameters.SERVER_CHAT_NAME, _local3, -1, -1, "", false, {"petName": _local2}
+                    )
+            );
         }
 
         private function unmapMessages():void
@@ -561,7 +568,7 @@
                 _local2 = Crypto.getCipher("rc4", MoreStringUtil.hexStringToByteArray("72c5583cafb6818995cdd74b80"));
                 serverConnection.setOutgoingCipher(_local1);
                 serverConnection.setIncomingCipher(_local2);
-            };
+            }
         }
 
         override public function getNextDamage(_arg1:uint, _arg2:uint):uint
@@ -574,7 +581,7 @@
             if (jitterWatcher_ == null)
             {
                 jitterWatcher_ = new JitterWatcher();
-            };
+            }
         }
 
         override public function disableJitterWatcher():void
@@ -582,7 +589,7 @@
             if (jitterWatcher_ != null)
             {
                 jitterWatcher_ = null;
-            };
+            }
         }
 
         private function create():void
@@ -603,7 +610,7 @@
             if (isFromArena_)
             {
                 this.openDialog.dispatch(new BattleSummaryDialog());
-            };
+            }
         }
 
         override public function playerShoot(_arg1:int, _arg2:Projectile):void
@@ -687,12 +694,14 @@
             serverConnection.sendMessage(_local2);
         }
 
-        override public function invSwap(_arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int):Boolean
+        override public function invSwap(
+                _arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int
+        ):Boolean
         {
             if (!gs_)
             {
                 return (false);
-            };
+            }
             var _local8:InvSwap = (this.messages.require(INVSWAP) as InvSwap);
             _local8.time_ = gs_.lastUpdate_;
             _local8.position_.x_ = _arg1.x_;
@@ -711,12 +720,14 @@
             return (true);
         }
 
-        override public function invSwapPotion(_arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int):Boolean
+        override public function invSwapPotion(
+                _arg1:Player, _arg2:GameObject, _arg3:int, _arg4:int, _arg5:GameObject, _arg6:int, _arg7:int
+        ):Boolean
         {
             if (!gs_)
             {
                 return (false);
-            };
+            }
             var _local8:InvSwap = (this.messages.require(INVSWAP) as InvSwap);
             _local8.time_ = gs_.lastUpdate_;
             _local8.position_.x_ = _arg1.x_;
@@ -737,8 +748,8 @@
                 if (_arg4 == PotionInventoryModel.MAGIC_POTION_ID)
                 {
                     _arg1.magicPotionCount_++;
-                };
-            };
+                }
+            }
             serverConnection.sendMessage(_local8);
             SoundEffectLibrary.play("inventory_move_item");
             return (true);
@@ -754,10 +765,12 @@
             if (((!((_arg2 == PotionInventoryModel.HEALTH_POTION_SLOT))) && (!((_arg2 == PotionInventoryModel.MAGIC_POTION_SLOT)))))
             {
                 _arg1.equipment_[_arg2] = ItemConstants.NO_ITEM;
-            };
+            }
         }
 
-        override public function useItem(_arg1:int, _arg2:int, _arg3:int, _arg4:int, _arg5:Number, _arg6:Number, _arg7:int):void
+        override public function useItem(
+                _arg1:int, _arg2:int, _arg3:int, _arg4:int, _arg5:Number, _arg6:Number, _arg7:int
+        ):void
         {
             var _local8:UseItem = (this.messages.require(USEITEM) as UseItem);
             _local8.time_ = _arg1;
@@ -778,17 +791,21 @@
             {
                 if (!this.validStatInc(_local3, _arg1))
                 {
-                    this.addTextLine.dispatch(ChatMessage.make("", (_local4.attribute("id") + " not consumed. Already at Max.")));
+                    this.addTextLine.dispatch(
+                            ChatMessage.make(
+                                    "", (_local4.attribute("id") + " not consumed. Already at Max.")
+                            )
+                    );
                     return (false);
-                };
+                }
                 if (isStatPotion(_local3))
                 {
                     this.addTextLine.dispatch(ChatMessage.make("", (_local4.attribute("id") + " Consumed ++")));
-                };
+                }
                 this.applyUseItem(_arg1, _arg2, _local3, _local4);
                 SoundEffectLibrary.play("use_potion");
                 return (true);
-            };
+            }
             SoundEffectLibrary.play("error");
             return (false);
         }
@@ -805,16 +822,16 @@
                 else
                 {
                     p = this.player;
-                };
+                }
                 if ((((((((((((((((((itemId == 2591)) && ((p.attackMax_ == (p.attack_ - p.attackBoost_))))) || ((((itemId == 2592)) && ((p.defenseMax_ == (p.defense_ - p.defenseBoost_))))))) || ((((itemId == 2593)) && ((p.speedMax_ == (p.speed_ - p.speedBoost_))))))) || ((((itemId == 2612)) && ((p.vitalityMax_ == (p.vitality_ - p.vitalityBoost_))))))) || ((((itemId == 2613)) && ((p.wisdomMax_ == (p.wisdom_ - p.wisdomBoost_))))))) || ((((itemId == 2636)) && ((p.dexterityMax_ == (p.dexterity_ - p.dexterityBoost_))))))) || ((((itemId == 2793)) && ((p.maxHPMax_ == (p.maxHP_ - p.maxHPBoost_))))))) || ((((itemId == 2794)) && ((p.maxMPMax_ == (p.maxMP_ - p.maxMPBoost_)))))))
                 {
                     return (false);
-                };
+                }
             }
-            catch(err:Error)
+            catch (err:Error)
             {
                 logger.error(("PROBLEM IN STAT INC " + err.getStackTrace()));
-            };
+            }
             return (true);
         }
 
@@ -831,7 +848,7 @@
             if (_arg4.hasOwnProperty("Consumable"))
             {
                 _arg1.equipment_[_arg2] = -1;
-            };
+            }
         }
 
         override public function setCondition(_arg1:uint, _arg2:Number):void
@@ -852,7 +869,7 @@
             {
                 _local3 = _arg2.x_;
                 _local4 = _arg2.y_;
-            };
+            }
             var _local5:Move = (this.messages.require(MOVE) as Move);
             _local5.tickId_ = _arg1;
             _local5.time_ = gs_.lastUpdate_;
@@ -866,11 +883,14 @@
                 _local8 = 0;
                 while (_local8 < _local7)
                 {
-                    if (gs_.moveRecords_.records_[_local8].time_ >= (_local5.time_ - 25)) break;
+                    if (gs_.moveRecords_.records_[_local8].time_ >= (_local5.time_ - 25))
+                    {
+                        break;
+                    }
                     _local5.records_.push(gs_.moveRecords_.records_[_local8]);
                     _local8++;
-                };
-            };
+                }
+            }
             gs_.moveRecords_.clear(_local5.time_);
             serverConnection.sendMessage(_local5);
             ((_arg2) && (_arg2.onMove()));
@@ -896,7 +916,7 @@
             if (((gs_.map) && ((gs_.map.name_ == "Davy Jones' Locker"))))
             {
                 ShowHideKeyUISignal.instance.dispatch();
-            };
+            }
         }
 
         override public function buy(_arg1:int, _arg2:int):void
@@ -904,18 +924,20 @@
             if (outstandingBuy_ != null)
             {
                 return;
-            };
+            }
             var _local3:SellableObject = gs_.map.goDict_[_arg1];
             if (_local3 == null)
             {
                 return;
-            };
+            }
             var _local4:Boolean;
             if (_local3.currency_ == Currency.GOLD)
             {
                 _local4 = ((((gs_.model.getConverted()) || ((this.player.credits_ > 100)))) || ((_local3.price_ > this.player.credits_)));
-            };
-            outstandingBuy_ = new OutstandingBuy(_local3.soldObjectInternalName(), _local3.price_, _local3.currency_, _local4);
+            }
+            outstandingBuy_ = new OutstandingBuy(
+                    _local3.soldObjectInternalName(), _local3.price_, _local3.currency_, _local4
+            );
             var _local5:Buy = (this.messages.require(BUY) as Buy);
             _local5.objectId_ = _arg1;
             _local5.quantity_ = _arg2;
@@ -1003,7 +1025,7 @@
             if (this.playerId_ == -1)
             {
                 return;
-            };
+            }
             if (((gs_.map) && ((gs_.map.name_ == "Arena"))))
             {
                 serverConnection.sendMessage(this.messages.require(ACCEPT_ARENA_DEATH));
@@ -1012,7 +1034,7 @@
             {
                 serverConnection.sendMessage(this.messages.require(ESCAPE));
                 this.checkDavyKeyRemoval();
-            };
+            }
         }
 
         override public function joinGuild(_arg1:String):void
@@ -1083,13 +1105,13 @@
                 if (((!((_local3 == null))) && (!(_local3.projProps_.multiHit_))))
                 {
                     _local2.removeObj(_local5);
-                };
-            };
+                }
+            }
             var _local4:GameObject = _local2.goDict_[_arg1.targetId_];
             if (_local4 != null)
             {
                 _local4.damage(-1, _arg1.damageAmount_, _arg1.effects_, _arg1.kill_, _local3);
-            };
+            }
         }
 
         private function onServerPlayerShoot(_arg1:ServerPlayerShoot):void
@@ -1101,25 +1123,34 @@
                 if (_local2)
                 {
                     this.shootAck(-1);
-                };
+                }
                 return;
-            };
+            }
             var _local4:Projectile = (FreeList.newObject(Projectile) as Projectile);
             var _local5:Player = (_local3 as Player);
             if (_local5 != null)
             {
-                _local4.reset(_arg1.containerType_, 0, _arg1.ownerId_, _arg1.bulletId_, _arg1.angle_, gs_.lastUpdate_, _local5.projectileIdSetOverrideNew, _local5.projectileIdSetOverrideOld);
+                _local4.reset(
+                        _arg1.containerType_,
+                        0,
+                        _arg1.ownerId_,
+                        _arg1.bulletId_,
+                        _arg1.angle_,
+                        gs_.lastUpdate_,
+                        _local5.projectileIdSetOverrideNew,
+                        _local5.projectileIdSetOverrideOld
+                );
             }
             else
             {
                 _local4.reset(_arg1.containerType_, 0, _arg1.ownerId_, _arg1.bulletId_, _arg1.angle_, gs_.lastUpdate_);
-            };
+            }
             _local4.setDamage(_arg1.damage_);
             gs_.map.addObj(_local4, _arg1.startingPos_.x_, _arg1.startingPos_.y_);
             if (_local2)
             {
                 this.shootAck(gs_.lastUpdate_);
-            };
+            }
         }
 
         private function onAllyShoot(_arg1:AllyShoot):void
@@ -1128,17 +1159,26 @@
             if ((((_local2 == null)) || (_local2.dead_)))
             {
                 return;
-            };
+            }
             var _local3:Projectile = (FreeList.newObject(Projectile) as Projectile);
             var _local4:Player = (_local2 as Player);
             if (_local4 != null)
             {
-                _local3.reset(_arg1.containerType_, 0, _arg1.ownerId_, _arg1.bulletId_, _arg1.angle_, gs_.lastUpdate_, _local4.projectileIdSetOverrideNew, _local4.projectileIdSetOverrideOld);
+                _local3.reset(
+                        _arg1.containerType_,
+                        0,
+                        _arg1.ownerId_,
+                        _arg1.bulletId_,
+                        _arg1.angle_,
+                        gs_.lastUpdate_,
+                        _local4.projectileIdSetOverrideNew,
+                        _local4.projectileIdSetOverrideOld
+                );
             }
             else
             {
                 _local3.reset(_arg1.containerType_, 0, _arg1.ownerId_, _arg1.bulletId_, _arg1.angle_, gs_.lastUpdate_);
-            };
+            }
             gs_.map.addObj(_local3, _local2.x_, _local2.y_);
             _local2.setAttack(_arg1.containerType_, _arg1.angle_);
         }
@@ -1158,17 +1198,24 @@
             {
                 this.shootAck(-1);
                 return;
-            };
+            }
             var _local3:int;
             while (_local3 < _arg1.numShots_)
             {
                 _local4 = (FreeList.newObject(Projectile) as Projectile);
                 _local5 = (_arg1.angle_ + (_arg1.angleInc_ * _local3));
-                _local4.reset(_local2.objectType_, _arg1.bulletType_, _arg1.ownerId_, ((_arg1.bulletId_ + _local3) % 0x0100), _local5, gs_.lastUpdate_);
+                _local4.reset(
+                        _local2.objectType_,
+                        _arg1.bulletType_,
+                        _arg1.ownerId_,
+                        ((_arg1.bulletId_ + _local3) % 0x0100),
+                        _local5,
+                        gs_.lastUpdate_
+                );
                 _local4.setDamage(_arg1.damage_);
                 gs_.map.addObj(_local4, _arg1.startingPos_.x_, _arg1.startingPos_.y_);
                 _local3++;
-            };
+            }
             this.shootAck(gs_.lastUpdate_);
             _local2.setAttack(_local2.objectType_, (_arg1.angle_ + (_arg1.angleInc_ * ((_arg1.numShots_ - 1) / 2))));
         }
@@ -1178,16 +1225,21 @@
             if (!Parameters.data_.chatTrade)
             {
                 return;
-            };
+            }
             if (((Parameters.data_.tradeWithFriends) && (!(this.friendModel.isMyFriend(_arg1.name_)))))
             {
                 return;
-            };
+            }
             if (Parameters.data_.showTradePopup)
             {
                 gs_.hudView.interactPanel.setOverride(new TradeRequestPanel(gs_, _arg1.name_));
-            };
-            this.addTextLine.dispatch(ChatMessage.make("", ((((_arg1.name_ + " wants to ") + 'trade with you.  Type "/trade ') + _arg1.name_) + '" to trade.')));
+            }
+            this.addTextLine.dispatch(
+                    ChatMessage.make(
+                            "",
+                            ((((_arg1.name_ + " wants to ") + 'trade with you.  Type "/trade ') + _arg1.name_) + '" to trade.')
+                    )
+            );
         }
 
         private function onTradeStart(_arg1:TradeStart):void
@@ -1212,10 +1264,14 @@
                 _local2 = _local4.key;
                 _local3 = _local4.tokens;
             }
-            catch(e:Error)
+            catch (e:Error)
             {
-            };
-            this.addTextLine.dispatch(ChatMessage.make(Parameters.SERVER_CHAT_NAME, _local2, -1, -1, "", false, _local3));
+            }
+            this.addTextLine.dispatch(
+                    ChatMessage.make(
+                            Parameters.SERVER_CHAT_NAME, _local2, -1, -1, "", false, _local3
+                    )
+            );
         }
 
         private function onTradeAccepted(_arg1:TradeAccepted):void
@@ -1230,19 +1286,19 @@
             if (_local3 == null)
             {
                 return;
-            };
+            }
             var _local4:ObjectStatusData = _arg1.status_;
             _local3.setObjectId(_local4.objectId_);
             _local2.addObj(_local3, _local4.pos_.x_, _local4.pos_.y_);
             if ((_local3 is Player))
             {
                 this.handleNewPlayer((_local3 as Player), _local2);
-            };
+            }
             this.processObjectStatus(_local4, 0, -1);
             if (((((_local3.props_.static_) && (_local3.props_.occupySquare_))) && (!(_local3.props_.noMiniMap_))))
             {
                 this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO(_local3.x_, _local3.y_, _local3));
-            };
+            }
         }
 
         private function handleNewPlayer(_arg1:Player, _arg2:AbstractMap):void
@@ -1255,7 +1311,7 @@
                 _arg2.player_ = _arg1;
                 gs_.setFocus(_arg1);
                 this.setGameFocus.dispatch(this.playerId_.toString());
-            };
+            }
         }
 
         private function onUpdate(_arg1:Update):void
@@ -1271,19 +1327,19 @@
                 gs_.map.setGroundTile(_local4.x_, _local4.y_, _local4.type_);
                 this.updateGroundTileSignal.dispatch(new UpdateGroundTileVO(_local4.x_, _local4.y_, _local4.type_));
                 _local3++;
-            };
+            }
             _local3 = 0;
             while (_local3 < _arg1.newObjs_.length)
             {
                 this.addObject(_arg1.newObjs_[_local3]);
                 _local3++;
-            };
+            }
             _local3 = 0;
             while (_local3 < _arg1.drops_.length)
             {
                 gs_.map.removeObj(_arg1.drops_[_local3]);
                 _local3++;
-            };
+            }
         }
 
         private function onNotification(_arg1:Notification):void
@@ -1308,9 +1364,9 @@
                     if ((((_local2 == this.player)) && ((_local3.key == "server.quest_complete"))))
                     {
                         gs_.map.quest_.completed();
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function onGlobalNotification(_arg1:GlobalNotification):void
@@ -1340,7 +1396,7 @@
                     return;
                 case "beginnersPackage":
                     return;
-            };
+            }
         }
 
         private function onNewTick(_arg1:NewTick):void
@@ -1349,12 +1405,12 @@
             if (jitterWatcher_ != null)
             {
                 jitterWatcher_.record();
-            };
+            }
             this.move(_arg1.tickId_, this.player);
             for each (_local2 in _arg1.statuses_)
             {
                 this.processObjectStatus(_local2, _arg1.tickTime_, _arg1.tickId_);
-            };
+            }
             lastTickId_ = _arg1.tickId_;
         }
 
@@ -1369,7 +1425,10 @@
             {
                 case ShowEffect.HEAL_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local2.addObj(new HealEffect(_local3, _arg1.color_), _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.TELEPORT_EFFECT_TYPE:
@@ -1381,61 +1440,88 @@
                     return;
                 case ShowEffect.THROW_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    _local5 = (((_local3)!=null) ? new Point(_local3.x_, _local3.y_) : _arg1.pos2_.toPoint());
+                    _local5 = (((_local3) != null) ? new Point(_local3.x_, _local3.y_) : _arg1.pos2_.toPoint());
                     _local4 = new ThrowEffect(_local5, _arg1.pos1_.toPoint(), _arg1.color_);
                     _local2.addObj(_local4, _local5.x, _local5.y);
                     return;
                 case ShowEffect.NOVA_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new NovaEffect(_local3, _arg1.pos1_.x_, _arg1.color_);
                     _local2.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.POISON_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new PoisonEffect(_local3, _arg1.color_);
                     _local2.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.LINE_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new LineEffect(_local3, _arg1.pos1_, _arg1.color_);
                     _local2.addObj(_local4, _arg1.pos1_.x_, _arg1.pos1_.y_);
                     return;
                 case ShowEffect.BURST_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new BurstEffect(_local3, _arg1.pos1_, _arg1.pos2_, _arg1.color_);
                     _local2.addObj(_local4, _arg1.pos1_.x_, _arg1.pos1_.y_);
                     return;
                 case ShowEffect.FLOW_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new FlowEffect(_arg1.pos1_, _local3, _arg1.color_);
                     _local2.addObj(_local4, _arg1.pos1_.x_, _arg1.pos1_.y_);
                     return;
                 case ShowEffect.RING_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new RingEffect(_local3, _arg1.pos1_.x_, _arg1.color_);
                     _local2.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.LIGHTNING_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new LightningEffect(_local3, _arg1.pos1_, _arg1.color_, _arg1.pos2_.x_);
                     _local2.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.COLLAPSE_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new CollapseEffect(_local3, _arg1.pos1_, _arg1.pos2_, _arg1.color_);
                     _local2.addObj(_local4, _arg1.pos1_.x_, _arg1.pos1_.y_);
                     return;
                 case ShowEffect.CONEBLAST_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new ConeBlastEffect(_local3, _arg1.pos1_, _arg1.pos2_.x_, _arg1.color_);
                     _local2.addObj(_local4, _local3.x_, _local3.y_);
                     return;
@@ -1444,7 +1530,10 @@
                     return;
                 case ShowEffect.FLASH_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local3.flash_ = new FlashDescription(getTimer(), _arg1.color_, _arg1.pos1_.x_, _arg1.pos1_.y_);
                     return;
                 case ShowEffect.THROW_PROJECTILE_EFFECT_TYPE:
@@ -1454,29 +1543,38 @@
                     return;
                 case ShowEffect.SHOCKER_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     if (((_local3) && (_local3.shockEffect)))
                     {
                         _local3.shockEffect.destroy();
-                    };
+                    }
                     _local4 = new ShockerEffect(_local3);
                     _local3.shockEffect = ShockerEffect(_local4);
                     gs_.map.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.SHOCKEE_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local4 = new ShockeeEffect(_local3);
                     gs_.map.addObj(_local4, _local3.x_, _local3.y_);
                     return;
                 case ShowEffect.RISING_FURY_EFFECT_TYPE:
                     _local3 = _local2.goDict_[_arg1.targetObjectId_];
-                    if (_local3 == null) break;
+                    if (_local3 == null)
+                    {
+                        break;
+                    }
                     _local6 = (_arg1.pos1_.x_ * 1000);
                     _local4 = new RisingFuryEffect(_local3, _local6);
                     gs_.map.addObj(_local4, _local3.x_, _local3.y_);
                     return;
-            };
+            }
         }
 
         private function onGoto(_arg1:Goto):void
@@ -1486,7 +1584,7 @@
             if (_local2 == null)
             {
                 return;
-            };
+            }
             _local2.onGoto(_arg1.pos_.x_, _arg1.pos_.y_, gs_.lastUpdate_);
         }
 
@@ -1504,9 +1602,9 @@
                 if (gs_.map.isPetYard)
                 {
                     this.petUpdater.updatePetVOs(_local6, _arg2);
-                };
+                }
                 return;
-            };
+            }
             for each (_local7 in _arg2)
             {
                 _local8 = _local7.statValue_;
@@ -1579,7 +1677,7 @@
                         {
                             _arg1.name_ = _local7.strStatValue_;
                             _arg1.nameBitmapData_ = null;
-                        };
+                        }
                         break;
                     case StatData.TEX1_STAT:
                         _arg1.setTex1(_local8);
@@ -1676,7 +1774,7 @@
                         if (!_arg3)
                         {
                             _local4.sinkLevel_ = _local8;
-                        };
+                        }
                         break;
                     case StatData.ALT_TEXTURE_STAT:
                         _arg1.setAltTexture(_local8);
@@ -1716,7 +1814,7 @@
                         if (_arg3)
                         {
                             this.updateBackpackTab.dispatch(Boolean(_local8));
-                        };
+                        }
                         break;
                     case StatData.BACKPACK_0_STAT:
                     case StatData.BACKPACK_1_STAT:
@@ -1732,8 +1830,8 @@
                     case StatData.NEW_CON_STAT:
                         _arg1.condition_[ConditionEffect.CE_SECOND_BATCH] = _local8;
                         break;
-                };
-            };
+                }
+            }
         }
 
         private function setPlayerSkinTemplate(_arg1:Player, _arg2:int):void
@@ -1762,19 +1860,19 @@
             if (_local5 == null)
             {
                 return;
-            };
+            }
             var _local6 = (_arg1.objectId_ == this.playerId_);
             if (((!((_arg2 == 0))) && (!(_local6))))
             {
                 _local5.onTickPos(_arg1.pos_.x_, _arg1.pos_.y_, _arg2, _arg3);
-            };
+            }
             var _local7:Player = (_local5 as Player);
             if (_local7 != null)
             {
                 _local8 = _local7.level_;
                 _local9 = _local7.exp_;
                 _local10 = _local7.skinId;
-            };
+            }
             this.updateGameObject(_local5, _arg1.stats_, _local6);
             if (_local7)
             {
@@ -1784,8 +1882,8 @@
                     if (_local11.getMaxLevelAchieved() < _local7.level_)
                     {
                         _local11.setMaxLevelAchieved(_local7.level_);
-                    };
-                };
+                    }
+                }
                 if (_local7.skinId != _local10)
                 {
                     if (ObjectLibrary.skinSetXMLDataLibrary_[_local7.skinId] != null)
@@ -1796,7 +1894,7 @@
                         if (((!((_local8 == -1))) && ((_local13.length > 0))))
                         {
                             _local7.levelUpParticleEffect(uint(_local13));
-                        };
+                        }
                         if (_local14.length > 0)
                         {
                             _local7.projectileIdSetOverrideNew = _local14;
@@ -1804,7 +1902,7 @@
                             _local16 = ObjectLibrary.propsLibrary_[_local15];
                             _local17 = _local16.projectiles_[0];
                             _local7.projectileIdSetOverrideOld = _local17.objectId_;
-                        };
+                        }
                     }
                     else
                     {
@@ -1812,9 +1910,9 @@
                         {
                             _local7.projectileIdSetOverrideNew = "";
                             _local7.projectileIdSetOverrideOld = "";
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 if (((!((_local8 == -1))) && ((_local7.level_ > _local8))))
                 {
                     if (_local6)
@@ -1825,17 +1923,17 @@
                     else
                     {
                         _local7.levelUpEffect(TextKey.PLAYER_LEVELUP);
-                    };
+                    }
                 }
                 else
                 {
                     if (((!((_local8 == -1))) && ((_local7.exp_ > _local9))))
                     {
                         _local7.handleExpUp((_local7.exp_ - _local9));
-                    };
-                };
+                    }
+                }
                 this.friendModel.updateFriendVO(_local7.getName(), _local7);
-            };
+            }
         }
 
         private function onInvResult(_arg1:InvResult):void
@@ -1843,7 +1941,7 @@
             if (_arg1.result_ != 0)
             {
                 this.handleInvFailure();
-            };
+            }
         }
 
         private function handleInvFailure():void
@@ -1854,14 +1952,18 @@
 
         private function onReconnect(_arg1:Reconnect):void
         {
-            var _local2:Server = new Server().setName(_arg1.name_).setAddress((((_arg1.host_)!="") ? _arg1.host_ : server_.address)).setPort((((_arg1.host_)!="") ? _arg1.port_ : server_.port));
+            var _local2:Server = new Server().setName(_arg1.name_).setAddress(
+                    (((_arg1.host_) != "") ? _arg1.host_ : server_.address)
+            ).setPort((((_arg1.host_) != "") ? _arg1.port_ : server_.port));
             var _local3:int = _arg1.gameId_;
             var _local4:Boolean = createCharacter_;
             var _local5:int = charId_;
             var _local6:int = _arg1.keyTime_;
             var _local7:ByteArray = _arg1.key_;
             isFromArena_ = _arg1.isFromArena_;
-            var _local8:ReconnectEvent = new ReconnectEvent(_local2, _local3, _local4, _local5, _local6, _local7, isFromArena_);
+            var _local8:ReconnectEvent = new ReconnectEvent(
+                    _local2, _local3, _local4, _local5, _local6, _local7, isFromArena_
+            );
             gs_.dispatchEvent(_local8);
         }
 
@@ -1888,11 +1990,11 @@
             for each (_local2 in _arg1.clientXML_)
             {
                 this.parseXML(_local2);
-            };
+            }
             for each (_local3 in _arg1.extraXML_)
             {
                 this.parseXML(_local3);
-            };
+            }
             changeMapSignal.dispatch();
             this.closeDialogs.dispatch();
             gs_.applyMapInfo(_arg1);
@@ -1904,7 +2006,7 @@
             else
             {
                 this.load();
-            };
+            }
         }
 
         private function onPic(_arg1:Pic):void
@@ -1921,7 +2023,7 @@
             if (!gs_.isEditor)
             {
                 this.handleDeath.dispatch(_arg1);
-            };
+            }
             this.checkDavyKeyRemoval();
         }
 
@@ -1932,8 +2034,8 @@
                 if (outstandingBuy_ != null)
                 {
                     outstandingBuy_.record();
-                };
-            };
+                }
+            }
             outstandingBuy_ = null;
             this.handleBuyResultType(_arg1);
         }
@@ -1955,14 +2057,16 @@
                     return;
                 default:
                     this.handleDefaultResult(_arg1);
-            };
+            }
         }
 
         private function handleDefaultResult(_arg1:BuyResult):void
         {
             var _local2:LineBuilder = LineBuilder.fromJSON(_arg1.resultString_);
             var _local3:Boolean = (((_arg1.result_ == BuyResult.SUCCESS_BRID)) || ((_arg1.result_ == BuyResult.PET_FEED_SUCCESS_BRID)));
-            var _local4:ChatMessage = ChatMessage.make(((_local3) ? Parameters.SERVER_CHAT_NAME : Parameters.ERROR_CHAT_NAME), _local2.key);
+            var _local4:ChatMessage = ChatMessage.make(
+                    ((_local3) ? Parameters.SERVER_CHAT_NAME : Parameters.ERROR_CHAT_NAME), _local2.key
+            );
             _local4.tokens = _local2.tokens;
             this.addTextLine.dispatch(_local4);
         }
@@ -1980,20 +2084,20 @@
                     else
                     {
                         gs_.map.party_.removeStars(_arg1);
-                    };
+                    }
                 }
                 else
                 {
                     gs_.map.party_.setStars(_arg1);
-                };
+                }
             }
             else
             {
                 if (_arg1.accountListId_ == 1)
                 {
                     gs_.map.party_.setIgnores(_arg1);
-                };
-            };
+                }
+            }
         }
 
         private function onQuestObjId(_arg1:QuestObjId):void
@@ -2009,26 +2113,28 @@
             {
                 this.aoeAck(gs_.lastUpdate_, 0, 0);
                 return;
-            };
+            }
             var _local2:AOEEffect = new AOEEffect(_arg1.pos_.toPoint(), _arg1.radius_, 0xFF0000);
             gs_.map.addObj(_local2, _arg1.pos_.x_, _arg1.pos_.y_);
             if (((this.player.isInvincible()) || (this.player.isPaused())))
             {
                 this.aoeAck(gs_.lastUpdate_, this.player.x_, this.player.y_);
                 return;
-            };
+            }
             var _local3 = (this.player.distTo(_arg1.pos_) < _arg1.radius_);
             if (_local3)
             {
-                _local4 = GameObject.damageWithDefense(_arg1.damage_, this.player.defense_, false, this.player.condition_);
+                _local4 = GameObject.damageWithDefense(
+                        _arg1.damage_, this.player.defense_, false, this.player.condition_
+                );
                 _local5 = null;
                 if (_arg1.effect_ != 0)
                 {
                     _local5 = new Vector.<uint>();
                     _local5.push(_arg1.effect_);
-                };
+                }
                 this.player.damage(_arg1.origType_, _local4, _local5, false, null);
-            };
+            }
             this.aoeAck(gs_.lastUpdate_, this.player.x_, this.player.y_);
         }
 
@@ -2047,9 +2153,13 @@
             else
             {
                 _local2 = LineBuilder.fromJSON(_arg1.lineBuilderJSON);
-                this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, _local2.key, -1, -1, "", false, _local2.tokens));
+                this.addTextLine.dispatch(
+                        ChatMessage.make(
+                                Parameters.ERROR_CHAT_NAME, _local2.key, -1, -1, "", false, _local2.tokens
+                        )
+                );
                 gs_.dispatchEvent(new GuildResultEvent(_arg1.success_, _local2.key, _local2.tokens));
-            };
+            }
         }
 
         private function onClientStat(_arg1:ClientStat):void
@@ -2068,8 +2178,13 @@
             if (Parameters.data_.showGuildInvitePopup)
             {
                 gs_.hudView.interactPanel.setOverride(new GuildInvitePanel(gs_, _arg1.name_, _arg1.guildName_));
-            };
-            this.addTextLine.dispatch(ChatMessage.make("", (((((("You have been invited by " + _arg1.name_) + " to join the guild ") + _arg1.guildName_) + '.\n  If you wish to join type "/join ') + _arg1.guildName_) + '"')));
+            }
+            this.addTextLine.dispatch(
+                    ChatMessage.make(
+                            "",
+                            (((((("You have been invited by " + _arg1.name_) + " to join the guild ") + _arg1.guildName_) + '.\n  If you wish to join type "/join ') + _arg1.guildName_) + '"')
+                    )
+            );
         }
 
         private function onPlaySound(_arg1:PlaySound):void
@@ -2096,12 +2211,12 @@
             if (gs_ != null)
             {
                 gs_.closed.dispatch();
-            };
+            }
             var _local2:HideMapLoadingSignal = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
             if (_local2 != null)
             {
                 _local2.dispatch();
-            };
+            }
         }
 
         private function onPasswordPrompt(_arg1:PasswordPrompt):void
@@ -2121,18 +2236,18 @@
                     if (_arg1.cleanPasswordStatus == 4)
                     {
                         TitleView.queueRegistrationPrompt = true;
-                    };
-                };
-            };
+                    }
+                }
+            }
             if (gs_ != null)
             {
                 gs_.closed.dispatch();
-            };
+            }
             var _local2:HideMapLoadingSignal = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
             if (_local2 != null)
             {
                 _local2.dispatch();
-            };
+            }
         }
 
         override public function questFetch():void
@@ -2176,16 +2291,20 @@
                         {
                             _local1 = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
                             _local1.dispatch();
-                        };
+                        }
                         this.retry(this.delayBeforeReconnect++);
-                        this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Connection failed!  Retrying..."));
+                        this.addTextLine.dispatch(
+                                ChatMessage.make(
+                                        Parameters.ERROR_CHAT_NAME, "Connection failed!  Retrying..."
+                                )
+                        );
                     }
                     else
                     {
                         gs_.closed.dispatch();
-                    };
-                };
-            };
+                    }
+                }
+            }
         }
 
         private function retry(_arg1:int):void
@@ -2223,7 +2342,7 @@
                     return;
                 default:
                     this.handleDefaultFailure(_arg1);
-            };
+            }
         }
 
         private function handleEmailVerificationNeeded(_arg1:Failure):void
@@ -2238,7 +2357,7 @@
             if (_local2 == "")
             {
                 _local2 = _arg1.errorDescription_;
-            };
+            }
             this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, _local2));
             this.player.nextTeleportAt_ = 0;
         }
@@ -2249,7 +2368,7 @@
             if (_local2 == "")
             {
                 _local2 = _arg1.errorDescription_;
-            };
+            }
             this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, _local2));
             this.retryConnection_ = false;
             gs_.closed.dispatch();
@@ -2257,11 +2376,14 @@
 
         private function handleIncorrectVersionFailure(_arg1:Failure):void
         {
-            var _local2:Dialog = new Dialog(TextKey.CLIENT_UPDATE_TITLE, "", TextKey.CLIENT_UPDATE_LEFT_BUTTON, null, "/clientUpdate");
-            _local2.setTextParams(TextKey.CLIENT_UPDATE_DESCRIPTION, {
-                "client":Parameters.BUILD_VERSION,
-                "server":_arg1.errorDescription_
-            });
+            var _local2:Dialog = new Dialog(
+                    TextKey.CLIENT_UPDATE_TITLE, "", TextKey.CLIENT_UPDATE_LEFT_BUTTON, null, "/clientUpdate"
+            );
+            _local2.setTextParams(
+                    TextKey.CLIENT_UPDATE_DESCRIPTION, {
+                        "client": Parameters.BUILD_VERSION, "server": _arg1.errorDescription_
+                    }
+            );
             _local2.addEventListener(Dialog.LEFT_BUTTON, this.onDoClientUpdate);
             gs_.stage.addChild(_local2);
             this.retryConnection_ = false;
@@ -2273,7 +2395,7 @@
             if (_local2 == "")
             {
                 _local2 = _arg1.errorDescription_;
-            };
+            }
             this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, _local2));
         }
 
@@ -2288,8 +2410,6 @@
         {
             return (serverConnection.isConnected());
         }
-
-
     }
 }
 

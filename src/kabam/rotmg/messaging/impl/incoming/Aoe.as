@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming
 {
-    import kabam.rotmg.messaging.impl.data.WorldPosData;
     import flash.utils.IDataInput;
 
-    public class Aoe extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.data.WorldPosData;
 
+    public class Aoe extends IncomingMessage
+    {
         public var pos_:WorldPosData;
         public var radius_:Number;
         public var damage_:int;
@@ -33,8 +33,6 @@
         {
             return (formatToString("AOE", "pos_", "radius_", "damage_", "effect_", "duration_", "origType_"));
         }
-
-
     }
 }
 

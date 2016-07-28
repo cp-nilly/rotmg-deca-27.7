@@ -1,20 +1,20 @@
 ﻿package com.company.assembleegameclient.map.serialization
 {
-    import kabam.rotmg.core.StaticInjectorContext;
-    import kabam.lib.json.JsonParser;
-    import com.company.assembleegameclient.map.Map;
-    import com.company.util.IntPoint;
-    import com.company.assembleegameclient.objects.GameObject;
-    import com.hurlant.util.Base64;
-    import flash.utils.ByteArray;
     import com.company.assembleegameclient.map.GroundLibrary;
+    import com.company.assembleegameclient.map.Map;
     import com.company.assembleegameclient.objects.BasicObject;
+    import com.company.assembleegameclient.objects.GameObject;
     import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.util.IntPoint;
+    import com.hurlant.util.Base64;
 
-    public class MapDecoder 
+    import flash.utils.ByteArray;
+
+    import kabam.lib.json.JsonParser;
+    import kabam.rotmg.core.StaticInjectorContext;
+
+    public class MapDecoder
     {
-
-
         private static function get json():JsonParser
         {
             return (StaticInjectorContext.getInjector().getInstance(JsonParser));
@@ -67,7 +67,7 @@
                         {
                             _local11 = GroundLibrary.idToType_[_local9["ground"]];
                             _arg2.setGroundTile(_local8, _local7, _local11);
-                        };
+                        }
                         _local10 = _local9["objs"];
                         if (_local10 != null)
                         {
@@ -76,13 +76,13 @@
                                 _local13 = getGameObject(_local12);
                                 _local13.objectId_ = BasicObject.getNextFakeObjectId();
                                 _arg2.addObj(_local13, (_local8 + 0.5), (_local7 + 0.5));
-                            };
-                        };
-                    };
+                            }
+                        }
+                    }
                     _local8++;
-                };
+                }
                 _local7++;
-            };
+            }
         }
 
         public static function getGameObject(_arg1:Object):GameObject
@@ -93,8 +93,6 @@
             _local4.size_ = ((_arg1.hasOwnProperty("size")) ? _arg1["size"] : _local4.props_.getSize());
             return (_local4);
         }
-
-
     }
 }
 

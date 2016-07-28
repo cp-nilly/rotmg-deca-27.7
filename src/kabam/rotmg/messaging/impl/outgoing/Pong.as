@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class Pong extends OutgoingMessage 
+    public class Pong extends OutgoingMessage
     {
-
         public var serial_:int;
         public var time_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("PONG", "serial_", "time_"));
         }
-
-
     }
 }
 

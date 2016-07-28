@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataInput;
 
-    public class Notification extends IncomingMessage 
+    public class Notification extends IncomingMessage
     {
-
         public var objectId_:int;
         public var message:String;
         public var color_:int;
@@ -25,8 +24,6 @@
         {
             return (formatToString("NOTIFICATION", "objectId_", "message", "color_"));
         }
-
-
     }
 }
 

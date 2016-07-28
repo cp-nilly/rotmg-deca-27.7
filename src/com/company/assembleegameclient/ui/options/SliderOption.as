@@ -1,16 +1,16 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
     import com.company.assembleegameclient.parameters.Parameters;
+
     import flash.events.Event;
 
-    public class SliderOption extends BaseOption 
+    public class SliderOption extends BaseOption
     {
-
         private var sliderBar:VolumeSliderBar;
         private var disabled_:Boolean;
         private var callbackFunc:Function;
 
-        public function SliderOption(_arg1:String, _arg2:Function=null, _arg3:Boolean=false)
+        public function SliderOption(_arg1:String, _arg2:Function = null, _arg3:Boolean = false)
         {
             super(_arg1, "", "");
             this.sliderBar = new VolumeSliderBar(Parameters.data_[paramName_]);
@@ -38,11 +38,9 @@
             if (this.callbackFunc != null)
             {
                 this.callbackFunc(this.sliderBar.currentVolume);
-            };
+            }
             Parameters.save();
         }
-
-
     }
 }
 

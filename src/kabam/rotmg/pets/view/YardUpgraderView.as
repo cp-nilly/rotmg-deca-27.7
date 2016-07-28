@@ -1,32 +1,42 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
     import flash.display.DisplayObject;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.data.YardUpgraderVO;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import flash.display.Sprite;
     import flash.text.TextFormatAlign;
+
+    import kabam.rotmg.pets.data.YardUpgraderVO;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class YardUpgraderView extends Sprite 
-    {
+    import org.osflash.signals.Signal;
 
-        private const background:PopupWindowBackground = PetsViewAssetFactory.returnYardUpgradeWindowBackground(PetsConstants.WINDOW_BACKGROUND_WIDTH, 392);
-        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 18, true);
-        private const upgradeTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xB3B3B3, 13, false);
-        private const rarityTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(16777103, 16, true);
-        private const buttonBar:FameOrGoldBuyButtons = kabam.rotmg.pets.util.PetsViewAssetFactory.returnFameOrGoldButtonBar("YardUpgraderView.upgrade", 357);
+    public class YardUpgraderView extends Sprite
+    {
+        private const background:PopupWindowBackground = PetsViewAssetFactory.returnYardUpgradeWindowBackground(
+                PetsConstants.WINDOW_BACKGROUND_WIDTH, 392
+        );
+        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xFFFFFF, 18, true
+        );
+        private const upgradeTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                0xB3B3B3, 13, false
+        );
+        private const rarityTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(
+                16777103, 16, true
+        );
+        private const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(
+                "YardUpgraderView.upgrade", 357
+        );
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
         private const petYardImage:DisplayObject = new YardUpgraderView_PetYardImage();
         private const currentMaxBox:StatusBox = new StatusBox();
         public const closed:Signal = new Signal();
-
         public var famePurchase:Signal;
         public var goldPurchase:Signal;
         private var vo:YardUpgraderVO;
@@ -61,7 +71,9 @@
             this.rarityTextfield.setStringBuilder(new LineBuilder().setParams(this.wrapInBraces(this.vo.nextRarityLevel)));
             this.upgradeTextfield.setStringBuilder(new LineBuilder().setParams("YardUpgraderView.info"));
             this.upgradeTextfield.setTextWidth((PetsConstants.WINDOW_BACKGROUND_WIDTH - 40)).setWordWrap(true).setHorizontalAlign(TextFormatAlign.CENTER);
-            this.currentMaxBox.updateTextfields("YardUpgraderView.currentMax", this.wrapInBraces(this.vo.currentRarityLevel));
+            this.currentMaxBox.updateTextfields(
+                    "YardUpgraderView.currentMax", this.wrapInBraces(this.vo.currentRarityLevel)
+            );
         }
 
         private function wrapInBraces(_arg1:String):String
@@ -146,8 +158,6 @@
         {
             this.buttonBar.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2);
         }
-
-
     }
 }
 

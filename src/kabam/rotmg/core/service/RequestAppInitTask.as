@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.core.service
 {
     import kabam.lib.tasks.BaseTask;
-    import robotlegs.bender.framework.api.ILogger;
-    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
+    import kabam.rotmg.appengine.api.AppEngineClient;
     import kabam.rotmg.application.DynamicSettings;
+    import kabam.rotmg.core.signals.AppInitDataReceivedSignal;
 
-    public class RequestAppInitTask extends BaseTask 
+    import robotlegs.bender.framework.api.ILogger;
+
+    public class RequestAppInitTask extends BaseTask
     {
-
         [Inject]
         public var logger:ILogger;
         [Inject]
@@ -19,12 +19,11 @@
         [Inject]
         public var appInitConfigData:AppInitDataReceivedSignal;
 
-
         override protected function startTask():void
         {
             this.client.setMaxRetries(2);
             this.client.complete.addOnce(this.onComplete);
-            this.client.sendRequest("/app/init", {"game_net":this.account.gameNetwork()});
+            this.client.sendRequest("/app/init", {"game_net": this.account.gameNetwork()});
         }
 
         private function onComplete(_arg1:Boolean, _arg2:*):void
@@ -40,10 +39,8 @@
             if (_arg1 != null)
             {
                 DynamicSettings.xml = _arg1;
-            };
+            }
         }
-
-
     }
 }
 

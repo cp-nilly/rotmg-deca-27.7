@@ -1,22 +1,21 @@
 ﻿package kabam.rotmg.core.model
 {
-    import org.osflash.signals.Signal;
+    import com.company.assembleegameclient.appengine.SavedCharacter;
     import com.company.assembleegameclient.appengine.SavedCharactersList;
+    import com.company.assembleegameclient.appengine.SavedNewsItem;
+    import com.company.assembleegameclient.parameters.Parameters;
+
     import kabam.rotmg.account.core.Account;
     import kabam.rotmg.account.kongregate.KongregateAccount;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.appengine.SavedCharacter;
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.appengine.SavedNewsItem;
     import kabam.rotmg.servers.api.LatLong;
 
-    public class PlayerModel 
-    {
+    import org.osflash.signals.Signal;
 
+    public class PlayerModel
+    {
         public const creditsChanged:Signal = new Signal(int);
         public const fameChanged:Signal = new Signal(int);
         public const tokensChanged:Signal = new Signal(int);
-
         public var charList:SavedCharactersList;
         public var isInvalidated:Boolean;
         private var _currentCharId:int;
@@ -96,7 +95,7 @@
             {
                 this.charList.credits_ = _arg1;
                 this.creditsChanged.dispatch(_arg1);
-            };
+            }
         }
 
         public function getFame():int
@@ -110,7 +109,7 @@
             {
                 this.charList.fame_ = _arg1;
                 this.fameChanged.dispatch(_arg1);
-            };
+            }
         }
 
         public function getTokens():int
@@ -124,7 +123,7 @@
             {
                 this.charList.tokens_ = _arg1;
                 this.tokensChanged.dispatch(_arg1);
-            };
+            }
         }
 
         public function getCharacterCount():int
@@ -145,7 +144,7 @@
             {
                 this.charList.savedChars_.splice(_local3, 1);
                 this.charList.numChars_--;
-            };
+            }
         }
 
         public function getAccountId():String
@@ -196,8 +195,8 @@
                 if (_local2.charId() == _arg1)
                 {
                     return (_local2);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -296,8 +295,6 @@
         {
             this.charList = _arg1;
         }
-
-
     }
 }
 

@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.maploading.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.maploading.signals.MapLoadedSignal;
+    import kabam.rotmg.maploading.commands.CharacterAnimationFactory;
     import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
     import kabam.rotmg.maploading.signals.HideMapLoadingSignalNoFade;
-    import kabam.rotmg.maploading.commands.CharacterAnimationFactory;
+    import kabam.rotmg.maploading.signals.MapLoadedSignal;
     import kabam.rotmg.messaging.impl.incoming.MapInfo;
 
-    public class MapLoadingMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class MapLoadingMediator extends Mediator
+    {
         [Inject]
         public var view:MapLoadingView;
         [Inject]
@@ -20,7 +20,6 @@
         public var hideMapLoadingNoFade:HideMapLoadingSignalNoFade;
         [Inject]
         public var characterAnimationFactory:CharacterAnimationFactory;
-
 
         override public function initialize():void
         {
@@ -49,8 +48,6 @@
         {
             this.view.disableNoFadeOut();
         }
-
-
     }
 }
 

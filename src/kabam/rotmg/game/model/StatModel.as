@@ -1,8 +1,7 @@
 ﻿package kabam.rotmg.game.model
 {
-    public class StatModel 
+    public class StatModel
     {
-
         public var name:String;
         public var abbreviation:String;
         public var description:String;
@@ -15,7 +14,6 @@
             this.description = _arg3;
             this.redOnZero = _arg4;
         }
-
     }
 }
 

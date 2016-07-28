@@ -1,22 +1,18 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.util.components.VerticalScrollingList;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
+    import flash.display.Sprite;
+
     import kabam.lib.ui.api.Size;
+    import kabam.rotmg.util.components.VerticalScrollingList;
 
-    public class CharacterSkinListView extends Sprite 
+    public class CharacterSkinListView extends Sprite
     {
-
         public static const PADDING:int = 5;
         public static const WIDTH:int = 442;
         public static const HEIGHT:int = 400;
-
         private const list:VerticalScrollingList = makeList();
-
         private var items:Vector.<DisplayObject>;
-
 
         private function makeList():VerticalScrollingList
         {
@@ -42,19 +38,17 @@
             if (!_arg1)
             {
                 _local2 = (_local2 + VerticalScrollingList.SCROLLBAR_GUTTER);
-            };
+            }
             for each (_local3 in this.items)
             {
                 _local3.setWidth(_local2);
-            };
+            }
         }
 
         public function getListHeight():Number
         {
             return (this.list.getListHeight());
         }
-
-
     }
 }
 

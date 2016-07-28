@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.arena.component
 {
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.StaticTextDisplay;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import flash.filters.DropShadowFilter;
 
-    public class BattleSummaryText extends Sprite 
-    {
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.StaticTextDisplay;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 
+    public class BattleSummaryText extends Sprite
+    {
         private var titleText:StaticTextDisplay;
         private var waveText:StaticTextDisplay;
         private var timeText:StaticTextDisplay;
@@ -21,7 +21,11 @@
             this.timeText = this.makeSubtitleText();
             super();
             this.titleText.setStringBuilder(new LineBuilder().setParams(_arg1));
-            this.waveText.setStringBuilder(new LineBuilder().setParams(TextKey.BATTLE_SUMMARY_WAVENUMBER, {"waveNumber":(_arg2 - 1)}));
+            this.waveText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.BATTLE_SUMMARY_WAVENUMBER, {"waveNumber": (_arg2 - 1)}
+                    )
+            );
             this.timeText.setStringBuilder(new StaticStringBuilder(this.createTimerString(_arg3)));
             this.align();
         }
@@ -64,8 +68,6 @@
             addChild(_local1);
             return (_local1);
         }
-
-
     }
 }
 

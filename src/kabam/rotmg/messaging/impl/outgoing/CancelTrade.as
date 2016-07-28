@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class CancelTrade extends OutgoingMessage 
+    public class CancelTrade extends OutgoingMessage
     {
-
         public var objectId_:int;
 
         public function CancelTrade(_arg1:uint, _arg2:Function)
@@ -20,8 +19,6 @@
         {
             return (formatToString("CANCELTRADE"));
         }
-
-
     }
 }
 

@@ -1,29 +1,30 @@
 ﻿package com.company.assembleegameclient.ui.tooltip
 {
-    import flash.display.Bitmap;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.appengine.CharacterStats;
+    import com.company.assembleegameclient.appengine.SavedCharactersList;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.ui.LineBreakDesign;
-    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
-    import flash.display.BitmapData;
-    import com.company.assembleegameclient.util.AnimatedChars;
     import com.company.assembleegameclient.util.AnimatedChar;
+    import com.company.assembleegameclient.util.AnimatedChars;
+    import com.company.assembleegameclient.util.FameUtil;
     import com.company.assembleegameclient.util.MaskedImage;
     import com.company.assembleegameclient.util.TextureRedrawer;
     import com.company.util.CachingColorTransformer;
-    import flash.geom.ColorTransform;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.filters.DropShadowFilter;
-    import kabam.rotmg.text.model.TextKey;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import flash.geom.ColorTransform;
+
     import kabam.rotmg.assets.services.IconFactory;
-    import com.company.assembleegameclient.util.FameUtil;
     import kabam.rotmg.core.model.PlayerModel;
-    import com.company.assembleegameclient.appengine.CharacterStats;
-    import com.company.assembleegameclient.appengine.SavedCharactersList;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.AppendingLineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class ClassToolTip extends ToolTip 
+    public class ClassToolTip extends ToolTip
     {
-
         private var portrait_:Bitmap;
         private var nameText_:TextFieldDisplayConcrete;
         private var descriptionText_:TextFieldDisplayConcrete;
@@ -46,15 +47,19 @@
             var _local13:int;
             var _local14:int;
             super(0x363636, 1, 0xFFFFFF, 1);
-            var _local4:AnimatedChar = AnimatedChars.getAnimatedChar(String(_arg1.AnimatedTexture.File), int(_arg1.AnimatedTexture.Index));
+            var _local4:AnimatedChar = AnimatedChars.getAnimatedChar(
+                    String(_arg1.AnimatedTexture.File), int(_arg1.AnimatedTexture.Index)
+            );
             var _local5:MaskedImage = _local4.imageFromDir(AnimatedChar.RIGHT, AnimatedChar.STAND, 0);
             var _local6:int = ((4 / _local5.width()) * 100);
             var _local7:BitmapData = TextureRedrawer.redraw(_local5.image_, _local6, true, 0);
             this.showUnlockRequirements = this.shouldShowUnlockRequirements(_arg2, _arg1);
             if (this.showUnlockRequirements)
             {
-                _local7 = CachingColorTransformer.transformBitmapData(_local7, new ColorTransform(0, 0, 0, 0.5, 0, 0, 0, 0));
-            };
+                _local7 = CachingColorTransformer.transformBitmapData(
+                        _local7, new ColorTransform(0, 0, 0, 0.5, 0, 0, 0, 0)
+                );
+            }
             this.portrait_ = new Bitmap();
             this.portrait_.bitmapData = _local7;
             this.portrait_.x = -4;
@@ -88,18 +93,23 @@
                     _local12 = int(_local9.@level);
                     if (_arg2.getBestLevel(_local11) < int(_local9.@level))
                     {
-                        _local8.pushParams(TextKey.TO_UNLOCK_REACH_LEVEL, {
-                            "unlockLevel":_local12,
-                            "typeToDisplay":ObjectLibrary.typeToDisplayId_[_local11]
-                        });
-                    };
-                };
+                        _local8.pushParams(
+                                TextKey.TO_UNLOCK_REACH_LEVEL, {
+                                    "unlockLevel": _local12, "typeToDisplay": ObjectLibrary.typeToDisplayId_[_local11]
+                                }
+                        );
+                    }
+                }
                 this.unlockText_.setStringBuilder(_local8);
                 this.unlockText_.filters = [new DropShadowFilter(0, 0, 0)];
                 waiter.push(this.unlockText_.textChanged);
                 addChild(this.unlockText_);
                 this.costText_ = new TextFieldDisplayConcrete().setSize(13).setColor(0xFF00);
-                this.costText_.setStringBuilder(new LineBuilder().setParams(TextKey.OR_BUY_NOW, {"unlockCost":_arg1.UnlockCost}));
+                this.costText_.setStringBuilder(
+                        new LineBuilder().setParams(
+                                TextKey.OR_BUY_NOW, {"unlockCost": _arg1.UnlockCost}
+                        )
+                );
                 this.costText_.filters = [new DropShadowFilter(0, 0, 0)];
                 waiter.push(this.costText_.textChanged);
                 addChild(this.costText_);
@@ -111,11 +121,16 @@
             {
                 _local13 = (((_arg3 == null)) ? 0 : _arg3.numStars());
                 this.bestLevel_ = new TextFieldDisplayConcrete().setSize(14).setColor(6206769).setMultiLine(true);
-                this.bestLevel_.setStringBuilder(new LineBuilder().setParams(TextKey.BEST_LEVEL_STATS, {
-                    "numStars":_local13,
-                    "bestLevel":(((_arg3)!=null) ? _arg3.bestLevel() : 0),
-                    "fame":(((_arg3)!=null) ? _arg3.bestFame() : 0)
-                }));
+                this.bestLevel_.setStringBuilder(
+                        new LineBuilder().setParams(
+                                TextKey.BEST_LEVEL_STATS,
+                                {
+                                    "numStars": _local13,
+                                    "bestLevel": (((_arg3) != null) ? _arg3.bestLevel() : 0),
+                                    "fame": (((_arg3) != null) ? _arg3.bestFame() : 0)
+                                }
+                        )
+                );
                 this.bestLevel_.filters = [new DropShadowFilter(0, 0, 0)];
                 waiter.push(this.bestLevel_.textChanged);
                 addChild(this.bestLevel_);
@@ -123,15 +138,18 @@
                 if (_local14 > 0)
                 {
                     this.nextClassQuest_ = new TextFieldDisplayConcrete().setSize(13).setColor(16549442).setTextWidth(160).setMultiLine(true).setWordWrap(true);
-                    this.nextClassQuest_.setStringBuilder(new LineBuilder().setParams(TextKey.NEXT_CLASS_QUEST, {
-                        "nextStarFame":_local14,
-                        "typeToDisplay":_arg1.DisplayId
-                    }));
+                    this.nextClassQuest_.setStringBuilder(
+                            new LineBuilder().setParams(
+                                    TextKey.NEXT_CLASS_QUEST, {
+                                        "nextStarFame": _local14, "typeToDisplay": _arg1.DisplayId
+                                    }
+                            )
+                    );
                     this.nextClassQuest_.filters = [new DropShadowFilter(0, 0, 0)];
                     waiter.push(this.nextClassQuest_.textChanged);
                     addChild(this.nextClassQuest_);
-                };
-            };
+                }
+            }
         }
 
         override protected function alignUI():void
@@ -161,8 +179,8 @@
                 {
                     this.nextClassQuest_.x = 8;
                     this.nextClassQuest_.y = (height - 2);
-                };
-            };
+                }
+            }
             this.draw();
             position();
         }
@@ -179,8 +197,6 @@
             this.lineBreak_.setWidthColor((width - 10), 0x1C1C1C);
             super.draw();
         }
-
-
     }
 }
 

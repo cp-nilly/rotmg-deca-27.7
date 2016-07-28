@@ -1,25 +1,27 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.ui.view.components.ScreenBase;
+    import com.company.assembleegameclient.constants.ScreenTypes;
     import com.company.assembleegameclient.screens.AccountScreen;
-    import flash.display.Shape;
-    import kabam.rotmg.game.view.CreditDisplay;
-    import com.company.rotmg.graphics.ScreenGraphic;
     import com.company.assembleegameclient.screens.TitleMenuOption;
-    import org.osflash.signals.Signal;
-    import org.osflash.signals.natives.NativeMappedSignal;
+    import com.company.rotmg.graphics.ScreenGraphic;
+
+    import flash.display.Shape;
+    import flash.display.Sprite;
     import flash.events.MouseEvent;
-    import kabam.rotmg.ui.view.SignalWaiter;
+    import flash.text.TextFieldAutoSize;
+
     import kabam.rotmg.core.StaticInjectorContext;
     import kabam.rotmg.core.model.PlayerModel;
-    import com.company.assembleegameclient.constants.ScreenTypes;
-    import flash.text.TextFieldAutoSize;
+    import kabam.rotmg.game.view.CreditDisplay;
     import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.ui.view.SignalWaiter;
+    import kabam.rotmg.ui.view.components.ScreenBase;
 
-    public class CharacterSkinView extends Sprite 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class CharacterSkinView extends Sprite
     {
-
         private const base:ScreenBase = makeScreenBase();
         private const account:AccountScreen = makeAccountScreen();
         private const lines:Shape = makeLines();
@@ -32,7 +34,6 @@
         public const play:Signal = new NativeMappedSignal(playBtn, MouseEvent.CLICK);
         public const back:Signal = new NativeMappedSignal(backBtn, MouseEvent.CLICK);
         public const waiter:SignalWaiter = makeSignalWaiter();
-
 
         private function makeScreenBase():ScreenBase
         {
@@ -56,7 +57,7 @@
             if (_local2 != null)
             {
                 _local1.draw(_local2.getCredits(), _local2.getFame(), _local2.getTokens());
-            };
+            }
             _local1.x = 800;
             _local1.y = 20;
             addChild(_local1);
@@ -131,7 +132,7 @@
             if (!_arg1)
             {
                 this.playBtn.deactivate();
-            };
+            }
         }
 
         private function makeSignalWaiter():SignalWaiter
@@ -146,8 +147,6 @@
         {
             this.playBtn.x = (stage.stageWidth / 2);
         }
-
-
     }
 }
 

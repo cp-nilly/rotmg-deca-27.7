@@ -1,18 +1,17 @@
 ﻿package com.company.assembleegameclient.ui.menu
 {
-    import __AS3__.vec.Vector;
-    import com.company.assembleegameclient.ui.GameObjectListItem;
     import com.company.assembleegameclient.map.AbstractMap;
     import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.ui.GameObjectListItem;
     import com.company.assembleegameclient.ui.LineBreakDesign;
-    import org.osflash.signals.Signal;
-    import flash.events.MouseEvent;
+
     import flash.events.Event;
-    import __AS3__.vec.*;
+    import flash.events.MouseEvent;
 
-    public class PlayerGroupMenu extends Menu 
+    import org.osflash.signals.Signal;
+
+    public class PlayerGroupMenu extends Menu
     {
-
         private var playerPanels_:Vector.<GameObjectListItem>;
         private var posY:uint = 4;
         public var map_:AbstractMap;
@@ -44,7 +43,7 @@
                 addChild(_local2);
                 this.playerPanels_.push(_local2);
                 this.posY = (this.posY + 32);
-            };
+            }
         }
 
         private function createHeader():void
@@ -61,7 +60,7 @@
                 this.lineBreakDesign_.y = 40;
                 addChild(this.lineBreakDesign_);
                 this.posY = 52;
-            };
+            }
         }
 
         private function onTeleport(_arg1:Event):void
@@ -74,9 +73,12 @@
                 if (_local2.isTeleportEligible(_local4))
                 {
                     _local3 = _local4;
-                    if (_local4.isFellowGuild_) break;
-                };
-            };
+                    if (_local4.isFellowGuild_)
+                    {
+                        break;
+                    }
+                }
+            }
             if (_local3 != null)
             {
                 _local2.teleportTo(_local3);
@@ -84,11 +86,9 @@
             else
             {
                 this.unableToTeleport.dispatch();
-            };
+            }
             remove();
         }
-
-
     }
 }
 

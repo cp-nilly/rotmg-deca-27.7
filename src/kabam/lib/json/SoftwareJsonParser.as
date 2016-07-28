@@ -2,10 +2,8 @@
 {
     import com.adobe.serialization.json.JSON;
 
-    public class SoftwareJsonParser implements JsonParser 
+    public class SoftwareJsonParser implements JsonParser
     {
-
-
         public function stringify(_arg1:Object):String
         {
             return (com.adobe.serialization.json.JSON.encode(_arg1));
@@ -15,8 +13,6 @@
         {
             return (com.adobe.serialization.json.JSON.decode(_arg1));
         }
-
-
     }
 }
 

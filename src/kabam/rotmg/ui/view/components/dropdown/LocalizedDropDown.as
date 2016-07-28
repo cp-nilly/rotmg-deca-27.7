@@ -1,17 +1,14 @@
 ﻿package kabam.rotmg.ui.view.components.dropdown
 {
     import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.ui.view.SignalWaiter;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import __AS3__.vec.*;
 
-    public class LocalizedDropDown extends Sprite 
+    import kabam.rotmg.ui.view.SignalWaiter;
+
+    public class LocalizedDropDown extends Sprite
     {
-
         protected const h_:int = 36;
-
         protected var strings_:Vector.<String>;
         protected var w_:int = 0;
         protected var selected_:LocalizedDropDownItem;
@@ -49,7 +46,7 @@
                 this.strings_[0] = _arg1;
                 this.updateView();
                 dispatchEvent(new Event(Event.CHANGE));
-            };
+            }
         }
 
         public function getClosedHeight():int
@@ -67,7 +64,7 @@
                 this.selected_ = _local1;
                 this.selected_.addEventListener(MouseEvent.CLICK, this.onClick);
                 addChild(this.selected_);
-            };
+            }
             var _local2:int = 1;
             while (_local2 < this.strings_.length)
             {
@@ -77,7 +74,7 @@
                 this.items_.push(_local1);
                 this.all_.addChild(_local1);
                 _local2++;
-            };
+            }
         }
 
         private function makeDropDownItem(_arg1:String):LocalizedDropDownItem
@@ -95,11 +92,11 @@
                 this.items_[_local1].setValue(this.strings_[_local1]);
                 this.items_[_local1].setWidth(this.w_);
                 _local1++;
-            };
+            }
             if (this.items_.length > 0)
             {
                 this.selected_ = this.items_[0];
-            };
+            }
         }
 
         private function showAll():void
@@ -121,7 +118,7 @@
             for each (_local2 in this.items_)
             {
                 _local1 = Math.max(_local2.width, _local1);
-            };
+            }
             this.w_ = _local1;
             this.updateView();
         }
@@ -150,8 +147,6 @@
             this.selected_.removeEventListener(MouseEvent.CLICK, this.onSelect);
             this.hideAll();
         }
-
-
     }
 }
 

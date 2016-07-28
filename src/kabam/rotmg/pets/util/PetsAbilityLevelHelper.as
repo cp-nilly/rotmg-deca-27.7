@@ -2,11 +2,9 @@
 {
     import kabam.rotmg.util.GeometricSeries;
 
-    public class PetsAbilityLevelHelper 
+    public class PetsAbilityLevelHelper
     {
-
         private static const levelToPoints:GeometricSeries = new GeometricSeries(20, 1.08);
-
 
         public static function getTotalAbilityPointsForLevel(_arg1:int):Number
         {
@@ -23,8 +21,6 @@
         {
             return (levelToPoints.getTerm((_arg1 - 1)));
         }
-
-
     }
 }
 

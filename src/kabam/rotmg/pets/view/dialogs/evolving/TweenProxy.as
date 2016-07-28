@@ -2,9 +2,8 @@
 {
     import flash.display.DisplayObject;
 
-    public class TweenProxy 
+    public class TweenProxy
     {
-
         protected var onComplete:Function;
         protected var target:DisplayObject;
 
@@ -21,8 +20,6 @@
         {
             this.onComplete = _arg1;
         }
-
-
     }
 }
 

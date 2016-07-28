@@ -1,13 +1,13 @@
 ﻿package kabam.rotmg.packages.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.packages.services.GetPackagesTask;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.packages.control.BuyPackageSignal;
+    import kabam.rotmg.packages.services.GetPackagesTask;
 
-    public class PackageOfferDialogMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class PackageOfferDialogMediator extends Mediator
     {
-
         [Inject]
         public var getPackageTask:GetPackagesTask;
         [Inject]
@@ -16,7 +16,6 @@
         public var closeDialogsSignal:CloseDialogsSignal;
         [Inject]
         public var buyPackageSignal:BuyPackageSignal;
-
 
         override public function initialize():void
         {
@@ -41,8 +40,6 @@
         {
             this.closeDialogsSignal.dispatch();
         }
-
-
     }
 }
 

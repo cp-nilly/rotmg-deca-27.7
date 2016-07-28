@@ -1,36 +1,35 @@
 ﻿package com.company.assembleegameclient.mapeditor
 {
-    import flash.display.Sprite;
-    import net.hires.debug.Stats;
-    import com.company.assembleegameclient.editor.CommandQueue;
-    import com.company.assembleegameclient.ui.dropdown.DropDown;
-    import kabam.lib.json.JsonParser;
-    import __AS3__.vec.Vector;
-    import flash.net.FileReference;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import com.company.assembleegameclient.screens.AccountScreen;
-    import kabam.rotmg.core.StaticInjectorContext;
     import com.company.assembleegameclient.editor.CommandEvent;
-    import flash.events.Event;
-    import com.company.util.IntPoint;
     import com.company.assembleegameclient.editor.CommandList;
-    import com.company.util.SpriteUtil;
-    import flash.geom.Rectangle;
-    import flash.utils.ByteArray;
-    import com.hurlant.util.Base64;
+    import com.company.assembleegameclient.editor.CommandQueue;
     import com.company.assembleegameclient.map.GroundLibrary;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.map.RegionLibrary;
-    import flash.net.FileFilter;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
+    import com.company.assembleegameclient.screens.AccountScreen;
+    import com.company.assembleegameclient.ui.dropdown.DropDown;
+    import com.company.util.IntPoint;
+    import com.company.util.SpriteUtil;
+    import com.hurlant.util.Base64;
+
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.events.IOErrorEvent;
-    import __AS3__.vec.*;
+    import flash.geom.Rectangle;
+    import flash.net.FileFilter;
+    import flash.net.FileReference;
+    import flash.utils.ByteArray;
 
-    public class EditingScreen extends Sprite 
+    import kabam.lib.json.JsonParser;
+    import kabam.rotmg.core.StaticInjectorContext;
+    import kabam.rotmg.ui.view.components.ScreenBase;
+
+    import net.hires.debug.Stats;
+
+    public class EditingScreen extends Sprite
     {
-
         private static const MAP_Y:int = ((600 - MEMap.SIZE) - 10);//78
         public static const stats_:Stats = new Stats();
-
         public var commandMenu_:MECommandMenu;
         private var commandQueue_:CommandQueue;
         public var meMap_:MEMap;
@@ -111,7 +110,7 @@
                     if (_local4 == -1)
                     {
                         return;
-                    };
+                    }
                     this.chooser_.setSelectedType(_local4);
                     this.commandMenu_.setCommand(MECommandMenu.DRAW_COMMAND);
                     break;
@@ -130,10 +129,10 @@
                         if (_local3 != null)
                         {
                             _local3 = _local3.clone();
-                        };
+                        }
                         this.tilesBackup.push(_local3);
                         _local7.push(null);
-                    };
+                    }
                     this.addPasteCommandList(_arg1.tiles_, _local7);
                     this.meMap_.freezeSelect();
                     this.commandMenu_.setCommand(MECommandMenu.PASTE_COMMAND);
@@ -146,16 +145,16 @@
                         if (_local3 != null)
                         {
                             _local3 = _local3.clone();
-                        };
+                        }
                         this.tilesBackup.push(_local3);
-                    };
+                    }
                     this.meMap_.freezeSelect();
                     this.commandMenu_.setCommand(MECommandMenu.PASTE_COMMAND);
                     break;
                 case MECommandMenu.PASTE_COMMAND:
                     this.addPasteCommandList(_arg1.tiles_, this.tilesBackup);
                     break;
-            };
+            }
             this.meMap_.draw();
         }
 
@@ -176,12 +175,12 @@
                 if (_local6 != _arg3)
                 {
                     _local4.addCommand(new MEModifyCommand(this.meMap_, _local5.x_, _local5.y_, _arg2, _local6, _arg3));
-                };
-            };
+                }
+            }
             if (_local4.empty())
             {
                 return;
-            };
+            }
             this.commandQueue_.addCommandList(_local4);
         }
 
@@ -193,15 +192,18 @@
             var _local4:int;
             for each (_local5 in _arg1)
             {
-                if (_local4 >= _arg2.length) break;
+                if (_local4 >= _arg2.length)
+                {
+                    break;
+                }
                 _local6 = this.meMap_.getTile(_local5.x_, _local5.y_);
                 _local3.addCommand(new MEReplaceCommand(this.meMap_, _local5.x_, _local5.y_, _local6, _arg2[_local4]));
                 _local4++;
-            };
+            }
             if (_local3.empty())
             {
                 return;
-            };
+            }
             this.commandQueue_.addCommandList(_local3);
         }
 
@@ -216,12 +218,12 @@
                 if (_local5 != _arg2)
                 {
                     _local3.addCommand(new MEObjectNameCommand(this.meMap_, _local4.x_, _local4.y_, _local5, _arg2));
-                };
-            };
+                }
+            }
             if (_local3.empty())
             {
                 return;
-            };
+            }
             this.commandQueue_.addCommandList(_local3);
         }
 
@@ -247,7 +249,7 @@
                     SpriteUtil.safeAddChild(this, this.regionChooser_);
                     this.chooser_ = this.regionChooser_;
                     return;
-            };
+            }
         }
 
         private function onUndo(_arg1:CommandEvent):void
@@ -274,12 +276,12 @@
                 if (_local5 != null)
                 {
                     _local3.addCommand(new MEClearCommand(this.meMap_, _local4.x_, _local4.y_, _local5));
-                };
-            };
+                }
+            }
             if (_local3.empty())
             {
                 return;
-            };
+            }
             this.commandQueue_.addCommandList(_local3);
             this.meMap_.draw();
             this.filename_ = null;
@@ -296,7 +298,7 @@
             if (_local1 == null)
             {
                 return (null);
-            };
+            }
             var _local2:Object = {};
             _local2["width"] = int(_local1.width);
             _local2["height"] = int(_local1.height);
@@ -321,12 +323,12 @@
                     else
                     {
                         _local11 = _local3[_local10];
-                    };
+                    }
                     _local5.writeShort(_local11);
                     _local7++;
-                };
+                }
                 _local6++;
-            };
+            }
             _local2["dict"] = _local4;
             _local5.compress();
             _local2["data"] = Base64.encodeByteArray(_local5);
@@ -339,7 +341,7 @@
             if (_local2 == null)
             {
                 return;
-            };
+            }
             new FileReference().save(_local2, (((this.filename_ == null)) ? "map.jm" : this.filename_));
         }
 
@@ -356,23 +358,23 @@
                 {
                     _local4 = GroundLibrary.getIdFromType(_local3[Layer.GROUND]);
                     _local2["ground"] = _local4;
-                };
+                }
                 if (_local3[Layer.OBJECT] != -1)
                 {
                     _local4 = ObjectLibrary.getIdFromType(_local3[Layer.OBJECT]);
-                    _local5 = {"id":_local4};
+                    _local5 = {"id": _local4};
                     if (_arg1.objName_ != null)
                     {
                         _local5["name"] = _arg1.objName_;
-                    };
+                    }
                     _local2["objs"] = [_local5];
-                };
+                }
                 if (_local3[Layer.REGION] != -1)
                 {
                     _local4 = RegionLibrary.getIdFromType(_local3[Layer.REGION]);
-                    _local2["regions"] = [{"id":_local4}];
-                };
-            };
+                    _local2["regions"] = [{"id": _local4}];
+                }
+            }
             return (_local2);
         }
 
@@ -392,9 +394,9 @@
             {
                 loadedFile.load();
             }
-            catch(e:Error)
+            catch (e:Error)
             {
-            };
+            }
         }
 
         private function onFileLoadComplete(_arg1:Event):void
@@ -411,7 +413,12 @@
             var _local3:Object = this.json.parse(_local2.data.toString());
             var _local4:int = _local3["width"];
             var _local5:int = _local3["height"];
-            var _local6:Rectangle = new Rectangle(int(((MEMap.NUM_SQUARES / 2) - (_local4 / 2))), int(((MEMap.NUM_SQUARES / 2) - (_local5 / 2))), _local4, _local5);
+            var _local6:Rectangle = new Rectangle(
+                    int(((MEMap.NUM_SQUARES / 2) - (_local4 / 2))),
+                    int(((MEMap.NUM_SQUARES / 2) - (_local5 / 2))),
+                    _local4,
+                    _local5
+            );
             this.meMap_.clear();
             this.commandQueue_.clear();
             var _local7:Array = _local3["dict"];
@@ -428,7 +435,7 @@
                     {
                         _local9 = GroundLibrary.idToType_[_local12["ground"]];
                         this.meMap_.modifyTile(_local11, _local10, Layer.GROUND, _local9);
-                    };
+                    }
                     _local13 = _local12["objs"];
                     if (_local13 != null)
                     {
@@ -441,10 +448,10 @@
                                 if (_local15.hasOwnProperty("name"))
                                 {
                                     this.meMap_.modifyObjectName(_local11, _local10, _local15["name"]);
-                                };
-                            };
-                        };
-                    };
+                                }
+                            }
+                        }
+                    }
                     _local14 = _local12["regions"];
                     if (_local14 != null)
                     {
@@ -452,12 +459,12 @@
                         {
                             _local9 = RegionLibrary.idToType_[_local16["id"]];
                             this.meMap_.modifyTile(_local11, _local10, Layer.REGION, _local9);
-                        };
-                    };
+                        }
+                    }
                     _local11++;
-                };
+                }
                 _local10++;
-            };
+            }
             this.meMap_.draw();
         }
 
@@ -475,10 +482,8 @@
             if (this.meMap_ != null)
             {
                 this.meMap_.clearSelect();
-            };
+            }
         }
-
-
     }
 }
 

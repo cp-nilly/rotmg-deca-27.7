@@ -1,36 +1,39 @@
 ﻿package kabam.rotmg.pets.view
 {
     import com.company.assembleegameclient.ui.dialogs.DialogCloser;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.view.components.PetFuser;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import kabam.rotmg.pets.view.components.FusionStrength;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import kabam.rotmg.pets.util.FeedFuseCostModel;
+
     import kabam.rotmg.pets.data.PetRarityEnum;
     import kabam.rotmg.pets.data.PetSlotsState;
+    import kabam.rotmg.pets.util.FeedFuseCostModel;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
+    import kabam.rotmg.pets.view.components.FusionStrength;
+    import kabam.rotmg.pets.view.components.PetFuser;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class FusePetView extends PetInteractionView implements DialogCloser 
+    import org.osflash.signals.Signal;
+
+    public class FusePetView extends PetInteractionView implements DialogCloser
     {
-
         private static const closeDialogSignal:Signal = new Signal();
-
-        public const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FUSER_BUTTON_BAR_PREFIX, (PetsConstants.FUSER_WINDOW_BACKGROUND_HEIGHT - 39));
+        public const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(
+                TextKey.PET_FUSER_BUTTON_BAR_PREFIX, (PetsConstants.FUSER_WINDOW_BACKGROUND_HEIGHT - 39)
+        );
         private const background:PopupWindowBackground = PetsViewAssetFactory.returnFuserWindowBackground();
-        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 18, true);
+        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xB3B3B3, 18, true
+        );
         private const descriptionTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnFuseDescriptionTextfield();
         private const petFuser:PetFuser = PetsViewAssetFactory.returnPetFuser();
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
         private const fusionStrength:FusionStrength = PetsViewAssetFactory.returnFusionStrength();
         public const closed:Signal = new Signal();
-
         public var openPetPicker:Signal;
         public var goldPurchase:Signal;
         public var famePurchase:Signal;
@@ -47,12 +50,14 @@
             this.goldPurchase = this.buttonBar.goldButtonClicked;
             this.famePurchase = this.buttonBar.fameButtonClicked;
             this.buttonBar.setDisabled(!(_arg1.isAcceptableFuseState()));
-            this.buttonBar.setPrefix(((_arg1.isAcceptableFuseState()) ? TextKey.PET_FUSER_BUTTON_BAR_PREFIX : TextKey.PET_SELECT_PET));
+            this.buttonBar.setPrefix(
+                    ((_arg1.isAcceptableFuseState()) ? TextKey.PET_FUSER_BUTTON_BAR_PREFIX : TextKey.PET_SELECT_PET)
+            );
             if (_arg1.isAcceptableFuseState())
             {
                 this.buttonBar.setGoldPrice(FeedFuseCostModel.getFuseGoldCost(PetRarityEnum.selectByValue(_arg1.leftSlotPetVO.getRarity())));
                 this.buttonBar.setFamePrice(FeedFuseCostModel.getFuseFameCost(PetRarityEnum.selectByValue(_arg1.leftSlotPetVO.getRarity())));
-            };
+            }
             this.closeButton.clicked.add(this.onClose);
             this.waitForTextChanged();
             this.addChildren();
@@ -121,8 +126,6 @@
         {
             return (closeDialogSignal);
         }
-
-
     }
 }
 

@@ -1,22 +1,24 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.game.view.CreditDisplay;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.ui.view.components.ScreenBase;
-    import com.company.rotmg.graphics.ScreenGraphic;
-    import com.company.assembleegameclient.constants.ScreenTypes;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.appengine.SavedCharactersList;
+    import com.company.assembleegameclient.constants.ScreenTypes;
+    import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.googleanalytics.GA;
-    import kabam.rotmg.core.model.PlayerModel;
+    import com.company.rotmg.graphics.ScreenGraphic;
+
+    import flash.display.Sprite;
     import flash.events.Event;
+    import flash.events.MouseEvent;
 
-    public class NewCharacterScreen extends Sprite 
+    import kabam.rotmg.core.model.PlayerModel;
+    import kabam.rotmg.game.view.CreditDisplay;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.ui.view.components.ScreenBase;
+
+    import org.osflash.signals.Signal;
+
+    public class NewCharacterScreen extends Sprite
     {
-
         private var backButton_:TitleMenuOption;
         private var creditDisplay_:CreditDisplay;
         private var boxes_:Object;
@@ -50,7 +52,7 @@
             if (this.isInitialized)
             {
                 return;
-            };
+            }
             this.isInitialized = true;
             this.backButton_ = new TitleMenuOption(ScreenTypes.BACK, 36, false);
             this.backButton_.addEventListener(MouseEvent.CLICK, this.onBackClick);
@@ -79,11 +81,11 @@
                     if ((((_local4 == 784)) && (!(_local7.available_))))
                     {
                         _local7.setSale(75);
-                    };
+                    }
                     addChild(_local7);
-                };
+                }
                 _local2++;
-            };
+            }
             this.backButton_.x = ((stage.stageWidth / 2) - (this.backButton_.width / 2));
             this.backButton_.y = 550;
             this.creditDisplay_.x = stage.stageWidth;
@@ -117,7 +119,7 @@
             if (!_local2.available_)
             {
                 return;
-            };
+            }
             var _local3:int = _local2.objectType();
             var _local4:String = ObjectLibrary.typeToDisplayId_[_local3];
             GA.global().trackEvent("character", "create", _local4);
@@ -152,11 +154,11 @@
                         if (((_local6) || (_arg1.isLevelRequirementsMet(_local4))))
                         {
                             _local7.unlock();
-                        };
-                    };
-                };
+                        }
+                    }
+                }
                 _local2++;
-            };
+            }
         }
 
         private function onBuyClicked(_arg1:MouseEvent):void
@@ -168,10 +170,8 @@
                 _local3 = int(_local2.playerXML_.@type);
                 _local2.setIsBuyButtonEnabled(false);
                 this.buy.dispatch(_local3);
-            };
+            }
         }
-
-
     }
 }
 

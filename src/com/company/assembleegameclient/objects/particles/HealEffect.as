@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class HealEffect extends ParticleEffect 
+    public class HealEffect extends ParticleEffect
     {
-
         public var go_:GameObject;
         public var color_:uint;
 
@@ -23,7 +22,7 @@
             if (this.go_.map_ == null)
             {
                 return (false);
-            };
+            }
             x_ = this.go_.x_;
             y_ = this.go_.y_;
             var _local3:int = 10;
@@ -33,14 +32,21 @@
                 _local5 = ((2 * Math.PI) * (_local4 / _local3));
                 _local6 = ((3 + int((Math.random() * 5))) * 20);
                 _local7 = (0.3 + (0.4 * Math.random()));
-                _local8 = new HealParticle(this.color_, (Math.random() * 0.3), _local6, 1000, (0.1 + (Math.random() * 0.1)), this.go_, _local5, _local7);
+                _local8 = new HealParticle(
+                        this.color_,
+                        (Math.random() * 0.3),
+                        _local6,
+                        1000,
+                        (0.1 + (Math.random() * 0.1)),
+                        this.go_,
+                        _local5,
+                        _local7
+                );
                 map_.addObj(_local8, (x_ + (_local7 * Math.cos(_local5))), (y_ + (_local7 * Math.sin(_local5))));
                 _local4++;
-            };
+            }
             return (false);
         }
-
-
     }
 }
 

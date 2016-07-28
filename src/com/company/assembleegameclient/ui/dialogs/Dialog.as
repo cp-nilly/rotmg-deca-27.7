@@ -1,38 +1,36 @@
 ﻿package com.company.assembleegameclient.ui.dialogs
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import flash.display.Shape;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.StageProxy;
+    import com.company.googleanalytics.GA;
+    import com.company.util.GraphicsUtil;
+
+    import flash.display.CapsStyle;
+    import flash.display.Graphics;
+    import flash.display.GraphicsPath;
     import flash.display.GraphicsSolidFill;
     import flash.display.GraphicsStroke;
-    import flash.display.GraphicsPath;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
-    import flash.display.LineScaleMode;
-    import flash.display.CapsStyle;
+    import flash.display.IGraphicsData;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Shape;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.text.TextFieldAutoSize;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.text.TextFieldAutoSize;
-    import flash.filters.DropShadowFilter;
-    import flash.events.MouseEvent;
-    import com.company.googleanalytics.GA;
-    import flash.display.Graphics;
-    import flash.events.Event;
-    import __AS3__.vec.*;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class Dialog extends Sprite 
+    public class Dialog extends Sprite
     {
-
         public static const LEFT_BUTTON:String = "dialogLeftButton";
         public static const RIGHT_BUTTON:String = "dialogRightButton";
         public static const GREY:int = 0xB3B3B3;
         public static const WIDTH:int = 300;
-
         public var box_:Sprite;
         public var rect_:Shape;
         public var textText_:TextFieldDisplayConcrete;
@@ -47,7 +45,9 @@
         public var bottomSpace:int = 10;
         public var dialogWidth:int;
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
-        private var lineStyle_:GraphicsStroke = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_);
+        private var lineStyle_:GraphicsStroke = new GraphicsStroke(
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
+        );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
         protected var uiWaiter:SignalWaiter;
@@ -56,10 +56,13 @@
         private var leftButtonKey:String;
         private var rightButtonKey:String;
         private var replaceTokens:Object;
+        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
+        ];
 
-        protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE];
-
-        public function Dialog(_arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:String, _arg6:Object=null)
+        public function Dialog(
+                _arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:String, _arg6:Object = null
+        )
         {
             this.box_ = new Sprite();
             this.rect_ = new Shape();
@@ -125,7 +128,7 @@
             if (this.replaceTokens)
             {
                 _local2.setParams(_arg1, this.replaceTokens);
-            };
+            }
             this.textText_.setStringBuilder(_local2);
             this.textText_.mouseEnabled = true;
             this.textText_.filters = [new DropShadowFilter(0, 0, 0, 1, 6, 6, 1)];
@@ -147,7 +150,7 @@
                 this.titleText_.filters = [new DropShadowFilter(0, 0, 0, 1, 8, 8, 1)];
                 this.titleText_.setStringBuilder(new LineBuilder().setParams(_arg1));
                 this.addTextFieldDisplay(this.titleText_);
-            };
+            }
         }
 
         private function makeNonNullButtons():void
@@ -156,12 +159,12 @@
             {
                 this.leftButton = new DeprecatedTextButton(16, this.leftButtonKey, 120);
                 this.leftButton.addEventListener(MouseEvent.CLICK, this.onLeftButtonClick);
-            };
+            }
             if (this.rightButtonKey != null)
             {
                 this.rightButton = new DeprecatedTextButton(16, this.rightButtonKey, 120);
                 this.rightButton.addEventListener(MouseEvent.CLICK, this.onRightButtonClick);
-            };
+            }
         }
 
         private function onComplete():void
@@ -177,7 +180,7 @@
             if (this.analyticsPageName_ != null)
             {
                 this.tryAnalytics();
-            };
+            }
         }
 
         private function tryAnalytics():void
@@ -186,9 +189,9 @@
             {
                 GA.global().trackPageview(this.analyticsPageName_);
             }
-            catch(error:Error)
+            catch (error:Error)
             {
-            };
+            }
         }
 
         private function draw():void
@@ -207,7 +210,7 @@
             if (this.box_.contains(this.rect_))
             {
                 this.box_.removeChild(this.rect_);
-            };
+            }
             this.removeButtonsIfAlreadyAdded();
             this.addButtonsAndLayout();
             this.drawBackground();
@@ -223,7 +226,11 @@
         private function drawBackground():void
         {
             GraphicsUtil.clearPath(this.path_);
-            GraphicsUtil.drawCutEdgeRect(0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [1, 1, 1, 1], this.path_);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [
+                        1, 1, 1, 1
+                    ], this.path_
+            );
             var _local1:Graphics = this.rect_.graphics;
             _local1.clear();
             _local1.drawGraphicsData(this.graphicsData_);
@@ -252,8 +259,8 @@
                     this.box_.addChild(this.rightButton);
                     this.rightButton.x = (((3 * this.dialogWidth) / 4) - (this.rightButton.width / 2));
                     this.rightButton.y = _local1;
-                };
-            };
+                }
+            }
         }
 
         private function drawTitleAndText():void
@@ -267,7 +274,7 @@
             else
             {
                 this.textText_.y = 4;
-            };
+            }
         }
 
         private function removeButtonsIfAlreadyAdded():void
@@ -275,11 +282,11 @@
             if (((this.leftButton) && (this.box_.contains(this.leftButton))))
             {
                 this.box_.removeChild(this.leftButton);
-            };
+            }
             if (((this.rightButton) && (this.box_.contains(this.rightButton))))
             {
                 this.box_.removeChild(this.rightButton);
-            };
+            }
         }
 
         protected function onLeftButtonClick(_arg1:MouseEvent):void
@@ -291,8 +298,6 @@
         {
             dispatchEvent(new Event(RIGHT_BUTTON));
         }
-
-
     }
 }
 

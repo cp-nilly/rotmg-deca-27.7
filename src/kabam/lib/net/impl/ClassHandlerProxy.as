@@ -1,15 +1,14 @@
 ﻿package kabam.lib.net.impl
 {
     import kabam.lib.net.api.MessageHandlerProxy;
-	import robotlegs.bender.framework.api.IInjector;
 
-    public class ClassHandlerProxy implements MessageHandlerProxy 
+    import robotlegs.bender.framework.api.IInjector;
+
+    public class ClassHandlerProxy implements MessageHandlerProxy
     {
-
         private var injector:IInjector;
         private var handlerType:Class;
         private var handler:Object;
-
 
         public function setType(_arg1:Class):ClassHandlerProxy
         {
@@ -33,12 +32,10 @@
             if (!this.handlerType)
             {
                 return (null);
-            };
+            }
             this.handler = this.injector.getOrCreateNewInstance(this.handlerType);
             return (this.handler.execute);
         }
-
-
     }
 }
 

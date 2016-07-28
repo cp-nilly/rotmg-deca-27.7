@@ -1,26 +1,26 @@
 ﻿package com.company.assembleegameclient.ui.options
 {
+    import com.company.util.KeyCodes;
+
+    import flash.display.Graphics;
     import flash.display.Sprite;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
     import flash.filters.DropShadowFilter;
     import flash.text.TextFieldAutoSize;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import com.company.util.KeyCodes;
-    import flash.display.Graphics;
-    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import flash.events.KeyboardEvent;
     import flash.utils.getTimer;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StringBuilder;
 
-    public class KeyCodeBox extends Sprite 
+    public class KeyCodeBox extends Sprite
     {
-
         public static const WIDTH:int = 80;
         public static const HEIGHT:int = 32;
-
         public var keyCode_:uint;
         public var selected_:Boolean;
         public var inputMode_:Boolean;
@@ -52,7 +52,7 @@
             if (_arg1 == this.keyCode_)
             {
                 return;
-            };
+            }
             this.keyCode_ = _arg1;
             this.setTextToKey();
             dispatchEvent(new Event(Event.CHANGE, true));
@@ -102,7 +102,7 @@
             {
                 removeEventListener(KeyboardEvent.KEY_DOWN, this.onInputKeyDown);
                 stage.removeEventListener(MouseEvent.MOUSE_DOWN, this.onInputMouseDown, true);
-            };
+            }
             this.setTextToKey();
             addEventListener(MouseEvent.CLICK, this.onNormalClick);
         }
@@ -112,7 +112,7 @@
             if (stage == null)
             {
                 return;
-            };
+            }
             stage.stageFocusRect = false;
             stage.focus = this;
             this.inputMode_ = true;
@@ -138,7 +138,7 @@
             else
             {
                 this.setText(new LineBuilder().setParams(TextKey.KEYCODEBOX_HITKEY));
-            };
+            }
         }
 
         private function onInputKeyDown(_arg1:KeyboardEvent):void
@@ -153,8 +153,6 @@
         {
             this.setNormalMode();
         }
-
-
     }
 }
 

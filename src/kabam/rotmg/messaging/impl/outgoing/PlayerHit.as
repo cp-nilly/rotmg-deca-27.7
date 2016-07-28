@@ -2,9 +2,8 @@
 {
     import flash.utils.IDataOutput;
 
-    public class PlayerHit extends OutgoingMessage 
+    public class PlayerHit extends OutgoingMessage
     {
-
         public var bulletId_:uint;
         public var objectId_:int;
 
@@ -23,8 +22,6 @@
         {
             return (formatToString("PLAYERHIT", "bulletId_", "objectId_"));
         }
-
-
     }
 }
 

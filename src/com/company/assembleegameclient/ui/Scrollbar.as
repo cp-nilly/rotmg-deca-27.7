@@ -1,22 +1,20 @@
 ﻿package com.company.assembleegameclient.ui
 {
-    import flash.display.Sprite;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
     import com.company.util.GraphicsUtil;
-    import flash.geom.Rectangle;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
+
     import flash.display.Graphics;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.geom.ColorTransform;
+    import flash.geom.Rectangle;
     import flash.utils.getTimer;
-    import __AS3__.vec.*;
 
-    public class Scrollbar extends Sprite 
+    public class Scrollbar extends Sprite
     {
-
         private var width_:int;
         private var height_:int;
         private var speed_:Number;
@@ -31,10 +29,11 @@
         private var change_:Number;
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         private var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
+        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
+            backgroundFill_, path_, GraphicsUtil.END_FILL
+        ];
 
-        private const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[backgroundFill_, path_, GraphicsUtil.END_FILL];
-
-        public function Scrollbar(_arg1:int, _arg2:int, _arg3:Number=1, _arg4:Sprite=null)
+        public function Scrollbar(_arg1:int, _arg2:int, _arg3:Number = 1, _arg4:Sprite = null)
         {
             super();
             this.target_ = _arg4;
@@ -66,22 +65,23 @@
             _arg3.endFill();
         }
 
-
         public function pos():Number
         {
             return (((this.posIndicator_.y - this.indicatorRect_.y) / (this.indicatorRect_.height - this.posIndicator_.height)));
         }
 
-        public function setIndicatorSize(_arg1:Number, _arg2:Number, _arg3:Boolean=true):void
+        public function setIndicatorSize(_arg1:Number, _arg2:Number, _arg3:Boolean = true):void
         {
-            var _local4:int = (((_arg2 == 0)) ? this.indicatorRect_.height : ((_arg1 / _arg2) * this.indicatorRect_.height));
+            var _local4:int = (((_arg2 == 0))
+                    ? this.indicatorRect_.height
+                    : ((_arg1 / _arg2) * this.indicatorRect_.height));
             _local4 = Math.min(this.indicatorRect_.height, Math.max(this.width_, _local4));
             this.drawIndicator(this.width_, _local4, this.posIndicator_.graphics);
             this.jumpDist_ = ((_arg1 / (_arg2 - _arg1)) * 0.33);
             if (_arg3)
             {
                 this.setPos(0);
-            };
+            }
         }
 
         public function setPos(_arg1:Number):void
@@ -131,7 +131,7 @@
             else
             {
                 this.jumpDown();
-            };
+            }
         }
 
         protected function onAddedToStage(_arg1:Event):void
@@ -149,8 +149,8 @@
                 else
                 {
                     WebMain.STAGE.addEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
-                };
-            };
+                }
+            }
         }
 
         protected function onRemovedFromStage(_arg1:Event):void
@@ -168,8 +168,8 @@
                 else
                 {
                     WebMain.STAGE.removeEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
-                };
-            };
+                }
+            }
             removeEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
             removeEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         }
@@ -185,8 +185,8 @@
                 if (_arg1.delta < 0)
                 {
                     this.jumpDown();
-                };
-            };
+                }
+            }
         }
 
         private function onUpArrowDown(_arg1:MouseEvent):void
@@ -222,7 +222,10 @@
 
         private function onStartIndicatorDrag(_arg1:MouseEvent):void
         {
-            this.posIndicator_.startDrag(false, new Rectangle(0, this.indicatorRect_.y, 0, (this.indicatorRect_.height - this.posIndicator_.height)));
+            this.posIndicator_.startDrag(
+                    false,
+                    new Rectangle(0, this.indicatorRect_.y, 0, (this.indicatorRect_.height - this.posIndicator_.height))
+            );
             stage.addEventListener(MouseEvent.MOUSE_UP, this.onStopIndicatorDrag);
             stage.addEventListener(MouseEvent.MOUSE_MOVE, this.onDragMove);
             this.sendPos();
@@ -246,7 +249,7 @@
             dispatchEvent(new Event(Event.CHANGE));
         }
 
-        public function resize(_arg1:int, _arg2:int, _arg3:Number=1):void
+        public function resize(_arg1:int, _arg2:int, _arg3:Number = 1):void
         {
             this.width_ = _arg1;
             this.height_ = _arg2;
@@ -256,7 +259,9 @@
             var _local5:Graphics = this.background_.graphics;
             _local5.clear();
             _local5.beginFill(0x545454, 1);
-            _local5.drawRect(this.indicatorRect_.x, this.indicatorRect_.y, this.indicatorRect_.width, this.indicatorRect_.height);
+            _local5.drawRect(
+                    this.indicatorRect_.x, this.indicatorRect_.y, this.indicatorRect_.width, this.indicatorRect_.height
+            );
             _local5.endFill();
             drawArrow(_local4, this.width_, this.upArrow_.graphics);
             this.upArrow_.rotation = -90;
@@ -278,8 +283,6 @@
             _arg3.clear();
             _arg3.drawGraphicsData(this.graphicsData_);
         }
-
-
     }
 }
 

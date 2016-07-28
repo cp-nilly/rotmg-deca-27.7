@@ -1,15 +1,14 @@
 ﻿package kabam.rotmg.promotions.view
 {
     import flash.display.Sprite;
-    import kabam.lib.resizing.view.Resizable;
     import flash.events.MouseEvent;
     import flash.geom.Rectangle;
 
-    public class AlreadyPurchasedBeginnersPackageDialog extends Sprite implements Resizable 
+    import kabam.lib.resizing.view.Resizable;
+
+    public class AlreadyPurchasedBeginnersPackageDialog extends Sprite implements Resizable
     {
-
         public static var hifiBeginnerOfferAlreadyPurchasedEmbed:Class = AlreadyPurchasedBeginnersPackageDialog_hifiBeginnerOfferAlreadyPurchasedEmbed;
-
         private var closeBtn:Sprite;
 
         public function AlreadyPurchasedBeginnersPackageDialog()
@@ -46,8 +45,6 @@
             x = ((_arg1.width - width) / 2);
             y = ((_arg1.height - height) / 2);
         }
-
-
     }
 }
 

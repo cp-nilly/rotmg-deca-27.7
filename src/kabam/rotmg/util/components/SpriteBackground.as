@@ -1,40 +1,39 @@
 ﻿package kabam.rotmg.util.components
 {
-    import flash.display.Sprite;
-    import flash.display.BitmapData;
-    import kabam.rotmg.assets.services.IconFactory;
-    import flash.filters.ColorMatrixFilter;
-    import com.company.util.MoreColorUtil;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import com.company.util.GraphicsUtil;
-    import kabam.rotmg.ui.view.SignalWaiter;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.display.Bitmap;
     import com.company.assembleegameclient.util.Currency;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.filters.ColorMatrixFilter;
+
+    import kabam.rotmg.assets.services.IconFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+    import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
     import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-    import __AS3__.vec.*;
+    import kabam.rotmg.ui.view.SignalWaiter;
 
-    public class SpriteBackground extends Sprite 
+    public class SpriteBackground extends Sprite
     {
-
         private static const BEVEL:int = 4;
         private static const PADDING:int = 2;
         public static const coin:BitmapData = IconFactory.makeCoin();
         public static const fame:BitmapData = IconFactory.makeFame();
         public static const guildFame:BitmapData = IconFactory.makeGuildFame();
         private static const grayfilter:ColorMatrixFilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
         private const enabledFill:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         private const disabledFill:GraphicsSolidFill = new GraphicsSolidFill(0x7F7F7F, 1);
         private const graphicsPath:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
-        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[enabledFill, graphicsPath, GraphicsUtil.END_FILL];
+        private const graphicsData:Vector.<IGraphicsData> = new <IGraphicsData>[
+            enabledFill, graphicsPath, GraphicsUtil.END_FILL
+        ];
         private const waiter:SignalWaiter = new SignalWaiter();
-
         public var prefix:String;
         public var text:TextFieldDisplayConcrete;
         private var staticStringBuilder:StaticStringBuilder;
@@ -58,7 +57,9 @@
             this.currency = Currency.GOLD;
             this.text = new TextFieldDisplayConcrete().setSize(_arg1).setColor(0x363636).setBold(true);
             this.waiter.push(this.text.textChanged);
-            var _local3:StringBuilder = (((this.prefix)!="") ? this.lineBuilder.setParams(this.prefix, {"cost":this.price.toString()}) : this.staticStringBuilder.setString(this.price.toString()));
+            var _local3:StringBuilder = (((this.prefix) != "") ? this.lineBuilder.setParams(
+                    this.prefix, {"cost": this.price.toString()}
+            ) : this.staticStringBuilder.setString(this.price.toString()));
             this.text.setStringBuilder(_local3);
             this.waiter.complete.add(this.updateUI);
             addChild(this.text);
@@ -71,7 +72,7 @@
                 mouseEnabled = _arg1;
                 filters = ((_arg1) ? [] : [grayfilter]);
                 this.draw();
-            };
+            }
         }
 
         private function updateUI():void
@@ -83,7 +84,11 @@
         private function updateBackground():void
         {
             GraphicsUtil.clearPath(this.graphicsPath);
-            GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), BEVEL, [1, 1, 1, 1], this.graphicsPath);
+            GraphicsUtil.drawCutEdgeRect(
+                    0, 0, this.getWidth(), this.getHeight(), BEVEL, [
+                        1, 1, 1, 1
+                    ], this.graphicsPath
+            );
         }
 
         private function draw():void
@@ -102,8 +107,6 @@
         {
             return (this.sizeY);
         }
-
-
     }
 }
 

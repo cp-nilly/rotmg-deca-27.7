@@ -1,43 +1,49 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import kabam.rotmg.pets.view.components.PopupWindowBackground;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import kabam.rotmg.pets.util.PetsConstants;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.pets.view.components.PetFeeder;
-    import kabam.rotmg.pets.view.components.DialogCloseButton;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.pets.view.components.PetAbilityMeter;
     import com.company.assembleegameclient.ui.LineBreakDesign;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
     import flash.events.Event;
-    import kabam.rotmg.pets.data.PetRarityEnum;
-    import kabam.rotmg.pets.util.FeedFuseCostModel;
-    import kabam.rotmg.pets.data.PetVO;
+
     import kabam.rotmg.pets.data.AbilityVO;
+    import kabam.rotmg.pets.data.PetRarityEnum;
+    import kabam.rotmg.pets.data.PetVO;
+    import kabam.rotmg.pets.util.FeedFuseCostModel;
+    import kabam.rotmg.pets.util.PetsConstants;
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.pets.view.components.DialogCloseButton;
+    import kabam.rotmg.pets.view.components.FameOrGoldBuyButtons;
+    import kabam.rotmg.pets.view.components.PetAbilityMeter;
+    import kabam.rotmg.pets.view.components.PetFeeder;
+    import kabam.rotmg.pets.view.components.PopupWindowBackground;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
     import kabam.rotmg.ui.view.SignalWaiter;
-    import __AS3__.vec.*;
 
-    public class FeedPetView extends PetInteractionView 
+    import org.osflash.signals.Signal;
+
+    public class FeedPetView extends PetInteractionView
     {
-
-        private const background:PopupWindowBackground = PetsViewAssetFactory.returnWindowBackground(PetsConstants.WINDOW_BACKGROUND_WIDTH, PetsConstants.WINDOW_BACKGROUND_HEIGHT);
-        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(0xB3B3B3, 18, true);
-        private const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(TextKey.PET_FEEDER_BUTTON_BAR_PREFIX, (PetsConstants.WINDOW_BACKGROUND_HEIGHT - 35));
+        private const background:PopupWindowBackground = PetsViewAssetFactory.returnWindowBackground(
+                PetsConstants.WINDOW_BACKGROUND_WIDTH, PetsConstants.WINDOW_BACKGROUND_HEIGHT
+        );
+        private const titleTextfield:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTopAlignedTextfield(
+                0xB3B3B3, 18, true
+        );
+        private const buttonBar:FameOrGoldBuyButtons = PetsViewAssetFactory.returnFameOrGoldButtonBar(
+                TextKey.PET_FEEDER_BUTTON_BAR_PREFIX, (PetsConstants.WINDOW_BACKGROUND_HEIGHT - 35)
+        );
         private const petFeeder:PetFeeder = PetsViewAssetFactory.returnPetFeeder();
         private const closeButton:DialogCloseButton = PetsViewAssetFactory.returnCloseButton(PetsConstants.WINDOW_BACKGROUND_WIDTH);
         private const abilityMeters:Vector.<PetAbilityMeter> = PetsViewAssetFactory.returnAbilityMeters();
         private const abilityMeterAnimating:Vector.<Boolean> = Vector.<Boolean>([false, false, false]);
-        private const lineBreakDesign:LineBreakDesign = new LineBreakDesign((PetsConstants.WINDOW_BACKGROUND_WIDTH - 25), 0);
+        private const lineBreakDesign:LineBreakDesign = new LineBreakDesign(
+                (PetsConstants.WINDOW_BACKGROUND_WIDTH - 25), 0
+        );
         public const openPetPicker:Signal = new Signal();
         public const closed:Signal = new Signal();
-
         public var famePurchase:Signal;
         public var goldPurchase:Signal;
-
 
         public function init():void
         {
@@ -82,12 +88,12 @@
                 {
                     this.buttonBar.clearFameAndGold();
                     this.buttonBar.setPrefix(TextKey.PET_FULLY_MAXED);
-                };
+                }
             }
             else
             {
                 this.buttonBar.setPrefix(TextKey.PET_SELECT_PET);
-            };
+            }
         }
 
         private function onClosed():void
@@ -106,7 +112,7 @@
             for each (_local1 in this.abilityMeters)
             {
                 _local1.animating.remove(this.onAnimating);
-            };
+            }
             this.buttonBar.positioned.remove(this.positionButtonBar);
         }
 
@@ -121,8 +127,8 @@
                 for each (_local5 in this.abilityMeters)
                 {
                     _local5.visible = false;
-                };
-            };
+                }
+            }
             for each (_local4 in _arg1)
             {
                 if (_local3 < this.abilityMeters.length)
@@ -134,8 +140,8 @@
                     _local6.initializeData(_local4);
                     _local6.animating.add(this.onAnimating);
                     _local3++;
-                };
-            };
+                }
+            }
         }
 
         private function onAnimating(_arg1:PetAbilityMeter, _arg2:Boolean):void
@@ -157,8 +163,8 @@
                 {
                     _local1 = true;
                     break;
-                };
-            };
+                }
+            }
             return (_local1);
         }
 
@@ -175,7 +181,7 @@
             {
                 _local1.visible = false;
                 addChild(_local1);
-            };
+            }
         }
 
         private function positionAssets():void
@@ -198,7 +204,7 @@
             for each (_local2 in this.abilityMeters)
             {
                 _local1.push(_local2.positioned);
-            };
+            }
             _local1.complete.addOnce(this.positionMeters);
             this.buttonBar.positioned.add(this.positionButtonBar);
         }
@@ -218,7 +224,7 @@
                 _local2.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - 227) * 0.5);
                 _local2.y = _local1;
                 _local1 = (_local1 + (_local2.height + 10));
-            };
+            }
         }
 
         private function positionLinebreak():void
@@ -231,8 +237,6 @@
         {
             this.buttonBar.x = ((PetsConstants.WINDOW_BACKGROUND_WIDTH - this.buttonBar.width) / 2);
         }
-
-
     }
 }
 

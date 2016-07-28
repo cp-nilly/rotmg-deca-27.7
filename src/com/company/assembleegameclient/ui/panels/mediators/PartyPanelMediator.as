@@ -1,17 +1,17 @@
 ﻿package com.company.assembleegameclient.ui.panels.mediators
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
     import com.company.assembleegameclient.ui.panels.PartyPanel;
+
     import kabam.rotmg.core.view.Layers;
 
-    public class PartyPanelMediator extends Mediator 
-    {
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
+    public class PartyPanelMediator extends Mediator
+    {
         [Inject]
         public var view:PartyPanel;
         [Inject]
         public var layers:Layers;
-
 
         override public function initialize():void
         {
@@ -22,8 +22,6 @@
         {
             super.destroy();
         }
-
-
     }
 }
 

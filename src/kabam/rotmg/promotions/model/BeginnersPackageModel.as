@@ -1,17 +1,17 @@
 ﻿package kabam.rotmg.promotions.model
 {
-    import kabam.rotmg.account.core.Account;
-    import kabam.rotmg.account.core.model.OfferModel;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.util.TimeUtil;
     import com.company.assembleegameclient.util.offer.Offer;
 
-    public class BeginnersPackageModel 
-    {
+    import kabam.rotmg.account.core.Account;
+    import kabam.rotmg.account.core.model.OfferModel;
 
+    import org.osflash.signals.Signal;
+
+    public class BeginnersPackageModel
+    {
         private static const REALM_GOLD_FOR_BEGINNERS_PKG:int = 2600;
         private static const ONE_WEEK_IN_SECONDS:int = 604800;
-
         [Inject]
         public var account:Account;
         [Inject]
@@ -64,14 +64,14 @@
             if (!this.model.offers)
             {
                 return (null);
-            };
+            }
             for each (_local1 in this.model.offers.offerList)
             {
                 if (_local1.realmGold_ == REALM_GOLD_FOR_BEGINNERS_PKG)
                 {
                     return (_local1);
-                };
-            };
+                }
+            }
             return (null);
         }
 
@@ -80,8 +80,6 @@
             this.setBeginnersOfferSecondsLeft(-1);
             this.markedAsPurchased.dispatch();
         }
-
-
     }
 }
 

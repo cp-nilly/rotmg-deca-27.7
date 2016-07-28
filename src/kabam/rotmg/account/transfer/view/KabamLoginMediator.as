@@ -1,18 +1,19 @@
 ﻿package kabam.rotmg.account.transfer.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.account.transfer.signals.CheckKabamAccountSignal;
-    import kabam.rotmg.dialogs.control.OpenDialogSignal;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.core.signals.TaskErrorSignal;
-    import kabam.rotmg.account.transfer.model.TransferAccountData;
-    import flash.net.navigateToURL;
     import flash.net.URLRequest;
+    import flash.net.navigateToURL;
+
     import kabam.lib.tasks.Task;
+    import kabam.rotmg.account.transfer.model.TransferAccountData;
+    import kabam.rotmg.account.transfer.signals.CheckKabamAccountSignal;
+    import kabam.rotmg.core.signals.TaskErrorSignal;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.dialogs.control.OpenDialogSignal;
 
-    public class KabamLoginMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class KabamLoginMediator extends Mediator
     {
-
         [Inject]
         public var view:KabamLoginView;
         [Inject]
@@ -23,7 +24,6 @@
         public var closeDialog:CloseDialogsSignal;
         [Inject]
         public var loginError:TaskErrorSignal;
-
 
         override public function initialize():void
         {
@@ -62,8 +62,6 @@
             this.view.setError(_arg1.error);
             this.view.enable();
         }
-
-
     }
 }
 

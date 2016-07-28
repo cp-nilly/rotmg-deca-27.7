@@ -1,13 +1,13 @@
 ﻿package kabam.rotmg.ui.model
 {
-    import flash.utils.Timer;
-    import org.osflash.signals.natives.NativeSignal;
-    import org.osflash.signals.Signal;
     import flash.events.TimerEvent;
+    import flash.utils.Timer;
 
-    public class PotionModel 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PotionModel
     {
-
         public var objectId:uint;
         private var _costs:Array;
         private var _priceCooldownMillis:uint;
@@ -34,7 +34,7 @@
             if (((!((_arg1 == null))) && ((_arg1.length > 0))))
             {
                 this.costIndex = 0;
-            };
+            }
         }
 
         public function get costs():Array
@@ -70,9 +70,9 @@
                 if (this.costIndex < (this.costs.length - 1))
                 {
                     this.costIndex++;
-                };
+                }
                 this.update.dispatch(this.position);
-            };
+            }
         }
 
         private function coolDownPurchase(_arg1:TimerEvent):void
@@ -80,7 +80,7 @@
             if (this.costIndex == 0)
             {
                 this.purchaseCoolDownTimer.stop();
-            };
+            }
             this.available = true;
             this.update.dispatch(this.position);
         }
@@ -91,7 +91,7 @@
             if (this.costIndex == 0)
             {
                 this.costCoolDownTimer.stop();
-            };
+            }
             this.update.dispatch(this.position);
         }
 
@@ -101,11 +101,9 @@
             if (_arg1 <= 0)
             {
                 _local2 = this.costs[this.costIndex];
-            };
+            }
             return (_local2);
         }
-
-
     }
 }
 

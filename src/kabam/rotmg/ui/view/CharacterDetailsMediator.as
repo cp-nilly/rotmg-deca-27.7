@@ -1,21 +1,22 @@
 ﻿package kabam.rotmg.ui.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
+    import com.company.assembleegameclient.objects.ImageFactory;
+    import com.company.assembleegameclient.objects.Player;
+    import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
+    import com.company.assembleegameclient.ui.options.Options;
+    import com.company.googleanalytics.GA;
+
+    import kabam.rotmg.chat.model.TellModel;
     import kabam.rotmg.ui.model.HUDModel;
     import kabam.rotmg.ui.signals.HUDModelInitialized;
-    import kabam.rotmg.ui.signals.UpdateHUDSignal;
     import kabam.rotmg.ui.signals.NameChangedSignal;
-    import com.company.assembleegameclient.ui.icons.IconButtonFactory;
-    import com.company.assembleegameclient.objects.ImageFactory;
-    import kabam.rotmg.chat.model.TellModel;
-    import com.company.googleanalytics.GA;
-    import com.company.assembleegameclient.parameters.Parameters;
-    import com.company.assembleegameclient.ui.options.Options;
-    import com.company.assembleegameclient.objects.Player;
+    import kabam.rotmg.ui.signals.UpdateHUDSignal;
 
-    public class CharacterDetailsMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class CharacterDetailsMediator extends Mediator
     {
-
         [Inject]
         public var view:CharacterDetailsView;
         [Inject]
@@ -32,7 +33,6 @@
         public var imageFactory:ImageFactory;
         [Inject]
         public var tellModel:TellModel;
-
 
         override public function initialize():void
         {
@@ -89,8 +89,6 @@
         {
             this.view.setName(_arg1);
         }
-
-
     }
 }
 

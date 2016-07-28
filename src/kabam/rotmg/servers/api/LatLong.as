@@ -1,12 +1,10 @@
 ﻿package kabam.rotmg.servers.api
 {
-    public final class LatLong 
+    public final class LatLong
     {
-
         private static const TO_DEGREES:Number = (180 / Math.PI);//57.2957795130823
         private static const TO_RADIANS:Number = (Math.PI / 180);//0.0174532925199433
         private static const DISTANCE_SCALAR:Number = (((60 * 1.1515) * 1.609344) * 1000);//111189.57696
-
         public var latitude:Number;
         public var longitude:Number;
 
@@ -26,13 +24,10 @@
             return (_local6);
         }
 
-
         public function toString():String
         {
             return ((((("(" + this.latitude) + ", ") + this.longitude) + ")"));
         }
-
-
     }
 }
 

@@ -1,15 +1,13 @@
 ﻿package kabam.rotmg.classes.model
 {
-    public class CharacterSkinState 
+    public class CharacterSkinState
     {
-
-        public static const OWNED:CharacterSkinState = new (CharacterSkinState)(false, "OWNED", false);
-        public static const UNLISTED:CharacterSkinState = new (CharacterSkinState)(true, "UNLISTED", false);
-        public static const PURCHASABLE:CharacterSkinState = new (CharacterSkinState)(false, "PURCHASABLE", true);
-        public static const PURCHASING:CharacterSkinState = new (CharacterSkinState)(true, "PURCHASING", true);
-        public static const LOCKED:CharacterSkinState = new (CharacterSkinState)(true, "LOCKED", true);
-        public static const NULL:CharacterSkinState = new (CharacterSkinState)(true, "NULL", true);
-
+        public static const OWNED:CharacterSkinState = new CharacterSkinState(false, "OWNED", false);
+        public static const UNLISTED:CharacterSkinState = new CharacterSkinState(true, "UNLISTED", false);
+        public static const PURCHASABLE:CharacterSkinState = new CharacterSkinState(false, "PURCHASABLE", true);
+        public static const PURCHASING:CharacterSkinState = new CharacterSkinState(true, "PURCHASING", true);
+        public static const LOCKED:CharacterSkinState = new CharacterSkinState(true, "LOCKED", true);
+        public static const NULL:CharacterSkinState = new CharacterSkinState(true, "NULL", true);
         private var _isDisabled:Boolean;
         private var _skinStateDeterminedByLevel:Boolean;
         private var name:String;
@@ -35,8 +33,6 @@
         {
             return ("[CharacterSkinState {NAME}]".replace("{NAME}", this.name));
         }
-
-
     }
 }
 

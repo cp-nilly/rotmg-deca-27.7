@@ -1,12 +1,9 @@
 ﻿package com.company.util
 {
-    import __AS3__.vec.Vector;
     import flash.display.BitmapData;
-    import __AS3__.vec.*;
 
-    public class ImageSet 
+    public class ImageSet
     {
-
         public var images_:Vector.<BitmapData>;
 
         public function ImageSet()
@@ -35,14 +32,16 @@
                 _local7 = 0;
                 while (_local7 < _local4)
                 {
-                    this.images_.push(BitmapUtil.cropToBitmapData(_arg1, (_local7 * _arg2), (_local6 * _arg3), _arg2, _arg3));
+                    this.images_.push(
+                            BitmapUtil.cropToBitmapData(
+                                    _arg1, (_local7 * _arg2), (_local6 * _arg3), _arg2, _arg3
+                            )
+                    );
                     _local7++;
-                };
+                }
                 _local6++;
-            };
+            }
         }
-
-
     }
 }
 

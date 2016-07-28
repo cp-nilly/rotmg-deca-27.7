@@ -1,8 +1,7 @@
 ﻿package com.company.util
 {
-    public class Extents2D 
+    public class Extents2D
     {
-
         public var minX_:Number;
         public var minY_:Number;
         public var maxX_:Number;
@@ -18,19 +17,19 @@
             if (_arg1 < this.minX_)
             {
                 this.minX_ = _arg1;
-            };
+            }
             if (_arg2 < this.minY_)
             {
                 this.minY_ = _arg2;
-            };
+            }
             if (_arg1 > this.maxX_)
             {
                 this.maxX_ = _arg1;
-            };
+            }
             if (_arg2 > this.maxY_)
             {
                 this.maxY_ = _arg2;
-            };
+            }
         }
 
         public function clear():void
@@ -45,8 +44,6 @@
         {
             return ((((((((("min:(" + this.minX_) + ", ") + this.minY_) + ") max:(") + this.maxX_) + ", ") + this.maxY_) + ")"));
         }
-
-
     }
 }
 

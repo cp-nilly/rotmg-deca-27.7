@@ -1,15 +1,15 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import flash.display.Sprite;
-    import kabam.rotmg.util.graphics.BevelRect;
-    import kabam.rotmg.util.graphics.GraphicsHelper;
-    import flash.display.LineScaleMode;
     import flash.display.CapsStyle;
     import flash.display.JointStyle;
+    import flash.display.LineScaleMode;
+    import flash.display.Sprite;
 
-    public class PopupWindowBackground extends Sprite 
+    import kabam.rotmg.util.graphics.BevelRect;
+    import kabam.rotmg.util.graphics.GraphicsHelper;
+
+    public class PopupWindowBackground extends Sprite
     {
-
         public static const HORIZONTAL_DIVISION:String = "HORIZONTAL_DIVISION";
         public static const VERTICAL_DIVISION:String = "VERTICAL_DIVISION";
         private static const BEVEL:int = 4;
@@ -18,8 +18,7 @@
         public static const TYPE_TRANSPARENT_WITHOUT_HEADER:int = 2;
         public static const TYPE_DEFAULT_BLACK:int = 3;
 
-
-        public function draw(_arg1:int, _arg2:int, _arg3:int=0):void
+        public function draw(_arg1:int, _arg2:int, _arg3:int = 0):void
         {
             var _local4:BevelRect = new BevelRect(_arg1, _arg2, BEVEL);
             var _local5:GraphicsHelper = new GraphicsHelper();
@@ -42,7 +41,9 @@
             {
                 if (_arg3 == TYPE_TRANSPARENT_WITHOUT_HEADER)
                 {
-                    graphics.lineStyle(2, 0xFFFFFF, 1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3);
+                    graphics.lineStyle(
+                            2, 0xFFFFFF, 1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3
+                    );
                     graphics.beginFill(0x363636, 0);
                     _local5.drawBevelRect(0, 0, _local4, graphics);
                     graphics.endFill();
@@ -62,10 +63,10 @@
                             graphics.beginFill(0);
                             _local5.drawBevelRect(0, 0, _local4, graphics);
                             graphics.endFill();
-                        };
-                    };
-                };
-            };
+                        }
+                    }
+                }
+            }
         }
 
         public function divide(_arg1:String, _arg2:int):void
@@ -79,8 +80,8 @@
                 if (_arg1 == VERTICAL_DIVISION)
                 {
                     this.divideVertically(_arg2);
-                };
-            };
+                }
+            }
         }
 
         private function divideHorizontally(_arg1:int):void
@@ -99,8 +100,6 @@
             graphics.lineStyle(2, 0x666666);
             graphics.lineTo(_arg1, (height - 1));
         }
-
-
     }
 }
 

@@ -1,25 +1,26 @@
 ﻿package kabam.rotmg.account.web.view
 {
-    import com.company.assembleegameclient.account.ui.Frame;
-    import org.osflash.signals.Signal;
     import com.company.assembleegameclient.account.ui.CheckBoxField;
-    import kabam.rotmg.account.ui.components.DateField;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.events.TextEvent;
+    import com.company.assembleegameclient.account.ui.Frame;
     import com.company.assembleegameclient.parameters.Parameters;
-    import flash.filters.DropShadowFilter;
-    import org.osflash.signals.natives.NativeMappedSignal;
-    import flash.events.MouseEvent;
-    import kabam.rotmg.account.web.model.AccountData;
     import com.company.util.EmailValidator;
 
-    public class WebRegisterDialog extends Frame 
+    import flash.events.MouseEvent;
+    import flash.events.TextEvent;
+    import flash.filters.DropShadowFilter;
+
+    import kabam.rotmg.account.ui.components.DateField;
+    import kabam.rotmg.account.web.model.AccountData;
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeMappedSignal;
+
+    public class WebRegisterDialog extends Frame
     {
-
         private const errors:Array = [];
-
         public var register:Signal;
         public var signIn:Signal;
         public var cancel:Signal;
@@ -34,7 +35,13 @@
 
         public function WebRegisterDialog()
         {
-            super(TextKey.REGISTER_IMPERATIVE, "RegisterWebAccountDialog.leftButton", "RegisterWebAccountDialog.rightButton", "/registerAccount", 326);
+            super(
+                    TextKey.REGISTER_IMPERATIVE,
+                    "RegisterWebAccountDialog.leftButton",
+                    "RegisterWebAccountDialog.rightButton",
+                    "/registerAccount",
+                    326
+            );
             this.makeUIElements();
             this.makeSignals();
         }
@@ -63,10 +70,13 @@
         {
             this.signInText = new TextFieldDisplayConcrete();
             var _local1 = '<font color="#7777EE"><a href="event:flash.events.TextEvent">';
-            this.signInText.setStringBuilder(new LineBuilder().setParams(TextKey.SIGN_IN_TEXT, {
-                "signIn":_local1,
-                "_signIn":this.endLink
-            }));
+            this.signInText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.SIGN_IN_TEXT, {
+                                "signIn": _local1, "_signIn": this.endLink
+                            }
+                    )
+            );
             this.signInText.addEventListener(TextEvent.LINK, this.linkEvent);
             this.configureTextAndAdd(this.signInText);
         }
@@ -76,12 +86,13 @@
             this.tosText = new TextFieldDisplayConcrete();
             var _local1 = (('<font color="#7777EE"><a href="' + Parameters.TERMS_OF_USE_URL) + '" target="_blank">');
             var _local2 = (('<font color="#7777EE"><a href="' + Parameters.PRIVACY_POLICY_URL) + '" target="_blank">');
-            this.tosText.setStringBuilder(new LineBuilder().setParams(TextKey.TOS_TEXT, {
-                "tou":_local1,
-                "_tou":this.endLink,
-                "policy":_local2,
-                "_policy":this.endLink
-            }));
+            this.tosText.setStringBuilder(
+                    new LineBuilder().setParams(
+                            TextKey.TOS_TEXT, {
+                                "tou": _local1, "_tou": this.endLink, "policy": _local2, "_policy": this.endLink
+                            }
+                    )
+            );
             this.configureTextAndAdd(this.tosText);
         }
 
@@ -115,7 +126,7 @@
             if (_local2)
             {
                 this.sendData();
-            };
+            }
         }
 
         private function areInputsValid():Boolean
@@ -137,7 +148,7 @@
             if (!_local2)
             {
                 this.errors.push(TextKey.INELIGIBLE_AGE);
-            };
+            }
             return (_local2);
         }
 
@@ -148,7 +159,7 @@
             if (!_local1)
             {
                 this.errors.push(TextKey.INVALID_BIRTHDATE);
-            };
+            }
             return (_local1);
         }
 
@@ -159,7 +170,7 @@
             if (!_local1)
             {
                 this.errors.push(TextKey.INVALID_EMAIL_ADDRESS);
-            };
+            }
             return (_local1);
         }
 
@@ -170,7 +181,7 @@
             if (!_local1)
             {
                 this.errors.push(TextKey.PASSWORD_TOO_SHORT);
-            };
+            }
             return (_local1);
         }
 
@@ -181,7 +192,7 @@
             if (!_local1)
             {
                 this.errors.push(TextKey.PASSWORDS_DONT_MATCH);
-            };
+            }
             return (_local1);
         }
 
@@ -194,7 +205,7 @@
             else
             {
                 this.displayErrorText((((this.errors.length == 1)) ? this.errors[0] : TextKey.MULTIPLE_ERRORS_MESSAGE));
-            };
+            }
         }
 
         public function displayServerError(_arg1:String):void
@@ -222,8 +233,6 @@
             _local1.signedUpKabamEmail = ((this.checkbox.isChecked()) ? 1 : 0);
             this.register.dispatch(_local1);
         }
-
-
     }
 }
 

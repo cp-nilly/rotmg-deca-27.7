@@ -1,13 +1,14 @@
 ﻿package com.company.assembleegameclient.ui.panels
 {
-    import kabam.rotmg.text.model.TextKey;
     import com.company.assembleegameclient.game.GameSprite;
     import com.company.assembleegameclient.ui.guild.GuildChronicleScreen;
+
     import flash.events.MouseEvent;
 
-    public class GuildChroniclePanel extends ButtonPanel 
-    {
+    import kabam.rotmg.text.model.TextKey;
 
+    public class GuildChroniclePanel extends ButtonPanel
+    {
         public function GuildChroniclePanel(_arg1:GameSprite)
         {
             super(_arg1, TextKey.GUILD_CHRONICLE_TITLE, TextKey.PANEL_VIEW_BUTTON);
@@ -18,8 +19,6 @@
             gs_.mui_.clearInput();
             gs_.addChild(new GuildChronicleScreen(gs_));
         }
-
-
     }
 }
 

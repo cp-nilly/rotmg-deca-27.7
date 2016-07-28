@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class OpenReskinDialogSignal extends Signal 
+    public class OpenReskinDialogSignal extends Signal
     {
-
-
     }
 }
 

@@ -1,16 +1,16 @@
 ﻿package kabam.rotmg.pets.controller.reskin
 {
-    import robotlegs.bender.bundles.mvcs.Command;
-    import kabam.rotmg.pets.data.ReskinPetVO;
-    import kabam.lib.net.impl.SocketServer;
     import kabam.lib.net.api.MessageProvider;
-    import kabam.rotmg.pets.data.PetFormModel;
-    import kabam.rotmg.messaging.impl.ReskinPet;
+    import kabam.lib.net.impl.SocketServer;
     import kabam.rotmg.messaging.impl.GameServerConnection;
+    import kabam.rotmg.messaging.impl.ReskinPet;
+    import kabam.rotmg.pets.data.PetFormModel;
+    import kabam.rotmg.pets.data.ReskinPetVO;
 
-    public class ReskinPetRequestCommand extends Command 
+    import robotlegs.bender.bundles.mvcs.Command;
+
+    public class ReskinPetRequestCommand extends Command
     {
-
         [Inject]
         public var vo:ReskinPetVO;
         [Inject]
@@ -19,7 +19,6 @@
         public var messages:MessageProvider;
         [Inject]
         public var reskinModel:PetFormModel;
-
 
         override public function execute():void
         {
@@ -30,8 +29,6 @@
             _local1.item = this.reskinModel.slotObjectData;
             this.socketServer.sendMessage(_local1);
         }
-
-
     }
 }
 

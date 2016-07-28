@@ -1,11 +1,11 @@
 ﻿package kabam.rotmg.messaging.impl.incoming.pets
 {
-    import kabam.rotmg.messaging.impl.incoming.IncomingMessage;
     import flash.utils.IDataInput;
 
-    public class HatchPetMessage extends IncomingMessage 
-    {
+    import kabam.rotmg.messaging.impl.incoming.IncomingMessage;
 
+    public class HatchPetMessage extends IncomingMessage
+    {
         public var petName:String;
         public var petSkin:int;
 
@@ -19,8 +19,6 @@
             this.petName = _arg1.readUTF();
             this.petSkin = _arg1.readInt();
         }
-
-
     }
 }
 

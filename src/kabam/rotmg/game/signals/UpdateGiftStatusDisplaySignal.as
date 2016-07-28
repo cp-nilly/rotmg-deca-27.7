@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class UpdateGiftStatusDisplaySignal extends Signal 
+    public class UpdateGiftStatusDisplaySignal extends Signal
     {
-
-
     }
 }
 

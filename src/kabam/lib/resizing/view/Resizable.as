@@ -2,11 +2,9 @@
 {
     import flash.geom.Rectangle;
 
-    public interface Resizable 
+    public interface Resizable
     {
-
         function resize(_arg1:Rectangle):void;
-
     }
 }
 

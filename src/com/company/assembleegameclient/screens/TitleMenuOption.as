@@ -1,27 +1,27 @@
 ﻿package com.company.assembleegameclient.screens
 {
-    import flash.display.Sprite;
-    import flash.geom.ColorTransform;
-    import flash.filters.DropShadowFilter;
-    import org.osflash.signals.Signal;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-    import flash.utils.getTimer;
-    import com.company.util.MoreColorUtil;
     import com.company.assembleegameclient.sound.SoundEffectLibrary;
+    import com.company.util.MoreColorUtil;
 
-    public class TitleMenuOption extends Sprite 
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.ColorTransform;
+    import flash.utils.getTimer;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import org.osflash.signals.Signal;
+
+    public class TitleMenuOption extends Sprite
     {
-
         protected static const OVER_COLOR_TRANSFORM:ColorTransform = new ColorTransform(1, (220 / 0xFF), (133 / 0xFF));
         private static const DROP_SHADOW_FILTER:DropShadowFilter = new DropShadowFilter(0, 0, 0, 0.5, 12, 12);
-
         public const clicked:Signal = new Signal();
         public const textField:TextFieldDisplayConcrete = makeTextFieldDisplayConcrete();
         public const changed:Signal = textField.textChanged;
-
         private var colorTransform:ColorTransform;
         private var size:int;
         private var isPulse:Boolean;
@@ -110,7 +110,7 @@
             if (this.isPulse)
             {
                 addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         private function onRemovedFromStage(_arg1:Event):void
@@ -118,7 +118,7 @@
             if (this.isPulse)
             {
                 removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-            };
+            }
         }
 
         private function onEnterFrame(_arg1:Event):void
@@ -133,7 +133,7 @@
             if (_arg1 == this.colorTransform)
             {
                 return;
-            };
+            }
             this.colorTransform = _arg1;
             if (this.colorTransform == null)
             {
@@ -142,7 +142,7 @@
             else
             {
                 this.textField.transform.colorTransform = this.colorTransform;
-            };
+            }
         }
 
         protected function onMouseOver(_arg1:MouseEvent):void
@@ -159,7 +159,7 @@
             else
             {
                 this.setColorTransform(null);
-            };
+            }
         }
 
         protected function onMouseClick(_arg1:MouseEvent):void
@@ -172,8 +172,6 @@
         {
             return ((("[TitleMenuOption " + this.textField.getText()) + "]"));
         }
-
-
     }
 }
 

@@ -1,44 +1,42 @@
 ﻿package kabam.rotmg.ui.view.components
 {
-    import flash.display.Sprite;
-    import org.osflash.signals.natives.NativeSignal;
-    import org.osflash.signals.Signal;
-    import flash.display.GraphicsSolidFill;
-    import flash.display.GraphicsPath;
-    import __AS3__.vec.Vector;
-    import flash.display.IGraphicsData;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Bitmap;
-    import flash.filters.ColorMatrixFilter;
-    import flash.utils.Timer;
-    import flash.geom.Point;
-    import flash.display.BitmapData;
-    import com.company.util.GraphicsUtil;
-    import com.company.util.MoreColorUtil;
-    import com.company.util.AssetLibrary;
-    import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.filters.DropShadowFilter;
-    import flash.events.TimerEvent;
-    import flash.events.MouseEvent;
-    import flash.events.Event;
-    import flash.display.DisplayObject;
     import com.company.assembleegameclient.objects.ObjectLibrary;
     import com.company.assembleegameclient.parameters.Parameters;
+    import com.company.assembleegameclient.util.TextureRedrawer;
+    import com.company.util.AssetLibrary;
+    import com.company.util.GraphicsUtil;
+    import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.DisplayObject;
+    import flash.display.GraphicsPath;
+    import flash.display.GraphicsSolidFill;
+    import flash.display.IGraphicsData;
+    import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+    import flash.filters.ColorMatrixFilter;
+    import flash.filters.DropShadowFilter;
+    import flash.geom.Point;
+    import flash.utils.Timer;
+
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-    import __AS3__.vec.*;
 
-    public class PotionSlotView extends Sprite 
+    import org.osflash.signals.Signal;
+    import org.osflash.signals.natives.NativeSignal;
+
+    public class PotionSlotView extends Sprite
     {
-
         private static const DOUBLE_CLICK_PAUSE:uint = 250;
         private static const DRAG_DIST:int = 3;
-
         public static var BUTTON_WIDTH:int = 84;
         private static var BUTTON_HEIGHT:int = 24;
         private static var SMALL_SIZE:int = 4;
         private static var CENTER_ICON_X:int = 13;
         private static var LEFT_ICON_X:int = -6;
-
         public var position:int;
         public var objectType:int;
         public var click:NativeSignal;
@@ -90,7 +88,9 @@
             this.bg = new Sprite();
             GraphicsUtil.clearPath(this.outerPath);
             GraphicsUtil.drawCutEdgeRect(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT, 4, _arg1, this.outerPath);
-            GraphicsUtil.drawCutEdgeRect(2, 2, (BUTTON_WIDTH - SMALL_SIZE), (BUTTON_HEIGHT - SMALL_SIZE), 4, _arg1, this.innerPath);
+            GraphicsUtil.drawCutEdgeRect(
+                    2, 2, (BUTTON_WIDTH - SMALL_SIZE), (BUTTON_HEIGHT - SMALL_SIZE), 4, _arg1, this.innerPath
+            );
             this.bg.graphics.drawGraphicsData(this.buyOuterGraphicsData);
             this.bg.graphics.drawGraphicsData(this.buyInnerGraphicsData);
             addChild(this.bg);
@@ -108,7 +108,7 @@
             this.drop = new Signal(DisplayObject);
         }
 
-        public function setData(_arg1:int, _arg2:int, _arg3:Boolean, _arg4:int=-1):void
+        public function setData(_arg1:int, _arg2:int, _arg3:Boolean, _arg4:int = -1):void
         {
             var _local6:int;
             var _local7:BitmapData;
@@ -119,7 +119,7 @@
                 if (this.potionIcon != null)
                 {
                     removeChild(this.potionIcon);
-                };
+                }
                 _local7 = ObjectLibrary.getRedrawnTextureFromType(_arg4, 55, false);
                 this.potionIcon = new Bitmap(_local7);
                 this.potionIcon.y = -11;
@@ -129,7 +129,7 @@
                 _local8.x = (_local8.x - 30);
                 _local8.y = (_local8.y - 30);
                 this.potionIconDraggableSprite.addChild(_local8);
-            };
+            }
             var _local5 = (_arg1 > 0);
             if (_local5)
             {
@@ -147,11 +147,11 @@
                 this.bg.graphics.drawGraphicsData(this.buyOuterGraphicsData);
                 this.bg.graphics.drawGraphicsData(this.buyInnerGraphicsData);
                 this.text.x = ((this.costIcon.x - this.text.width) + 6);
-            };
+            }
             if (this.potionIcon)
             {
                 this.potionIcon.x = _local6;
-            };
+            }
             if (!_local5)
             {
                 if (Parameters.data_.contextualPotionBuy)
@@ -165,14 +165,14 @@
                     this.text.setColor(0xAAAAAA);
                     this.costIcon.filters = [this.grayscaleMatrix];
                     this.costIcon.visible = true;
-                };
+                }
             }
             else
             {
                 this.text.setColor(0xFFFFFF);
                 this.costIcon.filters = [];
                 this.costIcon.visible = false;
-            };
+            }
         }
 
         public function setTextString(_arg1:String):void
@@ -190,7 +190,7 @@
             if (this.isDragging)
             {
                 return;
-            };
+            }
             if (_arg1.shiftKey)
             {
                 this.setPendingDoubleClick(false);
@@ -206,8 +206,8 @@
                 {
                     this.setPendingDoubleClick(false);
                     this.buyUse.dispatch();
-                };
-            };
+                }
+            }
         }
 
         private function onMouseDown(_arg1:MouseEvent):void
@@ -215,7 +215,7 @@
             if (!this.costIcon.visible)
             {
                 this.beginDragCheck(_arg1);
-            };
+            }
         }
 
         private function setPendingDoubleClick(_arg1:Boolean):void
@@ -229,7 +229,7 @@
             else
             {
                 this.doubleClickTimer.stop();
-            };
+            }
         }
 
         private function beginDragCheck(_arg1:MouseEvent):void
@@ -257,7 +257,7 @@
                 this.cancelDragCheck(null);
                 this.setPendingDoubleClick(false);
                 this.beginDrag();
-            };
+            }
         }
 
         private function onDoubleClickTimerComplete(_arg1:TimerEvent):void
@@ -291,10 +291,8 @@
             if (this.isDragging)
             {
                 this.potionIconDraggableSprite.stopDrag();
-            };
+            }
         }
-
-
     }
 }
 

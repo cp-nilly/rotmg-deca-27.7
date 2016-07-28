@@ -1,20 +1,20 @@
 ﻿package com.company.assembleegameclient.ui.menu
 {
-    import flash.geom.ColorTransform;
     import com.company.assembleegameclient.objects.Player;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import flash.display.Shape;
     import com.company.util.AssetLibrary;
-    import kabam.rotmg.text.model.TextKey;
-    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    import flash.display.Shape;
     import flash.events.Event;
     import flash.events.MouseEvent;
+    import flash.geom.ColorTransform;
 
-    public class TeleportMenuOption extends MenuOption 
+    import kabam.rotmg.text.model.TextKey;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
+    import kabam.rotmg.text.view.stringBuilder.LineBuilder;
+
+    public class TeleportMenuOption extends MenuOption
     {
-
         private static const inactiveCT:ColorTransform = new ColorTransform((84 / 0xFF), (84 / 0xFF), (84 / 0xFF));
-
         private var player_:Player;
         private var mouseOver_:Boolean = false;
         private var barText_:TextFieldDisplayConcrete;
@@ -64,7 +64,7 @@
                     addChild(this.barText_);
                     addChild(this.barMask);
                     this.barText_.mask = this.barMask;
-                };
+                }
                 _local3 = (this.barTextOrigWidth_ * (1 - (_local2 / Player.MS_BETWEEN_TELEPORT)));
                 this.barMask.width = _local3;
                 setColorTransform(inactiveCT);
@@ -74,7 +74,7 @@
                 if (contains(this.barText_))
                 {
                     removeChild(this.barText_);
-                };
+                }
                 if (this.mouseOver_)
                 {
                     setColorTransform(mouseOverCT);
@@ -82,8 +82,8 @@
                 else
                 {
                     setColorTransform(null);
-                };
-            };
+                }
+            }
         }
 
         override protected function onMouseOver(_arg1:MouseEvent):void
@@ -95,8 +95,6 @@
         {
             this.mouseOver_ = false;
         }
-
-
     }
 }
 

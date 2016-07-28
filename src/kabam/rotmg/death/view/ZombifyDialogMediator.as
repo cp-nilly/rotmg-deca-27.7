@@ -1,15 +1,16 @@
 ﻿package kabam.rotmg.death.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
-    import kabam.rotmg.death.control.HandleNormalDeathSignal;
-    import kabam.rotmg.death.model.DeathModel;
-    import kabam.rotmg.messaging.impl.incoming.Death;
     import flash.display.BitmapData;
 
-    public class ZombifyDialogMediator extends Mediator 
-    {
+    import kabam.rotmg.death.control.HandleNormalDeathSignal;
+    import kabam.rotmg.death.model.DeathModel;
+    import kabam.rotmg.dialogs.control.CloseDialogsSignal;
+    import kabam.rotmg.messaging.impl.incoming.Death;
 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ZombifyDialogMediator extends Mediator
+    {
         [Inject]
         public var view:ZombifyDialog;
         [Inject]
@@ -18,7 +19,6 @@
         public var handleDeath:HandleNormalDeathSignal;
         [Inject]
         public var death:DeathModel;
-
 
         override public function initialize():void
         {
@@ -35,8 +35,6 @@
             this.closeDialogs.dispatch();
             this.handleDeath.dispatch(_local1);
         }
-
-
     }
 }
 

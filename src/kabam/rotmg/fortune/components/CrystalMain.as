@@ -1,28 +1,24 @@
 ﻿package kabam.rotmg.fortune.components
 {
-    import flash.display.Sprite;
-    import flash.display.Bitmap;
-    import __AS3__.vec.Vector;
-    import flash.display.BitmapData;
-    import com.company.util.AssetLibrary;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import flash.filters.ColorMatrixFilter;
+    import com.company.util.AssetLibrary;
     import com.company.util.MoreColorUtil;
+
+    import flash.display.Bitmap;
+    import flash.display.BitmapData;
+    import flash.display.Sprite;
     import flash.events.Event;
-    import __AS3__.vec.*;
+    import flash.filters.ColorMatrixFilter;
 
-    public class CrystalMain extends Sprite 
+    public class CrystalMain extends Sprite
     {
-
         public static const ANIMATION_STAGE_PULSE:int = 0;
         public static const ANIMATION_STAGE_BUZZING:int = 1;
         public static const ANIMATION_STAGE_INNERROTATION:int = 2;
         public static const ANIMATION_STAGE_FLASH:int = 3;
         public static const ANIMATION_STAGE_WAITING:int = 4;
         public static const GLOW_COLOR:int = 0;
-
         private const STARTING_FRAME_INDEX:Number = 176;
-
         public var bigCrystal:Bitmap;
         private var crystalFrames:Vector.<Bitmap>;
         private var animationDuration_:Number = 210;
@@ -46,7 +42,8 @@
                 _local3.filters = [new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix)];
                 this.crystalFrames.push(_local3);
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 3)
             {
@@ -54,7 +51,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 7)
             {
@@ -62,7 +60,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 7)
             {
@@ -70,7 +69,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 5)
             {
@@ -78,7 +78,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             _local2 = 0;
             while (_local2 < 8)
             {
@@ -86,7 +87,8 @@
                 _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
                 this.crystalFrames.push(new Bitmap(_local1));
                 _local2++;
-            };
+            }
+            ;
             this.reset();
             _local1 = AssetLibrary.getImageFromSet("lofiCharBig", 32);
             _local1 = TextureRedrawer.redraw(_local1, this.size_, true, GLOW_COLOR, false);
@@ -164,7 +166,8 @@
                     return;
                 default:
                     this.setAnimation(13, 7);
-            };
+            }
+            ;
         }
 
         private function onRemovedFromStage(_arg1:Event):void
@@ -173,8 +176,6 @@
             this.bigCrystal = null;
             this.crystalFrames = null;
         }
-
-
     }
 }
 

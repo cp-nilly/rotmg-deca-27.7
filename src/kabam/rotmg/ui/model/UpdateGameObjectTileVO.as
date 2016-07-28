@@ -2,9 +2,8 @@
 {
     import com.company.assembleegameclient.objects.GameObject;
 
-    public class UpdateGameObjectTileVO 
+    public class UpdateGameObjectTileVO
     {
-
         public var tileX:int;
         public var tileY:int;
         public var gameObject:GameObject;
@@ -15,7 +14,6 @@
             this.tileY = _arg2;
             this.gameObject = _arg3;
         }
-
     }
 }
 

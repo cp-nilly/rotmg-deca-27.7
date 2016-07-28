@@ -1,18 +1,18 @@
 ﻿package kabam.rotmg.pets.view.components
 {
-    import com.company.assembleegameclient.ui.panels.Panel;
-    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
-    import kabam.rotmg.pets.util.PetsViewAssetFactory;
-    import flash.display.Bitmap;
-    import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.game.GameSprite;
+    import com.company.assembleegameclient.ui.DeprecatedTextButton;
+    import com.company.assembleegameclient.ui.panels.Panel;
+
+    import flash.display.Bitmap;
+
+    import kabam.rotmg.pets.util.PetsViewAssetFactory;
+    import kabam.rotmg.text.view.TextFieldDisplayConcrete;
     import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 
-    public class YardUpgraderPanel extends Panel 
+    public class YardUpgraderPanel extends Panel
     {
-
         private const titleText:TextFieldDisplayConcrete = PetsViewAssetFactory.returnTextfield(0xFFFFFF, 16, true);
-
         private var icon:Bitmap;
         var infoButton:DeprecatedTextButton;
         var upgradeYardButton:DeprecatedTextButton;
@@ -59,7 +59,7 @@
             if (_arg1)
             {
                 this.handleUpgradeYardButton();
-            };
+            }
         }
 
         private function handleIcon():void
@@ -82,10 +82,8 @@
             {
                 this.infoButton.x = ((WIDTH - this.infoButton.width) / 2);
                 this.infoButton.y = ((HEIGHT - this.infoButton.height) - 4);
-            };
+            }
         }
-
-
     }
 }
 

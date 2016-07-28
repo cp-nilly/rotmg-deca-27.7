@@ -2,10 +2,8 @@
 {
     import org.osflash.signals.Signal;
 
-    public class ShowDialogBackgroundSignal extends Signal 
+    public class ShowDialogBackgroundSignal extends Signal
     {
-
-
     }
 }
 

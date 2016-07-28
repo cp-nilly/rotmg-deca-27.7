@@ -1,21 +1,20 @@
 ﻿package kabam.rotmg.classes.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.classes.model.ClassesModel;
-    import __AS3__.vec.Vector;
     import flash.display.DisplayObject;
+
     import kabam.rotmg.classes.model.CharacterClass;
+    import kabam.rotmg.classes.model.ClassesModel;
 
-    public class CharacterSkinListMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class CharacterSkinListMediator extends Mediator
     {
-
         [Inject]
         public var view:CharacterSkinListView;
         [Inject]
         public var model:ClassesModel;
         [Inject]
         public var factory:CharacterSkinListItemFactory;
-
 
         override public function initialize():void
         {
@@ -33,8 +32,6 @@
             var _local2:Vector.<DisplayObject> = this.factory.make(_arg1.skins);
             this.view.setItems(_local2);
         }
-
-
     }
 }
 

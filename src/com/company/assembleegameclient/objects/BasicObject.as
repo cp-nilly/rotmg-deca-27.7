@@ -1,18 +1,16 @@
 ﻿package com.company.assembleegameclient.objects
 {
+    import com.company.assembleegameclient.map.Camera;
     import com.company.assembleegameclient.map.Map;
     import com.company.assembleegameclient.map.Square;
-    import __AS3__.vec.Vector;
-    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
+
     import flash.display.IGraphicsData;
-    import com.company.assembleegameclient.map.Camera;
-    import __AS3__.vec.*;
 
-    public class BasicObject 
+    import kabam.rotmg.stage3D.Object3D.Object3DStage3D;
+
+    public class BasicObject
     {
-
         private static var nextFakeObjectId_:int = 0;
-
         public var map_:Map;
         public var square_:Square;
         public var objectId_:int;
@@ -37,7 +35,6 @@
         {
             return ((0x7F000000 | nextFakeObjectId_++));
         }
-
 
         public function clear():void
         {
@@ -88,7 +85,7 @@
             this.sortVal_ = this.posS_[1];
         }
 
-        public function computeSortValNoCamera(_arg1:Number=12):void
+        public function computeSortValNoCamera(_arg1:Number = 12):void
         {
             this.posW_.length = 0;
             this.posW_.push(this.x_, this.y_, 0, this.x_, this.y_, this.z_);
@@ -105,7 +102,7 @@
             {
                 this.map_ = null;
                 return (false);
-            };
+            }
             this.x_ = _arg2;
             this.y_ = _arg3;
             return (true);
@@ -116,8 +113,6 @@
             this.map_ = null;
             this.square_ = null;
         }
-
-
     }
 }
 

@@ -1,12 +1,9 @@
 ﻿package kabam.rotmg.text.view.stringBuilder
 {
-    import __AS3__.vec.Vector;
     import kabam.rotmg.language.model.StringMap;
-    import __AS3__.vec.*;
 
-    public class AppendingLineBuilder implements StringBuilder 
+    public class AppendingLineBuilder implements StringBuilder
     {
-
         private var data:Vector.<LineData>;
         private var delimiter:String = "\n";
         private var provider:StringMap;
@@ -17,7 +14,9 @@
             super();
         }
 
-        public function pushParams(_arg1:String, _arg2:Object=null, _arg3:String="", _arg4:String=""):AppendingLineBuilder
+        public function pushParams(
+                _arg1:String, _arg2:Object = null, _arg3:String = "", _arg4:String = ""
+        ):AppendingLineBuilder
         {
             this.data.push(new LineData().setKey(_arg1).setTokens(_arg2).setOpeningTags(_arg3).setClosingTags(_arg4));
             return (this);
@@ -41,7 +40,7 @@
             for each (_local2 in this.data)
             {
                 _local1.push(_local2.getString(this.provider));
-            };
+            }
             return (_local1.join(this.delimiter));
         }
 
@@ -54,23 +53,19 @@
         {
             this.data = new Vector.<LineData>();
         }
-
-
     }
 }
 
-import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-import kabam.rotmg.text.model.TextKey;
 import kabam.rotmg.language.model.StringMap;
+import kabam.rotmg.text.model.TextKey;
+import kabam.rotmg.text.view.stringBuilder.StringBuilder;
 
-class LineData 
+class LineData
 {
-
     public var key:String;
     public var tokens:Object;
     public var openingHTMLTags:String = "";
     public var closingHTMLTags:String = "";
-
 
     public function setKey(_arg1:String):LineData
     {
@@ -107,7 +102,7 @@ class LineData
         if (_local3 == null)
         {
             _local3 = this.key;
-        };
+        }
         _local2 = _local2.concat(_local3);
         for (_local4 in this.tokens)
         {
@@ -123,14 +118,12 @@ class LineData
                 if ((((((_local6.length > 0)) && ((_local6.charAt(0) == "{")))) && ((_local6.charAt((_local6.length - 1)) == "}"))))
                 {
                     _local6 = _arg1.getValue(_local6.substr(1, (_local6.length - 2)));
-                };
+                }
                 _local2 = _local2.replace((("{" + _local4) + "}"), _local6);
-            };
-        };
+            }
+        }
         _local2 = _local2.replace(/\\n/g, "\n");
         return (_local2.concat(this.closingHTMLTags));
     }
-
-
 }
 

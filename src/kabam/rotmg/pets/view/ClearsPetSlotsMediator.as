@@ -1,17 +1,16 @@
 ﻿package kabam.rotmg.pets.view
 {
-    import robotlegs.bender.bundles.mvcs.Mediator;
-    import kabam.rotmg.pets.data.PetSlotsState;
     import kabam.rotmg.maploading.signals.ChangeMapSignal;
+    import kabam.rotmg.pets.data.PetSlotsState;
 
-    public class ClearsPetSlotsMediator extends Mediator 
+    import robotlegs.bender.bundles.mvcs.Mediator;
+
+    public class ClearsPetSlotsMediator extends Mediator
     {
-
         [Inject]
         public var petSlotsState:PetSlotsState;
         [Inject]
         public var changeMapSignal:ChangeMapSignal;
-
 
         override public function initialize():void
         {
@@ -27,8 +26,6 @@
         {
             this.petSlotsState.clear();
         }
-
-
     }
 }
 
