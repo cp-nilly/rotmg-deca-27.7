@@ -9,6 +9,7 @@
 	import robotlegs.bender.framework.api.IInjector;
     import kabam.rotmg.pets.data.PetVO;
     import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
+    import kabam.rotmg.pets.view.dialogs.PetPicker;
     import kabam.rotmg.messaging.impl.data.SlotObjectData;
     import kabam.rotmg.pets.data.FeedPetRequestVO;
     import kabam.rotmg.messaging.impl.PetUpgradeRequest;
@@ -35,6 +36,8 @@
         override public function initialize():void
         {
             this.view.init();
+            this.injector = this.injector.createChild();
+            this.injector.map(PetPicker).asSingleton();
             var _local1:PetVO = ((this.petSlotsState.leftSlotPetVO) ? this.petSlotsState.leftSlotPetVO : this.petsModel.getActivePet());
             this.view.setAbilityMeterLabels(((_local1) ? _local1.abilityList : null), ((_local1) ? _local1.getMaxAbilityPower() : 0));
             this.view.openPetPicker.add(this.onOpenPetPicker);
@@ -65,7 +68,7 @@
         private function onOpenPetPicker():void
         {
             this.petSlotsState.caller = FeedPetView;
-            this.openDialog.dispatch(this.injector.getInstance(PetPickerDialog));
+            this.openDialog.dispatch(this.injector.getOrCreateNewInstance(PetPickerDialog));
         }
 
         private function onGoldPurchase(_arg1:int):void

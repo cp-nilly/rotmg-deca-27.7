@@ -5,6 +5,7 @@
     import kabam.rotmg.pets.data.PetSlotsState;
     import kabam.rotmg.pets.controller.UpgradePetSignal;
 	import robotlegs.bender.framework.api.IInjector;
+    import kabam.rotmg.pets.view.dialogs.PetPicker;
     import kabam.rotmg.pets.view.dialogs.PetPickerDialog;
     import kabam.rotmg.pets.data.FusePetRequestVO;
     import kabam.rotmg.messaging.impl.PetUpgradeRequest;
@@ -30,6 +31,8 @@
         override public function initialize():void
         {
             this.view.init(this.petSlotsState);
+            this.injector = this.injector.createChild();
+            this.injector.map(PetPicker).asSingleton();
             this.view.openPetPicker.add(this.onOpenPetPicker);
             this.view.goldPurchase.add(this.onGoldPurchase);
             this.view.famePurchase.add(this.onFamePurchase);
@@ -47,7 +50,7 @@
         {
             this.petSlotsState.caller = FusePetView;
             this.petSlotsState.selected = _arg1;
-            this.openDialog.dispatch(this.injector.getInstance(PetPickerDialog));
+            this.openDialog.dispatch(this.injector.getOrCreateNewInstance(PetPickerDialog));
         }
 
         private function onFamePurchase(_arg1:int):void
