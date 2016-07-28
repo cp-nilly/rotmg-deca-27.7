@@ -15,18 +15,17 @@
         private static const DOWN_COLOR:int = 0xFFFFFF;
         private static const OUT_COLOR:int = 0xB2B2B2;
 
-        public const readyToAlign:Signal = label.textChanged;
-        public const selected:Signal = new Signal(ArenaLeaderboardTab);
-
-        public var label:StaticTextDisplay;
+        public var label:StaticTextDisplay = makeLabel();
         private var filter:ArenaLeaderboardFilter;
         private var isOver:Boolean;
         private var isDown:Boolean;
         private var isSelected:Boolean = false;
 
+        public const readyToAlign:Signal = label.textChanged;
+        public const selected:Signal = new Signal(ArenaLeaderboardTab);
+        
         public function ArenaLeaderboardTab(_arg1:ArenaLeaderboardFilter)
         {
-            this.label = this.makeLabel();
             super();
             this.filter = _arg1;
             this.label.setStringBuilder(new LineBuilder().setParams(_arg1.getName()));

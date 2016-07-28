@@ -62,7 +62,7 @@
             this.waveNumberStringBuilder = new LineBuilder();
             this.runTimeStringBuilder = new StaticStringBuilder();
             super();
-            this.petIconFactory = StaticInjectorContext.getInjector().getOrCreateNewInstance(PetIconFactory);
+            this.petIconFactory = StaticInjectorContext.getInjector().getInstance(PetIconFactory);
             this.rankNumber.setAutoSize(TextFieldAutoSize.RIGHT);
             this.addChildren();
             this.addEventListeners();

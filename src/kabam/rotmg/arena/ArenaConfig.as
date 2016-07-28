@@ -6,6 +6,7 @@
     import robotlegs.bender.extensions.signalCommandMap.api.ISignalCommandMap;
     import kabam.rotmg.arena.service.GetArenaLeaderboardTask;
     import kabam.rotmg.arena.service.GetBestArenaRunTask;
+    import kabam.rotmg.arena.service.ArenaLeaderboardFactory;
     import kabam.rotmg.arena.model.CurrentArenaRunModel;
     import kabam.rotmg.arena.model.BestArenaRunModel;
     import kabam.rotmg.arena.control.ReloadLeaderboard;
@@ -54,6 +55,7 @@
             this.injector.map(BestArenaRunModel).asSingleton();
             this.injector.map(ReloadLeaderboard).asSingleton();
             this.injector.map(ArenaLeaderboardModel).asSingleton();
+            this.injector.map(ArenaLeaderboardFactory).asSingleton();
             this.commandMap.map(ArenaDeathSignal).toCommand(ArenaDeathCommand);
             this.commandMap.map(ImminentArenaWaveSignal).toCommand(ImminentArenaWaveCommand);
             this.commandMap.map(GameClosedSignal).toCommand(ClearCurrentRunCommand);
