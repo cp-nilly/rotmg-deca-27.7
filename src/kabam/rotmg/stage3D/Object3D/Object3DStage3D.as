@@ -79,10 +79,7 @@
             if ((((this.texture_ == null)) && (!((this.bitmapData == null)))))
             {
                 this.texture_ = _arg1.createTexture(
-                        this.bitmapData.width,
-                        this.bitmapData.height,
-                        Context3DTextureFormat.BGRA,
-                        false
+                        this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false
                 );
                 this.texture_.uploadFromBitmapData(this.bitmapData);
             }
@@ -92,10 +89,7 @@
                 {
                     this.bitmapData = missingTextureBitmap;
                     this.texture_ = _arg1.createTexture(
-                            this.bitmapData.width,
-                            this.bitmapData.height,
-                            Context3DTextureFormat.BGRA,
-                            false
+                            this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false
                     );
                     this.texture_.uploadFromBitmapData(this.bitmapData);
                 }

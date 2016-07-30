@@ -12,7 +12,6 @@
     import kabam.rotmg.core.signals.InvalidateDataSignal;
     import kabam.rotmg.core.signals.SetScreenSignal;
     import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
-    import kabam.rotmg.core.signals.TrackPageViewSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.game.logging.LoopMonitor;
     import kabam.rotmg.game.model.GameInitData;
@@ -71,8 +70,6 @@
         [Inject]
         public var hudModelInitialized:HUDModelInitialized;
         [Inject]
-        public var tracking:TrackPageViewSignal;
-        [Inject]
         public var beginnersPackageAvailable:BeginnersPackageAvailableSignal;
         [Inject]
         public var packageAvailable:PackageAvailableSignal;
@@ -119,7 +116,6 @@
             this.view.mapModel = this.mapModel;
             this.view.beginnersPackageModel = this.beginnersPackageModel;
             this.view.connect();
-            this.tracking.dispatch("/gameStarted");
             this.view.showBeginnersPackage = this.showBeginnersPackage;
             this.view.showPackage.add(this.onShowPackage);
             this.newsButtonRefreshSignal.add(this.onNewsButtonRefreshSignal);

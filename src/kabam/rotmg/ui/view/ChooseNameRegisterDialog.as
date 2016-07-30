@@ -9,7 +9,6 @@
 
     public class ChooseNameRegisterDialog extends Dialog
     {
-        private static const TRACKING_TAG:String = "/chooseNameNeedRegister";
         public var cancel:Signal;
         public var register:Signal;
 
@@ -19,8 +18,7 @@
                     TextKey.REGISTER_PROMPT_NOT_REGISTERED,
                     TextKey.CHOOSENAMEREGISTERDIALOG_TEXT,
                     TextKey.REGISTER_PROMPT_CANCEL,
-                    TextKey.REGISTER_PROMPT_REGISTER,
-                    TRACKING_TAG
+                    TextKey.REGISTER_PROMPT_REGISTER
             );
             this.cancel = new NativeMappedSignal(this, LEFT_BUTTON);
             this.register = new NativeMappedSignal(this, RIGHT_BUTTON);

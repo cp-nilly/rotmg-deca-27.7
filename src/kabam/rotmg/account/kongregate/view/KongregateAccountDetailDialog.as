@@ -35,10 +35,7 @@
         {
             var _local4:Frame;
             _local4 = new Frame(
-                    TextKey.KONGREGATEACCOUNTDETAILDIALOG_TITLE,
-                    "",
-                    TextKey.KONGREGATEACCOUNTDETAILDIALOG_RIGHTBUTTON,
-                    "/kongregateCurrentLogin"
+                    TextKey.KONGREGATEACCOUNTDETAILDIALOG_TITLE, "", TextKey.KONGREGATEACCOUNTDETAILDIALOG_RIGHTBUTTON
             );
             addChild(_local4);
             this.loginText_ = new TextFieldDisplayConcrete().setSize(18).setColor(0xB3B3B3);

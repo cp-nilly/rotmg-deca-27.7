@@ -30,8 +30,7 @@
             super(
                     TextKey.REGISTER_WEB_ACCOUNT_DIALOG_TITLE,
                     TextKey.REGISTER_WEB_ACCOUNT_DIALOG_LEFTBUTTON,
-                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_RIGHTBUTTON,
-                    "/kongregateRegisterAccount"
+                    TextKey.REGISTER_WEB_ACCOUNT_DIALOG_RIGHTBUTTON
             );
             this.createAssets();
             this.enableForTabBehavior();

@@ -51,10 +51,7 @@
             ;
             var _local1:Player = this.gs_.map.player_;
             this.guildPlayerList_ = new GuildPlayerList(
-                    50,
-                    0,
-                    (((_local1 == null)) ? "" : _local1.name_),
-                    _local1.guildRank_
+                    50, 0, (((_local1 == null)) ? "" : _local1.name_), _local1.guildRank_
             );
             this.guildPlayerList_.addEventListener(GuildPlayerListEvent.SET_RANK, this.onSetRank);
             this.guildPlayerList_.addEventListener(GuildPlayerListEvent.REMOVE_MEMBER, this.onRemoveMember);
@@ -114,11 +111,7 @@
         private function showError(_arg1:String):void
         {
             var _local2:Dialog = new Dialog(
-                    TextKey.GUILD_CHRONICLE_LEFT,
-                    _arg1,
-                    TextKey.GUILD_CHRONICLE_RIGHT,
-                    null,
-                    "/guildError"
+                    TextKey.GUILD_CHRONICLE_LEFT, _arg1, TextKey.GUILD_CHRONICLE_RIGHT, null, "/guildError"
             );
             _local2.addEventListener(Dialog.LEFT_BUTTON, this.onErrorTextDone);
             stage.addChild(_local2);

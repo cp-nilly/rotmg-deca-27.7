@@ -9,17 +9,11 @@
         private const SERVER:String = "realmofthemadgodhrd.appspot.com";
         private const UNENCRYPTED:String = ("http://" + SERVER);
         private const ENCRYPTED:String = ("https://" + SERVER);
-        private const ANALYTICS:String = "UA-11236645-4";
         private const BUILD_LABEL:String = "RotMG #{VERSION}.{MINOR}";
 
         public function getAppEngineUrl(_arg1:Boolean = false):String
         {
             return (((_arg1) ? this.UNENCRYPTED : this.ENCRYPTED));
-        }
-
-        public function getAnalyticsCode():String
-        {
-            return (this.ANALYTICS);
         }
 
         public function getBuildLabel():String

@@ -39,7 +39,6 @@
                     TextKey.REGISTER_IMPERATIVE,
                     "RegisterWebAccountDialog.leftButton",
                     "RegisterWebAccountDialog.rightButton",
-                    "/registerAccount",
                     326
             );
             this.makeUIElements();

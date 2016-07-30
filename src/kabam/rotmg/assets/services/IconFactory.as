@@ -13,12 +13,7 @@
         public static function makeCoin():BitmapData
         {
             var _local1:BitmapData = TextureRedrawer.resize(
-                    AssetLibrary.getImageFromSet("lofiObj3", 225),
-                    null,
-                    40,
-                    true,
-                    0,
-                    0
+                    AssetLibrary.getImageFromSet("lofiObj3", 225), null, 40, true, 0, 0
             );
             return (cropAndGlowIcon(_local1));
         }
@@ -26,12 +21,7 @@
         public static function makeFortune():BitmapData
         {
             var _local1:BitmapData = TextureRedrawer.resize(
-                    AssetLibrary.getImageFromSet("lofiCharBig", 32),
-                    null,
-                    20,
-                    true,
-                    0,
-                    0
+                    AssetLibrary.getImageFromSet("lofiCharBig", 32), null, 20, true, 0, 0
             );
             return (cropAndGlowIcon(_local1));
         }
@@ -39,12 +29,7 @@
         public static function makeFame():BitmapData
         {
             var _local1:BitmapData = TextureRedrawer.resize(
-                    AssetLibrary.getImageFromSet("lofiObj3", 224),
-                    null,
-                    40,
-                    true,
-                    0,
-                    0
+                    AssetLibrary.getImageFromSet("lofiObj3", 224), null, 40, true, 0, 0
             );
             return (cropAndGlowIcon(_local1));
         }
@@ -52,12 +37,7 @@
         public static function makeGuildFame():BitmapData
         {
             var _local1:BitmapData = TextureRedrawer.resize(
-                    AssetLibrary.getImageFromSet("lofiObj3", 226),
-                    null,
-                    40,
-                    true,
-                    0,
-                    0
+                    AssetLibrary.getImageFromSet("lofiObj3", 226), null, 40, true, 0, 0
             );
             return (cropAndGlowIcon(_local1));
         }

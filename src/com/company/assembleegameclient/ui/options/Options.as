@@ -122,15 +122,9 @@
         private static function makePotionBuy():ChoiceOption
         {
             return (new ChoiceOption(
-                    "contextualPotionBuy",
-                    makeOnOffLabels(),
-                    [
-                        true,
-                        false
-                    ],
-                    TextKey.OPTIONS_CONTEXTUAL_POTION_BUY,
-                    TextKey.OPTIONS_CONTEXTUAL_POTION_BUY_DESC,
-                    null
+                    "contextualPotionBuy", makeOnOffLabels(), [
+                        true, false
+                    ], TextKey.OPTIONS_CONTEXTUAL_POTION_BUY, TextKey.OPTIONS_CONTEXTUAL_POTION_BUY_DESC, null
             ));
         }
 
@@ -181,15 +175,9 @@
         private static function makeClickForGold():ChoiceOption
         {
             return (new ChoiceOption(
-                    "clickForGold",
-                    makeOnOffLabels(),
-                    [
-                        true,
-                        false
-                    ],
-                    TextKey.OPTIONS_CLICK_FOR_GOLD,
-                    TextKey.OPTIONS_CLICK_FOR_GOLD_DESC,
-                    null
+                    "clickForGold", makeOnOffLabels(), [
+                        true, false
+                    ], TextKey.OPTIONS_CLICK_FOR_GOLD, TextKey.OPTIONS_CLICK_FOR_GOLD_DESC, null
             ));
         }
 
@@ -375,23 +363,17 @@
             this.addOptionAndPosition(new KeyMapper("moveUp", TextKey.OPTIONS_MOVE_UP, TextKey.OPTIONS_MOVE_UP_DESC));
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "moveLeft",
-                            TextKey.OPTIONS_MOVE_LEFT,
-                            TextKey.OPTIONS_MOVE_LEFT_DESC
+                            "moveLeft", TextKey.OPTIONS_MOVE_LEFT, TextKey.OPTIONS_MOVE_LEFT_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "moveDown",
-                            TextKey.OPTIONS_MOVE_DOWN,
-                            TextKey.OPTIONS_MOVE_DOWN_DESC
+                            "moveDown", TextKey.OPTIONS_MOVE_DOWN, TextKey.OPTIONS_MOVE_DOWN_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "moveRight",
-                            TextKey.OPTIONS_MOVE_RIGHT,
-                            TextKey.OPTIONS_MOVE_RIGHT_DESC
+                            "moveRight", TextKey.OPTIONS_MOVE_RIGHT, TextKey.OPTIONS_MOVE_RIGHT_DESC
                     )
             );
             this.addOptionAndPosition(this.makeAllowCameraRotation());
@@ -414,30 +396,22 @@
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "useSpecial",
-                            TextKey.OPTIONS_USE_SPECIAL_ABILITY,
-                            TextKey.OPTIONS_USE_SPECIAL_ABILITY_DESC
+                            "useSpecial", TextKey.OPTIONS_USE_SPECIAL_ABILITY, TextKey.OPTIONS_USE_SPECIAL_ABILITY_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "autofireToggle",
-                            TextKey.OPTIONS_AUTOFIRE_TOGGLE,
-                            TextKey.OPTIONS_AUTOFIRE_TOGGLE_DESC
+                            "autofireToggle", TextKey.OPTIONS_AUTOFIRE_TOGGLE, TextKey.OPTIONS_AUTOFIRE_TOGGLE_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "toggleHPBar",
-                            TextKey.OPTIONS_TOGGLE_HPBAR,
-                            TextKey.OPTIONS_TOGGLE_HPBAR_DESC
+                            "toggleHPBar", TextKey.OPTIONS_TOGGLE_HPBAR, TextKey.OPTIONS_TOGGLE_HPBAR_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "resetToDefaultCameraAngle",
-                            TextKey.OPTIONS_RESET_CAMERA,
-                            TextKey.OPTIONS_RESET_CAMERA_DESC
+                            "resetToDefaultCameraAngle", TextKey.OPTIONS_RESET_CAMERA, TextKey.OPTIONS_RESET_CAMERA_DESC
                     )
             );
             this.addOptionAndPosition(
@@ -449,16 +423,12 @@
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "toggleCentering",
-                            TextKey.OPTIONS_TOGGLE_CENTERING,
-                            TextKey.OPTIONS_TOGGLE_CENTERING_DESC
+                            "toggleCentering", TextKey.OPTIONS_TOGGLE_CENTERING, TextKey.OPTIONS_TOGGLE_CENTERING_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "interact",
-                            TextKey.OPTIONS_INTERACT_OR_BUY,
-                            TextKey.OPTIONS_INTERACT_OR_BUY_DESC
+                            "interact", TextKey.OPTIONS_INTERACT_OR_BUY, TextKey.OPTIONS_INTERACT_OR_BUY_DESC
                     )
             );
             this.addOptionAndPosition(makeClickForGold());
@@ -468,30 +438,18 @@
         private function makeAllowCameraRotation():ChoiceOption
         {
             return (new ChoiceOption(
-                    "allowRotation",
-                    makeOnOffLabels(),
-                    [
-                        true,
-                        false
-                    ],
-                    TextKey.OPTIONS_ALLOW_ROTATION,
-                    TextKey.OPTIONS_ALLOW_ROTATION_DESC,
-                    this.onAllowRotationChange
+                    "allowRotation", makeOnOffLabels(), [
+                        true, false
+                    ], TextKey.OPTIONS_ALLOW_ROTATION, TextKey.OPTIONS_ALLOW_ROTATION_DESC, this.onAllowRotationChange
             ));
         }
 
         private function makeAllowMiniMapRotation():ChoiceOption
         {
             return (new ChoiceOption(
-                    "allowMiniMapRotation",
-                    makeOnOffLabels(),
-                    [
-                        true,
-                        false
-                    ],
-                    TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION,
-                    TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION_DESC,
-                    null
+                    "allowMiniMapRotation", makeOnOffLabels(), [
+                        true, false
+                    ], TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION, TextKey.OPTIONS_ALLOW_MINIMAP_ROTATION_DESC, null
             ));
         }
 
@@ -520,52 +478,38 @@
         {
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "useHealthPotion",
-                            TextKey.OPTIONS_USE_BUY_HEALTH,
-                            TextKey.OPTIONS_USE_BUY_HEALTH_DESC
+                            "useHealthPotion", TextKey.OPTIONS_USE_BUY_HEALTH, TextKey.OPTIONS_USE_BUY_HEALTH_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "useMagicPotion",
-                            TextKey.OPTIONS_USE_BUY_MAGIC,
-                            TextKey.OPTIONS_USE_BUY_MAGIC_DESC
+                            "useMagicPotion", TextKey.OPTIONS_USE_BUY_MAGIC, TextKey.OPTIONS_USE_BUY_MAGIC_DESC
                     )
             );
             this.addInventoryOptions();
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "miniMapZoomIn",
-                            TextKey.OPTIONS_MINI_MAP_ZOOM_IN,
-                            TextKey.OPTIONS_MINI_MAP_ZOOM_IN_DESC
+                            "miniMapZoomIn", TextKey.OPTIONS_MINI_MAP_ZOOM_IN, TextKey.OPTIONS_MINI_MAP_ZOOM_IN_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "miniMapZoomOut",
-                            TextKey.OPTIONS_MINI_MAP_ZOOM_OUT,
-                            TextKey.OPTIONS_MINI_MAP_ZOOM_OUT_DESC
+                            "miniMapZoomOut", TextKey.OPTIONS_MINI_MAP_ZOOM_OUT, TextKey.OPTIONS_MINI_MAP_ZOOM_OUT_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "escapeToNexus",
-                            TextKey.OPTIONS_ESCAPE_TO_NEXUS,
-                            TextKey.OPTIONS_ESCAPE_TO_NEXUS_DESC
+                            "escapeToNexus", TextKey.OPTIONS_ESCAPE_TO_NEXUS, TextKey.OPTIONS_ESCAPE_TO_NEXUS_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "options",
-                            TextKey.OPTIONS_SHOW_OPTIONS,
-                            TextKey.OPTIONS_SHOW_OPTIONS_DESC
+                            "options", TextKey.OPTIONS_SHOW_OPTIONS, TextKey.OPTIONS_SHOW_OPTIONS_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "switchTabs",
-                            TextKey.OPTIONS_SWITCH_TABS,
-                            TextKey.OPTIONS_SWITCH_TABS_DESC
+                            "switchTabs", TextKey.OPTIONS_SWITCH_TABS, TextKey.OPTIONS_SWITCH_TABS_DESC
                     )
             );
             this.addOptionAndPosition(
@@ -598,20 +542,13 @@
         {
             var _local1:String = (((Capabilities.os.split(" ")[0] == "Mac")) ? "Command" : "Ctrl");
             var _local2:ChoiceOption = new ChoiceOption(
-                    "inventorySwap",
-                    makeOnOffLabels(),
-                    [
-                        true,
-                        false
-                    ],
-                    TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK,
-                    "",
-                    null
+                    "inventorySwap", makeOnOffLabels(), [
+                        true, false
+                    ], TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK, "", null
             );
             _local2.setTooltipText(
                     new LineBuilder().setParams(
-                            TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK_DESC,
-                            {"key": _local1}
+                            TextKey.OPTIONS_SWITCH_ITEM_IN_BACKPACK_DESC, {"key": _local1}
                     )
             );
             this.addOptionAndPosition(_local2);
@@ -627,8 +564,7 @@
                 _local2.setDescription(new LineBuilder().setParams(TextKey.OPTIONS_INVENTORY_SLOT_N, {"n": _local1}));
                 _local2.setTooltipText(
                         new LineBuilder().setParams(
-                                TextKey.OPTIONS_INVENTORY_SLOT_N_DESC,
-                                {"n": _local1}
+                                TextKey.OPTIONS_INVENTORY_SLOT_N_DESC, {"n": _local1}
                         )
                 );
                 this.addOptionAndPosition(_local2);
@@ -641,24 +577,18 @@
         {
             this.addOptionAndPosition(
                     new KeyMapper(
-                            CHAT,
-                            TextKey.OPTIONS_ACTIVATE_CHAT,
-                            TextKey.OPTIONS_ACTIVATE_CHAT_DESC
+                            CHAT, TextKey.OPTIONS_ACTIVATE_CHAT, TextKey.OPTIONS_ACTIVATE_CHAT_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            CHAT_COMMAND,
-                            TextKey.OPTIONS_START_CHAT,
-                            TextKey.OPTIONS_START_CHAT_DESC
+                            CHAT_COMMAND, TextKey.OPTIONS_START_CHAT, TextKey.OPTIONS_START_CHAT_DESC
                     )
             );
             this.addOptionAndPosition(new KeyMapper(TELL, TextKey.OPTIONS_BEGIN_TELL, TextKey.OPTIONS_BEGIN_TELL_DESC));
             this.addOptionAndPosition(
                     new KeyMapper(
-                            GUILD_CHAT,
-                            TextKey.OPTIONS_BEGIN_GUILD_CHAT,
-                            TextKey.OPTIONS_BEGIN_GUILD_CHAT_DESC
+                            GUILD_CHAT, TextKey.OPTIONS_BEGIN_GUILD_CHAT, TextKey.OPTIONS_BEGIN_GUILD_CHAT_DESC
                     )
             );
             this.addOptionAndPosition(
@@ -676,111 +606,61 @@
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            SCROLL_CHAT_UP,
-                            TextKey.OPTIONS_SCROLL_CHAT_UP,
-                            TextKey.OPTIONS_SCROLL_CHAT_UP_DESC
+                            SCROLL_CHAT_UP, TextKey.OPTIONS_SCROLL_CHAT_UP, TextKey.OPTIONS_SCROLL_CHAT_UP_DESC
                     )
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            SCROLL_CHAT_DOWN,
-                            TextKey.OPTIONS_SCROLL_CHAT_DOWN,
-                            TextKey.OPTIONS_SCROLL_CHAT_DOWN_DESC
+                            SCROLL_CHAT_DOWN, TextKey.OPTIONS_SCROLL_CHAT_DOWN, TextKey.OPTIONS_SCROLL_CHAT_DOWN_DESC
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "forceChatQuality",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_FORCE_CHAT_QUALITY,
-                            TextKey.OPTIONS_FORCE_CHAT_QUALITY_DESC,
-                            null
+                            "forceChatQuality", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_FORCE_CHAT_QUALITY, TextKey.OPTIONS_FORCE_CHAT_QUALITY_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "hidePlayerChat",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_HIDE_PLAYER_CHAT,
-                            TextKey.OPTIONS_HIDE_PLAYER_CHAT_DESC,
-                            null
+                            "hidePlayerChat", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_HIDE_PLAYER_CHAT, TextKey.OPTIONS_HIDE_PLAYER_CHAT_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatStarRequirement",
-                            makeStarSelectLabels(),
-                            [
-                                0,
-                                1,
-                                2,
-                                3,
-                                5,
-                                10
-                            ],
-                            TextKey.OPTIONS_STAR_REQ,
-                            TextKey.OPTIONS_CHAT_STAR_REQ_DESC,
-                            null
+                            "chatStarRequirement", makeStarSelectLabels(), [
+                                0, 1, 2, 3, 5, 10
+                            ], TextKey.OPTIONS_STAR_REQ, TextKey.OPTIONS_CHAT_STAR_REQ_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatAll",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CHAT_ALL,
-                            TextKey.OPTIONS_CHAT_ALL_DESC,
-                            this.onAllChatEnabled
+                            "chatAll", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CHAT_ALL, TextKey.OPTIONS_CHAT_ALL_DESC, this.onAllChatEnabled
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatWhisper",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CHAT_WHISPER,
-                            TextKey.OPTIONS_CHAT_WHISPER_DESC,
-                            this.onAllChatDisabled
+                            "chatWhisper", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CHAT_WHISPER, TextKey.OPTIONS_CHAT_WHISPER_DESC, this.onAllChatDisabled
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatGuild",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CHAT_GUILD,
-                            TextKey.OPTIONS_CHAT_GUILD_DESC,
-                            this.onAllChatDisabled
+                            "chatGuild", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CHAT_GUILD, TextKey.OPTIONS_CHAT_GUILD_DESC, this.onAllChatDisabled
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatTrade",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CHAT_TRADE,
-                            TextKey.OPTIONS_CHAT_TRADE_DESC,
-                            null
+                            "chatTrade", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CHAT_TRADE, TextKey.OPTIONS_CHAT_TRADE_DESC, null
                     )
             );
         }
@@ -858,15 +738,9 @@
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "centerOnPlayer",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CENTER_ON_PLAYER,
-                            TextKey.OPTIONS_CENTER_ON_PLAYER_DESC,
-                            null
+                            "centerOnPlayer", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CENTER_ON_PLAYER, TextKey.OPTIONS_CENTER_ON_PLAYER_DESC, null
                     )
             );
             this.addOptionAndPosition(
@@ -884,41 +758,23 @@
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "showProtips",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_SHOW_TIPS,
-                            TextKey.OPTIONS_SHOW_TIPS_DESC,
-                            null
+                            "showProtips", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_SHOW_TIPS, TextKey.OPTIONS_SHOW_TIPS_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "drawShadows",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_DRAW_SHADOWS,
-                            TextKey.OPTIONS_DRAW_SHADOWS_DESC,
-                            null
+                            "drawShadows", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_DRAW_SHADOWS, TextKey.OPTIONS_DRAW_SHADOWS_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "textBubbles",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_DRAW_TEXT_BUBBLES,
-                            TextKey.OPTIONS_DRAW_TEXT_BUBBLES_DESC,
-                            null
+                            "textBubbles", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_DRAW_TEXT_BUBBLES, TextKey.OPTIONS_DRAW_TEXT_BUBBLES_DESC, null
                     )
             );
             this.addOptionAndPosition(
@@ -982,16 +838,9 @@
             ;
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "GPURender",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_HARDWARE_ACC_TITLE,
-                            _local1,
-                            null,
-                            _local2
+                            "GPURender", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_HARDWARE_ACC_TITLE, _local1, null, _local2
                     )
             );
             if (Capabilities.playerType == "Desktop")
@@ -1013,41 +862,23 @@
             ;
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "toggleBarText",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_TOGGLE_BARTEXT,
-                            TextKey.OPTIONS_TOGGLE_BARTEXT_DESC,
-                            onBarTextToggle
+                            "toggleBarText", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_TOGGLE_BARTEXT, TextKey.OPTIONS_TOGGLE_BARTEXT_DESC, onBarTextToggle
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "particleEffect",
-                            makeHighLowLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_TOGGLE_PARTICLE_EFFECT,
-                            TextKey.OPTIONS_TOGGLE_PARTICLE_EFFECT_DESC,
-                            null
+                            "particleEffect", makeHighLowLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_TOGGLE_PARTICLE_EFFECT, TextKey.OPTIONS_TOGGLE_PARTICLE_EFFECT_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "HPBar",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_HPBAR,
-                            TextKey.OPTIONS_HPBAR_DESC,
-                            null
+                            "HPBar", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_HPBAR, TextKey.OPTIONS_HPBAR_DESC, null
                     )
             );
         }
@@ -1072,15 +903,9 @@
         {
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "playMusic",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_PLAY_MUSIC,
-                            TextKey.OPTIONS_PLAY_MUSIC_DESC,
-                            this.onPlayMusicChange
+                            "playMusic", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_PLAY_MUSIC, TextKey.OPTIONS_PLAY_MUSIC_DESC, this.onPlayMusicChange
                     )
             );
             this.addOptionAndPosition(new SliderOption("musicVolume", this.onMusicVolumeChange), -120, 15);
@@ -1100,15 +925,9 @@
             this.addOptionAndPosition(new SliderOption("SFXVolume", this.onSoundEffectsVolumeChange), -120, 34);
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "playPewPew",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_PLAY_WEAPON_SOUNDS,
-                            TextKey.OPTIONS_PLAY_WEAPON_SOUNDS_DESC,
-                            null
+                            "playPewPew", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_PLAY_WEAPON_SOUNDS, TextKey.OPTIONS_PLAY_WEAPON_SOUNDS_DESC, null
                     )
             );
         }
@@ -1119,8 +938,7 @@
                     new ChoiceOption(
                             "showProtips",
                             new <StringBuilder>[
-                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW),
-                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW)
+                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW), makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW)
                             ],
                             [
                                 Parameters.data_.showProtips,
@@ -1134,18 +952,11 @@
             this.addOptionAndPosition(new NullOption());
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "showProtips",
-                            new <StringBuilder>[
-                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW),
-                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW)
-                            ],
-                            [
-                                Parameters.data_.showProtips,
-                                Parameters.data_.showProtips
-                            ],
-                            TextKey.OPTIONS_LEGAL_TOS,
-                            TextKey.OPTIONS_LEGAL_TOS_DESC,
-                            this.onLegalTOSClick
+                            "showProtips", new <StringBuilder>[
+                                makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW), makeLineBuilder(TextKey.OPTIONS_LEGAL_VIEW)
+                            ], [
+                                Parameters.data_.showProtips, Parameters.data_.showProtips
+                            ], TextKey.OPTIONS_LEGAL_TOS, TextKey.OPTIONS_LEGAL_TOS_DESC, this.onLegalTOSClick
                     )
             );
             this.addOptionAndPosition(new NullOption());
@@ -1168,39 +979,21 @@
             );
             this.addOptionAndPosition(
                     new KeyMapper(
-                            "friendList",
-                            TextKey.OPTIONS_SHOW_FRIEND_LIST,
-                            TextKey.OPTIONS_SHOW_FRIEND_LIST_DESC
+                            "friendList", TextKey.OPTIONS_SHOW_FRIEND_LIST, TextKey.OPTIONS_SHOW_FRIEND_LIST_DESC
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "chatFriend",
-                            makeOnOffLabels(),
-                            [
-                                true,
-                                false
-                            ],
-                            TextKey.OPTIONS_CHAT_FRIEND,
-                            TextKey.OPTIONS_CHAT_FRIEND_DESC,
-                            null
+                            "chatFriend", makeOnOffLabels(), [
+                                true, false
+                            ], TextKey.OPTIONS_CHAT_FRIEND, TextKey.OPTIONS_CHAT_FRIEND_DESC, null
                     )
             );
             this.addOptionAndPosition(
                     new ChoiceOption(
-                            "friendStarRequirement",
-                            makeStarSelectLabels(),
-                            [
-                                0,
-                                1,
-                                2,
-                                3,
-                                5,
-                                10
-                            ],
-                            TextKey.OPTIONS_STAR_REQ,
-                            TextKey.OPTIONS_FRIEND_STAR_REQ_DESC,
-                            null
+                            "friendStarRequirement", makeStarSelectLabels(), [
+                                0, 1, 2, 3, 5, 10
+                            ], TextKey.OPTIONS_STAR_REQ, TextKey.OPTIONS_FRIEND_STAR_REQ_DESC, null
                     )
             );
         }

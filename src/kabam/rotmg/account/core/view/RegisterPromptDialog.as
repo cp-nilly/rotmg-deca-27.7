@@ -19,7 +19,6 @@
                     _arg1,
                     TextKey.REGISTER_PROMPT_CANCEL,
                     TextKey.REGISTER_PROMPT_REGISTER,
-                    "/needRegister",
                     _arg2
             );
             this.cancel = new NativeMappedSignal(this, LEFT_BUTTON);

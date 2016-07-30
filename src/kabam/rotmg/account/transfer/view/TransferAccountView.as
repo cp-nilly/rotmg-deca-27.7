@@ -43,7 +43,6 @@
                     "Register your account on realmofthemadgod.com",
                     "RegisterWebAccountDialog.leftButton",
                     "RegisterWebAccountDialog.rightButton",
-                    "",
                     326
             );
             this.kbmEmail = _arg1;

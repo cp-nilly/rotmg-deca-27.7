@@ -9,10 +9,8 @@
     import kabam.rotmg.characters.model.CharacterModel;
     import kabam.rotmg.classes.model.CharacterClass;
     import kabam.rotmg.classes.model.ClassesModel;
-    import kabam.rotmg.core.service.TrackingData;
     import kabam.rotmg.core.signals.HideTooltipsSignal;
     import kabam.rotmg.core.signals.ShowTooltipSignal;
-    import kabam.rotmg.core.signals.TrackEventSignal;
     import kabam.rotmg.dialogs.control.OpenDialogSignal;
     import kabam.rotmg.game.model.GameInitData;
     import kabam.rotmg.game.signals.PlayGameSignal;
@@ -23,8 +21,6 @@
     {
         [Inject]
         public var view:CurrentCharacterRect;
-        [Inject]
-        public var track:TrackEventSignal;
         [Inject]
         public var playGame:PlayGameSignal;
         [Inject]
@@ -69,18 +65,7 @@
             var _local2:CharacterClass = this.classesModel.getCharacterClass(_arg1.objectType());
             _local2.setIsSelected(true);
             _local2.skins.getSkin(_arg1.skinType()).setIsSelected(true);
-            this.trackCharacterSelection(_arg1);
             this.launchGame(_arg1);
-        }
-
-        private function trackCharacterSelection(_arg1:SavedCharacter):void
-        {
-            var _local2:TrackingData = new TrackingData();
-            _local2.category = "character";
-            _local2.action = "select";
-            _local2.label = _arg1.displayId();
-            _local2.value = _arg1.level();
-            this.track.dispatch(_local2);
         }
 
         private function launchGame(_arg1:SavedCharacter):void

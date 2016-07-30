@@ -53,20 +53,14 @@
         }
 
         public function setProgramConstantsFromMatrix(
-                _arg1:String,
-                _arg2:int,
-                _arg3:Matrix3D,
-                _arg4:Boolean = false
+                _arg1:String, _arg2:int, _arg3:Matrix3D, _arg4:Boolean = false
         ):void
         {
             this.context3D.setProgramConstantsFromMatrix(_arg1, _arg2, _arg3, _arg4);
         }
 
         public function setProgramConstantsFromVector(
-                _arg1:String,
-                _arg2:int,
-                _arg3:Vector.<Number>,
-                _arg4:int = -1
+                _arg1:String, _arg2:int, _arg3:Vector.<Number>, _arg4:int = -1
         ):void
         {
             this.context3D.setProgramConstantsFromVector(_arg1, _arg2, _arg3, _arg4);
