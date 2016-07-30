@@ -2,7 +2,6 @@
 {
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.StageProxy;
-    import com.company.googleanalytics.GA;
     import com.company.util.GraphicsUtil;
 
     import flash.display.CapsStyle;
@@ -35,7 +34,6 @@
         public var rect_:Shape;
         public var textText_:TextFieldDisplayConcrete;
         public var titleText_:TextFieldDisplayConcrete = null;
-        public var analyticsPageName_:String = null;
         public var offsetX:Number = 0;
         public var offsetY:Number = 0;
         public var stageProxy:StageProxy;
@@ -46,13 +44,7 @@
         public var dialogWidth:int;
         private var outlineFill_:GraphicsSolidFill = new GraphicsSolidFill(0xFFFFFF, 1);
         private var lineStyle_:GraphicsStroke = new GraphicsStroke(
-                1,
-                false,
-                LineScaleMode.NORMAL,
-                CapsStyle.NONE,
-                JointStyle.ROUND,
-                3,
-                outlineFill_
+                1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, outlineFill_
         );
         private var backgroundFill_:GraphicsSolidFill = new GraphicsSolidFill(0x363636, 1);
         protected var path_:GraphicsPath = new GraphicsPath(new Vector.<int>(), new Vector.<Number>());
@@ -63,14 +55,10 @@
         private var rightButtonKey:String;
         private var replaceTokens:Object;
         protected const graphicsData_:Vector.<IGraphicsData> = new <IGraphicsData>[
-            lineStyle_,
-            backgroundFill_,
-            path_,
-            GraphicsUtil.END_FILL,
-            GraphicsUtil.END_STROKE
+            lineStyle_, backgroundFill_, path_, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE
         ];
 
-        public function StaticDialog(_arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:String)
+        public function StaticDialog(_arg1:String, _arg2:String, _arg3:String, _arg4:String)
         {
             this.box_ = new Sprite();
             this.rect_ = new Shape();
@@ -81,7 +69,6 @@
             this.rightButtonKey = _arg4;
             super();
             this.stageProxy = new StageProxy(this);
-            this.analyticsPageName_ = _arg5;
             this._makeUIAndAdd(_arg2, _arg1);
             this.makeUIAndAdd();
             this.uiWaiter.complete.addOnce(this.onComplete);
@@ -177,30 +164,13 @@
         private function onComplete():void
         {
             this.draw();
-            this.positionDialogAndTryAnalytics();
+            this.positionDialog();
         }
 
-        private function positionDialogAndTryAnalytics():void
+        private function positionDialog():void
         {
             this.box_.x = ((this.offsetX + (this.stageProxy.getStageWidth() / 2)) - (this.box_.width / 2));
             this.box_.y = ((this.offsetY + (this.stageProxy.getStageHeight() / 2)) - (this.getBoxHeight() / 2));
-            if (this.analyticsPageName_ != null)
-            {
-                this.tryAnalytics();
-            }
-            ;
-        }
-
-        private function tryAnalytics():void
-        {
-            try
-            {
-                GA.global().trackPageview(this.analyticsPageName_);
-            }
-            catch (error:Error)
-            {
-            }
-            ;
         }
 
         private function draw():void
@@ -237,18 +207,9 @@
         {
             GraphicsUtil.clearPath(this.path_);
             GraphicsUtil.drawCutEdgeRect(
-                    0,
-                    0,
-                    this.dialogWidth,
-                    (this.getBoxHeight() + this.bottomSpace),
-                    4,
-                    [
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    this.path_
+                    0, 0, this.dialogWidth, (this.getBoxHeight() + this.bottomSpace), 4, [
+                        1, 1, 1, 1
+                    ], this.path_
             );
             var _local1:Graphics = this.rect_.graphics;
             _local1.clear();

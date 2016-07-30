@@ -1,7 +1,6 @@
 ﻿package com.company.assembleegameclient.account.ui
 {
     import com.company.assembleegameclient.ui.DeprecatedClickableText;
-    import com.company.googleanalytics.GA;
     import com.company.util.GraphicsUtil;
 
     import flash.display.CapsStyle;
@@ -27,7 +26,6 @@
         public var titleText_:TextFieldDisplayConcrete;
         public var leftButton_:DeprecatedClickableText;
         public var rightButton_:DeprecatedClickableText;
-        public var analyticsPageName_:String;
         public var textInputFields_:Vector.<TextInputField> = new Vector.<TextInputField>();
         public var navigationLinks_:Vector.<DeprecatedClickableText> = new Vector.<DeprecatedClickableText>();
         public var w_:int = 288;
@@ -52,7 +50,7 @@
             GraphicsUtil.END_STROKE
         ];
 
-        public function Frame(_arg1:String, _arg2:String, _arg3:String, _arg4:String = "", _arg5:int = 288)
+        public function Frame(_arg1:String, _arg2:String, _arg3:String, _arg5:int = 288)
         {
             super();
             this.w_ = _arg5;
@@ -65,7 +63,6 @@
             addChild(this.titleText_);
             this.makeAndAddLeftButton(_arg2);
             this.makeAndAddRightButton(_arg3);
-            this.analyticsPageName_ = _arg4;
             filters = [new DropShadowFilter(0, 0, 0, 0.5, 12, 12)];
             addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         }
@@ -216,7 +213,6 @@
             {
                 stage.focus = this.textInputFields_[0].inputText_;
             }
-            ((this.analyticsPageName_) && (GA.global().trackPageview(this.analyticsPageName_)));
         }
 
         protected function draw():void

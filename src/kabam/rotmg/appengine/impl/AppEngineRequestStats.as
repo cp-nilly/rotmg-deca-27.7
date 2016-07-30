@@ -61,8 +61,7 @@ class StatsWatch extends Watch
     function report():String
     {
         return (STATS_PATTERN.replace(MEAN, this.mean).replace(COUNT, this.count).replace(OK, this.ok).replace(
-                NAME,
-                name
+                NAME, name
         ));
     }
 }

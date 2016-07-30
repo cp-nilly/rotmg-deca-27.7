@@ -131,10 +131,10 @@
         private function onComplete():void
         {
             this.draw();
-            this.positionDialogAndTryAnalytics();
+            this.positionDialog();
         }
 
-        private function positionDialogAndTryAnalytics():void
+        private function positionDialog():void
         {
             this.box_.x = ((this.offsetX + (WebMain.STAGE.stageWidth / 2)) - (this.box_.width / 2));
             this.box_.y = ((this.offsetY + (WebMain.STAGE.stageHeight / 2)) - (this.getBoxHeight() / 2));

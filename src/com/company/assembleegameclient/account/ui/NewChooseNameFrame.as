@@ -14,7 +14,7 @@
 
         public function NewChooseNameFrame()
         {
-            super(TextKey.CHOOSE_NAME_TITLE, TextKey.FRAME_CANCEL, TextKey.CHOOSE_NAME_CHOOSE, "/newChooseName");
+            super(TextKey.CHOOSE_NAME_TITLE, TextKey.FRAME_CANCEL, TextKey.CHOOSE_NAME_CHOOSE);
             this.name_ = new TextInputField(TextKey.NEWCHOOSENAMEFRAME_NAME, false);
             this.name_.inputText_.restrict = "A-Za-z";
             var _local1:int = 10;

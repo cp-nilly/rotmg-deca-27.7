@@ -2,7 +2,6 @@
 {
     import com.company.assembleegameclient.ui.DeprecatedTextButton;
     import com.company.assembleegameclient.util.StageProxy;
-    import com.company.googleanalytics.GA;
     import com.company.util.GraphicsUtil;
 
     import flash.display.CapsStyle;
@@ -35,7 +34,6 @@
         public var rect_:Shape;
         public var textText_:TextFieldDisplayConcrete;
         public var titleText_:TextFieldDisplayConcrete = null;
-        public var analyticsPageName_:String = null;
         public var offsetX:Number = 0;
         public var offsetY:Number = 0;
         public var stageProxy:StageProxy;
@@ -61,7 +59,7 @@
         ];
 
         public function Dialog(
-                _arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:String, _arg6:Object = null
+                _arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg6:Object = null
         )
         {
             this.box_ = new Sprite();
@@ -73,7 +71,6 @@
             this.rightButtonKey = _arg4;
             super();
             this.stageProxy = new StageProxy(this);
-            this.analyticsPageName_ = _arg5;
             this._makeUIAndAdd(_arg2, _arg1);
             this.makeUIAndAdd();
             this.uiWaiter.complete.addOnce(this.onComplete);
@@ -170,28 +167,13 @@
         private function onComplete():void
         {
             this.draw();
-            this.positionDialogAndTryAnalytics();
+            this.positionDialog();
         }
 
-        private function positionDialogAndTryAnalytics():void
+        private function positionDialog():void
         {
             this.box_.x = ((this.offsetX + (this.stageProxy.getStageWidth() / 2)) - (this.box_.width / 2));
             this.box_.y = ((this.offsetY + (this.stageProxy.getStageHeight() / 2)) - (this.getBoxHeight() / 2));
-            if (this.analyticsPageName_ != null)
-            {
-                this.tryAnalytics();
-            }
-        }
-
-        private function tryAnalytics():void
-        {
-            try
-            {
-                GA.global().trackPageview(this.analyticsPageName_);
-            }
-            catch (error:Error)
-            {
-            }
         }
 
         private function draw():void

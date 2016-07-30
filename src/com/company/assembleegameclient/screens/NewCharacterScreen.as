@@ -3,7 +3,6 @@
     import com.company.assembleegameclient.appengine.SavedCharactersList;
     import com.company.assembleegameclient.constants.ScreenTypes;
     import com.company.assembleegameclient.objects.ObjectLibrary;
-    import com.company.googleanalytics.GA;
     import com.company.rotmg.graphics.ScreenGraphic;
 
     import flash.display.Sprite;
@@ -90,7 +89,6 @@
             this.backButton_.y = 550;
             this.creditDisplay_.x = stage.stageWidth;
             this.creditDisplay_.y = 20;
-            GA.global().trackPageview("/newCharScreen");
         }
 
         private function onBackClick(_arg1:Event):void
@@ -122,7 +120,6 @@
             }
             var _local3:int = _local2.objectType();
             var _local4:String = ObjectLibrary.typeToDisplayId_[_local3];
-            GA.global().trackEvent("character", "create", _local4);
             this.selected.dispatch(_local3);
         }
 

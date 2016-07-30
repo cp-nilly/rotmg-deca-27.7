@@ -11,7 +11,6 @@
 
     public class CharacterSlotNeedGoldDialog extends Sprite
     {
-        private static const ANALYTICS_PAGE:String = "/charSlotNeedGold";
         public const buyGold:Signal = new Signal();
         public const cancel:Signal = new Signal();
         private var dialog:Dialog;
@@ -29,7 +28,7 @@
         private function makeDialog():void
         {
             this.dialog = new Dialog(
-                    TextKey.NOT_ENOUGH_GOLD, "", TextKey.FRAME_CANCEL, TextKey.BUY_GOLD, ANALYTICS_PAGE
+                    TextKey.NOT_ENOUGH_GOLD, "", TextKey.FRAME_CANCEL, TextKey.BUY_GOLD
             );
             this.dialog.setTextParams(TextKey.CHARACTERSLOTNEEDGOLDDIALOG_PRICE, {"price": this.price});
             addChild(this.dialog);

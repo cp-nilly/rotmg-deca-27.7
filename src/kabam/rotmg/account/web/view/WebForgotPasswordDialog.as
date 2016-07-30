@@ -22,8 +22,7 @@
             super(
                     "WebForgotPasswordDialog.title",
                     "WebForgotPasswordDialog.leftButton",
-                    "WebForgotPasswordDialog.rightButton",
-                    "/forgotPassword"
+                    "WebForgotPasswordDialog.rightButton"
             );
             this.emailInput = new TextInputField("WebForgotPasswordDialog.email", false);
             addTextInputField(this.emailInput);

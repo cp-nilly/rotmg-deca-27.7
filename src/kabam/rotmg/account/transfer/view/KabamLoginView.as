@@ -31,10 +31,7 @@
         public function KabamLoginView()
         {
             super(
-                    "Kabam.com account transfer",
-                    TextKey.WEB_LOGIN_DIALOG_LEFT,
-                    TextKey.WEB_LOGIN_DIALOG_RIGHT,
-                    "/signIn"
+                    "Kabam.com account transfer", TextKey.WEB_LOGIN_DIALOG_LEFT, TextKey.WEB_LOGIN_DIALOG_RIGHT
             );
             this.makeUI();
             this.forgot = new NativeMappedSignal(this.forgotText, MouseEvent.CLICK);

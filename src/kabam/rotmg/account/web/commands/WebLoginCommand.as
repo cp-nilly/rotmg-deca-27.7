@@ -13,11 +13,9 @@
     import kabam.rotmg.account.core.signals.UpdateAccountInfoSignal;
     import kabam.rotmg.account.web.model.AccountData;
     import kabam.rotmg.core.model.ScreenModel;
-    import kabam.rotmg.core.service.TrackingData;
     import kabam.rotmg.core.signals.InvalidateDataSignal;
     import kabam.rotmg.core.signals.SetScreenWithValidDataSignal;
     import kabam.rotmg.core.signals.TaskErrorSignal;
-    import kabam.rotmg.core.signals.TrackEventSignal;
     import kabam.rotmg.dialogs.control.CloseDialogsSignal;
     import kabam.rotmg.packages.services.GetPackagesTask;
 
@@ -35,8 +33,6 @@
         public var loginError:TaskErrorSignal;
         [Inject]
         public var updateLogin:UpdateAccountInfoSignal;
-        [Inject]
-        public var track:TrackEventSignal;
         [Inject]
         public var invalidate:InvalidateDataSignal;
         [Inject]
@@ -61,7 +57,6 @@
         {
             var _local1:TaskSequence = new TaskSequence();
             _local1.add(new DispatchSignalTask(this.closeDialogs));
-            _local1.add(new DispatchSignalTask(this.track, this.getTrackingData()));
             _local1.add(new DispatchSignalTask(this.updateLogin));
             _local1.add(new DispatchSignalTask(this.invalidate));
             _local1.add(this.getPackageTask);
@@ -85,14 +80,6 @@
                 _local1 = CharacterSelectionAndNewsScreen;
             }
             return (new _local1());
-        }
-
-        private function getTrackingData():TrackingData
-        {
-            var _local1:TrackingData = new TrackingData();
-            _local1.category = "account";
-            _local1.action = "signedIn";
-            return (_local1);
         }
     }
 }

@@ -24,8 +24,7 @@
             super(
                     TextKey.WEB_CHANGE_PASSWORD_TITLE,
                     TextKey.WEB_CHANGE_PASSWORD_LEFT,
-                    TextKey.WEB_CHANGE_PASSWORD_RIGHT,
-                    "/changePassword"
+                    TextKey.WEB_CHANGE_PASSWORD_RIGHT
             );
             this.password_ = new TextInputField(TextKey.WEB_CHANGE_PASSWORD_PASSWORD, true);
             addTextInputField(this.password_);

@@ -23,7 +23,7 @@
                 _arg1:String, _arg2:String, _arg3:String, _arg4:String, _arg5:FriendRequestVO, _arg6:Object = null
         )
         {
-            super(_arg1, _arg2, _arg3, _arg4, null, _arg6);
+            super(_arg1, _arg2, _arg3, _arg4, _arg6);
             this._friendRequestVO = _arg5;
             this.closeDialogComponent.add(this, Dialog.RIGHT_BUTTON);
             this.closeDialogComponent.add(this, Dialog.LEFT_BUTTON);

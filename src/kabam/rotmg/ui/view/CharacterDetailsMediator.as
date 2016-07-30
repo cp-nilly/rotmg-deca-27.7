@@ -5,7 +5,6 @@
     import com.company.assembleegameclient.parameters.Parameters;
     import com.company.assembleegameclient.ui.icons.IconButtonFactory;
     import com.company.assembleegameclient.ui.options.Options;
-    import com.company.googleanalytics.GA;
 
     import kabam.rotmg.chat.model.TellModel;
     import kabam.rotmg.ui.model.HUDModel;
@@ -63,7 +62,6 @@
         {
             this.tellModel.clearRecipients();
             this.hudModel.gameSprite.gsc_.escape();
-            GA.global().trackEvent("enterPortal", "Nexus Button");
             Parameters.data_.needsRandomRealm = false;
             Parameters.save();
         }
@@ -71,7 +69,6 @@
         private function onGotoOptions():void
         {
             this.hudModel.gameSprite.mui_.clearInput();
-            GA.global().trackEvent("options", "Options Button");
             this.hudModel.gameSprite.addChild(new Options(this.hudModel.gameSprite));
         }
 

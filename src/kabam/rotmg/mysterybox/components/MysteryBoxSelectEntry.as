@@ -206,16 +206,12 @@
             if (this.mbi.isOnSale())
             {
                 this.sale = this.getText(
-                        this.onSaleString,
-                        int(((320 * MysteryBoxSelectModal.modalWidth) / 415)),
-                        0
+                        this.onSaleString, int(((320 * MysteryBoxSelectModal.modalWidth) / 415)), 0
                 ).setColor(0xFF00);
                 addChild(this.sale);
                 _local1 = this.mbi.getSaleTimeLeftStringBuilder();
                 _local2 = this.getText(
-                        "",
-                        (int(((250 * MysteryBoxSelectModal.modalWidth) / 415)) - 32),
-                        46
+                        "", (int(((250 * MysteryBoxSelectModal.modalWidth) / 415)) - 32), 46
                 ).setColor(0xFF0000);
                 _local2.setStringBuilder(_local1);
                 addChild(_local2);
@@ -238,11 +234,7 @@
         }
 
         public function getText(
-                _arg1:String,
-                _arg2:int,
-                _arg3:int,
-                _arg4:int = 12,
-                _arg5:Boolean = false
+                _arg1:String, _arg2:int, _arg3:int, _arg4:int = 12, _arg5:Boolean = false
         ):TextFieldDisplayConcrete
         {
             var _local6:TextFieldDisplayConcrete = new TextFieldDisplayConcrete().setSize(_arg4).setColor(0xFFFFFF).setTextWidth((MysteryBoxSelectModal.modalWidth - 185));
@@ -294,8 +286,7 @@
             this.infoImage.height = ((598 - (_local1 * 2)) - 2);
             var _local2:Point = this.globalToLocal(
                     new Point(
-                            ((MysteryBoxSelectModal.getRightBorderX() + 1) + 14),
-                            (2 + _local1)
+                            ((MysteryBoxSelectModal.getRightBorderX() + 1) + 14), (2 + _local1)
                     )
             );
             this.infoImage.x = _local2.x;

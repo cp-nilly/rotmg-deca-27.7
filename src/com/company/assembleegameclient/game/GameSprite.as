@@ -13,7 +13,6 @@
     import com.company.assembleegameclient.ui.RankText;
     import com.company.assembleegameclient.ui.menu.PlayerMenu;
     import com.company.assembleegameclient.util.TextureRedrawer;
-    import com.company.googleanalytics.GA;
     import com.company.util.CachingColorTransformer;
     import com.company.util.MoreColorUtil;
     import com.company.util.MoreObjectUtil;
@@ -23,7 +22,6 @@
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import flash.external.ExternalInterface;
     import flash.filters.ColorMatrixFilter;
     import flash.utils.ByteArray;
     import flash.utils.getTimer;
@@ -266,7 +264,6 @@
             if (((((((!((map.name_ == "Kitchen"))) && (!((map.name_ == "Tutorial"))))) && (!((map.name_ == "Nexus Explanation"))))) && ((Parameters.data_.watchForTutorialExit == true))))
             {
                 Parameters.data_.watchForTutorialExit = false;
-                this.callTracking('rotmg.Marketing.track("tutorialComplete")');
                 _local3["fteStepCompleted"] = 9900;
                 _local2.sendRequest("/log/logFteStep", _local3);
             }
@@ -280,7 +277,6 @@
                 if (Parameters.data_.needsTutorial == true)
                 {
                     Parameters.data_.watchForTutorialExit = true;
-                    this.callTracking('rotmg.Marketing.track("install")');
                     _local3["fteStepCompleted"] = 100;
                     _local2.sendRequest("/log/logFteStep", _local3);
                 }
@@ -427,21 +423,6 @@
             addChild(this.rankText_);
         }
 
-        private function callTracking(_arg1:String):void
-        {
-            if (ExternalInterface.available == false)
-            {
-                return;
-            }
-            try
-            {
-                ExternalInterface.call(_arg1);
-            }
-            catch (err:Error)
-            {
-            }
-        }
-
         private function startTutorial():void
         {
             tutorial_ = new Tutorial(this);
@@ -546,7 +527,6 @@
             if (this.frameTimeSum_ > 300000)
             {
                 _local7 = int(Math.round(((1000 * this.frameTimeCount_) / this.frameTimeSum_)));
-                GA.global().trackEvent("performance", "frameRate", map.name_, _local7);
                 this.frameTimeCount_ = 0;
                 this.frameTimeSum_ = 0;
             }
