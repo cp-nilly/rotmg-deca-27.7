@@ -302,7 +302,7 @@
                         PopupWindowBackground.TYPE_TRANSPARENT_WITHOUT_HEADER
                 );
                 this.infoImageBorder.x = this.infoImage.x;
-                this.infoImage.y--;
+                this.infoImageBorder.y = (this.infoImage.y - 1);
                 addChild(this.infoImageBorder);
                 _local3 = [
                     3.0742,
