@@ -3829,6 +3829,180 @@
       <feedPower>250</feedPower>
       <DisplayId>{equip.Potion_of_Mana}</DisplayId>
    </Object>
+      <Object type="0x1559" id="Potion of Attack (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x34</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_attack_power.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="20" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Attack_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155A" id="Potion of Defense (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x35</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_defense_power.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="21" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Defense_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155B" id="Potion of Speed (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x36</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_speed.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="22" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Speed_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155C" id="Potion of Vitality (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x30</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_vitality.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="26" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Vitality_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155D" id="Potion of Wisdom (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x31</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_wisdom.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="27" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Wisdom_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155E" id="Potion of Dexterity (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x37</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_dexterity.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="28" amount="1">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>150</feedPower>
+      <DisplayId>{equip.Potion_of_Dexterity_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x155F" id="Potion of Life (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x26</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_health.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="0" amount="5">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>250</feedPower>
+      <DisplayId>{equip.Potion_of_Life_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x1560" id="Potion of Mana (SB)">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj2</File>
+         <Index>0x27</Index>
+      </Texture>
+      <SlotType>10</SlotType>
+      <Description>{equip.A_potion_that_permanently_increases_magic.}</Description>
+      <Sound>use_potion</Sound>
+      <Activate stat="3" amount="5">IncrementStat</Activate>
+      <Consumable/>
+      <Potion/>
+      <Soulbound/>
+      <BagType>5</BagType>
+      <feedPower>250</feedPower>
+      <DisplayId>{equip.Potion_of_Mana_(SB)}</DisplayId>
+   </Object>
+   <Object type="0x1561" id="Olive Gladiator Skin">
+      <Class>Equipment</Class>
+      <Item/>
+      <AnimatedTexture>
+         <File>playerskins16</File>
+         <Index>06</Index>
+      </AnimatedTexture>
+      <SlotType>10</SlotType>
+      <Description>{equip.Customize_your_Warrior_with_the_Olive_Gladiator_Skin.}</Description>
+      <Activate skinType="1027">UnlockSkin</Activate>
+      <Consumable/>
+      <Soulbound/>
+      <BagType>1</BagType>
+      <DisplayId>{equip.Olive_Gladiator_Skin}</DisplayId>
+   </Object>
+   <Object type="0x1562" id="Ivory Gladiator Skin">
+      <Class>Equipment</Class>
+      <Item/>
+      <AnimatedTexture>
+         <File>playerskins16</File>
+         <Index>07</Index>
+      </AnimatedTexture>
+      <SlotType>10</SlotType>
+      <Description>{equip.Customize_your_Warrior_with_the_Ivory_Gladiator_Skin.}</Description>
+      <Activate skinType="1028">UnlockSkin</Activate>
+      <Consumable/>
+      <Soulbound/>
+      <BagType>1</BagType>
+      <DisplayId>{equip.Ivory_Gladiator_Skin}</DisplayId>
+   </Object>
    <Object type="0xab0" id="Minor Health Potion">
       <Class>Equipment</Class>
       <Item/>
