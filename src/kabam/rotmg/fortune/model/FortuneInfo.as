@@ -1,4 +1,4 @@
-﻿package kabam.rotmg.fortune.model
+package kabam.rotmg.fortune.model
 {
     import flash.display.DisplayObject;
     import flash.events.Event;
@@ -40,7 +40,7 @@
             super();
         }
 
-        public function get id()
+        public function get id():String
         {
             return (this._id);
         }
@@ -50,7 +50,7 @@
             this._id = _arg1;
         }
 
-        public function get title()
+        public function get title():String
         {
             return (this._title);
         }
@@ -60,7 +60,7 @@
             this._title = _arg1;
         }
 
-        public function get description()
+        public function get description():String
         {
             return (this._description);
         }
@@ -70,7 +70,7 @@
             this._description = _arg1;
         }
 
-        public function get weight()
+        public function get weight():String
         {
             return (this._weight);
         }
@@ -80,7 +80,7 @@
             this._weight = _arg1;
         }
 
-        public function get contents()
+        public function get contents():String
         {
             return (this._contents);
         }
@@ -120,7 +120,7 @@
             this._priceSecondInGold = _arg1;
         }
 
-        public function get iconImageUrl()
+        public function get iconImageUrl():String
         {
             return (this._iconImageUrl);
         }
@@ -160,7 +160,7 @@
             return (this._iconImage);
         }
 
-        public function get infoImageUrl()
+        public function get infoImageUrl():String
         {
             return (this._infoImageUrl);
         }
@@ -199,7 +199,7 @@
             this._infoImage = DisplayObject(this._infoImageLoader);
         }
 
-        public function get startTime()
+        public function get startTime():Date
         {
             return (this._startTime);
         }
@@ -209,7 +209,7 @@
             this._startTime = _arg1;
         }
 
-        public function get endTime()
+        public function get endTime():Date
         {
             return (this._endTime);
         }
