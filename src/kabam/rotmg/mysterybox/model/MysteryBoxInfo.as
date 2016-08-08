@@ -46,7 +46,7 @@ package kabam.rotmg.mysterybox.model
             super();
         }
 
-        public function get id() : *
+        public function get id():String
         {
             return (this._id);
         }
@@ -56,7 +56,7 @@ package kabam.rotmg.mysterybox.model
             this._id = _arg1;
         }
 
-        public function get title() : *
+        public function get title():String
         {
             return (this._title);
         }
@@ -66,7 +66,7 @@ package kabam.rotmg.mysterybox.model
             this._title = _arg1;
         }
 
-        public function get description() : *
+        public function get description():String
         {
             return (this._description);
         }
@@ -76,7 +76,7 @@ package kabam.rotmg.mysterybox.model
             this._description = _arg1;
         }
 
-        public function get weight() : *
+        public function get weight():String
         {
             return (this._weight);
         }
@@ -86,7 +86,7 @@ package kabam.rotmg.mysterybox.model
             this._weight = _arg1;
         }
 
-        public function get contents() : *
+        public function get contents():String
         {
             return (this._contents);
         }
@@ -96,7 +96,7 @@ package kabam.rotmg.mysterybox.model
             this._contents = _arg1;
         }
 
-        public function get priceAmount() : *
+        public function get priceAmount():*
         {
             return (this._priceAmount);
         }
@@ -106,7 +106,7 @@ package kabam.rotmg.mysterybox.model
             this._priceAmount = _arg1;
         }
 
-        public function get priceCurrency() : *
+        public function get priceCurrency():*
         {
             return (this._priceCurrency);
         }
@@ -116,7 +116,7 @@ package kabam.rotmg.mysterybox.model
             this._priceCurrency = _arg1;
         }
 
-        public function get saleAmount() : *
+        public function get saleAmount():*
         {
             return (this._saleAmount);
         }
@@ -126,7 +126,7 @@ package kabam.rotmg.mysterybox.model
             this._saleAmount = _arg1;
         }
 
-        public function get saleCurrency() : *
+        public function get saleCurrency():*
         {
             return (this._saleCurrency);
         }
@@ -136,7 +136,7 @@ package kabam.rotmg.mysterybox.model
             this._saleCurrency = _arg1;
         }
 
-        public function get quantity() : *
+        public function get quantity():String
         {
             return (this._quantity);
         }
@@ -146,7 +146,7 @@ package kabam.rotmg.mysterybox.model
             this._quantity = _arg1;
         }
 
-        public function get saleEnd() : *
+        public function get saleEnd():Date
         {
             return (this._saleEnd);
         }
@@ -156,7 +156,7 @@ package kabam.rotmg.mysterybox.model
             this._saleEnd = _arg1;
         }
 
-        public function get iconImageUrl() : *
+        public function get iconImageUrl():String
         {
             return (this._iconImageUrl);
         }
@@ -196,7 +196,7 @@ package kabam.rotmg.mysterybox.model
             return (this._iconImage);
         }
 
-        public function get infoImageUrl() : *
+        public function get infoImageUrl():String
         {
             return (this._infoImageUrl);
         }
@@ -235,7 +235,7 @@ package kabam.rotmg.mysterybox.model
             this._infoImage = DisplayObject(this._infoImageLoader);
         }
 
-        public function get startTime() : *
+        public function get startTime():Date
         {
             return (this._startTime);
         }
@@ -245,7 +245,7 @@ package kabam.rotmg.mysterybox.model
             this._startTime = _arg1;
         }
 
-        public function get endTime() : *
+        public function get endTime():Date
         {
             return (this._endTime);
         }
